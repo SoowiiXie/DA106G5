@@ -1,0 +1,136 @@
+body {
+  background-color: #f1f1f1;
+}
+
+main {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 25px;
+  margin-bottom: 25px;
+}
+
+.info {
+  width: 29%;
+  margin-right: 2%;
+  float: left;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.content {
+  width: 69%;
+  float: left;
+  background-color: white;
+  padding-left: 50px;
+  padding-right: 50px;
+  box-sizing: border-box;
+  border-radius: 7px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), -1px -1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bio {
+  background-color: #A9E8DC;
+  border-radius: 7px 7px 0 0;
+}
+.bio h1 {
+  font-weight: 300;
+  font-size: 2rem;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.bio h2 {
+  font-weight: 200;
+  font-size: 1rem;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.social-links {
+  padding-bottom: 10px;
+}
+
+.social-links i {
+  font-size: 1.2rem;
+  margin: 10px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.download {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: white;
+  border-radius: 0 0 7px 7px;
+}
+.download a {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  background-color: #0285A8;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: white;
+  padding: 10px;
+  border-radius: 24px;
+  font-weight: 200;
+}
+
+.about h1 {
+  font-weight: 300;
+  font-size: 2rem;
+  margin: 35px 0 30px 0;
+}
+.about p {
+  line-height: 27px;
+  color: gray;
+  padding-bottom: 15px;
+}
+
+.contacts {
+  width: 50%;
+  float: left;
+}
+
+.skills {
+  width: 50%;
+  float: left;
+}
+
+hr {
+  color: gray;
+}
+
+.contacts-and-skills {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.skills h1,
+.contacts h1 {
+  font-weight: 200;
+  font-size: 1.5rem;
+  margin: 20px 0 20px 0;
+}
+.skills li,
+.contacts li {
+  line-height: 40px;
+  font-weight: 300;
+}
+.skills i,
+.contacts i {
+  color: gray;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.clearfix {
+  clear: both;
+}

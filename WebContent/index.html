@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>揪團</title>
+    <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        function initializeApp(data) { //初始化LIFF
+            var userid = data.context.userId; //取得ID
+        }
+
+        function pushMsg(place, amount, in_datetime) {
+            if (amount == '' || in_datetime == '' || place == '') { //資料檢查
+                alert('每個項目都必須輸入！');
+                return;
+            }
+            var msg = "###"; //回傳訊息字串
+            msg = msg + place + "/";
+            msg = msg + amount + "/";
+            msg = msg + in_datetime;
+            liff.sendMessages([ //推播訊息
+                    {
+                        type: 'text',
+                        text: msg
+                    }
+                ])
+                .then(() => {
+                    liff.closeWindow(); //關閉視窗
+                });
+        }
+
+        $(document).ready(function () {
+            liff.init(function (data) { //初始化LIFF
+                initializeApp(data);
+            });
+
+            $('#sure').click(function (e) { //按下確定鈕
+                pushMsg($('#place').val(), $('#amount').val(), $('#in_datetime').val());
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <div class="row" style="margin: 10px">
+        <div class="col-12" style="margin: 10px">
+            <label>場地</label>
+            <select id="place" class="form-control">
+                <option selected>整個中央大學</option>
+                <option>中央大學排球場</option>
+                <option>中央大學籃球場</option>
+                <option>中央大學棒球場</option>
+                <option>中央大學足球場</option>
+                <option>中央大學羽球場</option>
+                <option>中央大學桌球場</option>
+                <option>中央大學網球場</option>
+                <option>中央大學橄欖球場</option>
+                <option>中央大學健身房</option>
+                <option>中央大學游泳池</option>
+            </select>
+            <br />
+            <label>人數</label>
+            <input type="number" id="amount" class="form-control" />
+            <br />
+            <label>開始時間</label>
+            <input type="datetime-local" id="in_datetime" value="" class="form-control" />
+            <br />
+            <button class="btn btn-success btn-block" id="sure">確定</button>
+        </div>
+    </div>
+    <img src="https://upload.cc/i1/2020/02/23/69XxYw.png" alt="" style="display:block; margin:auto;" width=300px />
+</body>
+
+</html>

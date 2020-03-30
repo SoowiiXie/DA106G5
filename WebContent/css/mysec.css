@@ -1,0 +1,21 @@
+.sec{
+    background-color: yellow;
+    margin:10px 5px;
+}
+.sec-title{
+    font-size:22px;
+    padding: 5px;
+    border-left: 10px blue solid;
+}
+.sec-title2{
+    font-size:16px;
+    padding: 5px;
+    border-left: 10px red solid;
+}
+.sec-img{
+    margin: 10;
+    width: 200px;
+}
+.sec-text {
+    padding: 5px;
+}

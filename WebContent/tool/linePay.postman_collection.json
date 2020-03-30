@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "346bcd3f-6198-4661-a114-cd8207001953",
+		"name": "linePay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://sandbox-api-pay.line.me/v2/payments/request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"warning": "Key contains invalid whitespace characters.",
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-LINE-ChannelId",
+						"value": "1653839045",
+						"type": "text"
+					},
+					{
+						"key": "X-LINE-ChannelSecret",
+						"value": "7df947ce3ae22422b7319419a1e4d8a5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"productName\" : \"linePayTry\",\n    \"amount\" : 10,\n    \"currency\" : \"TWD\",\n    \"confirmUrl\" : \"https://javababy.herokuapp.com/tool/magnifyNextPic.html\",\n    \"orderId\" : \"1234567\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sandbox-api-pay.line.me/v2/payments/request",
+					"protocol": "https",
+					"host": [
+						"sandbox-api-pay",
+						"line",
+						"me"
+					],
+					"path": [
+						"v2",
+						"payments",
+						"request"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

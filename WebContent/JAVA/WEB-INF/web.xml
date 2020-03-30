@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0" metadata-complete="false">
+
+	<display-name>SL314</display-name>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+
+	<!-- 使用資料庫連線池 DataSource-JNDI的設定 -->
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/TestDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+
+	<servlet>
+		<servlet-name>HelloWorld</servlet-name>
+		<servlet-class>servlet_examples.HelloWorld</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloWorld</servlet-name>
+		<url-pattern>/HelloWorld</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Hello</servlet-name>
+		<servlet-class>servlet_examples.Hello</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Hello</servlet-name>
+		<url-pattern>/Hello</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SimpleCounter</servlet-name>
+		<servlet-class>servlet_examples.SimpleCounter</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SimpleCounter</servlet-name>
+		<url-pattern>/SimpleCounter</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 啟動時載入(Load on Startup)的練習 。伺服器啟動時，會自動載入PrimeSearcher1 -->
+	<!-- <servlet> <servlet-name>PrimeSearcher1</servlet-name> <servlet-class>servlet_examples.PrimeSearcher</servlet-class> 
+		<load-on-startup>10</load-on-startup> </servlet> <servlet-mapping> <servlet-name>PrimeSearcher1</servlet-name> 
+		<url-pattern>/PrimeSearcher1</url-pattern> </servlet-mapping> -->
+
+	<!-- 啟動時載入(Load on Startup)的練習 。伺服器啟動時，不會自動載入PrimeSearcher2 -->
+	<servlet>
+		<servlet-name>PrimeSearcher2</servlet-name>
+		<servlet-class>servlet_examples.PrimeSearcher</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PrimeSearcher2</servlet-name>
+		<url-pattern>/PrimeSearcher2</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>InitCounter</servlet-name>
+		<servlet-class>servlet_examples.InitCounter</servlet-class>
+		<init-param>
+			<param-name>initial</param-name>
+			<param-value>1000</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitCounter</servlet-name>
+		<url-pattern>/InitCounter</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 多個註冊名稱、類別變數的練習 -->
+	<servlet>
+		<servlet-name>HolisticCounter1</servlet-name>
+		<servlet-class>servlet_examples.HolisticCounter</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HolisticCounter1</servlet-name>
+		<url-pattern>/HolisticCounter1</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HolisticCounter2</servlet-name>
+		<servlet-class>servlet_examples.HolisticCounter</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HolisticCounter2</servlet-name>
+		<url-pattern>/HolisticCounter2</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>InitDestroyCounter</servlet-name>
+		<servlet-class>servlet_examples.InitDestroyCounter</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitDestroyCounter</servlet-name>
+		<url-pattern>/InitDestroyCounter</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 多個初始參數的練習 -->
+	<servlet>
+		<servlet-name>InitSnoop</servlet-name>
+		<servlet-class>servlet_examples.InitSnoop</servlet-class>
+		<init-param>
+			<param-name>initial1</param-name>
+			<param-value>1000</param-value>
+		</init-param>
+		<init-param>
+			<param-name>initial2</param-name>
+			<param-value>2000</param-value>
+		</init-param>
+		<init-param>
+			<param-name>initial3</param-name>
+			<param-value>3000</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitSnoop</servlet-name>
+		<url-pattern>/InitSnoop</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ServerSnoop</servlet-name>
+		<servlet-class>servlet_examples.ServerSnoop</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServerSnoop</servlet-name>
+		<url-pattern>/ServerSnoop</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ServerSnoop_Tempdir</servlet-name>
+		<servlet-class>ServerSnoop_Tempdir</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServerSnoop_Tempdir</servlet-name>
+		<url-pattern>/ServerSnoop_Tempdir</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ServletContext_Set</servlet-name>
+		<servlet-class>ServletContext_Set</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletContext_Set</servlet-name>
+		<url-pattern>/ServletContext_Set</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ServletContext_Get</servlet-name>
+		<servlet-class>ServletContext_Get</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletContext_Get</servlet-name>
+		<url-pattern>/ServletContext_Get</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Session_Set</servlet-name>
+		<servlet-class>Session_Set</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Session_Set</servlet-name>
+		<url-pattern>/Session_Set</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Session_Get</servlet-name>
+		<servlet-class>Session_Get</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Session_Get</servlet-name>
+		<url-pattern>/Session_Get</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ExportRestriction</servlet-name>
+		<servlet-class>servlet_examples.ExportRestriction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ExportRestriction</servlet-name>
+		<url-pattern>/ExportRestriction</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CustomAuth</servlet-name>
+		<servlet-class>servlet_examples.CustomAuth</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CustomAuth</servlet-name>
+		<url-pattern>/CustomAuth</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>PersonalizedWelcome</servlet-name>
+		<servlet-class>servlet_examples.PersonalizedWelcome</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PersonalizedWelcome</servlet-name>
+		<url-pattern>/PersonalizedWelcome</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AuthenticationSnoop</servlet-name>
+		<servlet-class>servlet_examples.AuthenticationSnoop</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthenticationSnoop</servlet-name>
+		<url-pattern>/AuthenticationSnoop</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ParameterSnoop</servlet-name>
+		<servlet-class>servlet_examples.ParameterSnoop</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ParameterSnoop</servlet-name>
+		<url-pattern>/ParameterSnoop</url-pattern>
+	</servlet-mapping>
+
+	<!--注意當有用到【額外路徑資訊】時必須使用【前置路徑對應】的設定 -->
+	<servlet>
+		<servlet-name>ViewFile</servlet-name>
+		<servlet-class>servlet_examples.ViewFile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewFile</servlet-name>
+		<url-pattern>/ViewFile/*</url-pattern>
+	</servlet-mapping>
+
+	<!--注意當有用到【額外路徑資訊】時必須使用【前置路徑對應】的設定 -->
+	<servlet>
+		<servlet-name>PathServlet</servlet-name>
+		<servlet-class>PathServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PathServlet</servlet-name>
+		<url-pattern>/PathServlet/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HeaderSnoop</servlet-name>
+		<servlet-class>servlet_examples.HeaderSnoop</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HeaderSnoop</servlet-name>
+		<url-pattern>/HeaderSnoop</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UploadTest</servlet-name>
+		<servlet-class>servlet_examples.UploadTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadTest</servlet-name>
+		<url-pattern>/UploadTest</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>KeepAlive</servlet-name>
+		<servlet-class>servlet_examples.KeepAlive</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>KeepAlive</servlet-name>
+		<url-pattern>/KeepAlive</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Buffering</servlet-name>
+		<servlet-class>servlet_examples.Buffering</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Buffering</servlet-name>
+		<url-pattern>/Buffering</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SiteSelector</servlet-name>
+		<servlet-class>servlet_examples.SiteSelector</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SiteSelector</servlet-name>
+		<url-pattern>/SiteSelector</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ClientPull</servlet-name>
+		<servlet-class>servlet_examples.ClientPull</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ClientPull</servlet-name>
+		<url-pattern>/ClientPull</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ClientPullMove</servlet-name>
+		<servlet-class>servlet_examples.ClientPullMove</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ClientPullMove</servlet-name>
+		<url-pattern>/ClientPullMove</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SessionTracker</servlet-name>
+		<servlet-class>servlet_examples.SessionTracker</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SessionTracker</servlet-name>
+		<url-pattern>/SessionTracker</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ManualInvalidate</servlet-name>
+		<servlet-class>servlet_examples.ManualInvalidate</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManualInvalidate</servlet-name>
+		<url-pattern>/ManualInvalidate</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SessionSnoop</servlet-name>
+		<servlet-class>servlet_examples.SessionSnoop</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SessionSnoop</servlet-name>
+		<url-pattern>/SessionSnoop</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SessionBindings</servlet-name>
+		<servlet-class>servlet_examples.SessionBindings</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SessionBindings</servlet-name>
+		<url-pattern>/SessionBindings</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DBPhoneLookup</servlet-name>
+		<servlet-class>servlet_examples.DBPhoneLookup</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBPhoneLookup</servlet-name>
+		<url-pattern>/DBPhoneLookup</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Test_DataSource</servlet-name>
+		<servlet-class>Test_DataSource</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Test_DataSource</servlet-name>
+		<url-pattern>/Test_DataSource</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DBGifReader</servlet-name>
+		<servlet-class>servlet_examples.DBGifReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader</servlet-name>
+		<url-pattern>/DBGifReader</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DBGifReader2</servlet-name>
+		<servlet-class>servlet_examples.DBGifReader2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader2</servlet-name>
+		<url-pattern>/DBGifReader2</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DBGifReader3</servlet-name>
+		<servlet-class>servlet_examples.DBGifReader3</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader3</servlet-name>
+		<url-pattern>/DBGifReader3</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DBGifReader4</servlet-name>
+		<servlet-class>servlet_examples.DBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader4</servlet-name>
+		<url-pattern>/DBGifReader4</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>HelloWorldGraphics</servlet-name>
+		<servlet-class>servlet_examples.HelloWorldGraphics</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloWorldGraphics</servlet-name>
+		<url-pattern>/HelloWorldGraphics</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GraphicalCounter</servlet-name>
+		<servlet-class>servlet_examples.GraphicalCounter</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GraphicalCounter</servlet-name>
+		<url-pattern>/GraphicalCounter</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SimpleChart</servlet-name>
+		<servlet-class>servlet_examples.SimpleChart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SimpleChart</servlet-name>
+		<url-pattern>/SimpleChart</url-pattern>
+	</servlet-mapping>
+
+</web-app>

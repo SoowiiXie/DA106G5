@@ -1,0 +1,459 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+<meta charset="UTF-8">
+
+<title>購物車</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" >
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js" >
+  
+$(function() {
+  // This button will increment the value
+  $('.qtyplus').click(function(e) {
+    // Stop acting like a button
+    e.preventDefault();
+    // Get the field name
+    fieldName = $(this).attr('field');
+    // Get its current value
+    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+    // If is not undefined
+    if (!isNaN(currentVal)) {
+      // Increment
+      $('input[name=' + fieldName + ']').val(currentVal + 1);
+    } else {
+      // Otherwise put a 0 there
+      $('input[name=' + fieldName + ']').val(0);
+    }
+  });
+  // This button will decrement the value till 0
+  $(".qtyminus").click(function(e) {
+    // Stop acting like a button
+    e.preventDefault();
+    // Get the field name
+    fieldName = $(this).attr('field');
+    // Get its current value
+    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
+    // If it isn't undefined or its greater than 0
+    if (!isNaN(currentVal) && currentVal > 0) {
+      // Decrement one
+      $('input[name=' + fieldName + ']').val(currentVal - 1);
+    } else {
+      // Otherwise put a 0 there
+      $('input[name=' + fieldName + ']').val(0);
+    }
+  });
+});
+</script>
+<style type="text/css" media="screen"> 
+
+#page {
+margin-right:8px;
+margin-left:-8px;
+margin-top:-8px;  
+height:2000px;
+width:1440px;
+background-color:#FBFBFF;
+}
+#first {
+margin-right:8px;
+margin-top:-8px;  
+height:100px;
+width:100%;
+background-color:#D2E9FF;
+}
+.logo{
+margin-left:100px;
+height:100px;
+width:200px; 
+background-color:#FDFFFF;
+position: static; 
+line-height:100px; 
+float:left;
+}
+.search_pd{
+height:100px;
+width:200px; 
+background-color:#FFFFB9;
+float:left;
+position: relative;
+}
+.search_form{
+position: absolute;  
+margin-top:70px;
+}
+.shopping_trolley{
+margin-left:600px;
+height:100px;
+width:100px; 
+background-color:#FDFFFF;
+position: static; 
+line-height:100px; 
+float:left;
+}
+.backhome{
+height:100px;
+width:100px; 
+background-color:#DCB5FF;
+position: static; 
+line-height:100px; 
+float:left;
+}
+.member{
+margin-left:1300px;
+height:100px;
+width:100px; 
+background-color:#93FF93;
+position: static; 
+line-height:100px;
+}
+.second{
+margin-right:10px; 
+margin-top: 10px;
+height:50px;
+width:100%;  
+background-color:#D2E9FF;
+position:absolute; 
+text-align:center;
+
+}
+.Topmenu{
+  width:12.5%;
+  height:43px;
+  background-color:#97CBFF;
+  color:#FFF6F6;
+  font-size:22px;
+  padding-top:8px;
+  text-align:center;
+  border-radius:5px;
+  overflow:hidden;
+  line-height: 35px;
+  transition:all 0.8s; /*all代表多個*/
+  display:inline-block;
+  vertical-align:top;
+}
+.Topmenu:hover{
+  height:150px;
+  cursor:pointer;
+    background-color: green;
+    color:cyan;
+}
+.Topmenu span{
+  display: block;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.8s;  /*transition 需要 hover觸發*/
+     color:#fff;
+}
+.Topmenu span:hover{
+  color:cyan;
+  text-shadow: 2px 2px 2px #000;
+}
+.Topmenuin{
+  position: relative;
+}
+.third{
+margin-top:70px; 
+height:500px;
+width:100%;  
+background-color:#FBFBFF;
+
+}
+.shopping_trolley_list{
+margin-left: 220px;
+width: 1000px;
+height: 500px;
+background-color:#FFD9EC;
+text-align: center;  
+
+}
+.pd_littlePhoto{
+margin-top:328px;
+width: 500px;
+height:150px;
+background-color:#B3D9D9; 
+text-align: "center";
+
+}
+.pd_information{
+margin-top:-500px;
+margin-left: 650px;
+width: 650px;
+height: 500px;
+background-color:#FFDAC8;
+
+}
+.pd_name{
+width: 650px;
+height: 50px;
+background-color:#FFF4C1;
+}
+.pd_information_price{
+width: 650px;
+height: 50px;
+background-color:#EBD6D6;
+}
+.pd_price_title{
+width: 100px;
+height: 50px;
+background-color:#B3D9D9;
+float: left;
+}
+.pd_price{
+width: 550px;
+height: 50px;
+background-color:#FF77FF;
+margin-left:100px; 
+}
+.pd_information_color{
+width: 650px;
+height:112.5px;
+background-color:#A23400;
+}
+.pd_color_title{
+width: 100px;
+height:112.5px;
+background-color:#FF9797;
+float: left;
+}
+.pd_colorChoose{
+width: 550px;
+height:112.5px;
+background-color:#AAAAFF;
+margin-left:100px;
+}
+.pd_information_size{
+width: 650px;
+height:112.5px;
+background-color:#A23400;
+}
+.pd_size_title{
+width: 100px;
+height:112.5px;
+background-color:#FFC78E;
+float: left;
+}
+.pd_sizeChoose{
+width: 550px;
+height:112.5px;
+background-color:#80FFFF;
+margin-left:100px;
+}
+.pd_information_count{
+ width:650px;
+height:75px;
+background-color:#E2C2DE;
+} 
+.pd_count_title{
+width:100px;
+height:75px;
+background-color:#FFAD86;
+float: left;
+} 
+.pd_count_qty{
+width:550px;
+height:75px;
+background-color:#FFB5B5;
+margin-left:100px;
+text-align: center;
+} 
+.shopping_information_trolleyOrBuy{
+ width:650px;
+height:100px;
+background-color:#FF9797;
+} 
+.shopping_trolleyOrBuy_trolley{
+width:325px;
+height:100px;
+background-color:#FFFF6F;
+float: left;
+text-align: center;
+
+}
+.shopping_trolleyOrBuy_buy{
+margin-left: 325px;
+width:325px;
+height:100px;
+background-color:#EAC100;
+text-align: center;
+}
+.qty {
+  width: 40px;
+  height: 35px;
+  text-align: center;
+  border: 0;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+}
+
+input.qtyplus {
+  width: 25px;
+  height: 35px;
+  border: 1px solid #aaa;
+  background: #f8f8f8;
+}
+
+input.qtyminus {
+  width: 25px;
+  height: 35px;
+  border: 1px solid #aaa;
+  background: #f8f8f8;
+}
+.sixth{
+margin-left: 150px;
+width: 1150px;
+height: 2000px;
+background:#E6CAFF;
+}
+</style>
+
+</head>
+
+<body>
+  <div id="page" >
+    <div id="first">
+     <div class="logo" align="center"><img src="XXX" alt="運動筆記logo"></div>
+     <div class="search_pd" >
+      <form class="search_form" action="XXX">
+        <input type="search" name="search" placeholder="Enter keyword" style="font-size: 100px;">
+        <input type="submit" value="搜尋" >  
+      </form></div>
+      <div class="shopping_trolley" align="center">回到首頁</div>
+      <div class="backhome" align="center">購物車</div>
+      <div class="member" align="center">會員</div>
+    </div>
+    <div class="bar_lift"></div>
+    <div class="second">
+     <div class="Topmenu">
+        Men<br>
+            <div class="Topmenuin">
+        <span>上身</span>
+        <span>下身</span>
+        <span>鞋子</span>
+        </div>
+        </div>
+        <div class="Topmenu">
+        Women<br>
+        <div class="Topmenuin">
+        <span>上身</span>
+        <span>下身</span>
+        <span>鞋子</span>
+        </div>
+        </div>
+        <div class="Topmenu">
+        Kids<br>
+        <div class="Topmenuin">
+        <span>上身</span>
+        <span>下身</span>
+        <span>鞋子</span>
+        </div>
+        </div>
+        <div class="Topmenu">
+        Accessories<br>
+        <div class="Topmenuin">
+        <span>穿戴護具</span>
+        <span>居家配件</span>
+        <span>水壺</span>
+        </div>
+        </div>
+        <div class="Topmenu">
+        Health Food<br>
+        <div class="Topmenuin">
+        <span>能量飲料</span>
+        <span>乳清</span>
+        <span>減脂餐</span>
+        </div>
+        </div>
+     
+    </div>
+
+   <div class="third">
+    <div class="shopping_trolley_list">
+   <table border="1" width="500" align="center">
+              <tr>
+                <th>商品圖片</th>
+                <th>商品編號</th>
+                <th>商品名稱</th>
+                <th>商品分類</th>
+                <th>商品尺寸</th>
+                <th>數量</th>
+                <th>商品單價</th>
+              </tr>
+            </table>
+              <table border="1" width="500" align="center" >
+            <tr>
+                <td>XX商品</td>
+                <td>編號XX</td>
+                <td>名稱XX</td>
+                <td>XX分類</td>
+                <td>XX尺寸</td>
+                <td>XX數量</td>
+                <td>單價XX</td>
+              </tr>
+            </table>
+            <table border="1" width="500" align="center">
+              <tr>
+                <td>XX商品</td>
+                <td>編號XX</td>
+                <td>名稱XX</td>
+                <td>XX分類</td>
+                <td>XX尺寸</td>
+                <td>XX數量</td>
+                <td>單價XX</td>
+              </tr>
+            </table>
+            <table border="1" width="500" align="center">
+             <tr>
+                <td>XX商品</td>
+                <td>編號XX</td>
+                <td>名稱XX</td>
+                <td>XX分類</td>
+                <td>XX尺寸</td>
+                <td>XX數量</td>
+                <td>單價XX</td>
+              </tr>
+            </table>
+            <table border="1" width="500" align="center">
+             <tr>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>可使用的優惠卷</td>
+                <td><select name="typeChoose">
+              <option value="Taipei">請選擇</option>
+　            <option value="Taipei">100元優惠券</option>
+            </select></td>
+              </tr>
+            </table>
+            <table border="1" width="500" align="center">
+             <tr>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>總數量</td>
+                <td>總金額</td>
+              </tr>
+            </table>
+             <table border="1" width="500" align="center">
+             <tr>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td><button>進入結帳資訊</button></td>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+                <td>Ｏ</td>
+              </tr>
+            </table>
+    </div>
+ 
+     
+
+    </div>
+
+     
+</body>
+</html>
