@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <input type="text" v-model="result" />
+            {{ message }} {{result}}
+            <button v-on:click="result=result*2">加倍</button>
+            <button v-on:click="calc">加倍</button>
+            <button @click="calc">加倍</button>
+            <br />
+            {{price}}
+            <ul>
+                <li v-for="friend in friends">{{friend}}</li>
+            </ul>
+            <span v-if="age >= 18">你是大人了</span>
+            <span v-else>你是小孩</span>
+            <span v-show="age >= 18">你是大人了</span>
+            <form
+                action=""
+                class="bg-white w-full max-w-md shadow-md m-5 p-4 rounded"
+            >
+                <label for="height" class="block">身高</label>
+                <input
+                    type="text"
+                    id="height"
+                    class="rounded shadow border px-3 py-2 mb-2 w-full"
+                    placeholder="請輸入身高（單位：公分）"
+                    v-model="height"
+                />
+                <label for="weight" class="block">體重</label>
+                <input
+                    type="text"
+                    id="weight"
+                    class="rounded shadow border px-3 py-2 mb-2 w-full"
+                    placeholder="請輸入體重（單位：公斤）"
+                    v-model="weight"
+                />
+                <span class="block text-pink-500 text-6xl px-3">{{bmi}}</span>
+            </form>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    message: "hello 你好!",
+                    age: 16,
+                    friends: ["Mickle", "Soowii", "James"],
+                    result: 2,
+                    height: 0,
+                    weight: 0
+                },
+                methods: {
+                    calc() {
+                        this.result = this.result * 2;
+                    }
+                },
+                computed: {
+                    price() {
+                        return this.result * 10;
+                    },
+                    bmi() {
+                        let h = this.height / 100;
+                        let w = this.weight;
+                        if (h > 0 && w > 0) {
+                            let result = w / (h * h);
+                            return Math.round(result * 100) / 100;
+                        } else {
+                            return 0;
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

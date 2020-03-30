@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>放大、下一張、點選</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style type="text/css">
+        p {
+            margin: 5px;
+        }
+
+        #demo {
+            display: block;
+            width: 180px;
+            height: 100px;
+            margin: 5px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        #float-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        img {
+            width: 180px;
+            height: 100px;
+        }
+
+        #qrCode-box {
+            border: 0px;
+        }
+
+        #qrCode-box img {
+            width: auto;
+            height: auto;
+        }
+
+        /* #floatIMG {
+            width: 170px;
+            height: 170px;
+        } */
+
+        #small-box {
+            display: none;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: #ffffcc;
+            border: 1px solid #ccc;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+            cursor: move;
+        }
+
+
+        #big-box {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 220px;
+            top: 5px;
+            width: 1000px;
+            height: 550px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            z-index: 1;
+        }
+
+        #big-box img {
+            height: auto;
+            width: 2200px;
+            position: absolute;
+            z-index: 5;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <div id="qrCode-box">
+
+        </div>
+        <div id="float-box">
+            <div id="small-box"></div>
+            <img src="images/p1.png" id="floatIMG">
+        </div>
+        <div id="botton">
+            <p style="text-align: center;" id="p">
+                <!-- <input type="button" value="上一張" name="" id='up'> -->
+                <a href="#" class="btn btn-primary btn-sm" id='up'>上一張</a>
+                <!-- <input type="button" value="買買買" name="" id='buy'> -->
+                <!-- <input type="button" value="下一張" name="" id='down'> -->
+                <a href="#" class="btn btn-primary btn-sm" id='down'>下一張</a>
+            </p>
+        </div>
+
+        <div id="left">
+            <FORM method="POST" action="Hello"></FORM>
+            <!-- <input type="SUBMIT" value="買了"> -->
+            <a href="#" class="btn btn-success btn-sm">買了</a><br>
+            1.<input type="checkbox" value="1"><img src="images/p1.png" alt="" id="1" class="onOnKan">
+            2.<input type="checkbox" value="2"><img src="images/p2.png" alt="" id="2" class="onOnKan">
+            3.<input type="checkbox" value="3"><img src="images/p3.png" alt="" id="3" class="onOnKan">
+            4.<input type="checkbox" value="4"><img src="images/p4.png" alt="" id="4" class="onOnKan">
+            5.<input type="checkbox" value="5"><img src="images/p5.png" alt="" id="5" class="onOnKan">
+            6.<input type="checkbox" value="6"><img src="images/p6.png" alt="" id="6" class="onOnKan">
+            7.<input type="checkbox" value="7"><img src="images/p7.png" alt="" id="7" class="onOnKan">
+            8.<input type="checkbox" value="8"><img src="images/p8.png" alt="" id="8" class="onOnKan">
+            9.<input type="checkbox" value="9"><img src="images/p9.png" alt="" id="9" class="onOnKan">
+            10.<input type="checkbox" value="10"><img src="images/p10.png" alt="" id="10" class="onOnKan">
+            11.<input type="checkbox" value="11"><img src="images/p11.png" alt="" id="11" class="onOnKan">
+            12.<input type="checkbox" value="12"><img src="images/p12.png" alt="" id="12" class="onOnKan">
+            </FORM>
+        </div>
+        
+        <div id="big-box">
+            <img src="images/p1.png">
+        </div>
+    </div>
+    <script type="text/javascript">
+        // var up = document.getElementById('up');
+        // var down = document.getElementById('down');
+        // function showBig(e) {
+        // if (e.target.id == 'float-box' || e.target.id == 'small-box' || e.target.id == 'left' || e.target.id == 'p' || e.target.id == 'botton' || e.target.id == 'demo' || e.target.id == 'big-box') { }
+        // else {
+        var picinfo = parseInt(1);
+        var onOnKan = document.getElementsByClassName('onOnKan');
+        
+        function showBig(e) {
+            if (e.target.id == 'up') {
+                picinfo = picinfo == 1 ? onOnKan.length : picinfo - 1;
+                console.log(picinfo);
+            } else if (e.target.id == 'down') {
+                picinfo = picinfo == onOnKan.length ? 1 : picinfo + 1;
+                console.log(picinfo);
+            }
+            document.getElementById('float-box').innerHTML = "<div id='small-box'></div><img src='images/p" + picinfo +
+                ".png' id='floatIMG'>";
+            document.getElementById('big-box').innerHTML = "<img src='images/p" + picinfo + ".png'>";
+            init();
+        }
+        // }
+
+        // }
+        // up.onclick = function () {
+        //     picinfo = picinfo == 1 ? 6 : picinfo - 1;
+        //     console.log(picinfo);
+        //     document.getElementById('float-box').innerHTML = "<div id='small-box'></div><img src='p" + picinfo + ".jpg' id='floatIMG'>";
+        //     document.getElementById('big-box').innerHTML = "<img src='p" + picinfo + ".jpg'>";
+        //     init();
+        // }
+        // down.onclick = function () {
+        //     picinfo = picinfo == 6 ? 1 : picinfo + 1;
+        //     console.log(picinfo);
+        //     document.getElementById('float-box').innerHTML = "<div id='small-box'></div><img src='p" + picinfo + ".jpg' id='floatIMG'>";
+        //     document.getElementById('big-box').innerHTML = "<img src='p" + picinfo + ".jpg'>";
+        //     init();
+        // }
+        window.onload = init;
+
+        function init() {
+            document.getElementById('demo').addEventListener('click', showBig, false);
+            document.getElementById('qrCode-box').innerHTML =
+                "<img src=https://chart.googleapis.com/chart?chs=180x180&cht=qr&chl=" + location.href +
+                "&choe=UTF-8/><br>";
+
+            
+            var demo = document.getElementById('demo');
+            var smallBbox = document.getElementById('small-box');
+            var floatBox = document.getElementById('float-box');
+            var bigBox = document.getElementById('big-box');
+            var bigBoxImg = bigBox.getElementsByTagName('img')[0];
+
+            floatBox.onmouseover = function () {
+                smallBbox.style.display = "block";
+                bigBox.style.display = "block";
+            }
+            floatBox.onmouseout = function () {
+                smallBbox.style.display = "none";
+                bigBox.style.display = "none";
+            }
+            floatBox.onmousemove = function (e) {
+                var _event = e || event;
+                console.log(_event.clientY);
+                var l = _event.clientX - demo.offsetLeft - floatBox.offsetLeft - smallBbox.offsetWidth /
+                    2; //除2是因為讓滑鼠點出現在放大遮罩的中心位置
+                var t = _event.clientY - demo.offsetTop - floatBox.offsetTop - smallBbox.offsetHeight / 2;
+
+                var demoWidth = demo.offsetWidth;
+                var demoHeight = demo.offsetHeight;
+
+
+                var smallBboxWidth = smallBbox.offsetWidth;
+                var smallBboxHeight = smallBbox.offsetHeight;
+                //滑鼠可以移動的最大XY的距離
+                var maxX = demoWidth - smallBboxWidth - 2 /* 2 = border*2 */ ;
+                var maxY = demoHeight - smallBboxHeight;
+
+
+                l = Math.min(maxX, Math.max(0, l));
+                t = Math.min(maxY, Math.max(0, t));
+                smallBbox.style.left = l + "px";
+                smallBbox.style.top = t + "px";
+
+
+                var percentX = l / (floatBox.offsetWidth - smallBboxWidth); //求出小圖遮罩的座標佔可移動區域的比例
+                var percentY = t / (floatBox.offsetHeight - smallBboxHeight);
+
+
+                bigBoxImg.style.left = -percentX * (bigBoxImg.offsetWidth - bigBox.offsetWidth) +
+                    "px"; //大圖對的移動方向和小圖遮罩的移動方向相反
+                bigBoxImg.style.top = -percentY * (bigBoxImg.offsetHeight - bigBox.offsetHeight) + "px";
+
+            }
+            for (var i = 0; i < onOnKan.length; i++) {
+                onOnKan[i].onclick = function (e) {
+                    picinfo = parseInt(e.target.id);
+                    console.log(picinfo);
+                    document.getElementById('float-box').innerHTML =
+                        "<div id='small-box'></div><img src='images/p" +
+                        picinfo + ".png' id='floatIMG'>";
+                    document.getElementById('big-box').innerHTML = "<img src='images/p" + picinfo + ".png'>";
+                    init();
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

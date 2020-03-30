@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        body {
+            background-image: url(running.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, 0.3);
+            margin: 0px;
+        }
+
+        #wrapAll {
+            /*width: 100%;*/
+            /*height: 1000px;*/
+            /*background-color: rgba(0,0,0,0.3);*/
+        }
+
+        #wrap,
+        #wrap2 {
+            /*float: left;*/
+            display: block;
+            background-color: rgba(255, 255, 255, 0.6);
+            /*margin-top: 100px;
+		margin: 100px auto auto auto;*/
+            position: absolute;
+            width: 350px;
+            height: 550px;
+            border-radius: 30px;
+        }
+
+        img {
+            padding-top: 20px;
+            display: block;
+            margin: auto;
+            height: 100px;
+            width: 100px;
+        }
+
+        img+p {
+            margin: 0px;
+            text-align: center;
+            font-family: calibri;
+            font-size: 36px;
+            color: #666;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            display: block;
+            margin: 20px auto -10px auto;
+            height: 30px;
+            border-radius: 5px;
+            background-image: url(user5.png);
+            background-repeat: no-repeat;
+            background-size: 20px;
+            background-position: left 3px center;
+            padding-left: 30px;
+        }
+
+        input[type="password"] {
+            background-image: url(pwd3.png);
+            background-size: 20px;
+        }
+
+        #login {
+            cursor: pointer;
+            background: #6EC4DB;
+            width: 150px;
+            height: 50px;
+            color: #fff;
+            font-family: calibri;
+            font-size: 24px;
+            display: block;
+            margin: 30px auto 0px auto;
+            border-radius: 10px;
+            box-shadow: 5px 5px 3px #333;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 3px #333;
+        }
+
+        #div1,
+        #div2 {
+            float: left;
+            margin-top: 30px;
+            margin-left: 75px;
+            width: 90px;
+            height: 30px;
+            background-color: rgba(110, 195, 219, 0.7);
+            border-radius: 5px;
+            box-shadow: 2px 3px 3px #333;
+            cursor: pointer;
+
+            color: #fff;
+            font-weight: bold;
+            font-family: ZhengHei;
+            text-align: center;
+            line-height: 30px;
+            text-shadow: 1px 1px 3px #333;
+        }
+
+        #div2 {
+            margin-left: 20px;
+        }
+
+        #visitor {
+            clear: left;
+            display: block;
+            margin: 60px auto 0px auto;
+            width: 200px;
+            height: 40px;
+            background-color: rgba(110, 195, 219, 0.7);
+            border-radius: 10px;
+            box-shadow: 5px 5px 3px #333;
+            cursor: pointer;
+
+
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            font-family: ZhengHei;
+            letter-spacing: 5px;
+            text-shadow: 1px 1px 3px #333;
+        }
+
+        #div1:hover,
+        #div2:hover,
+        #login:hover,
+        #visitor:hover {
+            background-color: rgba(100, 185, 209, 1);
+            text-shadow: 3px 3px 3px #333;
+        }
+
+        #shopping_cart {
+            display: block;
+            margin: 30px auto;
+            height: 120px;
+            width: 120px;
+        }
+
+        #shop,
+        #group {
+            display: block;
+            margin: 30px auto 0px auto;
+            width: 200px;
+            height: 40px;
+            background-color: rgba(250, 124, 146, 0.7);
+            border-radius: 10px;
+            box-shadow: 5px 5px 3px #333;
+            cursor: pointer;
+
+
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            font-family: ZhengHei;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 3px #333;
+        }
+
+        #group {
+            background-color: rgba(71, 207, 115, 0.7);
+
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            var window_height = $(document).height();
+            var window_width = $(window).width();
+            $("#wrap").css("left", window_width / 2 - $("#wrap").width() / 2);
+            $("#wrap").css("top", window_height / 10);
+
+            $("#wrap2").css("right", window_width);
+            $("#wrap2").css("top", window_height / 10);
+
+            $("#visitor").click(function () {
+                $("#wrap").animate({
+                    left: window_width / 2 + 50
+                }, 2000);
+                $("#wrap2").animate({
+                    right: window_width / 2 + 50
+                }, 2000);
+
+            });
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="wrapAll">
+        <div id="wrap2">
+            <div>
+                <img src="shopping_cart3.png" id="shopping_cart">
+                <input id="shop" type="button" value="商城"><br>
+            </div>
+
+            <div>
+                <img src="shopping_cart3.png" id="shopping_cart">
+                <input id="group" type="button" value="揪團"><br>
+            </div>
+        </div>
+
+        <div id="wrap">
+            <img src="icon5.png">
+            <p>Sign In
+                <a href="../../SoowiiLoc/index.html">test</a>
+            </p>
+            <input type="text" placeholder="請輸入帳號"><br>
+            <input type="password" placeholder="請輸入密碼"><br>
+            <input id="login" type="button" value="LOGIN"><br>
+            <div id="div1">會員註冊</div>
+            <div id="div2">忘記密碼</div><br>
+            <input id="visitor" type="button" value="訪客專區"><br>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

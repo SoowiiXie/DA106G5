@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>放大鏡效果</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #demo {
+            display: block;
+            width: 170px;
+            height: 170px;
+            margin: 5px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        #float-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        #floatIMG {
+            width: 170px;
+            height: 170px;
+        }
+
+        #small-box {
+            display: none;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: #ffffcc;
+            border: 1px solid #ccc;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+            cursor: move;
+        }
+
+
+        #big-box {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 220px;
+            top: 5px;
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            z-index: 1;
+        }
+
+        #big-box img {
+            width: 800px;
+            height: 800px;
+            position: absolute;
+            z-index: 5;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <div id="float-box">
+            <div id="small-box"></div>
+            <img src="p1.jpg" alt="嘟嘟車" id="floatIMG">
+        </div>
+
+        <div id="big-box">
+            <img src="p1.jpg">
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            //獲取到需要的元素
+            var demo = document.getElementById('demo');
+            var smallBbox = document.getElementById('small-box');
+            var floatBox = document.getElementById('float-box');
+            var bigBox = document.getElementById('big-box');
+            var bigBoxImg = bigBox.getElementsByTagName('img')[0];
+
+
+            floatBox.onmouseover = function () {
+                smallBbox.style.display = "block";
+                bigBox.style.display = "block";
+            }
+            floatBox.onmouseout = function () {
+                smallBbox.style.display = "none";
+                bigBox.style.display = "none";
+            }
+            floatBox.onmousemove = function (e) {
+                var _event = e || event;
+                console.log(_event.clientY);
+                var l = _event.clientX - demo.offsetLeft - floatBox.offsetLeft - smallBbox.offsetWidth / 2;//除2是因為讓滑鼠點出現在放大遮罩的中心位置
+                var t = _event.clientY - demo.offsetTop - floatBox.offsetTop - smallBbox.offsetHeight / 2;
+
+                var demoWidth = demo.offsetWidth;
+                var demoHeight = demo.offsetHeight;
+
+
+                var smallBboxWidth = smallBbox.offsetWidth;
+                var smallBboxHeight = smallBbox.offsetHeight;
+                //滑鼠可以移動的最大XY的距離
+                var maxX = demoWidth - smallBboxWidth - 2 /* 2 = border*2 */;
+                var maxY = demoHeight - smallBboxHeight;
+
+
+                l = Math.min(maxX, Math.max(0, l));
+                t = Math.min(maxY, Math.max(0, t));
+                smallBbox.style.left = l + "px";
+                smallBbox.style.top = t + "px";
+
+
+                var percentX = l / (floatBox.offsetWidth - smallBboxWidth);//求出小圖遮罩的座標佔可移動區域的比例
+                var percentY = t / (floatBox.offsetHeight - smallBboxHeight);
+
+
+                bigBoxImg.style.left = -percentX * (bigBoxImg.offsetWidth - bigBox.offsetWidth) + "px";//大圖對的移動方向和小圖遮罩的移動方向相反
+                bigBoxImg.style.top = -percentY * (bigBoxImg.offsetHeight - bigBox.offsetHeight) + "px";
+
+            }
+        }
+    </script>
+</body>
+
+</html>
