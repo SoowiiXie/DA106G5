@@ -1,4 +1,4 @@
-package com.xuan.abl.model;
+package com.abl.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
