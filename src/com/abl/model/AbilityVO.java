@@ -1,4 +1,4 @@
-package com.xuan.abl.model;
+package com.abl.model;
 
 public class AbilityVO implements java.io.Serializable{
 	private String ability_no, ability_name;
