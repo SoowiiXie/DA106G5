@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
 
@@ -30,10 +31,12 @@ public class LocationTest extends HttpServlet {
 		locationVO_insert.setLatitude("78.90");
 		locationVO_insert.setLoc_status(7);// 有給default
 		locationVO_insert.setLoc_address("桃園");
-		FileInputStream in;
+		InputStream in;
+//		FileInputStream in;
 		BufferedInputStream bf;
 		try {
-			in = new FileInputStream("fake_picture/loc" + String.format("%05d", 6) + ".jpg");
+			in = getServletContext().getResourceAsStream("/fake_picture/loc" + String.format("%05d", 6) + ".jpg");
+//			in = new FileInputStream("/fake_picture/loc" + String.format("%05d", 6) + ".jpg");
 			bf = new BufferedInputStream(in);
 			byte[] image = new byte[bf.available()];// 讀入的圖檔,暫存在記憶體
 			bf.read(image);
@@ -58,7 +61,7 @@ public class LocationTest extends HttpServlet {
 		locationVO_update.setLoc_status(7);// 有給default
 		locationVO_update.setLoc_address("全家就是我家");
 		try {
-			in = new FileInputStream("fake_picture/loc" + String.format("%05d", 6) + ".jpg");
+			in = getServletContext().getResourceAsStream("/fake_picture/loc" + String.format("%05d", 6) + ".jpg");
 			bf = new BufferedInputStream(in);
 			byte[] image = new byte[bf.available()];// 讀入的圖檔,暫存在記憶體
 			bf.read(image);
