@@ -1,0 +1,77 @@
+
+DROP SEQUENCE grp_no_seq;
+DROP SEQUENCE group_rpt_no_seq;
+
+
+CREATE SEQUENCE grp_no_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE
+NOCACHE;
+--揪團
+
+Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'soowii123','loc00001',TO_DATE('2020-05-15 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-15 18:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-10 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-13 20:30','YYYY-MM-DD HH24:MI'),'luck ball go','gogogo',20,5,15,1,30);
+
+Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'xuan123','loc00002',TO_DATE('2020-05-16 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-16 18:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-11 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-14 20:30','YYYY-MM-DD HH24:MI'),'happy ball go','gogogo',25,10,20,1,35);
+
+Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'michael123','loc00003',TO_DATE('2020-05-17 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-17 18:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-12 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-15 20:30','YYYY-MM-DD HH24:MI'),'sad ball go','gogogo',30,15,20,1,37);
+
+Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'vain123','loc00004',TO_DATE('2020-05-18 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-18 18:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-13 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-16 20:30','YYYY-MM-DD HH24:MI'),'laugh ball go','gogogo',35,20,20,1,38);
+
+Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'yiwen123','loc00005',TO_DATE('2020-05-19 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-19 18:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-14 08:30','YYYY-MM-DD HH24:MI'),TO_DATE('2020-05-17 20:30','YYYY-MM-DD HH24:MI'),'yummy ball go','gogogo',40,25,30,1,39);
+
+--揪團明細
+
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('soowii123','grp00001',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('xuan123','grp00002',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('michael123','grp00003',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('vain123','grp00004',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('yiwen123','grp00005',1);
+
+--關注揪團
+
+Insert into grp_follow (grp_no,mb_id)
+values('grp00001','soowii123');
+
+Insert into grp_follow (grp_no,mb_id)
+values('grp00002','xuan123');
+
+Insert into grp_follow (grp_no,mb_id)
+values('grp00003','michael123');
+
+Insert into grp_follow (grp_no,mb_id)
+values('grp00004','vain123');
+
+Insert into grp_follow (grp_no,mb_id)
+values('grp00005','yiwen123');
+
+--揪團檢舉
+
+CREATE SEQUENCE group_rpt_no_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE
+NOCACHE;
+
+Insert into group_rpt(group_rpt_no,grp_no,rpt_reason,mb_id,rpt_status)
+values('grr'||LPAD(to_char(group_rpt_no_seq.NEXTVAL), 5, '0'),'grp00001',null,'soowii123',1);
+Insert into group_rpt(group_rpt_no,grp_no,rpt_reason,mb_id,rpt_status)
+values('grr'||LPAD(to_char(group_rpt_no_seq.NEXTVAL), 5, '0'),'grp00002',null,'xuan123',2);
+Insert into group_rpt(group_rpt_no,grp_no,rpt_reason,mb_id,rpt_status)
+values('grr'||LPAD(to_char(group_rpt_no_seq.NEXTVAL), 5, '0'),'grp00003',null,'michael123',3);
+Insert into group_rpt(group_rpt_no,grp_no,rpt_reason,mb_id,rpt_status)
+values('grr'||LPAD(to_char(group_rpt_no_seq.NEXTVAL), 5, '0'),'grp00004',null,'vain123',2);
+Insert into group_rpt(group_rpt_no,grp_no,rpt_reason,mb_id,rpt_status)
+values('grr'||LPAD(to_char(group_rpt_no_seq.NEXTVAL), 5, '0'),'grp00005',null,'yiwen123',1);

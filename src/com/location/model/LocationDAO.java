@@ -13,6 +13,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class LocationDAO implements Location_interface {
 //	String driver = "oracle.jdbc.driver.OracleDriver";
 //	String url = "jdbc:oracle:thin:@localhost:1521:XE";
@@ -26,6 +31,18 @@ public class LocationDAO implements Location_interface {
 	private static final String GET_ALL_STMT = "SELECT * FROM Location order by loc_no";
 	private static final String GET_BY_LOC_TYPENO = "SELECT * FROM Location where loc_typeno = ? order by loc_no";
 
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
+		private static DataSource ds = null;
+		static {
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+		} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
+
+	
 	@Override
 	public void insert(LocationVO locationVO) {
 		Connection con = null;

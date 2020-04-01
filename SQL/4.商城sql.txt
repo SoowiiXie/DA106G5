@@ -1,0 +1,255 @@
+-----商城DROP-----
+
+DROP SEQUENCE "DA106G5"."COUPON_SEQ";
+DROP SEQUENCE "DA106G5"."ORDERS_SEQ";
+DROP SEQUENCE "DA106G5"."PD_TYPE_SEQ";
+DROP SEQUENCE "DA106G5"."PRODUCT_SEQ";
+
+DROP TABLE "DA106G5"."PD_FOLLOW" CASCADE CONSTRAINTS;
+DROP TABLE "DA106G5"."OD_DETAIL" CASCADE CONSTRAINTS;
+DROP TABLE "DA106G5"."CP_GET" CASCADE CONSTRAINTS;
+DROP TABLE "DA106G5"."PRODUCT" CASCADE CONSTRAINTS;
+DROP TABLE "DA106G5"."PD_TYPE" CASCADE CONSTRAINTS;
+DROP TABLE "DA106G5"."ORDERS" CASCADE CONSTRAINTS;
+DROP TABLE "DA106G5"."COUPON" CASCADE CONSTRAINTS;
+
+
+------優惠卷表格------
+
+CREATE TABLE coupon (
+ cp_no VARCHAR2(20) NOT NULL, 
+ cp_name VARCHAR2(20) NOT NULL,
+ cp_pic BLOB
+);
+
+ALTER TABLE coupon ADD CONSTRAINT PK_coupon PRIMARY KEY (cp_no);
+
+
+-----訂單表格------
+
+CREATE TABLE orders (
+ od_no VARCHAR2(20) NOT NULL,
+ mb_id VARCHAR2(20) NOT NULL,
+ od_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+ od_status NUMBER(1) DEFAULT '1' NOT NULL,
+ od_totalprice NUMBER(10) NOT NULL,
+ cp_no VARCHAR2(20),
+ od_discount NUMBER(10),
+ od_add VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE orders ADD CONSTRAINT PK_orders PRIMARY KEY (od_no);
+
+
+-----產品類型表格----
+
+CREATE TABLE pd_type (
+ pd_typeno VARCHAR2(20) NOT NULL,
+ pd_typename VARCHAR2(40) NOT NULL
+);
+
+ALTER TABLE pd_type ADD CONSTRAINT PK_pd_type PRIMARY KEY (pd_typeno);
+
+-----產品表格------
+
+CREATE TABLE product (
+ pd_no VARCHAR2(20) NOT NULL,
+ pd_name VARCHAR2(100) NOT NULL,
+ pd_price NUMBER(10) NOT NULL,
+ pd_pic BLOB,
+ pd_detail CLOB,
+ pd_status NUMBER(1) DEFAULT '1' NOT NULL,
+ pd_typeno VARCHAR2(20)
+);
+
+ALTER TABLE product ADD CONSTRAINT PK_product PRIMARY KEY (pd_no);
+
+
+-----持有優惠卷表格------
+
+
+CREATE TABLE cp_get (
+ mb_id VARCHAR2(20) NOT NULL,
+ cp_no VARCHAR2(20) NOT NULL,
+ cp_status NUMBER(1) DEFAULT '1' NOT NULL
+);
+
+ALTER TABLE cp_get ADD CONSTRAINT PK_cp_get PRIMARY KEY (mb_id,cp_no);
+
+
+-----訂單明細表格-----
+
+
+CREATE TABLE od_detail (
+ od_no VARCHAR2(20) NOT NULL,
+ pd_no VARCHAR2(20) NOT NULL,
+ od_amount NUMBER(2) NOT NULL,
+ od_price NUMBER(10) NOT NULL
+);
+
+ALTER TABLE od_detail ADD CONSTRAINT PK_od_detail PRIMARY KEY (pd_no,od_no);
+
+
+-----商品收藏表格-----
+
+
+CREATE TABLE pd_follow (
+ mb_id VARCHAR2(20) NOT NULL,
+ pd_no VARCHAR2(20) NOT NULL
+);
+
+ALTER TABLE pd_follow ADD CONSTRAINT PK_pd_follow PRIMARY KEY (mb_id,pd_no);
+
+
+ALTER TABLE orders ADD CONSTRAINT FK_orders_0 FOREIGN KEY (mb_id) REFERENCES member (mb_id);
+ALTER TABLE orders ADD CONSTRAINT FK_orders_1 FOREIGN KEY (cp_no) REFERENCES coupon (cp_no);
+
+
+ALTER TABLE product ADD CONSTRAINT FK_product_0 FOREIGN KEY (pd_typeno) REFERENCES pd_type (pd_typeno);
+
+
+ALTER TABLE cp_get ADD CONSTRAINT FK_cp_get_0 FOREIGN KEY (mb_id) REFERENCES member (mb_id);
+ALTER TABLE cp_get ADD CONSTRAINT FK_cp_get_1 FOREIGN KEY (cp_no) REFERENCES coupon (cp_no);
+
+
+ALTER TABLE od_detail ADD CONSTRAINT FK_od_detail_0 FOREIGN KEY (pd_no) REFERENCES product (pd_no);
+ALTER TABLE od_detail ADD CONSTRAINT FK_od_detail_1 FOREIGN KEY (od_no) REFERENCES orders (od_no);
+
+
+ALTER TABLE pd_follow ADD CONSTRAINT FK_pd_follow_0 FOREIGN KEY (mb_id) REFERENCES member (mb_id);
+ALTER TABLE pd_follow ADD CONSTRAINT FK_pd_follow_1 FOREIGN KEY (pd_no) REFERENCES product (pd_no);
+
+
+ALTER SESSION SET NLS_TIMESTAMP_FORMAT = 'yyyy-mm-dd hh24:mi:ss';
+
+
+
+
+--------------------COUPON優惠卷--------------------
+
+CREATE SEQUENCE COUPON_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE;
+
+Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷50元');
+Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷100元');
+Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷150元');
+Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷200元');
+Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷250元');
+Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷300元');
+
+
+---------------------ORDERS訂單---------------------
+CREATE SEQUENCE ORDERS_seq
+INCREMENT BY 1
+START WITH 6
+NOMAXVALUE
+NOCYCLE;
+
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000001','soowii123','200000','中央大學A');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000002','xuan123','200000','中央大學C');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000003','michael123','200000','中央大學B');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000004','vain123','200000','中央大學D');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000005', 'yiwen123','200000','中央大學E');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000006', 'weijhih123','200000','中央大學F');
+
+---------------------PD_TYPE商品類別---------------------
+
+CREATE SEQUENCE PD_TYPE_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE;
+
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾類＿上身');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾類＿下身');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'鞋類');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'配件類');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'運動食品類');
+
+-----------------------PRODUCT商品-----------------------
+
+CREATE SEQUENCE PRODUCT_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE;
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'+8鐵手套','10000','PTN00004');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'+10黃金甲','10000','PTN00001');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'+8卍褲子卍','10000','PTN00002');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'洛克人Ｅ罐','10000','PTN00005');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'館長台灣價值雞胸肉','10000','PTN00005');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'走到飛球鞋','10000','PTN00003');
+
+-----------------------CP_GET持有優惠卷-----------------------
+
+Insert into CP_GET(MB_ID, CP_NO) 
+values('soowii123','CPN00001');
+Insert into CP_GET(MB_ID, CP_NO) 
+values('xuan123','CPN00003');
+Insert into CP_GET(MB_ID, CP_NO) 
+values('michael123','CPN00001');
+Insert into CP_GET(MB_ID, CP_NO) 
+values('vain123','CPN00006');
+Insert into CP_GET(MB_ID, CP_NO) 
+values('yiwen123','CPN00002');
+Insert into CP_GET(MB_ID, CP_NO) 
+values('weijhih123','CPN00001');
+
+-----------------------OD_DETAIL-----------------------
+
+Insert into OD_DETAIL(OD_NO, PD_NO, OD_AMOUNT, OD_PRICE) 
+values('20200324-000001','PDN00001','20','200000');
+Insert into OD_DETAIL(OD_NO, PD_NO, OD_AMOUNT, OD_PRICE) 
+values('20200324-000001','PDN00002','20','200000');
+Insert into OD_DETAIL(OD_NO, PD_NO, OD_AMOUNT, OD_PRICE) 
+values('20200324-000002','PDN00003','20','200000');
+Insert into OD_DETAIL(OD_NO, PD_NO, OD_AMOUNT, OD_PRICE) 
+values('20200324-000002','PDN00004','20','200000');
+Insert into OD_DETAIL(OD_NO, PD_NO, OD_AMOUNT, OD_PRICE) 
+values('20200324-000003','PDN00005','20','200000');
+Insert into OD_DETAIL(OD_NO, PD_NO, OD_AMOUNT, OD_PRICE) 
+values('20200324-000003','PDN00006','20','200000');
+
+
+-----------------------PD_FOLLOW商品收藏-----------------------
+
+Insert into PD_FOLLOW(PD_NO, MB_ID) 
+values('PDN00001','soowii123');
+Insert into PD_FOLLOW(PD_NO, MB_ID) 
+values('PDN00002','xuan123');
+Insert into PD_FOLLOW(PD_NO, MB_ID) 
+values('PDN00003','michael123');
+Insert into PD_FOLLOW(PD_NO, MB_ID) 
+values('PDN00001','vain123');
+Insert into PD_FOLLOW(PD_NO, MB_ID) 
+values('PDN00004','yiwen123');
+Insert into PD_FOLLOW(PD_NO, MB_ID) 
+values('PDN00005','weijhih123');
+
+commit;
+
+
+
+
+
