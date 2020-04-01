@@ -1,4 +1,4 @@
-package com.xuan.que_rpt.model;
+package com.que_rpt.model;
 
 public class Question_RPTVO implements java.io.Serializable {
 	private String question_no, mb_id, question_content;

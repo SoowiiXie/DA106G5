@@ -1,4 +1,4 @@
-package com.xuan.que_rpt.model;
+package com.que_rpt.model;
 
 import java.util.List;
 

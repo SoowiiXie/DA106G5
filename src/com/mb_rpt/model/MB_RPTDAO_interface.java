@@ -1,4 +1,4 @@
-package com.xuan.mb_rpt.model;
+package com.mb_rpt.model;
 
 import java.util.List;
 

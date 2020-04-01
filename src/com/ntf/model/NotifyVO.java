@@ -1,4 +1,4 @@
-package com.xuan.ntf.model;
+package com.ntf.model;
 
 public class NotifyVO implements java.io.Serializable {
 	private String ntf_no, mb_id, ntf_content;

@@ -1,4 +1,4 @@
-package com.xuan.staff.model;
+package com.staff.model;
 
 import java.util.List;
 

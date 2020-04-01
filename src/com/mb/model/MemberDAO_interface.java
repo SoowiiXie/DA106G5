@@ -1,4 +1,4 @@
-package com.xuan.mb.model;
+package com.mb.model;
 
 import java.util.List;
 

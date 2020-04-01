@@ -1,4 +1,4 @@
-package com.xuan.auth.model;
+package com.auth.model;
 
 public class AuthorityVO implements java.io.Serializable {
 	private String staff_id, ability_no;

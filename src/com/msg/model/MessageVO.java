@@ -1,4 +1,4 @@
-package com.xuan.msg.model;
+package com.msg.model;
 
 import java.sql.Timestamp;
 

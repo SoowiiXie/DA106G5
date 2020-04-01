@@ -1,4 +1,4 @@
-package com.xuan.ntf.model;
+package com.ntf.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

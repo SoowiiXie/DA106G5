@@ -1,4 +1,4 @@
-package com.xuan.auth.model;
+package com.auth.model;
 
 import java.util.List;
 

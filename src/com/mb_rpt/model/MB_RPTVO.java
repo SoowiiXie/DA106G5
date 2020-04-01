@@ -1,4 +1,4 @@
-package com.xuan.mb_rpt.model;
+package com.mb_rpt.model;
 
 public class MB_RPTVO implements java.io.Serializable {
 	private String mb_rpt_no, mb_id_1,mb_id_2,rpt_reason;

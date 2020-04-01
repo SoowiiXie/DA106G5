@@ -1,4 +1,4 @@
-package com.xuan.mb.model;
+package com.mb.model;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xuan.abl.model.AbilityVO;
 
 public class MemberDAO  implements MemberDAO_interface{
 
