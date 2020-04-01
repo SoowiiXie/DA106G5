@@ -1,5 +1,9 @@
 package com.mb.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -9,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.abl.model.AbilityVO;
 
 public class MemberDAO  implements MemberDAO_interface{
 
@@ -266,7 +271,7 @@ public class MemberDAO  implements MemberDAO_interface{
 	}
 	
 //	// 測試
-//	public static void main(String[] args) {
+//	public static void main(String[] args) throws Exception {
 //		MemberDAO dao = new MemberDAO();
 //		
 //		// 查
@@ -287,15 +292,19 @@ public class MemberDAO  implements MemberDAO_interface{
 //		
 //		
 //		// 增
+//		
+//		InputStream fin = new FileInputStream(new File("fake_picture", "mb1.jpg"));
+//		byte[] pic = new byte[fin.available()];
+//		fin.read(pic);
 //		MemberVO memberVO = new MemberVO();
 //		memberVO.setMb_id("apple1234");
 //		memberVO.setMb_pwd("65a4sd");
-////		memberVO.setMb_line("apple_line");
+//		memberVO.setMb_line("apple_line");
 //		memberVO.setMb_name("apple");
 //		memberVO.setMb_gender(1);
-////		memberVO.setMb_birthday(new Date(89,05,25));
+//		memberVO.setMb_birthday(new Date(89,05,25));
 //		memberVO.setMb_lv(2);
-////		memberVO.setMb_pic(null);
+//		memberVO.setMb_pic(pic);
 //		memberVO.setMb_rpt_times(5);
 //		memberVO.setMb_email("apple@yahoo.com");
 //		memberVO.setMb_status(1);
