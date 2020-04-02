@@ -107,12 +107,12 @@ th, td {
 			<tr>
 				<td>地標地址:</td>
 				<td><input type="TEXT" name="loc_address" size="45"
-					value="<%=(locationVO == null) ? "1" : locationVO.getLoc_address()%>" /></td>
+					value="<%=(locationVO == null) ? "健志愛的小窩" : locationVO.getLoc_address()%>" /></td>
 			</tr>
 			<tr>
 				<td>地標圖片:</td>
-				<td><input type="image" name="loc_status" size="45"
-					value="<%=(locationVO == null) ? "1" : locationVO.getLoc_pic()%>" /></td>
+				<td><input type="image" name="loc_pic" size="45"
+					value="<%=(locationVO == null) ? "images/tomcat.png" : locationVO.getLoc_pic()%>" /></td>
 			</tr>
 
 

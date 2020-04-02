@@ -109,7 +109,7 @@ public class LocationServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("locationVO", locationVO);         // 資料庫取出的VO物件,存入req
-				String url = "/front_end/location/update__input.jsp";
+				String url = "/front_end/location/update_location_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update__input.jsp
 				successView.forward(req, res);
 
@@ -124,16 +124,14 @@ public class LocationServlet extends HttpServlet {
 		
 		
 		if ("update".equals(action)) { // 來自update__input.jsp的請求
-			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-		
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String loc_no = new String(req.getParameter("loc_no").trim());
-				
+				System.out.println(03);
 				String loc_typeno = req.getParameter("loc_typeno");
 //				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (loc_typeno == null || loc_typeno.trim().length() == 0) {
@@ -173,10 +171,11 @@ public class LocationServlet extends HttpServlet {
 					errorMsgs.add("地址請勿空白");
 				}	
 				
-				byte[] loc_pic = req.getParameter("loc_pic").getBytes();
-				if (loc_pic == null || loc_pic.length == 0) {
-					errorMsgs.add("地標圖片請勿空白");
-				}	
+				byte[] loc_pic = null;
+//				loc_pic = req.getParameter("loc_pic").getBytes();
+//				if (loc_pic == null || loc_pic.length == 0) {
+//					errorMsgs.add("地標圖片請勿空白");
+//				}	
 
 //				loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic
 				LocationVO locationVO = new LocationVO();
@@ -192,13 +191,14 @@ public class LocationServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("locationVO", locationVO); // 含有輸入格式錯誤的VO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/location/update__input.jsp");
+							.getRequestDispatcher("/front_end/location/update_location_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
 				
 				/***************************2.開始修改資料*****************************************/
 				LocationService locationSvc = new LocationService();
+				System.out.println(3);
 				locationVO = locationSvc.updateLocation(loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
@@ -211,7 +211,7 @@ public class LocationServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/location/update__input.jsp");
+						.getRequestDispatcher("/front_end/location/update_location_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -264,10 +264,11 @@ public class LocationServlet extends HttpServlet {
 					errorMsgs.add("地址請勿空白");
 				}	
 				
-				byte[] loc_pic = req.getParameter("loc_pic").getBytes();
-				if (loc_pic == null || loc_pic.length == 0) {
-					errorMsgs.add("地標圖片請勿空白");
-				}
+				byte[] loc_pic = null;
+//				byte[] loc_pic = req.getParameter("loc_pic").getBytes();
+//				if (loc_pic == null || loc_pic.length == 0) {
+//					errorMsgs.add("地標圖片請勿空白");
+//				}
 
 				LocationVO locationVO = new LocationVO();
 //				loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic

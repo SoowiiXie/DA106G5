@@ -56,5 +56,14 @@
 		<servlet-name>LocationServlet</servlet-name>
 		<url-pattern>/front_end/location/location.do</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>LocationServletAll</servlet-name>
+		<servlet-class>com.location.controller.LocationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LocationServletAll</servlet-name>
+		<url-pattern>/location/location.do</url-pattern>
+	</servlet-mapping>
 
 </web-app>

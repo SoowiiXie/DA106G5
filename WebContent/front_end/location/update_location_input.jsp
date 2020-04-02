@@ -74,7 +74,7 @@
 		<td><%=locationVO.getLoc_no()%></td>
 	</tr>
 	<tr>
-		<td>地標類別編號:</td>
+		<td>類別編號:</td>
 		<td><input type="TEXT" name="loc_typeno" size="45" value="<%=locationVO.getLoc_typeno()%>" /></td>
 	</tr>
 	<tr>
@@ -92,6 +92,10 @@
 	<tr>
 		<td>地標狀態:</td>
 		<td><input type="TEXT" name="loc_status" size="45" value="<%=locationVO.getLoc_status()%>" /></td>
+	</tr>
+	<tr>
+		<td>地址:</td>
+		<td><input type="TEXT" name="loc_address" size="45" value="<%=locationVO.getLoc_address()%>" /></td>
 	</tr>
 
 <%-- 	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" /> --%>
