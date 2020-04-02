@@ -52,7 +52,7 @@ public class LocationTest extends HttpServlet {
 		}
 		dao.insert(locationVO_insert);
 
-		// 改
+		// 改 loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic
 		LocationVO locationVO_update = new LocationVO();
 		locationVO_update.setLoc_no("loc00007");
 		locationVO_update.setLoc_typeno("3");
