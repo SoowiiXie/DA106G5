@@ -79,11 +79,21 @@ th, td {
 
 	<FORM METHOD="post" ACTION="location.do" name="form1">
 		<table>
+<!-- 			<tr> -->
+<!-- 				<td>類別編號:</td> -->
+<!-- 								loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
+<!-- 				<td><input type="TEXT" name="loc_typeno" size="45" -->
+<%-- 					value="<%=(locationVO == null) ? "3" : locationVO.getLoc_typeno()%>" /></td> --%>
+<!-- 			</tr> -->
+	<jsp:useBean id="loc_typeSvc" scope="page"	class="com.loc_type.model.Loc_typeService" />
 			<tr>
-				<td>地標類別編號:</td>
-				<!-- 				loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
-				<td><input type="TEXT" name="loc_typeno" size="45"
-					value="<%=(locationVO == null) ? "3" : locationVO.getLoc_typeno()%>" /></td>
+				<td>類別編號:<font color=red><b>*</b></font></td>
+				<td><select size="1" name="loc_typeno">
+						<c:forEach var="loc_typeVO" items="${loc_typeSvc.all}">
+							<option value="${loc_typeVO.loc_typeno}"
+								${(locationVO.loc_typeno==loc_typeVO.loc_typeno)? 'selected':'' }>${loc_typeVO.loc_info}
+						</c:forEach>
+				</select></td>
 			</tr>
 			<tr>
 				<td>經度:</td>
@@ -116,17 +126,7 @@ th, td {
 			</tr>
 
 
-			<%-- 			<jsp:useBean id="deptSvc" scope="page" --%>
-			<%-- 				class="com.dept.model.DeptService" /> --%>
-			<!-- 			<tr> -->
-			<!-- 				<td>部門:<font color=red><b>*</b></font></td> -->
-			<!-- 				<td><select size="1" name="deptno"> -->
-			<%-- 						<c:forEach var="deptVO" items="${deptSvc.all}"> --%>
-			<%-- 							<option value="${deptVO.deptno}" --%>
-			<%-- 								${(empVO.deptno==deptVO.deptno)? 'selected':'' }>${deptVO.dname} --%>
-			<%-- 						</c:forEach> --%>
-			<!-- 				</select></td> -->
-			<!-- 			</tr> -->
+
 
 		</table>
 		<br> 
