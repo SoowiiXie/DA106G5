@@ -6,8 +6,8 @@ import java.sql.*;
 public class GrouperJDBCDAO implements GrouperDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "DA106";
-	String passwd = "123456";
+	String userid = "DA106G5";
+	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO Grouper (GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW) VALUES (grp_no_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -197,7 +197,7 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				grouperVO = new GrouperVO();
 				grouperVO.setGrp_no(rs.getString("Grp_no"));
 				grouperVO.setMb_id(rs.getString("Mb_id"));
@@ -267,7 +267,7 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				grouperVO = new GrouperVO();
 				grouperVO.setGrp_no(rs.getString("Grp_no"));
 				grouperVO.setMb_id(rs.getString("Mb_id"));
@@ -325,9 +325,9 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 
 		GrouperJDBCDAO dao = new GrouperJDBCDAO();
 
-		// ·s¼W
+		// ï¿½sï¿½W
 		GrouperVO grpVO1 = new GrouperVO();
-		grpVO1.setGrp_no("§d¥Ã§Ó1");
+		grpVO1.setGrp_no("ï¿½dï¿½Ã§ï¿½1");
 		grpVO1.setMb_id("MANAGER");
 		grpVO1.setLoc_no("");
 		grpVO1.setGrp_applystart(java.sql.Date.valueOf("2020-04-01 18:00"));
@@ -343,9 +343,9 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 		grpVO1.setGrp_follow(new Integer(50));
 		dao.insert(grpVO1);
 
-		// ­×§ï
+		// ï¿½×§ï¿½
 		GrouperVO grpVO2 = new GrouperVO();
-		grpVO2.setGrp_no("§d¥Ã§Ó1");
+		grpVO2.setGrp_no("ï¿½dï¿½Ã§ï¿½1");
 		grpVO2.setMb_id("MANAGER");
 		grpVO2.setLoc_no("");
 		grpVO2.setGrp_applystart(java.sql.Date.valueOf("2020-04-01 18:00"));
@@ -361,10 +361,10 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 		grpVO2.setGrp_follow(new Integer(50));
 		dao.update(grpVO2);
 
-		// §R°£
+		// ï¿½Rï¿½ï¿½
 		dao.delete("7014");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		GrouperVO grpVO3 = dao.findByPrimaryKey("7001");
 		System.out.print(grpVO3.getGrp_no() + ",");
 		System.out.print(grpVO3.getMb_id() + ",");
@@ -382,7 +382,7 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 		System.out.println(grpVO3.getGrp_follow());
 		System.out.println("---------------------");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		List<GrouperVO> list = dao.getAll();
 		for (GrouperVO aGrp : list) {
 			System.out.print(aGrp.getGrp_no() + ",");
