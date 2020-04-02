@@ -77,8 +77,8 @@ public class LocationServlet extends HttpServlet {
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("locationVO", locationVO); // 資料庫取出的empVO物件,存入req
-				String url = "/front_end/location/listOneEmp.jsp";
+				req.setAttribute("locationVO", locationVO); // 資料庫取出的VO物件,存入req
+				String url = "/front_end/location/listOneLocation.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -108,22 +108,22 @@ public class LocationServlet extends HttpServlet {
 				LocationVO locationVO = locationSvc.getOneLocation(loc_no);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("locationVO", locationVO);         // 資料庫取出的empVO物件,存入req
-				String url = "/front_end/location/update_emp_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+				req.setAttribute("locationVO", locationVO);         // 資料庫取出的VO物件,存入req
+				String url = "/front_end/location/update__input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update__input.jsp
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/location/listAllEmp.jsp");
+						.getRequestDispatcher("/front_end/location/listAllLocation.jsp");
 				failureView.forward(req, res);
 			}
 		}
 		
 		
-		if ("update".equals(action)) { // 來自update_emp_input.jsp的請求
+		if ("update".equals(action)) { // 來自update__input.jsp的請求
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -190,9 +190,9 @@ public class LocationServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("locationVO", locationVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					req.setAttribute("locationVO", locationVO); // 含有輸入格式錯誤的VO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/location/update_emp_input.jsp");
+							.getRequestDispatcher("/front_end/location/update__input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -202,8 +202,8 @@ public class LocationServlet extends HttpServlet {
 				locationVO = locationSvc.updateLocation(loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("locationVO", locationVO); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "/front_end/location/listOneEmp.jsp";
+				req.setAttribute("locationVO", locationVO); // 資料庫update成功後,正確的的VO物件,存入req
+				String url = "/front_end/location/listOneLocation.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -211,7 +211,7 @@ public class LocationServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/location/update_emp_input.jsp");
+						.getRequestDispatcher("/front_end/location/update__input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -280,9 +280,9 @@ public class LocationServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("locationVO", locationVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					req.setAttribute("locationVO", locationVO); // 含有輸入格式錯誤的VO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/location/addEmp.jsp");
+							.getRequestDispatcher("/front_end/location/addLocation.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -292,7 +292,7 @@ public class LocationServlet extends HttpServlet {
 				locationVO = locationSvc.addLocation(loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/front_end/location/listAllEmp.jsp";
+				String url = "/front_end/location/listAllLocation.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
 				
@@ -300,7 +300,7 @@ public class LocationServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/location/addEmp.jsp");
+						.getRequestDispatcher("/front_end/location/addLocation.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -322,7 +322,7 @@ public class LocationServlet extends HttpServlet {
 				locationSvc.deleteLocation(loc_no);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/front_end/location/listAllEmp.jsp";
+				String url = "/front_end/location/listAllLocation.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -330,7 +330,7 @@ public class LocationServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/location/listAllEmp.jsp");
+						.getRequestDispatcher("/front_end/location/listAllLocation.jsp");
 				failureView.forward(req, res);
 			}
 		}
