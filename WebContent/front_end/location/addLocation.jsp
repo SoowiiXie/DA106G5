@@ -77,7 +77,7 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="location.do" name="form1">
+	<FORM METHOD="post" ACTION="location.do" name="form1" enctype="multipart/form-data">
 		<table>
 <!-- 			<tr> -->
 <!-- 				<td>類別編號:</td> -->
@@ -121,9 +121,11 @@ th, td {
 			</tr>
 			<tr>
 				<td>地標圖片:</td>
-				<td><input type="image" name="loc_pic" size="45"
-<%-- 					src="<%=(locationVO == null) ? "../front_end/location/images/tomcat.png" : locationVO.getLoc_pic()%>" /></td> --%>
-					src="images/tomcat.png" height="50px" width="50px"/></td>
+				<td><input type="file" name="loc_pic" id="upfile1" /></td>
+			</tr>
+			<tr>
+				<td>預覽:</td>
+				<td><img src="images/tomcat.png" width="100px"></td>
 			</tr>
 
 
@@ -134,5 +136,16 @@ th, td {
 		<input type="hidden" name="action" value="insert"> 
 		<input type="submit" value="送出新增">
 	</FORM>
+	<script>
+		var x = new FileReader;
+		
+		document.forms[0].elements[5].onchange = function() {
+			x.readAsDataURL(this.files[0]);
+		}
+		x.onloadend = function() {
+			document.images[1].src = this.result;
+			console.log(x.herf);
+		}
+	</script>
 </body>
 </html>

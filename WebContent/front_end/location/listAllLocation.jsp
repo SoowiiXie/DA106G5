@@ -104,7 +104,7 @@ th, td {
 				<td>${LocationVO.latitude}</td>
 				<td>${LocationVO.loc_status}</td>
 				<td>${LocationVO.loc_address}</td>
-				<td>${LocationVO.loc_pic}</td>
+				<td><img src="/DA106_G5/DBGifReader4Location?loc_no=${LocationVO.loc_no}" width="100px"></td>
 				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/location/location.do"

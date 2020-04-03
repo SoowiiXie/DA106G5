@@ -32,7 +32,7 @@ public class LocationDAO implements Location_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
