@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>員工資料新增 - addLocation.jsp</title>
+<title>地標資料新增 - addLocation.jsp</title>
 
 <style>
 table#table-1 {
@@ -122,7 +122,8 @@ th, td {
 			<tr>
 				<td>地標圖片:</td>
 				<td><input type="image" name="loc_pic" size="45"
-					value="<%=(locationVO == null) ? "images/tomcat.png" : locationVO.getLoc_pic()%>" /></td>
+<%-- 					src="<%=(locationVO == null) ? "../front_end/location/images/tomcat.png" : locationVO.getLoc_pic()%>" /></td> --%>
+					src="images/tomcat.png" height="50px" width="50px"/></td>
 			</tr>
 
 
