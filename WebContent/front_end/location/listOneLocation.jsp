@@ -83,7 +83,7 @@ th, td {
 			<td><%=locationVO.getLatitude()%></td>
 			<td><%=locationVO.getLoc_status()%></td>
 			<td><%=locationVO.getLoc_address()%></td>
-			<td><%=locationVO.getLoc_pic()%></td>
+			<td><img src="/DA106_G5/DBGifReader4Location?loc_no=<%=locationVO.getLoc_no()%>" width="100px"></td>
 		</tr>
 	</table>
 

@@ -123,8 +123,8 @@ public class LocationServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String loc_no = new String(req.getParameter("loc_no").trim());
-				System.out.println(03);
+//				String loc_no = new String(req.getParameter("loc_no").trim());
+				String loc_no =req.getParameter("loc_no");
 				String loc_typeno = req.getParameter("loc_typeno");
 //				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (loc_typeno == null || loc_typeno.trim().length() == 0) {
@@ -164,36 +164,53 @@ public class LocationServlet extends HttpServlet {
 					errorMsgs.add("地址請勿空白");
 				}
 
-				byte[] loc_pic = null;
-//				loc_pic = req.getParameter("loc_pic").getBytes();
-//				if (loc_pic == null || loc_pic.length == 0) {
-//					errorMsgs.add("地標圖片請勿空白");
-//				}	
-
-//				loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic
 				LocationVO locationVO = new LocationVO();
+//				loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic
 				locationVO.setLoc_no(loc_no);
 				locationVO.setLoc_typeno(loc_typeno);
 				locationVO.setLongitude(longitude);
 				locationVO.setLatitude(latitude);
 				locationVO.setLoc_status(loc_status);
 				locationVO.setLoc_address(loc_address);
-				locationVO.setLoc_pic(loc_pic);
+				byte[] loc_pic = null;
+//				loc_pic = req.getParameter("loc_pic").getBytes();
+				InputStream in;
+				BufferedInputStream bf;
+
+				try {
+					Part part = req.getPart("loc_pic");
+					in = part.getInputStream();
+//					in = new FileInputStream("/fake_picture/loc" + String.format("%05d", 6) + ".jpg");
+					bf = new BufferedInputStream(in);
+					loc_pic = new byte[bf.available()];// 讀入的圖檔,暫存在記憶體
+					if (loc_pic == null || loc_pic.length == 0) {
+						LocationService src = new LocationService();
+						LocationVO locationVO_old = src.getOneLocation(loc_no);
+						loc_pic = locationVO_old.getLoc_pic();
+					}
+					bf.read(loc_pic);
+					locationVO.setLoc_pic(loc_pic);
+					bf.close();
+					in.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("locationVO", locationVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/location/update_location_input.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/location/update_location_input.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
 
 				/*************************** 2.開始修改資料 *****************************************/
 				LocationService locationSvc = new LocationService();
-				System.out.println(3);
-				locationVO = locationSvc.updateLocation(loc_no, loc_typeno, longitude, latitude, loc_status,
-						loc_address, loc_pic);
+				locationVO = locationSvc.updateLocation(loc_no, loc_typeno, longitude, latitude, loc_status,loc_address, loc_pic);
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("locationVO", locationVO); // 資料庫update成功後,正確的的VO物件,存入req
@@ -204,14 +221,12 @@ public class LocationServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/location/update_location_input.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/location/update_location_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
 
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
-
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -281,8 +296,8 @@ public class LocationServlet extends HttpServlet {
 					}
 					bf.read(loc_pic);
 					locationVO.setLoc_pic(loc_pic);
-//					bf.close();
-//					in.close();
+					bf.close();
+					in.close();
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

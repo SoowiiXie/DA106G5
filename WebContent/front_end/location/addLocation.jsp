@@ -125,7 +125,7 @@ th, td {
 			</tr>
 			<tr>
 				<td>¹wÄý:</td>
-				<td><img src="images/tomcat.png" width="100px"></td>
+				<td><img src="/DA106_G5/NoData/none2.jpg" width="100px"></td>
 			</tr>
 
 

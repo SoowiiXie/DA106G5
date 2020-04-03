@@ -57,8 +57,9 @@ th, td {
 			<td>
 				<h3>地標資料修改 - update_location_input.jsp</h3>
 				<h4>
-					<a href="../front_end/location/select_page.jsp"><img src="../front_end/location/images/back1.gif"
-						width="100" height="32" border="0">回首頁</a>
+					<a href="../front_end/location/select_page.jsp"><img
+						src="../front_end/location/images/back1.gif" width="100"
+						height="32" border="0">回首頁</a>
 				</h4>
 			</td>
 		</tr>
@@ -76,7 +77,7 @@ th, td {
 		</ul>
 	</c:if>
 	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
-	<FORM METHOD="post" ACTION="location.do" name="form1">
+	<FORM METHOD="post" ACTION="location.do" name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>地標編號:<font color=red><b>*</b></font></td>
@@ -117,11 +118,30 @@ th, td {
 				<td><input type="TEXT" name="loc_address" size="45"
 					value="<%=locationVO.getLoc_address()%>" /></td>
 			</tr>
+			<tr>
+				<td>地標圖片:</td>
+				<td><input type="file" name="loc_pic" id="upfile1"/></td>
+			</tr>
+			<tr>
+				<td>預覽:</td>
+				<td><img src="/DA106_G5/DBGifReader4Location?loc_no=<%=locationVO.getLoc_no()%>" width="100px"></td>
+			</tr>
 
 		</table>
-		<br> <input type="hidden" name="action" value="update"> <input
-			type="hidden" name="loc_no" value="<%=locationVO.getLoc_no()%>">
+		<br> <input type="hidden" name="action" value="update"> 
+		<input type="hidden" name="loc_no" value="<%=locationVO.getLoc_no()%>">
 		<input type="submit" value="送出修改">
 	</FORM>
+	<script>
+		var x = new FileReader;
+
+		document.forms[0].elements[5].onchange = function() {
+			x.readAsDataURL(this.files[0]);
+		}
+		x.onloadend = function() {
+			document.images[1].src = this.result;
+			console.log(x.herf);
+		}
+	</script>
 </body>
 </html>

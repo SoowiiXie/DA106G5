@@ -71,7 +71,6 @@ public class LocationService {
 //			e.printStackTrace();
 //		}
 		dao.update(locationVO_update);
-
 		return locationVO_update;
 	}
 
