@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.location.model.LocationVO"%>
 <%@ page import="com.location.model.*"%>
@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>¦a¼Ğ¸ê®Æ·s¼W - addLocation.jsp</title>
+<title>åœ°æ¨™è³‡æ–™æ–°å¢ - addLocation.jsp</title>
 
 <style>
 table#table-1 {
@@ -54,22 +54,22 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>­û¤u¸ê®Æ·s¼W - addLocation.jsp</h3>
+				<h3>å“¡å·¥è³‡æ–™æ–°å¢ - addLocation.jsp</h3>
 			</td>
 			<td>
 				<h4>
 					<a href="select_page.jsp"><img src="images/tomcat.png"
-						width="100" height="100" border="0">¦^­º­¶</a>
+						width="100" height="100" border="0">å›é¦–é </a>
 				</h4>
 			</td>
 		</tr>
 	</table>
 
-	<h3>¸ê®Æ·s¼W:</h3>
+	<h3>è³‡æ–™æ–°å¢:</h3>
 
-	<%-- ¿ù»~ªí¦C --%>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -80,14 +80,14 @@ th, td {
 	<FORM METHOD="post" ACTION="location.do" name="form1" enctype="multipart/form-data">
 		<table>
 <!-- 			<tr> -->
-<!-- 				<td>Ãş§O½s¸¹:</td> -->
+<!-- 				<td>é¡åˆ¥ç·¨è™Ÿ:</td> -->
 <!-- 								loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
 <!-- 				<td><input type="TEXT" name="loc_typeno" size="45" -->
 <%-- 					value="<%=(locationVO == null) ? "3" : locationVO.getLoc_typeno()%>" /></td> --%>
 <!-- 			</tr> -->
 	<jsp:useBean id="loc_typeSvc" scope="page"	class="com.loc_type.model.Loc_typeService" />
 			<tr>
-				<td>Ãş§O½s¸¹:<font color=red><b>*</b></font></td>
+				<td>é¡åˆ¥ç·¨è™Ÿ:<font color=red><b>*</b></font></td>
 				<td><select size="1" name="loc_typeno">
 						<c:forEach var="loc_typeVO" items="${loc_typeSvc.all}">
 							<option value="${loc_typeVO.loc_typeno}"
@@ -96,35 +96,35 @@ th, td {
 				</select></td>
 			</tr>
 			<tr>
-				<td>¸g«×:</td>
+				<td>ç¶“åº¦:</td>
 				<td><input type="TEXT" name="longitude" size="45"
 					value="<%=(locationVO == null) ? "123.456" : locationVO.getLongitude()%>" /></td>
 			</tr>
 			<tr>
-				<td>½n«×:</td>
+				<td>ç·¯åº¦:</td>
 				<td><input type="TEXT" name="latitude" size="45"
 					value="<%=(locationVO == null) ? "78.90" : locationVO.getLatitude()%>" /></td>
 			</tr>
 			<!-- 			<tr> -->
-			<!-- 				<td>¶±¥Î¤é´Á:</td> -->
+			<!-- 				<td>é›‡ç”¨æ—¥æœŸ:</td> -->
 			<!-- 				<td><input name="hiredate" id="f_date1" type="text"></td> -->
 			<!-- 			</tr> -->
 			<tr>
-				<td>¦a¼Ğª¬ºA:</td>
+				<td>åœ°æ¨™ç‹€æ…‹:</td>
 				<td><input type="TEXT" name="loc_status" size="45"
 					value="<%=(locationVO == null) ? "1" : locationVO.getLoc_status()%>" /></td>
 			</tr>
 			<tr>
-				<td>¦a¼Ğ¦a§}:</td>
+				<td>åœ°æ¨™åœ°å€:</td>
 				<td><input type="TEXT" name="loc_address" size="45"
-					value="<%=(locationVO == null) ? "°·§Ó·Rªº¤pºÛ" : locationVO.getLoc_address()%>" /></td>
+					value="<%=(locationVO == null) ? "å¥å¿—æ„›çš„å°çª©" : locationVO.getLoc_address()%>" /></td>
 			</tr>
 			<tr>
-				<td>¦a¼Ğ¹Ï¤ù:</td>
+				<td>åœ°æ¨™åœ–ç‰‡:</td>
 				<td><input type="file" name="loc_pic" id="upfile1" /></td>
 			</tr>
 			<tr>
-				<td>¹wÄı:</td>
+				<td>é è¦½:</td>
 				<td><img src="/DA106_G5/NoData/none2.jpg" width="100px"></td>
 			</tr>
 
@@ -134,7 +134,7 @@ th, td {
 		</table>
 		<br> 
 		<input type="hidden" name="action" value="insert"> 
-		<input type="submit" value="°e¥X·s¼W">
+		<input type="submit" value="é€å‡ºæ–°å¢">
 	</FORM>
 	<script>
 		var x = new FileReader;

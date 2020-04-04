@@ -58,11 +58,23 @@ public class Weather_detailService {
 	public List<Weather_detailVO> getOneWeather_detail(Timestamp weather_time, String weather_place) {
 		Map<String, String[]> map = new HashMap<>();
 		map.put("WEATHER_PLACE", new String[] { weather_place });
-		map.put("WEATHER_TIME", new String[] { "TO_TIMESTAMP(" + weather_time.toString() + ")" });
+		map.put("WEATHER_TIME", new String[] { "TO_TIMESTAMP(" + weather_time.toString() + ", 'YYYY-MM-DD HH24:MI:SS')" });
 		return dao.getAllUWish(map);
 	}
 
 	public List<Weather_detailVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public List<Weather_detailVO> getByWeather_place(String weather_place) {
+		Map<String, String[]> map = new HashMap<>();
+		map.put("WEATHER_PLACE", new String[] { weather_place });
+		return dao.getAllUWish(map);
+	}
+	
+	public List<Weather_detailVO> getByWeather_time(Timestamp weather_time) {
+		Map<String, String[]> map = new HashMap<>();
+		map.put("WEATHER_PLACE", new String[] { "TO_TIMESTAMP(" + weather_time.toString() + ", 'YYYY-MM-DD HH24:MI:SS')" });
+		return dao.getAllUWish(map);
 	}
 }
