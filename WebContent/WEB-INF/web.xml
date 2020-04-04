@@ -32,87 +32,94 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
-<!-- 地標開始 -->
-	<servlet>
-		<servlet-name>LocationTest</servlet-name>
-		<servlet-class>com.location.model.LocationTest</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LocationTest</servlet-name>
-		<url-pattern>/LocationTest</url-pattern>
-	</servlet-mapping>
 
+<!-- 戍乂責任區 開始-->
 
-	<servlet>
-		<servlet-name>LocationServlet</servlet-name>
-		<servlet-class>com.location.controller.LocationServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LocationServlet</servlet-name>
-		<url-pattern>/front_end/location/location.do</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>LocationServletAll</servlet-name>
-		<servlet-class>com.location.controller.LocationServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LocationServletAll</servlet-name>
-		<url-pattern>/location/location.do</url-pattern>
-	</servlet-mapping>
+	<!-- 地標開始 -->
+		<servlet>
+			<servlet-name>LocationTest</servlet-name>
+			<servlet-class>com.location.model.LocationTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>LocationTest</servlet-name>
+			<url-pattern>/LocationTest</url-pattern>
+		</servlet-mapping>
 	
 	
-	<servlet>
-		<servlet-name>DBGifReader4Location</servlet-name>
-		<servlet-class>com.location.model.DBGifReader4Location</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>DBGifReader4Location</servlet-name>
-		<url-pattern>/DBGifReader4Location</url-pattern>
-	</servlet-mapping>
-<!-- 地標結束 -->
-
-
-<!-- 天氣明細開始 -->
-	<servlet>
-		<servlet-name>Weather_detailTest</servlet-name>
-		<servlet-class>com.weather_detail.model.Weather_detailTest</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Weather_detailTest</servlet-name>
-		<url-pattern>/Weather_detailTest</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>Weather_detailServlet</servlet-name>
-		<servlet-class>com.weather_detail.controller.Weather_detailServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Weather_detailServlet</servlet-name>
-		<url-pattern>/front_end/weather_detail/weather_detail.do</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>Weather_detailServletAll</servlet-name>
-		<servlet-class>com.weather_detail.controller.Weather_detailServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Weather_detailServlet</servlet-name>
-		<url-pattern>/weather_detail/weather_detail.do</url-pattern>
-	</servlet-mapping>
+		<servlet>
+			<servlet-name>LocationServlet</servlet-name>
+			<servlet-class>com.location.controller.LocationServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>LocationServlet</servlet-name>
+			<url-pattern>/front_end/location/location.do</url-pattern>
+		</servlet-mapping>
 	
 	
-	<servlet>
-		<servlet-name>DBGifReader4Weather_detail</servlet-name>
-		<servlet-class>com.weather_detail.model.DBGifReader4Weather_detail</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>DBGifReader4Weather_detail</servlet-name>
-		<url-pattern>/DBGifReader4Weather_detail</url-pattern>
-	</servlet-mapping>
-<!-- 天氣明細結束 -->
+		<servlet>
+			<servlet-name>LocationServletAll</servlet-name>
+			<servlet-class>com.location.controller.LocationServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>LocationServletAll</servlet-name>
+			<url-pattern>/location/location.do</url-pattern>
+		</servlet-mapping>
+		
+		
+		<servlet>
+			<servlet-name>DBGifReader4Location</servlet-name>
+			<servlet-class>com.location.model.DBGifReader4Location</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Location</servlet-name>
+			<url-pattern>/DBGifReader4Location</url-pattern>
+		</servlet-mapping>
+	<!-- 地標結束 -->
+	
+	<!-- 天氣開始 -->
+		<servlet>
+			<servlet-name>Weather_detailTest</servlet-name>
+			<servlet-class>com.weather_detail.model.Weather_detailTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Weather_detailTest</servlet-name>
+			<url-pattern>/Weather_detailTest</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>Weather_detailServlet</servlet-name>
+			<servlet-class>com.weather_detail.controller.Weather_detailServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Weather_detailServlet</servlet-name>
+			<url-pattern>/front_end/weather_detail/weather_detail.do</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>Weather_detailServletAll</servlet-name>
+			<servlet-class>com.weather_detail.controller.Weather_detailServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Weather_detailServlet</servlet-name>
+			<url-pattern>/weather_detail/weather_detail.do</url-pattern>
+		</servlet-mapping>
+		
+		
+		<servlet>
+			<servlet-name>DBGifReader4Weather</servlet-name>
+			<servlet-class>com.weather.model.DBGifReader4Weather</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Weather</servlet-name>
+			<url-pattern>/DBGifReader4Weather</url-pattern>
+		</servlet-mapping>
+	<!-- 天氣結束 -->
+
+<!-- 戍乂責任區結束 -->
+
+
+
 
 </web-app>
