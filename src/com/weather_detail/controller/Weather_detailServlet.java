@@ -92,7 +92,7 @@ public class Weather_detailServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("weather_detailVO", weather_detailVO); // 資料庫取出的VO物件,存入req
-				String url = "/front_end/weather_detail/listOneLocation.jsp";
+				String url = "/front_end/weather_detail/listOneWeather_detail.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -129,7 +129,7 @@ public class Weather_detailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/weather_detail/listAllLocation.jsp");
+						.getRequestDispatcher("/front_end/weather_detail/listAllWeather_detail.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -333,7 +333,7 @@ public class Weather_detailServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/location/addWeather_detail.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/weather_detail/addWeather_detail.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -361,7 +361,7 @@ public class Weather_detailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/location/listAllWeather_detail.jsp");
+						.getRequestDispatcher("/front_end/weather_detail/listAllWeather_detail.jsp");
 				failureView.forward(req, res);
 			}
 		}
