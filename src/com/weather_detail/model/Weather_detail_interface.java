@@ -20,5 +20,5 @@ public interface Weather_detail_interface {
 //	public Set<Weather_detailVO> getWeatherByWeather_place(String weather_place);
 	
 	// 萬用型
-	public List<Weather_detailVO> getAll(Map<String, String[]> map);
+	public List<Weather_detailVO> getAllUWish(Map<String, String[]> map);
 }

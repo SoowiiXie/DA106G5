@@ -73,4 +73,46 @@
 	</servlet-mapping>
 <!-- 地標結束 -->
 
+
+<!-- 天氣明細開始 -->
+	<servlet>
+		<servlet-name>Weather_detailTest</servlet-name>
+		<servlet-class>com.weather_detail.model.Weather_detailTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Weather_detailTest</servlet-name>
+		<url-pattern>/Weather_detailTest</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>Weather_detailServlet</servlet-name>
+		<servlet-class>com.weather_detail.controller.Weather_detailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Weather_detailServlet</servlet-name>
+		<url-pattern>/front_end/weather_detail/weather_detail.do</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>Weather_detailServletAll</servlet-name>
+		<servlet-class>com.weather_detail.controller.Weather_detailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Weather_detailServlet</servlet-name>
+		<url-pattern>/weather_detail/weather_detail.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>DBGifReader4Weather_detail</servlet-name>
+		<servlet-class>com.weather_detail.model.DBGifReader4Weather_detail</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader4Weather_detail</servlet-name>
+		<url-pattern>/DBGifReader4Weather_detail</url-pattern>
+	</servlet-mapping>
+<!-- 天氣明細結束 -->
+
 </web-app>
