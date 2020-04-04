@@ -58,7 +58,7 @@ public class Weather_detailService {
 	public List<Weather_detailVO> getOneWeather_detail(Timestamp weather_time, String weather_place) {
 		Map<String, String[]> map = new HashMap<>();
 		map.put("WEATHER_PLACE", new String[] { weather_place });
-		map.put("WEATHER_TIME", new String[] { weather_time.toString() });
+		map.put("WEATHER_TIME", new String[] { "TO_TIMESTAMP(" + weather_time.toString() + ")" });
 		return dao.getAllUWish(map);
 	}
 
