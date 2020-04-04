@@ -90,8 +90,8 @@ th, td {
 				<td>類別編號:<font color=red><b>*</b></font></td>
 				<td><select size="1" name="loc_typeno">
 						<c:forEach var="loc_typeVO" items="${loc_typeSvc.all}">
-							<option value="${loc_typeVO.loc_typeno}"
-								${(locationVO.loc_typeno==loc_typeVO.loc_typeno)? 'selected':'' }>${loc_typeVO.loc_info}
+							<option value="${loc_typeVO.loc_typeno}"${(locationVO.loc_typeno==loc_typeVO.loc_typeno)? 'selected':'' }>
+							${loc_typeVO.loc_info}
 						</c:forEach>
 				</select></td>
 			</tr>

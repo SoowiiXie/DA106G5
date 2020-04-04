@@ -94,33 +94,33 @@ th, td {
 			<th>刪除</th>
 		</tr>
 		<%@ include file="page1.file"%>
-		<c:forEach var="LocationVO" items="${list}" begin="<%=pageIndex%>"
+		<c:forEach var="locationVO" items="${list}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
 	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
 			<tr>
-				<td>${LocationVO.loc_no}</td>
-				<td>${LocationVO.loc_typeno}</td>
-				<td>${LocationVO.longitude}</td>
-				<td>${LocationVO.latitude}</td>
-				<td>${LocationVO.loc_status}</td>
-				<td>${LocationVO.loc_address}</td>
-				<td><img src="/DA106_G5/DBGifReader4Location?loc_no=${LocationVO.loc_no}" width="100px"></td>
+				<td>${locationVO.loc_no}</td>
+				<td>${locationVO.loc_typeno}</td>
+				<td>${locationVO.longitude}</td>
+				<td>${locationVO.latitude}</td>
+				<td>${locationVO.loc_status}</td>
+				<td>${locationVO.loc_address}</td>
+				<td><img src="/DA106_G5/DBGifReader4Location?loc_no=${locationVO.loc_no}" width="100px"></td>
 				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/location/location.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="修改"> <input type="hidden"
-							name="loc_no" value="${LocationVO.loc_no}"> <input type="hidden"
-							name="action" value="getOne_For_Update">
+						<input type="submit" value="修改"> 
+						<input type="hidden" name="loc_no" value="${locationVO.loc_no}"> 
+						<input type="hidden" name="action" value="getOne_For_Update">
 					</FORM>
 				</td>
 				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/location/location.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="刪除"> <input type="hidden"
-							name="loc_no" value="${LocationVO.loc_no}"> <input type="hidden"
-							name="action" value="delete">
+						<input type="submit" value="刪除"> 
+						<input type="hidden" name="loc_no" value="${locationVO.loc_no}"> 
+						<input type="hidden" name="action" value="delete">
 					</FORM>
 				</td>
 			</tr>
