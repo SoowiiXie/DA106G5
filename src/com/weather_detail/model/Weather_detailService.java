@@ -13,7 +13,7 @@ public class Weather_detailService {
 		dao = new Weather_detailDAO();
 	}
 
-	public Weather_detailVO addLocation(Timestamp weather_time, String weather_place, String wth_status,
+	public Weather_detailVO addWeather_detail(Timestamp weather_time, String weather_place, String wth_status,
 			Integer wth_high, Integer wth_low, String wth_comfort, Integer wth_rain_chance) {
 
 		// 增 loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic
@@ -33,7 +33,7 @@ public class Weather_detailService {
 		return weather_detailVO_insert;
 	}
 
-	public Weather_detailVO updateLocation(Timestamp weather_time, String weather_place, String wth_status,
+	public Weather_detailVO updateWeather_detail(Timestamp weather_time, String weather_place, String wth_status,
 			Integer wth_high, Integer wth_low, String wth_comfort, Integer wth_rain_chance) {
 
 		// 改
