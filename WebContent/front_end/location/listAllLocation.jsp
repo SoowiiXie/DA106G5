@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.location.model.LocationVO"%>
 <%@ page import="com.location.model.LocationService"%>
 <%@ page import="com.location.model.*"%>
-<%-- ¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È --%>
+<%-- æ­¤é ç·´ç¿’æŽ¡ç”¨ EL çš„å¯«æ³•å–å€¼ --%>
 
 <%
 	LocationService locationSvc = new LocationService();
@@ -16,7 +16,7 @@
 
 <html>
 <head>
-<title>©Ò¦³­û¤u¸ê®Æ - listAllLocation.jsp</title>
+<title>æ‰€æœ‰å“¡å·¥è³‡æ–™ - listAllLocation.jsp</title>
 
 <style>
 table#table-1 {
@@ -58,22 +58,22 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<h4>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</h4>
+	<h4>æ­¤é ç·´ç¿’æŽ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</h4>
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>©Ò¦³­û¤u¸ê®Æ - listAllLocation.jsp</h3>
+				<h3>æ‰€æœ‰å“¡å·¥è³‡æ–™ - listAllLocation.jsp</h3>
 				<h4>
 					<a href="/DA106_G5/front_end/location/select_page.jsp"><img src="/DA106_G5/front_end/location/images/back1.gif"
-						width="100" height="32" border="0">¦^­º­¶</a>
+						width="100" height="32" border="0">å›žé¦–é </a>
 				</h4>
 			</td>
 		</tr>
 	</table>
 
-	<%-- ¿ù»~ªí¦C --%>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ð­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -83,15 +83,15 @@ th, td {
 	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
 	<table>
 		<tr>
-			<th>¦a¼Ð½s¸¹</th>
-			<th>¦a¼ÐÃþ§O½s¸¹</th>
-			<th>¸g«×</th>
-			<th>½n«×</th>
-			<th>¦a¼Ðª¬ºA</th>
-			<th>¦a§}</th>
-			<th>¹Ï¤ù</th>
-			<th>­×§ï</th>
-			<th>§R°£</th>
+			<th>åœ°æ¨™ç·¨è™Ÿ</th>
+			<th>åœ°æ¨™é¡žåˆ¥ç·¨è™Ÿ</th>
+			<th>ç¶“åº¦</th>
+			<th>ç·¯åº¦</th>
+			<th>åœ°æ¨™ç‹€æ…‹</th>
+			<th>åœ°å€</th>
+			<th>åœ–ç‰‡</th>
+			<th>ä¿®æ”¹</th>
+			<th>åˆªé™¤</th>
 		</tr>
 		<%@ include file="page1.file"%>
 		<c:forEach var="LocationVO" items="${list}" begin="<%=pageIndex%>"
@@ -109,7 +109,7 @@ th, td {
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/location/location.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="­×§ï"> <input type="hidden"
+						<input type="submit" value="ä¿®æ”¹"> <input type="hidden"
 							name="loc_no" value="${LocationVO.loc_no}"> <input type="hidden"
 							name="action" value="getOne_For_Update">
 					</FORM>
@@ -118,7 +118,7 @@ th, td {
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/location/location.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="§R°£"> <input type="hidden"
+						<input type="submit" value="åˆªé™¤"> <input type="hidden"
 							name="loc_no" value="${LocationVO.loc_no}"> <input type="hidden"
 							name="action" value="delete">
 					</FORM>

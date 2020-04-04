@@ -1,17 +1,17 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.location.model.LocationVO"%>
 <%@ page import="com.location.model.LocationService"%>
 <%@ page import="com.location.model.*"%>
-<%-- ¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È --%>
+<%-- æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼ --%>
 
 <%
 	LocationVO locationVO = (LocationVO) request.getAttribute("locationVO");
-	//EmpServlet.java(Concroller), ¦s¤JreqªºempVOª«¥ó
+	//EmpServlet.java(Concroller), å­˜å…¥reqçš„empVOç‰©ä»¶
 %>
 
 <html>
 <head>
-<title>­û¤u¸ê®Æ - listOneLocation.jsp</title>
+<title>å“¡å·¥è³‡æ–™ - listOneLocation.jsp</title>
 
 <style>
 table#table-1 {
@@ -53,14 +53,14 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<h4>¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È:</h4>
+	<h4>æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼:</h4>
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>­û¤u¸ê®Æ - ListOneLocation.jsp</h3>
+				<h3>å“¡å·¥è³‡æ–™ - ListOneLocation.jsp</h3>
 				<h4>
-					<a href="../front_end/location/select_page.jsp"><img src="../front_end/location/images/back1.gif"
-						width="100" height="32" border="0">¦^­º­¶</a>
+					<a href="/DA106_G5/front_end/location/select_page.jsp"><img src="/DA106_G5/front_end/location/images/back1.gif"
+						width="100" height="32" border="0">å›é¦–é </a>
 				</h4>
 			</td>
 		</tr>
@@ -68,13 +68,13 @@ th, td {
 
 	<table>
 		<tr>
-			<th>¦a¼Ğ½s¸¹</th>
-			<th>¦a¼ĞÃş§O½s¸¹</th>
-			<th>¸g«×</th>
-			<th>½n«×</th>
-			<th>¦a¼Ğª¬ºA</th>
-			<th>¦a§}</th>
-			<th>¹Ï¤ù</th>
+			<th>åœ°æ¨™ç·¨è™Ÿ</th>
+			<th>åœ°æ¨™é¡åˆ¥ç·¨è™Ÿ</th>
+			<th>ç¶“åº¦</th>
+			<th>ç·¯åº¦</th>
+			<th>åœ°æ¨™ç‹€æ…‹</th>
+			<th>åœ°å€</th>
+			<th>åœ–ç‰‡</th>
 		</tr>
 		<tr>
 			<td><%=locationVO.getLoc_no()%></td>
