@@ -78,7 +78,8 @@ public class Weather_detailServlet extends HttpServlet {
 
 				/*************************** 2.開始查詢資料 *****************************************/
 				Weather_detailService weather_detailSvc = new Weather_detailService();
-				Weather_detailVO weather_detailVO = (com.weather_detail.model.Weather_detailVO) weather_detailSvc.getOneWeather_detail(weather_time, weather_place);
+				Weather_detailVO weather_detailVO = (com.weather_detail.model.Weather_detailVO) weather_detailSvc
+						.getOneWeather_detail(weather_time, weather_place);
 				if (weather_detailVO == null) {
 					errorMsgs.add("查無資料");
 				}
@@ -113,15 +114,18 @@ public class Weather_detailServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
+				System.out.println("getOne_For_Update");
 				Timestamp weather_time = java.sql.Timestamp.valueOf(req.getParameter("weather_time").trim());
+				System.out.println(weather_time);
 				String weather_place = new String(req.getParameter("weather_place"));
 				/*************************** 2.開始查詢資料 ****************************************/
 				Weather_detailService weather_detailSvc = new Weather_detailService();
-				Weather_detailVO weather_detailVO = (Weather_detailVO) weather_detailSvc.getOneWeather_detail(weather_time, weather_place);
+				List<Weather_detailVO> weather_detailVO =  weather_detailSvc.getOneWeather_detail(weather_time, weather_place);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("weather_detailVO", weather_detailVO); // 資料庫取出的VO物件,存入req
-				String url = "/front_end/weather_detail/update_weather_detail_input.jsp";
+//				String url = "/front_end/weather_detail/update_weather_detail_input.jsp";
+				String url = "/front_end/weather_detail/listAllUWish.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update__input.jsp
 				successView.forward(req, res);
 
@@ -158,7 +162,8 @@ public class Weather_detailServlet extends HttpServlet {
 //				}
 				String weather_place = req.getParameter("weather_place");
 				if (weather_place == null || weather_place.trim().length() == 0) {
-					errorMsgs.add("地點: 請勿空白");}
+					errorMsgs.add("地點: 請勿空白");
+				}
 				// weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort,
 				// wth_rain_chance
 				String wth_status = req.getParameter("wth_status");
@@ -176,7 +181,7 @@ public class Weather_detailServlet extends HttpServlet {
 					wth_high = 777;
 					errorMsgs.add("最高溫請填數字.");
 				}
-				
+
 				Integer wth_low = null;
 				try {
 					wth_low = new Integer(req.getParameter("wth_low").trim());
@@ -189,7 +194,6 @@ public class Weather_detailServlet extends HttpServlet {
 				if (wth_comfort == null || wth_comfort.trim().length() == 0) {
 					errorMsgs.add("舒適度請勿空白");
 				}
-
 
 				Integer wth_rain_chance = null;
 				try {
@@ -209,7 +213,7 @@ public class Weather_detailServlet extends HttpServlet {
 				weather_detailVO.setWth_low(wth_low);
 				weather_detailVO.setWth_comfort(wth_comfort);
 				weather_detailVO.setWth_rain_chance(wth_rain_chance);
-				
+
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("weather_detailVO", weather_detailVO); // 含有輸入格式錯誤的VO物件,也存入req
@@ -221,7 +225,8 @@ public class Weather_detailServlet extends HttpServlet {
 
 				/*************************** 2.開始修改資料 *****************************************/
 				Weather_detailService weather_detailSvc = new Weather_detailService();
-				weather_detailVO = weather_detailSvc.addWeather_detail(weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort, wth_rain_chance);
+				weather_detailVO = weather_detailSvc.updateWeather_detail(weather_time, weather_place, wth_status,
+						wth_high, wth_low, wth_comfort, wth_rain_chance);
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("weather_detailVO", weather_detailVO); // 資料庫update成功後,正確的的VO物件,存入req
 				String url = "/front_end/weather_detail/listOneWeather_detail.jsp";
@@ -245,6 +250,7 @@ public class Weather_detailServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				System.out.println("insert");
 				Timestamp weather_time = null;
 				try {
 					weather_time = Timestamp.valueOf(req.getParameter("weather_time").trim());
@@ -252,6 +258,7 @@ public class Weather_detailServlet extends HttpServlet {
 					weather_time = new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入時間!");
 				}
+				System.out.println(weather_time);
 //				java.sql.Date hiredate = null;
 //				try {
 //					hiredate = java.sql.Date.valueOf(req.getParameter("hiredate").trim());
@@ -261,7 +268,8 @@ public class Weather_detailServlet extends HttpServlet {
 //				}
 				String weather_place = req.getParameter("weather_place");
 				if (weather_place == null || weather_place.trim().length() == 0) {
-					errorMsgs.add("地點: 請勿空白");}
+					errorMsgs.add("地點: 請勿空白");
+				}
 				// weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort,
 				// wth_rain_chance
 				String wth_status = req.getParameter("wth_status");
@@ -279,7 +287,7 @@ public class Weather_detailServlet extends HttpServlet {
 					wth_high = 777;
 					errorMsgs.add("最高溫請填數字.");
 				}
-				
+
 				Integer wth_low = null;
 				try {
 					wth_low = new Integer(req.getParameter("wth_low").trim());
@@ -292,7 +300,6 @@ public class Weather_detailServlet extends HttpServlet {
 				if (wth_comfort == null || wth_comfort.trim().length() == 0) {
 					errorMsgs.add("舒適度請勿空白");
 				}
-
 
 				Integer wth_rain_chance = null;
 				try {
@@ -312,7 +319,7 @@ public class Weather_detailServlet extends HttpServlet {
 				weather_detailVO.setWth_low(wth_low);
 				weather_detailVO.setWth_comfort(wth_comfort);
 				weather_detailVO.setWth_rain_chance(wth_rain_chance);
-				
+
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("weather_detailVO", weather_detailVO); // 含有輸入格式錯誤的VO物件,也存入req
@@ -324,7 +331,8 @@ public class Weather_detailServlet extends HttpServlet {
 
 				/*************************** 2.開始新增資料 ***************************************/
 				Weather_detailService weather_detailSvc = new Weather_detailService();
-				weather_detailVO = weather_detailSvc.addWeather_detail(weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort, wth_rain_chance);
+				weather_detailVO = weather_detailSvc.addWeather_detail(weather_time, weather_place, wth_status,
+						wth_high, wth_low, wth_comfort, wth_rain_chance);
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				String url = "/front_end/weather_detail/listAllWeather_detail.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
@@ -333,7 +341,8 @@ public class Weather_detailServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/weather_detail/addWeather_detail.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front_end/weather_detail/addWeather_detail.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -362,6 +371,63 @@ public class Weather_detailServlet extends HttpServlet {
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front_end/weather_detail/listAllWeather_detail.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
+		if ("getOneAllUWish".equals(action)) { // 來自select_page.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			// weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort,
+			// wth_rain_chance
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String str = req.getParameter("weather_time");
+				String str2 = req.getParameter("weather_place");
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/weather_detail/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				Timestamp weather_time = java.sql.Timestamp.valueOf(str.trim());
+				String weather_place = new String(str2);
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/weather_detail/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				Weather_detailService weather_detailSvc = new Weather_detailService();
+				List<Weather_detailVO> weather_detailVO =weather_detailSvc.getByWeather_place(weather_place);
+				if (weather_detailVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/weather_detail/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("weather_detailVO", weather_detailVO); // 資料庫取出的VO物件,存入req
+				String url = "/front_end/weather_detail/listAllUWish.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/weather_detail/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>地標資料新增 - addLocation.jsp</title>
+<title>天氣資料新增 - addLocation.jsp</title>
 
 <style>
 table#table-1 {
@@ -60,8 +60,9 @@ th, td {
 			</td>
 			<td>
 				<h4>
-					<a href="select_page.jsp"> <img src="images/tomcat.png"
-						width="100" height="100" border="0"> 回首頁
+					<a href="select_page.jsp"> 
+						<img src="images/tomcat.png" width="100" height="100" border="0"> 
+						回首頁
 					</a>
 				</h4>
 			</td>
@@ -80,29 +81,22 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="weather_detail.do" name="form1"
-		enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="weather_detail.do" name="form1"	enctype="multipart/form-data">
 		<table>
-			<!-- 			<tr> -->
-			<!-- 				<td>類別編號:</td> -->
-			<!-- 								loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
-			<!-- 				<td><input type="TEXT" name="loc_typeno" size="45" -->
-			<%-- 					value="<%=(locationVO == null) ? "3" : locationVO.getLoc_typeno()%>" /></td> --%>
-			<!-- 			</tr> -->
 			<!--// weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort,
 			// wth_rain_chance -->
 			<tr>
-				<td>時間:</td>
+				<td>時間:<font color=red><b>*</b></font></td>
 				<td><input name="weather_time" id="f_date1" type="text"></td>
 			</tr>
 			<tr>
-				<td>地點:</td>
+				<td>地點:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="weather_place" size="45"
 					value="<%=(weather_detailVO == null) ? "健志溫暖的小窩" : weather_detailVO.getWeather_place()%>" /></td>
 			</tr>
 			<jsp:useBean id="weatherSvc" scope="page" class="com.weather.model.WeatherService" />
 			<tr>
-				<td>天氣:<font color=red><b>*</b></font></td>
+				<td>天氣:</td>
 				<td><select size="1" name=wth_status>
 						<c:forEach var="weatherVO" items="${weatherSvc.all}">
 							<option value="${weatherVO.wth_status}"${(weather_detailVO.wth_status==weatherVO.wth_status)? 'selected':'' }>
@@ -132,8 +126,8 @@ th, td {
 			</tr>
 
 		</table>
-		<br> <input type="hidden" name="action" value="insert"> <input
-			type="submit" value="送出新增">
+		<br> <input type="hidden" name="action" value="insert"> 
+		<input type="submit" value="送出新增">
 	</FORM>
 </body>
 

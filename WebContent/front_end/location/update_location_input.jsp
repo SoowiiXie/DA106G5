@@ -80,11 +80,10 @@ th, td {
 	<FORM METHOD="post" ACTION="location.do" name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td>地標編號:<font color=red><b>*</b></font></td>
+				<td>地標編號:</td>
 				<td><%=locationVO.getLoc_no()%></td>
 			</tr>
-			<jsp:useBean id="loc_typeSvc" scope="page"
-				class="com.loc_type.model.Loc_typeService" />
+			<jsp:useBean id="loc_typeSvc" scope="page" class="com.loc_type.model.Loc_typeService" />
 			<tr>
 				<td>類別編號:<font color=red><b>*</b></font></td>
 				<td><select size="1" name="loc_typeno">

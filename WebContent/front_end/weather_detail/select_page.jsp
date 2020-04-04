@@ -73,7 +73,7 @@ h4 {
 						<option value="${weather_detailVO.weather_place}">${weather_detailVO.weather_place}
 					</c:forEach>
 				</select> 
-				<input type="hidden" name="action" value="getOne_For_Display">
+				<input type="hidden" name="action" value="getOneAllUWish">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
@@ -81,12 +81,12 @@ h4 {
 		<li>
 			<FORM METHOD="post" ACTION="weather_detail.do">
 				<b>選擇欲查詢時間:</b> 
-				<select size="1" name="weather_place">
+				<select size="1" name="weather_time">
 					<c:forEach var="weather_detailVO" items="${weather_detailSvc.all}">
 						<option value="${weather_detailVO.weather_time}">${weather_detailVO.weather_time}
 					</c:forEach>
 				</select> 
-				<input type="hidden" name="action" value="getOne_For_Display">
+				<input type="hidden" name="action" value="getOneAllUWish">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
