@@ -4,16 +4,18 @@
 <%@ page import="com.weather.model.WeatherVO"%>
 <%@ page import="com.weather_detail.model.*"%>
 <%@ page import="com.weather.model.*"%>
+<%@ page import="java.util.*" %>
 
 <%
-	Weather_detailVO weather_detailVO = (Weather_detailVO) request.getAttribute("weather_detailVO");
+	List<Weather_detailVO> weather_detailVO_list = (List<Weather_detailVO>)request.getAttribute("weather_detailVO_list");
+	Weather_detailVO weather_detailVO = (Weather_detailVO)weather_detailVO_list.toArray()[0];
 	//EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
 
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>員工資料修改 - update_weather_detail_input.jsp</title>
+<title>天氣資料修改 - update_weather_detail_input.jsp</title>
 
 <style>
 table#table-1 {
@@ -59,9 +61,9 @@ th, td {
 			<td>
 				<h3>地標資料修改 - update_weather_detail_input.jsp</h3>
 				<h4>
-					<a href="../front_end/weather_detail/select_page.jsp">
-						<img src="../front_end/weather_detail/images/back1.gif" width="100" height="32" border="0">
-						回首頁
+					<a href="/DA106_G5/front_end/weather_detail/select_page.jsp"> <img
+						src="/DA106_G5/front_end/weather_detail/images/back1.gif"
+						width="100" height="32" border="0"> 回首頁
 					</a>
 				</h4>
 			</td>
@@ -79,7 +81,8 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-	<FORM METHOD="post" ACTION="weather_detail.do" name="form1"	enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="weather_detail.do" name="form1"
+		enctype="multipart/form-data">
 		<table>
 			<!--// weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort,
 			// wth_rain_chance -->
@@ -91,13 +94,15 @@ th, td {
 				<td>地點:</td>
 				<td><%=weather_detailVO.getWeather_place()%></td>
 			</tr>
-			<jsp:useBean id="weatherSvc" scope="page" class="com.weather.model.WeatherService" />
+			<jsp:useBean id="weatherSvc" scope="page"
+				class="com.weather.model.WeatherService" />
 			<tr>
 				<td>天氣:<font color=red><b>*</b></font></td>
 				<td><select size="1" name=wth_status>
 						<c:forEach var="weatherVO" items="${weatherSvc.all}">
-							<option value="${weatherVO.wth_status}"${(weather_detailVO.wth_status==weatherVO.wth_status)? 'selected':'' }>
-							${weatherVO.wth_status}
+							<option value="${weatherVO.wth_status}"
+								${(weather_detailVO.wth_status==weatherVO.wth_status)? 'selected':'' }>
+								${weatherVO.wth_status}
 						</c:forEach>
 				</select></td>
 			</tr>
@@ -123,11 +128,12 @@ th, td {
 			</tr>
 
 		</table>
-		<br> 
-		<input type="hidden" name="action" value="update"> 
-		<input type="hidden" name="weather_time" value="<%=weather_detailVO.getWeather_time()%>">
-		<input type="hidden" name="weather_place" value="<%=weather_detailVO.getWeather_place()%>">
-		<input type="submit" value="送出修改">
+		<br> <input type="hidden" name="action" value="update"> <input
+			type="hidden" name="weather_time"
+			value="<%=weather_detailVO.getWeather_time()%>"> <input
+			type="hidden" name="weather_place"
+			value="<%=weather_detailVO.getWeather_place()%>"> <input
+			type="submit" value="送出修改">
 	</FORM>
 </body>
 </html>

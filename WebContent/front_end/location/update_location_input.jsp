@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>員工資料修改 - update_location_input.jsp</title>
+<title>地標資料修改 - update_location_input.jsp</title>
 
 <style>
 table#table-1 {

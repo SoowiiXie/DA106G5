@@ -16,7 +16,7 @@
 
 <html>
 <head>
-<title>所有員工資料 - listAllWeather_detail.jsp</title>
+<title>所有天氣資料 - listAllWeather_detail.jsp</title>
 
 <style>
 table#table-1 {

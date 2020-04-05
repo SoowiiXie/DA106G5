@@ -16,7 +16,7 @@
 
 <html>
 <head>
-<title>所有員工資料 - listAllLocation.jsp</title>
+<title>所有地標資料 - listAllLocation.jsp</title>
 
 <style>
 table#table-1 {

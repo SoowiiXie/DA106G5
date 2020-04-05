@@ -120,12 +120,11 @@ public class Weather_detailServlet extends HttpServlet {
 				String weather_place = new String(req.getParameter("weather_place"));
 				/*************************** 2.開始查詢資料 ****************************************/
 				Weather_detailService weather_detailSvc = new Weather_detailService();
-				List<Weather_detailVO> weather_detailVO =  weather_detailSvc.getOneWeather_detail(weather_time, weather_place);
+				List<Weather_detailVO> weather_detailVO_list =  weather_detailSvc.getOneWeather_detail(weather_time, weather_place);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-				req.setAttribute("weather_detailVO", weather_detailVO); // 資料庫取出的VO物件,存入req
-//				String url = "/front_end/weather_detail/update_weather_detail_input.jsp";
-				String url = "/front_end/weather_detail/listAllUWish.jsp";
+				req.setAttribute("weather_detailVO_list", weather_detailVO_list); // 資料庫取出的VO物件,存入req
+				String url = "/front_end/weather_detail/update_weather_detail_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update__input.jsp
 				successView.forward(req, res);
 
