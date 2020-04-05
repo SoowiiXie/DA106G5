@@ -2,7 +2,7 @@ package com.cmt.model;
 
 import java.util.List;
 
-public interface CmtDAO_interface {
+public interface Cmt_interface {
 	 public void insert(CmtVO cmtVO);
      public void update(CmtVO cmtVO);
      public void delete(String cmtVO);
