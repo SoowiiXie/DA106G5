@@ -7,6 +7,7 @@
 <%@ page import="java.util.*" %>
 
 <%
+    @SuppressWarnings("unchecked")
 	List<Weather_detailVO> weather_detailVO_list = (List<Weather_detailVO>)request.getAttribute("weather_detailVO_list");
 	Weather_detailVO weather_detailVO = (Weather_detailVO)weather_detailVO_list.toArray()[0];
 	//EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)

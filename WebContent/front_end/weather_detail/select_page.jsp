@@ -56,6 +56,7 @@ h4 {
 		<li><a href='listAllWeather_detail.jsp'>List</a> all Weather_details. <br> <br></li>
 		<li>
 			<FORM METHOD="post" ACTION="weather_detail.do">
+				<b>查詢單筆天氣</b><br>
 				<b>輸入地點 (如台北):</b> <input type="text" name="weather_place"><br>
 				<b>輸入時間:</b> <input name="weather_time" id="f_date1" type="text">
 				<input type="hidden" name="action" value="getOne_For_Display">
@@ -73,7 +74,7 @@ h4 {
 						<option value="${weather_detailVO.weather_place}">${weather_detailVO.weather_place}
 					</c:forEach>
 				</select> 
-				<input type="hidden" name="action" value="getOneAllUWish">
+				<input type="hidden" name="action" value="getByWeather_place">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
@@ -86,7 +87,7 @@ h4 {
 						<option value="${weather_detailVO.weather_time}">${weather_detailVO.weather_time}
 					</c:forEach>
 				</select> 
-				<input type="hidden" name="action" value="getOneAllUWish">
+				<input type="hidden" name="action" value="getByWeather_time">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>

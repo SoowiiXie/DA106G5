@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
 <%@ page import="com.weather_detail.model.Weather_detailVO"%>
 <%@ page import="com.weather_detail.model.Weather_detailService"%>
 <%@ page import="com.weather_detail.model.*"%>
@@ -7,6 +8,12 @@
 <%
 	Weather_detailVO weather_detailVO = (Weather_detailVO) request.getAttribute("weather_detailVO");
 	//EmpServlet.java(Concroller), 存入req的empVO物件
+	
+	@SuppressWarnings("unchecked")
+	List<Weather_detailVO> list = (List<Weather_detailVO>) request.getAttribute("weather_detailVO_list");
+	if (list != null) {
+		weather_detailVO = (Weather_detailVO) list.toArray()[0];
+	}
 %>
 
 <html>

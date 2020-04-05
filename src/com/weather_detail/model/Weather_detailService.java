@@ -57,7 +57,6 @@ public class Weather_detailService {
 
 	public List<Weather_detailVO> getOneWeather_detail(Timestamp weather_time, String weather_place) {
 		Map<String, String[]> map = new HashMap<>();
-		System.out.println("in now");
 		map.put("WEATHER_PLACE", new String[] { "'" + weather_place + "'" });
 //		方法一:切字串
 //		String[] strRaw = weather_time.toString().split("\\.");
@@ -66,14 +65,6 @@ public class Weather_detailService {
 		String str = "TO_TIMESTAMP('" + weather_time.toString() + "', 'YYYY-MM-DD HH24:MI:SS.FF')";
 		map.put("WEATHER_TIME", new String[] { str });
 //		map.put("WEATHER_TIME", new String[] { weather_time });
-		System.out.println("getAllUWish(map)：");
-		List<Weather_detailVO> all_map = dao.getAllUWish(map);
-		for (Weather_detailVO weather_detailVO_map : all_map) {
-			System.out.println(weather_detailVO_map.getWeather_time() + "," + weather_detailVO_map.getWeather_place()
-					+ "," + weather_detailVO_map.getWth_status() + "," + weather_detailVO_map.getWth_high() + ","
-					+ weather_detailVO_map.getWth_low() + "," + weather_detailVO_map.getWth_comfort() + ","
-					+ weather_detailVO_map.getWth_rain_chance());
-		}
 		return dao.getAllUWish(map);
 	}
 
@@ -83,21 +74,15 @@ public class Weather_detailService {
 
 	public List<Weather_detailVO> getByWeather_place(String weather_place) {
 		Map<String, String[]> map = new HashMap<>();
-		System.out.println("getByWeather_place");
 		String str = "'" + weather_place + "'";
 		map.put("WEATHER_PLACE", new String[] { str });
-		System.out.println(map);
-		System.out.println(map.toString());
 		return dao.getAllUWish(map);
 	}
 
 	public List<Weather_detailVO> getByWeather_time(Timestamp weather_time) {
 		Map<String, String[]> map = new HashMap<>();
-		System.out.println("getByWeather_time");
 		String str = "TO_TIMESTAMP('" + weather_time.toString() + "', 'YYYY-MM-DD HH24:MI:SS.FF')";
 		map.put("WEATHER_TIME", new String[] { str });
-		System.out.println(map);
-		System.out.println(map.toString());
 		return dao.getAllUWish(map);
 	}
 }

@@ -8,8 +8,8 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-	Weather_detailService weather_detailSvc = new Weather_detailService();
-	List<Weather_detailVO> list = (List<Weather_detailVO>)request.getAttribute("weather_detailVO");
+	@SuppressWarnings("unchecked")
+	List<Weather_detailVO> list = (List<Weather_detailVO>)request.getAttribute("weather_detailVO_list");
 	pageContext.setAttribute("list", list);
 %>
 

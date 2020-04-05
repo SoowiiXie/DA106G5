@@ -374,5 +374,5 @@ public class Weather_detailDAO implements Weather_detail_interface {
 		}
 		return list_map;
 	}
-
+	
 }
