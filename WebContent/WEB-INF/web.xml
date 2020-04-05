@@ -123,4 +123,18 @@
 <!-- 麥克責任區開始 -->
 <!-- 麥克責任區結束 -->
 
+<!-- 昱盛責任區開始 -->
+
+    <!-- 商城開始 -->
+        <servlet>
+            <servlet-name>ProductServlet</servlet-name>
+            <servlet-class>com.product.controller.ProductServlet</servlet-class>
+        </servlet>
+            <servlet-mapping>
+            <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/back_end/product/ProductServlet</url-pattern>
+        </servlet-mapping>
+     <!-- 商城結束 -->
+<!-- 昱盛責任區結束 -->
+
 </web-app>
