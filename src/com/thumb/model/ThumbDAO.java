@@ -1,5 +1,10 @@
 package com.thumb.model;
 
+import static com.common.Common.DRIVER_CLASS;
+import static com.common.Common.PASSWORD;
+import static com.common.Common.URL;
+import static com.common.Common.USER;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,11 +13,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThumbJDBCDAO implements ThumbDAO_interface {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "DA106G5";
-	String passwd = "DA106G5";
+public class ThumbDAO implements Thumb_interface {
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+//	String userid = "DA106G5";
+//	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = "INSERT INTO thumb (rcd_no,mb_id) values (?,?)";
 	private static final String GET_ALL_STMT = "SELECT rcd_no,mb_id FROM thumb ORDER BY mb_id";
@@ -27,9 +32,9 @@ public class ThumbJDBCDAO implements ThumbDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(INSERT_STMT);
+			Class.forName(DRIVER_CLASS);
+			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			pstmt = con.prepareStatement(INSERT_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, thumbVO.getRcd_no());
 			pstmt.setString(2, thumbVO.getMb_id());
@@ -68,9 +73,9 @@ public class ThumbJDBCDAO implements ThumbDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(UPDATE);
+			Class.forName(DRIVER_CLASS);
+			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			pstmt = con.prepareStatement(UPDATE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, thumbVO.getRcd_no());
 			pstmt.setString(2, thumbVO.getMb_id());
@@ -110,9 +115,9 @@ public class ThumbJDBCDAO implements ThumbDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(DELETE);
+			Class.forName(DRIVER_CLASS);
+			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			pstmt = con.prepareStatement(DELETE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, rcd_no);
 			pstmt.setString(2, mb_id);
@@ -154,9 +159,9 @@ public class ThumbJDBCDAO implements ThumbDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ONE_STMT);
+			Class.forName(DRIVER_CLASS);
+			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			pstmt = con.prepareStatement(GET_ONE_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, rcd_no);
 			pstmt.setString(2, mb_id);
@@ -213,9 +218,9 @@ public class ThumbJDBCDAO implements ThumbDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ALL_STMT);
+			Class.forName(DRIVER_CLASS);
+			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			pstmt = con.prepareStatement(GET_ALL_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -257,43 +262,6 @@ public class ThumbJDBCDAO implements ThumbDAO_interface {
 			}
 		}
 		return list;
-	}
-
-	public static void main(String[] args) {
-
-		ThumbJDBCDAO dao = new ThumbJDBCDAO();
-
-//		//新增
-//		ThumbVO thumbVO1 = new ThumbVO();
-//		thumbVO1.setRcd_no("rcd00005");
-//		thumbVO1.setMb_id("soowii123");
-//		dao.insert(thumbVO1);
-
-//		//修改
-//		ThumbVO thumbVO2 = new ThumbVO();
-//		thumbVO2.setRcd_no("rcd00005");
-//		thumbVO2.setMb_id("yiwen123");
-//		thumbVO2.setMb_id("yiwen123");
-//		dao.update(thumbVO2);
-
-//		//刪除
-//		dao.delete("rcd00005", "soowii123");
-
-//		//查詢
-//		ThumbVO thumbVO3 = dao.findByPrimaryKey("rcd00001", "soowii123");
-//		System.out.print(thumbVO3.getRcd_no() + ",");
-//		System.out.print(thumbVO3.getMb_id() + "\n");
-//		System.out.println("---------------------");
-
-//		//查詢getall
-//		List<ThumbVO> list = dao.getAll();
-//		for (ThumbVO thumbVO : list) {
-//			System.out.print(thumbVO.getRcd_no() + ",");
-//			System.out.print(thumbVO.getMb_id());
-//
-//			System.out.println();
-//		}
-
 	}
 
 }
