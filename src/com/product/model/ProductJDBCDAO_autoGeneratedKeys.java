@@ -1,4 +1,4 @@
-package com.vain.product.model;
+package com.product.model;
 
 import java.util.*;
 import java.sql.*;

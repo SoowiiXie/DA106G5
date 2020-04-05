@@ -1,4 +1,4 @@
-package com.vain.product.model;
+package com.product.model;
 
 public class ProductVO implements java.io.Serializable{
 	/**

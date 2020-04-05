@@ -1,4 +1,4 @@
-package com.vain.product.model;
+package com.product.model;
 import java.util.*;
 //此為尚未上傳圖片版本
 public interface ProductDAO_interface {
