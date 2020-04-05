@@ -16,7 +16,7 @@ public class Weather_detailService {
 	public Weather_detailVO addWeather_detail(Timestamp weather_time, String weather_place, String wth_status,
 			Integer wth_high, Integer wth_low, String wth_comfort, Integer wth_rain_chance) {
 
-		// 增 loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic
+		// 增
 		Weather_detailVO weather_detailVO_insert = new Weather_detailVO();
 		// WEATHER_TIME, WEATHER_PLACE, WTH_STATUS, WTH_HIGH, WTH_LOW, WTH_COMFORT,
 		// WTH_RAIN_CHANCE
