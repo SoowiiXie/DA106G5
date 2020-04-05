@@ -202,4 +202,15 @@
 <!-- 以文責任區開始 -->
 <!-- 以文責任區結束 --><!--名軒責任區開始--><!--名軒責任區結束-->
 
+<!--偉誌責任區開始-->
+	<servlet>
+		<servlet-name>GrouperServlet</servlet-name>
+		<servlet-class>com.grouper.controller.GrouperServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GrouperServlet</servlet-name>
+		<url-pattern>/group/group.do</url-pattern>
+	</servlet-mapping>
+<!--偉誌責任區結束-->
+
 </web-app>

@@ -1,14 +1,14 @@
 package com.grouper.model;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class GrouperVO implements java.io.Serializable{
 	private String grp_no;
 	private String mb_id;
 	private String loc_no;
-	private Date grp_applystart;
-	private Date grp_applyend;
-	private Date grp_start;
-	private Date grp_end;
+	private Timestamp grp_applystart;
+	private Timestamp grp_applyend;
+	private Timestamp grp_start;
+	private Timestamp grp_end;
 	private String grp_name;
 	private String grp_content;
 	private Integer grp_personmax;
@@ -35,28 +35,28 @@ public class GrouperVO implements java.io.Serializable{
 	public void setLoc_no(String loc_no) {
 		this.loc_no = loc_no;
 	}
-	public Date getGrp_applystart() {
+	public Timestamp getGrp_applystart() {
 		return grp_applystart;
 	}
-	public void setGrp_applystart(Date grp_applystart) {
+	public void setGrp_applystart(Timestamp grp_applystart) {
 		this.grp_applystart = grp_applystart;
 	}
-	public Date getGrp_applyend() {
+	public Timestamp getGrp_applyend() {
 		return grp_applyend;
 	}
-	public void setGrp_applyend(Date grp_applyend) {
+	public void setGrp_applyend(Timestamp grp_applyend) {
 		this.grp_applyend = grp_applyend;
 	}
-	public Date getGrp_start() {
+	public Timestamp getGrp_start() {
 		return grp_start;
 	}
-	public void setGrp_start(Date grp_start) {
+	public void setGrp_start(Timestamp grp_start) {
 		this.grp_start = grp_start;
 	}
-	public Date getGrp_end() {
+	public Timestamp getGrp_end() {
 		return grp_end;
 	}
-	public void setGrp_end(Date grp_end) {
+	public void setGrp_end(Timestamp grp_end) {
 		this.grp_end = grp_end;
 	}
 	public String getGrp_name() {

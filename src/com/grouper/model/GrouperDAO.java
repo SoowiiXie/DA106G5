@@ -8,9 +8,10 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+
 public class GrouperDAO implements GrouperDAO_interface {
 
-	// ¤@­ÓÀ³¥Îµ{¦¡¤¤,°w¹ï¤@­Ó¸ê®Æ®w ,¦@¥Î¤@­ÓDataSource§Y¥i
+	// ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½Îµ{ï¿½ï¿½ï¿½ï¿½,ï¿½wï¿½ï¿½@ï¿½Ó¸ï¿½Æ®w ,ï¿½@ï¿½Î¤@ï¿½ï¿½DataSourceï¿½Yï¿½i
 	private static DataSource ds = null;
 	static {
 		try {
@@ -22,7 +23,7 @@ public class GrouperDAO implements GrouperDAO_interface {
 	}
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO Grouper (GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW) VALUES (grp_no_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO Grouper (GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW) VALUES ('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT GRP_NO,MB_ID,LOC_NO,to_char(GRP_APPLYSTART,'yyyy-mm-dd HH24:MI')GRP_APPLYSTART,to_char(GRP_APPLYEND,'yyyy-mm-dd HH24:MI')GRP_APPLYEND,to_char(GRP_START,'yyyy-mm-dd HH24:MI')GRP_START,to_char(GRP_END,'yyyy-mm-dd HH24:MI')GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW FROM Grouper order by GRP_NO";
 	private static final String GET_ONE_STMT = 
@@ -46,10 +47,10 @@ public class GrouperDAO implements GrouperDAO_interface {
 			pstmt.setString(1, grouperVO.getGrp_no());
 			pstmt.setString(2, grouperVO.getMb_id());
 			pstmt.setString(3, grouperVO.getLoc_no());
-			pstmt.setDate(4, grouperVO.getGrp_applystart());
-			pstmt.setDate(5, grouperVO.getGrp_applyend());
-			pstmt.setDate(6, grouperVO.getGrp_start());
-			pstmt.setDate(7, grouperVO.getGrp_end());
+			pstmt.setTimestamp(4, grouperVO.getGrp_applystart());
+			pstmt.setTimestamp(5, grouperVO.getGrp_applyend());
+			pstmt.setTimestamp(6, grouperVO.getGrp_start());
+			pstmt.setTimestamp(7, grouperVO.getGrp_end());
 			pstmt.setString(8, grouperVO.getGrp_name());
 			pstmt.setString(9, grouperVO.getGrp_content());
 			pstmt.setInt(10, grouperVO.getGrp_personmax());
@@ -97,10 +98,10 @@ public class GrouperDAO implements GrouperDAO_interface {
 			pstmt.setString(1, grouperVO.getGrp_no());
 			pstmt.setString(2, grouperVO.getMb_id());
 			pstmt.setString(3, grouperVO.getLoc_no());
-			pstmt.setDate(4, grouperVO.getGrp_applystart());
-			pstmt.setDate(5, grouperVO.getGrp_applyend());
-			pstmt.setDate(6, grouperVO.getGrp_start());
-			pstmt.setDate(7, grouperVO.getGrp_end());
+			pstmt.setTimestamp(4, grouperVO.getGrp_applystart());
+			pstmt.setTimestamp(5, grouperVO.getGrp_applyend());
+			pstmt.setTimestamp(6, grouperVO.getGrp_start());
+			pstmt.setTimestamp(7, grouperVO.getGrp_end());
 			pstmt.setString(8, grouperVO.getGrp_name());
 			pstmt.setString(9, grouperVO.getGrp_content());
 			pstmt.setInt(10, grouperVO.getGrp_personmax());
@@ -192,15 +193,15 @@ public class GrouperDAO implements GrouperDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// grouperVO ¤]ºÙ¬° Domain objects
+				// grouperVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				grouperVO = new GrouperVO();
 				grouperVO.setGrp_no(rs.getString("Grp_no"));
 				grouperVO.setMb_id(rs.getString("Mb_id"));
 				grouperVO.setLoc_no(rs.getString("Loc_no"));
-				grouperVO.setGrp_applystart(rs.getDate("Grp_applystart"));
-				grouperVO.setGrp_applyend(rs.getDate("Grp_applyend"));
-				grouperVO.setGrp_start(rs.getDate("Grp_start"));
-				grouperVO.setGrp_end(rs.getDate("Grp_end"));
+				grouperVO.setGrp_applystart(rs.getTimestamp("Grp_applystart"));
+				grouperVO.setGrp_applyend(rs.getTimestamp("Grp_applyend"));
+				grouperVO.setGrp_start(rs.getTimestamp("Grp_start"));
+				grouperVO.setGrp_end(rs.getTimestamp("Grp_end"));
 				grouperVO.setGrp_name(rs.getString("Grp_name"));
 				grouperVO.setGrp_content(rs.getString("Grp_content"));
 				grouperVO.setGrp_personmax(rs.getInt("Grp_personmax"));
@@ -258,15 +259,15 @@ public class GrouperDAO implements GrouperDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// grouperVO ¤]ºÙ¬° Domain objects
+				// grouperVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				grouperVO = new GrouperVO();
 				grouperVO.setGrp_no(rs.getString("Grp_no"));
 				grouperVO.setMb_id(rs.getString("Mb_id"));
 				grouperVO.setLoc_no(rs.getString("Loc_no"));
-				grouperVO.setGrp_applystart(rs.getDate("Grp_applystart"));
-				grouperVO.setGrp_applyend(rs.getDate("Grp_applyend"));
-				grouperVO.setGrp_start(rs.getDate("Grp_start"));
-				grouperVO.setGrp_end(rs.getDate("Grp_end"));
+				grouperVO.setGrp_applystart(rs.getTimestamp("Grp_applystart"));
+				grouperVO.setGrp_applyend(rs.getTimestamp("Grp_applyend"));
+				grouperVO.setGrp_start(rs.getTimestamp("Grp_start"));
+				grouperVO.setGrp_end(rs.getTimestamp("Grp_end"));
 				grouperVO.setGrp_name(rs.getString("Grp_name"));
 				grouperVO.setGrp_content(rs.getString("Grp_content"));
 				grouperVO.setGrp_personmax(rs.getInt("Grp_personmax"));
