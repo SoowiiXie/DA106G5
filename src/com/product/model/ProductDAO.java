@@ -12,7 +12,7 @@ public class ProductDAO implements ProductDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:49161:xe";
 	String userid = "DA106G5";
-	String passwd = "123456";
+	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = "INSERT INTO product (pd_no, pd_name, pd_price, pd_detail, pd_typeno) VALUES ('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status FROM product order by pd_no";
