@@ -1,12 +1,10 @@
 package com.metoo.model;
 
-
-
-public class MetooVO {
+public class MeTooVO {
 	private String rcd_no;
 	private String mb_id;
 	
-	public MetooVO(){
+	public MeTooVO(){
 		super();
 	}
 

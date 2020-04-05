@@ -45,7 +45,6 @@ public class ThumbTest extends HttpServlet {
 		for (ThumbVO thumbVO : list) {
 			System.out.print(thumbVO.getRcd_no() + ",");
 			System.out.print(thumbVO.getMb_id());
-
 			System.out.println();
 		}
 	}

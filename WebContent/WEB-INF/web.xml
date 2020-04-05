@@ -118,7 +118,6 @@
 	<!-- 天氣結束 -->
 	
 	<!-- 按讚開始 -->
-
 		<servlet>
 			<servlet-name>ThumbTest</servlet-name>
 			<servlet-class>com.thumb.model.ThumbTest</servlet-class>
@@ -134,7 +133,7 @@
 			<servlet-class>com.thumb.controller.ThumbServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
-			<servlet-name>Weather_detailServlet</servlet-name>
+			<servlet-name>ThumbServlet</servlet-name>
 			<url-pattern>/front_end/thumb/thumb.do</url-pattern>
 		</servlet-mapping>
 	
@@ -147,9 +146,38 @@
 			<servlet-name>ThumbServletAll</servlet-name>
 			<url-pattern>/thumb/thumb.do</url-pattern>
 		</servlet-mapping>
-
-
 	<!-- 按讚結束 -->
+	
+	<!-- meToo開始 -->
+		<servlet>
+			<servlet-name>MeTooTest</servlet-name>
+			<servlet-class>com.metoo.model.MeTooTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>MeTooTest</servlet-name>
+			<url-pattern>/MeTooTest</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>MeTooServlet</servlet-name>
+			<servlet-class>com.metoo.controller.MeTooServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>MeTooServlet</servlet-name>
+			<url-pattern>/front_end/metoo/metoo.do</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>MeTooServletAll</servlet-name>
+			<servlet-class>com.metoo.controller.MetooServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>MeTooServletAll</servlet-name>
+			<url-pattern>/metoo/metoo.do</url-pattern>
+		</servlet-mapping>
+	<!-- meToo結束 -->
 
 <!-- 戍乂責任區結束 -->
 

@@ -1,15 +1,17 @@
 package com.weather_detail.model;
 
-import static com.common.Common.*;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.Map.Entry;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class Weather_detailDAO implements Weather_detail_interface {
 //	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -22,7 +24,18 @@ public class Weather_detailDAO implements Weather_detail_interface {
 	private static final String DELETE = "DELETE from Weather_detail where WEATHER_TIME=? and WEATHER_PLACE=?";
 	private static final String GET_ONE_STMT = "SELECT * FROM Weather_detail where WEATHER_TIME=? and WEATHER_PLACE=?";
 	private static final String GET_ALL_STMT = "SELECT * FROM Weather_detail order by WEATHER_PLACE , WEATHER_TIME";
-
+	
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void insert(Weather_detailVO weather_detailVO) {
 		Connection con = null;
@@ -30,8 +43,9 @@ public class Weather_detailDAO implements Weather_detail_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			// WEATHER_TIME, WEATHER_PLACE, WTH_STATUS, WTH_HIGH, WTH_LOW, WTH_COMFORT,
 			// WTH_RAIN_CHANCE
@@ -44,9 +58,7 @@ public class Weather_detailDAO implements Weather_detail_interface {
 			pstmt.setInt(7, weather_detailVO.getWth_rain_chance());
 
 			pstmt.executeUpdate();
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -77,8 +89,9 @@ public class Weather_detailDAO implements Weather_detail_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setTimestamp(6, weather_detailVO.getWeather_time());
@@ -90,9 +103,7 @@ public class Weather_detailDAO implements Weather_detail_interface {
 			pstmt.setInt(5, weather_detailVO.getWth_rain_chance());
 
 			pstmt.executeUpdate();
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -124,8 +135,9 @@ public class Weather_detailDAO implements Weather_detail_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setTimestamp(1, weather_time);
@@ -133,9 +145,6 @@ public class Weather_detailDAO implements Weather_detail_interface {
 
 			rs = pstmt.executeQuery();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -174,8 +183,9 @@ public class Weather_detailDAO implements Weather_detail_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setTimestamp(1, weather_time);
@@ -197,9 +207,6 @@ public class Weather_detailDAO implements Weather_detail_interface {
 				weather_detailVO.setWth_rain_chance(rs.getInt("WTH_RAIN_CHANCE"));
 			}
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -241,8 +248,9 @@ public class Weather_detailDAO implements Weather_detail_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			rs = pstmt.executeQuery();
 
@@ -262,9 +270,6 @@ public class Weather_detailDAO implements Weather_detail_interface {
 				list.add(weather_detailVO); // Store the row in the list
 			}
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -322,8 +327,9 @@ public class Weather_detailDAO implements Weather_detail_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt_map = con.prepareStatement(sb.toString(),ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			rs_map = pstmt_map.executeQuery();
 			while (rs_map.next()) {
@@ -342,9 +348,6 @@ public class Weather_detailDAO implements Weather_detail_interface {
 				list_map.add(weather_detailVO_map); // Store the row in the list
 			}
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());

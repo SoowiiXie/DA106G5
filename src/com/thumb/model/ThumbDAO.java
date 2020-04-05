@@ -1,17 +1,16 @@
 package com.thumb.model;
 
-import static com.common.Common.DRIVER_CLASS;
-import static com.common.Common.PASSWORD;
-import static com.common.Common.URL;
-import static com.common.Common.USER;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class ThumbDAO implements Thumb_interface {
 //	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -25,6 +24,17 @@ public class ThumbDAO implements Thumb_interface {
 	private static final String DELETE = "DELETE FROM thumb where rcd_no = ? and mb_id = ?";
 	private static final String UPDATE = "UPDATE thumb SET rcd_no = ?, mb_id = ? where mb_id = ?";
 
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void insert(ThumbVO thumbVO) {
 		Connection con = null;
@@ -32,8 +42,9 @@ public class ThumbDAO implements Thumb_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, thumbVO.getRcd_no());
@@ -41,9 +52,6 @@ public class ThumbDAO implements Thumb_interface {
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -73,8 +81,9 @@ public class ThumbDAO implements Thumb_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, thumbVO.getRcd_no());
@@ -83,9 +92,6 @@ public class ThumbDAO implements Thumb_interface {
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -115,8 +121,9 @@ public class ThumbDAO implements Thumb_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, rcd_no);
@@ -124,9 +131,6 @@ public class ThumbDAO implements Thumb_interface {
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -159,8 +163,9 @@ public class ThumbDAO implements Thumb_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, rcd_no);
@@ -174,9 +179,6 @@ public class ThumbDAO implements Thumb_interface {
 				thumbVO.setMb_id(rs.getString("mb_id"));
 			}
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -218,8 +220,9 @@ public class ThumbDAO implements Thumb_interface {
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			rs = pstmt.executeQuery();
 
@@ -231,9 +234,6 @@ public class ThumbDAO implements Thumb_interface {
 
 			}
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
