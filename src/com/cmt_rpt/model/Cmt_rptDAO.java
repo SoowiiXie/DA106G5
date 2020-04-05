@@ -1,20 +1,24 @@
 package com.cmt_rpt.model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 
-public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "DA106G5";
-	String passwd = "DA106G5";
+
+public class Cmt_rptDAO implements Cmt_rpt_interface {
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+//	String userid = "DA106G5";
+//	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = "INSERT INTO cmt_rpt (cmt_rpt_no,rpt_reason,rpt_status,cmt_no,mb_id) values ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'),?,?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id FROM cmt_rpt ORDER BY cmt_rpt_no";
@@ -22,6 +26,17 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 	private static final String DELETE = "DELETE FROM cmt_rpt where cmt_rpt_no = ?";
 	private static final String UPDATE = "UPDATE cmt_rpt SET rpt_reason = ?, rpt_status = ? where cmt_rpt_no = ?";
 
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void insert(Cmt_rptVO cmt_rptVO) {
 		Connection con = null;
@@ -29,9 +44,10 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(INSERT_STMT);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(INSERT_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, cmt_rptVO.getRpt_reason());
 			pstmt.setInt(2, cmt_rptVO.getRpt_status());
@@ -41,9 +57,6 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -75,9 +88,10 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(UPDATE);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, cmt_rptVO.getRpt_reason());
 			pstmt.setInt(2, cmt_rptVO.getRpt_status());
@@ -85,9 +99,6 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -119,17 +130,15 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(DELETE);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, cmt_rpt_no);
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -163,9 +172,10 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ONE_STMT);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, cmt_rptVO);
 
@@ -181,9 +191,6 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 				cmt_rpt.setCmt_rpt_no(rs.getString("cmt_rpt_no"));
 			}
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -227,9 +234,10 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ALL_STMT);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -242,9 +250,6 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 				list.add(cmt_rptVO); // Store the row in the list				
 			}
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -275,51 +280,4 @@ public class Cmt_rptJDBCDAO implements Cmt_rptDAO_interface {
 		return list;
 	}
 	
-	
-	public static void main(String[] args) {
-
-		Cmt_rptJDBCDAO dao = new Cmt_rptJDBCDAO();
-
-//		 //新增
-//		Cmt_rptVO cmt_rptVO1 = new Cmt_rptVO();
-//		cmt_rptVO1.setRpt_reason("這個我不行!!!!!!");
-//		cmt_rptVO1.setRpt_status(1);
-//		cmt_rptVO1.setCmt_no("cmt00001");
-//		cmt_rptVO1.setMb_id("soowii123");
-//		dao.insert(cmt_rptVO1);
-
-//		//修改
-//		Cmt_rptVO cmt_rptVO2 = new Cmt_rptVO();
-//		cmt_rptVO2.setRpt_reason("他我可以");
-//		cmt_rptVO2.setRpt_status(1);
-//		cmt_rptVO2.setCmt_rpt_no("cmtr00006");
-//		dao.update(cmt_rptVO2);
-
-//		//刪除
-//		dao.delete("cmtr00006");
-
-//		//查詢
-//		Cmt_rptVO cmt_rptVO3 = dao.findByPrimaryKey("cmtr00001");
-//		System.out.print(cmt_rptVO3.getCmt_rpt_no() + ",");
-//		System.out.print(cmt_rptVO3.getRpt_reason() + ",");
-//		System.out.print(cmt_rptVO3.getRpt_status() + ",");
-//		System.out.print(cmt_rptVO3.getCmt_no() + ",");
-//		System.out.print(cmt_rptVO3.getMb_id() + "\n");
-//		System.out.println("---------------------");
-
-//		// 查詢getall
-//		List<Cmt_rptVO> list = dao.getAll();
-//		for (Cmt_rptVO cmt_rptVO : list) {
-//			System.out.print(cmt_rptVO.getCmt_rpt_no() + ",");
-//			System.out.print(cmt_rptVO.getRpt_reason() + ",");
-//			System.out.print(cmt_rptVO.getRpt_status() + ",");
-//			System.out.print(cmt_rptVO.getCmt_no() + ",");
-//			System.out.print(cmt_rptVO.getMb_id());
-//
-//			System.out.println();
-//		}
-		
-		
-	}
-
 }

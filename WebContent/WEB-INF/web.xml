@@ -179,6 +179,68 @@
 		</servlet-mapping>
 	<!-- meToo結束 -->
 
+	<!-- 留言開始 -->
+		<servlet>
+			<servlet-name>CmtTest</servlet-name>
+			<servlet-class>com.cmt.model.CmtTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>CmtTest</servlet-name>
+			<url-pattern>/CmtTest</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>CmtServlet</servlet-name>
+			<servlet-class>com.cmt.controller.CmtServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>CmtServlet</servlet-name>
+			<url-pattern>/front_end/cmt/cmt.do</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>CmtServletAll</servlet-name>
+			<servlet-class>com.cmt.controller.CmtServletAll</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>CmtServletAll</servlet-name>
+			<url-pattern>/cmt/cmt.do</url-pattern>
+		</servlet-mapping>
+	<!-- 留言結束 -->
+	
+	<!-- 留言檢舉開始 -->
+		<servlet>
+			<servlet-name>Cmt_rptTest</servlet-name>
+			<servlet-class>com.cmt_rpt.model.Cmt_rptTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Cmt_rptTest</servlet-name>
+			<url-pattern>/Cmt_rptTest</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>Cmt_rptServlet</servlet-name>
+			<servlet-class>com.cmt_rpt.controller.Cmt_rptServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Cmt_rptServlet</servlet-name>
+			<url-pattern>/front_end/cmt_rpt/cmt_rpt.do</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>Cmt_rptServletAll</servlet-name>
+			<servlet-class>com.cmt_rpt.controller.Cmt_rptServletAll</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Cmt_rptServletAll</servlet-name>
+			<url-pattern>/cmt_rpt/cmt_rpt.do</url-pattern>
+		</servlet-mapping>
+	<!-- 留言檢舉結束 -->
+
 <!-- 戍乂責任區結束 -->
 
 
@@ -200,7 +262,10 @@
 <!-- 昱盛責任區結束 -->
 
 <!-- 以文責任區開始 -->
-<!-- 以文責任區結束 --><!--名軒責任區開始--><!--名軒責任區結束-->
+<!-- 以文責任區結束 -->
+
+<!--名軒責任區開始-->
+<!--名軒責任區結束-->
 
 <!--偉誌責任區開始-->
 	<servlet>

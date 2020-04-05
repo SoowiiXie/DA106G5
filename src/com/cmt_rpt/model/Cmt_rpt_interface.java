@@ -2,7 +2,7 @@ package com.cmt_rpt.model;
 
 import java.util.List;
 
-public interface Cmt_rptDAO_interface {
+public interface Cmt_rpt_interface {
 	 public void insert(Cmt_rptVO cmt_rptVO);
      public void update(Cmt_rptVO cmt_rptVO);
      public void delete(String cmt_rptVO);
