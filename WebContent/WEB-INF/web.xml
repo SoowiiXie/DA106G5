@@ -102,7 +102,7 @@
 			<servlet-class>com.weather_detail.controller.Weather_detailServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
-			<servlet-name>Weather_detailServlet</servlet-name>
+			<servlet-name>Weather_detailServletAll</servlet-name>
 			<url-pattern>/weather_detail/weather_detail.do</url-pattern>
 		</servlet-mapping>
 		
@@ -116,6 +116,40 @@
 			<url-pattern>/DBGifReader4Weather</url-pattern>
 		</servlet-mapping>
 	<!-- 天氣結束 -->
+	
+	<!-- 按讚開始 -->
+
+		<servlet>
+			<servlet-name>ThumbTest</servlet-name>
+			<servlet-class>com.thumb.model.ThumbTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>ThumbTest</servlet-name>
+			<url-pattern>/ThumbTest</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>ThumbServlet</servlet-name>
+			<servlet-class>com.thumb.controller.ThumbServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Weather_detailServlet</servlet-name>
+			<url-pattern>/front_end/thumb/thumb.do</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>ThumbServletAll</servlet-name>
+			<servlet-class>com.thumb.controller.ThumbServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>ThumbServletAll</servlet-name>
+			<url-pattern>/thumb/thumb.do</url-pattern>
+		</servlet-mapping>
+
+
+	<!-- 按讚結束 -->
 
 <!-- 戍乂責任區結束 -->
 
