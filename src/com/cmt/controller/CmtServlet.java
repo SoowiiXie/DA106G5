@@ -1,6 +1,7 @@
 package com.cmt.controller;
 
 import java.io.*;
+import java.sql.Timestamp;
 import java.util.*;
 
 import javax.servlet.*;
@@ -282,5 +283,108 @@ public class CmtServlet extends HttpServlet {
 //				failureView.forward(req, res);
 //			}
 //		}
+		if ("getByRcd_no".equals(action)) { // 來自select_page.jsp的請求
+			// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String str = req.getParameter("rcd_no");
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/cmt/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				String rcd_no = new String(str);
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/cmt/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				CmtService cmtSvc = new CmtService();
+				List<CmtVO>cmtVO_list =cmtSvc.getByRcd_no(rcd_no);
+				if (cmtVO_list == null) {
+					errorMsgs.add("查無資料");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("cmtVO_list", cmtVO_list); // 資料庫取出的VO物件,存入req
+				String url = "/front_end/cmt/listAllUWish.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		if ("getByMb_id".equals(action)) { // 來自select_page.jsp的請求
+			// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String str = req.getParameter("mb_id");
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				
+				String mb_id = new String(str);
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				
+				/*************************** 2.開始查詢資料 *****************************************/
+				CmtService cmtSvc = new CmtService();
+				List<CmtVO> cmtVO_list =cmtSvc.getByMb_id(mb_id);
+				if (cmtVO_list == null) {
+					errorMsgs.add("查無資料");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("cmtVO_list", cmtVO_list); // 資料庫取出的VO物件,存入req
+				String url = "/front_end/cmt/listAllUWish.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+				
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
 	}
 }

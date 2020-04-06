@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-
 
 public class CmtDAO implements Cmt_interface {
 //	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -36,7 +36,7 @@ public class CmtDAO implements Cmt_interface {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void insert(CmtVO cmtVO) {
 		Connection con = null;
@@ -47,7 +47,7 @@ public class CmtDAO implements Cmt_interface {
 //			Class.forName(DRIVER_CLASS);
 //			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement(INSERT_STMT, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, cmtVO.getCmt_content());
 			pstmt.setDate(2, cmtVO.getCmt_time());
@@ -78,8 +78,6 @@ public class CmtDAO implements Cmt_interface {
 		}
 	}
 
-
-
 	@Override
 	public void update(CmtVO cmtVO) {
 		Connection con = null;
@@ -90,7 +88,7 @@ public class CmtDAO implements Cmt_interface {
 //			Class.forName(DRIVER_CLASS);
 //			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement(UPDATE, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, cmtVO.getCmt_content());
 			pstmt.setInt(2, cmtVO.getCmt_status());
@@ -120,8 +118,6 @@ public class CmtDAO implements Cmt_interface {
 		}
 	}
 
-
-
 	@Override
 	public void delete(String cmt_no) {
 		Connection con = null;
@@ -132,7 +128,7 @@ public class CmtDAO implements Cmt_interface {
 //			Class.forName(DRIVER_CLASS);
 //			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement(DELETE, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, cmt_no);
 
@@ -160,8 +156,6 @@ public class CmtDAO implements Cmt_interface {
 		}
 	}
 
-
-
 	@Override
 	public CmtVO findByPrimaryKey(String cmt_no) {
 		CmtVO cmt = null;
@@ -174,7 +168,7 @@ public class CmtDAO implements Cmt_interface {
 //			Class.forName(DRIVER_CLASS);
 //			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement(GET_ONE_STMT, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, cmt_no);
 
@@ -221,8 +215,6 @@ public class CmtDAO implements Cmt_interface {
 		return cmt;
 	}
 
-
-
 	@Override
 	public List<CmtVO> getAll() {
 		List<CmtVO> list = new ArrayList<CmtVO>();
@@ -237,7 +229,7 @@ public class CmtDAO implements Cmt_interface {
 //			Class.forName(DRIVER_CLASS);
 //			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			pstmt = con.prepareStatement(GET_ALL_STMT, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -279,6 +271,80 @@ public class CmtDAO implements Cmt_interface {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public List<CmtVO> getAllUWish(Map<String, String[]> map) {
+		StringBuilder sb = new StringBuilder();
+
+		List<CmtVO> list_map = new ArrayList<CmtVO>();
+		CmtVO cmtVO_map = null;
+
+		Connection con = null;
+		PreparedStatement pstmt_map = null;
+		ResultSet rs_map = null;
+
+		sb.append("SELECT * FROM Cmt where ");
+		for (Entry<String, String[]> entry : map.entrySet()) {
+			sb.append("(");
+			for (int i = 0; i < entry.getValue().length; i++) {
+				if (i == 0) {
+					sb.append(entry.getKey() + " = " + entry.getValue()[i]);
+				} else {
+					sb.append(" OR " + entry.getKey() + " = " + entry.getValue()[i]);
+				}
+			}
+			sb.append(") and ");
+		}
+		sb.append(" 1=1 ");
+
+		try {
+
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt_map = con.prepareStatement(sb.toString(), ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs_map = pstmt_map.executeQuery();
+			while (rs_map.next()) {
+				// empVO 也稱為 Domain objects
+				cmtVO_map = new CmtVO();
+				cmtVO_map.setCmt_no(rs_map.getString("cmt_no"));
+				cmtVO_map.setCmt_content(rs_map.getString("cmt_content"));
+				cmtVO_map.setCmt_time(rs_map.getDate("cmt_time"));
+				cmtVO_map.setCmt_status(rs_map.getInt("cmt_status"));
+				cmtVO_map.setRcd_no(rs_map.getString("rcd_no"));
+				cmtVO_map.setMb_id(rs_map.getString("mb_id"));
+				list_map.add(cmtVO_map); // Store the row in the list
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs_map != null) {
+				try {
+					rs_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt_map != null) {
+				try {
+					pstmt_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_map;
 	}
 
 }

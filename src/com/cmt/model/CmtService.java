@@ -1,7 +1,10 @@
 package com.cmt.model;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 public class CmtService {
 
@@ -45,5 +48,19 @@ public class CmtService {
 
 	public List<CmtVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public List<CmtVO> getByRcd_no(String rcd_no) {
+		Map<String, String[]> map = new HashMap<>();
+		String str = "'" + rcd_no + "'";
+		map.put("rcd_no", new String[] { str });
+		return dao.getAllUWish(map);
+	}
+
+	public List<CmtVO> getByMb_id(String mb_id) {
+		Map<String, String[]> map = new HashMap<>();
+		String str = "'" + mb_id + "'";
+		map.put("mb_id", new String[] { str });
+		return dao.getAllUWish(map);
 	}
 }
