@@ -30,7 +30,7 @@ public class MemberServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("login".equals(action)) { // 來自select_page.jsp的請求
+		if ("login".equals(action)) { // 登入
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -70,10 +70,9 @@ public class MemberServlet extends HttpServlet {
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("MemberVO", memberVO); // 資料庫取出的VO物件,存入req
-				String url = "/front_end/member/Login.jsp";  // 
-				errorMsgs.add("登入成功");
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				req.getSession().setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
+				String url = "/front_end/member/listOneMember.jsp";  // 
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
@@ -84,16 +83,22 @@ public class MemberServlet extends HttpServlet {
 			}
 		}
 
-		if ("getOne_For_Display".equals(action)) { // 來自listAllEmp.jsp的請求
+		if ("getOne_For_Display".equals(action)) { // 
 
 		}
 
-		if ("update".equals(action)) { // 來自update__input.jsp的請求
+		if ("update".equals(action)) { // 修改
 			
 		}
 
-		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
+		if ("insert".equals(action)) { // 新增
 			
+		}
+		
+		if ("logout".equals(action)) { // 登出
+			req.getSession().removeAttribute("memberVO");
+			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+			failureView.forward(req, res);
 		}
 	}
 }

@@ -27,7 +27,7 @@ public class ImportImages {
 			
 			for(int i = 0; i < 6; i++) {
 				
-				fin = new FileInputStream(new File("fake_picture", "mb" + (i+1) + ".jpg")); 
+				fin = new FileInputStream(new File("WebContent/fake_picture", "mb" + (i+1) + ".jpg")); 
 				
 				pstmt.setBinaryStream(1, fin, fin.available());
 				pstmt.setString(2, mb_id[i]);
