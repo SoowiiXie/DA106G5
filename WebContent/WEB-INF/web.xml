@@ -256,8 +256,18 @@
         </servlet>
             <servlet-mapping>
             <servlet-name>ProductServlet</servlet-name>
-        <url-pattern>/back_end/product/ProductServlet</url-pattern>
+        <url-pattern>/ProductServlet</url-pattern>
         </servlet-mapping>
+        
+         <servlet>
+            <servlet-name>ShoppingServlet</servlet-name>
+            <servlet-class>com.product.controller.ShoppingServlet</servlet-class>
+        </servlet>
+            <servlet-mapping>
+            <servlet-name>ShoppingServlet</servlet-name>
+        <url-pattern>/product/ShoppingServlet</url-pattern>
+        </servlet-mapping> 
+       
      <!-- 商城結束 -->
 <!-- 昱盛責任區結束 -->
 
