@@ -1,10 +1,7 @@
 package com.cmt.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CmtService {
 
@@ -14,8 +11,7 @@ public class CmtService {
 		dao = new CmtDAO();
 	}
 
-	public CmtVO addWeather_detail(String cmt_content, Date cmt_time, String rcd_no, String mb_id) {
-
+	public CmtVO addCmt(String cmt_content, Date cmt_time, String rcd_no, String mb_id) {
 		// 增 cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
 		CmtVO cmtVO_insert = new CmtVO();
 		cmtVO_insert.setCmt_content(cmt_content);
@@ -28,7 +24,7 @@ public class CmtService {
 		return cmtVO_insert;
 	}
 
-	public CmtVO updateWeather_detail(String cmt_content, Integer cmt_status, String cmt_no) {
+	public CmtVO updateCmt(String cmt_content, Integer cmt_status, String cmt_no) {
 
 		// 改
 		CmtVO cmtVO_update = new CmtVO();
@@ -40,39 +36,14 @@ public class CmtService {
 		return cmtVO_update;
 	}
 
-	public void deleteWeather_detail(Timestamp weather_time, String weather_place) {
-		// 刪
-		dao.delete(weather_time, weather_place);
+	//不刪，只隱藏
+//	public void deleteCmt() {}
+
+	public CmtVO getOneCmt(String cmt_no) {
+		return dao.findByPrimaryKey(cmt_no);
 	}
 
-	public List<Weather_detailVO> getOneWeather_detail(Timestamp weather_time, String weather_place) {
-		Map<String, String[]> map = new HashMap<>();
-		map.put("WEATHER_PLACE", new String[] { "'" + weather_place + "'" });
-//		方法一:切字串
-//		String[] strRaw = weather_time.toString().split("\\.");
-//		String str = "TO_TIMESTAMP('" + strRaw[0].toString() + "', 'YYYY-MM-DD HH24:MI:SS')";
-//		方法二:設Format
-		String str = "TO_TIMESTAMP('" + weather_time.toString() + "', 'YYYY-MM-DD HH24:MI:SS.FF')";
-		map.put("WEATHER_TIME", new String[] { str });
-//		map.put("WEATHER_TIME", new String[] { weather_time });
-		return dao.getAllUWish(map);
-	}
-
-	public List<Weather_detailVO> getAll() {
+	public List<CmtVO> getAll() {
 		return dao.getAll();
-	}
-
-	public List<Weather_detailVO> getByWeather_place(String weather_place) {
-		Map<String, String[]> map = new HashMap<>();
-		String str = "'" + weather_place + "'";
-		map.put("WEATHER_PLACE", new String[] { str });
-		return dao.getAllUWish(map);
-	}
-
-	public List<Weather_detailVO> getByWeather_time(Timestamp weather_time) {
-		Map<String, String[]> map = new HashMap<>();
-		String str = "TO_TIMESTAMP('" + weather_time.toString() + "', 'YYYY-MM-DD HH24:MI:SS.FF')";
-		map.put("WEATHER_TIME", new String[] { str });
-		return dao.getAllUWish(map);
 	}
 }
