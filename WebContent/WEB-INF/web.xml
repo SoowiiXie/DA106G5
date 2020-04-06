@@ -265,6 +265,20 @@
 <!-- 以文責任區結束 -->
 
 <!--名軒責任區開始-->
+
+	<!-- 會員開始 -->
+	
+		<servlet>
+			<servlet-name>MemberServlet</servlet-name>
+			<servlet-class>com.mb.controller.MemberServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>MemberServlet</servlet-name>
+			<url-pattern>/front_end/member/member.do</url-pattern>
+		</servlet-mapping>
+		
+	<!-- 會員開始 -->
+	
 <!--名軒責任區結束-->
 
 <!--偉誌責任區開始-->
