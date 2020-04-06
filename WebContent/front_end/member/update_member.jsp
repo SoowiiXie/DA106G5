@@ -24,9 +24,9 @@
 		e-mail：<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
 		大頭照：<input type="file" name="mb_pic"><br>
 		
-        <input type="hidden" name="action" value="sign_up"><br>
-        <input id="login" type="reset" value="清除">
-        <input id="login" type="submit" value="送出"><br>
+        <input type="hidden" name="action" value="update"><br>
+        <input type="reset" value="清除">
+        <input type="submit" value="送出"><br>
         
 	</form>
 </body>
