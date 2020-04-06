@@ -1,5 +1,9 @@
 package com.live.model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class LiveDAO implements LiveDAO_interface {
@@ -16,8 +20,46 @@ public class LiveDAO implements LiveDAO_interface {
 	private static final String DELETE = "DELETE FROM LIVE where MB_ID = ?";
 
 	@Override
-	public void insert(LiveVO memberVO) {
-		// TODO Auto-generated method stub
+	public void insert(LiveVO LiveVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(INSERT_STMT);
+
+			pstmt.setString(1, LiveVO.getLive_no());
+			pstmt.setString(2, LiveVO.getLive_content());
+			pstmt.setInt(3, LiveVO.getLive_status());
+			pstmt.setDate(4, LiveVO.getLive_startteaser());
+			pstmt.setDate(5, LiveVO.getLive_start());
+			pstmt.setString(6, LiveVO.getMb_id());
+
+			pstmt.executeUpdate();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 
 	}
 
