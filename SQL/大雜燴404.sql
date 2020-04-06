@@ -938,8 +938,8 @@ CREATE TABLE record (
  rcd_no            VARCHAR2(20)  NOT NULL,
  rcd_uploadtime    DATE,
  rcd_content       CLOB,
- rcd_thumb_amount  NUMBER(5),
- rcd_metoo_amount  NUMBER(5),
+ rcd_thumb_amount  NUMBER(5) DEFAULT '0',
+ rcd_metoo_amount  NUMBER(5) DEFAULT '0',
  rcd_status        NUMBER(1)  DEFAULT'1',
  path_no           VARCHAR2(20),
  mb_id             VARCHAR2(20)  NOT NULL
