@@ -64,19 +64,89 @@ public class LiveDAO implements LiveDAO_interface {
 	}
 
 	@Override
-	public void update(LiveVO memberVO) {
-		// TODO Auto-generated method stub
+	public void update(LiveVO LiveVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATE);
+
+			pstmt.setString(1, LiveVO.getLive_content());
+			pstmt.setInt(2, LiveVO.getLive_status());
+			pstmt.setDate(3, LiveVO.getLive_startteaser());
+			pstmt.setDate(4, LiveVO.getLive_start());
+			pstmt.setString(5, LiveVO.getMb_id());
+
+			pstmt.executeUpdate();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 
 	}
 
 	@Override
-	public void delete(LiveVO memberVO) {
-		// TODO Auto-generated method stub
+	public void delete(LiveVO LiveVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(DELETE);
+
+			pstmt.setString(1, LiveVO.getMb_id());
+
+			pstmt.executeUpdate();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 
 	}
 
 	@Override
-	public LiveVO findByPrimaryKey(String mb_id) {
+	public List<LiveVO> findByPrimaryKey(String mb_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
