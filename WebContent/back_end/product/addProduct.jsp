@@ -25,7 +25,7 @@
 	</ul>
 </c:if>
 
-	<form method="POST" action="ProductServlet" name="form1">
+	<form method="POST" action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 		<table>
 
 			<tr>
@@ -70,7 +70,7 @@
 
 <br>
 <br>
-<a href="ShpoManager.jsp">回管理商城首頁</a>
+<a href="back_end/product/ShopManager.jsp">回管理商城首頁</a>
 
 
 </body>

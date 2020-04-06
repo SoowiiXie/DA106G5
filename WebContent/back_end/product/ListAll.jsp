@@ -55,13 +55,13 @@
 			<td>${productVO.pd_typeNo}</td> 
 			
 			
-			<td><FORM METHOD="POST" ACTION="ProductServlet" style="margin-bottom: 0px;">
+			<td><FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="pd_no"  value="${productVO.pd_no}">
 			     <input type="hidden" name="action"	value="getOne_For_update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="ProductServlet" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ProductServlet" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
 			     <input type="hidden" name="pd_no"  value="${productVO.pd_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>
@@ -74,7 +74,7 @@
 	
 	<br>
 	<br>
-	<a href="ShpoManager.jsp">回管理商城首頁</a>
+	<a href="ShopManager.jsp">回管理商城首頁</a>
 	
 </body>
 </html>

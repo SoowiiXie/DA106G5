@@ -29,7 +29,7 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO"); //EmpServle
 	</ul>
 </c:if>
 
-	<form method="POST" action="ProductServlet" name="form1">
+	<form method="POST" action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 		<table>
             <tr>
 				<td>商品編號:<font color=red><b>*</b></font></td>
@@ -78,7 +78,7 @@ ProductVO productVO = (ProductVO) request.getAttribute("productVO"); //EmpServle
 
 <br>
 <br>
-<a href="ShpoManager.jsp">回管理商城首頁</a>
+<a href="back_end/product/ShopManager.jsp">回管理商城首頁</a>
 
 
 
