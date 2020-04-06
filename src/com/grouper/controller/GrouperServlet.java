@@ -31,7 +31,7 @@ public class GrouperServlet extends HttpServlet {
 
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				String str = req.getParameter("Grp_no");
+				String str = req.getParameter("grp_no");
 				if (str == null || (str.trim()).length() == 0) {
 					errorMsgs.add("請輸入揪團編號");
 				}
@@ -42,9 +42,9 @@ public class GrouperServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
-				String Grp_no = null;
+				String grp_no = null;
 				try {
-					Grp_no = new String(str);
+					grp_no = new String(str);
 				} catch (Exception e) {
 					errorMsgs.add("揪團格式不正確");
 				}
@@ -58,7 +58,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************2.開始查詢資料*****************************************/
 				GrouperService grpSvc = new GrouperService();
-				GrouperVO grouperVO = grpSvc.getOneGrouper("Grp_no");
+				GrouperVO grouperVO = grpSvc.getOneGrouper("grp_no");
 				if (grouperVO == null) {
 					errorMsgs.add("查無資料");
 				}
@@ -95,11 +95,11 @@ public class GrouperServlet extends HttpServlet {
 			
 			try {
 				/***************************1.接收請求參數****************************************/
-				String Grp_no = new String(req.getParameter("Grp_no"));
+				String Grp_no = new String(req.getParameter("grp_no"));
 				
 				/***************************2.開始查詢資料****************************************/
 				GrouperService grpSvc = new GrouperService();
-				GrouperVO grouperVO = grpSvc.getOneGrouper("Grp_no");
+				GrouperVO grouperVO = grpSvc.getOneGrouper("grp_no");
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("grouperVO", grouperVO);         // 資料庫取出的grouperVO物件,存入req
@@ -126,93 +126,93 @@ public class GrouperServlet extends HttpServlet {
 		
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				String Grp_no = new String(req.getParameter("Grp_no").trim());
+				String Grp_no = new String(req.getParameter("grp_no").trim());
 				
-//				String grp_no = req.getParameter("Grp_no");
+				String grp_no = req.getParameter("grp_no");
 				String enameReg = "^grp$";
-				if (Grp_no == null || Grp_no.trim().length() == 0) {
+				if (grp_no == null || grp_no.trim().length() == 0) {
 					errorMsgs.add("揪團編號:請勿空白");
 				} else if(!Grp_no.trim().matches(enameReg)) { //�H�U�m�ߥ��h(�W)��ܦ�(regular-expression)
 					errorMsgs.add("揪團編號: 請輸入正確格式");
 	            }
 				
-				String Mb_id = req.getParameter("Mb_id").trim();
-				if (Mb_id == null || Mb_id.trim().length() == 0) {
+				String mb_id = req.getParameter("mb_id").trim();
+				if (mb_id == null || mb_id.trim().length() == 0) {
 					errorMsgs.add("請輸入會員名稱");
 				}
 				
-				String Loc_no = req.getParameter("Loc_no").trim();
-				if (Loc_no == null || Loc_no.trim().length() == 0) {
+				String loc_no = req.getParameter("loc_no").trim();
+				if (loc_no == null || loc_no.trim().length() == 0) {
 					errorMsgs.add("請輸入地標名稱");
 				}
 				
-				java.sql.Date Grp_applystart = null;
+				java.sql.Timestamp grp_applystart = null;
 				try {
-					Grp_applystart = java.sql.Date.valueOf(req.getParameter("Grp_applystart").trim());
+					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim());
 				} catch (IllegalArgumentException e) {
-					Grp_applystart=new java.sql.Date(System.currentTimeMillis());
+					grp_applystart=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團開始時間!");
 				}
 				
-				java.sql.Date Grp_applyend = null;
+				java.sql.Timestamp grp_applyend = null;
 				try {
-					Grp_applyend = java.sql.Date.valueOf(req.getParameter("Grp_applyend").trim());
+					grp_applyend = java.sql.Timestamp.valueOf(req.getParameter("grp_applyend").trim());
 				} catch (IllegalArgumentException e) {
-					Grp_applyend=new java.sql.Date(System.currentTimeMillis());
+					grp_applyend=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團結束時間!");
 				}
 				
-				java.sql.Date Grp_start = null;
+				java.sql.Timestamp grp_start = null;
 				try {
-					Grp_start = java.sql.Date.valueOf(req.getParameter("Grp_start").trim());
+					grp_start = java.sql.Timestamp.valueOf(req.getParameter("grp_start").trim());
 				} catch (IllegalArgumentException e) {
-					Grp_start=new java.sql.Date(System.currentTimeMillis());
+					grp_start=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入報名開始時間!");
 				}
 				
-				java.sql.Date Grp_end = null;
+				java.sql.Timestamp grp_end = null;
 				try {
-					Grp_end = java.sql.Date.valueOf(req.getParameter("Grp_end").trim());
+					grp_end = java.sql.Timestamp.valueOf(req.getParameter("grp_end").trim());
 				} catch (IllegalArgumentException e) {
-					Grp_end=new java.sql.Date(System.currentTimeMillis());
+					grp_end=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入報名結束時間!");
 				}
 				
-				String Grp_name = req.getParameter("Grp_name").trim();
-				if (Grp_name == null || Grp_name.trim().length() == 0) {
+				String grp_name = req.getParameter("grp_name").trim();
+				if (grp_name == null || grp_name.trim().length() == 0) {
 					errorMsgs.add("請輸入揪團名稱");
 				}
 
-				String Grp_content = req.getParameter("Grp_content").trim();
-				if (Grp_content== null || Loc_no.trim().length() == 0) {
+				String grp_content = req.getParameter("grp_content").trim();
+				if (grp_content== null || grp_content.trim().length() == 0) {
 					errorMsgs.add("請輸入揪團狀態");
 				}
 
-				Integer Grp_personmax = new Integer(req.getParameter("Grp_personmax").trim());
+				Integer grp_personmax = new Integer(req.getParameter("grp_personmax").trim());
 				
-				Integer Grp_personmin = new Integer(req.getParameter("Grp_personmin").trim());
+				Integer grp_personmin = new Integer(req.getParameter("grp_personmin").trim());
 				
-				Integer Grp_personcount = new Integer(req.getParameter("Grp_personcount").trim());
+				Integer grp_personcount = new Integer(req.getParameter("grp_personcount").trim());
 				
-				Integer Grp_status = new Integer(req.getParameter("Grp_status").trim());
+				Integer grp_status = new Integer(req.getParameter("grp_status").trim());
 				
-				Integer Grp_follow = new Integer(req.getParameter("Grp_follow").trim());
+				Integer grp_follow = new Integer(req.getParameter("grp_follow").trim());
 
 				GrouperVO grouperVO = new GrouperVO();
-				grouperVO.setGrp_no(Grp_no);
-				grouperVO.setMb_id(Mb_id);
-				grouperVO.setLoc_no(Loc_no);
-				grouperVO.setGrp_applystart(Grp_applystart);
-				grouperVO.setGrp_applyend(Grp_applyend);
-				grouperVO.setGrp_start(Grp_start);
-				grouperVO.setGrp_end(Grp_end);
-				grouperVO.setGrp_name(Grp_name);
-				grouperVO.setGrp_content(Grp_name);
-				grouperVO.setGrp_personmax(Grp_personmax);
-				grouperVO.setGrp_personmin(Grp_personmin);
-				grouperVO.setGrp_personcount(Grp_personcount);
-				grouperVO.setGrp_status(Grp_status);
-				grouperVO.setGrp_follow(Grp_follow);
+				grouperVO.setGrp_no(grp_no);
+				grouperVO.setMb_id(mb_id);
+				grouperVO.setLoc_no(loc_no);
+				grouperVO.setGrp_applystart(grp_applystart);
+				grouperVO.setGrp_applyend(grp_applyend);
+				grouperVO.setGrp_start(grp_start);
+				grouperVO.setGrp_end(grp_end);
+				grouperVO.setGrp_name(grp_name);
+				grouperVO.setGrp_content(grp_name);
+				grouperVO.setGrp_personmax(grp_personmax);
+				grouperVO.setGrp_personmin(grp_personmin);
+				grouperVO.setGrp_personcount(grp_personcount);
+				grouperVO.setGrp_status(grp_status);
+				grouperVO.setGrp_follow(grp_follow);
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -224,10 +224,10 @@ public class GrouperServlet extends HttpServlet {
 				}
 				
 				/***************************2.開始修改資料*****************************************/
-				GrouperService empSvc = new GrouperService();
-				grouperVO = empSvc.updateGrouper(Grp_no, Mb_id, Loc_no, Grp_applystart, Grp_applyend,Grp_start, 
-						Grp_end, Grp_name, Grp_name, Grp_personmax, Grp_personmin, Grp_personcount, Grp_status, 
-						Grp_follow);
+				GrouperService grpSvc = new GrouperService();
+				grouperVO = grpSvc.updateGrouper(grp_no, mb_id, loc_no, grp_applystart, grp_applyend,grp_start, 
+						grp_end, grp_name, grp_name, grp_personmax, grp_personmin, grp_personcount, grp_status, 
+						grp_follow);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("grouperVO", grouperVO); // 資料庫update成功後,正確的的grouperVO物件,存入req
@@ -239,7 +239,7 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/emp/update_grouper_input.jsp");
+						.getRequestDispatcher("/emp/update_group_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -253,93 +253,93 @@ public class GrouperServlet extends HttpServlet {
 
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				String Grp_no = new String(req.getParameter("Grp_no").trim());
+				String grp_no = new String(req.getParameter("grp_no").trim());
 				
-//				String grp_no = req.getParameter("Grp_no");
-				String enameReg = "^grp$";
-				if (Grp_no == null || Grp_no.trim().length() == 0) {
-					errorMsgs.add("揪團編號:請勿空白");
-				} else if(!Grp_no.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("揪團編號: 請輸入正確格式");
-	            }
+//				String grp_no = req.getParameter("grp_no");
+//				String enameReg = "^grp$";
+//				if (grp_no == null || grp_no.trim().length() == 0) {
+//					errorMsgs.add("揪團編號:請勿空白");
+//				} else if(!grp_no.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
+//					errorMsgs.add("揪團編號: 請輸入正確格式");
+//	            }
 				
-				String Mb_id = req.getParameter("Mb_id").trim();
-				if (Mb_id == null || Mb_id.trim().length() == 0) {
+				String mb_id = req.getParameter("mb_id").trim();
+				if (mb_id == null || mb_id.trim().length() == 0) {
 					errorMsgs.add("請輸入會員名稱");
 				}
 				
-				String Loc_no = req.getParameter("Loc_no").trim();
-				if (Loc_no == null || Loc_no.trim().length() == 0) {
+				String loc_no = req.getParameter("loc_no").trim();
+				if (loc_no == null || loc_no.trim().length() == 0) {
 					errorMsgs.add("請輸入地標名稱");
 				}
 				
-				java.sql.Date Grp_applystart = null;
+				java.sql.Timestamp grp_applystart = null;
 				try {
-					Grp_applystart = java.sql.Date.valueOf(req.getParameter("Grp_applystart").trim());
+					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim());
 				} catch (IllegalArgumentException e) {
-					Grp_applystart=new java.sql.Date(System.currentTimeMillis());
+					grp_applystart=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團開始時間!");
 				}
 				
-				java.sql.Date Grp_applyend = null;
+				java.sql.Timestamp grp_applyend = null;
 				try {
-					Grp_applyend = java.sql.Date.valueOf(req.getParameter("Grp_applyend").trim());
+					grp_applyend = java.sql.Timestamp.valueOf(req.getParameter("grp_applyend").trim());
 				} catch (IllegalArgumentException e) {
-					Grp_applyend=new java.sql.Date(System.currentTimeMillis());
+					grp_applyend=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團結束時間!");
 				}
 				
-				java.sql.Date Grp_start = null;
+				java.sql.Timestamp grp_start = null;
 				try {
-					Grp_start = java.sql.Date.valueOf(req.getParameter("Grp_start").trim());
+					grp_start = java.sql.Timestamp.valueOf(req.getParameter("grp_start").trim());
 				} catch (IllegalArgumentException e) {
-					Grp_start=new java.sql.Date(System.currentTimeMillis());
+					grp_start=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入報名開始時間!");
 				}
 				
-				java.sql.Date Grp_end = null;
+				java.sql.Timestamp grp_end = null;
 				try {
-					Grp_end = java.sql.Date.valueOf(req.getParameter("Grp_end").trim());
+					grp_end = java.sql.Timestamp.valueOf(req.getParameter("grp_end").trim());
 				} catch (IllegalArgumentException e) {
-					Grp_end=new java.sql.Date(System.currentTimeMillis());
+					grp_end=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入報名結束時間!");
 				}
 				
-				String Grp_name = req.getParameter("Grp_name").trim();
-				if (Grp_name == null || Grp_name.trim().length() == 0) {
+				String grp_name = req.getParameter("grp_name").trim();
+				if (grp_name == null || grp_name.trim().length() == 0) {
 					errorMsgs.add("請輸入揪團名稱");
 				}
 
-				String Grp_content = req.getParameter("Grp_content").trim();
-				if (Grp_content== null || Loc_no.trim().length() == 0) {
+				String grp_content = req.getParameter("grp_content").trim();
+				if (grp_content== null || grp_content.trim().length() == 0) {
 					errorMsgs.add("請輸入揪團狀態");
 				}
 
-				Integer Grp_personmax = new Integer(req.getParameter("Grp_personmax").trim());
+				Integer grp_personmax = new Integer(req.getParameter("grp_personmax").trim());
 				
-				Integer Grp_personmin = new Integer(req.getParameter("Grp_personmin").trim());
+				Integer grp_personmin = new Integer(req.getParameter("grp_personmin").trim());
 				
-				Integer Grp_personcount = new Integer(req.getParameter("Grp_personcount").trim());
+				Integer grp_personcount = new Integer(req.getParameter("grp_personcount").trim());
 				
-				Integer Grp_status = new Integer(req.getParameter("Grp_status").trim());
+				Integer grp_status = new Integer(req.getParameter("grp_status").trim());
 				
-				Integer Grp_follow = new Integer(req.getParameter("Grp_follow").trim());
+				Integer grp_follow = new Integer(req.getParameter("grp_follow").trim());
 
 				GrouperVO grouperVO = new GrouperVO();
-				grouperVO.setGrp_no(Grp_no);
-				grouperVO.setMb_id(Mb_id);
-				grouperVO.setLoc_no(Loc_no);
-				grouperVO.setGrp_applystart(Grp_applystart);
-				grouperVO.setGrp_applyend(Grp_applyend);
-				grouperVO.setGrp_start(Grp_start);
-				grouperVO.setGrp_end(Grp_end);
-				grouperVO.setGrp_name(Grp_name);
-				grouperVO.setGrp_content(Grp_name);
-				grouperVO.setGrp_personmax(Grp_personmax);
-				grouperVO.setGrp_personmin(Grp_personmin);
-				grouperVO.setGrp_personcount(Grp_personcount);
-				grouperVO.setGrp_status(Grp_status);
-				grouperVO.setGrp_follow(Grp_follow);
+				grouperVO.setGrp_no(grp_no);
+				grouperVO.setMb_id(mb_id);
+				grouperVO.setLoc_no(loc_no);
+				grouperVO.setGrp_applystart(grp_applystart);
+				grouperVO.setGrp_applyend(grp_applyend);
+				grouperVO.setGrp_start(grp_start);
+				grouperVO.setGrp_end(grp_end);
+				grouperVO.setGrp_name(grp_name);
+				grouperVO.setGrp_content(grp_name);
+				grouperVO.setGrp_personmax(grp_personmax);
+				grouperVO.setGrp_personmin(grp_personmin);
+				grouperVO.setGrp_personcount(grp_personcount);
+				grouperVO.setGrp_status(grp_status);
+				grouperVO.setGrp_follow(grp_follow);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -352,9 +352,9 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************2.開始修改資料***************************************/
 				GrouperService empSvc = new GrouperService();
-				grouperVO = empSvc.updateGrouper(Grp_no, Mb_id, Loc_no, Grp_applystart, Grp_applyend,Grp_start, 
-						Grp_end, Grp_name, Grp_name, Grp_personmax, Grp_personmin, Grp_personcount, Grp_status, 
-						Grp_follow);
+				grouperVO = empSvc.updateGrouper(grp_no, mb_id, loc_no, grp_applystart, grp_applyend,grp_start, 
+						grp_end, grp_name, grp_name, grp_personmax, grp_personmin, grp_personcount, grp_status, 
+						grp_follow);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
 				String url = "/group/listAllGroup.jsp";
@@ -380,11 +380,11 @@ public class GrouperServlet extends HttpServlet {
 	
 			try {
 				/***************************1.接收請求參數***************************************/
-				String Grp_no = new String(req.getParameter("Grp_no"));
+				String grp_no = new String(req.getParameter("grp_no"));
 				
 				/***************************2.開始刪除資料***************************************/
-				GrouperService empSvc = new GrouperService();
-				empSvc.deleteGrouper("Grp_no");
+				GrouperService grpSvc = new GrouperService();
+				grpSvc.deleteGrouper(grp_no);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/group/listAllGroup.jsp";
