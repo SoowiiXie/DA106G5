@@ -38,7 +38,7 @@ public class GrouperServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/group/select_page.jsp");
+							.getRequestDispatcher("/front_end/group/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -51,28 +51,28 @@ public class GrouperServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/group/select_page.jsp");
+							.getRequestDispatcher("/front_end/group/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
 				/***************************2.開始查詢資料*****************************************/
 				GrouperService grpSvc = new GrouperService();
-				GrouperVO grouperVO = grpSvc.getOneGrouper("grp_no");
+				GrouperVO grouperVO = grpSvc.getOneGrouper(grp_no);
 				if (grouperVO == null) {
 					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/group/select_page.jsp");
+							.getRequestDispatcher("/front_end/group/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("grouperVO", grouperVO); // 資料庫取出的empVO物件,存入req
-				String url = "/group/listOneEmp.jsp";
+				String url = "/front_end/group/listOneEmp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -80,7 +80,7 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/group/select_page.jsp");
+						.getRequestDispatcher("/front_end/group/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -103,7 +103,7 @@ public class GrouperServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("grouperVO", grouperVO);         // 資料庫取出的grouperVO物件,存入req
-				String url = "/group/update_group_input.jsp";
+				String url = "/front_end/group/update_group_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_grouper_input.jsp
 				successView.forward(req, res);
 
@@ -111,7 +111,7 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/group/listAllGroup.jsp");
+						.getRequestDispatcher("/front_end/group/listAllGroup.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -126,14 +126,14 @@ public class GrouperServlet extends HttpServlet {
 		
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				String Grp_no = new String(req.getParameter("grp_no").trim());
+//				String grp_no = new String(req.getParameter("grp_no").trim());
 				
 				String grp_no = req.getParameter("grp_no");
-				String enameReg = "^grp$";
+//				String enameReg = "^grp$";
 				if (grp_no == null || grp_no.trim().length() == 0) {
 					errorMsgs.add("揪團編號:請勿空白");
-				} else if(!Grp_no.trim().matches(enameReg)) { //�H�U�m�ߥ��h(�W)��ܦ�(regular-expression)
-					errorMsgs.add("揪團編號: 請輸入正確格式");
+//				} else if(!grp_no.trim().matches(enameReg)) { //�H�U�m�ߥ��h(�W)��ܦ�(regular-expression)
+//					errorMsgs.add("揪團編號: 請輸入正確格式");
 	            }
 				
 				String mb_id = req.getParameter("mb_id").trim();
@@ -218,7 +218,7 @@ public class GrouperServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("grouperVO", grouperVO); // 含有輸入格式錯誤的grouperVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/group/update_group_input.jsp");
+							.getRequestDispatcher("/front_end/group/update_group_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -231,7 +231,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("grouperVO", grouperVO); // 資料庫update成功後,正確的的grouperVO物件,存入req
-				String url = "/group/listOneGroup.jsp";
+				String url = "/front_end/group/listOneGroup.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -239,7 +239,7 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/emp/update_group_input.jsp");
+						.getRequestDispatcher("/front_end/group/update_group_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -257,11 +257,11 @@ public class GrouperServlet extends HttpServlet {
 				
 //				String grp_no = req.getParameter("grp_no");
 //				String enameReg = "^grp$";
-//				if (grp_no == null || grp_no.trim().length() == 0) {
-//					errorMsgs.add("揪團編號:請勿空白");
+				if (grp_no == null || grp_no.trim().length() == 0) {
+					errorMsgs.add("揪團編號:請勿空白");
 //				} else if(!grp_no.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
 //					errorMsgs.add("揪團編號: 請輸入正確格式");
-//	            }
+	            }
 				
 				String mb_id = req.getParameter("mb_id").trim();
 				if (mb_id == null || mb_id.trim().length() == 0) {
@@ -345,7 +345,7 @@ public class GrouperServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("grouperVO", grouperVO); // 含有輸入格式錯誤的grouperVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/emp/addGroup.jsp");
+							.getRequestDispatcher("/front_end/group/addGroup.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -357,7 +357,7 @@ public class GrouperServlet extends HttpServlet {
 						grp_follow);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
-				String url = "/group/listAllGroup.jsp";
+				String url = "/front_end/group/listAllGroup.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);				
 				
@@ -365,7 +365,7 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/group/addGroup.jsp");
+						.getRequestDispatcher("/front_end/group/addGroup.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -387,7 +387,7 @@ public class GrouperServlet extends HttpServlet {
 				grpSvc.deleteGrouper(grp_no);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/group/listAllGroup.jsp";
+				String url = "/front_end/group/listAllGroup.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// �R�����\��,���^�e�X�R�����ӷ�����
 				successView.forward(req, res);
 				
@@ -395,7 +395,7 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/group/listAllGroup.jsp");
+						.getRequestDispatcher("/front_end/group/listAllGroup.jsp");
 				failureView.forward(req, res);
 			}
 		}

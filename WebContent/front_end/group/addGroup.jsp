@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.grouper.model.*"%>
 
@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>´ª¹Î¸ê®Æ·s¼W - addGroup.jsp</title>
+<title>æªåœ˜è³‡æ–™æ–°å¢ - addGroup.jsp</title>
 
 <style>
   table#table-1 {
@@ -48,16 +48,16 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>´ª¹Î¸ê®Æ·s¼W - addGroup.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">¦^­º­¶</a></h4>
+		 <h3>æªåœ˜è³‡æ–™æ–°å¢ - addGroup.jsp</h3></td><td>
+		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
-<h3>¸ê®Æ·s¼W:</h3>
+<h3>è³‡æ–™æ–°å¢:</h3>
 
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -68,78 +68,78 @@
 <FORM METHOD="post" ACTION="group.do" name="form1">
 <table>
 	<tr>
-		<td>´ª¹Î¦WºÙ:</td>
+		<td>æªåœ˜åç¨±:</td>
 		<td><input type="TEXT" name="grp_no" size="45" 
 			 value="<%= (grouperVO==null)? "grp00009" : grouperVO.getGrp_no()%>" /></td>
 	</tr>
 	<tr>
-		<td>µo°_¤H·|­û½s¸¹:</td>
+		<td>ç™¼èµ·äººæœƒå“¡ç·¨è™Ÿ:</td>
 		<td><input type="TEXT" name="mb_id" size="45"
 			 value="<%= (grouperVO==null)? "yiwen123" : grouperVO.getMb_id()%>" /></td>
 	</tr>
 	<tr>
-		<td>¦a¼Ğ½s¸¹:</td>
+		<td>åœ°æ¨™ç·¨è™Ÿ:</td>
 		<td><input type="TEXT" name="loc_no" size="45"
 			 value="<%= (grouperVO==null)? "loc00001" : grouperVO.getLoc_no()%>" /></td>
 	</tr>
 	
 	<tr>
-		<td>³ø¦W¶}©l®É¶¡:</td>
+		<td>å ±åé–‹å§‹æ™‚é–“:</td>
 		<td><input name="grp_applystart" id="a_date1" type="text"></td>
 	</tr>
 	
 	<tr>
-		<td>³ø¦Wµ²§ô®É¶¡:</td>
+		<td>å ±åçµæŸæ™‚é–“:</td>
 		<td><input name="grp_applyend" id="a_date2" type="text"></td>
 	</tr>
 	
 	<tr>
-		<td>¬¡°Ê¶}©l®É¶¡:</td>
+		<td>æ´»å‹•é–‹å§‹æ™‚é–“:</td>
 		<td><input name="grp_start" id="s_date1" type="text"></td>
 	</tr>
 	
 	<tr>
-		<td>¬¡°Êµ²§ô®É¶¡:</td>
+		<td>æ´»å‹•çµæŸæ™‚é–“:</td>
 		<td><input name="grp_end" id="s_date2" type="text"></td>
 	</tr>
 	
 	<tr>
-		<td>´ª¹Î¼ĞÃD:</td>
+		<td>æªåœ˜æ¨™é¡Œ:</td>
 		<td><input type="TEXT" name="grp_name" size="45"
-			 value="<%= (grouperVO==null)? "½Ğ¿é¤J´ª¹Î¼ĞÃD" : grouperVO.getGrp_name()%>" /></td>
+			 value="<%= (grouperVO==null)? "è«‹è¼¸å…¥æªåœ˜æ¨™é¡Œ" : grouperVO.getGrp_name()%>" /></td>
 	</tr>
 	
 	<tr>
-		<td>´ª¹Î¤º®e:</td>
+		<td>æªåœ˜å…§å®¹:</td>
 		<td><input type="TEXT" name="grp_content" size="45"
-			 value="<%= (grouperVO==null)? "½Ğ¿é¤J´ª¹Î¤º®e" : grouperVO.getGrp_name()%>" /></td>
+			 value="<%= (grouperVO==null)? "è«‹è¼¸å…¥æªåœ˜å…§å®¹" : grouperVO.getGrp_content()%>" /></td>
 	</tr>
 	
 	<tr>
-		<td>´ª¹Î¤H¼Æ¤W­­:</td>
+		<td>æªåœ˜äººæ•¸ä¸Šé™:</td>
 		<td><input type="TEXT" name="grp_personmax" size="45"
 			 value="<%= (grouperVO==null)? "99" : grouperVO.getGrp_personmax()%>" /></td>
 	</tr>
 	
 	<tr>
-		<td>´ª¹Î¤H¼Æ¤U­­:</td>
+		<td>æªåœ˜äººæ•¸ä¸‹é™:</td>
 		<td><input type="TEXT" name="grp_personmin" size="45"
 			 value="<%= (grouperVO==null)? "3" : grouperVO.getGrp_personmin()%>" /></td>
 	</tr>
 	
 	<tr>
-		<td>´ª¹Î¤H¼Æ:</td>
+		<td>æªåœ˜äººæ•¸:</td>
 		<td><input type="TEXT" name="grp_personcount" size="45"
 			 value="<%= (grouperVO==null)? "50" : grouperVO.getGrp_personcount()%>" /></td>
 	</tr>
 	
 	<tr>
-		<td>´ª¹Îª¬ºA:</td>
+		<td>æªåœ˜ç‹€æ…‹:</td>
 		<td><input type="TEXT" name="grp_status" size="45"
 			 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" /></td>
 	</tr>
 	<tr>
-		<td>´ª¹Î°lÂÜ¤H¼Æ:</td>
+		<td>æªåœ˜è¿½è¹¤äººæ•¸:</td>
 		<td><input type="TEXT" name="grp_follow" size="45"
 			 value="<%= (grouperVO==null)? "92" : grouperVO.getGrp_follow()%>" /></td>
 	</tr>
@@ -151,12 +151,12 @@
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="°e¥X·s¼W"></FORM>
+<input type="submit" value="é€å‡ºæ–°å¢"></FORM>
 </body>
 
 
 
-<!-- =========================================¥H¤U¬° datetimepicker ¤§¬ÛÃö³]©w========================================== -->
+<!-- =========================================ä»¥ä¸‹ç‚º datetimepicker ä¹‹ç›¸é—œè¨­å®š========================================== -->
 
 <% 
   java.sql.Timestamp grp_applystart = null;
@@ -208,59 +208,59 @@
         $('#a_date1').datetimepicker({
 	       theme: '',              //theme: 'dark',
 	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (³o¬Otimepickerªº¹w³]¶¡¹j60¤ÀÄÁ)
+	       step: 1,                //step: 60 (é€™æ˜¯timepickerçš„é è¨­é–“éš”60åˆ†é˜)
 	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 		   value: '<%=grp_applystart%>', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // ¥h°£¯S©w¤£§t
-           //startDate:	            '2017/07/10',  // °_©l¤é
-           //minDate:               '-1970-01-01', // ¥h°£¤µ¤é(¤£§t)¤§«e
-           //maxDate:               '+1970-01-01'  // ¥h°£¤µ¤é(¤£§t)¤§«á
+           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // å»é™¤ç‰¹å®šä¸å«
+           //startDate:	            '2017/07/10',  // èµ·å§‹æ—¥
+           //minDate:               '-1970-01-01', // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å‰
+           //maxDate:               '+1970-01-01'  // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å¾Œ
         });
         
         $.datetimepicker.setLocale('zh');
         $('#a_date2').datetimepicker({
 	       theme: '',              //theme: 'dark',
 	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (³o¬Otimepickerªº¹w³]¶¡¹j60¤ÀÄÁ)
+	       step: 1,                //step: 60 (é€™æ˜¯timepickerçš„é è¨­é–“éš”60åˆ†é˜)
 	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 		   value: '<%=grp_applyend%>', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // ¥h°£¯S©w¤£§t
-           //startDate:	            '2017/07/10',  // °_©l¤é
-           //minDate:               '-1970-01-01', // ¥h°£¤µ¤é(¤£§t)¤§«e
-           //maxDate:               '+1970-01-01'  // ¥h°£¤µ¤é(¤£§t)¤§«á
+           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // å»é™¤ç‰¹å®šä¸å«
+           //startDate:	            '2017/07/10',  // èµ·å§‹æ—¥
+           //minDate:               '-1970-01-01', // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å‰
+           //maxDate:               '+1970-01-01'  // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å¾Œ
         });
         
         $.datetimepicker.setLocale('zh');
         $('#s_date1').datetimepicker({
 	       theme: '',              //theme: 'dark',
 	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (³o¬Otimepickerªº¹w³]¶¡¹j60¤ÀÄÁ)
+	       step: 1,                //step: 60 (é€™æ˜¯timepickerçš„é è¨­é–“éš”60åˆ†é˜)
 	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 		   value: '<%=grp_start%>', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // ¥h°£¯S©w¤£§t
-           //startDate:	            '2017/07/10',  // °_©l¤é
-           //minDate:               '-1970-01-01', // ¥h°£¤µ¤é(¤£§t)¤§«e
-           //maxDate:               '+1970-01-01'  // ¥h°£¤µ¤é(¤£§t)¤§«á
+           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // å»é™¤ç‰¹å®šä¸å«
+           //startDate:	            '2017/07/10',  // èµ·å§‹æ—¥
+           //minDate:               '-1970-01-01', // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å‰
+           //maxDate:               '+1970-01-01'  // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å¾Œ
         });
         
         $.datetimepicker.setLocale('zh');
         $('#s_date2').datetimepicker({
 	       theme: '',              //theme: 'dark',
 	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (³o¬Otimepickerªº¹w³]¶¡¹j60¤ÀÄÁ)
+	       step: 1,                //step: 60 (é€™æ˜¯timepickerçš„é è¨­é–“éš”60åˆ†é˜)
 	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 		   value: '<%=grp_end%>', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // ¥h°£¯S©w¤£§t
-           //startDate:	            '2017/07/10',  // °_©l¤é
-           //minDate:               '-1970-01-01', // ¥h°£¤µ¤é(¤£§t)¤§«e
-           //maxDate:               '+1970-01-01'  // ¥h°£¤µ¤é(¤£§t)¤§«á
+           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // å»é™¤ç‰¹å®šä¸å«
+           //startDate:	            '2017/07/10',  // èµ·å§‹æ—¥
+           //minDate:               '-1970-01-01', // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å‰
+           //maxDate:               '+1970-01-01'  // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å¾Œ
         });
         
         
    
-        // ----------------------------------------------------------¥H¤U¥Î¨Ó±Æ©wµLªk¿ï¾Üªº¤é´Á-----------------------------------------------------------
+        // ----------------------------------------------------------ä»¥ä¸‹ç”¨ä¾†æ’å®šç„¡æ³•é¸æ“‡çš„æ—¥æœŸ-----------------------------------------------------------
 
-        //      1.¥H¤U¬°¬Y¤@¤Ñ¤§«eªº¤é´ÁµLªk¿ï¾Ü
+        //      1.ä»¥ä¸‹ç‚ºæŸä¸€å¤©ä¹‹å‰çš„æ—¥æœŸç„¡æ³•é¸æ“‡
         //      var somedate1 = new Date('2017-06-15');
         //      $('#f_date1').datetimepicker({
         //          beforeShowDay: function(date) {
@@ -274,7 +274,7 @@
         //      }});
 
         
-        //      2.¥H¤U¬°¬Y¤@¤Ñ¤§«áªº¤é´ÁµLªk¿ï¾Ü
+        //      2.ä»¥ä¸‹ç‚ºæŸä¸€å¤©ä¹‹å¾Œçš„æ—¥æœŸç„¡æ³•é¸æ“‡
         //      var somedate2 = new Date('2017-06-15');
         //      $('#f_date1').datetimepicker({
         //          beforeShowDay: function(date) {
@@ -288,7 +288,7 @@
         //      }});
 
 
-        //      3.¥H¤U¬°¨â­Ó¤é´Á¤§¥~ªº¤é´ÁµLªk¿ï¾Ü (¤]¥i«ö»İ­n´«¦¨¨ä¥L¤é´Á)
+        //      3.ä»¥ä¸‹ç‚ºå…©å€‹æ—¥æœŸä¹‹å¤–çš„æ—¥æœŸç„¡æ³•é¸æ“‡ (ä¹Ÿå¯æŒ‰éœ€è¦æ›æˆå…¶ä»–æ—¥æœŸ)
         //      var somedate1 = new Date('2017-06-15');
         //      var somedate2 = new Date('2017-06-25');
         //      $('#f_date1').datetimepicker({

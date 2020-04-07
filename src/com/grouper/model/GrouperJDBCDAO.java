@@ -346,25 +346,25 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 		dao.insert(grpVO1);
 		
 		// 修
-//		GrouperVO grpVO2 = new GrouperVO();
-//		grpVO2.setGrp_no("8");
-//		grpVO2.setMb_id("xuan123");
-//		grpVO2.setLoc_no("loc00002");
-//		grpVO2.setGrp_applystart(java.sql.Timestamp.valueOf("2020-04-04 08:30:00"));
-//		grpVO2.setGrp_applyend(java.sql.Timestamp.valueOf("2020-04-04 18:30:00"));
-//		grpVO2.setGrp_start(java.sql.Timestamp.valueOf("2020-04-08 08:30:00"));
-//		grpVO2.setGrp_end(java.sql.Timestamp.valueOf("2020-04-08 18:30:00"));
-//		grpVO2.setGrp_name("前往大都");
-//		grpVO2.setGrp_content("我在等你");
-//		grpVO2.setGrp_personmax(new Integer(30));
-//		grpVO2.setGrp_personmin(new Integer(3));
-//		grpVO2.setGrp_personcount(new Integer(25));
-//		grpVO2.setGrp_status(new Integer(1));
-//		grpVO2.setGrp_follow(new Integer(50));
-//		dao.update(grpVO2);
+		GrouperVO grpVO2 = new GrouperVO();
+		grpVO2.setGrp_no("grp00002");
+		grpVO2.setMb_id("xuan123");
+		grpVO2.setLoc_no("loc00002");
+		grpVO2.setGrp_applystart(java.sql.Timestamp.valueOf("2020-04-04 08:30:00"));
+		grpVO2.setGrp_applyend(java.sql.Timestamp.valueOf("2020-04-04 18:30:00"));
+		grpVO2.setGrp_start(java.sql.Timestamp.valueOf("2020-04-08 08:30:00"));
+		grpVO2.setGrp_end(java.sql.Timestamp.valueOf("2020-04-08 18:30:00"));
+		grpVO2.setGrp_name("前往大都");
+		grpVO2.setGrp_content("我在等你");
+		grpVO2.setGrp_personmax(new Integer(30));
+		grpVO2.setGrp_personmin(new Integer(3));
+		grpVO2.setGrp_personcount(new Integer(25));
+		grpVO2.setGrp_status(new Integer(1));
+		grpVO2.setGrp_follow(new Integer(50));
+		dao.update(grpVO2);
 
 		// 刪
-//		dao.delete("7");
+		dao.delete("grp00007");
 
 		//查
 		GrouperVO grpVO3 = dao.findByPrimaryKey("grp00001");

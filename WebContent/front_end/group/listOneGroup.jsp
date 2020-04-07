@@ -1,14 +1,16 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.grouper.model.GrouperVO"%>
+<%@ page import="com.grouper.model.GrouperService"%>
 <%@ page import="com.grouper.model.*"%>
-<%-- ¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È --%>
+<%-- æ­¤é æš«ç·´ç¿’æŽ¡ç”¨ Script çš„å¯«æ³•å–å€¼ --%>
 
 <%
-	GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO"); //EmpServlet.java(Concroller), ¦s¤JreqªºempVOª«¥ó
+	GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO"); //EmpServlet.java(Concroller), å­˜å…¥reqçš„empVOç‰©ä»¶
 %>
 
 <html>
 <head>
-<title>­û¤u¸ê®Æ - listOneEmp.jsp</title>
+<title>å“¡å·¥è³‡æ–™ - listOneGroup.jsp</title>
 
 <style>
   table#table-1 {
@@ -46,30 +48,30 @@
 </head>
 <body bgcolor='white'>
 
-<h4>¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È:</h4>
+<h4>æ­¤é æš«ç·´ç¿’æŽ¡ç”¨ Script çš„å¯«æ³•å–å€¼:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>´ª¹Î¸ê®Æ - ListOneGroup.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>æªåœ˜è³‡æ–™ - ListOneGroup.jsp</h3>
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›žé¦–é </a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>´ª¹Î½s¸¹</th>
-		<th>µo°_¤H·|­û½s¸¹</th>
-		<th>¦a¼Ð½s¸¹</th>
-		<th>³ø¦W¶}©l®É¶¡</th>
-		<th>³ø¦Wµ²§ô®É¶¡</th>
-		<th>¬¡°Ê¶}©l®É¶¡</th>
-		<th>¬¡°Êµ²§ô®É¶¡</th>
-		<th>´ª¹Î¼ÐÃD</th>
-		<th>´ª¹Î¤º®e</th>
-		<th>¤H¼Æ¤W­­</th>
-		<th>¤H¼Æ¤U­­</th>
-		<th>¥Ø«e¤H¼Æ</th>
-		<th>´ª¹Îª¬ºA</th>
-		<th>Ãöª`´ª¹Î¼Æ¶q</th>
+		<th>æªåœ˜ç·¨è™Ÿ</th>
+		<th>ç™¼èµ·äººæœƒå“¡ç·¨è™Ÿ</th>
+		<th>åœ°æ¨™ç·¨è™Ÿ</th>
+		<th>å ±åé–‹å§‹æ™‚é–“</th>
+		<th>å ±åçµæŸæ™‚é–“</th>
+		<th>æ´»å‹•é–‹å§‹æ™‚é–“</th>
+		<th>æ´»å‹•çµæŸæ™‚é–“</th>
+		<th>æªåœ˜æ¨™é¡Œ</th>
+		<th>æªåœ˜å…§å®¹</th>
+		<th>äººæ•¸ä¸Šé™</th>
+		<th>äººæ•¸ä¸‹é™</th>
+		<th>ç›®å‰äººæ•¸</th>
+		<th>æªåœ˜ç‹€æ…‹</th>
+		<th>é—œæ³¨æªåœ˜æ•¸é‡</th>
 	</tr>
 	<tr>
 		<td><%=grouperVO.getGrp_no()%></td>
