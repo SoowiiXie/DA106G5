@@ -62,10 +62,10 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>所有員工資料 - listAllWeather_detail.jsp</h3>
+				<h3>所有天氣資料 - listAllCmt.jsp</h3>
 				<h4>
-					<a href="/DA106_G5/front_end/weather_detail/select_page.jsp">
-						<img src="/DA106_G5/front_end/weather_detail/images/back1.gif" width="100" height="32" border="0">
+					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
+						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">
 						回首頁
 					</a>
 				</h4>

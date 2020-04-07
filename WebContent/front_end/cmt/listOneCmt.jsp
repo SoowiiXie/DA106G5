@@ -1,17 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.location.model.LocationVO"%>
-<%@ page import="com.location.model.LocationService"%>
-<%@ page import="com.location.model.*"%>
+<%@ page import="com.cmt.model.CmtVO"%>
+<%@ page import="com.cmt.model.CmtService"%>
+<%@ page import="com.cmt.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
-	LocationVO locationVO = (LocationVO) request.getAttribute("locationVO");
+	CmtVO cmtVO = (CmtVO) request.getAttribute("cmtVO");
 	//EmpServlet.java(Concroller), 存入req的empVO物件
 %>
 
 <html>
 <head>
-<title>員工資料 - listOneLocation.jsp</title>
+<title>留言資料 - listOneCmt.jsp</title>
 
 <style>
 table#table-1 {
@@ -57,10 +57,12 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>員工資料 - ListOneLocation.jsp</h3>
+				<h3>留言資料 - ListOneCmt.jsp</h3>
 				<h4>
-					<a href="/DA106_G5/front_end/location/select_page.jsp"><img src="/DA106_G5/front_end/location/images/back1.gif"
-						width="100" height="32" border="0">回首頁</a>
+					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
+						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">
+						回首頁
+					</a>
 				</h4>
 			</td>
 		</tr>
@@ -68,22 +70,21 @@ th, td {
 
 	<table>
 		<tr>
-			<th>地標編號</th>
-			<th>地標類別編號</th>
-			<th>經度</th>
-			<th>緯度</th>
-			<th>地標狀態</th>
-			<th>地址</th>
-			<th>圖片</th>
+			<th>留言編號</th>
+			<th>內容</th>
+			<th>時間</th>
+			<th>狀態</th>
+			<th>紀錄編號</th>
+			<th>會員</th>
 		</tr>
+		<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
 		<tr>
-			<td><%=locationVO.getLoc_no()%></td>
-			<td><%=locationVO.getLoc_typeno()%></td>
-			<td><%=locationVO.getLongitude()%></td>
-			<td><%=locationVO.getLatitude()%></td>
-			<td><%=locationVO.getLoc_status()%></td>
-			<td><%=locationVO.getLoc_address()%></td>
-			<td><img src="/DA106_G5/DBGifReader4Location?loc_no=<%=locationVO.getLoc_no()%>" width="100px"></td>
+			<td><%=cmtVO.getCmt_no()%></td>
+			<td><%=cmtVO.getCmt_content()%></td>
+			<td><%=cmtVO.getCmt_time()%></td>
+			<td><%=cmtVO.getCmt_status()%></td>
+			<td><%=cmtVO.getRcd_no()%></td>
+			<td><%=cmtVO.getMb_id()%></td>
 		</tr>
 	</table>
 

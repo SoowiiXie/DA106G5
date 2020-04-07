@@ -1,16 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.location.model.LocationVO"%>
-<%@ page import="com.location.model.*"%>
+<%@ page import="com.cmt.model.CmtVO"%>
+<%@ page import="com.cmt.model.*"%>
 
 <%
-	LocationVO locationVO = (LocationVO) request.getAttribute("locationVO");
+	CmtVO cmtVO = (CmtVO) request.getAttribute("cmtVO");
 %>
-<%=locationVO == null%>
+<%=cmtVO == null%>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>地標資料新增 - addLocation.jsp</title>
+<title>新增留言 - addCmt.jsp</title>
 
 <style>
 table#table-1 {
@@ -58,8 +58,10 @@ th, td {
 			</td>
 			<td>
 				<h4>
-					<a href="select_page.jsp"><img src="images/tomcat.png"
-						width="100" height="100" border="0">回首頁</a>
+					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
+						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">
+						回首頁
+					</a>
 				</h4>
 			</td>
 		</tr>
@@ -77,75 +79,32 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="location.do" name="form1" enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="cmt.do" name="form1" enctype="multipart/form-data">
 		<table>
-<!-- 			<tr> -->
-<!-- 				<td>類別編號:</td> -->
-<!-- 								loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
-<!-- 				<td><input type="TEXT" name="loc_typeno" size="45" -->
-<%-- 					value="<%=(locationVO == null) ? "3" : locationVO.getLoc_typeno()%>" /></td> --%>
-<!-- 			</tr> -->
-	<jsp:useBean id="loc_typeSvc" scope="page"	class="com.loc_type.model.Loc_typeService" />
+		<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
 			<tr>
-				<td>類別編號:<font color=red><b>*</b></font></td>
-				<td><select size="1" name="loc_typeno">
-						<c:forEach var="loc_typeVO" items="${loc_typeSvc.all}">
-							<option value="${loc_typeVO.loc_typeno}"${(locationVO.loc_typeno==loc_typeVO.loc_typeno)? 'selected':'' }>
-							${loc_typeVO.loc_info}
-						</c:forEach>
-				</select></td>
+				<td>內容:</td>
+				<td>
+					<input type="TEXT" name="cmt_content" size="45" value="<%=(cmtVO == null) ? "this is content" : cmtVO.getCmt_content()%>" />
+				</td>
 			</tr>
 			<tr>
-				<td>經度:</td>
-				<td><input type="TEXT" name="longitude" size="45"
-					value="<%=(locationVO == null) ? "123.456" : locationVO.getLongitude()%>" /></td>
+				<td>紀錄編號:</td>
+				<td>
+					<input type="TEXT" name="rcd_no" size="45" value="<%=(cmtVO == null) ? "rcd00001" : cmtVO.getRcd_no()%>" />
+				</td>
 			</tr>
 			<tr>
-				<td>緯度:</td>
-				<td><input type="TEXT" name="latitude" size="45"
-					value="<%=(locationVO == null) ? "78.90" : locationVO.getLatitude()%>" /></td>
+				<td>留言會員:</td>
+				<td>
+					<input type="TEXT" name="mb_id" size="45" value="<%=(cmtVO == null) ? "soowii123" : cmtVO.getMb_id()%>" />
+				</td>
 			</tr>
-			<!-- 			<tr> -->
-			<!-- 				<td>雇用日期:</td> -->
-			<!-- 				<td><input name="hiredate" id="f_date1" type="text"></td> -->
-			<!-- 			</tr> -->
-			<tr>
-				<td>地標狀態:</td>
-				<td><input type="TEXT" name="loc_status" size="45"
-					value="<%=(locationVO == null) ? "1" : locationVO.getLoc_status()%>" /></td>
-			</tr>
-			<tr>
-				<td>地標地址:</td>
-				<td><input type="TEXT" name="loc_address" size="45"
-					value="<%=(locationVO == null) ? "健志愛的小窩" : locationVO.getLoc_address()%>" /></td>
-			</tr>
-			<tr>
-				<td>地標圖片:</td>
-				<td><input type="file" name="loc_pic" id="upfile1" /></td>
-			</tr>
-			<tr>
-				<td>預覽:</td>
-				<td><img src="/DA106_G5/NoData/none2.jpg" width="100px"></td>
-			</tr>
-
-
-
 
 		</table>
 		<br> 
 		<input type="hidden" name="action" value="insert"> 
 		<input type="submit" value="送出新增">
 	</FORM>
-	<script>
-		var x = new FileReader;
-		
-		document.forms[0].elements[5].onchange = function() {
-			x.readAsDataURL(this.files[0]);
-		}
-		x.onloadend = function() {
-			document.images[1].src = this.result;
-			console.log(x.herf);
-		}
-	</script>
 </body>
 </html>

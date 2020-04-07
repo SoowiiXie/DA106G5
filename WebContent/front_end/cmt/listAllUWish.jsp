@@ -2,21 +2,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.location.model.LocationVO"%>
-<%@ page import="com.location.model.LocationService"%>
-<%@ page import="com.location.model.*"%>
+<%@ page import="com.cmt.model.CmtVO"%>
+<%@ page import="com.cmt.model.CmtService"%>
+<%@ page import="com.cmt.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-	LocationService locationSvc = new LocationService();
-	List<LocationVO> list = locationSvc.getAll();
+	@SuppressWarnings("unchecked")
+	List<CmtVO> list = (List<CmtVO>)request.getAttribute("cmtVO_list");
 	pageContext.setAttribute("list", list);
 %>
 
 
 <html>
 <head>
-<title>所有地標資料 - listAllLocation.jsp</title>
+<title>所有留言資料 - listAllUWish.jsp</title>
 
 <style>
 table#table-1 {
@@ -62,7 +62,7 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>所有員工資料 - listAllLocation.jsp</h3>
+				<h3>所有留言資料 - listAllUWish.jsp</h3>
 				<h4>
 					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
 						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">
@@ -82,47 +82,48 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
+	<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
 	<table>
 		<tr>
-			<th>地標編號</th>
-			<th>地標類別編號</th>
-			<th>經度</th>
-			<th>緯度</th>
-			<th>地標狀態</th>
-			<th>地址</th>
-			<th>圖片</th>
+			<th>留言編號</th>
+			<th>內容</th>
+			<th>時間</th>
+			<th>狀態</th>
+			<th>紀錄編號</th>
+			<th>留言會員</th>
 			<th>修改</th>
-			<th>刪除</th>
+			<th>上/下架</th>
 		</tr>
 		<%@ include file="page1.file"%>
-		<c:forEach var="locationVO" items="${list}" begin="<%=pageIndex%>"
-			end="<%=pageIndex+rowsPerPage-1%>">
-	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
+		<c:forEach var="cmtVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+		<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->			
 			<tr>
-				<td>${locationVO.loc_no}</td>
-				<td>${locationVO.loc_typeno}</td>
-				<td>${locationVO.longitude}</td>
-				<td>${locationVO.latitude}</td>
-				<td>${locationVO.loc_status}</td>
-				<td>${locationVO.loc_address}</td>
-				<td><img src="/DA106_G5/DBGifReader4Location?loc_no=${locationVO.loc_no}" width="100px"></td>
+				<td>${cmtVO.cmt_no}</td>
+				<td>${cmtVO.cmt_content}</td>
+				<td>${cmtVO.cmt_time}</td>
+				<td>${cmtVO.cmt_status}</td>
+				<td>${cmtVO.rcd_no}</td>
+				<td>${cmtVO.mb_id}</td>
 				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/location/location.do"
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do"
 						style="margin-bottom: 0px;">
 						<input type="submit" value="修改"> 
-						<input type="hidden" name="loc_no" value="${locationVO.loc_no}"> 
+						<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"> 
 						<input type="hidden" name="action" value="getOne_For_Update">
 					</FORM>
 				</td>
 				<td>
 					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/location/location.do"
+						ACTION="<%=request.getContextPath()%>/cmt/cmt.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="刪除"> 
-						<input type="hidden" name="loc_no" value="${locationVO.loc_no}"> 
-						<input type="hidden" name="action" value="delete">
+						<input type="submit" value="上/下架"> 
+						<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"> 
+						<input type="hidden" name="cmt_time" value="${cmtVO.cmt_time}">
+						<input type="hidden" name="cmt_status" value="${cmtVO.cmt_status}">
+						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
+						<input type="hidden" name="mb_id" value="${cmtVO.mb_id}">
+						<input type="hidden" name="cmt_content" value="${cmtVO.cmt_content}">
+						<input type="hidden" name="action" value="fakeDelete">
 					</FORM>
 				</td>
 			</tr>

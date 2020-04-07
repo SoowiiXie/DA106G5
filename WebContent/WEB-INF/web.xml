@@ -202,7 +202,7 @@
 	
 		<servlet>
 			<servlet-name>CmtServletAll</servlet-name>
-			<servlet-class>com.cmt.controller.CmtServletAll</servlet-class>
+			<servlet-class>com.cmt.controller.CmtServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>CmtServletAll</servlet-name>

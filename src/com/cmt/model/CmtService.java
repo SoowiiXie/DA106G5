@@ -27,7 +27,7 @@ public class CmtService {
 		return cmtVO_insert;
 	}
 
-	public CmtVO updateCmt(String cmt_content, Integer cmt_status, String cmt_no) {
+	public CmtVO updateCmt(String cmt_content, Integer cmt_status, String cmt_no, Date cmt_time, String rcd_no, String mb_id) {
 
 		// 改
 		CmtVO cmtVO_update = new CmtVO();
@@ -35,6 +35,9 @@ public class CmtService {
 		cmtVO_update.setCmt_status(cmt_status);
 		cmtVO_update.setCmt_no(cmt_no);
 		dao.update(cmtVO_update);
+		cmtVO_update.setCmt_time(cmt_time);
+		cmtVO_update.setRcd_no(rcd_no);
+		cmtVO_update.setMb_id(mb_id);
 
 		return cmtVO_update;
 	}

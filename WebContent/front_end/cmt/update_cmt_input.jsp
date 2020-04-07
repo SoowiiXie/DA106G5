@@ -1,17 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.location.model.LocationVO"%>
-<%@ page import="com.location.model.LocationService"%>
-<%@ page import="com.location.model.*"%>
+<%@ page import="com.cmt.model.CmtVO"%>
+<%@ page import="com.cmt.model.CmtService"%>
+<%@ page import="com.cmt.model.*"%>
 
 <%
-	LocationVO locationVO = (LocationVO) request.getAttribute("locationVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+	CmtVO cmtVO = (CmtVO) request.getAttribute("cmtVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
 
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>地標資料修改 - update_location_input.jsp</title>
+<title>留言資料修改 - update_cmt_input.jsp</title>
 
 <style>
 table#table-1 {
@@ -55,11 +55,11 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>地標資料修改 - update_location_input.jsp</h3>
+				<h3>留言資料修改 - update_cmt_input.jsp</h3>
 				<h4>
-					<a href="../front_end/location/select_page.jsp"><img
-						src="../front_end/location/images/back1.gif" width="100"
-						height="32" border="0">回首頁</a>
+					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
+						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">回首頁
+					</a>
 				</h4>
 			</td>
 		</tr>
@@ -76,71 +76,43 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
-	<FORM METHOD="post" ACTION="location.do" name="form1" enctype="multipart/form-data">
+	<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
+	<FORM METHOD="post" ACTION="cmt.do" name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td>地標編號:</td>
-				<td><%=locationVO.getLoc_no()%></td>
-			</tr>
-			<jsp:useBean id="loc_typeSvc" scope="page" class="com.loc_type.model.Loc_typeService" />
-			<tr>
-				<td>類別編號:<font color=red><b>*</b></font></td>
-				<td><select size="1" name="loc_typeno">
-						<c:forEach var="loc_typeVO" items="${loc_typeSvc.all}">
-							<option value="${loc_typeVO.loc_typeno}"
-								${(locationVO.loc_typeno==loc_typeVO.loc_typeno)? 'selected':'' }>${loc_typeVO.loc_info}
-						</c:forEach>
-				</select></td>
+				<td>留言編號:</td>
+				<td><%=cmtVO.getCmt_no()%></td>
 			</tr>
 			<tr>
-				<td>經度:</td>
-				<td><input type="TEXT" name="longitude" size="45"
-					value="<%=locationVO.getLongitude()%>" /></td>
-			</tr>
-			<!-- 	<tr> -->
-			<!-- 		<td>雇用日期:</td> -->
-			<!-- 		<td><input name="hiredate" id="f_date1" type="text" ></td> -->
-			<!-- 	</tr> -->
-			<tr>
-				<td>緯度:</td>
-				<td><input type="TEXT" name="latitude" size="45"
-					value="<%=locationVO.getLatitude()%>" /></td>
+				<td>時間:</td>
+				<td><%=cmtVO.getCmt_time()%></td>
 			</tr>
 			<tr>
-				<td>地標狀態:</td>
-				<td><input type="TEXT" name="loc_status" size="45"
-					value="<%=locationVO.getLoc_status()%>" /></td>
+				<td>狀態:</td>
+				<td><%=cmtVO.getCmt_status()%></td>
 			</tr>
 			<tr>
-				<td>地址:</td>
-				<td><input type="TEXT" name="loc_address" size="45"
-					value="<%=locationVO.getLoc_address()%>" /></td>
+				<td>紀錄編號:</td>
+				<td><%=cmtVO.getRcd_no()%></td>
 			</tr>
 			<tr>
-				<td>地標圖片:</td>
-				<td><input type="file" name="loc_pic" id="upfile1"/></td>
+				<td>留言會員:</td>
+				<td><%=cmtVO.getMb_id()%></td>
 			</tr>
 			<tr>
-				<td>預覽:</td>
-				<td><img src="/DA106_G5/DBGifReader4Location?loc_no=<%=locationVO.getLoc_no()%>" width="100px"></td>
+				<td>內容:</td>
+				<td><input type="TEXT" name="cmt_content" size="45" value="<%=cmtVO.getCmt_content()%>" /></td>
 			</tr>
 
 		</table>
-		<br> <input type="hidden" name="action" value="update"> 
-		<input type="hidden" name="loc_no" value="<%=locationVO.getLoc_no()%>">
+		<br> 
+		<input type="hidden" name="action" value="update"> 
+		<input type="hidden" name="cmt_no" value="<%=cmtVO.getCmt_no()%>">
+		<input type="hidden" name="cmt_time" value="<%=cmtVO.getCmt_time()%>">
+		<input type="hidden" name="cmt_status" value="<%=cmtVO.getCmt_status()%>">
+		<input type="hidden" name="rcd_no" value="<%=cmtVO.getRcd_no()%>">
+		<input type="hidden" name="mb_id" value="<%=cmtVO.getMb_id()%>">
 		<input type="submit" value="送出修改">
 	</FORM>
-	<script>
-		var x = new FileReader;
-
-		document.forms[0].elements[5].onchange = function() {
-			x.readAsDataURL(this.files[0]);
-		}
-		x.onloadend = function() {
-			document.images[1].src = this.result;
-			console.log(x.herf);
-		}
-	</script>
 </body>
 </html>

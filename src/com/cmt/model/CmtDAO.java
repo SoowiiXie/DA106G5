@@ -284,7 +284,7 @@ public class CmtDAO implements Cmt_interface {
 		PreparedStatement pstmt_map = null;
 		ResultSet rs_map = null;
 
-		sb.append("SELECT * FROM Cmt where ");
+		sb.append("SELECT * FROM commentt where ");
 		for (Entry<String, String[]> entry : map.entrySet()) {
 			sb.append("(");
 			for (int i = 0; i < entry.getValue().length; i++) {
