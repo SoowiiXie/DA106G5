@@ -66,36 +66,54 @@ h4 {
 			</FORM>
 		</li>
 		<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
-		<jsp:useBean id="cmtSvc" scope="page" class="com.cmt.model.cmtService" />
+		<jsp:useBean id="cmtSvc" scope="page" class="com.cmt.model.CmtService" />
 
 		<li>
-			<FORM METHOD="post" ACTION="location.do">
-				<b>選擇地標編號:</b> <select size="1" name="loc_no">
-					<c:forEach var="locationVO" items="${locationSvc.all}">
-						<option value="${locationVO.loc_no}">${locationVO.loc_no}
+			<FORM METHOD="post" ACTION="cmt.do">
+				<b>選擇留言編號:</b> 
+				<select size="1" name="cmt_no">
+					<c:forEach var="cmtVO" items="${cmtSvc.all}">
+						<option value="${cmtVO.cmt_no}">${cmtVO.cmt_no}
 					</c:forEach>
 				</select> <input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
-
+		
 		<li>
-			<FORM METHOD="post" ACTION="location.do">
-				<b>選擇地址:</b> <select size="1" name="loc_no">
-					<c:forEach var="locationVO" items="${locationSvc.all}">
-						<option value="${locationVO.loc_no}">${locationVO.loc_address}
+			<FORM METHOD="post" ACTION="cmt.do">
+				<b>選擇欲查詢紀錄編號:</b> 
+				<select size="1" name="rcd_no">
+					<c:forEach var="cmtVO" items="${cmtSvc.all}">
+						<option value="${cmtVO.rcd_no}">${cmtVO.rcd_no}
 					</c:forEach>
-				</select> <input type="hidden" name="action" value="getOne_For_Display">
+				</select> 
+				<input type="hidden" name="action" value="getByRcd_no">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
+
+		<li>
+			<FORM METHOD="post" ACTION="cmt.do">
+				<b>選擇欲查詢的會員:</b> 
+				<select size="1" name="mb_id">
+					<c:forEach var="cmtVO" items="${cmtSvc.all}">
+						<option value="${cmtVO.mb_id}">${cmtVO.mb_id}
+					</c:forEach>
+				</select> 
+				<input type="hidden" name="action" value="getByMb_id">
+				<input type="submit" value="送出">
+			</FORM>
+		</li>
+
+
 	</ul>
 
 
-	<h3>地標管理</h3>
+	<h3>留言管理</h3>
 
 	<ul>
-		<li><a href='addLocation.jsp'>Add</a> a new Location.</li>
+		<li><a href='addCmt.jsp'>Add</a> a new Cmt.</li>
 	</ul>
 
 </body>
