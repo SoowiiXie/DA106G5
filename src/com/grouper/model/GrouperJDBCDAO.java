@@ -13,9 +13,9 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 	private static final String INSERT_STMT = 
 		"INSERT INTO Grouper (GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW) VALUES ('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT GRP_NO,MB_ID,LOC_NO,to_char(GRP_APPLYSTART,'yyyy-mm-dd HH24:MI')GRP_APPLYSTART,to_char(GRP_APPLYEND,'yyyy-mm-dd HH24:MI')GRP_APPLYEND,to_char(GRP_START,'yyyy-mm-dd HH24:MI')GRP_START,to_char(GRP_END,'yyyy-mm-dd HH24:MI')GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW FROM Grouper order by GRP_NO";
+		"SELECT GRP_NO,MB_ID,LOC_NO,to_char(GRP_APPLYSTART,'yyyy-mm-dd hh:mm:ss')GRP_APPLYSTART,to_char(GRP_APPLYEND,'yyyy-mm-dd hh:mm:ss')GRP_APPLYEND,to_char(GRP_START,'yyyy-mm-dd hh:mm:ss')GRP_START,to_char(GRP_END,'yyyy-mm-dd hh:mm:ss')GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW FROM Grouper order by GRP_NO";
 	private static final String GET_ONE_STMT = 
-		"SELECT GRP_NO,MB_ID,LOC_NO,to_char(GRP_APPLYSTART,'yyyy-mm-dd HH24:MI')GRP_APPLYSTART,to_char(GRP_APPLYEND,'yyyy-mm-dd HH24:MI')GRP_APPLYEND,to_char(GRP_START,'yyyy-mm-dd HH24:MI')GRP_START,to_char(GRP_END,'yyyy-mm-dd HH24:MI')GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW FROM Grouper where GRP_NO = ?";
+		"SELECT GRP_NO,MB_ID,LOC_NO,to_char(GRP_APPLYSTART,'yyyy-mm-dd hh:mm:ss')GRP_APPLYSTART,to_char(GRP_APPLYEND,'yyyy-mm-dd hh:mm:ss')GRP_APPLYEND,to_char(GRP_START,'yyyy-mm-dd hh:mm:ss')GRP_START,to_char(GRP_END,'yyyy-mm-dd hh:mm:ss')GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW FROM Grouper where GRP_NO = ?";
 	private static final String DELETE = 
 		"DELETE FROM Grouper where GRP_NO = ?";
 	private static final String UPDATE = 
@@ -366,42 +366,42 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 		// 刪
 //		dao.delete("7");
 
-		// 查
-//		GrouperVO grpVO3 = dao.findByPrimaryKey("grp00001");
-//		System.out.print(grpVO3.getGrp_no() + ",");
-//		System.out.print(grpVO3.getMb_id() + ",");
-//		System.out.print(grpVO3.getLoc_no() + ",");
-//		System.out.print(grpVO3.getGrp_applystart() + ",");
-//		System.out.print(grpVO3.getGrp_applyend() + ",");
-//		System.out.print(grpVO3.getGrp_start() + ",");
-//		System.out.print(grpVO3.getGrp_end());
-//		System.out.print(grpVO3.getGrp_name() + ",");
-//		System.out.print(grpVO3.getGrp_content() + ",");
-//		System.out.print(grpVO3.getGrp_personmax() + ",");
-//		System.out.print(grpVO3.getGrp_personmin() + ",");
-//		System.out.print(grpVO3.getGrp_personcount() + ",");
-//		System.out.print(grpVO3.getGrp_status() + ",");
-//		System.out.println(grpVO3.getGrp_follow());
-//		System.out.println("---------------------");
+		//查
+		GrouperVO grpVO3 = dao.findByPrimaryKey("grp00001");
+		System.out.print(grpVO3.getGrp_no() + ",");
+		System.out.print(grpVO3.getMb_id() + ",");
+		System.out.print(grpVO3.getLoc_no() + ",");
+		System.out.print(grpVO3.getGrp_applystart() + ",");
+		System.out.print(grpVO3.getGrp_applyend() + ",");
+		System.out.print(grpVO3.getGrp_start() + ",");
+		System.out.print(grpVO3.getGrp_end());
+		System.out.print(grpVO3.getGrp_name() + ",");
+		System.out.print(grpVO3.getGrp_content() + ",");
+		System.out.print(grpVO3.getGrp_personmax() + ",");
+		System.out.print(grpVO3.getGrp_personmin() + ",");
+		System.out.print(grpVO3.getGrp_personcount() + ",");
+		System.out.print(grpVO3.getGrp_status() + ",");
+		System.out.println(grpVO3.getGrp_follow());
+		System.out.println("---------------------");
 
 		// 查全部
-//		List<GrouperVO> list = dao.getAll();
-//		for (GrouperVO aGrp : list) {
-//			System.out.print(aGrp.getGrp_no() + ",");
-//			System.out.print(aGrp.getMb_id() + ",");
-//			System.out.print(aGrp.getLoc_no() + ",");
-//			System.out.print(aGrp.getGrp_applystart() + ",");
-//			System.out.print(aGrp.getGrp_applyend() + ",");
-//			System.out.print(aGrp.getGrp_start() + ",");
-//			System.out.print(aGrp.getGrp_end());
-//			System.out.print(aGrp.getGrp_name() + ",");
-//			System.out.print(aGrp.getGrp_content() + ",");
-//			System.out.print(aGrp.getGrp_personmax() + ",");
-//			System.out.print(aGrp.getGrp_personmin() + ",");
-//			System.out.print(aGrp.getGrp_personcount() + ",");
-//			System.out.print(aGrp.getGrp_status() + ",");
-//			System.out.print(aGrp.getGrp_follow());
-//			System.out.println();
-//		}
+		List<GrouperVO> list = dao.getAll();
+		for (GrouperVO aGrp : list) {
+			System.out.print(aGrp.getGrp_no() + ",");
+			System.out.print(aGrp.getMb_id() + ",");
+			System.out.print(aGrp.getLoc_no() + ",");
+			System.out.print(aGrp.getGrp_applystart() + ",");
+			System.out.print(aGrp.getGrp_applyend() + ",");
+			System.out.print(aGrp.getGrp_start() + ",");
+			System.out.print(aGrp.getGrp_end());
+			System.out.print(aGrp.getGrp_name() + ",");
+			System.out.print(aGrp.getGrp_content() + ",");
+			System.out.print(aGrp.getGrp_personmax() + ",");
+			System.out.print(aGrp.getGrp_personmin() + ",");
+			System.out.print(aGrp.getGrp_personcount() + ",");
+			System.out.print(aGrp.getGrp_status() + ",");
+			System.out.print(aGrp.getGrp_follow());
+			System.out.println();
+		}
 	}
 }

@@ -95,7 +95,7 @@ public class GrouperServlet extends HttpServlet {
 			
 			try {
 				/***************************1.接收請求參數****************************************/
-				String Grp_no = new String(req.getParameter("grp_no"));
+				String grp_no = new String(req.getParameter("grp_no"));
 				
 				/***************************2.開始查詢資料****************************************/
 				GrouperService grpSvc = new GrouperService();
@@ -231,7 +231,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("grouperVO", grouperVO); // 資料庫update成功後,正確的的grouperVO物件,存入req
-				String url = "/emp/listOneGroup.jsp";
+				String url = "/group/listOneGroup.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 

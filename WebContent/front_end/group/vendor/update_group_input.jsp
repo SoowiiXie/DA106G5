@@ -70,7 +70,7 @@
 	<tr>
 		<td>揪團名稱:</td>
 		<td><input type="TEXT" name="grp_no" size="45" 
-			 value="<%= (grouperVO==null)? "吳永志" : grouperVO.getGrp_no()%>" /></td>
+			 value="<%= (grouperVO==null)? "gro00009" : grouperVO.getGrp_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>發起人會員編號:</td>

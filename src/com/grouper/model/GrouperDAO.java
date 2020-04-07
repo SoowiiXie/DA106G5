@@ -16,18 +16,18 @@ public class GrouperDAO implements GrouperDAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
-
+	//GRP_NO,MB_ID,LOC_NO,to_char(GRP_APPLYSTART,'yyyy-mm-dd HH24:MI')GRP_APPLYSTART,to_char(GRP_APPLYEND,'yyyy-mm-dd HH24:MI')GRP_APPLYEND,to_char(GRP_START,'yyyy-mm-dd HH24:MI')GRP_START,to_char(GRP_END,'yyyy-mm-dd HH24:MI')GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW 
 	private static final String INSERT_STMT = 
 		"INSERT INTO Grouper (GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW) VALUES ('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT GRP_NO,MB_ID,LOC_NO,to_char(GRP_APPLYSTART,'yyyy-mm-dd HH24:MI')GRP_APPLYSTART,to_char(GRP_APPLYEND,'yyyy-mm-dd HH24:MI')GRP_APPLYEND,to_char(GRP_START,'yyyy-mm-dd HH24:MI')GRP_START,to_char(GRP_END,'yyyy-mm-dd HH24:MI')GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW FROM Grouper order by GRP_NO";
+		"SELECT * FROM Grouper order by GRP_NO";
 	private static final String GET_ONE_STMT = 
-		"SELECT GRP_NO,MB_ID,LOC_NO,to_char(GRP_APPLYSTART,'yyyy-mm-dd HH24:MI')GRP_APPLYSTART,to_char(GRP_APPLYEND,'yyyy-mm-dd HH24:MI')GRP_APPLYEND,to_char(GRP_START,'yyyy-mm-dd HH24:MI')GRP_START,to_char(GRP_END,'yyyy-mm-dd HH24:MI')GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW FROM Grouper where GRP_NO = ?";
+		"SELECT * FROM Grouper where GRP_NO = ?";
 	private static final String DELETE = 
 		"DELETE FROM Grouper where GRP_NO = ?";
 	private static final String UPDATE = 

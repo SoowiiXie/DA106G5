@@ -92,20 +92,20 @@
 	<c:forEach var="grouperVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td>${grouperVO.Grp_no}</td>
-			<td>${grouperVO.Mb_id}</td>
-			<td>${grouperVO.Loc_no}</td>
-			<td>${grouperVO.Grp_applystart}</td>
-			<td>${grouperVO.Grp_applyend}</td>
-			<td>${grouperVO.Grp_start}</td> 
-			<td>${grouperVO.Grp_end}</td>
-			<td>${grouperVO.Grp_name}</td>
-			<td>${grouperVO.Grp_content}</td>
-			<td>${grouperVO.Grp_personmax}</td>
-			<td>${grouperVO.Grp_personmin}</td>
-			<td>${grouperVO.Grp_personcount}</td>
-			<td>${grouperVO.Grp_status}</td> 
-			<td>${grouperVO.Grp_follow}</td>
+			<td>${grouperVO.grp_no}</td>
+			<td>${grouperVO.mb_id}</td>
+			<td>${grouperVO.loc_no}</td>
+			<td>${grouperVO.grp_applystart}</td>
+			<td>${grouperVO.grp_applyend}</td>
+			<td>${grouperVO.grp_start}</td> 
+			<td>${grouperVO.grp_end}</td>
+			<td>${grouperVO.grp_name}</td>
+			<td>${grouperVO.grp_content}</td>
+			<td>${grouperVO.grp_personmax}</td>
+			<td>${grouperVO.grp_personmin}</td>
+			<td>${grouperVO.grp_personcount}</td>
+			<td>${grouperVO.grp_status}</td> 
+			<td>${grouperVO.grp_follow}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="н╫зя">

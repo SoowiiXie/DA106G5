@@ -70,17 +70,17 @@
 	<tr>
 		<td>揪團名稱:</td>
 		<td><input type="TEXT" name="grp_no" size="45" 
-			 value="<%= (grouperVO==null)? "吳永志" : grouperVO.getGrp_no()%>" /></td>
+			 value="<%= (grouperVO==null)? "grp00009" : grouperVO.getGrp_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>發起人會員編號:</td>
 		<td><input type="TEXT" name="mb_id" size="45"
-			 value="<%= (grouperVO==null)? "MANAGER" : grouperVO.getMb_id()%>" /></td>
+			 value="<%= (grouperVO==null)? "yiwen123" : grouperVO.getMb_id()%>" /></td>
 	</tr>
 	<tr>
 		<td>地標編號:</td>
 		<td><input type="TEXT" name="loc_no" size="45"
-			 value="<%= (grouperVO==null)? "MANAGER" : grouperVO.getLoc_no()%>" /></td>
+			 value="<%= (grouperVO==null)? "loc00001" : grouperVO.getLoc_no()%>" /></td>
 	</tr>
 	
 	<tr>
@@ -118,30 +118,30 @@
 	<tr>
 		<td>揪團人數上限:</td>
 		<td><input type="TEXT" name="grp_personmax" size="45"
-			 value="<%= (grouperVO==null)? "10000" : grouperVO.getGrp_personmax()%>" /></td>
+			 value="<%= (grouperVO==null)? "99" : grouperVO.getGrp_personmax()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團人數下限:</td>
 		<td><input type="TEXT" name="grp_personmin" size="45"
-			 value="<%= (grouperVO==null)? "10000" : grouperVO.getGrp_personmin()%>" /></td>
+			 value="<%= (grouperVO==null)? "3" : grouperVO.getGrp_personmin()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團人數:</td>
 		<td><input type="TEXT" name="grp_personcount" size="45"
-			 value="<%= (grouperVO==null)? "10000" : grouperVO.getGrp_personcount()%>" /></td>
+			 value="<%= (grouperVO==null)? "50" : grouperVO.getGrp_personcount()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團狀態:</td>
 		<td><input type="TEXT" name="grp_status" size="45"
-			 value="<%= (grouperVO==null)? "10000" : grouperVO.getGrp_status()%>" /></td>
+			 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" /></td>
 	</tr>
 	<tr>
 		<td>揪團追蹤人數:</td>
 		<td><input type="TEXT" name="grp_follow" size="45"
-			 value="<%= (grouperVO==null)? "100" : grouperVO.getGrp_follow()%>" /></td>
+			 value="<%= (grouperVO==null)? "92" : grouperVO.getGrp_follow()%>" /></td>
 	</tr>
 
 	<jsp:useBean id="deptSvc" scope="page" class="com.grouper.model.GrouperService" />
