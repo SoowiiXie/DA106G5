@@ -30,7 +30,7 @@ public class MemberServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("login".equals(action)) { // 登入
+		if ("getOne_For_Display".equals(action)) { // 登入
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -81,10 +81,6 @@ public class MemberServlet extends HttpServlet {
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
 				failureView.forward(req, res);
 			}
-		}
-
-		if ("getOne_For_Display".equals(action)) { // 
-
 		}
 
 		if ("update".equals(action)) { // 修改
