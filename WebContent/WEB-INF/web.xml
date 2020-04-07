@@ -287,7 +287,16 @@
 			<url-pattern>/front_end/member/member.do</url-pattern>
 		</servlet-mapping>
 		
-	<!-- 會員開始 -->
+		<servlet>
+			<servlet-name>MemberPicReader</servlet-name>
+			<servlet-class>com.mb.model.MemberPicReader</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>MemberPicReader</servlet-name>
+			<url-pattern>/MemberPicReader</url-pattern>
+		</servlet-mapping>
+		
+	<!-- 會員結束 -->
 	
 <!--名軒責任區結束-->
 

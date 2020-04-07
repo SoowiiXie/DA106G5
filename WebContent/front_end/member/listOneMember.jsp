@@ -9,12 +9,9 @@
 <title>listOneMember</title>
 </head>
 <body>
-	<%
-		MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
-		String base64 = Base64.getEncoder().encodeToString(memberVO.getMb_pic());
-	%>
 	
-	<img src="data:image/jpeg;base64,<%= base64 %>"/><br>
+	
+	<img src="/DA106_G5/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px"><br>
 	${memberVO.mb_name}
 	
 	<form METHOD="POST" action="member.do">
