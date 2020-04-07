@@ -23,7 +23,7 @@
         <input type="hidden" name="action" value="login">
         <input type="submit" value="LOGIN"><br>
 	</form>
-	<a href="sign_up.jsp">註冊會員</a>
+	<a href="addMember.jsp">註冊會員</a>
 
 </body>
 </html>

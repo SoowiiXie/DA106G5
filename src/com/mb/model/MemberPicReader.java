@@ -66,7 +66,7 @@ public class MemberPicReader extends HttpServlet {
 	public void init() throws ServletException {
 		try {
 			Context ctx = new javax.naming.InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
 			con = ds.getConnection();
 		} catch (NamingException e) {
 			e.printStackTrace();
