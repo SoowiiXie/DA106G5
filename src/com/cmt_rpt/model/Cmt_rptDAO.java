@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 
 
 
@@ -20,7 +23,7 @@ public class Cmt_rptDAO implements Cmt_rpt_interface {
 //	String userid = "DA106G5";
 //	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "INSERT INTO cmt_rpt (cmt_rpt_no,rpt_reason,rpt_status,cmt_no,mb_id) values ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'),?,?,?,?)";
+	private static final String INSERT_STMT = "INSERT INTO cmt_rpt (cmt_rpt_no,rpt_reason,cmt_no,mb_id) values ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'),?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id FROM cmt_rpt ORDER BY cmt_rpt_no";
 	private static final String GET_ONE_STMT = "SELECT cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id FROM cmt_rpt WHERE cmt_rpt_no = ?";
 	private static final String DELETE = "DELETE FROM cmt_rpt where cmt_rpt_no = ?";
@@ -278,6 +281,81 @@ public class Cmt_rptDAO implements Cmt_rpt_interface {
 			}
 		}
 		return list;
+	}
+
+
+	@Override
+	public List<Cmt_rptVO> getAllUWish(Map<String, String[]> map) {
+		StringBuilder sb = new StringBuilder();
+
+		List<Cmt_rptVO> list_map = new ArrayList<Cmt_rptVO>();
+		Cmt_rptVO cmt_rptVO_map = null;
+
+		Connection con = null;
+		PreparedStatement pstmt_map = null;
+		ResultSet rs_map = null;
+
+		sb.append("SELECT * FROM commentt where ");
+		for (Entry<String, String[]> entry : map.entrySet()) {
+			sb.append("(");
+			for (int i = 0; i < entry.getValue().length; i++) {
+				if (i == 0) {
+					sb.append(entry.getKey() + " = " + entry.getValue()[i]);
+				} else {
+					sb.append(" OR " + entry.getKey() + " = " + entry.getValue()[i]);
+				}
+			}
+			sb.append(") and ");
+		}
+		sb.append(" 1=1 ");
+
+		try {
+
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt_map = con.prepareStatement(sb.toString(), ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs_map = pstmt_map.executeQuery();
+			while (rs_map.next()) {
+				// empVO 也稱為 Domain objects
+				cmt_rptVO_map = new Cmt_rptVO();
+				cmt_rptVO_map.setCmt_no(rs_map.getString("cmt_no"));
+				cmt_rptVO_map.setCmt_rpt_no(rs_map.getString("cmt_rpt_no"));
+				cmt_rptVO_map.setMb_id(rs_map.getString("mb_id"));
+				cmt_rptVO_map.setRpt_reason(rs_map.getString("rpt_reason"));
+				cmt_rptVO_map.setRpt_status(rs_map.getInt("rpt_status"));
+
+				list_map.add(cmt_rptVO_map); // Store the row in the list
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs_map != null) {
+				try {
+					rs_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt_map != null) {
+				try {
+					pstmt_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_map;
 	}
 	
 }
