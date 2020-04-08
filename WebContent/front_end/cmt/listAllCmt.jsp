@@ -126,15 +126,13 @@ th, td {
 				</td>
 				<jsp:useBean id="thumbSvc" scope="page"	class="com.thumb.model.ThumbService" />
 				<td>
+				${thumbSvc.countAllThumbs(cmtVO.rcd_no)}
 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/thumb/thumb.do" style="margin-bottom: 0px;">
-						<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/front_end/cmt/images/unnamed.jpg"  onClick="document.form1.submit()" >
+						<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/front_end/cmt/images/unnamed2.jpg"  onClick="document.form1.submit()" style="width:2rem;">
 						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
 						<input type="hidden" name="mb_id" value="soowii123">
 						<input type="hidden" name="action" value="insert">
 					</FORM>
-					${thumbSvc.countAllThumbs(cmtVO.rcd_no)}
-<%-- 					${thumbSvc.countAllThumbs(${cmtVO.rcd_no})} --%>
-					
 				</td>
 				
 			</tr>
