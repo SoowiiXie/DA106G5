@@ -92,6 +92,8 @@ th, td {
 			<th>留言會員</th>
 			<th>修改</th>
 			<th>上/下架</th>
+			<th>按讚</th>
+			<th>meToo</th>
 		</tr>
 		<%@ include file="page1.file"%>
 		<c:forEach var="cmtVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -104,17 +106,14 @@ th, td {
 				<td>${cmtVO.rcd_no}</td>
 				<td>${cmtVO.mb_id}</td>
 				<td>
-					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do"
-						style="margin-bottom: 0px;">
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" style="margin-bottom: 0px;">
 						<input type="submit" value="修改"> 
 						<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"> 
 						<input type="hidden" name="action" value="getOne_For_Update">
 					</FORM>
 				</td>
 				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/cmt/cmt.do"
-						style="margin-bottom: 0px;">
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" style="margin-bottom: 0px;">
 						<input type="submit" value="上/下架"> 
 						<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"> 
 						<input type="hidden" name="cmt_time" value="${cmtVO.cmt_time}">
@@ -125,6 +124,19 @@ th, td {
 						<input type="hidden" name="action" value="fakeDelete">
 					</FORM>
 				</td>
+				<jsp:useBean id="thumbSvc" scope="page"	class="com.thumb.model.ThumbService" />
+				<td>
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/thumb/thumb.do" style="margin-bottom: 0px;">
+						<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/front_end/cmt/images/unnamed.jpg"  onClick="document.form1.submit()" >
+						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
+						<input type="hidden" name="mb_id" value="soowii123">
+						<input type="hidden" name="action" value="insert">
+					</FORM>
+					${thumbSvc.countAllThumbs(cmtVO.rcd_no)}
+<%-- 					${thumbSvc.countAllThumbs(${cmtVO.rcd_no})} --%>
+					
+				</td>
+				
 			</tr>
 		</c:forEach>
 	</table>
