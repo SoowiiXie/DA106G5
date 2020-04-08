@@ -87,7 +87,93 @@ public class MemberServlet extends HttpServlet {
 		}
 
 		if ("update".equals(action)) { // 修改
-			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String mb_id = req.getParameter("mb_id").trim();
+				
+				String mb_pwd = req.getParameter("mb_pwd").trim();
+				if (mb_pwd == null || mb_pwd.length() == 0) {
+					errorMsgs.add("密碼不得為空白");
+				}
+				
+				String mb_name = req.getParameter("mb_name").trim();
+				if (mb_name == null || mb_name.length() == 0) {
+					errorMsgs.add("姓名不得為空白");
+				}
+				
+				String mb_email = req.getParameter("mb_email").trim();
+				if (mb_email == null || mb_email.length() == 0) {
+					errorMsgs.add("e-mail不得為空白");
+				}
+				
+				Integer mb_gender = Integer.parseInt(req.getParameter("mb_gender"));
+				
+				String mb_line = req.getParameter("mb_line");
+				if( mb_line != null && mb_line.length() != 0)
+					mb_line.trim();
+				
+				
+				java.sql.Date mb_birthday = null;
+				String date = req.getParameter("mb_birthday");
+				if( date != null && date.length() != 0)
+					mb_birthday = java.sql.Date.valueOf(date.trim());;
+				
+				
+				// 圖片
+				Part part = req.getPart("mb_pic");
+				InputStream in = part.getInputStream();
+				byte[] mb_pic = new byte[in.available()];
+				in.read(mb_pic);
+				
+				Integer mb_lv = Integer.parseInt(req.getParameter("mb_lv"));
+				Integer mb_rpt_times = Integer.parseInt(req.getParameter("mb_rpt_times"));
+				Integer mb_status = Integer.parseInt(req.getParameter("mb_status"));
+				
+				MemberVO memberVO = new MemberVO();
+				memberVO.setMb_id(mb_id);
+				memberVO.setMb_pwd(mb_pwd);
+				memberVO.setMb_name(mb_name);
+				memberVO.setMb_gender(mb_gender);
+				memberVO.setMb_line(mb_line);
+				memberVO.setMb_birthday(mb_birthday);
+				memberVO.setMb_line(mb_email);
+				memberVO.setMb_pic(mb_pic);
+				memberVO.setMb_lv(mb_lv);
+				memberVO.setMb_rpt_times(mb_rpt_times);
+				memberVO.setMb_status(mb_status);
+				
+				
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的memberVO物件,也存入req
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/emp/addEmp.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				MemberService memberSvc = new MemberService();
+				memberVO = memberSvc.updateMember(mb_id, mb_pwd, mb_name, mb_gender, mb_line, mb_birthday, 
+						mb_email, mb_pic, mb_lv, mb_rpt_times, mb_status);
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.getSession().setAttribute("memberVO", memberVO);
+				String url = "/front_end/member/listOneMember.jsp";  // 
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+				failureView.forward(req, res);
+			}
 		}
 
 		if ("insert".equals(action)) { // 新增
@@ -118,9 +204,20 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("e-mail不得為空白");
 				}
 				
+				// 性別判斷
+				
 				Integer mb_gender = Integer.parseInt(req.getParameter("mb_gender"));
-				String mb_line = req.getParameter("mb_line").trim();
-				java.sql.Date mb_birthday = java.sql.Date.valueOf(req.getParameter("mb_birthday").trim());
+				
+				String mb_line = req.getParameter("mb_line");
+				if( mb_line != null && mb_line.length() != 0)
+					mb_line.trim();
+				
+				
+				java.sql.Date mb_birthday = null;
+				String date = req.getParameter("mb_birthday");
+				if( date != null && date.length() != 0)
+					mb_birthday = java.sql.Date.valueOf(date.trim());;
+				
 				
 				// 圖片
 				Part part = req.getPart("mb_pic");

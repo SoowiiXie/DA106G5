@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,25 +8,59 @@
 <body>
 	<form METHOD="POST" action="member.do" enctype="multipart/form-data">
 	
-		±b¸¹¡G${memberVO.mb_id}<br>
-		±K½X¡G<input type="password" name="mb_pwd" value="${memberVO.mb_pwd}"><br>
-		¦W¦r¡G<input type="text" name="mb_name" value="${memberVO.mb_name}"><br>
+		å¸³è™Ÿï¼š${memberVO.mb_id}<br>
+		å¯†ç¢¼ï¼š<input type="password" name="mb_pwd" value="${memberVO.mb_pwd}"><br>
+		åå­—ï¼š<input type="text" name="mb_name" value="${memberVO.mb_name}"><br>
 		
-		©Ê§O¡G
-		<input type="radio" id="gender1" name="mb_gender">
-    	<label for="gender1">¨k</label>
-    	<input type="radio" id="gender2" name="mb_gender">
-    	<label for="gender2">¤k</label><br>
+		æ€§åˆ¥ï¼š
+		<input type="radio" id="gender1" name="mb_gender" ${(memberVO.mb_gender==1)?'checked':''}>   
+		<label for="gender1">ç”·</label>
+    	<input type="radio" id="gender2" name="mb_gender" ${(memberVO.mb_gender==2)?'checked':''}>
+    	<label for="gender2">å¥³</label><br>
     	
-		Line¡G<input type="text" name="mb_line" value="${memberVO.mb_line}"><br>
-		¥Í¤é¡G<input type="text" name="mb_birthday" value="${memberVO.mb_birthday}"><br>
-		e-mail¡G<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
-		¤jÀY·Ó¡G<input type="file" name="mb_pic"><br>
+		Lineï¼š<input type="text" name="mb_line" value="${memberVO.mb_line}"><br>
+		ç”Ÿæ—¥ï¼š<input type="text" id="f_date" name="mb_birthday" value="${memberVO.mb_birthday}"><br>
+		e-mailï¼š<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
+		
+		å¤§é ­ç…§ï¼š<input type="file" name="mb_pic" onchange="setImg(this)"><br>
+		<img id="mb_pic" src="/DA106_G5/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px">
+		
+		<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}"><br>
+		<input type="hidden" name="mb_rpt_times" value="${memberVO.mb_rpt_times}"><br>
+		<input type="hidden" name="mb_status" value="${memberVO.mb_status}"><br>
 		
         <input type="hidden" name="action" value="update"><br>
-        <input type="reset" value="²M°£">
-        <input type="submit" value="°e¥X"><br>
+        <input type="reset" value="æ¸…é™¤">
+        <input type="submit" value="é€å‡º"><br>
+        
         
 	</form>
+	
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
+	<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
+	<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+	
+	<script>
+	
+	// é è¦½åœ–ç‰‡
+	function setImg(input){
+  		if(input.files && input.files[0]){
+  			var reader = new FileReader();
+  			reader.onload = function (e) {
+    			document.getElementById("mb_pic").setAttribute("src", e.target.result);
+    		}
+    	reader.readAsDataURL(input.files[0]);
+  		}
+	}
+	
+	// æ—¥æœŸ
+	
+ 	$.datetimepicker.setLocale('zh');
+        $('#f_date').datetimepicker({
+	       timepicker:false,       //timepicker:true,
+	       step: 1,                //step: 60 (é€™æ˜¯timepickerçš„é è¨­é–“éš”60åˆ†é˜)
+	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
+        });
+	</script>
 </body>
 </html>
