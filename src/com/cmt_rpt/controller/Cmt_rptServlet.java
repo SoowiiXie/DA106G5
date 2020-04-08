@@ -234,7 +234,7 @@ public class Cmt_rptServlet extends HttpServlet {
 				String rpt_reason = req.getParameter("rpt_reason");
 				Integer rpt_status = new Integer(req.getParameter("rpt_status").trim());
 				if (rpt_status==2) {
-					rpt_status=1;
+					rpt_status=3;
 				}else {
 					rpt_status=2;
 				}
@@ -248,28 +248,20 @@ public class Cmt_rptServlet extends HttpServlet {
 				cmt_rptVO.setCmt_no(cmt_no);
 				cmt_rptVO.setMb_id(mb_id);
 
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("cmt_rptVO", cmt_rptVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/cmt_rpt/update_cmt_rpt_input.jsp");
-					failureView.forward(req, res);
-					return; // 程式中斷
-				}
-
 				/*************************** 2.開始修改資料 *****************************************/
 				Cmt_rptService cmt_rptSvc = new Cmt_rptService();
 				cmt_rptVO = cmt_rptSvc.updateCmt_rpt(cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id);
-
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("cmt_rptVO", cmt_rptVO); // 資料庫update成功後,正確的的VO物件,存入req
-				String url = "/back_end/cmt_rpt/listOneCmt_rpt.jsp";
+				String url ="/back_end/cmt_rpt/listAllCmt_rpt.jsp";
+				System.out.println(url);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/cmt_rpt/update_cmt_rpt_input.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/cmt_rpt/listAllCmt_rpt.jsp");
 				failureView.forward(req, res);
 			}
 		}
