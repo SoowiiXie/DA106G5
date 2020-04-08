@@ -233,7 +233,7 @@
 	
 		<servlet>
 			<servlet-name>Cmt_rptServletAll</servlet-name>
-			<servlet-class>com.cmt_rpt.controller.Cmt_rptServletAll</servlet-class>
+			<servlet-class>com.cmt_rpt.controller.Cmt_rptServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>Cmt_rptServletAll</servlet-name>
