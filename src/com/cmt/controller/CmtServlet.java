@@ -183,7 +183,6 @@ public class CmtServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
 //				String loc_no = new String(req.getParameter("loc_no").trim());
 //				String cmt_no =req.getParameter("cmt_no");
@@ -223,7 +222,7 @@ public class CmtServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("cmtVO", cmtVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/update_cmt_input.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/addCmt.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}

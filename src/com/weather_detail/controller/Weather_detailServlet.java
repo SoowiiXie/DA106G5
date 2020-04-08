@@ -314,7 +314,7 @@ public class Weather_detailServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("weather_detailVO", weather_detailVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/weather_detail/update_weather_detail_input.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/weather_detail/addWeather.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
