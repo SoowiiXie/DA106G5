@@ -75,7 +75,7 @@ public class Cmt_rptServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("cmt_rptVO", cmt_rptVO); // 資料庫取出的VO物件,存入req
-				String url = "/back_end/cmt_rpt/listOneCmt.jsp";
+				String url = "/back_end/cmt_rpt/listOneCmt_rpt.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 

@@ -64,8 +64,8 @@ th, td {
 			<td>
 				<h3>所有員工資料 - listAllLocation.jsp</h3>
 				<h4>
-					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
-						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">
+					<a href="<%= request.getContextPath() %>/front_end/location/select_page.jsp">
+						<img src="<%= request.getContextPath() %>/front_end/location/images/back1.gif" width="100" height="32" border="0">
 						回首頁
 					</a>
 				</h4>

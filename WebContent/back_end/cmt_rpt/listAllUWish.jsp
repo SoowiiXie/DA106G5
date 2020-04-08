@@ -93,8 +93,9 @@ th, td {
 			<th>修改</th>
 			<th>未審/已審</th>
 		</tr>
-		<%@ include file="page1.file"%>
-		<c:forEach var="cmt_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<%-- 		<%@ include file="page1.file"%> --%>
+<%-- 		<c:forEach var="cmt_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+		<c:forEach var="cmt_rptVO" items="${list}">
 			<tr>
 				<td>${cmt_rptVO.cmt_rpt_no}</td>
 				<td>${cmt_rptVO.rpt_reason}</td>
@@ -122,7 +123,7 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-	<%@ include file="page2.file"%>
+<%-- 	<%@ include file="page2.file"%> --%>
 
 </body>
 </html>
