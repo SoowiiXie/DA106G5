@@ -67,6 +67,7 @@ h4 {
 		</li>
 		<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
 		<jsp:useBean id="cmtSvc" scope="page" class="com.cmt.model.CmtService" />
+		<jsp:useBean id="mbSvc" scope="page" class="com.mb.model.MemberService" />
 
 		<li>
 			<FORM METHOD="post" ACTION="cmt.do">
@@ -97,7 +98,7 @@ h4 {
 			<FORM METHOD="post" ACTION="cmt.do">
 				<b>選擇欲查詢的會員:</b> 
 				<select size="1" name="mb_id">
-					<c:forEach var="cmtVO" items="${cmtSvc.all}">
+					<c:forEach var="cmtVO" items="${mbSvc.all}">
 						<option value="${cmtVO.mb_id}">${cmtVO.mb_id}
 					</c:forEach>
 				</select> 

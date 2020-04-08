@@ -54,7 +54,7 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>員工資料新增 - addLocation.jsp</h3>
+				<h3>留言資料新增 - adCmt_rpt.jsp</h3>
 			</td>
 			<td>
 				<h4>
