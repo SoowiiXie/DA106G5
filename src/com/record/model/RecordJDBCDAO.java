@@ -16,7 +16,7 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 	String userid = "DA106G5";
 	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "INSERT INTO Record (rcd_no, rcd_uploadtime, rcd_content, rcd_thumb_amount, rcd_metoo_amount, rcd_status, path_no, mb_id) VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'),?,?,?,?,?,?,?)";
+	private static final String INSERT_STMT = "INSERT INTO Record (rcd_no, rcd_uploadtime, rcd_content, path_no, mb_id) VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'),?,?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT rcd_no, rcd_uploadtime, rcd_content, rcd_thumb_amount, rcd_metoo_amount, rcd_status, path_no, mb_id FROM record ORDER BY rcd_no";
 	private static final String GET_ONE_STMT = "SELECT rcd_no, rcd_uploadtime, rcd_content, rcd_thumb_amount, rcd_metoo_amount, rcd_status, path_no, mb_id FROM record WHERE rcd_no = ?";
 	private static final String DELETE = "DELETE FROM record where rcd_no = ?";
@@ -35,11 +35,8 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 
 			pstmt.setDate(1, recordVO.getRcd_uploadtime());
 			pstmt.setString(2, recordVO.getRcd_content());
-			pstmt.setInt(3, recordVO.getRcd_thumb_amount());
-			pstmt.setInt(4, recordVO.getRcd_metoo_amount());
-			pstmt.setInt(5, recordVO.getRcd_status());
-			pstmt.setString(6, recordVO.getPath_no());
-			pstmt.setString(7, recordVO.getMb_id());
+			pstmt.setString(3, recordVO.getPath_no());
+			pstmt.setString(4, recordVO.getMb_id());
 
 			pstmt.executeUpdate();
 
@@ -191,7 +188,6 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 				recordVO.setPath_no(rs.getString("path_no"));
 				recordVO.setMb_id(rs.getString("mb_id"));
 			}
-
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
@@ -299,9 +295,6 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 //		RecordVO recordVO1 = new RecordVO();
 //		recordVO1.setRcd_uploadtime(java.sql.Date.valueOf("2020-03-01"));
 //		recordVO1.setRcd_content("新紀錄!!!!!!");
-//		recordVO1.setRcd_thumb_amount(300);
-//		recordVO1.setRcd_metoo_amount(200);
-//		recordVO1.setRcd_status(1);
 //		recordVO1.setPath_no("p00001");
 //		recordVO1.setMb_id("soowii123");
 //		dao.insert(recordVO1);
