@@ -82,7 +82,7 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-	<!--//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
+	
 	<table>
 		<tr>
 			<th>檢舉編號</th>
@@ -112,9 +112,10 @@ th, td {
 				<td>
 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt_rpt/cmt_rpt.do" style="margin-bottom: 0px;">
 						<input type="submit" value="未審/已審"> 
+						<!--//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
 						<input type="hidden" name="cmt_rpt_no" value="${cmt_rptVO.cmt_rpt_no}"> 
 						<input type="hidden" name="rpt_reason" value="${cmt_rptVO.rpt_reason}">
-						<input type="hidden" name="cmt_status" value="${cmt_rptVO.rpt_status}">
+						<input type="hidden" name="rpt_status" value="${cmt_rptVO.rpt_status}">
 						<input type="hidden" name="cmt_no" value="${cmt_rptVO.cmt_no}">
 						<input type="hidden" name="mb_id" value="${cmt_rptVO.mb_id}">
 						<input type="hidden" name="action" value="fakeDelete">

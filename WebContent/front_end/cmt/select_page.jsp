@@ -116,6 +116,7 @@ h4 {
 
 	<ul>
 		<li><a href='addCmt.jsp'>Add</a> a new Cmt.</li>
+		<li><a href='<%=request.getContextPath()%>/back_end/cmt_rpt/addCmt_rpt.jsp'>Add</a> a new Cmt_rpt.</li>
 	</ul>
 
 </body>

@@ -362,7 +362,7 @@ public class CmtServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String str = req.getParameter("mb_id");
+				String mb_id = req.getParameter("mb_id");
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/select_page.jsp");
@@ -370,13 +370,6 @@ public class CmtServlet extends HttpServlet {
 					return;// 程式中斷
 				}
 				
-				String mb_id = new String(str);
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/select_page.jsp");
-					failureView.forward(req, res);
-					return;// 程式中斷
-				}
 				
 				/*************************** 2.開始查詢資料 *****************************************/
 				CmtService cmtSvc = new CmtService();

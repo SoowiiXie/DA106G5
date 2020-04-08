@@ -83,7 +83,7 @@ h4 {
 			<FORM METHOD="post" ACTION="cmt_rpt.do">
 				<b>選擇欲查詢的會員:</b> 
 				<select size="1" name="mb_id">
-					<c:forEach var="cmtVO" items="${mbSvc.all}">
+					<c:forEach var="cmt_rptVO" items="${mbSvc.all}">
 						<option value="${cmt_rptVO.mb_id}">${cmt_rptVO.mb_id}
 					</c:forEach>
 				</select> 
