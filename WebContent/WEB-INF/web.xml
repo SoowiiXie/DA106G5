@@ -227,9 +227,9 @@
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>Cmt_rptServlet</servlet-name>
-			<url-pattern>/bcak_end/cmt_rpt/cmt_rpt.do</url-pattern>
+			<url-pattern>/back_end/cmt_rpt/cmt_rpt.do</url-pattern>
 		</servlet-mapping>
-	
+
 	
 		<servlet>
 			<servlet-name>Cmt_rptServletAll</servlet-name>
