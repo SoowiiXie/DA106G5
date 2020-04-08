@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.grouper.model.GrouperVO"%>
 <%@ page import="com.grouper.model.*"%>
 
 <%
@@ -49,7 +50,11 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>揪團資料新增 - addGroup.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
+		 <h4>
+			<a href="<%= request.getContextPath() %>/front_end/group/select_page.jsp">
+			<img src="<%= request.getContextPath() %>/front_end/group/images/back1.gif" width="100" height="32" border="0">
+			回首頁</a>
+		 </h4>
 	</td></tr>
 </table>
 
@@ -70,7 +75,7 @@
 	<tr>
 		<td>揪團名稱:</td>
 		<td><input type="TEXT" name="grp_no" size="45" 
-			 value="<%= (grouperVO==null)? "grp00009" : grouperVO.getGrp_no()%>" /></td>
+			 value="<%= (grouperVO==null)? " " : grouperVO.getGrp_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>發起人會員編號:</td>
@@ -106,13 +111,13 @@
 	<tr>
 		<td>揪團標題:</td>
 		<td><input type="TEXT" name="grp_name" size="45"
-			 value="<%= (grouperVO==null)? "請輸入揪團標題" : grouperVO.getGrp_name()%>" /></td>
+			 value="<%= (grouperVO==null)? "測試活動" : grouperVO.getGrp_name()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團內容:</td>
 		<td><input type="TEXT" name="grp_content" size="45"
-			 value="<%= (grouperVO==null)? "請輸入揪團內容" : grouperVO.getGrp_content()%>" /></td>
+			 value="<%= (grouperVO==null)? "好好玩" : grouperVO.getGrp_content()%>" /></td>
 	</tr>
 	
 	<tr>
@@ -135,7 +140,7 @@
 	
 	<tr>
 		<td>揪團狀態:</td>
-		<td><input type="TEXT" name="grp_status" size="45"
+		<td><input type="TEXT" name="grp_status" size="45" 
 			 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" /></td>
 	</tr>
 	<tr>
@@ -207,8 +212,8 @@
         $.datetimepicker.setLocale('zh');
         $('#a_date1').datetimepicker({
 	       theme: '',              //theme: 'dark',
-	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+	       timepicker:true,       //timepicker:true,
+	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
 	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 		   value: '<%=grp_applystart%>', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
@@ -220,9 +225,9 @@
         $.datetimepicker.setLocale('zh');
         $('#a_date2').datetimepicker({
 	       theme: '',              //theme: 'dark',
-	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
+	       timepicker:true,       //timepicker:true,
+	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
+	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
 		   value: '<%=grp_applyend%>', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
@@ -233,9 +238,9 @@
         $.datetimepicker.setLocale('zh');
         $('#s_date1').datetimepicker({
 	       theme: '',              //theme: 'dark',
-	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
+	       timepicker:true,       //timepicker:true,
+	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
+	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
 		   value: '<%=grp_start%>', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
@@ -246,9 +251,9 @@
         $.datetimepicker.setLocale('zh');
         $('#s_date2').datetimepicker({
 	       theme: '',              //theme: 'dark',
-	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
+	       timepicker:true,       //timepicker:true,
+	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
+	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
 		   value: '<%=grp_end%>', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日

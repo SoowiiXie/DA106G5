@@ -72,17 +72,17 @@
 	<tr>
 		<td>揪團名稱:</td>
 		<td><input type="TEXT" name="grp_no" size="45" 
-			 value="<%= (grouperVO==null)? "gro00009" : grouperVO.getGrp_no()%>" /></td>
+			 value="<%= (grouperVO==null)? "gro00010" : grouperVO.getGrp_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>發起人會員編號:</td>
 		<td><input type="TEXT" name="mb_id" size="45"
-			 value="<%= (grouperVO==null)? "MANAGER" : grouperVO.getMb_id()%>" /></td>
+			 value="<%= (grouperVO==null)? "Tommy" : grouperVO.getMb_id()%>" /></td>
 	</tr>
 	<tr>
 		<td>地標編號:</td>
 		<td><input type="TEXT" name="loc_no" size="45"
-			 value="<%= (grouperVO==null)? "MANAGER" : grouperVO.getLoc_no()%>" /></td>
+			 value="<%= (grouperVO==null)? "loc00003" : grouperVO.getLoc_no()%>" /></td>
 	</tr>
 	
 	<tr>
@@ -108,42 +108,42 @@
 	<tr>
 		<td>揪團標題:</td>
 		<td><input type="TEXT" name="grp_name" size="45"
-			 value="<%= (grouperVO==null)? "請輸入揪團標題" : grouperVO.getGrp_name()%>" /></td>
+			 value="<%= (grouperVO==null)? "晨跑" : grouperVO.getGrp_name()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團內容:</td>
 		<td><input type="TEXT" name="grp_content" size="45"
-			 value="<%= (grouperVO==null)? "請輸入揪團內容" : grouperVO.getGrp_name()%>" /></td>
+			 value="<%= (grouperVO==null)? "別睡了，起床" : grouperVO.getGrp_content()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團人數上限:</td>
 		<td><input type="TEXT" name="grp_personmax" size="45"
-			 value="<%= (grouperVO==null)? "10000" : grouperVO.getGrp_personmax()%>" /></td>
+			 value="<%= (grouperVO==null)? "25" : grouperVO.getGrp_personmax()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團人數下限:</td>
 		<td><input type="TEXT" name="grp_personmin" size="45"
-			 value="<%= (grouperVO==null)? "10000" : grouperVO.getGrp_personmin()%>" /></td>
+			 value="<%= (grouperVO==null)? "5" : grouperVO.getGrp_personmin()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團人數:</td>
-		<td><input type="TEXT" ="grp_personcount" size="45"
-			 value="<%= (grouperVO==null)? "10000" : grouperVO.getGrp_personcount()%>" /></td>
+		<td><input type="TEXT" name="grp_personcount" size="45"
+			 value="<%= (grouperVO==null)? "18" : grouperVO.getGrp_personcount()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團狀態:</td>
-		<td><input type="TEXT" ="grp_status" size="45"
-			 value="<%= (grouperVO==null)? "10000" : grouperVO.getGrp_status()%>" /></td>
+		<td><input type="TEXT" name="grp_status" size="45"
+			 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" /></td>
 	</tr>
 	<tr>
 		<td>揪團追蹤人數:</td>
-		<td><input type="TEXT" ="grp_follow" size="45"
-			 value="<%= (grouperVO==null)? "100" : grouperVO.getGrp_follow()%>" /></td>
+		<td><input type="TEXT" name="grp_follow" size="45"
+			 value="<%= (grouperVO==null)? "80" : grouperVO.getGrp_follow()%>" /></td>
 	</tr>
 	
 
@@ -175,10 +175,10 @@
         $.datetimepicker.setLocale('zh');
         $('#a_date1').datetimepicker({
            theme: '',              //theme: 'dark',
- 	       timepicker:false,       //timepicker:true,
+ 	       timepicker:true,        //timepicker:true,
  	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
- 	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
- 		   value: '<%=grouperVO.getGrp_applystart()%>', // value:   new Date(),
+ 	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+ 		   value: '${grouperVO.grp_applystart}', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前
@@ -188,10 +188,10 @@
         $.datetimepicker.setLocale('zh');
         $('#a_date2').datetimepicker({
            theme: '',              //theme: 'dark',
- 	       timepicker:false,       //timepicker:true,
+ 	       timepicker:true,        //timepicker:true,
  	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
- 	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
- 		   value: '<%=grouperVO.getGrp_applyend()%>', // value:   new Date(),
+ 	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+ 		   value: '${grouperVO.grp_applyend}', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前
@@ -201,10 +201,10 @@
         $.datetimepicker.setLocale('zh');
         $('#s_date1').datetimepicker({
            theme: '',              //theme: 'dark',
- 	       timepicker:false,       //timepicker:true,
+ 	       timepicker:true,        //timepicker:true,
  	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
- 	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
- 		   value: '<%=grouperVO.getGrp_start()%>', // value:   new Date(),
+ 	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+ 		   value: '${grouperVO.grp_start}', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前
@@ -214,10 +214,10 @@
         $.datetimepicker.setLocale('zh');
         $('#s_date2').datetimepicker({
            theme: '',              //theme: 'dark',
- 	       timepicker:false,       //timepicker:true,
+ 	       timepicker:true,        //timepicker:true,
  	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
- 	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
- 		   value: '<%=grouperVO.getGrp_end()%>', // value:   new Date(),
+ 	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+ 		   value: '${grouperVO.grp_end}', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前

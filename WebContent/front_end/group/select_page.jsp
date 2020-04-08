@@ -74,19 +74,6 @@
        <input type="submit" value="送出">
     </FORM>
   </li>
-  
-  <li>
-     <FORM METHOD="post" ACTION="group.do" >
-       <b>選擇揪團編號:</b>
-       <select size="1" name="grp_no">
-         <c:forEach var="GrouperVO" items="${grpSvc.all}" > 
-          <option value="${GrouperVO.grp_no}">${GrouperVO.grp_no}
-         </c:forEach>   
-       </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="送出">
-     </FORM>
-  </li>
 </ul>
 
 

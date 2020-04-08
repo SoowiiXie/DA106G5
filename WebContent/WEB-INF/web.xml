@@ -322,15 +322,6 @@
 		</servlet-mapping>
 	
 	
-		<servlet>
-			<servlet-name>GrouperServletAll</servlet-name>
-			<servlet-class>com.grouper.controller.GrouperServlet</servlet-class>
-		</servlet>
-		<servlet-mapping>
-			<servlet-name>GrouperServletAll</servlet-name>
-			<url-pattern>/group/group.do</url-pattern>
-		</servlet-mapping>
-		
 		
 		<servlet>
 			<servlet-name>DBGifReader4Grouper</servlet-name>

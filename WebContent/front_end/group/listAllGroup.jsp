@@ -56,10 +56,16 @@
 
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
-	<tr><td>
-		 <h3>所有揪團資料 - listAllGroup.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
+	<tr>
+		<td>
+		 	<h3>所有揪團資料 - listAllGroup.jsp</h3>
+		 	<h4>
+			 <a href="<%= request.getContextPath() %>/front_end/group/select_page.jsp">
+		 	<img src="<%= request.getContextPath() %>/front_end/group/images/back1.gif" width="100" height="32" border="0">回首頁
+	   		</a>
+	   		</h4>
+		</td>
+	</tr>
 </table>
 
 <%-- 錯誤表列 --%>
@@ -110,13 +116,13 @@
 			<td>${grouperVO.grp_status}</td> 
 			<td>${grouperVO.grp_follow}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/group/group.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/group/group.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
 			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>

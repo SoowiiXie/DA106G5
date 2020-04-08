@@ -58,7 +58,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************2.開始查詢資料*****************************************/
 				GrouperService grpSvc = new GrouperService();
-				GrouperVO grouperVO = grpSvc.getOneGrouper(grp_no);
+				GrouperVO grouperVO = grpSvc.getOneGroup(grp_no);
 				if (grouperVO == null) {
 					errorMsgs.add("查無資料");
 				}
@@ -72,7 +72,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("grouperVO", grouperVO); // 資料庫取出的empVO物件,存入req
-				String url = "/front_end/group/listOneEmp.jsp";
+				String url = "/front_end/group/listOneGroup.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -99,7 +99,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************2.開始查詢資料****************************************/
 				GrouperService grpSvc = new GrouperService();
-				GrouperVO grouperVO = grpSvc.getOneGrouper("grp_no");
+				GrouperVO grouperVO = grpSvc.getOneGroup(grp_no);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("grouperVO", grouperVO);         // 資料庫取出的grouperVO物件,存入req
@@ -163,7 +163,7 @@ public class GrouperServlet extends HttpServlet {
 				}
 				
 				java.sql.Timestamp grp_start = null;
-				try {
+				try {					
 					grp_start = java.sql.Timestamp.valueOf(req.getParameter("grp_start").trim());
 				} catch (IllegalArgumentException e) {
 					grp_start=new java.sql.Timestamp(System.currentTimeMillis());
@@ -207,7 +207,7 @@ public class GrouperServlet extends HttpServlet {
 				grouperVO.setGrp_start(grp_start);
 				grouperVO.setGrp_end(grp_end);
 				grouperVO.setGrp_name(grp_name);
-				grouperVO.setGrp_content(grp_name);
+				grouperVO.setGrp_content(grp_content);
 				grouperVO.setGrp_personmax(grp_personmax);
 				grouperVO.setGrp_personmin(grp_personmin);
 				grouperVO.setGrp_personcount(grp_personcount);
@@ -225,18 +225,20 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************2.開始修改資料*****************************************/
 				GrouperService grpSvc = new GrouperService();
-				grouperVO = grpSvc.updateGrouper(grp_no, mb_id, loc_no, grp_applystart, grp_applyend,grp_start, 
+				grouperVO = grpSvc.updateGroup(grp_no, mb_id, loc_no, grp_applystart, grp_applyend,grp_start, 
 						grp_end, grp_name, grp_name, grp_personmax, grp_personmin, grp_personcount, grp_status, 
 						grp_follow);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("grouperVO", grouperVO); // 資料庫update成功後,正確的的grouperVO物件,存入req
-				String url = "/front_end/group/listOneGroup.jsp";
+				String url = "/front_end/group/listAllGroup.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front_end/group/update_group_input.jsp");
@@ -275,7 +277,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				java.sql.Timestamp grp_applystart = null;
 				try {
-					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim());
+					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim()+":00");
 				} catch (IllegalArgumentException e) {
 					grp_applystart=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團開始時間!");
@@ -334,7 +336,7 @@ public class GrouperServlet extends HttpServlet {
 				grouperVO.setGrp_start(grp_start);
 				grouperVO.setGrp_end(grp_end);
 				grouperVO.setGrp_name(grp_name);
-				grouperVO.setGrp_content(grp_name);
+				grouperVO.setGrp_content(grp_content);
 				grouperVO.setGrp_personmax(grp_personmax);
 				grouperVO.setGrp_personmin(grp_personmin);
 				grouperVO.setGrp_personcount(grp_personcount);
@@ -352,8 +354,8 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************2.開始修改資料***************************************/
 				GrouperService empSvc = new GrouperService();
-				grouperVO = empSvc.updateGrouper(grp_no, mb_id, loc_no, grp_applystart, grp_applyend,grp_start, 
-						grp_end, grp_name, grp_name, grp_personmax, grp_personmin, grp_personcount, grp_status, 
+				grouperVO = empSvc.addGroup(grp_no, mb_id, loc_no, grp_applystart, grp_applyend,grp_start, 
+						grp_end, grp_name, grp_content, grp_personmax, grp_personmin, grp_personcount, grp_status, 
 						grp_follow);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
@@ -384,7 +386,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************2.開始刪除資料***************************************/
 				GrouperService grpSvc = new GrouperService();
-				grpSvc.deleteGrouper(grp_no);
+				grpSvc.deleteGroup(grp_no);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/front_end/group/listAllGroup.jsp";

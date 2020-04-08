@@ -44,20 +44,20 @@ public class GrouperDAO implements GrouperDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setString(1, grouperVO.getGrp_no());
-			pstmt.setString(2, grouperVO.getMb_id());
-			pstmt.setString(3, grouperVO.getLoc_no());
-			pstmt.setTimestamp(4, grouperVO.getGrp_applystart());
-			pstmt.setTimestamp(5, grouperVO.getGrp_applyend());
-			pstmt.setTimestamp(6, grouperVO.getGrp_start());
-			pstmt.setTimestamp(7, grouperVO.getGrp_end());
-			pstmt.setString(8, grouperVO.getGrp_name());
-			pstmt.setString(9, grouperVO.getGrp_content());
-			pstmt.setInt(10, grouperVO.getGrp_personmax());
-			pstmt.setInt(11, grouperVO.getGrp_personmin());
-			pstmt.setInt(12, grouperVO.getGrp_personcount());
-			pstmt.setInt(13, grouperVO.getGrp_status());
-			pstmt.setInt(14, grouperVO.getGrp_follow());
+//			pstmt.setString(1, grouperVO.getGrp_no());
+			pstmt.setString(1, grouperVO.getMb_id());
+			pstmt.setString(2, grouperVO.getLoc_no());
+			pstmt.setTimestamp(3, grouperVO.getGrp_applystart());
+			pstmt.setTimestamp(4, grouperVO.getGrp_applyend());
+			pstmt.setTimestamp(5, grouperVO.getGrp_start());
+			pstmt.setTimestamp(6, grouperVO.getGrp_end());
+			pstmt.setString(7, grouperVO.getGrp_name());
+			pstmt.setString(8, grouperVO.getGrp_content());
+			pstmt.setInt(9, grouperVO.getGrp_personmax());
+			pstmt.setInt(10, grouperVO.getGrp_personmin());
+			pstmt.setInt(11, grouperVO.getGrp_personcount());
+			pstmt.setInt(12, grouperVO.getGrp_status());
+			pstmt.setInt(13, grouperVO.getGrp_follow());
 
 			pstmt.executeUpdate();
 
@@ -95,20 +95,20 @@ public class GrouperDAO implements GrouperDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, grouperVO.getGrp_no());
-			pstmt.setString(2, grouperVO.getMb_id());
-			pstmt.setString(3, grouperVO.getLoc_no());
-			pstmt.setTimestamp(4, grouperVO.getGrp_applystart());
-			pstmt.setTimestamp(5, grouperVO.getGrp_applyend());
-			pstmt.setTimestamp(6, grouperVO.getGrp_start());
-			pstmt.setTimestamp(7, grouperVO.getGrp_end());
-			pstmt.setString(8, grouperVO.getGrp_name());
-			pstmt.setString(9, grouperVO.getGrp_content());
-			pstmt.setInt(10, grouperVO.getGrp_personmax());
-			pstmt.setInt(11, grouperVO.getGrp_personmin());
-			pstmt.setInt(12, grouperVO.getGrp_personcount());
-			pstmt.setInt(13, grouperVO.getGrp_status());
-			pstmt.setInt(14, grouperVO.getGrp_follow());
+			pstmt.setString(1, grouperVO.getMb_id());
+			pstmt.setString(2, grouperVO.getLoc_no());
+			pstmt.setTimestamp(3, grouperVO.getGrp_applystart());
+			pstmt.setTimestamp(4, grouperVO.getGrp_applyend());
+			pstmt.setTimestamp(5, grouperVO.getGrp_start());
+			pstmt.setTimestamp(6, grouperVO.getGrp_end());
+			pstmt.setString(7, grouperVO.getGrp_name());
+			pstmt.setString(8, grouperVO.getGrp_content());
+			pstmt.setInt(9, grouperVO.getGrp_personmax());
+			pstmt.setInt(10, grouperVO.getGrp_personmin());
+			pstmt.setInt(11, grouperVO.getGrp_personcount());
+			pstmt.setInt(12, grouperVO.getGrp_status());
+			pstmt.setInt(13, grouperVO.getGrp_follow());
+			pstmt.setString(14, grouperVO.getGrp_no());
 
 			pstmt.executeUpdate();
 
@@ -176,7 +176,7 @@ public class GrouperDAO implements GrouperDAO_interface {
 	}
 
 	@Override
-	public GrouperVO findByPrimaryKey(String Grp_no) {
+	public GrouperVO findByPrimaryKey(String grp_no) {
 
 		GrouperVO grouperVO = null;
 		Connection con = null;
@@ -188,7 +188,7 @@ public class GrouperDAO implements GrouperDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setString(1, Grp_no);
+			pstmt.setString(1, grp_no);
 
 			rs = pstmt.executeQuery();
 
@@ -261,20 +261,20 @@ public class GrouperDAO implements GrouperDAO_interface {
 			while (rs.next()) {
 				// grouperVO �]�٬� Domain objects
 				grouperVO = new GrouperVO();
-				grouperVO.setGrp_no(rs.getString("Grp_no"));
-				grouperVO.setMb_id(rs.getString("Mb_id"));
-				grouperVO.setLoc_no(rs.getString("Loc_no"));
-				grouperVO.setGrp_applystart(rs.getTimestamp("Grp_applystart"));
-				grouperVO.setGrp_applyend(rs.getTimestamp("Grp_applyend"));
-				grouperVO.setGrp_start(rs.getTimestamp("Grp_start"));
-				grouperVO.setGrp_end(rs.getTimestamp("Grp_end"));
-				grouperVO.setGrp_name(rs.getString("Grp_name"));
-				grouperVO.setGrp_content(rs.getString("Grp_content"));
-				grouperVO.setGrp_personmax(rs.getInt("Grp_personmax"));
-				grouperVO.setGrp_personmin(rs.getInt("Grp_personmin"));
-				grouperVO.setGrp_personcount(rs.getInt("Grp_personcount"));
-				grouperVO.setGrp_status(rs.getInt("Grp_status"));
-				grouperVO.setGrp_follow(rs.getInt("Grp_follow"));
+				grouperVO.setGrp_no(rs.getString("grp_no"));
+				grouperVO.setMb_id(rs.getString("mb_id"));
+				grouperVO.setLoc_no(rs.getString("loc_no"));
+				grouperVO.setGrp_applystart(rs.getTimestamp("grp_applystart"));
+				grouperVO.setGrp_applyend(rs.getTimestamp("grp_applyend"));
+				grouperVO.setGrp_start(rs.getTimestamp("grp_start"));
+				grouperVO.setGrp_end(rs.getTimestamp("grp_end"));
+				grouperVO.setGrp_name(rs.getString("grp_name"));
+				grouperVO.setGrp_content(rs.getString("grp_content"));
+				grouperVO.setGrp_personmax(rs.getInt("grp_personmax"));
+				grouperVO.setGrp_personmin(rs.getInt("grp_personmin"));
+				grouperVO.setGrp_personcount(rs.getInt("grp_personcount"));
+				grouperVO.setGrp_status(rs.getInt("grp_status"));
+				grouperVO.setGrp_follow(rs.getInt("grp_follow"));
 				list.add(grouperVO); // Store the row in the list
 			}
 
