@@ -29,23 +29,23 @@
 </c:if>
 	<form METHOD="POST" action="member.do" enctype="multipart/form-data">
 		<div>
-			帳號：<input id="mb_id" type="text" name="mb_id" onblur="checkId()">
+			*帳號：<input id="mb_id" type="text" name="mb_id" onblur="checkId()">
 			<img id="icon"/><span id="check"></span>
 		</div>
-		密碼：<input type="password" name="mb_pwd"><br>
-		名字：<input type="text" name="mb_name"><br>
+		*密碼：<input type="password" name="mb_pwd"><br>
+		*名字：<input type="text" name="mb_name"><br>
 		
-		性別：
-		<input type="radio" id="gender1" name="mb_gender" value="1">
+		*性別：
+		<input type="radio" id="gender1" name="mb_gender" value="1" checked>
     	<label for="gender1">男</label>
     	<input type="radio" id="gender2" name="mb_gender" value="2">
     	<label for="gender2">女</label><br>
     	
 		Line：<input type="text" name="mb_line"><br>
-		生日：<input type="text" name="mb_birthday"><br>
-		e-mail：<input type="text" name="mb_email"><br>
+		生日：<input type="text" name="mb_birthday" id="f_date"><br>
+		*e-mail：<input type="text" name="mb_email"><br>
 		
-		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>
+		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>  <!-- 改版限定圖片種類 -->
 		<img id="mb_pic" src="/DA106_G5/NoData/null2.jpg">
 		<br>
 		
@@ -54,6 +54,11 @@
         <input type="submit" value="送出"><br>
         
 	</form>
+
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <script>  
 
@@ -103,7 +108,7 @@
 	  	xhr.send( null );
 	}
 
-// 預覽圖片
+	// 預覽圖片
 	function setImg(input){
   		if(input.files && input.files[0]){
   			var reader = new FileReader();
@@ -113,6 +118,16 @@
     	reader.readAsDataURL(input.files[0]);
   		}
 	}
+	
+	// 日期
+	
+	$.datetimepicker.setLocale('zh');
+        $('#f_date').datetimepicker({
+	       theme: '',              //theme: 'dark',
+	       timepicker:false,       //timepicker:true,
+	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
+        });
 </script>
 </body>
 </html>

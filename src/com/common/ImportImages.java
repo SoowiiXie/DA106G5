@@ -12,6 +12,8 @@ import java.sql.SQLException;
 public class ImportImages {
 
 	public static void main(String[] args) {
+		
+		// 6個會員
 		String[] mb_id = {"soowii123","xuan123","michael123","vain123","yiwen123","weijhih123"};
 		
 		Connection con = null;
@@ -24,7 +26,7 @@ public class ImportImages {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "DA106G5", "DA106G5");
 			pstmt = con.prepareStatement("UPDATE MEMBER SET MB_PIC=? WHERE MB_ID = ?");
-			
+			// 6張照片
 			for(int i = 0; i < 6; i++) {
 				
 				fin = new FileInputStream(new File("WebContent/fake_picture", "mb" + (i+1) + ".jpg")); 
