@@ -13,9 +13,9 @@
 		名字：<input type="text" name="mb_name" value="${memberVO.mb_name}"><br>
 		
 		性別：
-		<input type="radio" id="gender1" name="mb_gender" ${(memberVO.mb_gender==1)?'checked':''}>   
+		<input type="radio" id="gender1" name="mb_gender" value="1" ${(memberVO.mb_gender==1)?'checked':''}>   
 		<label for="gender1">男</label>
-    	<input type="radio" id="gender2" name="mb_gender" ${(memberVO.mb_gender==2)?'checked':''}>
+    	<input type="radio" id="gender2" name="mb_gender" value="2" ${(memberVO.mb_gender==2)?'checked':''}>
     	<label for="gender2">女</label><br>
     	
 		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br>
@@ -25,6 +25,7 @@
 		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>
 		<img id="mb_pic" src="/DA106_G5/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px">
 		
+		<input type="hidden" name="mb_id" value="${memberVO.mb_id}"><br>
 		<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}"><br>
 		<input type="hidden" name="mb_rpt_times" value="${memberVO.mb_rpt_times}"><br>
 		<input type="hidden" name="mb_status" value="${memberVO.mb_status}"><br>

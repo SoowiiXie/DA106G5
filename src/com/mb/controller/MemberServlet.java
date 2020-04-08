@@ -124,7 +124,7 @@ public class MemberServlet extends HttpServlet {
 					mb_birthday = java.sql.Date.valueOf(date.trim());;
 				
 				
-				// 圖片
+				// 圖片     (若沒有上傳新圖片，用原來的圖片?)
 				Part part = req.getPart("mb_pic");
 				InputStream in = part.getInputStream();
 				byte[] mb_pic = new byte[in.available()];
@@ -221,6 +221,7 @@ public class MemberServlet extends HttpServlet {
 				
 				// 圖片
 				Part part = req.getPart("mb_pic");
+				System.out.println(part);
 				InputStream in = part.getInputStream();
 				byte[] mb_pic = new byte[in.available()];
 				in.read(mb_pic);
