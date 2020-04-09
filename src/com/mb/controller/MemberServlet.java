@@ -31,7 +31,7 @@ public class MemberServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		// 註冊、修改的資料判斷
+		// ***註冊、修改的資料判斷
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -196,7 +196,7 @@ public class MemberServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
-			try {
+//			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String mb_id = req.getParameter("mb_id").trim();
 				if (mb_id == null || mb_id.length() == 0) {
@@ -213,14 +213,19 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("姓名不得為空白");
 				}
 				
+				// 性別
+				String gender = req.getParameter("mb_gender");
+				Integer mb_gender = null;
+				if (gender == null || gender.length() == 0) {
+					errorMsgs.add("請選擇性別");
+				}else {
+					mb_gender = Integer.parseInt(req.getParameter("mb_gender"));
+				}
+				
 				String mb_email = req.getParameter("mb_email").trim();
 				if (mb_email == null || mb_email.length() == 0) {
 					errorMsgs.add("e-mail不得為空白");
 				}
-				
-				// 性別
-				
-				Integer mb_gender = Integer.parseInt(req.getParameter("mb_gender"));
 				
 				String mb_line = req.getParameter("mb_line");
 				if( mb_line != null && mb_line.length() != 0)
@@ -247,7 +252,7 @@ public class MemberServlet extends HttpServlet {
 				memberVO.setMb_gender(mb_gender);
 				memberVO.setMb_line(mb_line);
 				memberVO.setMb_birthday(mb_birthday);
-				memberVO.setMb_line(mb_email);
+				memberVO.setMb_email(mb_email);
 				memberVO.setMb_pic(mb_pic);
 				
 				
@@ -256,7 +261,7 @@ public class MemberServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的memberVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/emp/addEmp.jsp");
+							.getRequestDispatcher("/front_end/member/addMember.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -271,11 +276,11 @@ public class MemberServlet extends HttpServlet {
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
-			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
-				failureView.forward(req, res);
-			}
+//			} catch (Exception e) {
+//				errorMsgs.add("無法取得資料:" + e.getMessage());
+//				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+//				failureView.forward(req, res);
+//			}
 		}
 		
 		if ("logout".equals(action)) { // 登出
