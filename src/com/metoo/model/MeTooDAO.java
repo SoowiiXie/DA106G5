@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -21,10 +19,11 @@ public class MeTooDAO implements MeToo_interface {
 //	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = "INSERT INTO metoo (rcd_no,mb_id) values (?,?)";
-	private static final String GET_ALL_STMT = "SELECT rcd_no,mb_id FROM metoo ORDER BY rcd_no";
-	private static final String GET_ONE_STMT = "SELECT rcd_no,mb_id FROM metoo WHERE rcd_no=? and mb_id = ?";
+//	private static final String GET_ALL_STMT = "SELECT rcd_no,mb_id FROM metoo ORDER BY rcd_no";
+//	private static final String GET_ONE_STMT = "SELECT rcd_no,mb_id FROM metoo WHERE rcd_no=? and mb_id = ?";
+	private static final String COUNT_ALL = "SELECT COUNT (*) AS COUNTMETOOS FROM METOO WHERE rcd_no = ?";
 	private static final String DELETE = "DELETE FROM metoo where mb_id = ? and rcd_no=?";
-	private static final String UPDATE = "UPDATE path_follow SET path_no = ?, mb_id = ? where mb_id = ?";
+//	private static final String UPDATE = "UPDATE path_follow SET path_no = ?, mb_id = ? where mb_id = ?";
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
@@ -76,45 +75,45 @@ public class MeTooDAO implements MeToo_interface {
 		}
 	}
 
-	@Override
-	public void update(MeTooVO meTooVO) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-
-		try {
-
-//			Class.forName(DRIVER_CLASS);
-//			con = DriverManager.getConnection(URL, USER, PASSWORD);
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-
-			pstmt.setString(1, meTooVO.getRcd_no());
-			pstmt.setString(2, meTooVO.getMb_id());
-			pstmt.setString(3, meTooVO.getMb_id());
-
-			pstmt.executeUpdate();
-
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-	}
+//	@Override
+//	public void update(MeTooVO meTooVO) {
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//
+//		try {
+//
+////			Class.forName(DRIVER_CLASS);
+////			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(UPDATE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+//
+//			pstmt.setString(1, meTooVO.getRcd_no());
+//			pstmt.setString(2, meTooVO.getMb_id());
+//			pstmt.setString(3, meTooVO.getMb_id());
+//
+//			pstmt.executeUpdate();
+//
+//			// Handle any SQL errors
+//		} catch (SQLException se) {
+//			throw new RuntimeException("A database error occured. " + se.getMessage());
+//			// Clean up JDBC resources
+//		} finally {
+//			if (pstmt != null) {
+//				try {
+//					pstmt.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (con != null) {
+//				try {
+//					con.close();
+//				} catch (Exception e) {
+//					e.printStackTrace(System.err);
+//				}
+//			}
+//		}
+//	}
 
 	@Override
 	public void delete(String mb_id, String rcd_no) {
@@ -157,8 +156,10 @@ public class MeTooDAO implements MeToo_interface {
 	}
 
 	@Override
-	public MeTooVO findByPrimaryKey(String rcd_no, String mb_id) {
-		MeTooVO meTooVO = null;
+	public Integer countAllMeToos(String rcd_no) {
+		// TODO Auto-generated method stub
+		Integer thumbs = null;
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -168,17 +169,12 @@ public class MeTooDAO implements MeToo_interface {
 //			Class.forName(DRIVER_CLASS);
 //			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-
+			pstmt = con.prepareStatement(COUNT_ALL,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, rcd_no);
-			pstmt.setString(2, mb_id);
-
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				meTooVO = new MeTooVO();
-				meTooVO.setRcd_no(rs.getString("rcd_no"));
-				meTooVO.setMb_id(rs.getString("mb_id"));
+				thumbs = Integer.parseInt(rs.getString("COUNTMETOOS"));
 			}
 
 			// Handle any SQL errors
@@ -208,60 +204,7 @@ public class MeTooDAO implements MeToo_interface {
 				}
 			}
 		}
-		return meTooVO;
+		return thumbs;
 	}
 
-	@Override
-	public List<MeTooVO> getAll() {
-		List<MeTooVO> list = new ArrayList<MeTooVO>();
-		MeTooVO meTooVO = null;
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-
-//			Class.forName(DRIVER_CLASS);
-//			con = DriverManager.getConnection(URL, USER, PASSWORD);
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				meTooVO = new MeTooVO();
-				meTooVO.setRcd_no(rs.getString("rcd_no"));
-				meTooVO.setMb_id(rs.getString("mb_id"));
-				list.add(meTooVO); // Store the row in the list
-			}
-
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return list;
-	}
 }

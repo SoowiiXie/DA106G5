@@ -171,7 +171,7 @@
 	
 		<servlet>
 			<servlet-name>MeTooServletAll</servlet-name>
-			<servlet-class>com.metoo.controller.MetooServlet</servlet-class>
+			<servlet-class>com.metoo.controller.MeTooServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>MeTooServletAll</servlet-name>
