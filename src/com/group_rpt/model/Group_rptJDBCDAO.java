@@ -14,7 +14,7 @@ public class Group_rptJDBCDAO implements Group_rptDAO_interface {
 		private static final String GET_ALL_STMT = 
 			"SELECT group_rpt_no,grp_no,mb_id,rpt_reason,rpt_status FROM group_rpt order by group_rpt_no";
 		private static final String GET_ONE_STMT = 
-			"SELECT group_rpt_no,grp_no,mb_id,rpt_reason,rpt_status FROM group_rpt FROM group_rpt where group_rpt_no = ?";
+			"SELECT group_rpt_no,grp_no,mb_id,rpt_reason,rpt_status FROM group_rpt where group_rpt_no = ?";
 		private static final String DELETE = 
 			"DELETE FROM group_rpt where group_rpt_no = ?";
 		private static final String UPDATE = 
@@ -292,7 +292,7 @@ public class Group_rptJDBCDAO implements Group_rptDAO_interface {
 		// 增
 //		Group_rptVO group_rptVO1 = new Group_rptVO();
 ////		group_rptVO1.setGroup_rpt_no(new Double(500));
-//		group_rptVO1.setGrp_no("grp00006");
+//		group_rptVO1.setGrp_no("grp00002");
 //		group_rptVO1.setMb_id("michael123");		
 //		group_rptVO1.setRpt_reason("");
 //		group_rptVO1.setRpt_status(1);
@@ -311,23 +311,23 @@ public class Group_rptJDBCDAO implements Group_rptDAO_interface {
 //		dao.delete("grr00006");
 //
 //		// 查
-		Group_rptVO group_rptVO3 = dao.findByPrimaryKey("grr00002");
-		System.out.print(group_rptVO3.getGroup_rpt_no() + ",");
-		System.out.print(group_rptVO3.getGrp_no() + ",");	
-		System.out.print(group_rptVO3.getMb_id() + ",");
-		System.out.print(group_rptVO3.getRpt_reason() + ",");
-		System.out.println(group_rptVO3.getRpt_status());
-		System.out.println("---------------------");
+//		Group_rptVO group_rptVO3 = dao.findByPrimaryKey("grr00002");
+//		System.out.print(group_rptVO3.getGroup_rpt_no() + ",");
+//		System.out.print(group_rptVO3.getGrp_no() + ",");	
+//		System.out.print(group_rptVO3.getMb_id() + ",");
+//		System.out.print(group_rptVO3.getRpt_reason() + ",");
+//		System.out.println(group_rptVO3.getRpt_status());
+//		System.out.println("---------------------");
 //
-//		// 查全部
-//		List<Group_rptVO> list = dao.getAll();
-//		for (Group_rptVO aGroup_rpt : list) {
-//			System.out.print(aGroup_rpt.getGroup_rpt_no() + ",");
-//			System.out.print(aGroup_rpt.getGrp_no() + ",");			
-//			System.out.print(aGroup_rpt.getMb_id() + ",");
-//			System.out.print(aGroup_rpt.getRpt_reason() + ",");
-//			System.out.print(aGroup_rpt.getRpt_status());
-//			System.out.println();
-//		}
+		// 查全部
+		List<Group_rptVO> list = dao.getAll();
+		for (Group_rptVO aGroup_rpt : list) {
+			System.out.print(aGroup_rpt.getGroup_rpt_no() + ",");
+			System.out.print(aGroup_rpt.getGrp_no() + ",");			
+			System.out.print(aGroup_rpt.getMb_id() + ",");
+			System.out.print(aGroup_rpt.getRpt_reason() + ",");
+			System.out.print(aGroup_rpt.getRpt_status());
+			System.out.println();
+		}
 	}
 }

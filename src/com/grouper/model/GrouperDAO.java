@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 public class GrouperDAO implements GrouperDAO_interface {
 
-	// �@�����ε{����,�w��@�Ӹ�Ʈw ,�@�Τ@��DataSource�Y�i
+	//一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
 	static {
 		try {

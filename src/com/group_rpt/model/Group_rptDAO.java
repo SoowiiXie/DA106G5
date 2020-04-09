@@ -15,7 +15,7 @@ public class Group_rptDAO implements Group_rptDAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -26,7 +26,7 @@ public class Group_rptDAO implements Group_rptDAO_interface {
 	private static final String GET_ALL_STMT = 
 		"SELECT group_rpt_no,grp_no,mb_id,rpt_reason,rpt_status FROM group_rpt order by group_rpt_no";
 	private static final String GET_ONE_STMT = 
-		"SELECT group_rpt_no,grp_no,mb_id,rpt_reason,rpt_status FROM group_rpt FROM group_rpt where group_rpt_no = ?";
+		"SELECT group_rpt_no,grp_no,mb_id,rpt_reason,rpt_status FROM group_rpt where group_rpt_no = ?";
 	private static final String DELETE = 
 		"DELETE FROM group_rpt where group_rpt_no = ?";
 	private static final String UPDATE = 

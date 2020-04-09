@@ -25,8 +25,8 @@ public class Group_rptService {
 		return group_rptVO;
 	}
 
-	public Group_rptVO updateGroup_rpt(String group_rpt_no, String grp_no, String mb_id, String rpt_reason,
-			Integer rpt_status) {
+	public Group_rptVO updateGroup_rpt(String group_rpt_no, String grp_no, String mb_id, 
+			String rpt_reason,Integer rpt_status) {
 
 		Group_rptVO group_rptVO = new Group_rptVO();
 

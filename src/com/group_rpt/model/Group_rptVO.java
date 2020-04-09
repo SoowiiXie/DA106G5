@@ -19,17 +19,17 @@ public class Group_rptVO implements java.io.Serializable{
 	public void setGrp_no(String grp_no) {
 		this.grp_no = grp_no;
 	}
-	public String getRpt_reason() {
-		return rpt_reason;
-	}
-	public void setRpt_reason(String rpt_reason) {
-		this.rpt_reason = rpt_reason;
-	}
 	public String getMb_id() {
 		return mb_id;
 	}
 	public void setMb_id(String mb_id) {
 		this.mb_id = mb_id;
+	}
+	public String getRpt_reason() {
+		return rpt_reason;
+	}
+	public void setRpt_reason(String rpt_reason) {
+		this.rpt_reason = rpt_reason;
 	}
 	public Integer getRpt_status() {
 		return rpt_status;
@@ -38,5 +38,5 @@ public class Group_rptVO implements java.io.Serializable{
 		this.rpt_status = rpt_status;
 	}
 	
-
+	
 }
