@@ -73,9 +73,9 @@
 <FORM METHOD="post" ACTION="group.do" name="form1">
 <table>
 	<tr>
-		<td>揪團名稱:</td>
-		<td><input type="TEXT" name="grp_no" size="45" 
-			 value="<%= (grouperVO==null)? " " : grouperVO.getGrp_no()%>" /></td>
+		<td>揪團名稱:</td> <td>自動產生</td>
+		<td><input type="hidden" name="grp_no" size="45" 
+			 value="<%= (grouperVO==null)? "自動產生" : grouperVO.getGrp_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>發起人會員編號:</td>

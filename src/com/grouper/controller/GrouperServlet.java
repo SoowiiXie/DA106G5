@@ -130,11 +130,11 @@ public class GrouperServlet extends HttpServlet {
 				
 				String grp_no = req.getParameter("grp_no");
 //				String enameReg = "^grp$";
-				if (grp_no == null || grp_no.trim().length() == 0) {
-					errorMsgs.add("揪團編號:請勿空白");
+//				if (grp_no == null || grp_no.trim().length() == 0) {
+//					errorMsgs.add("揪團編號:請勿空白");
 //				} else if(!grp_no.trim().matches(enameReg)) { //�H�U�m�ߥ��h(�W)��ܦ�(regular-expression)
 //					errorMsgs.add("揪團編號: 請輸入正確格式");
-	            }
+//	            }
 				
 				String mb_id = req.getParameter("mb_id").trim();
 				if (mb_id == null || mb_id.trim().length() == 0) {
