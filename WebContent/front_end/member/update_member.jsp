@@ -23,7 +23,7 @@
 		e-mail：<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
 		
 		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>
-		<img id="mb_pic" src="/DA106_G5/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px">
+		<img id="mb_pic" src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px">
 		
 		<input type="hidden" name="mb_id" value="${memberVO.mb_id}"><br>
 		<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}"><br>

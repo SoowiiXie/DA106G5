@@ -63,7 +63,7 @@
 		e-mail：<input type="text" name="mb_email"><br>
 		
 		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>  <!-- 改版限定圖片種類 -->
-		<img id="mb_pic" src="/DA106_G5/NoData/null2.jpg">
+		<img id="mb_pic" src="<%= request.getContextPath()%>/NoData/null2.jpg">
 		<br>
 		
         <input type="hidden" name="action" value="insert"><br>
@@ -111,8 +111,6 @@
 	    		  check.innerHTML = "此帳號已被使用";
 	    		  check.style.color = "red";
 	    	  }
-	        
-	        //showEmployee(xhr.responseText);
 	      	}else{
 	        	alert( xhr.status );
 	      	}//xhr.status == 200

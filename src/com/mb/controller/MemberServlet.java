@@ -137,8 +137,9 @@ public class MemberServlet extends HttpServlet {
 					InputStream in = part.getInputStream();
 					mb_pic = new byte[in.available()];
 					in.read(mb_pic);
+					in.close();
 					
-				}else {  // 沒有上傳圖片，用原來的
+				}else {  // 沒有上傳圖片，用原來的圖片
 					mb_pic = ((MemberVO)session.getAttribute("memberVO")).getMb_pic();
 				}
 				
@@ -217,7 +218,7 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("e-mail不得為空白");
 				}
 				
-				// 性別判斷
+				// 性別
 				
 				Integer mb_gender = Integer.parseInt(req.getParameter("mb_gender"));
 				
@@ -234,10 +235,10 @@ public class MemberServlet extends HttpServlet {
 				
 				// 圖片
 				Part part = req.getPart("mb_pic");
-				System.out.println(part);
 				InputStream in = part.getInputStream();
 				byte[] mb_pic = new byte[in.available()];
 				in.read(mb_pic);
+				in.close();
 				
 				MemberVO memberVO = new MemberVO();
 				memberVO.setMb_id(mb_id);
