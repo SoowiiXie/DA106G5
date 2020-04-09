@@ -20,6 +20,10 @@
 
 <%  try {
        whichPage = Integer.parseInt(request.getParameter("whichPage"));
+       if(whichPage == 0){
+       	session.getAttribute("whichPage");
+       }
+       session.setAttribute("whichPage",whichPage);
        pageIndex=pageIndexArray[whichPage-1];
     } catch (NumberFormatException e) { //第一次執行的時候
        whichPage=1;
