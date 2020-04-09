@@ -1,7 +1,6 @@
 package com.metoo.model;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +21,18 @@ public class MeTooTest extends HttpServlet {
 		meTooVO1.setRcd_no("rcd00005");
 		meTooVO1.setMb_id("soowii123");
 		dao.insert(meTooVO1);
+		meTooVO1.setRcd_no("rcd00005");
+		meTooVO1.setMb_id("xuan123");
+		dao.insert(meTooVO1);
+		meTooVO1.setRcd_no("rcd00005");
+		meTooVO1.setMb_id("michael123");
+		dao.insert(meTooVO1);
+		meTooVO1.setRcd_no("rcd00005");
+		meTooVO1.setMb_id("vain123");
+		dao.insert(meTooVO1);
+		meTooVO1.setRcd_no("rcd00005");
+		meTooVO1.setMb_id("yiwen123");
+		dao.insert(meTooVO1);
 
 		//修改??
 //		MeTooVO meTooVO2 = new MeTooVO();
@@ -32,23 +43,24 @@ public class MeTooTest extends HttpServlet {
 
 		//刪除
 		dao.delete("soowii123", "rcd00005");
+		System.out.println(dao.countAllMeToos("rcd00005"));
 
 		//查詢
-		MeTooVO meTooVO3 = dao.findByPrimaryKey("rcd00001", "soowii123");
-		if (meTooVO3 != null) {
-			System.out.print(meTooVO3.getMb_id() + ",");
-			System.out.print(meTooVO3.getRcd_no());
-			System.out.println();
-		} else {
-			System.out.println("沒有找到資料");
-		}
+//		MeTooVO meTooVO3 = dao.findByPrimaryKey("rcd00001", "soowii123");
+//		if (meTooVO3 != null) {
+//			System.out.print(meTooVO3.getMb_id() + ",");
+//			System.out.print(meTooVO3.getRcd_no());
+//			System.out.println();
+//		} else {
+//			System.out.println("沒有找到資料");
+//		}
 
 		//查詢getall
-		List<MeTooVO> list = dao.getAll();
-		for (MeTooVO meTooVO : list) {
-			System.out.print(meTooVO.getRcd_no() + ",");
-			System.out.print(meTooVO.getMb_id()+"\n");
-			System.out.println();
-		}
+//		List<MeTooVO> list = dao.getAll();
+//		for (MeTooVO meTooVO : list) {
+//			System.out.print(meTooVO.getRcd_no() + ",");
+//			System.out.print(meTooVO.getMb_id()+"\n");
+//			System.out.println();
+//		}
 	}
 }

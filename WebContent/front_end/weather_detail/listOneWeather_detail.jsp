@@ -92,7 +92,7 @@ th, td {
 			<td><%=weather_detailVO.getWth_high()%></td>
 			<td><%=weather_detailVO.getWth_low()%></td>
 			<td><%=weather_detailVO.getWth_comfort()%></td>
-			<td><%=weather_detailVO.getWth_rain_chance()%></td>
+			<td><%=weather_detailVO.getWth_rain_chance()%>%</td>
 		</tr>
 	</table>
 

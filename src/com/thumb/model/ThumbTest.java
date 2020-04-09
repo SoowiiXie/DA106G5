@@ -46,6 +46,7 @@ public class ThumbTest extends HttpServlet {
 		//刪除
 		dao.delete("rcd00005", "soowii123");
 		System.out.println(dao.countAllThumb("rcd00005"));
+		
 		//查詢
 //		ThumbVO thumbVO3 = dao.findByPrimaryKey("rcd00001", "soowii123");
 //		System.out.print(thumbVO3.getRcd_no() + ",");

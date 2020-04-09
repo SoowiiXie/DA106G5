@@ -16,7 +16,7 @@
 
 <html>
 <head>
-<title>所有地標資料 - listAllCmt.jsp</title>
+<title>所有留言資料 - listAllCmt.jsp</title>
 
 <style>
 table#table-1 {
@@ -128,7 +128,17 @@ th, td {
 				<td>
 				${thumbSvc.countAllThumbs(cmtVO.rcd_no)}
 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/thumb/thumb.do" style="margin-bottom: 0px;">
-						<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/front_end/cmt/images/unnamed2.jpg"  onClick="document.form1.submit()" style="width:2rem;">
+						<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/front_end/cmt/images/unnamed2.jpg"  onClick="document.form1.submit()" style="height:2rem;">
+						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
+						<input type="hidden" name="mb_id" value="soowii123">
+						<input type="hidden" name="action" value="insert">
+					</FORM>
+				</td>
+				<jsp:useBean id="meTooSvc" scope="page"	class="com.metoo.model.MeTooService" />
+				<td>
+				${meTooSvc.countAllMeToos(cmtVO.rcd_no)}
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/metoo/metoo.do" style="margin-bottom: 0px;">
+						<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/front_end/cmt/images/ya.png"  onClick="document.form1.submit()" style="height:2rem;">
 						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
 						<input type="hidden" name="mb_id" value="soowii123">
 						<input type="hidden" name="action" value="insert">

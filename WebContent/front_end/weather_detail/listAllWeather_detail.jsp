@@ -106,7 +106,7 @@ th, td {
 				<td>${weather_detailVO.wth_high}</td>
 				<td>${weather_detailVO.wth_low}</td>
 				<td>${weather_detailVO.wth_comfort}</td>
-				<td>${weather_detailVO.wth_rain_chance}</td>
+				<td>${weather_detailVO.wth_rain_chance}%</td>
 				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/weather_detail/weather_detail.do"
