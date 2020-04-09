@@ -14,6 +14,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.location.model.LocationService;
@@ -30,8 +31,11 @@ public class MemberServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+		// 註冊、修改的資料判斷
+		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		HttpSession session = req.getSession();
 
 		if ("getOne_For_Display".equals(action)) { // 登入
 
@@ -73,7 +77,7 @@ public class MemberServlet extends HttpServlet {
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.getSession().setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
+				session.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
 				String url = "/front_end/member/listOneMember.jsp";  // 
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
@@ -124,11 +128,20 @@ public class MemberServlet extends HttpServlet {
 					mb_birthday = java.sql.Date.valueOf(date.trim());;
 				
 				
-				// 圖片     (若沒有上傳新圖片，用原來的圖片?)
+				// 圖片    
+					
+				byte[] mb_pic = null;
 				Part part = req.getPart("mb_pic");
-				InputStream in = part.getInputStream();
-				byte[] mb_pic = new byte[in.available()];
-				in.read(mb_pic);
+				if(part.getSize() != 0) {  // 有上傳圖片
+					
+					InputStream in = part.getInputStream();
+					mb_pic = new byte[in.available()];
+					in.read(mb_pic);
+					
+				}else {  // 沒有上傳圖片，用原來的
+					mb_pic = ((MemberVO)session.getAttribute("memberVO")).getMb_pic();
+				}
+				
 				
 				Integer mb_lv = Integer.parseInt(req.getParameter("mb_lv"));
 				Integer mb_rpt_times = Integer.parseInt(req.getParameter("mb_rpt_times"));
@@ -163,7 +176,7 @@ public class MemberServlet extends HttpServlet {
 						mb_email, mb_pic, mb_lv, mb_rpt_times, mb_status);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.getSession().setAttribute("memberVO", memberVO);
+				session.setAttribute("memberVO", memberVO);
 				String url = "/front_end/member/listOneMember.jsp";  // 
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
@@ -265,7 +278,7 @@ public class MemberServlet extends HttpServlet {
 		}
 		
 		if ("logout".equals(action)) { // 登出
-			req.getSession().removeAttribute("memberVO");
+			session.removeAttribute("memberVO");
 			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
 			failureView.forward(req, res);
 		}
