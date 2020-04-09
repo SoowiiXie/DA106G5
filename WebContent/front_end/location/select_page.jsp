@@ -80,7 +80,8 @@ h4 {
 
 		<li>
 			<FORM METHOD="post" ACTION="location.do">
-				<b>選擇地址:</b> <select size="1" name="loc_no">
+				<b>選擇地址:</b> 
+				<select size="1" name="loc_no">
 					<c:forEach var="locationVO" items="${locationSvc.all}">
 						<option value="${locationVO.loc_no}">${locationVO.loc_address}
 					</c:forEach>

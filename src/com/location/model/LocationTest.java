@@ -4,7 +4,9 @@ import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -77,15 +79,15 @@ public class LocationTest extends HttpServlet {
 		dao.update(locationVO_update);
 
 		// 用PK查詢
-		LocationVO locationVO_getByPK = dao.findByPrimaryKey("loc00007");
-		System.out.println("新增並修改的PK是:" + locationVO_getByPK.getLoc_no());
-		System.out.print("修改後的值是:");
-		System.out.print(locationVO_getByPK.getLoc_typeno() + ",");
-		System.out.print(locationVO_getByPK.getLongitude() + ",");
-		System.out.print(locationVO_getByPK.getLatitude() + ",");
-		System.out.print(locationVO_getByPK.getLoc_status() + ",");
-		System.out.print(locationVO_getByPK.getLoc_address() + ",");
-		System.out.println(locationVO_getByPK.getLoc_pic());
+//		LocationVO locationVO_getByPK = dao.findByPrimaryKey("loc00007");
+//		System.out.println("新增並修改的PK是:" + locationVO_getByPK.getLoc_no());
+//		System.out.print("修改後的值是:");
+//		System.out.print(locationVO_getByPK.getLoc_typeno() + ",");
+//		System.out.print(locationVO_getByPK.getLongitude() + ",");
+//		System.out.print(locationVO_getByPK.getLatitude() + ",");
+//		System.out.print(locationVO_getByPK.getLoc_status() + ",");
+//		System.out.print(locationVO_getByPK.getLoc_address() + ",");
+//		System.out.println(locationVO_getByPK.getLoc_pic());
 
 		// 刪
 //		dao.delete("loc00007");
@@ -103,6 +105,16 @@ public class LocationTest extends HttpServlet {
 		Set<LocationVO> loc_typenoAll = dao.getLocationByLoc_typeno("1");
 		System.out.println("\n取得所有Loc_typeno=1的地標:");
 		for (LocationVO locationVO : loc_typenoAll) {
+			System.out.println(locationVO.getLoc_no() + "," + locationVO.getLoc_typeno() + ","
+					+ locationVO.getLongitude() + "," + locationVO.getLatitude() + "," + locationVO.getLoc_status()
+					+ "," + locationVO.getLoc_address() + "," + locationVO.getLoc_pic());
+		}
+
+		// 查
+		Map<String, String[]> map = new HashMap<>();
+		map.put("loc_typeno", new String[] { "1","2" });
+		List<LocationVO> all_map = dao.getAllUWish(map);
+		for (LocationVO locationVO : all_map) {
 			System.out.println(locationVO.getLoc_no() + "," + locationVO.getLoc_typeno() + ","
 					+ locationVO.getLongitude() + "," + locationVO.getLatitude() + "," + locationVO.getLoc_status()
 					+ "," + locationVO.getLoc_address() + "," + locationVO.getLoc_pic());

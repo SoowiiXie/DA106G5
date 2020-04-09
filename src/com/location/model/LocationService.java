@@ -1,6 +1,8 @@
 package com.location.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LocationService {
 
@@ -84,5 +86,17 @@ public class LocationService {
 
 	public List<LocationVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public List<LocationVO> getByLoc_typeno(String[] loc_typeno) {
+		Map<String, String[]> map = new HashMap<>();
+		map.put("loc_typeno", loc_typeno);
+		return dao.getAllUWish(map);
+	}
+	
+	public List<LocationVO> getByLoc_typeno2(String loc_typeno) {
+		Map<String, String[]> map = new HashMap<>();
+		map.put("loc_typeno", new String[] { loc_typeno });
+		return dao.getAllUWish(map);
 	}
 }
