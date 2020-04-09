@@ -7,7 +7,7 @@
 <%@ page import="com.cmt.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
-<%
+<% 
 	CmtService cmtSvc = new CmtService();
 	List<CmtVO> list = cmtSvc.getAll();
 	pageContext.setAttribute("list", list);
