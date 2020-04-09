@@ -1,7 +1,6 @@
 package com.thumb.model;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,30 +21,43 @@ public class ThumbTest extends HttpServlet {
 		thumbVO1.setRcd_no("rcd00005");
 		thumbVO1.setMb_id("soowii123");
 		dao.insert(thumbVO1);
+		thumbVO1.setRcd_no("rcd00005");
+		thumbVO1.setMb_id("xuan123");
+		dao.insert(thumbVO1);
+		thumbVO1.setRcd_no("rcd00005");
+		thumbVO1.setMb_id("michael123");
+		dao.insert(thumbVO1);
+		thumbVO1.setRcd_no("rcd00005");
+		thumbVO1.setMb_id("vain123");
+		dao.insert(thumbVO1);
+		thumbVO1.setRcd_no("rcd00005");
+		thumbVO1.setMb_id("weijhih123");
+		dao.insert(thumbVO1);
+
 
 		//修改
-		ThumbVO thumbVO2 = new ThumbVO();
-		thumbVO2.setRcd_no("rcd00005");
-		thumbVO2.setMb_id("yiwen123");
+//		ThumbVO thumbVO2 = new ThumbVO();
+//		thumbVO2.setRcd_no("rcd00005");
 //		thumbVO2.setMb_id("yiwen123");
-//		不用這行就可以同時代表兩個Mb_id
-		dao.update(thumbVO2);
+////		thumbVO2.setMb_id("yiwen123");
+////		不用這行就可以同時代表兩個Mb_id
+//		dao.update(thumbVO2);
 
 		//刪除
 		dao.delete("rcd00005", "soowii123");
-
+		System.out.println(dao.countAllThumb("rcd00005"));
 		//查詢
-		ThumbVO thumbVO3 = dao.findByPrimaryKey("rcd00001", "soowii123");
-		System.out.print(thumbVO3.getRcd_no() + ",");
-		System.out.print(thumbVO3.getMb_id() + "\n");
-		System.out.println("---------------------");
+//		ThumbVO thumbVO3 = dao.findByPrimaryKey("rcd00001", "soowii123");
+//		System.out.print(thumbVO3.getRcd_no() + ",");
+//		System.out.print(thumbVO3.getMb_id() + "\n");
+//		System.out.println("---------------------");
 
 		//查詢getall
-		List<ThumbVO> list = dao.getAll();
-		for (ThumbVO thumbVO : list) {
-			System.out.print(thumbVO.getRcd_no() + ",");
-			System.out.print(thumbVO.getMb_id());
-			System.out.println();
-		}
+//		List<ThumbVO> list = dao.getAll();
+//		for (ThumbVO thumbVO : list) {
+//			System.out.print(thumbVO.getRcd_no() + ",");
+//			System.out.print(thumbVO.getMb_id());
+//			System.out.println();
+//		}
 	}
 }

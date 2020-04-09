@@ -1,17 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.cmt.model.CmtVO"%>
-<%@ page import="com.cmt.model.CmtService"%>
-<%@ page import="com.cmt.model.*"%>
+<%@ page import="com.cmt_rpt.model.Cmt_rptVO"%>
+<%@ page import="com.cmt_rpt.model.Cmt_rptService"%>
+<%@ page import="com.cmt_rpt.model.*"%>
 
 <%
-	CmtVO cmtVO = (CmtVO) request.getAttribute("cmtVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+	Cmt_rptVO cmt_rptVO = (Cmt_rptVO) request.getAttribute("cmt_rptVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
 
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>留言資料修改 - update_cmt_input.jsp</title>
+<title>留言檢舉資料修改 - update_cmt_rpt_input.jsp</title>
 
 <style>
 table#table-1 {
@@ -55,10 +55,10 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>留言資料修改 - update_cmt_input.jsp</h3>
+				<h3>留言檢舉資料修改 - update_cmt_rpt_input.jsp</h3>
 				<h4>
-					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
-						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">回首頁
+					<a href="<%= request.getContextPath() %>/back_end/cmt_rpt/select_page.jsp">
+						<img src="<%= request.getContextPath() %>/back_end/cmt_rpt/images/back1.gif" width="100" height="32" border="0">回首頁
 					</a>
 				</h4>
 			</td>
@@ -76,42 +76,37 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-	<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
-	<FORM METHOD="post" ACTION="cmt.do" name="form1" enctype="multipart/form-data">
+	<!--//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
+	<FORM METHOD="post" ACTION="cmt_rpt.do" name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td>留言編號:</td>
-				<td><%=cmtVO.getCmt_no()%></td>
-			</tr>
-			<tr>
-				<td>時間:</td>
-				<td><%=cmtVO.getCmt_time()%></td>
+				<td>留言檢舉編號:</td>
+				<td><%=cmt_rptVO.getCmt_rpt_no()%></td>
 			</tr>
 			<tr>
 				<td>狀態:</td>
-				<td><%=cmtVO.getCmt_status()%></td>
+				<td><%=cmt_rptVO.getRpt_status()%></td>
 			</tr>
 			<tr>
-				<td>紀錄編號:</td>
-				<td><%=cmtVO.getRcd_no()%></td>
+				<td>被檢舉留言編號:</td>
+				<td><%=cmt_rptVO.getCmt_no()%></td>
 			</tr>
 			<tr>
-				<td>留言會員:</td>
-				<td><%=cmtVO.getMb_id()%></td>
+				<td>檢舉會員編號(不是被檢舉會員):</td>
+				<td><%=cmt_rptVO.getMb_id()%></td>
 			</tr>
 			<tr>
 				<td>內容:</td>
-				<td><input type="TEXT" name="cmt_content" size="45" value="<%=cmtVO.getCmt_content()%>" /></td>
+				<td><input type="TEXT" name="rpt_reason" size="45" value="<%=cmt_rptVO.getRpt_reason()%>" /></td>
 			</tr>
 
 		</table>
 		<br> 
 		<input type="hidden" name="action" value="update"> 
-		<input type="hidden" name="cmt_no" value="<%=cmtVO.getCmt_no()%>">
-		<input type="hidden" name="cmt_time" value="<%=cmtVO.getCmt_time()%>">
-		<input type="hidden" name="cmt_status" value="<%=cmtVO.getCmt_status()%>">
-		<input type="hidden" name="rcd_no" value="<%=cmtVO.getRcd_no()%>">
-		<input type="hidden" name="mb_id" value="<%=cmtVO.getMb_id()%>">
+		<input type="hidden" name="cmt_rpt_no" value="<%=cmt_rptVO.getCmt_rpt_no()%>">
+		<input type="hidden" name="rpt_status" value="<%=cmt_rptVO.getRpt_status()%>">
+		<input type="hidden" name="cmt_no" value="<%=cmt_rptVO.getCmt_no()%>">
+		<input type="hidden" name="mb_id" value="<%=cmt_rptVO.getMb_id()%>">
 		<input type="submit" value="送出修改">
 	</FORM>
 </body>

@@ -1,16 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.cmt.model.CmtVO"%>
-<%@ page import="com.cmt.model.*"%>
+<%@ page import="com.cmt_rpt.model.Cmt_rptVO"%>
+<%@ page import="com.cmt_rpt.model.*"%>
 
 <%
-	CmtVO cmtVO = (CmtVO) request.getAttribute("cmtVO");
+	Cmt_rptVO cmt_rptVO = (Cmt_rptVO) request.getAttribute("cmt_rptVO");
 %>
-<%=cmtVO == null%>
+<%=cmt_rptVO == null%>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>新增留言 - addCmt.jsp</title>
+<title>新增留言檢舉 - addCmt_rpt.jsp</title>
 
 <style>
 table#table-1 {
@@ -54,7 +54,7 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>員工資料新增 - addLocation.jsp</h3>
+				<h3>留言檢舉資料新增 - addCmt_rpt.jsp</h3>
 			</td>
 			<td>
 				<h4>
@@ -79,25 +79,25 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="cmt.do" name="form1" enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="cmt_rpt.do" name="form1" enctype="multipart/form-data">
 		<table>
-		<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
+<!-- 		//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
 			<tr>
-				<td>內容:</td>
+				<td>檢舉原因:</td>
 				<td>
-					<input type="TEXT" name="cmt_content" size="45" value="<%=(cmtVO == null) ? "this is content" : cmtVO.getCmt_content()%>" />
+					<input type="TEXT" name="rpt_reason" size="45" value="<%=(cmt_rptVO == null) ? "this is reason" : cmt_rptVO.getRpt_reason()%>" />
 				</td>
 			</tr>
 			<tr>
 				<td>紀錄編號:</td>
 				<td>
-					<input type="TEXT" name="rcd_no" size="45" value="<%=(cmtVO == null) ? "rcd00001" : cmtVO.getRcd_no()%>" />
+					<input type="TEXT" name="cmt_no" size="45" value="<%=(cmt_rptVO == null) ? "cmt00001" : cmt_rptVO.getCmt_no()%>" />
 				</td>
 			</tr>
 			<tr>
-				<td>留言會員:</td>
+				<td>檢舉會員(不是被檢舉的會員):</td>
 				<td>
-					<input type="TEXT" name="mb_id" size="45" value="<%=(cmtVO == null) ? "soowii123" : cmtVO.getMb_id()%>" />
+					<input type="TEXT" name="mb_id" size="45" value="<%=(cmt_rptVO == null) ? "soowii123" : cmt_rptVO.getMb_id()%>" />
 				</td>
 			</tr>
 

@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>DA106G5 Cmt: Home</title>
+<title>DA106G5 Cmt_rpt: Home</title>
 
 <style>
 table#table-1 {
@@ -33,12 +33,12 @@ h4 {
 
 	<table id="table-1">
 		<tr>
-			<td><h3>DA106G5 Cmt: Home</h3>
+			<td><h3>DA106G5 Cmt_rpt: Home</h3>
 				<h4>( MVC )</h4></td>
 		</tr>
 	</table>
 
-	<p>This is the Home page for DA106G5 Cmt: Home</p>
+	<p>This is the Home page for DA106G5 Cmt_rpt: Home</p>
 
 	<h3>資料查詢:</h3>
 
@@ -53,68 +53,44 @@ h4 {
 	</c:if>
 
 	<ul>
-		<li><a href='listAllCmt.jsp'>List</a> all Cmt. <br>
+		<li><a href='listAllCmt_rpt.jsp'>List</a> all Cmt_rpt. <br>
 		<br></li>
 
-
+<!--//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
 		<li>
-			<FORM METHOD="post" ACTION="cmt.do">
-				<b>輸入留言編號 (如cmt00001):</b> 
-				<input type="text" name="cmt_no">
+			<FORM METHOD="post" ACTION="cmt_rpt.do">
+				<b>輸入留言檢舉編號 (如cmtr00001):</b> 
+				<input type="text" name="cmt_rpt_no">
 				<input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
-		<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
-		<jsp:useBean id="cmtSvc" scope="page" class="com.cmt.model.CmtService" />
+		<jsp:useBean id="cmt_rptSvc" scope="page" class="com.cmt_rpt.model.Cmt_rptService" />
+		<jsp:useBean id="mbSvc" scope="page" class="com.mb.model.MemberService" />
 
 		<li>
-			<FORM METHOD="post" ACTION="cmt.do">
-				<b>選擇留言編號:</b> 
-				<select size="1" name="cmt_no">
-					<c:forEach var="cmtVO" items="${cmtSvc.all}">
-						<option value="${cmtVO.cmt_no}">${cmtVO.cmt_no}
+			<FORM METHOD="post" ACTION="cmt_rpt.do">
+				<b>選擇留言檢舉編號:</b> 
+				<select size="1" name="cmt_rpt_no">
+					<c:forEach var="cmt_rptVO" items="${cmt_rptSvc.all}">
+						<option value="${cmt_rptVO.cmt_rpt_no}">${cmt_rptVO.cmt_rpt_no}
 					</c:forEach>
 				</select> <input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
-		
 		<li>
-			<FORM METHOD="post" ACTION="cmt.do">
-				<b>選擇欲查詢紀錄編號:</b> 
-				<select size="1" name="rcd_no">
-					<c:forEach var="cmtVO" items="${cmtSvc.all}">
-						<option value="${cmtVO.rcd_no}">${cmtVO.rcd_no}
-					</c:forEach>
-				</select> 
-				<input type="hidden" name="action" value="getByRcd_no">
-				<input type="submit" value="送出">
-			</FORM>
-		</li>
-
-		<li>
-			<FORM METHOD="post" ACTION="cmt.do">
+			<FORM METHOD="post" ACTION="cmt_rpt.do">
 				<b>選擇欲查詢的會員:</b> 
 				<select size="1" name="mb_id">
-					<c:forEach var="cmtVO" items="${cmtSvc.all}">
-						<option value="${cmtVO.mb_id}">${cmtVO.mb_id}
+					<c:forEach var="cmt_rptVO" items="${mbSvc.all}">
+						<option value="${cmt_rptVO.mb_id}">${cmt_rptVO.mb_id}
 					</c:forEach>
 				</select> 
 				<input type="hidden" name="action" value="getByMb_id">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
-
-
 	</ul>
-
-
-	<h3>留言管理</h3>
-
-	<ul>
-		<li><a href='addCmt.jsp'>Add</a> a new Cmt.</li>
-	</ul>
-
 </body>
 </html>

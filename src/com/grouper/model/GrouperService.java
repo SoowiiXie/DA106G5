@@ -10,7 +10,7 @@ public class GrouperService {
 		dao = new GrouperDAO();
 	}
 
-	public GrouperVO addGrouper(String grp_no, String mb_id, String loc_no, java.sql.Timestamp grp_applystart, 
+	public GrouperVO addGroup(String grp_no, String mb_id, String loc_no, java.sql.Timestamp grp_applystart, 
 			java.sql.Timestamp grp_applyend, java.sql.Timestamp grp_start, java.sql.Timestamp grp_end, String grp_name, 
 			String grp_content, Integer grp_personmax, Integer grp_personmin, Integer grp_personcount, 
 			Integer grp_status, Integer grp_follow) {
@@ -36,7 +36,7 @@ public class GrouperService {
 		return grouperVO;
 	}
 
-	public GrouperVO updateGrouper(String grp_no, String mb_id, String loc_no, java.sql.Timestamp grp_applystart, 
+	public GrouperVO updateGroup(String grp_no, String mb_id, String loc_no, java.sql.Timestamp grp_applystart, 
 			java.sql.Timestamp grp_applyend, java.sql.Timestamp grp_start, java.sql.Timestamp grp_end, String grp_name, 
 			String grp_content, Integer grp_personmax, Integer grp_personmin, Integer grp_personcount, 
 			Integer grp_status, Integer grp_follow) {
@@ -62,11 +62,11 @@ public class GrouperService {
 		return grouperVO;
 	}
 
-	public void deleteGrouper(String grp_no) {
+	public void deleteGroup(String grp_no) {
 		dao.delete(grp_no);
 	}
 
-	public GrouperVO getOneGrouper(String grp_no) {
+	public GrouperVO getOneGroup(String grp_no) {
 		return dao.findByPrimaryKey(grp_no);
 	}
 

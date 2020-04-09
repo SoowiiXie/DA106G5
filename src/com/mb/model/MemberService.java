@@ -43,7 +43,7 @@ private MemberDAO_interface dao;
 		memberVO.setMb_lv(mb_lv);
 		memberVO.setMb_rpt_times(mb_rpt_times);
 		memberVO.setMb_status(mb_status);
-		dao.insert(memberVO);
+		dao.update(memberVO);
 		return memberVO;
 	}
 	

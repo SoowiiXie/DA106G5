@@ -227,9 +227,9 @@
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>Cmt_rptServlet</servlet-name>
-			<url-pattern>/front_end/cmt_rpt/cmt_rpt.do</url-pattern>
+			<url-pattern>/back_end/cmt_rpt/cmt_rpt.do</url-pattern>
 		</servlet-mapping>
-	
+
 	
 		<servlet>
 			<servlet-name>Cmt_rptServletAll</servlet-name>
@@ -310,14 +310,37 @@
 <!--名軒責任區結束-->
 
 <!--偉誌責任區開始-->
-	<servlet>
-		<servlet-name>GrouperServlet</servlet-name>
-		<servlet-class>com.grouper.controller.GrouperServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>GrouperServlet</servlet-name>
-		<url-pattern>/group/group.do</url-pattern>
-	</servlet-mapping>
+	<!-- 揪團開始 -->
+		<servlet>
+			<servlet-name>GrouperTest</servlet-name>
+			<servlet-class>com.grouper.model.GrouperTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>GrouperTest</servlet-name>
+			<url-pattern>/GrouperTest</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>GrouperServlet</servlet-name>
+			<servlet-class>com.grouper.controller.GrouperServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>GrouperServlet</servlet-name>
+			<url-pattern>/front_end/group/group.do</url-pattern>
+		</servlet-mapping>
+	
+	
+		
+		<servlet>
+			<servlet-name>DBGifReader4Grouper</servlet-name>
+			<servlet-class>com.grouper.model.DBGifReader4Grouper</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Grouper</servlet-name>
+			<url-pattern>/DBGifReader4Grouper</url-pattern>
+		</servlet-mapping>
+	<!-- 揪團結束 -->
 <!--偉誌責任區結束-->
 
 </web-app>

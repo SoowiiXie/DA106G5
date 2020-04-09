@@ -6,12 +6,19 @@
 <meta charset="BIG5">
 <title>addMember</title>
 <style>
+
 	#icon{
 		vertical-align:middle
 	}
+	
 	#mb_pic{
 		width:200px;
 		height:200px;
+	}
+	
+	#star{
+		color:red;
+		font-weight:bold;
 	}
 	
 </style>
@@ -28,25 +35,35 @@
 	</ul>
 </c:if>
 	<form METHOD="POST" action="member.do" enctype="multipart/form-data">
+		<span id="star">*</span>為必填
 		<div>
-			*帳號：<input id="mb_id" type="text" name="mb_id" onblur="checkId()">
+			<span id="star">*</span>
+			帳號：<input id="mb_id" type="text" name="mb_id" onblur="checkId()">
 			<img id="icon"/><span id="check"></span>
 		</div>
-		*密碼：<input type="password" name="mb_pwd"><br>
-		*名字：<input type="text" name="mb_name"><br>
 		
-		*性別：
+		<span id="star">*</span>
+		密碼：<input type="password" name="mb_pwd"><br>
+		
+		<span id="star">*</span>
+		名字：<input type="text" name="mb_name"><br>
+		
+		<span id="star">*</span>
+		性別：
 		<input type="radio" id="gender1" name="mb_gender" value="1" checked>
     	<label for="gender1">男</label>
     	<input type="radio" id="gender2" name="mb_gender" value="2">
     	<label for="gender2">女</label><br>
     	
 		Line：<input type="text" name="mb_line"><br>
+		
 		生日：<input type="text" name="mb_birthday" id="f_date"><br>
-		*e-mail：<input type="text" name="mb_email"><br>
+		
+		<span id="star">*</span>
+		e-mail：<input type="text" name="mb_email"><br>
 		
 		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>  <!-- 改版限定圖片種類 -->
-		<img id="mb_pic" src="/DA106_G5/NoData/null2.jpg">
+		<img id="mb_pic" src="<%= request.getContextPath()%>/NoData/null2.jpg">
 		<br>
 		
         <input type="hidden" name="action" value="insert"><br>
@@ -86,16 +103,14 @@
 	    		  icon.width="25";
 	    		  icon.height="32";
 	    		  check.innerHTML = "此帳號可以使用";
-	    		  test.style.color = "black";
+	    		  check.style.color = "black";
 	    	  }else{
 	    		  icon.src="images/no.png";
 	    		  icon.width="25";
 	    		  icon.height="32";
 	    		  check.innerHTML = "此帳號已被使用";
-	    		  test.style.color = "red";
+	    		  check.style.color = "red";
 	    	  }
-	        
-	        //showEmployee(xhr.responseText);
 	      	}else{
 	        	alert( xhr.status );
 	      	}//xhr.status == 200

@@ -64,8 +64,8 @@ th, td {
 			<td>
 				<h3>所有天氣資料 - listAllUWish.jsp</h3>
 				<h4>
-					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
-						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">
+					<a href="<%= request.getContextPath() %>/front_end/weather_detail/select_page.jsp">
+						<img src="<%= request.getContextPath() %>/front_end/weather_detail/images/back1.gif" width="100" height="32" border="0">
 						回首頁
 					</a>
 				</h4>
@@ -94,9 +94,10 @@ th, td {
 			<th>修改</th>
 			<th>刪除</th>
 		</tr>
-		<%@ include file="page1.file"%>
-		<c:forEach var="weather_detailVO" items="${list}" begin="<%=pageIndex%>"
-			end="<%=pageIndex+rowsPerPage-1%>">
+<%-- 		<%@ include file="page1.file"%> --%>
+<%-- 		<c:forEach var="weather_detailVO" items="${list}" begin="<%=pageIndex%>" --%>
+<%-- 			end="<%=pageIndex+rowsPerPage-1%>"> --%>
+		<c:forEach var="weather_detailVO" items="${list}" >
 			<!--// weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort,
 			// wth_rain_chance -->
 			<tr>
@@ -130,7 +131,7 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-	<%@ include file="page2.file"%>
+<%-- 	<%@ include file="page2.file"%> --%>
 
 </body>
 </html>
