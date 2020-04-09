@@ -8,11 +8,14 @@
   GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
 %>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>揪團資料新增 - addGroup.jsp</title>
-
+<link href="<%= request.getContextPath() %>/js/select2/dist/css/select2.min.css" rel="stylesheet" />
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/select2/dist/js/select2.min.js"></script>
 <style>
   table#table-1 {
 	background-color: #CCCCFF;
@@ -88,7 +91,8 @@
 		<td>地標編號:</td>
 		<td>
 			<jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />
-			<select size="1" name="loc_no">
+			<br>
+			<select size="1" name="loc_no" class="myselect" style="width:500px;">
 			<!--方法1 (可填複數個需求)-->
 			<% String[] grp4loc = {"1","2"}; %>
 			<c:forEach var="group4locVO" items="<%=locationSvc.getByLoc_typeno(grp4loc)%>">
@@ -96,18 +100,21 @@
 			</c:forEach>
 			</select>
 			<!--方法2 -->
-			<select size="1" name="loc_no">
+			<br>
+			<select size="1" name="loc_no" class="myselect" style="width:500px;">
 			<c:forEach var="group4locVO" items="<%=locationSvc.getByLoc_typeno2(\"1\")%>">
 				<option value="${group4locVO.loc_no}">${group4locVO.loc_address}
 			</c:forEach>
 			</select>
 			<!--方法3 -->
-			<select size="1" name="loc_no">
+			<br>
+			<select size="1" name="loc_no" class="myselect" style="width:500px;">
 			<c:forEach var="group4locVO" items="${locationSvc.getByLoc_typeno2('1')}">
 				<option value="${group4locVO.loc_no}">${group4locVO.loc_address}
 			</c:forEach>
 			</select>
 			<!--方法4 -->
+			<br>
 			<input type="TEXT" name="loc_no" size="45" value="<%= (grouperVO==null)? "loc00001" : grouperVO.getLoc_no()%>" />
 		</td>
 	</tr>
@@ -182,8 +189,9 @@
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增"></FORM>
 </body>
-
-
+<script type="text/javascript">
+      $(".myselect").select2();
+</script>
 
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
