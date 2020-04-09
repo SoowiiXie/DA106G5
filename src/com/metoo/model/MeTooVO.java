@@ -1,6 +1,6 @@
 package com.metoo.model;
 
-public class MeTooVO {
+public class MeTooVO implements java.io.Serializable{
 	private String rcd_no;
 	private String mb_id;
 	

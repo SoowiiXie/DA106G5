@@ -98,7 +98,7 @@ th, td {
 			<th>刪除</th>
 		</tr>
 		<%@ include file="page1.file"%>
-		<c:forEach var="weather_detailVO" items="${weather_detailVO_list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+		<c:forEach var="weather_detailVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 <%-- 		<c:forEach var="weather_detailVO" items="${list}" > --%>
 			<!--// weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort,
 			// wth_rain_chance -->

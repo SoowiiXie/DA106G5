@@ -2,7 +2,11 @@ package com.cmt_rpt.model;
 
 
 
-public class Cmt_rptVO {
+public class Cmt_rptVO implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String cmt_rpt_no;
 	private String rpt_reason;
 	private Integer rpt_status;

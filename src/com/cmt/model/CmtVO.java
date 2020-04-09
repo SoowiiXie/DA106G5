@@ -2,7 +2,11 @@ package com.cmt.model;
 
 import java.sql.Date;
 
-public class CmtVO {
+public class CmtVO implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String cmt_no;
 	private String cmt_content;
 	private Date cmt_time;

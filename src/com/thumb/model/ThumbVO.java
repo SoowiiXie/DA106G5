@@ -2,7 +2,7 @@ package com.thumb.model;
 
 
 
-public class ThumbVO {
+public class ThumbVO implements java.io.Serializable{
 	private String rcd_no;
 	private String mb_id;
 	
