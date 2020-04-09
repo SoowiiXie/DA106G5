@@ -171,7 +171,7 @@
 	
 		<servlet>
 			<servlet-name>MeTooServletAll</servlet-name>
-			<servlet-class>com.metoo.controller.MetooServlet</servlet-class>
+			<servlet-class>com.metoo.controller.MeTooServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>MeTooServletAll</servlet-name>
@@ -252,7 +252,7 @@
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>RecordServlet</servlet-name>
-			<url-pattern>/record/emp.do</url-pattern>
+			<url-pattern>/record/record.do</url-pattern>
 		</servlet-mapping>
 <!-- 麥克責任區結束 -->
 
@@ -341,6 +341,37 @@
 			<url-pattern>/DBGifReader4Grouper</url-pattern>
 		</servlet-mapping>
 	<!-- 揪團結束 -->
+	<!-- 揪團檢舉開始 -->
+		<servlet>
+			<servlet-name>Group_rptTest</servlet-name>
+			<servlet-class>com.grouper.model.Group_rptTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Group_rptTest</servlet-name>
+			<url-pattern>/Group_rptTest</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>Group_rptServlet</servlet-name>
+			<servlet-class>com.group_rpt.controller.Group_rptServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Group_rptServlet</servlet-name>
+			<url-pattern>/front_end/group_rpt/group_rpt.do</url-pattern>
+		</servlet-mapping>
+	
+	
+		
+		<servlet>
+			<servlet-name>DBGifReader4Group_rpt</servlet-name>
+			<servlet-class>com.grouper.model.DBGifReader4Group_rpt</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Group_rpt</servlet-name>
+			<url-pattern>/DBGifReader4Group_rpt</url-pattern>
+		</servlet-mapping>
+	<!-- 揪團檢舉結束 -->
 <!--偉誌責任區結束-->
 
 </web-app>
