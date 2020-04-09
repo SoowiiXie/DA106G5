@@ -1,3 +1,4 @@
+
 ﻿--------------------------------------------------------
 --1.名軒 會員Drop
 --------------------------------------------------------
@@ -299,12 +300,12 @@ NOMAXVALUE
 NOCYCLE;
 
 --地標 假資料--
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,123.456,78.90,2);
-Insert into location (loc_no,loc_typeno,longitude,latitude) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,123.456,78.90);
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,123.456,78.90,2);
-Insert into location (loc_no,loc_typeno,longitude,latitude) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,123.456,78.90);
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90,2);
-Insert into location (loc_no,loc_typeno,longitude,latitude) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90);
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,123.456,78.90,2,'桃園市中壢區');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,123.456,78.90,'忠孝東路走九遍');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,123.456,78.90,2,'健志家');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,123.456,78.90,'愛的小窩');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90,2,'地方媽媽');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90,'ㄎㄎㄎ');
 
 
 --天氣 Create--

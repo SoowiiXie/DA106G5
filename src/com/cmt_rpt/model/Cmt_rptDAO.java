@@ -53,9 +53,9 @@ public class Cmt_rptDAO implements Cmt_rpt_interface {
 			pstmt = con.prepareStatement(INSERT_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 
 			pstmt.setString(1, cmt_rptVO.getRpt_reason());
-			pstmt.setInt(2, cmt_rptVO.getRpt_status());
-			pstmt.setString(3, cmt_rptVO.getCmt_no());
-			pstmt.setString(4, cmt_rptVO.getMb_id());
+//			pstmt.setInt(2, cmt_rptVO.getRpt_status());
+			pstmt.setString(2, cmt_rptVO.getCmt_no());
+			pstmt.setString(3, cmt_rptVO.getMb_id());
 
 
 			pstmt.executeUpdate();
@@ -295,7 +295,7 @@ public class Cmt_rptDAO implements Cmt_rpt_interface {
 		PreparedStatement pstmt_map = null;
 		ResultSet rs_map = null;
 
-		sb.append("SELECT * FROM commentt where ");
+		sb.append("SELECT * FROM cmt_rpt where ");
 		for (Entry<String, String[]> entry : map.entrySet()) {
 			sb.append("(");
 			for (int i = 0; i < entry.getValue().length; i++) {

@@ -1,0 +1,135 @@
+body {
+    background: linear-gradient(to bottom right, white, #bcbdc4);
+    height: 4000px;
+}
+
+#commentprof2 {
+    top: 560px;
+    left: 0px;
+    width: 30px;
+    height: 30px;
+}
+
+#commentboxpos2 {
+    top: 560px;
+    left: 40px;
+    width: 500px;
+    height: 30px;
+}
+
+#commentbox {
+    width: 100%;
+    height: 30px;
+}
+
+
+#img2 {
+    top: 150px;
+    left: 160px;
+    height: 250px;
+    width: 550px;
+}
+
+
+#form3 {
+    top: 150px;
+    left: 700px;
+    font-family: verdana;
+    font-size: 20px;
+    color: #142170;
+    width: 450px;
+    height: 495px;
+}
+
+#column-1 {
+    left: 0px;
+    top: 0px;
+    background: white;
+    width: 580px;
+    height: 200px;
+    border-radius: 3px/3px;
+    font-size: 15px;
+    font-family: verdana;
+    color: #1b6192;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+#postpos {
+    left: 450px;
+    top: 170px;
+    width: 85px;
+    height: 30px;
+}
+
+#postbox {
+    height: 105px;
+    outline: none;
+    border: white;
+    background: #e9f0f2;
+    width: 580px;
+}
+
+#postboxpos {
+    top: 45px;
+    left: 10px;
+    height: 105px;
+    width: 580px;
+    z-index: 5;
+}
+
+
+#buttonpost {
+    width: 85px;
+    height: 30px;
+    border-radius: 4px/4px;
+    background: #142170;
+    font-size: 15px;
+    outline: none;
+    color: white;
+}
+
+
+.post {
+    width: 600px;
+    height: 210px;
+    box-sizing: content-box;
+}
+
+.post1 {
+    background: white;
+    width: 580px;
+    height: auto;
+    border-radius: 3px/3px;
+    padding: 10px;
+    box-sizing: content-box;
+}
+
+
+
+#post2text {
+    left: 40px;
+    top: 0px;
+    padding-top: 10px;
+    height: 40px;
+    width: 400px;
+}
+
+.post2 {
+    top: 910px;
+    left: 240px;
+    background: white;
+    position: absolute;
+    width: 580px;
+    height: 600px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    border-radius: 3px/3px;
+    box-sizing: content-box;
+}
+
+#profpic {
+    height: 30px;
+}

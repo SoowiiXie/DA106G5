@@ -94,8 +94,9 @@ th, td {
 			<th>修改</th>
 			<th>上/下架</th>
 		</tr>
-		<%@ include file="page1.file"%>
-		<c:forEach var="cmtVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<%-- 		<%@ include file="page1.file"%> --%>
+<%-- 		<c:forEach var="cmtVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+		<c:forEach var="cmtVO" items="${list}">
 		<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->			
 			<tr>
 				<td>${cmtVO.cmt_no}</td>
@@ -129,7 +130,8 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-	<%@ include file="page2.file"%>
+<%-- 	<%@ include file="page2.file"%> --%>
+
 
 </body>
 </html>

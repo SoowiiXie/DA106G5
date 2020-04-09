@@ -11,8 +11,8 @@
 <body>
 	
 	
-	<img src="/DA106_G5/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px"><br>
-	${memberVO.mb_name}
+	<img src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px"><br>
+	會員：${memberVO.mb_name}
 	
 	<form METHOD="POST" action="member.do">
         <input type="hidden" name="action" value="logout">
