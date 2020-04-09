@@ -645,6 +645,7 @@ DROP TABLE "DA106G5"."COUPON" CASCADE CONSTRAINTS;
 CREATE TABLE coupon (
  cp_no VARCHAR2(20) NOT NULL, 
  cp_name VARCHAR2(20) NOT NULL,
+ cp_price NUMBER(5) NOT NULL,
  cp_pic BLOB
 );
 
@@ -759,12 +760,12 @@ START WITH 1
 NOMAXVALUE
 NOCYCLE;
 
-Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷50元');
-Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷100元');
-Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷150元');
-Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷200元');
-Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷250元');
-Insert into COUPON (CP_NO,CP_NAME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷300元');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷50元','50');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷100元','100');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷150元','150');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷200元','200');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷250元','250');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷300元','300');
 
 
 ---------------------ORDERS訂單---------------------
