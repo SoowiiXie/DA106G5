@@ -252,7 +252,7 @@
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>RecordServlet</servlet-name>
-			<url-pattern>/record/emp.do</url-pattern>
+			<url-pattern>/record/record.do</url-pattern>
 		</servlet-mapping>
 <!-- 麥克責任區結束 -->
 

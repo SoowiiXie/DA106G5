@@ -44,7 +44,7 @@ public class RecordServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/record/select_page.jsp");
+							.getRequestDispatcher("/front_end/record/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -59,7 +59,7 @@ public class RecordServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/record/select_page.jsp");
+							.getRequestDispatcher("/front_end/record/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -74,14 +74,14 @@ public class RecordServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/record/select_page.jsp");
+							.getRequestDispatcher("/front_end/record/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 //System.out.println(recordVO.getRcd_no());
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("recordVO", recordVO); // 資料庫取出的empVO物件,存入req
-				String url = "/record/listOneEmp.jsp";
+				String url = "/front_end/record/listOneEmp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -89,7 +89,7 @@ public class RecordServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/record/select_page.jsp");
+						.getRequestDispatcher("/front_end/record/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -112,7 +112,7 @@ public class RecordServlet extends HttpServlet{
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("recordVO", recordVO);         // 資料庫取出的empVO物件,存入req
-				String url = "/record/update_emp_input.jsp";
+				String url = "/front_end/record/update_emp_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
@@ -120,7 +120,7 @@ public class RecordServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/record/listAllEmp.jsp");
+						.getRequestDispatcher("/front_end/record/listAllEmp.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -175,7 +175,7 @@ public class RecordServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("recordVO", recordVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/record/update_emp_input.jsp");
+							.getRequestDispatcher("/front_end/record/update_emp_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -186,7 +186,7 @@ public class RecordServlet extends HttpServlet{
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("recordVO", recordVO); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "/record/listOneEmp.jsp";
+				String url = "/front_end/record/listOneEmp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -194,7 +194,7 @@ public class RecordServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/record/update_emp_input.jsp");
+						.getRequestDispatcher("/front_end/record/update_emp_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -238,7 +238,7 @@ public class RecordServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("recordVO", recordVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/record/addEmp.jsp");
+							.getRequestDispatcher("/front_end/record/addEmp.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -248,7 +248,7 @@ public class RecordServlet extends HttpServlet{
 				recordVO = recordSvc.addRecord(rcd_uploadtime, rcd_content, path_no, mb_id);
 				//為什麼不用256行empVO進行新增,因為可以在service中有必要還可以加工(框架)
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/record/listAllEmp.jsp";
+				String url = "/front_end/record/listAllEmp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
 				
@@ -256,7 +256,7 @@ public class RecordServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/record/addEmp.jsp");
+						.getRequestDispatcher("/front_end/record/addEmp.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -278,7 +278,7 @@ public class RecordServlet extends HttpServlet{
 				rcdSvc.deleteRecord(rcd_no);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/record/listAllEmp.jsp";
+				String url = "/front_end/record/listAllEmp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -286,7 +286,7 @@ public class RecordServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/record/listAllEmp.jsp");
+						.getRequestDispatcher("/front_end/record/listAllEmp.jsp");
 				failureView.forward(req, res);
 			}
 		}
