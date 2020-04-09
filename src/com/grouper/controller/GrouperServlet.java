@@ -226,7 +226,7 @@ public class GrouperServlet extends HttpServlet {
 				/***************************2.開始修改資料*****************************************/
 				GrouperService grpSvc = new GrouperService();
 				grouperVO = grpSvc.updateGroup(grp_no, mb_id, loc_no, grp_applystart, grp_applyend,grp_start, 
-						grp_end, grp_name, grp_name, grp_personmax, grp_personmin, grp_personcount, grp_status, 
+						grp_end, grp_name, grp_content, grp_personmax, grp_personmin, grp_personcount, grp_status, 
 						grp_follow);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)*************/
