@@ -18,19 +18,19 @@ public class MeTooTest extends HttpServlet {
 
 		//新增
 		MeTooVO meTooVO1 = new MeTooVO();
-		meTooVO1.setRcd_no("rcd00005");
-		meTooVO1.setMb_id("soowii123");
+		meTooVO1.setRcd_no("rcd00001");
+		meTooVO1.setMb_id("weijhih123");
 		dao.insert(meTooVO1);
-		meTooVO1.setRcd_no("rcd00005");
+		meTooVO1.setRcd_no("rcd00001");
 		meTooVO1.setMb_id("xuan123");
 		dao.insert(meTooVO1);
-		meTooVO1.setRcd_no("rcd00005");
+		meTooVO1.setRcd_no("rcd00001");
 		meTooVO1.setMb_id("michael123");
 		dao.insert(meTooVO1);
-		meTooVO1.setRcd_no("rcd00005");
+		meTooVO1.setRcd_no("rcd00001");
 		meTooVO1.setMb_id("vain123");
 		dao.insert(meTooVO1);
-		meTooVO1.setRcd_no("rcd00005");
+		meTooVO1.setRcd_no("rcd00001");
 		meTooVO1.setMb_id("yiwen123");
 		dao.insert(meTooVO1);
 
@@ -42,8 +42,8 @@ public class MeTooTest extends HttpServlet {
 //		dao.update(meTooVO2);
 
 		//刪除
-		dao.delete("soowii123", "rcd00005");
-		System.out.println(dao.countAllMeToos("rcd00005"));
+//		dao.delete("soowii123", "rcd00005");
+		System.out.println(dao.countAllMeToos("rcd00001"));
 
 		//查詢
 //		MeTooVO meTooVO3 = dao.findByPrimaryKey("rcd00001", "soowii123");

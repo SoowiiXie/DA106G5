@@ -10,7 +10,10 @@
 <%
 	@SuppressWarnings("unchecked")
 	List<Weather_detailVO> list = (List<Weather_detailVO>)request.getAttribute("weather_detailVO_list");
-	pageContext.setAttribute("list", list);
+	if(list==null || list.size() == 0){
+		list=(List<Weather_detailVO>)session.getAttribute("list");
+	}
+	session.setAttribute("list", list);
 %>
 
 
@@ -94,10 +97,9 @@ th, td {
 			<th>修改</th>
 			<th>刪除</th>
 		</tr>
-<%-- 		<%@ include file="page1.file"%> --%>
-<%-- 		<c:forEach var="weather_detailVO" items="${list}" begin="<%=pageIndex%>" --%>
-<%-- 			end="<%=pageIndex+rowsPerPage-1%>"> --%>
-		<c:forEach var="weather_detailVO" items="${list}" >
+		<%@ include file="page1.file"%>
+		<c:forEach var="weather_detailVO" items="${weather_detailVO_list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<%-- 		<c:forEach var="weather_detailVO" items="${list}" > --%>
 			<!--// weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort,
 			// wth_rain_chance -->
 			<tr>
@@ -109,9 +111,7 @@ th, td {
 				<td>${weather_detailVO.wth_comfort}</td>
 				<td>${weather_detailVO.wth_rain_chance}%</td>
 				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/weather_detail/weather_detail.do"
-						style="margin-bottom: 0px;">
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/weather_detail/weather_detail.do"	style="margin-bottom: 0px;">
 						<input type="submit" value="修改"> 
 						<input type="hidden" name="weather_time" value="${weather_detailVO.weather_time}"> 
 						<input type="hidden" name="weather_place" value="${weather_detailVO.weather_place}"> 
@@ -119,9 +119,7 @@ th, td {
 					</FORM>
 				</td>
 				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/weather_detail/weather_detail.do"
-						style="margin-bottom: 0px;">
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/weather_detail/weather_detail.do"	style="margin-bottom: 0px;">
 						<input type="submit" value="刪除"> 
 						<input type="hidden" name="weather_time" value="${weather_detailVO.weather_time}"> 
 						<input type="hidden" name="weather_place" value="${weather_detailVO.weather_place}"> 
@@ -131,7 +129,7 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-<%-- 	<%@ include file="page2.file"%> --%>
+	<%@ include file="page2.file"%>
 
 </body>
 </html>

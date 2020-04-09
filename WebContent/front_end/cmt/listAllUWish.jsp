@@ -10,7 +10,10 @@
 <%
 	@SuppressWarnings("unchecked")
 	List<CmtVO> list = (List<CmtVO>)request.getAttribute("cmtVO_list");
-	pageContext.setAttribute("list", list);
+	if(list==null || list.size() == 0){
+		list=(List<CmtVO>)session.getAttribute("list");
+	}
+	session.setAttribute("list", list);
 %>
 
 
