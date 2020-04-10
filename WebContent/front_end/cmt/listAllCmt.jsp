@@ -102,7 +102,7 @@ th, td {
 				<td>${cmtVO.cmt_no}</td>
 				<td>${cmtVO.cmt_content}</td>
 				<td>${cmtVO.cmt_time}</td>
-				<td>${cmtVO.cmt_status}</td>
+				<td>${(cmtVO.cmt_status!=1?(cmtVO.cmt_status==2?'成功':'失敗'):'未審')}</td>
 				<td>${cmtVO.rcd_no}</td>
 				<td>${cmtVO.mb_id}</td>
 				<td>
