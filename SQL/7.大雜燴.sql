@@ -1,4 +1,3 @@
-
 ﻿--------------------------------------------------------
 --1.名軒 會員Drop
 --------------------------------------------------------
@@ -258,7 +257,9 @@ values('staff_michael','02');
 --------------------------------------------------------
 --  2.戍乂 天氣、地標 Drop
 --------------------------------------------------------
+DROP SEQUENCE "DA106G5"."LOC_RPT_SEQ";
 DROP SEQUENCE "DA106G5"."LOC_NO_SEQ";
+DROP TABLE "DA106G5"."LOC_RPT" cascade constraints;
 DROP TABLE "DA106G5"."LOCATION" cascade constraints;
 DROP TABLE "DA106G5"."LOC_TYPE" cascade constraints;
 DROP TABLE "DA106G5"."WEATHER" cascade constraints;
@@ -306,6 +307,31 @@ Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_addres
 Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,123.456,78.90,'愛的小窩');
 Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90,2,'地方媽媽');
 Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90,'ㄎㄎㄎ');
+
+--地標檢舉 Create--
+CREATE TABLE loc_rpt (
+ loc_rpt_no   VARCHAR2(20)          NOT NULL,
+ rpt_reason   CLOB,
+ rpt_status   NUMBER(1) DEFAULT'1'  NOT NULL,
+ loc_no       VARCHAR2(20)          NOT NULL,
+ mb_id        VARCHAR2(20)
+);
+
+ALTER TABLE loc_rpt ADD CONSTRAINT PK_loc_rpt PRIMARY KEY (loc_rpt_no);
+
+CREATE SEQUENCE loc_rpt_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOCYCLE
+NOCACHE;
+
+--地標檢舉 假資料--
+INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, RPT_STATUS, LOC_NO, MB_ID) VALUES ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'), 'LOCATIONreport1', '1', 'loc00001', 'soowii123');
+INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, LOC_NO, MB_ID) VALUES ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'), 'LOCATIONreport2', 'loc00002', 'xuan123');
+INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, RPT_STATUS, LOC_NO, MB_ID) VALUES ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'), 'LOCATIONreport3', '1', 'loc00003', 'michael123');
+INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, LOC_NO, MB_ID) VALUES ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'), 'LOCATIONreport4', 'loc00004', 'vain123');
+INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, RPT_STATUS, LOC_NO, MB_ID) VALUES ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'), 'LOCATIONreport5', '1', 'loc00005', 'yiwen123');
 
 
 --天氣 Create--
