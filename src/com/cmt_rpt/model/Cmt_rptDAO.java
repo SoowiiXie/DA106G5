@@ -28,6 +28,8 @@ public class Cmt_rptDAO implements Cmt_rpt_interface {
 	private static final String GET_ONE_STMT = "SELECT cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id FROM cmt_rpt WHERE cmt_rpt_no = ?";
 	private static final String DELETE = "DELETE FROM cmt_rpt where cmt_rpt_no = ?";
 	private static final String UPDATE = "UPDATE cmt_rpt SET rpt_reason = ?, rpt_status = ? where cmt_rpt_no = ?";
+	private static final String UPDATE_ALL_CMT_STATUS = "UPDATE cmt_rpt SET rpt_status = ? where cmt_no = ?";
+	private static final String GET_RPTED_MB_ID = "SELECT commentt.mb_id FROM commentt JOIN cmt_rpt ON commentt.cmt_no = cmt_rpt.cmt_no WHERE cmt_rpt.cmt_no = ?";
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
@@ -122,6 +124,90 @@ public class Cmt_rptDAO implements Cmt_rpt_interface {
 				}
 			}
 		}
+	}
+	
+	
+	@Override
+	public void updateByCmtNo(Cmt_rptVO cmt_rptVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_ALL_CMT_STATUS,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			
+			pstmt.setInt(1, cmt_rptVO.getRpt_status());
+			pstmt.setString(2, cmt_rptVO.getCmt_no());
+			
+			pstmt.executeUpdate();
+			
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+
+
+	@Override
+	public String getRptedMb_id(String cmt_no) {
+		String rpted_mb_id;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_RPTED_MB_ID,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setString(1, cmt_no);
+
+			rs = pstmt.executeQuery();
+			rs.next();
+			rpted_mb_id = rs.getString("mb_id");
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return rpted_mb_id;
 	}
 
 

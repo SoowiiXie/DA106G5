@@ -19,7 +19,7 @@ public class ThumbDAO implements Thumb_interface {
 	private static final String INSERT_STMT = "INSERT INTO thumb (rcd_no,mb_id) values (?,?)";
 //	private static final String GET_ALL_STMT = "SELECT rcd_no,mb_id FROM thumb ORDER BY mb_id";
 //	private static final String GET_ONE_STMT = "SELECT rcd_no,mb_id FROM thumb WHERE rcd_no = ? and mb_id = ?";
-	private static final String COUNT_ALL = "SELECT COUNT (*) AS COUNTTHUMBS FROM THUMB WHERE rcd_no = ?";
+	private static final String COUNT_ALL = "SELECT COUNT ('a Thumb') AS COUNTTHUMBS FROM THUMB WHERE rcd_no = ?";
 	private static final String DELETE = "DELETE FROM thumb where rcd_no = ? and mb_id = ?";
 //	private static final String UPDATE = "UPDATE thumb SET rcd_no = ?, mb_id = ? where mb_id = ?";
 

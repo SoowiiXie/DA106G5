@@ -91,14 +91,14 @@ th, td {
 			<th>留言編號</th>
 			<th>檢舉會員</th>
 			<th>修改</th>
-			<th>未審/已審</th>
+			<th>審核</th>
 		</tr>
 		<%@ include file="page1.file"%>
 		<c:forEach var="cmt_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 			<tr>
 				<td>${cmt_rptVO.cmt_rpt_no}</td>
 				<td>${cmt_rptVO.rpt_reason}</td>
-				<td>${cmt_rptVO.rpt_status}</td>
+				<td>${(cmt_rptVO.rpt_status!=1?(cmt_rptVO.rpt_status==2?'成功':'失敗'):'未審')}</td>
 				<td>${cmt_rptVO.cmt_no}</td>
 				<td>${cmt_rptVO.mb_id}</td>
 				<td>
@@ -110,7 +110,7 @@ th, td {
 				</td>
 				<td>
 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt_rpt/cmt_rpt.do" style="margin-bottom: 0px;">
-						<input type="submit" value="未審/已審"> 
+						<input type="submit" value="失敗/成功"> 
 						<!-- 		//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
 						<input type="hidden" name="cmt_rpt_no" value="${cmt_rptVO.cmt_rpt_no}"> 
 						<input type="hidden" name="rpt_reason" value="${cmt_rptVO.rpt_reason}">

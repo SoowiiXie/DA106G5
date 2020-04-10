@@ -21,7 +21,7 @@ public class MeTooDAO implements MeToo_interface {
 	private static final String INSERT_STMT = "INSERT INTO metoo (rcd_no,mb_id) values (?,?)";
 //	private static final String GET_ALL_STMT = "SELECT rcd_no,mb_id FROM metoo ORDER BY rcd_no";
 //	private static final String GET_ONE_STMT = "SELECT rcd_no,mb_id FROM metoo WHERE rcd_no=? and mb_id = ?";
-	private static final String COUNT_ALL = "SELECT COUNT (*) AS COUNTMETOOS FROM METOO WHERE rcd_no = ?";
+	private static final String COUNT_ALL = "SELECT COUNT ('a meToo') AS COUNTMETOOS FROM METOO WHERE rcd_no = ?";
 	private static final String DELETE = "DELETE FROM metoo where mb_id = ? and rcd_no=?";
 //	private static final String UPDATE = "UPDATE path_follow SET path_no = ?, mb_id = ? where mb_id = ?";
 

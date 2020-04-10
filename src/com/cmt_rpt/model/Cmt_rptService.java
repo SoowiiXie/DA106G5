@@ -37,6 +37,19 @@ public class Cmt_rptService {
 
 		return cmt_rptVO_update;
 	}
+	
+	public Cmt_rptVO updateCmt_rptByCmtNo(String cmt_rpt_no, String rpt_reason, Integer rpt_status, String cmt_no, String mb_id) {
+		// 改
+		Cmt_rptVO cmt_rptVO_update = new Cmt_rptVO();
+		cmt_rptVO_update.setRpt_status(rpt_status);
+		cmt_rptVO_update.setCmt_no(cmt_no);
+		dao.updateByCmtNo(cmt_rptVO_update);
+		cmt_rptVO_update.setRpt_reason(rpt_reason);
+		cmt_rptVO_update.setCmt_rpt_no(cmt_rpt_no);
+		cmt_rptVO_update.setMb_id(mb_id);
+		
+		return cmt_rptVO_update;
+	}
 
 	//不刪，只隱藏
 //	public void deleteCmt() {}
@@ -47,6 +60,10 @@ public class Cmt_rptService {
 
 	public List<Cmt_rptVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public String getRptedMb_id(String cmt_no) {
+		return dao.getRptedMb_id(cmt_no);
 	}
 	
 	public List<Cmt_rptVO> getByMb_id(String mb_id) {

@@ -258,10 +258,10 @@ public class CmtServlet extends HttpServlet {
 				String cmt_content = req.getParameter("cmt_content");
 				java.sql.Date cmt_time = java.sql.Date.valueOf(req.getParameter("cmt_time").trim());
 				Integer cmt_status = new Integer(req.getParameter("cmt_status").trim());
-				if (cmt_status==3) {
-					cmt_status=2;
+				if (cmt_status==2) {
+					cmt_status=1;
 				}else {
-					cmt_status=3;
+					cmt_status=2;
 				}
 				String rcd_no = req.getParameter("rcd_no").trim();
 				String mb_id = req.getParameter("mb_id").trim();

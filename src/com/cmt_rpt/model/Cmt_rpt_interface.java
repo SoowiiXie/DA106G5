@@ -8,6 +8,10 @@ public interface Cmt_rpt_interface {
 
 	public void update(Cmt_rptVO cmt_rptVO);
 
+	public void updateByCmtNo(Cmt_rptVO cmt_rptVO);
+	
+	public String getRptedMb_id(String cmt_no);
+
 	public void delete(String cmt_rpt_no);
 
 	public Cmt_rptVO findByPrimaryKey(String cmt_rpt_no);

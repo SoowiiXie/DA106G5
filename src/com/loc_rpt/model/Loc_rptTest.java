@@ -1,4 +1,4 @@
-package com.cmt_rpt.model;
+package com.loc_rpt.model;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Cmt_rptTest extends HttpServlet {
+public class Loc_rptTest extends HttpServlet {
 	/**
 	 * 
 	 */
