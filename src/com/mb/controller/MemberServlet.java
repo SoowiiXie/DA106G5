@@ -33,6 +33,7 @@ public class MemberServlet extends HttpServlet {
 
 		// ***註冊、修改的資料判斷
 		// ***登入、註冊時，若已登入過會直接導向XXX
+		// ***AJAX改到Controller
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
