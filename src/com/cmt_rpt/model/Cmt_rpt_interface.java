@@ -8,7 +8,7 @@ public interface Cmt_rpt_interface {
 
 	public void update(Cmt_rptVO cmt_rptVO);
 
-	public void delete(String cmt_rptVO);
+	public void delete(String cmt_rpt_no);
 
 	public Cmt_rptVO findByPrimaryKey(String cmt_rpt_no);
 
