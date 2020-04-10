@@ -32,6 +32,7 @@ public class MemberServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		// ***註冊、修改的資料判斷
+		// ***登入、註冊時，若已登入過會直接導向XXX
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
