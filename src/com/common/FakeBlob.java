@@ -45,6 +45,8 @@ class FakeBlob {
 
 				ps.setString(2, "loc" + String.format("%05d", i));
 				rowCount += ps.executeUpdate();
+				bf.close();
+				in.close();
 			}
 			System.out.println(rowCount + " row(s) inserted!!");
 		} catch (Exception e) {

@@ -18,19 +18,19 @@ public class ThumbTest extends HttpServlet {
 
 		//新增
 		ThumbVO thumbVO1 = new ThumbVO();
-		thumbVO1.setRcd_no("rcd00005");
-		thumbVO1.setMb_id("soowii123");
+		thumbVO1.setRcd_no("rcd00001");
+		thumbVO1.setMb_id("yiwen123");
 		dao.insert(thumbVO1);
-		thumbVO1.setRcd_no("rcd00005");
+		thumbVO1.setRcd_no("rcd00001");
 		thumbVO1.setMb_id("xuan123");
 		dao.insert(thumbVO1);
-		thumbVO1.setRcd_no("rcd00005");
+		thumbVO1.setRcd_no("rcd00001");
 		thumbVO1.setMb_id("michael123");
 		dao.insert(thumbVO1);
-		thumbVO1.setRcd_no("rcd00005");
+		thumbVO1.setRcd_no("rcd00001");
 		thumbVO1.setMb_id("vain123");
 		dao.insert(thumbVO1);
-		thumbVO1.setRcd_no("rcd00005");
+		thumbVO1.setRcd_no("rcd00001");
 		thumbVO1.setMb_id("weijhih123");
 		dao.insert(thumbVO1);
 
@@ -44,8 +44,8 @@ public class ThumbTest extends HttpServlet {
 //		dao.update(thumbVO2);
 
 		//刪除
-		dao.delete("rcd00005", "soowii123");
-		System.out.println(dao.countAllThumb("rcd00005"));
+//		dao.delete("rcd00005", "soowii123");
+		System.out.println(dao.countAllThumb("rcd00001"));
 		
 		//查詢
 //		ThumbVO thumbVO3 = dao.findByPrimaryKey("rcd00001", "soowii123");

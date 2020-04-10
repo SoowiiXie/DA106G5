@@ -15,4 +15,7 @@ public interface Location_interface {
 
 	// 查詢某地點種類的地點(一對多)(回傳 Set)
 	public Set<LocationVO> getLocationByLoc_typeno(String loc_typeno);
+	
+	// 萬用型
+		public List<LocationVO> getAllUWish(Map<String, String[]> map);
 }

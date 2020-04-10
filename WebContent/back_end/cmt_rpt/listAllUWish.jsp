@@ -10,7 +10,10 @@
 <%
 	@SuppressWarnings("unchecked")
 	List<Cmt_rptVO> list = (List<Cmt_rptVO>)request.getAttribute("cmt_rptVO_list");
-	pageContext.setAttribute("list", list);
+	if(list==null || list.size() == 0){
+		list=(List<Cmt_rptVO>)session.getAttribute("list");
+	}
+	session.setAttribute("list", list);
 %>
 
 

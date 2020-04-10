@@ -38,29 +38,29 @@
 		<span id="star">*</span>為必填
 		<div>
 			<span id="star">*</span>
-			帳號：<input id="mb_id" type="text" name="mb_id" onblur="checkId()">
+			帳號：<input id="mb_id" type="text" name="mb_id" onblur="checkId()" value="${memberVO.mb_id}">
 			<img id="icon"/><span id="check"></span>
 		</div>
 		
 		<span id="star">*</span>
-		密碼：<input type="password" name="mb_pwd"><br>
+		密碼：<input type="password" name="mb_pwd" value="${memberVO.mb_pwd}"><br>
 		
 		<span id="star">*</span>
-		名字：<input type="text" name="mb_name"><br>
+		名字：<input type="text" name="mb_name" value="${memberVO.mb_name}"><br>
 		
 		<span id="star">*</span>
 		性別：
-		<input type="radio" id="gender1" name="mb_gender" value="1" checked>
+		<input type="radio" id="gender1" name="mb_gender" value="1" ${(memberVO.mb_gender==1)?'checked':''}>
     	<label for="gender1">男</label>
-    	<input type="radio" id="gender2" name="mb_gender" value="2">
+    	<input type="radio" id="gender2" name="mb_gender" value="2" ${(memberVO.mb_gender==2)?'checked':''}>
     	<label for="gender2">女</label><br>
     	
-		Line：<input type="text" name="mb_line"><br>
+		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br>
 		
-		生日：<input type="text" name="mb_birthday" id="f_date"><br>
+		生日：<input type="text" name="mb_birthday" id="f_date" value="${memberVO.mb_birthday}"><br>
 		
 		<span id="star">*</span>
-		e-mail：<input type="text" name="mb_email"><br>
+		e-mail：<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
 		
 		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>  <!-- 改版限定圖片種類 -->
 		<img id="mb_pic" src="<%= request.getContextPath()%>/NoData/null2.jpg">
@@ -68,7 +68,7 @@
 		
         <input type="hidden" name="action" value="insert"><br>
         <input type="reset" value="清除">
-        <input type="submit" value="送出"><br>
+        <input id="submit" type="submit" value="送出"><br>
         
 	</form>
 
@@ -98,18 +98,21 @@
 	   	   if( xhr.status == 200){
 	    	  var check = document.getElementById("check");
 	    	  var icon = document.getElementById("icon"); 
+	    	  var submit = document.getElementById("submit"); 
 	    	  if(xhr.response == 1){
 	    		  icon.src="images/ok.png";
 	    		  icon.width="25";
 	    		  icon.height="32";
 	    		  check.innerHTML = "此帳號可以使用";
 	    		  check.style.color = "black";
+	    		  submit.removeAttribute("disabled");;
 	    	  }else{
 	    		  icon.src="images/no.png";
 	    		  icon.width="25";
 	    		  icon.height="32";
 	    		  check.innerHTML = "此帳號已被使用";
 	    		  check.style.color = "red";
+	    		  submit.disabled="disabled";
 	    	  }
 	      	}else{
 	        	alert( xhr.status );

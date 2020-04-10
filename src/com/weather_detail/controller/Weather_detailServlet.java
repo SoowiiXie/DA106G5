@@ -69,8 +69,7 @@ public class Weather_detailServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/weather_detail/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/weather_detail/select_page.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
