@@ -10,11 +10,12 @@ public class Group_rptService {
 		dao = new Group_rptDAO();
 	}
 
-	public Group_rptVO addGroup_rpt(String grp_no, String mb_id, String rpt_reason,
+	public Group_rptVO addGroup_rpt(String group_rpt_no, String grp_no, String mb_id, String rpt_reason,
 			Integer rpt_status) {
 
 		Group_rptVO group_rptVO = new Group_rptVO();
 
+		group_rptVO.setGroup_rpt_no(group_rpt_no);
 		group_rptVO.setGrp_no(grp_no);
 		group_rptVO.setMb_id(mb_id);
 		group_rptVO.setRpt_reason(rpt_reason);
@@ -25,8 +26,8 @@ public class Group_rptService {
 		return group_rptVO;
 	}
 
-	public Group_rptVO updateGroup_rpt(String group_rpt_no, String grp_no, String mb_id, 
-			String rpt_reason,Integer rpt_status) {
+	public Group_rptVO updateGroup_rpt(String group_rpt_no, String grp_no, String mb_id, String rpt_reason,
+			Integer rpt_status) {
 
 		Group_rptVO group_rptVO = new Group_rptVO();
 

@@ -3,6 +3,7 @@ encoding//WebContent/WEB-INF/web.xml=UTF-8
 encoding//WebContent/back_end/cmt_rpt/page2.file=MS950
 encoding//WebContent/front_end/cmt/page1.file=MS950
 encoding//WebContent/front_end/cmt/page2.file=MS950
+encoding//WebContent/front_end/group_rpt/select_page.jsp=UTF-8
 encoding//WebContent/front_end/weather_detail/page1.file=MS950
 encoding//WebContent/front_end/weather_detail/page2.file=MS950
 encoding/<project>=UTF-8

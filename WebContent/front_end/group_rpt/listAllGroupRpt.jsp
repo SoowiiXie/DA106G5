@@ -1,19 +1,19 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.grouper.model.*"%>
-<%-- ¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È --%>
+<%@ page import="com.group_rpt.model.*"%>
+<%-- æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼ --%>
 
 <%
-    GrouperService grpSvc = new GrouperService();
-    List<GrouperVO> list = grpSvc.getAll();
+    Group_rptService grouprptSvc = new Group_rptService();
+    List<Group_rptVO> list = grouprptSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
 
 
 <html>
 <head>
-<title>©Ò¦³­û¤u¸ê®Æ - listAllGroup.jsp</title>
+<title>æ‰€æœ‰å“¡å·¥è³‡æ–™ - listAllGroupRpt.jsp</title>
 
 <style>
   table#table-1 {
@@ -51,17 +51,17 @@
 </head>
 <body bgcolor='white'>
 
-<h4>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</h4>
+<h4>æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>©Ò¦³´ª¹Î¸ê®Æ - listAllGroup.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>æ‰€æœ‰æªåœ˜æª¢èˆ‰è³‡æ–™ - listAllGroupRpt.jsp</h3>
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -71,50 +71,33 @@
 
 <table>
 	<tr>
-		<th>´ª¹Î½s¸¹</th>
-		<th>µo°_¤H·|­û½s¸¹</th>
-		<th>¦a¼Ğ½s¸¹</th>
-		<th>³ø¦W¶}©l®É¶¡</th>
-		<th>³ø¦Wµ²§ô®É¶¡</th>
-		<th>¬¡°Ê¶}©l®É¶¡</th>
-		<th>¬¡°Êµ²§ô®É¶¡</th>
-		<th>´ª¹Î¼ĞÃD</th>
-		<th>´ª¹Î¤º®e</th>
-		<th>¤H¼Æ¤W­­</th>
-		<th>¤H¼Æ¤U­­</th>
-		<th>¥Ø«e¤H¼Æ</th>
-		<th>´ª¹Îª¬ºA</th>
-		<th>Ãöª`´ª¹Î¼Æ¶q</th>
-		<th>­×§ï</th>
-		<th>§R°£</th>
+		<th>æª¢èˆ‰ç·¨è™Ÿ</th>
+		<th>æªåœ˜ç·¨è™Ÿ</th>
+		<th>æªåœ˜åŸå› </th>
+		<th>æª¢èˆ‰æœƒå“¡ç·¨è™Ÿ</th>
+		<th>è™•ç†ç‹€æ…‹</th>
+		<th>ä¿®æ”¹</th>
+		<th>åˆªé™¤</th>
 	</tr>
 	<%@ include file="page1.file" %> 
-	<c:forEach var="grouperVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+	<c:forEach var="group_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td>${grouperVO.Grp_no}</td>
-			<td>${grouperVO.Mb_id}</td>
-			<td>${grouperVO.Loc_no}</td>
-			<td>${grouperVO.Grp_applystart}</td>
-			<td>${grouperVO.Grp_applyend}</td>
-			<td>${grouperVO.Grp_start}</td> 
-			<td>${grouperVO.Grp_end}</td>
-			<td>${grouperVO.Grp_name}</td>
-			<td>${grouperVO.Grp_content}</td>
-			<td>${grouperVO.Grp_personmax}</td>
-			<td>${grouperVO.Grp_personmin}</td>
-			<td>${grouperVO.Grp_personcount}</td>
-			<td>${grouperVO.Grp_status}</td> 
-			<td>${grouperVO.Grp_follow}</td>
+			<td>${group_rptVO.group_rpt_no}</td>
+			<td>${group_rptVO.grp_no}</td>
+			<td>${group_rptVO.rpt_reason}</td>
+			<td>${group_rptVO.mb_id}</td>
+			<td>${group_rptVO.rpt_status}</td>
+
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="­×§ï">
+			     <input type="submit" value="ä¿®æ”¹">
 			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="§R°£">
+			     <input type="submit" value="åˆªé™¤">
 			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
