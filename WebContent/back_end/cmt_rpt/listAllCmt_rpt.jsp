@@ -5,12 +5,14 @@
 <%@ page import="com.cmt_rpt.model.Cmt_rptVO"%>
 <%@ page import="com.cmt_rpt.model.Cmt_rptService"%>
 <%@ page import="com.cmt_rpt.model.*"%>
+<%@ page import="com.mb.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
 	Cmt_rptService cmt_rptSvc = new Cmt_rptService();
 	List<Cmt_rptVO> list = cmt_rptSvc.getAll();
 	pageContext.setAttribute("list", list);
+	MemberService memberSvc = new MemberService();
 %>
 
 
@@ -90,9 +92,12 @@ th, td {
 			<th>狀態</th>
 			<th>留言編號</th>
 			<th>檢舉會員</th>
+			<th>被檢舉會員</th>
 			<th>修改</th>
 			<th>審核</th>
 		</tr>
+		<jsp:useBean id="cmt_rptSvcEL" scope="page" class="com.cmt_rpt.model.Cmt_rptService" />
+		<jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
 		<%@ include file="page1.file"%>
 		<c:forEach var="cmt_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 			<tr>
@@ -101,6 +106,8 @@ th, td {
 				<td>${(cmt_rptVO.rpt_status!=1?(cmt_rptVO.rpt_status==2?'成功':'失敗'):'未審')}</td>
 				<td>${cmt_rptVO.cmt_no}</td>
 				<td>${cmt_rptVO.mb_id}</td>
+				<td>${memberSvcEL.getOneMember(cmt_rptSvcEL.getRptedMb_id(cmt_rptVO.cmt_no)).mb_id}</td>
+<%-- 				<td><%= memberSvc.getOneMember(cmt_rptSvc.getRptedMb_id(cmt_rptVO.getCmt_no())).getMb_name() %></td> --%>
 				<td>
 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt_rpt/cmt_rpt.do" style="margin-bottom: 0px;">
 						<input type="submit" value="修改"> 

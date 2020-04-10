@@ -33,10 +33,10 @@ public class Loc_rptTest extends HttpServlet {
 		dao.update(cmt_rptVO2);
 
 		//刪除
-		dao.delete("cmtr00006");
+//		dao.delete("locr00006");
 
 		//查詢
-		Loc_rptVO cmt_rptVO3 = dao.findByPrimaryKey("cmtr00001");
+		Loc_rptVO cmt_rptVO3 = dao.findByPrimaryKey("locr00001");
 		System.out.print(cmt_rptVO3.getLoc_rpt_no() + ",");
 		System.out.print(cmt_rptVO3.getRpt_reason() + ",");
 		System.out.print(cmt_rptVO3.getRpt_status() + ",");

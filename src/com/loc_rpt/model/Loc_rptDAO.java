@@ -14,9 +14,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-
-
-
 public class Loc_rptDAO implements Loc_rpt_interface {
 //	String driver = "oracle.jdbc.driver.OracleDriver";
 //	String url = "jdbc:oracle:thin:@localhost:1521:XE";
@@ -28,6 +25,7 @@ public class Loc_rptDAO implements Loc_rpt_interface {
 	private static final String GET_ONE_STMT = "SELECT loc_rpt_no, rpt_reason, rpt_status, loc_no, mb_id FROM loc_rpt WHERE loc_rpt_no = ?";
 	private static final String DELETE = "DELETE FROM loc_rpt where loc_rpt_no = ?";
 	private static final String UPDATE = "UPDATE loc_rpt SET rpt_reason = ?, rpt_status = ? where loc_rpt_no = ?";
+	private static final String UPDATE_ALL_LOC_STATUS = "UPDATE loc_rpt SET rpt_status = ? where loc_no = ?";
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
@@ -124,6 +122,45 @@ public class Loc_rptDAO implements Loc_rpt_interface {
 		}
 	}
 
+	
+	@Override
+	public void updateByLocNo(Loc_rptVO loc_rptVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_ALL_LOC_STATUS,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			
+			pstmt.setInt(1, loc_rptVO.getRpt_status());
+			pstmt.setString(2, loc_rptVO.getLoc_no());
+			
+			pstmt.executeUpdate();
+			
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
 
 
 	@Override

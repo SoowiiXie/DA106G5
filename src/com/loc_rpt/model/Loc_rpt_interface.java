@@ -7,6 +7,8 @@ public interface Loc_rpt_interface {
 	public void insert(Loc_rptVO loc_rptVO);
 
 	public void update(Loc_rptVO loc_rptVO);
+	
+	public void updateByLocNo(Loc_rptVO loc_rptVO);
 
 	public void delete(String loc_rpt_no);
 
