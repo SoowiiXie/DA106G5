@@ -21,7 +21,7 @@ public class DBGifReader4Location extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("image/gif");
 		ServletOutputStream out = res.getOutputStream();
-
+			
 		try {
 			Statement stmt = con.createStatement();
 			String loc_no = req.getParameter("loc_no").trim();
@@ -29,13 +29,17 @@ public class DBGifReader4Location extends HttpServlet {
 					// "SELECT IMAGE FROM PICTURES WHERE PID = " + req.getParameter("PID"));
 					"SELECT loc_pic FROM LOCATION WHERE loc_no = '" + loc_no + "' ");
 			if (rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("loc_pic"));
-				byte[] buf = new byte[4 * 1024]; // 4K buffer
-				int len;
-				while ((len = in.read(buf)) != -1) {
-					out.write(buf, 0, len);
-				}
-				in.close();
+				byte[] pic =null;
+				pic=rs.getBytes(1);
+				out.write(pic);
+//				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("loc_pic"));
+//				byte[] buf = new byte[4 * 1024]; // 4K buffer
+//				int len;
+//				while ((len = in.read(buf)) != -1) {
+//					out.write(buf, 0, len);
+//				}
+//				in.close();
+				
 			} else {
 //				res.sendError(HttpServletResponse.SC_NOT_FOUND);
 				InputStream in = getServletContext().getResourceAsStream("/NoData/none2.jpg");
