@@ -48,7 +48,7 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllEmp.jsp'>List</a> all Emps.  <br><br></li>
+  <li><a href='listAllRecord.jsp'>List</a> all Emps.  <br><br></li>
   	
   
   <li>
@@ -80,7 +80,7 @@
 <h3>員工管理</h3>
 
 <ul>
-  <li><a href='addEmp.jsp'>Add</a> a new record.</li>
+  <li><a href='addRecord.jsp'>Add</a> a new record.</li>
 </ul>
 
 </body>
