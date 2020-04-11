@@ -321,7 +321,7 @@ public class Loc_rptDAO implements Loc_rpt_interface {
 
 
 	@Override
-	public List<Loc_rptVO> getAllUWish(Map<String, String[]> map) {
+	public List<Loc_rptVO> getAllUWish(Map<String, String[]> map, String orderBy) {
 		StringBuilder sb = new StringBuilder();
 
 		List<Loc_rptVO> list_map = new ArrayList<Loc_rptVO>();
@@ -331,19 +331,19 @@ public class Loc_rptDAO implements Loc_rpt_interface {
 		PreparedStatement pstmt_map = null;
 		ResultSet rs_map = null;
 
-		sb.append("SELECT * FROM loc_rpt where ");
+		sb.append("SELECT * FROM location where ");
 		for (Entry<String, String[]> entry : map.entrySet()) {
 			sb.append("(");
 			for (int i = 0; i < entry.getValue().length; i++) {
 				if (i == 0) {
-					sb.append(entry.getKey() + " = " + entry.getValue()[i]);
+					sb.append(entry.getKey() + " like '%" + entry.getValue()[i] + "%'");
 				} else {
-					sb.append(" OR " + entry.getKey() + " = " + entry.getValue()[i]);
+					sb.append(" OR " + entry.getKey() + " like '%" + entry.getValue()[i] + "%'");
 				}
 			}
 			sb.append(") and ");
 		}
-		sb.append(" 1=1 ");
+		sb.append(" 1=1 order by " + orderBy);
 
 		try {
 

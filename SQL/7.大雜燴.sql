@@ -284,7 +284,7 @@ CREATE TABLE location (
  loc_typeno VARCHAR2(20) NOT NULL,
  longitude VARCHAR2(20) NOT NULL,
  latitude VARCHAR2(20) NOT NULL,
- loc_status NUMBER(1) DEFAULT 1 NOT NULL,
+ loc_status NUMBER(1) DEFAULT 2 NOT NULL,
  loc_address VARCHAR2(90),
  loc_pic BLOB
 );

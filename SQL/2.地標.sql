@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  2.¦§É@ ¤Ñ®ð¡B¦a¼Ð Drop
+--  2.ï¿½ï¿½ï¿½@ ï¿½Ñ®ï¿½Bï¿½aï¿½ï¿½ Drop
 --------------------------------------------------------
 DROP SEQUENCE "DA106G5"."LOC_RPT_SEQ";
 DROP SEQUENCE "DA106G5"."LOC_NO_SEQ";
@@ -9,7 +9,7 @@ DROP TABLE "DA106G5"."LOC_TYPE" cascade constraints;
 DROP TABLE "DA106G5"."WEATHER" cascade constraints;
 DROP TABLE "DA106G5"."WEATHER_DETAIL" cascade constraints;
 
---¦a¼ÐºØÃþ Create--
+--ï¿½aï¿½Ðºï¿½ï¿½ï¿½ Create--
 CREATE TABLE loc_type (
  loc_typeno VARCHAR2(20) NOT NULL,
  loc_info VARCHAR2(20) NOT NULL
@@ -17,25 +17,25 @@ CREATE TABLE loc_type (
 
 ALTER TABLE loc_type ADD CONSTRAINT PK_loc_type PRIMARY KEY (loc_typeno);
 
---¦a¼ÐºØÃþ À³¸Ó¬O¯u¸ê®Æ--
-Insert into loc_type (loc_typeno,loc_info) values (1, '¦aÂI');
-Insert into loc_type (loc_typeno,loc_info) values (2, '´Z©Ò');
-Insert into loc_type (loc_typeno,loc_info) values (3, '¸É¤ôÂI');
+--ï¿½aï¿½Ðºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¬Oï¿½uï¿½ï¿½ï¿½--
+Insert into loc_type (loc_typeno,loc_info) values (1, 'ï¿½aï¿½I');
+Insert into loc_type (loc_typeno,loc_info) values (2, 'ï¿½Zï¿½ï¿½');
+Insert into loc_type (loc_typeno,loc_info) values (3, 'ï¿½É¤ï¿½ï¿½I');
 
---¦a¼Ð Create--
+--ï¿½aï¿½ï¿½ Create--
 CREATE TABLE location (
  loc_no VARCHAR2(20) NOT NULL,
  loc_typeno VARCHAR2(20) NOT NULL,
  longitude VARCHAR2(20) NOT NULL,
  latitude VARCHAR2(20) NOT NULL,
- loc_status NUMBER(1) DEFAULT 1 NOT NULL,
+ loc_status NUMBER(1) DEFAULT 2 NOT NULL,
  loc_address VARCHAR2(90),
  loc_pic BLOB
 );
 
 ALTER TABLE location ADD CONSTRAINT PK_location PRIMARY KEY (loc_no);
 
---¦a¼Ð¦³­Ó¥~Áä¦b¦a¼ÐºØÃþ--
+--ï¿½aï¿½Ð¦ï¿½ï¿½Ó¥~ï¿½ï¿½bï¿½aï¿½Ðºï¿½ï¿½ï¿½--
 ALTER TABLE location ADD CONSTRAINT FK_location FOREIGN KEY (loc_typeno) REFERENCES loc_type (loc_typeno);
 
 CREATE SEQUENCE loc_no_seq
@@ -44,15 +44,15 @@ START WITH 1
 NOMAXVALUE
 NOCYCLE;
 
---¦a¼Ð °²¸ê®Æ--
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,123.456,78.90,2,'®ç¶é¥«¤¤Ãc°Ï');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,123.456,78.90,'©¾§µªF¸ô¨«¤E¹M');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,123.456,78.90,2,'°·§Ó®a');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,123.456,78.90,'·Rªº¤pºÛ');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90,2,'¦a¤è¶ý¶ý');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90,'£}£}£}');
+--ï¿½aï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½--
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,123.456,78.90,2,'ï¿½ï¿½é¥«ï¿½ï¿½ï¿½cï¿½ï¿½');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,123.456,78.90,'ï¿½ï¿½ï¿½ï¿½ï¿½Fï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½M');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,123.456,78.90,2,'ï¿½ï¿½ï¿½Ó®a');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,123.456,78.90,'ï¿½Rï¿½ï¿½ï¿½pï¿½ï¿½');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90,2,'ï¿½aï¿½ï¿½ï¿½ï¿½ï¿½');
+Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,123.456,78.90,'ï¿½}ï¿½}ï¿½}');
 
---¦a¼ÐÀËÁ| Create--
+--ï¿½aï¿½ï¿½ï¿½ï¿½ï¿½| Create--
 CREATE TABLE loc_rpt (
  loc_rpt_no   VARCHAR2(20)          NOT NULL,
  rpt_reason   CLOB,
@@ -70,7 +70,7 @@ NOMAXVALUE
 NOCYCLE
 NOCACHE;
 
---¦a¼ÐÀËÁ| °²¸ê®Æ--
+--ï¿½aï¿½ï¿½ï¿½ï¿½ï¿½| ï¿½ï¿½ï¿½ï¿½ï¿½--
 INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, RPT_STATUS, LOC_NO, MB_ID) VALUES ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'), 'LOCATIONreport1', '1', 'loc00001', 'soowii123');
 INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, LOC_NO, MB_ID) VALUES ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'), 'LOCATIONreport2', 'loc00002', 'xuan123');
 INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, RPT_STATUS, LOC_NO, MB_ID) VALUES ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'), 'LOCATIONreport3', '1', 'loc00003', 'michael123');
@@ -78,7 +78,7 @@ INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, LOC_NO, MB_ID) VALUES ('locr'||LP
 INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, RPT_STATUS, LOC_NO, MB_ID) VALUES ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'), 'LOCATIONreport5', '1', 'loc00005', 'yiwen123');
 
 
---¤Ñ®ð Create--
+--ï¿½Ñ®ï¿½ Create--
 CREATE TABLE weather (
  wth_status VARCHAR2(30) NOT NULL,
  weather_pic BLOB
@@ -86,14 +86,14 @@ CREATE TABLE weather (
 
 ALTER TABLE weather ADD CONSTRAINT PK_weather PRIMARY KEY (wth_status);
 
---¤Ñ®ð °²¸ê®Æ--
-Insert into weather (wth_status) values ('´¸');
-Insert into weather (wth_status) values ('«B');
-Insert into weather (wth_status) values ('³±');
-Insert into weather (wth_status) values ('´¸®É¦h¶³°¸°}«B');
-Insert into weather (wth_status) values ('»ä­·');
+--ï¿½Ñ®ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½--
+Insert into weather (wth_status) values ('ï¿½ï¿½');
+Insert into weather (wth_status) values ('ï¿½B');
+Insert into weather (wth_status) values ('ï¿½ï¿½');
+Insert into weather (wth_status) values ('ï¿½ï¿½ï¿½É¦hï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½B');
+Insert into weather (wth_status) values ('ï¿½ä­·');
 
---¸Ô²Ó¤Ñ®ð Create--
+--ï¿½Ô²Ó¤Ñ®ï¿½ Create--
 CREATE TABLE weather_detail (
  weather_time TIMESTAMP(6) NOT NULL,
  weather_place VARCHAR2(30) NOT NULL,
@@ -106,12 +106,12 @@ CREATE TABLE weather_detail (
 
 ALTER TABLE weather_detail ADD CONSTRAINT PK_weather_detail PRIMARY KEY (weather_time,weather_place);
 
---¸Ô²Ó¤Ñ®ð¦³­Ó¥~Áä¦b¤Ñ®ð--
+--ï¿½Ô²Ó¤Ñ®ð¦³­Ó¥~ï¿½ï¿½bï¿½Ñ®ï¿½--
 ALTER TABLE weather_detail ADD CONSTRAINT FK_weather_detail FOREIGN KEY (wth_status) REFERENCES weather (wth_status);
 
---¸Ô²Ó¤Ñ®ð °²¸ê®Æ--
-Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 06:00:00', 'YYYY-MM-DD HH24:MI:SS'), '®ç¶é¥«','´¸');
-Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 12:00:00', 'YYYY-MM-DD HH24:MI:SS'), '®ç¶é¥«','«B');
-Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), '®ç¶é¥«','³±');
-Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 06:00:00', 'YYYY-MM-DD HH24:MI:SS'), '°ª¶¯¥«','´¸®É¦h¶³°¸°}«B');
-Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 12:00:00', 'YYYY-MM-DD HH24:MI:SS'), '°ª¶¯¥«','»ä­·');
+--ï¿½Ô²Ó¤Ñ®ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½--
+Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 06:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ï¿½ï¿½é¥«','ï¿½ï¿½');
+Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 12:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ï¿½ï¿½é¥«','ï¿½B');
+Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ï¿½ï¿½é¥«','ï¿½ï¿½');
+Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 06:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½É¦hï¿½ï¿½ï¿½ï¿½ï¿½}ï¿½B');
+Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 12:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ä­·');

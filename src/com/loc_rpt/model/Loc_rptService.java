@@ -38,10 +38,10 @@ public class Loc_rptService {
 		return loc_rptVO_update;
 	}
 	
-	public Loc_rptVO updateLoc_rptByCmtNo(String loc_rpt_no, String rpt_reason, Integer loc_status, String loc_no, String mb_id) {
+	public Loc_rptVO updateLoc_rptByLocNo(String loc_rpt_no, String rpt_reason, Integer rpt_status, String loc_no, String mb_id) {
 		// 改
 		Loc_rptVO loc_rptVO_update = new Loc_rptVO();
-		loc_rptVO_update.setRpt_status(loc_status);
+		loc_rptVO_update.setRpt_status(rpt_status);
 		loc_rptVO_update.setLoc_no(loc_no);
 		dao.updateByLocNo(loc_rptVO_update);
 		loc_rptVO_update.setRpt_reason(rpt_reason);
@@ -64,9 +64,8 @@ public class Loc_rptService {
 	
 	public List<Loc_rptVO> getByMb_id(String mb_id) {
 		Map<String, String[]> map = new HashMap<>();
-		String str = "'" + mb_id + "'";
-		map.put("mb_id", new String[] { str });
-		return dao.getAllUWish(map);
+		map.put("mb_id", new String[] { mb_id });
+		return dao.getAllUWish(map,"");
 	}
 	
 }

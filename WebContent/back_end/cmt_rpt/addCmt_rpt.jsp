@@ -89,7 +89,7 @@ th, td {
 				</td>
 			</tr>
 			<tr>
-				<td>紀錄編號:</td>
+				<td>留言編號:</td>
 				<td>
 					<input type="TEXT" name="cmt_no" size="45" value="<%=(cmt_rptVO == null) ? "cmt00001" : cmt_rptVO.getCmt_no()%>" />
 				</td>

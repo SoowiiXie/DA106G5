@@ -8,8 +8,9 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
 import com.location.model.*;
+import com.mb.model.MemberService;
+import com.mb.model.MemberVO;
 import com.loc_rpt.model.*;
-import com.mb.model.*;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
 		* 1024 * 1024)
@@ -103,7 +104,7 @@ public class Loc_rptServlet extends HttpServlet {
 				Loc_rptVO loc_rptVO = loc_rptSvc.getOneLoc_rpt(loc_rpt_no);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("loc_rptVO", loc_rptVO); // 資料庫取出的VO物件,存入req
-				String url = "/back_end/loc_rpt/update_cmt_rpt_input.jsp";
+				String url = "/back_end/loc_rpt/update_loc_rpt_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update__input.jsp
 				successView.forward(req, res);
 				/*************************** 其他可能的錯誤處理 **********************************/
@@ -145,7 +146,7 @@ public class Loc_rptServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("loc_rptVO", loc_rptVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/loc_rpt/update_cmt_rpt_input.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/loc_rpt/update_loc_rpt_input.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -238,43 +239,39 @@ public class Loc_rptServlet extends HttpServlet {
 					rpt_status=3;
 				}else if(rpt_status==2){//如果是成功(2)，就改成失敗(3)，被檢舉會員的被檢舉總次數-1
 					rpt_status=3;
-					/*************************** 找到被檢舉的人 ****************************************/
+					/*************************** 找到檢舉成功的人給獎勵(LV+1) ****************************************/
 					MemberService memberSvc = new MemberService();
 					MemberVO memberVO = memberSvc.getOneMember(mb_id);
-					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_line(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv(), memberVO.getMb_rpt_times()-1, memberVO.getMb_status());
-					/*************************** 把被檢舉的留言上架(1) ****************************************/
-					CmtService cmtSvc = new CmtService();
-					CmtVO cmtVO = cmtSvc.getOneCmt(cmt_no);
-					cmtSvc.updateCmt(cmtVO.getCmt_content(), 1, cmtVO.getCmt_no(), cmtVO.getCmt_time(), cmtVO.getRcd_no(), cmtVO.getMb_id());
+					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_line(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv()+1, memberVO.getMb_rpt_times(), memberVO.getMb_status());
+					/*************************** 把被檢舉的地標上架(1) ****************************************/
+					LocationService locationSvc = new LocationService();
+					LocationVO locationVO = locationSvc.getOneLocation(loc_no);
+					locationSvc.updateLocation(locationVO.getLoc_no(), locationVO.getLoc_typeno(), locationVO.getLongitude(), locationVO.getLatitude(), 1, locationVO.getLoc_address(), locationVO.getLoc_pic());
 				}else {//剩下的情況就是失敗(3)，改成成功(2)，被檢舉會員的被檢舉總次數+1
 					rpt_status=2;
-					/*************************** 找到被檢舉的人 ****************************************/
-					MemberService memberSvc = new MemberService();
-					MemberVO memberVO = memberSvc.getOneMember(mb_id);
-					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_line(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv(), memberVO.getMb_rpt_times()+1, memberVO.getMb_status());
-					/*************************** 把被檢舉的留言下架(2) ****************************************/
-					CmtService cmtSvc = new CmtService();
-					CmtVO cmtVO = cmtSvc.getOneCmt(cmt_no);
-					cmtSvc.updateCmt(cmtVO.getCmt_content(), 2, cmtVO.getCmt_no(), cmtVO.getCmt_time(), cmtVO.getRcd_no(), cmtVO.getMb_id());
+					/*************************** 把被檢舉的地標下架(2) ****************************************/
+					LocationService locationSvc = new LocationService();
+					LocationVO locationVO = locationSvc.getOneLocation(loc_no);
+					locationSvc.updateLocation(locationVO.getLoc_no(), locationVO.getLoc_typeno(), locationVO.getLongitude(), locationVO.getLatitude(), 2, locationVO.getLoc_address(), locationVO.getLoc_pic());
 				}
-				Cmt_rptVO cmt_rptVO = new Cmt_rptVO();
-				cmt_rptVO.setCmt_rpt_no(cmt_rpt_no);
-				cmt_rptVO.setRpt_reason(rpt_reason);
-				cmt_rptVO.setRpt_status(rpt_status);
-				cmt_rptVO.setCmt_no(cmt_no);
-				cmt_rptVO.setMb_id(mb_id);
+				Loc_rptVO loc_rptVO = new Loc_rptVO();
+				loc_rptVO.setLoc_rpt_no(loc_rpt_no);
+				loc_rptVO.setRpt_reason(rpt_reason);
+				loc_rptVO.setRpt_status(rpt_status);
+				loc_rptVO.setLoc_no(loc_no);
+				loc_rptVO.setMb_id(mb_id);
 				/*************************** 2.開始修改資料 *****************************************/
-				Cmt_rptService cmt_rptSvc = new Cmt_rptService();
-				cmt_rptVO = cmt_rptSvc.updateCmt_rptByCmtNo(cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id);
+				Loc_rptService loc_rptSvc = new Loc_rptService();
+				loc_rptVO = loc_rptSvc.updateLoc_rptByLocNo(loc_rpt_no, rpt_reason, rpt_status, loc_no, mb_id);
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				String url ="/back_end/cmt_rpt/listAllCmt_rpt.jsp";
+				String url ="/back_end/loc_rpt/listAllLoc_rpt.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/cmt_rpt/listAllCmt_rpt.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/loc_rpt/listAllLoc_rpt.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -290,33 +287,33 @@ public class Loc_rptServlet extends HttpServlet {
 				String mb_id = req.getParameter("mb_id");
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/cmt_rpt/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/loc_rpt/select_page.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 	
 				/*************************** 2.開始查詢資料 *****************************************/
-				Cmt_rptService cmt_rptSvc = new Cmt_rptService();
-				List<Cmt_rptVO> cmt_rptVO_list =cmt_rptSvc.getByMb_id(mb_id);
-				if (cmt_rptVO_list == null) {
+				Loc_rptService loc_rptSvc = new Loc_rptService();
+				List<Loc_rptVO> loc_rptVO_list =loc_rptSvc.getByMb_id(mb_id);
+				if (loc_rptVO_list == null) {
 					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/cmt_rpt/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/loc_rpt/select_page.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("cmt_rptVO_list", cmt_rptVO_list); // 資料庫取出的VO物件,存入req
-				String url = "/back_end/cmt_rpt/listAllUWish.jsp";
+				req.setAttribute("loc_rptVO_list", loc_rptVO_list); // 資料庫取出的VO物件,存入req
+				String url = "/back_end/loc_rpt/listAllUWish.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 				
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/cmt_rpt/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/loc_rpt/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}

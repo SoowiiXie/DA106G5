@@ -17,5 +17,5 @@ public interface Loc_rpt_interface {
 	public List<Loc_rptVO> getAll();
 
 	// 萬用型
-	public List<Loc_rptVO> getAllUWish(Map<String, String[]> map);
+	public List<Loc_rptVO> getAllUWish(Map<String, String[]> map, String orderBy);
 }
