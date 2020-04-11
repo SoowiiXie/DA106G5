@@ -48,7 +48,7 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllGroup_rpt.jsp'>List</a> all Groups.  <br><br></li>
+  <li><a href='listAllGroupRpt.jsp'>List</a> all Groups.  <br><br></li>
   
   
   <li>
@@ -74,14 +74,14 @@
        <input type="submit" value="送出">
     </FORM>
   </li>
-  
+</ul>  
 
 
 
 <h3>揪團檢舉管理</h3>
 
 <ul>
-  <li><a href='addGroupRpt.jsp'>Add</a> a new GroupRpt.</li>
+  <li><a href='addGroupRpt.jsp'>新增</a> 一則新的揪團檢舉.</li>
 </ul>
 
 </body>

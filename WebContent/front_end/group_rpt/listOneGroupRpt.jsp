@@ -1,14 +1,14 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
-<%@ page import="com.grouper.model.*"%>
-<%-- ¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È --%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.group_rpt.model.*"%>
+<%-- æ­¤é æš«ç·´ç¿’æŽ¡ç”¨ Script çš„å¯«æ³•å–å€¼ --%>
 
 <%
-	GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO"); //EmpServlet.java(Concroller), ¦s¤JreqªºempVOª«¥ó
+	Group_rptVO group_rptVO = (Group_rptVO) request.getAttribute("group_rptVO"); //EmpServlet.java(Concroller), å­˜å…¥reqçš„empVOç‰©ä»¶
 %>
 
 <html>
 <head>
-<title>­û¤u¸ê®Æ - listOneEmp.jsp</title>
+<title>å“¡å·¥è³‡æ–™ - listOneEmp.jsp</title>
 
 <style>
   table#table-1 {
@@ -46,46 +46,29 @@
 </head>
 <body bgcolor='white'>
 
-<h4>¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È:</h4>
+<h4>æ­¤é æš«ç·´ç¿’æŽ¡ç”¨ Script çš„å¯«æ³•å–å€¼:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>´ª¹Î¸ê®Æ - ListOneGroup.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>æªåœ˜è³‡æ–™ - ListOneGroupRpt.jsp</h3>
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›žé¦–é </a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>´ª¹Î½s¸¹</th>
-		<th>µo°_¤H·|­û½s¸¹</th>
-		<th>¦a¼Ð½s¸¹</th>
-		<th>³ø¦W¶}©l®É¶¡</th>
-		<th>³ø¦Wµ²§ô®É¶¡</th>
-		<th>¬¡°Ê¶}©l®É¶¡</th>
-		<th>¬¡°Êµ²§ô®É¶¡</th>
-		<th>´ª¹Î¼ÐÃD</th>
-		<th>´ª¹Î¤º®e</th>
-		<th>¤H¼Æ¤W­­</th>
-		<th>¤H¼Æ¤U­­</th>
-		<th>¥Ø«e¤H¼Æ</th>
-		<th>´ª¹Îª¬ºA</th>
-		<th>Ãöª`´ª¹Î¼Æ¶q</th>
+		<th>æª¢èˆ‰æªåœ˜ç·¨è™Ÿ</th>
+		<th>æªåœ˜ç·¨è™Ÿ</th>
+		<th>æª¢èˆ‰æœƒå“¡ç·¨è™Ÿ</th>
+		<th>æª¢èˆ‰åŽŸå› </th>
+		<th>è™•ç†ç‹€æ…‹</th>
+
 	</tr>
 	<tr>
-		<td><%=grouperVO.getGrp_no()%></td>
-		<td><%=grouperVO.getMb_id()%></td>
-		<td><%=grouperVO.getLoc_no()%></td>
-		<td><%=grouperVO.getGrp_applystart()%></td>
-		<td><%=grouperVO.getGrp_applyend()%></td>
-		<td><%=grouperVO.getGrp_start()%></td>
-		<td><%=grouperVO.getGrp_end()%></td>
-		<td><%=grouperVO.getGrp_name()%></td>
-		<td><%=grouperVO.getGrp_content()%></td>
-		<td><%=grouperVO.getGrp_personmax()%></td>
-		<td><%=grouperVO.getGrp_personmin()%></td>
-		<td><%=grouperVO.getGrp_personcount()%></td>
-		<td><%=grouperVO.getGrp_status()%></td>
-		<td><%=grouperVO.getGrp_follow()%></td>
+		<td><%=group_rptVO.getGroup_rpt_no()%></td>
+		<td><%=group_rptVO.getGrp_no()%></td>
+		<td><%=group_rptVO.getMb_id()%></td>
+		<td><%=group_rptVO.getRpt_reason()%></td>
+		<td><%=group_rptVO.getRpt_status()%></td>
 	</tr>
 	
 </table>

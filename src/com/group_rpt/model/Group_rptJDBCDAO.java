@@ -289,7 +289,7 @@ public class Group_rptJDBCDAO implements Group_rptDAO_interface {
 
 		Group_rptJDBCDAO dao = new Group_rptJDBCDAO();
 
-		// 增
+//		// 增
 //		Group_rptVO group_rptVO1 = new Group_rptVO();
 ////		group_rptVO1.setGroup_rpt_no(new Double(500));
 //		group_rptVO1.setGrp_no("grp00002");
@@ -297,18 +297,18 @@ public class Group_rptJDBCDAO implements Group_rptDAO_interface {
 //		group_rptVO1.setRpt_reason("");
 //		group_rptVO1.setRpt_status(1);
 //		dao.insert(group_rptVO1);
-
+//
 //		// 改
 //		Group_rptVO group_rptVO2 = new Group_rptVO();
-//		group_rptVO2.setGroup_rpt_no("grr00007");
+//		group_rptVO2.setGroup_rpt_no("grr00009");
 //		group_rptVO2.setGrp_no("grp00005");
 //		group_rptVO2.setMb_id("vain123");
 //		group_rptVO2.setRpt_reason("");		
 //		group_rptVO2.setRpt_status(2);
 //		dao.update(group_rptVO2);
-
+//
 //		// 刪
-//		dao.delete("grr00006");
+//		dao.delete("grr00007");
 //
 //		// 查
 //		Group_rptVO group_rptVO3 = dao.findByPrimaryKey("grr00002");
@@ -319,15 +319,15 @@ public class Group_rptJDBCDAO implements Group_rptDAO_interface {
 //		System.out.println(group_rptVO3.getRpt_status());
 //		System.out.println("---------------------");
 //
-		// 查全部
-		List<Group_rptVO> list = dao.getAll();
-		for (Group_rptVO aGroup_rpt : list) {
-			System.out.print(aGroup_rpt.getGroup_rpt_no() + ",");
-			System.out.print(aGroup_rpt.getGrp_no() + ",");			
-			System.out.print(aGroup_rpt.getMb_id() + ",");
-			System.out.print(aGroup_rpt.getRpt_reason() + ",");
-			System.out.print(aGroup_rpt.getRpt_status());
-			System.out.println();
-		}
+//		// 查全部
+//		List<Group_rptVO> list = dao.getAll();
+//		for (Group_rptVO aGroup_rpt : list) {
+//			System.out.print(aGroup_rpt.getGroup_rpt_no() + ",");
+//			System.out.print(aGroup_rpt.getGrp_no() + ",");			
+//			System.out.print(aGroup_rpt.getMb_id() + ",");
+//			System.out.print(aGroup_rpt.getRpt_reason() + ",");
+//			System.out.print(aGroup_rpt.getRpt_status());
+//			System.out.println();
+//		}
 	}
 }
