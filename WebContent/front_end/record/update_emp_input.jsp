@@ -65,7 +65,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="emp.do" name="form1">
+<FORM METHOD="post" ACTION="record.do" name="form1">
 <table>
 	<tr>
 		<td>紀錄編號:<font color=red><b>*</b></font></td>
@@ -73,29 +73,29 @@
 	</tr>
 	<tr>
 		<td>上傳時間:</td>
-		<td><input name="hiredate" id="f_date1" type="text" ></td>
+		<td><input name="rcd_uploadtime" id="f_date1" type="text" ></td>
 	</tr>
 	<tr>
 		<td>上傳內容:</td>
-		<td><input type="TEXT" name="job" size="45"	value="<%=recordVO.getRcd_content()%>" /></td>
+		<td><input type="TEXT" name="rcd_content" size="45"	value="<%=recordVO.getRcd_content()%>" /></td>
 	</tr>
 	<tr>
 		<td>按讚數:</td>
-		<td><%=recordVO.getRcd_thumb_amount()%></td>
+		<td><%=recordVO.getRcd_thumb_amount()%><input type="hidden" name="rcd_thumb_amount" value="<%=recordVO.getRcd_thumb_amount()%>"></td>
 	</tr>
 	<tr>
 		<td>METOO數:</td>
-		<td><%=recordVO.getRcd_metoo_amount()%></td>
+		<td><%=recordVO.getRcd_metoo_amount()%><input type="hidden" name="rcd_metoo_amount" value="<%=recordVO.getRcd_metoo_amount()%>"></td>
 	</tr>
 	<tr>
 		<td>狀態:</td>
-		<td><input type="TEXT" name="comm" size="45" value="<%=recordVO.getRcd_status()%>" /></td>
+		<td><input type="TEXT" name="rcd_status" size="45" value="<%=recordVO.getRcd_status()%>" /></td>
 	</tr>
 
 	<jsp:useBean id="path" scope="page" class="com.path.model.PathService" />
 	<tr>
 		<td>路徑編號:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="pathno">
+		<td><select size="1" name="path_no">
 			<c:forEach var="PathVO" items="${path.all}">
 				<option value="${PathVO.path_no}" ${(PathVO.path_no==PathVO.path_no)?'selected':'' } >${PathVO.path_no}
 			</c:forEach>
@@ -103,13 +103,13 @@
 	</tr>
 	<tr>
 		<td>上傳會員編號:</td>
-		<td><%=recordVO.getMb_id()%></td>
+		<td><%=recordVO.getMb_id()%><input type="hidden" name="mb_id" value="<%=recordVO.getMb_id()%>"></td>
 	</tr>
 
 </table>
 <br>
 <input type="hidden" name="action" value="update">
-<input type="hidden" name="empno" value="<%=recordVO.getRcd_no()%>">
+<input type="hidden" name="rcd_no" value="<%=recordVO.getRcd_no()%>">
 <input type="submit" value="送出修改"></FORM>
 </body>
 

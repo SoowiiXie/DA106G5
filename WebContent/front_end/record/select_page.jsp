@@ -52,7 +52,7 @@
   	
   
   <li>
-    <FORM METHOD="post" ACTION="emp.do" >
+    <FORM METHOD="post" ACTION="record.do" >
         <b>輸入紀錄編號 (如rcd00001):</b>
         <input type="text" name="rcd_no">
         <input type="hidden" name="action" value="getOne_For_Display">
@@ -60,13 +60,13 @@
     </FORM>
   </li>
 
-  <jsp:useBean id="rcdSvc" scope="page" class="com.record.model.RecordService" />
+  <jsp:useBean id="RcdSvc" scope="page" class="com.record.model.RecordService" />
    
   <li>
-     <FORM METHOD="post" ACTION="emp.do" >
+     <FORM METHOD="post" ACTION="record.do" >
        <b>選擇紀錄編號:</b>
        <select size="1" name="rcd_no">
-         <c:forEach var="recordVO" items="${rcdSvc.all}" > 
+         <c:forEach var="recordVO" items="${RcdSvc.all}" > 
           <option value="${recordVO.rcd_no}">${recordVO.rcd_no}
          </c:forEach>   
        </select>

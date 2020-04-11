@@ -65,7 +65,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="emp.do" name="form1">
+<FORM METHOD="post" ACTION="record.do" name="form1">
 <table>
 	<tr>
 		<td>上傳日期:</td>

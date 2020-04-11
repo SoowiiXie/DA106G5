@@ -6,7 +6,7 @@ public class RecordService {
 	private RecordDAO_interface dao;//為了框架所以使用介面多型宣告,可以做到0相依性
 
 	public RecordService() {
-		dao = new RecordJDBCDAO();
+		dao = new RecordJNDIDAO();
 	}
 
 	public RecordVO addRecord(java.sql.Date rcd_uploadtime, String rcd_content, String path_no, String mb_id) {
@@ -17,11 +17,10 @@ public class RecordService {
 		recordVO.setRcd_content(rcd_content);
 		recordVO.setPath_no(path_no);
 		recordVO.setMb_id(mb_id);
-		System.out.println("here");
-		System.out.println(recordVO.getMb_id());
+//System.out.println("here");
+//System.out.println(recordVO.getMb_id());
 		dao.insert(recordVO);
 		
-
 		return recordVO;
 	}
 
@@ -35,6 +34,9 @@ public class RecordService {
 		recordVO.setRcd_status(rcd_status);
 		recordVO.setPath_no(path_no);
 		dao.update(recordVO);
+//		recordVO.setRcd_thumb_amount(rcd_thumb_amount);
+//		recordVO.setRcd_metoo_amount(rcd_metoo_amount);
+//		recordVO.setMb_id(mb_id);
 		return recordVO;
 	}
 
@@ -43,7 +45,7 @@ public class RecordService {
 	}
 
 	public RecordVO getOneRecord(String rcd_no) {
-//		System.out.println(rcd_no);
+//System.out.println(rcd_no);
 		return dao.findByPrimaryKey(rcd_no);
 	}
 
