@@ -19,6 +19,7 @@ import javax.servlet.http.Part;
 
 import com.location.model.LocationService;
 import com.location.model.LocationVO;
+import com.mb.model.MemberDAO;
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
 
@@ -77,7 +78,7 @@ public class MemberServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
-
+				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
 				String url = "/front_end/member/listOneMember.jsp";  // 

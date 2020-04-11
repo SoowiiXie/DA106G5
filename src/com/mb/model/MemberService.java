@@ -54,4 +54,8 @@ private MemberDAO_interface dao;
 	public List<MemberVO> getAll() {
 		return dao.getAll();
 	}
+	// 被檢舉次數+1
+	public String addOneToRptTime(String mb_id) {
+		return dao.addOneToRptTime(mb_id);
+	}
 }
