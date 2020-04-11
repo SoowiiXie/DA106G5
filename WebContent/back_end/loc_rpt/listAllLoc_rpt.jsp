@@ -2,15 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.cmt_rpt.model.Cmt_rptVO"%>
-<%@ page import="com.cmt_rpt.model.Cmt_rptService"%>
-<%@ page import="com.cmt_rpt.model.*"%>
+<%@ page import="com.loc_rpt.model.Loc_rptVO"%>
+<%@ page import="com.loc_rpt.model.Loc_rptService"%>
+<%@ page import="com.loc_rpt.model.*"%>
 <%@ page import="com.mb.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-	Cmt_rptService cmt_rptSvc = new Cmt_rptService();
-	List<Cmt_rptVO> list = cmt_rptSvc.getAll();
+	Loc_rptService loc_rptSvc = new Loc_rptService();
+	List<Loc_rptVO> list = loc_rptSvc.getAll();
 	pageContext.setAttribute("list", list);
 	MemberService memberSvc = new MemberService();
 %>
@@ -18,7 +18,7 @@
 
 <html>
 <head>
-<title>所有檢舉資料 - listAllCmt_rpt.jsp</title>
+<title>所有檢舉資料 - listAllLoc_rpt.jsp</title>
 
 <style>
 table#table-1 {
@@ -64,10 +64,10 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>所有留言檢舉資料 - listAllCmt_rpt.jsp</h3>
+				<h3>所有地標檢舉資料 - listAllLoc_rpt.jsp</h3>
 				<h4>
-					<a href="<%= request.getContextPath() %>/back_end/cmt_rpt/select_page.jsp">
-						<img src="<%= request.getContextPath() %>/back_end/cmt_rpt/images/back1.gif" width="100" height="32" border="0">
+					<a href="<%= request.getContextPath() %>/back_end/loc_rpt/select_page.jsp">
+						<img src="<%= request.getContextPath() %>/back_end/loc_rpt/images/back1.gif" width="100" height="32" border="0">
 						回首頁
 					</a>
 				</h4>
@@ -90,42 +90,39 @@ th, td {
 			<th>檢舉編號</th>
 			<th>原因</th>
 			<th>檢舉狀態</th>
-			<th>留言編號</th>
+			<th>地標編號</th>
 			<th>檢舉會員</th>
-			<th>被檢舉會員</th>
-			<th>已被檢舉次數</th>
+			<th>檢舉會員等級</th>
 			<th>修改</th>
 			<th>審核</th>
 		</tr>
-		<jsp:useBean id="cmt_rptSvcEL" scope="page" class="com.cmt_rpt.model.Cmt_rptService" />
+		<jsp:useBean id="loc_rptSvcEL" scope="page" class="com.loc_rpt.model.Loc_rptService" />
 		<jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
 		<%@ include file="page1.file"%>
-		<c:forEach var="cmt_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+		<c:forEach var="loc_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 			<tr>
-				<td>${cmt_rptVO.cmt_rpt_no}</td>
-				<td>${cmt_rptVO.rpt_reason}</td>
-				<td>${(cmt_rptVO.rpt_status!=1?(cmt_rptVO.rpt_status==2?'成功':'失敗'):'未審')}</td>
-				<td>${cmt_rptVO.cmt_no}</td>
-				<td>${cmt_rptVO.mb_id}</td>
-				<td>${memberSvcEL.getOneMember(cmt_rptSvcEL.getRptedMb_id(cmt_rptVO.cmt_no)).mb_id}</td>
-<%-- 				<td><%= memberSvc.getOneMember(cmt_rptSvc.getRptedMb_id(cmt_rptVO.getCmt_no())).getMb_name() %></td> --%>
-				<td>${memberSvcEL.getOneMember(cmt_rptSvcEL.getRptedMb_id(cmt_rptVO.cmt_no)).mb_rpt_times}</td>
+				<td>${loc_rptVO.loc_rpt_no}</td>
+				<td>${loc_rptVO.rpt_reason}</td>
+				<td>${(loc_rptVO.rpt_status!=1?(loc_rptVO.rpt_status==2?'成功':'失敗'):'未審')}</td>
+				<td>${loc_rptVO.loc_no}</td>
+				<td>${loc_rptVO.mb_id}</td>
+				<td>${memberSvcEL.getOneMember(loc_rptVO.mb_id).mb_lv}</td>
 				<td>
-					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt_rpt/cmt_rpt.do" style="margin-bottom: 0px;">
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/loc_rpt/loc_rpt.do" style="margin-bottom: 0px;">
 						<input type="submit" value="修改"> 
-						<input type="hidden" name="cmt_rpt_no" value="${cmt_rptVO.cmt_rpt_no}"> 
+						<input type="hidden" name="loc_rpt_no" value="${loc_rptVO.loc_rpt_no}"> 
 						<input type="hidden" name="action" value="getOne_For_Update">
 					</FORM>
 				</td>
 				<td>
-					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt_rpt/cmt_rpt.do" style="margin-bottom: 0px;">
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/loc_rpt/loc_rpt.do" style="margin-bottom: 0px;">
 						<input type="submit" value="失敗/成功"> 
 						<!-- 		//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
-						<input type="hidden" name="cmt_rpt_no" value="${cmt_rptVO.cmt_rpt_no}"> 
-						<input type="hidden" name="rpt_reason" value="${cmt_rptVO.rpt_reason}">
-						<input type="hidden" name="rpt_status" value="${cmt_rptVO.rpt_status}">
-						<input type="hidden" name="cmt_no" value="${cmt_rptVO.cmt_no}">
-						<input type="hidden" name="mb_id" value="${cmt_rptVO.mb_id}">
+						<input type="hidden" name="loc_rpt_no" value="${loc_rptVO.loc_rpt_no}"> 
+						<input type="hidden" name="rpt_reason" value="${loc_rptVO.rpt_reason}">
+						<input type="hidden" name="rpt_status" value="${loc_rptVO.rpt_status}">
+						<input type="hidden" name="loc_no" value="${loc_rptVO.loc_no}">
+						<input type="hidden" name="mb_id" value="${loc_rptVO.mb_id}">
 						<input type="hidden" name="action" value="fakeDelete">
 					</FORM>
 				</td>

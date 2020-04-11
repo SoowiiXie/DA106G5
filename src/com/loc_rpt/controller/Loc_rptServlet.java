@@ -239,16 +239,16 @@ public class Loc_rptServlet extends HttpServlet {
 					rpt_status=3;
 				}else if(rpt_status==2){//如果是成功(2)，就改成失敗(3)，被檢舉會員的被檢舉總次數-1
 					rpt_status=3;
-					/*************************** 找到檢舉成功的人給獎勵(LV+1) ****************************************/
-					MemberService memberSvc = new MemberService();
-					MemberVO memberVO = memberSvc.getOneMember(mb_id);
-					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_line(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv()+1, memberVO.getMb_rpt_times(), memberVO.getMb_status());
 					/*************************** 把被檢舉的地標上架(1) ****************************************/
 					LocationService locationSvc = new LocationService();
 					LocationVO locationVO = locationSvc.getOneLocation(loc_no);
 					locationSvc.updateLocation(locationVO.getLoc_no(), locationVO.getLoc_typeno(), locationVO.getLongitude(), locationVO.getLatitude(), 1, locationVO.getLoc_address(), locationVO.getLoc_pic());
 				}else {//剩下的情況就是失敗(3)，改成成功(2)，被檢舉會員的被檢舉總次數+1
 					rpt_status=2;
+					/*************************** 找到檢舉成功的人給獎勵(LV+1) ****************************************/
+					MemberService memberSvc = new MemberService();
+					MemberVO memberVO = memberSvc.getOneMember(mb_id);
+					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_line(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv()+1, memberVO.getMb_rpt_times(), memberVO.getMb_status());
 					/*************************** 把被檢舉的地標下架(2) ****************************************/
 					LocationService locationSvc = new LocationService();
 					LocationVO locationVO = locationSvc.getOneLocation(loc_no);

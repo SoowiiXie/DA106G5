@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>DA106G5 Cmt_rpt: Home</title>
+<title>DA106G5 Loc_rpt: Home</title>
 
 <style>
 table#table-1 {
@@ -33,12 +33,12 @@ h4 {
 
 	<table id="table-1">
 		<tr>
-			<td><h3>DA106G5 Cmt_rpt: Home</h3>
+			<td><h3>DA106G5 Loc_rpt: Home</h3>
 				<h4>( MVC )</h4></td>
 		</tr>
 	</table>
 
-	<p>This is the Home page for DA106G5 Cmt_rpt: Home</p>
+	<p>This is the Home page for DA106G5 Loc_rpt: Home</p>
 
 	<h3>資料查詢:</h3>
 
@@ -53,38 +53,38 @@ h4 {
 	</c:if>
 
 	<ul>
-		<li><a href='listAllCmt_rpt.jsp'>List</a> all Cmt_rpt. <br>
+		<li><a href='listAllLoc_rpt.jsp'>List</a> all Loc_rpt. <br>
 		<br></li>
 
-<!--//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
+<!--//loc_rpt_no, rpt_reason, rpt_status, loc_no, mb_id -->
 		<li>
-			<FORM METHOD="post" ACTION="cmt_rpt.do">
-				<b>輸入留言檢舉編號 (如cmtr00001):</b> 
-				<input type="text" name="cmt_rpt_no">
+			<FORM METHOD="post" ACTION="loc_rpt.do">
+				<b>輸入地標檢舉編號 (如locr00001):</b> 
+				<input type="text" name="loc_rpt_no">
 				<input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
-		<jsp:useBean id="cmt_rptSvc" scope="page" class="com.cmt_rpt.model.Cmt_rptService" />
+		<jsp:useBean id="loc_rptSvc" scope="page" class="com.loc_rpt.model.Loc_rptService" />
 		<jsp:useBean id="mbSvc" scope="page" class="com.mb.model.MemberService" />
 
 		<li>
-			<FORM METHOD="post" ACTION="cmt_rpt.do">
-				<b>選擇留言檢舉編號:</b> 
-				<select size="1" name="cmt_rpt_no">
-					<c:forEach var="cmt_rptVO" items="${cmt_rptSvc.all}">
-						<option value="${cmt_rptVO.cmt_rpt_no}">${cmt_rptVO.cmt_rpt_no}
+			<FORM METHOD="post" ACTION="loc_rpt.do">
+				<b>選擇地標檢舉編號:</b> 
+				<select size="1" name="loc_rpt_no">
+					<c:forEach var="loc_rptVO" items="${loc_rptSvc.all}">
+						<option value="${loc_rptVO.loc_rpt_no}">${loc_rptVO.loc_rpt_no}
 					</c:forEach>
 				</select> <input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
 		<li>
-			<FORM METHOD="post" ACTION="cmt_rpt.do">
+			<FORM METHOD="post" ACTION="loc_rpt.do">
 				<b>選擇欲查詢的會員:</b> 
 				<select size="1" name="mb_id">
-					<c:forEach var="cmt_rptVO" items="${mbSvc.all}">
-						<option value="${cmt_rptVO.mb_id}">${cmt_rptVO.mb_id}
+					<c:forEach var="loc_rptVO" items="${mbSvc.all}">
+						<option value="${loc_rptVO.mb_id}">${loc_rptVO.mb_id}
 					</c:forEach>
 				</select> 
 				<input type="hidden" name="action" value="getByMb_id">
