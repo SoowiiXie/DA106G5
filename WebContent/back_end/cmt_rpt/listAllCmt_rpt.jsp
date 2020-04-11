@@ -89,10 +89,11 @@ th, td {
 		<tr>
 			<th>檢舉編號</th>
 			<th>原因</th>
-			<th>狀態</th>
+			<th>檢舉狀態</th>
 			<th>留言編號</th>
 			<th>檢舉會員</th>
 			<th>被檢舉會員</th>
+			<th>已被檢舉次數</th>
 			<th>修改</th>
 			<th>審核</th>
 		</tr>
@@ -108,6 +109,7 @@ th, td {
 				<td>${cmt_rptVO.mb_id}</td>
 				<td>${memberSvcEL.getOneMember(cmt_rptSvcEL.getRptedMb_id(cmt_rptVO.cmt_no)).mb_id}</td>
 <%-- 				<td><%= memberSvc.getOneMember(cmt_rptSvc.getRptedMb_id(cmt_rptVO.getCmt_no())).getMb_name() %></td> --%>
+				<td>${memberSvcEL.getOneMember(cmt_rptSvcEL.getRptedMb_id(cmt_rptVO.cmt_no)).mb_rpt_times}</td>
 				<td>
 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt_rpt/cmt_rpt.do" style="margin-bottom: 0px;">
 						<input type="submit" value="修改"> 
