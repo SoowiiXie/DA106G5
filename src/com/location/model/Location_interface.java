@@ -17,5 +17,5 @@ public interface Location_interface {
 	public Set<LocationVO> getLocationByLoc_typeno(String loc_typeno);
 	
 	// 萬用型
-		public List<LocationVO> getAllUWish(Map<String, String[]> map);
+		public List<LocationVO> getAllUWish(Map<String, String[]> map, String orderBy);
 }

@@ -7,7 +7,9 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import com.cmt.model.*;
 import com.cmt_rpt.model.*;
+import com.mb.model.*;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
 		* 1024 * 1024)
@@ -151,7 +153,6 @@ public class Cmt_rptServlet extends HttpServlet {
 				/*************************** 2.開始修改資料 *****************************************/
 				Cmt_rptService cmt_rptSvc = new Cmt_rptService();
 				cmt_rptVO = cmt_rptSvc.updateCmt_rpt(cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id);
-
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("cmt_rptVO", cmt_rptVO); // 資料庫update成功後,正確的的VO物件,存入req
 				String url = "/back_end/cmt_rpt/listOneCmt_rpt.jsp";
@@ -230,27 +231,44 @@ public class Cmt_rptServlet extends HttpServlet {
 //				String loc_no = new String(req.getParameter("loc_no").trim());
 				String cmt_rpt_no =req.getParameter("cmt_rpt_no");
 				String rpt_reason = req.getParameter("rpt_reason");
-				Integer rpt_status = new Integer(req.getParameter("rpt_status").trim());
-				if (rpt_status==2) {
-					rpt_status=3;
-				}else {
-					rpt_status=2;
-				}
 				String cmt_no = req.getParameter("cmt_no").trim();
 				String mb_id = req.getParameter("mb_id").trim();
-
+				Integer rpt_status = new Integer(req.getParameter("rpt_status").trim());
+				if (rpt_status==1) {//如果是未審(1)，就改成失敗(3)，被檢舉會員的被檢舉總次數不變
+					rpt_status=3;
+				}else if(rpt_status==2){//如果是成功(2)，就改成失敗(3)，被檢舉會員的被檢舉總次數-1
+					rpt_status=3;
+					/*************************** 找到被檢舉的人 ****************************************/
+					MemberService memberSvc = new MemberService();
+					Cmt_rptService cmt_rptSrv = new Cmt_rptService();
+					MemberVO memberVO = memberSvc.getOneMember(cmt_rptSrv.getRptedMb_id(cmt_no));
+					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_line(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv(), memberVO.getMb_rpt_times()-1, memberVO.getMb_status());
+					/*************************** 把被檢舉的留言上架(1) ****************************************/
+					CmtService cmtSvc = new CmtService();
+					CmtVO cmtVO = cmtSvc.getOneCmt(cmt_no);
+					cmtSvc.updateCmt(cmtVO.getCmt_content(), 1, cmtVO.getCmt_no(), cmtVO.getCmt_time(), cmtVO.getRcd_no(), cmtVO.getMb_id());
+				}else {//剩下的情況就是失敗(3)，改成成功(2)，被檢舉會員的被檢舉總次數+1
+					rpt_status=2;
+					/*************************** 找到被檢舉的人 ****************************************/
+					MemberService memberSvc = new MemberService();
+					Cmt_rptService cmt_rptSrv = new Cmt_rptService();
+					MemberVO memberVO = memberSvc.getOneMember(cmt_rptSrv.getRptedMb_id(cmt_no));
+					System.out.println(memberSvc.addOneToRptTime(memberVO.getMb_id()));
+					/*************************** 把被檢舉的留言下架(2) ****************************************/
+					CmtService cmtSvc = new CmtService();
+					CmtVO cmtVO = cmtSvc.getOneCmt(cmt_no);
+					cmtSvc.updateCmt(cmtVO.getCmt_content(), 2, cmtVO.getCmt_no(), cmtVO.getCmt_time(), cmtVO.getRcd_no(), cmtVO.getMb_id());
+				}
 				Cmt_rptVO cmt_rptVO = new Cmt_rptVO();
 				cmt_rptVO.setCmt_rpt_no(cmt_rpt_no);
 				cmt_rptVO.setRpt_reason(rpt_reason);
 				cmt_rptVO.setRpt_status(rpt_status);
 				cmt_rptVO.setCmt_no(cmt_no);
 				cmt_rptVO.setMb_id(mb_id);
-
 				/*************************** 2.開始修改資料 *****************************************/
 				Cmt_rptService cmt_rptSvc = new Cmt_rptService();
-				cmt_rptVO = cmt_rptSvc.updateCmt_rpt(cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id);
+				cmt_rptVO = cmt_rptSvc.updateCmt_rptByCmtNo(cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id);
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("cmt_rptVO", cmt_rptVO); // 資料庫update成功後,正確的的VO物件,存入req
 				String url ="/back_end/cmt_rpt/listAllCmt_rpt.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);

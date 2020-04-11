@@ -76,6 +76,37 @@
 		</servlet-mapping>
 	<!-- 地標結束 -->
 	
+	<!-- 地標檢舉開始 -->
+		<servlet>
+			<servlet-name>Loc_rptTest</servlet-name>
+			<servlet-class>com.loc_rpt.model.Loc_rptTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Loc_rptTest</servlet-name>
+			<url-pattern>/Loc_rptTest</url-pattern>
+		</servlet-mapping>
+	
+	
+		<servlet>
+			<servlet-name>Loc_rptServlet</servlet-name>
+			<servlet-class>com.loc_rpt.controller.Loc_rptServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Loc_rptServlet</servlet-name>
+			<url-pattern>/back_end/loc_rpt/loc_rpt.do</url-pattern>
+		</servlet-mapping>
+
+	
+		<servlet>
+			<servlet-name>Loc_rptServletAll</servlet-name>
+			<servlet-class>com.loc_rpt.controller.Loc_rptServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Loc_rptServletAll</servlet-name>
+			<url-pattern>/loc_rpt/loc_rpt.do</url-pattern>
+		</servlet-mapping>
+	<!-- 地標檢舉結束 -->
+	
 	<!-- 天氣開始 -->
 		<servlet>
 			<servlet-name>Weather_detailTest</servlet-name>
@@ -254,6 +285,17 @@
 			<servlet-name>RecordServlet</servlet-name>
 			<url-pattern>/record/record.do</url-pattern>
 		</servlet-mapping>
+		
+		
+		
+		<servlet>
+			<servlet-name>MemberServlet</servlet-name>
+			<servlet-class>android.com.mb.controller.MemberServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>MemberServlet</servlet-name>
+			<url-pattern>/android/member.do</url-pattern>
+		</servlet-mapping>
 <!-- 麥克責任區結束 -->
 
 <!-- 昱盛責任區開始 -->
@@ -288,11 +330,11 @@
 	<!-- 會員開始 -->
 	
 		<servlet>
-			<servlet-name>MemberServlet</servlet-name>
+			<servlet-name>AndroidMemberServlet</servlet-name>
 			<servlet-class>com.mb.controller.MemberServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
-			<servlet-name>MemberServlet</servlet-name>
+			<servlet-name>AndroidMemberServlet</servlet-name>
 			<url-pattern>/front_end/member/member.do</url-pattern>
 		</servlet-mapping>
 		

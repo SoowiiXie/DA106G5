@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,7 +114,7 @@ public class LocationTest extends HttpServlet {
 		// 查
 		Map<String, String[]> map = new HashMap<>();
 		map.put("loc_typeno", new String[] { "1","2" });
-		List<LocationVO> all_map = dao.getAllUWish(map);
+		ArrayList<LocationVO> all_map = (ArrayList<LocationVO>) dao.getAllUWish(map,"loc_address");
 		for (LocationVO locationVO : all_map) {
 			System.out.println(locationVO.getLoc_no() + "," + locationVO.getLoc_typeno() + ","
 					+ locationVO.getLongitude() + "," + locationVO.getLatitude() + "," + locationVO.getLoc_status()

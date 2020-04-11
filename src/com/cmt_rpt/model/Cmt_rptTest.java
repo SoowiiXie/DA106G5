@@ -17,13 +17,13 @@ public class Cmt_rptTest extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Cmt_rptDAO dao = new Cmt_rptDAO();
 
-		 //新增
-		Cmt_rptVO cmt_rptVO1 = new Cmt_rptVO();
-		cmt_rptVO1.setRpt_reason("這個我不行!!!!!!");
-		cmt_rptVO1.setRpt_status(1);
-		cmt_rptVO1.setCmt_no("cmt00001");
-		cmt_rptVO1.setMb_id("soowii123");
-		dao.insert(cmt_rptVO1);
+		//新增
+//		Cmt_rptVO cmt_rptVO1 = new Cmt_rptVO();
+//		cmt_rptVO1.setRpt_reason("這個我不行!!!!!!");
+//		cmt_rptVO1.setRpt_status(1);
+//		cmt_rptVO1.setCmt_no("cmt00001");
+//		cmt_rptVO1.setMb_id("soowii123");
+//		dao.insert(cmt_rptVO1);
 
 		//修改
 		Cmt_rptVO cmt_rptVO2 = new Cmt_rptVO();
@@ -33,7 +33,7 @@ public class Cmt_rptTest extends HttpServlet {
 		dao.update(cmt_rptVO2);
 
 		//刪除
-		dao.delete("cmtr00006");
+//		dao.delete("cmtr00006");
 
 		//查詢
 		Cmt_rptVO cmt_rptVO3 = dao.findByPrimaryKey("cmtr00001");
@@ -46,6 +46,7 @@ public class Cmt_rptTest extends HttpServlet {
 
 		// 查詢getall
 		List<Cmt_rptVO> list = dao.getAll();
+		System.out.println("修改所有狀態前:");
 		for (Cmt_rptVO cmt_rptVO : list) {
 			System.out.print(cmt_rptVO.getCmt_rpt_no() + ",");
 			System.out.print(cmt_rptVO.getRpt_reason() + ",");
@@ -55,5 +56,29 @@ public class Cmt_rptTest extends HttpServlet {
 
 			System.out.println();
 		}
+		
+		
+		//修改全部狀態
+		Cmt_rptVO cmt_rptVO4 = new Cmt_rptVO();
+		cmt_rptVO4.setRpt_status(2);
+		cmt_rptVO4.setCmt_no("cmt00001");
+		dao.updateByCmtNo(cmt_rptVO4);
+		
+		
+		// 查詢getall
+		list = dao.getAll();
+		System.out.println("修改所有狀態前:");
+		for (Cmt_rptVO cmt_rptVO : list) {
+			System.out.print(cmt_rptVO.getCmt_rpt_no() + ",");
+			System.out.print(cmt_rptVO.getRpt_reason() + ",");
+			System.out.print(cmt_rptVO.getRpt_status() + ",");
+			System.out.print(cmt_rptVO.getCmt_no() + ",");
+			System.out.print(cmt_rptVO.getMb_id());
+
+			System.out.println();
+		}
+		
+		//查詢被檢舉的會員
+		System.out.println(dao.getRptedMb_id(cmt_rptVO4.getCmt_no()));
 	}
 }

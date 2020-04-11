@@ -96,6 +96,7 @@ h4 {
 
 	<ul>
 		<li><a href='addLocation.jsp'>Add</a> a new Location.</li>
+		<li><a href='<%=request.getContextPath()%>/back_end/loc_rpt/addLoc_rpt.jsp'>Add</a> a new Loc_rpt.</li>
 	</ul>
 
 </body>

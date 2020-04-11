@@ -95,21 +95,21 @@
 			<select size="1" name="loc_no" class="myselect" style="width:500px;">
 			<!--方法1 (可填複數個需求)-->
 			<% String[] grp4loc = {"1","2"}; %>
-			<c:forEach var="group4locVO" items="<%=locationSvc.getByLoc_typeno(grp4loc)%>">
+			<c:forEach var="group4locVO" items="<%=locationSvc.getByLoc_typeno(grp4loc,\"loc_address\")%>">
 				<option value="${group4locVO.loc_no}">${group4locVO.loc_address}
 			</c:forEach>
 			</select>
 			<!--方法2 -->
 			<br>
 			<select size="1" name="loc_no" class="myselect" style="width:500px;">
-			<c:forEach var="group4locVO" items="<%=locationSvc.getByLoc_typeno2(\"1\")%>">
+			<c:forEach var="group4locVO" items="<%=locationSvc.getByLoc_typeno2(\"1\",\"loc_address\")%>">
 				<option value="${group4locVO.loc_no}">${group4locVO.loc_address}
 			</c:forEach>
 			</select>
 			<!--方法3 -->
 			<br>
 			<select size="1" name="loc_no" class="myselect" style="width:500px;">
-			<c:forEach var="group4locVO" items="${locationSvc.getByLoc_typeno2('1')}">
+			<c:forEach var="group4locVO" items="${locationSvc.getByLoc_typeno2('1','loc_address')}">
 				<option value="${group4locVO.loc_no}">${group4locVO.loc_address}
 			</c:forEach>
 			</select>

@@ -365,7 +365,7 @@ public class LocationDAO implements Location_interface {
 	}
 	
 	@Override
-	public List<LocationVO> getAllUWish(Map<String, String[]> map) {
+	public List<LocationVO> getAllUWish(Map<String, String[]> map, String orderBy) {
 		StringBuilder sb = new StringBuilder();
 
 		List<LocationVO> list_map = new ArrayList<LocationVO>();
@@ -380,14 +380,14 @@ public class LocationDAO implements Location_interface {
 			sb.append("(");
 			for (int i = 0; i < entry.getValue().length; i++) {
 				if (i == 0) {
-					sb.append(entry.getKey() + " = '" + entry.getValue()[i] + "'");
+					sb.append(entry.getKey() + " like '%" + entry.getValue()[i] + "%'");
 				} else {
-					sb.append(" OR " + entry.getKey() + " = '" + entry.getValue()[i] + "'");
+					sb.append(" OR " + entry.getKey() + " like '%" + entry.getValue()[i] + "%'");
 				}
 			}
 			sb.append(") and ");
 		}
-		sb.append(" 1=1 ");
+		sb.append(" 1=1 order by " + orderBy);
 
 		try {
 

@@ -91,7 +91,7 @@ th, td {
 			<th>紀錄編號</th>
 			<th>留言會員</th>
 			<th>修改</th>
-			<th>上/下架</th>
+<!-- 			<th>上/下架</th> -->
 			<th>按讚</th>
 			<th>meToo</th>
 		</tr>
@@ -102,7 +102,7 @@ th, td {
 				<td>${cmtVO.cmt_no}</td>
 				<td>${cmtVO.cmt_content}</td>
 				<td>${cmtVO.cmt_time}</td>
-				<td>${cmtVO.cmt_status}</td>
+				<td>${(cmtVO.cmt_status==1?'上架':'下架')}</td>
 				<td>${cmtVO.rcd_no}</td>
 				<td>${cmtVO.mb_id}</td>
 				<td>
@@ -112,18 +112,18 @@ th, td {
 						<input type="hidden" name="action" value="getOne_For_Update">
 					</FORM>
 				</td>
-				<td>
-					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" style="margin-bottom: 0px;">
-						<input type="submit" value="上/下架"> 
-						<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"> 
-						<input type="hidden" name="cmt_time" value="${cmtVO.cmt_time}">
-						<input type="hidden" name="cmt_status" value="${cmtVO.cmt_status}">
-						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
-						<input type="hidden" name="mb_id" value="${cmtVO.mb_id}">
-						<input type="hidden" name="cmt_content" value="${cmtVO.cmt_content}">
-						<input type="hidden" name="action" value="fakeDelete">
-					</FORM>
-				</td>
+<!-- 				<td> -->
+<%-- 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" style="margin-bottom: 0px;"> --%>
+<!-- 						<input type="submit" value="上/下架">  -->
+<%-- 						<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}">  --%>
+<%-- 						<input type="hidden" name="cmt_time" value="${cmtVO.cmt_time}"> --%>
+<%-- 						<input type="hidden" name="cmt_status" value="${cmtVO.cmt_status}"> --%>
+<%-- 						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}"> --%>
+<%-- 						<input type="hidden" name="mb_id" value="${cmtVO.mb_id}"> --%>
+<%-- 						<input type="hidden" name="cmt_content" value="${cmtVO.cmt_content}"> --%>
+<!-- 						<input type="hidden" name="action" value="fakeDelete"> -->
+<!-- 					</FORM> -->
+<!-- 				</td> -->
 				<jsp:useBean id="thumbSvc" scope="page"	class="com.thumb.model.ThumbService" />
 				<td>
 				${thumbSvc.countAllThumbs(cmtVO.rcd_no)}

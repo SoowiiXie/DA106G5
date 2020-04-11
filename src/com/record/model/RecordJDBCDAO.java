@@ -20,7 +20,7 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 	private static final String GET_ALL_STMT = "SELECT rcd_no, rcd_uploadtime, rcd_content, rcd_thumb_amount, rcd_metoo_amount, rcd_status, path_no, mb_id FROM record ORDER BY rcd_no";
 	private static final String GET_ONE_STMT = "SELECT rcd_no, rcd_uploadtime, rcd_content, rcd_thumb_amount, rcd_metoo_amount, rcd_status, path_no, mb_id FROM record WHERE rcd_no = ?";
 	private static final String DELETE = "DELETE FROM record where rcd_no = ?";
-	private static final String UPDATE = "UPDATE record SET rcd_uploadtime = ?, rcd_content = ?, rcd_thumb_amount=?, rcd_metoo_amount=?, rcd_status=?, path_no=?, mb_id=? where rcd_no = ?";
+	private static final String UPDATE = "UPDATE record SET rcd_uploadtime = ?, rcd_content = ?, rcd_status=?, path_no=? where rcd_no = ?";
 
 	@Override
 	public void insert(RecordVO recordVO) {
@@ -80,13 +80,10 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 
 			pstmt.setDate(1, recordVO.getRcd_uploadtime());
 			pstmt.setString(2, recordVO.getRcd_content());
-			pstmt.setInt(3, recordVO.getRcd_thumb_amount());
-			pstmt.setInt(4, recordVO.getRcd_metoo_amount());
-			pstmt.setInt(5, recordVO.getRcd_status());
-			pstmt.setString(6, recordVO.getPath_no());
-			pstmt.setString(7, recordVO.getMb_id());
-			pstmt.setString(8, recordVO.getRcd_no());
-			
+			pstmt.setInt(3, recordVO.getRcd_status());
+			pstmt.setString(4, recordVO.getPath_no());
+			pstmt.setString(5, recordVO.getRcd_no());
+//System.out.println(recordVO.getRcd_no());
 			pstmt.executeUpdate();
 
 			// Handle any driver errors

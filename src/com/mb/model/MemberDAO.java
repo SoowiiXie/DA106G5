@@ -35,6 +35,11 @@ public class MemberDAO  implements MemberDAO_interface{
 		"SELECT * FROM MEMBER where MB_ID = ?";
 	private static final String UPDATE = 
 		"UPDATE MEMBER set MB_PWD=?, MB_LINE=?, MB_NAME=?, MB_GENDER=?, MB_BIRTHDAY=?, MB_LV=?, MB_PIC=?, MB_RPT_TIMES=?, MB_EMAIL=?, MB_STATUS=? where MB_ID = ?";
+	// 被檢舉次數+1
+	private static final String GET_ONE_RPT_TIME = 
+		"SELECT MB_RPT_TIMES FROM MEMBER where MB_ID = ?";
+	private static final String ADD_ONE_TO_RPT_TIME =
+		"UPDATE MEMBER set MB_RPT_TIMES=? where MB_ID = ?";
 	
 	// 連線池
 	private static DataSource ds = null;
@@ -273,6 +278,43 @@ public class MemberDAO  implements MemberDAO_interface{
 		}
 		return list;
 	}
+
+	@Override  // 被檢舉次數+1
+	public String addOneToRptTime(String mb_id) {
+		
+		String str = null;
+		ResultSet rs = null;
+		// 改用try()方法，自動關閉連線
+		try (Connection con = ds.getConnection();PreparedStatement pstmt = con.prepareStatement(GET_ONE_RPT_TIME);
+				PreparedStatement add_pstmt = con.prepareStatement(ADD_ONE_TO_RPT_TIME);){
+			
+			pstmt.setString(1, mb_id);
+			rs = pstmt.executeQuery();
+
+			rs.next();
+			// 取得會員被檢舉次數後+1
+			Integer mb_rpt_times = rs.getInt("mb_rpt_times") + 1; 
+			
+			add_pstmt.setInt(1, mb_rpt_times);
+			add_pstmt.setString(2, mb_id);
+			add_pstmt.executeUpdate();
+			
+			str = mb_id + "被檢舉次數更新為" + mb_rpt_times;
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+		return str;
+	}
 	
 //	// 測試
 //	public static void main(String[] args) throws Exception {
@@ -342,6 +384,10 @@ public class MemberDAO  implements MemberDAO_interface{
 //		System.out.println(memberVO.getMb_rpt_times());	
 //		System.out.println(memberVO.getMb_email());
 //		System.out.println(memberVO.getMb_status());	
+//		
+//		// 新增檢舉次數
+//		System.out.println(dao.addOneToRptTime("michael123"));
+//		
 //	}
 
 }

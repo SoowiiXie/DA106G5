@@ -104,7 +104,7 @@ th, td {
 				<td>${locationVO.loc_typeno}</td>
 				<td>${locationVO.longitude}</td>
 				<td>${locationVO.latitude}</td>
-				<td>${locationVO.loc_status}</td>
+				<td>${(locationVO.loc_status==1?'上架':'下架')}</td>
 				<td>${locationVO.loc_address}</td>
 				<td><img src="/DA106_G5/DBGifReader4Location?loc_no=${locationVO.loc_no}" width="100px"></td>
 				<td>

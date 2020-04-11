@@ -88,15 +88,15 @@ public class LocationService {
 		return dao.getAll();
 	}
 	
-	public List<LocationVO> getByLoc_typeno(String[] loc_typeno) {
+	public List<LocationVO> getByLoc_typeno(String[] loc_typeno, String orderBy) {
 		Map<String, String[]> map = new HashMap<>();
 		map.put("loc_typeno", loc_typeno);
-		return dao.getAllUWish(map);
+		return dao.getAllUWish(map,orderBy);
 	}
 	
-	public List<LocationVO> getByLoc_typeno2(String loc_typeno) {
+	public List<LocationVO> getByLoc_typeno2(String loc_typeno, String orderBy) {
 		Map<String, String[]> map = new HashMap<>();
 		map.put("loc_typeno", new String[] { loc_typeno });
-		return dao.getAllUWish(map);
+		return dao.getAllUWish(map,orderBy);
 	}
 }
