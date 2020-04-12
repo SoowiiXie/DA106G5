@@ -54,7 +54,7 @@
 <table id="table-1">
 	<tr>
 		<td>
-			<h3>所有員工資料 - listAllEmp.jsp</h3>
+			<h3>所有管理員資料 - listAllEmp.jsp</h3>
 			<h4><a href="select_page.jsp">回首頁</a></h4>
 		</td>
 	</tr>

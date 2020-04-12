@@ -15,6 +15,8 @@ import javax.servlet.http.Part;
 
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
+import com.staff.model.StaffService;
+import com.staff.model.StaffVO;
 
 public class StaffServlet extends HttpServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
@@ -29,7 +31,7 @@ public class StaffServlet extends HttpServlet{
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
 
-		if ("getOne_For_Display".equals(action)) { // 登入
+		if ("getOne_For_Display".equals(action)) { // 登入   OK
 			// XX
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -38,51 +40,80 @@ public class StaffServlet extends HttpServlet{
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String mb_id = req.getParameter("mb_id");
-				if (mb_id == null || (mb_id.trim()).length() == 0) {
+				String staff_id = req.getParameter("staff_id");
+				if (staff_id == null || (staff_id.trim()).length() == 0) {
 					errorMsgs.add("帳號不得為空白");
 				}
 				
-				String mb_pwd = req.getParameter("mb_pwd");
-				if (mb_pwd == null || (mb_pwd.trim()).length() == 0) {
+				String staff_pwd = req.getParameter("staff_pwd");
+				if (staff_pwd == null || (staff_pwd.trim()).length() == 0) {
 					errorMsgs.add("密碼不得為空白");
 				}
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 
 				/*************************** 2.開始查詢資料 *****************************************/
-				MemberService memberSvc = new MemberService();
-				MemberVO memberVO = memberSvc.getOneMember(mb_id);
-				if (memberVO == null || !memberVO.getMb_pwd().equals(mb_pwd)) {
+				StaffService staffSvc = new StaffService();
+				StaffVO staffVO = staffSvc.getOneStaff(staff_id);
+				if (staffVO == null || !staffVO.getStaff_pwd().equals(staff_pwd)) {
 					errorMsgs.add("帳號或密碼有誤");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				session.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
-				String url = "/front_end/member/listOneMember.jsp";  // 
+				session.setAttribute("staffVO", staffVO); // 資料庫取出的VO物件,存入Session
+				String url = "/back_end/staff/select_page.jsp";  // 
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("select_management".equals(action)) { // 選擇管理
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			switch(req.getParameter("management")) {
+				case "01":  // 管理員管理
+					
+					break;
+				
+				case "02":  // 留言管理
+					
+					break;
+				
+				case "03":  // 檢舉管理
+					
+					break;
+					
+				case "04":  // 商城管理	
+					
+					break;
+				
+				case "05":  // 問題回報管理
+					
+					break;
+			}
+			
+				
+			
+		}
 
-		if ("getOne_For_Update".equals(action)) { // 修改
+		if ("update".equals(action)) { // 修改
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
