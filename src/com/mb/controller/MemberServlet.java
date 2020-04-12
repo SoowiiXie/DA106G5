@@ -158,7 +158,7 @@ public class MemberServlet extends HttpServlet {
 				memberVO.setMb_gender(mb_gender);
 				memberVO.setMb_line(mb_line);
 				memberVO.setMb_birthday(mb_birthday);
-				memberVO.setMb_line(mb_email);
+				memberVO.setMb_email(mb_email);
 				memberVO.setMb_pic(mb_pic);
 				memberVO.setMb_lv(mb_lv);
 				memberVO.setMb_rpt_times(mb_rpt_times);
@@ -169,7 +169,7 @@ public class MemberServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的memberVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/emp/addEmp.jsp");
+							.getRequestDispatcher("/front_end/member/update_member.jsp");
 					failureView.forward(req, res);
 					return;
 				}

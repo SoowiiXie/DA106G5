@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.auth.model.AuthorityService;
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
 import com.staff.model.StaffService;
@@ -25,7 +27,8 @@ public class StaffServlet extends HttpServlet{
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		// 註冊、修改的資料判斷
+		// *** 用MAP取出XXX權限
+		// *** 延伸上面，在Switch-case中，比對字串改為MAP的KEY
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -84,33 +87,60 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 		
-		if ("select_management".equals(action)) { // 選擇管理
+		if ("select_management".equals(action)) { // 選擇管理項目
+			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			switch(req.getParameter("management")) {
-				case "01":  // 管理員管理
-					
+			
+			// 取得管理員
+			StaffVO staffVO = (StaffVO) session.getAttribute("staffVO");
+			// 取得被點選的管理按鈕
+			String management = req.getParameter("management");
+			
+			// 取得管理員的所有權限
+			AuthorityService authoritySvc = new AuthorityService();
+			Set<String> staffAuthority = authoritySvc.getOneStaffAuthority(staffVO.getStaff_id());
+			
+			// 判斷管理員是否有該權限
+			if(staffAuthority.contains(management)) {
+				
+				RequestDispatcher successView;
+				// ***只有01完成，其餘需要再修改***
+				switch(management) {
+				case "01":  // 導至管理員管理頁面
+					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
+					successView.forward(req, res);
 					break;
 				
-				case "02":  // 留言管理
-					
+				case "02":  // 導至留言管理頁面
+					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
+					successView.forward(req, res);
 					break;
 				
-				case "03":  // 檢舉管理
-					
+				case "03":  // 導至檢舉管理頁面
+					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
+					successView.forward(req, res);
 					break;
 					
-				case "04":  // 商城管理	
-					
+				case "04":  // 導至商城管理頁面	
+					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
+					successView.forward(req, res);
 					break;
 				
-				case "05":  // 問題回報管理
-					
+				case "05":  // 導至問題回報管理頁面
+					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
+					successView.forward(req, res);
 					break;
+				}
+			}else {
+				errorMsgs.add("您尚未擁有該權限");   // 用MAP取出XXX權限
 			}
 			
-				
-			
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/select_page.jsp");
+				failureView.forward(req, res);
+				return;// 程式中斷
+			}
 		}
 
 		if ("update".equals(action)) { // 修改

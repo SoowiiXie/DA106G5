@@ -4,6 +4,7 @@
 <%@ page import="java.util.*"%>
 
 <%
+	// 封裝此頁面(不能直接透過網址列進來)，需要登入管理員並擁有權限
 	StaffService staffSvc = new StaffService();
     List<StaffVO> list = staffSvc.getAll();
     pageContext.setAttribute("list",list);

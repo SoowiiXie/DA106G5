@@ -21,6 +21,8 @@
 	</ul>
 </c:if>
 
+<a href="update_staff.jsp">個人資料管理</a><br><br>
+
 <form METHOD="POST" action="staff.do" id="form1">
 
 	<button type="submit" form="form1" name="management" value="01">管理員管理</button><br><br>
