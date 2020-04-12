@@ -6,7 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class AuthorityDAO implements AuthorityDAO_interface{
 	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -22,7 +29,20 @@ public class AuthorityDAO implements AuthorityDAO_interface{
 			"SELECT * FROM AUTHORITY WHERE STAFF_ID = ? AND ABILITY_NO = ?";
 	private static final String DELETE = 
 			"DELETE FROM AUTHORITY WHERE STAFF_ID = ? AND ABILITY_NO = ?";
+	// 列出一個管理員的所有權限
+	private static final String GET_ONE_STAFF_AUTHORITY = 
+			"SELECT ABILITY_NO FROM AUTHORITY WHERE STAFF_ID = ?";
 	
+	// 連線池
+		private static DataSource ds = null;
+		static {
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
 	
 	@Override
 	public void insert(AuthorityVO authorityVO) {
@@ -221,6 +241,36 @@ public class AuthorityDAO implements AuthorityDAO_interface{
 			}
 		}			
 		return list;
+	}
+
+	@Override  // 連線池
+	public Set<String> getOneStaffAuthority(String staff_id) {
+		
+		Set<String> set = new HashSet<String>();
+		ResultSet rs = null;
+		// 改用try()方法，自動關閉連線
+		try (Connection con = ds.getConnection();PreparedStatement pstmt = con.prepareStatement(GET_ONE_STAFF_AUTHORITY);){
+			
+			pstmt.setString(1, staff_id);
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				set.add(rs.getString("ABILITY_NO"));
+			}
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
 	}
 	
 //	// 測試

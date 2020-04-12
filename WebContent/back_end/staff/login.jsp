@@ -7,7 +7,7 @@
 <title>login</title>
 </head>
 <body>
-
+<h2>管理員登入</h2>
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -17,14 +17,13 @@
 		</c:forEach>
 	</ul>
 </c:if>
-<h2>會員登入</h2>
-	<form METHOD="POST" action="member.do">
-		<input type="text" name="mb_id" placeholder="請輸入帳號" ><br>
-        <input type="password" name="mb_pwd" placeholder="請輸入密碼"><br>
+
+	<form METHOD="POST" action="staff.do">
+		<input type="text" name="staff_id" placeholder="請輸入帳號" ><br>
+        <input type="password" name="staff_pwd" placeholder="請輸入密碼"><br>
         <input type="hidden" name="action" value="getOne_For_Display">
         <input type="submit" value="LOGIN"><br>
 	</form>
-	<a href="addMember.jsp">註冊會員</a>
 
 </body>
 </html>
