@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>update_member</title>
+<title>update_staff</title>
 </head>
 <body>
 	<form METHOD="POST" action="staff.do">
