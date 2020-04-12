@@ -31,6 +31,8 @@ public class StaffServlet extends HttpServlet{
 		// *** 用MAP取出XXX權限
 		// *** 延伸上面，在Switch-case中，比對字串改為MAP的KEY
 		
+		// ** listAllEmp  更改狀態、權限、下拉式選單篩選在職、離職
+		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
