@@ -429,7 +429,7 @@
 	<!-- 揪團檢舉結束 -->
 	<!-- 揪團明細開始 -->
 		<servlet>
-			<servlet-name>GrouperTest</servlet-name>
+			<servlet-name>Group_detailTest</servlet-name>
 			<servlet-class>com.group_detail.model.Group_detailTest</servlet-class>
 		</servlet>
 		<servlet-mapping>
