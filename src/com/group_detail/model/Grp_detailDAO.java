@@ -1,4 +1,4 @@
-package com.grp_detail.model;
+package com.group_detail.model;
 
 import java.util.*;
 import java.sql.*;
@@ -10,30 +10,30 @@ import javax.sql.DataSource;
 
 public class Grp_detailDAO implements Grp_detailDAO_interface {
 
-	// �@�����ε{����,�w��@�Ӹ�Ʈw ,�@�Τ@��DataSource�Y�i
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO emp2 (empno,ename,job,hiredate,sal,comm,deptno) VALUES (emp2_seq.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+			"INSERT INTO grp_detail (mb_id,grp_no,grp_register) VALUES (?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT empno,ename,job,to_char(hiredate,'yyyy-mm-dd') hiredate,sal,comm,deptno FROM emp2 order by empno";
+			"SELECT mb_id,grp_no,grp_register FROM grp_detail order by mb_id";
 	private static final String GET_ONE_STMT = 
-		"SELECT empno,ename,job,to_char(hiredate,'yyyy-mm-dd') hiredate,sal,comm,deptno FROM emp2 where empno = ?";
+			"SELECT mb_id,grp_no,grp_register FROM grp_detail where mb_id = ?";
 	private static final String DELETE = 
-		"DELETE FROM emp2 where empno = ?";
+			"DELETE FROM grp_detail where mb_id = ?";
 	private static final String UPDATE = 
-		"UPDATE emp2 set ename=?, job=?, hiredate=?, sal=?, comm=?, deptno=? where empno = ?";
+			"UPDATE grp_detail set grp_no=?, grp_register=? where mb_id = ?";
 
 	@Override
-	public void insert(Grp_detailVO empVO) {
+	public void insert(Grp_detailVO grp_detailVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -43,12 +43,9 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setString(1, empVO.getEname());
-			pstmt.setString(2, empVO.getJob());
-			pstmt.setDate(3, empVO.getHiredate());
-			pstmt.setDouble(4, empVO.getSal());
-			pstmt.setDouble(5, empVO.getComm());
-			pstmt.setInt(6, empVO.getDeptno());
+			pstmt.setString(1, grp_detailVO.getMb_id());
+			pstmt.setString(2, grp_detailVO.getGrp_no());
+			pstmt.setInt(3, grp_detailVO.getGrp_register());
 
 			pstmt.executeUpdate();
 
@@ -77,7 +74,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 	}
 
 	@Override
-	public void update(Grp_detailVO empVO) {
+	public void update(Grp_detailVO grp_detailVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -87,13 +84,9 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, empVO.getEname());
-			pstmt.setString(2, empVO.getJob());
-			pstmt.setDate(3, empVO.getHiredate());
-			pstmt.setDouble(4, empVO.getSal());
-			pstmt.setDouble(5, empVO.getComm());
-			pstmt.setInt(6, empVO.getDeptno());
-			pstmt.setInt(7, empVO.getEmpno());
+			pstmt.setString(3, grp_detailVO.getMb_id());
+			pstmt.setString(1, grp_detailVO.getGrp_no());
+			pstmt.setInt(2, grp_detailVO.getGrp_register());
 
 			pstmt.executeUpdate();
 
@@ -122,7 +115,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 	}
 
 	@Override
-	public void delete(Integer empno) {
+	public void delete(String mb_id) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -132,7 +125,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, empno);
+			pstmt.setString(1, mb_id);
 
 			pstmt.executeUpdate();
 
@@ -161,9 +154,9 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 	}
 
 	@Override
-	public Grp_detailVO findByPrimaryKey(Integer empno) {
+	public Grp_detailVO findByPrimaryKey(String mb_id) {
 
-		Grp_detailVO empVO = null;
+		Grp_detailVO grp_detailVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -173,20 +166,16 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, empno);
+			pstmt.setString(1, mb_id);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo �]�٬� Domain objects
-				empVO = new Grp_detailVO();
-				empVO.setEmpno(rs.getInt("empno"));
-				empVO.setEname(rs.getString("ename"));
-				empVO.setJob(rs.getString("job"));
-				empVO.setHiredate(rs.getDate("hiredate"));
-				empVO.setSal(rs.getDouble("sal"));
-				empVO.setComm(rs.getDouble("comm"));
-				empVO.setDeptno(rs.getInt("deptno"));
+				grp_detailVO = new Grp_detailVO();
+				grp_detailVO.setMb_id(rs.getString("mb_id"));
+				grp_detailVO.setGrp_no(rs.getString("grp_no"));
+				grp_detailVO.setGrp_register(rs.getInt("grp_register"));
 			}
 
 			// Handle any driver errors
@@ -217,13 +206,13 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 				}
 			}
 		}
-		return empVO;
+		return grp_detailVO;
 	}
 
 	@Override
 	public List<Grp_detailVO> getAll() {
 		List<Grp_detailVO> list = new ArrayList<Grp_detailVO>();
-		Grp_detailVO empVO = null;
+		Grp_detailVO grp_detailVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -237,15 +226,11 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 
 			while (rs.next()) {
 				// empVO �]�٬� Domain objects
-				empVO = new Grp_detailVO();
-				empVO.setEmpno(rs.getInt("empno"));
-				empVO.setEname(rs.getString("ename"));
-				empVO.setJob(rs.getString("job"));
-				empVO.setHiredate(rs.getDate("hiredate"));
-				empVO.setSal(rs.getDouble("sal"));
-				empVO.setComm(rs.getDouble("comm"));
-				empVO.setDeptno(rs.getInt("deptno"));
-				list.add(empVO); // Store the row in the list
+				grp_detailVO = new Grp_detailVO();
+				grp_detailVO.setMb_id(rs.getString("mb_id"));
+				grp_detailVO.setGrp_no(rs.getString("grp_no"));
+				grp_detailVO.setGrp_register(rs.getInt("grp_register"));
+				list.add(grp_detailVO); // Store the row in the list
 			}
 
 			// Handle any driver errors

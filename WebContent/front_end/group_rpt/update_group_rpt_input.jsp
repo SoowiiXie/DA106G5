@@ -72,31 +72,31 @@
 	<tr>
 		<td>檢舉揪團編號:</td>
 		<td><input type="TEXT" name="group_rpt_no" size="45" 
-			 value="<%= (group_rptVO==null)? "grr00010" : group_rptVO.getGroup_rpt_no()%>" /></td>
+			 value="<%=group_rptVO.getGroup_rpt_no()%>" /></td>
 	</tr>
 
 	<tr>
 		<td>揪團編號:</td>
 		<td><input type="TEXT" name="grp_no" size="45"
-			 value="<%= (group_rptVO==null)? "Tommy" : group_rptVO.getGrp_no()%>" /></td>
+			 value="<%=group_rptVO.getGrp_no()%>" /></td>
 	</tr>
 
 	<tr>
 		<td>檢舉會員編號:</td>
 		<td><input type="TEXT" name="mb_id" size="45"
-			 value="<%= (group_rptVO==null)? "loc00003" : group_rptVO.getMb_id()%>" /></td>
+			 value="<%=group_rptVO.getMb_id()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>檢舉原因:</td>
 		<td><input type="TEXT" id="rpt_reason" size="45"
-			value="<%= (group_rptVO==null)? "Tommy" : group_rptVO.getRpt_reason()%>" /></td>
+			value="<%=group_rptVO.getRpt_reason()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>處理狀態:</td>
 		<td><input type="TEXT" id="rpt_status" size="45"
-			value="<%= (group_rptVO==null)? "Tommy" : group_rptVO.getRpt_status()%>" /></td>
+			value="<%=group_rptVO.getRpt_status()%>" /></td>
 	</tr>
 	
 </table>
