@@ -1,0 +1,81 @@
+package com.live_rpt.model;
+
+public class Live_rptVO implements java.io.Serializable{
+	private String live_rpt_no;
+	private String live_no;
+	private String rpt_reason;
+	private String md_id;
+	private Integer rpt_status;
+	
+	
+	
+	public Live_rptVO() {
+		super();
+	}
+
+
+	public Live_rptVO(String live_rpt_no, String live_no, String rpt_reason, String md_id, Integer rpt_status) {
+		super();
+		this.live_rpt_no = live_rpt_no;
+		this.live_no = live_no;
+		this.rpt_reason = rpt_reason;
+		this.md_id = md_id;
+		this.rpt_status = rpt_status;
+	}
+
+
+	public String getLive_rpt_no() {
+		return live_rpt_no;
+	}
+
+
+	public void setLive_rpt_no(String live_rpt_no) {
+		this.live_rpt_no = live_rpt_no;
+	}
+
+
+	public String getLive_no() {
+		return live_no;
+	}
+
+
+	public void setLive_no(String live_no) {
+		this.live_no = live_no;
+	}
+
+
+	public String getRpt_reason() {
+		return rpt_reason;
+	}
+
+
+	public void setRpt_reason(String rpt_reason) {
+		this.rpt_reason = rpt_reason;
+	}
+
+
+	public String getMd_id() {
+		return md_id;
+	}
+
+
+	public void setMd_id(String md_id) {
+		this.md_id = md_id;
+	}
+
+
+	public Integer getRpt_status() {
+		return rpt_status;
+	}
+
+
+	public void setRpt_status(Integer rpt_status) {
+		this.rpt_status = rpt_status;
+	}
+	
+	
+	
+	
+	
+
+}
