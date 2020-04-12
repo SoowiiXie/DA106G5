@@ -4,6 +4,7 @@
 <%@ page import="java.util.*"%>
 
 <%
+	// 封裝此頁面(不能直接透過網址列進來)，需要登入管理員並擁有權限
 	StaffService staffSvc = new StaffService();
     List<StaffVO> list = staffSvc.getAll();
     pageContext.setAttribute("list",list);
@@ -54,7 +55,7 @@
 <table id="table-1">
 	<tr>
 		<td>
-			<h3>所有員工資料 - listAllEmp.jsp</h3>
+			<h3>所有管理員資料 - listAllEmp.jsp</h3>
 			<h4><a href="select_page.jsp">回首頁</a></h4>
 		</td>
 	</tr>
@@ -76,9 +77,9 @@
 			<td>${staffVO.staff_join}</td>
 			<td>${staffVO.staff_status}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="staff.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
-			     <input type="hidden" name="empno"  value="${staffVO.staff_id}">
+			     <input type="hidden" name="staff_id"  value="${staffVO.staff_id}">
 			     <input type="hidden" name="action"	value="getOne_For_Update">
 			  </FORM>
 			</td>

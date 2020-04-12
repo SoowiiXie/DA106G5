@@ -2,7 +2,7 @@ package com.live.model;
 
 import java.sql.Date;
 
-public class LiveVO {
+public class LiveVO implements java.io.Serializable{
 	
 	private String live_no;
 	private String mb_id;

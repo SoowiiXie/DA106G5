@@ -1,5 +1,9 @@
 package com.live.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -9,18 +13,35 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class LiveDAO implements LiveDAO_interface {
 
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "DA106G5";
-	String passwd = "DA106G5";
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+//	String userid = "DA106G5";
+//	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "INSERT INTO LIVE ( LIVE_NO, LIVE_CONTENT, LIVE_STATUS, LIVE_STARTTEASER ,LIVE_START, MB_ID) VALUES ( ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO LIVE ( LIVE_NO, LIVE_CONTENT, LIVE_STATUS, LIVE_STARTTEASER ,LIVE_START, MB_ID) VALUES ( 'LIV'||LPAD(to_char(LIVE_NO_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM LIVE ORDER BY LIVE_NO";
 	private static final String GET_STMT = "SELECT * FROM LIVE WHERE MB_ID = ?";
-	private static final String UPDATE = "UPDATE LIVE SET LIVE_CONTENT=?, LIVE_STATUS=?, LIVE_STARTTEASER=?, LIVE_START=? WHERE LIVE_NO = ?";
+	private static final String UPDATE = "UPDATE LIVE SET LIVE_CONTENT=?, LIVE_STATUS=?, LIVE_STARTTEASER=?, LIVE_START=?, LIVE_STORE=? WHERE LIVE_NO = ?";
 	private static final String DELETE = "DELETE FROM LIVE WHERE LIVE_NO = ?";
+	
+	
+	// 連線池
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void insert(LiveVO LiveVO) {
@@ -28,22 +49,21 @@ public class LiveDAO implements LiveDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setString(1, LiveVO.getLive_no());
-			pstmt.setString(2, LiveVO.getLive_content());
-			pstmt.setInt(3, LiveVO.getLive_status());
-			pstmt.setDate(4, LiveVO.getLive_startteaser());
-			pstmt.setDate(5, LiveVO.getLive_start());
-			pstmt.setString(6, LiveVO.getMb_id());
+//			pstmt.setString(, LiveVO.getLive_no());
+			pstmt.setString(1, LiveVO.getLive_content());
+			pstmt.setInt(2, LiveVO.getLive_status());
+			pstmt.setDate(3, LiveVO.getLive_startteaser());
+			pstmt.setDate(4, LiveVO.getLive_start());
+			pstmt.setString(5, LiveVO.getMb_id());
+//			pstmt.setBytes(7, LiveVO.getLive_store());
+			
 
 			pstmt.executeUpdate();
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,21 +92,20 @@ public class LiveDAO implements LiveDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, LiveVO.getLive_content());
 			pstmt.setInt(2, LiveVO.getLive_status());
 			pstmt.setDate(3, LiveVO.getLive_startteaser());
 			pstmt.setDate(4, LiveVO.getLive_start());
-			pstmt.setString(5, LiveVO.getLive_no());
+			pstmt.setBytes(5, LiveVO.getLive_store());
+			pstmt.setString(6, LiveVO.getLive_no());
 
 			pstmt.executeUpdate();
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,17 +134,15 @@ public class LiveDAO implements LiveDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, live_no);
 
 			pstmt.executeUpdate();
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -160,8 +177,9 @@ public class LiveDAO implements LiveDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_STMT);
 			
 			pstmt.setString(1, mb_id);
@@ -182,10 +200,6 @@ public class LiveDAO implements LiveDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -227,8 +241,9 @@ public class LiveDAO implements LiveDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -246,10 +261,6 @@ public class LiveDAO implements LiveDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -285,7 +296,7 @@ public class LiveDAO implements LiveDAO_interface {
 	
 	
 	
-	public static void main (String[] args) {
+	public static void main (String[] args) throws Exception {
 		LiveDAO dao = new LiveDAO();
 		
 		// 增
@@ -299,7 +310,7 @@ public class LiveDAO implements LiveDAO_interface {
 //		liveVO.setLive_status(5);
 //		liveVO.setLive_startteaser(new Date(89,05,25));
 //		liveVO.setLive_start(new Date(89,05,25));
-////		liveVO.setLive_store();
+//		liveVO.setLive_store(pic);
 //		liveVO.setMb_id("yiwen123");
 //		dao.insert(liveVO);
 		
