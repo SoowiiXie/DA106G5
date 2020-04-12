@@ -16,12 +16,14 @@ public class Rcd_rptJDBCDAO implements Rcd_rptDAO_interface {
 	String userid = "DA106G5";
 	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "INSERT INTO rcd_rpt (rcd_rpt_no,rpt_reason,rpt_status,rcd_no,mb_id) values ('rcdr'||LPAD(to_char(RCD_RPT_SEQ.nextval), 5, '0'),?,?,?,?)";
+	private static final String INSERT_STMT = "INSERT INTO rcd_rpt (rcd_rpt_no,rpt_reason,rcd_no,mb_id) values ('rcdr'||LPAD(to_char(RCD_RPT_SEQ.nextval), 5, '0'),?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT rcd_rpt_no, rpt_reason, rpt_status, rcd_no, mb_id FROM rcd_rpt ORDER BY rcd_rpt_no";
 	private static final String GET_ONE_STMT = "SELECT rcd_rpt_no, rpt_reason, rpt_status, rcd_no, mb_id FROM rcd_rpt WHERE rcd_rpt_no = ?";
 	private static final String DELETE = "DELETE FROM rcd_rpt where rcd_rpt_no = ?";
-	private static final String UPDATE = "UPDATE rcd_rpt SET rpt_reason = ?, rpt_status = ?, rcd_no = ?, mb_id = ? where rcd_rpt_no = ?";
-
+	private static final String UPDATE = "UPDATE rcd_rpt SET rpt_reason = ?, rpt_status = ? where rcd_rpt_no = ?";
+	private static final String UPDATE_ALL_RPT_STATUS = "UPDATE rcd_rpt SET rpt_status = ? where rcd_no = ?";
+	private static final String GET_RPTED_MB_ID = "SELECT record.mb_id FROM record JOIN rcd_rpt ON record.rcd_no = rcd_rpt.rcd_no WHERE rcd_rpt.rcd_no = ?";
+	
 	@Override
 	public void insert(Rcd_rptVO rcd_rptVO) {
 		Connection con = null;
@@ -34,9 +36,8 @@ public class Rcd_rptJDBCDAO implements Rcd_rptDAO_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, rcd_rptVO.getRpt_reason());
-			pstmt.setInt(2, rcd_rptVO.getRpt_status());
-			pstmt.setString(3, rcd_rptVO.getRcd_no());
-			pstmt.setString(4, rcd_rptVO.getMb_id());
+			pstmt.setString(2, rcd_rptVO.getRcd_no());
+			pstmt.setString(3, rcd_rptVO.getMb_id());
 
 			pstmt.executeUpdate();
 
@@ -80,9 +81,7 @@ public class Rcd_rptJDBCDAO implements Rcd_rptDAO_interface {
 
 			pstmt.setString(1, rcd_rptVO.getRpt_reason());
 			pstmt.setInt(2, rcd_rptVO.getRpt_status());
-			pstmt.setString(3, rcd_rptVO.getRcd_no());
-			pstmt.setString(4, rcd_rptVO.getMb_id());
-			pstmt.setString(5, rcd_rptVO.getRcd_rpt_no());
+			pstmt.setString(3, rcd_rptVO.getRcd_rpt_no());
 
 			pstmt.executeUpdate();
 
@@ -174,7 +173,6 @@ public class Rcd_rptJDBCDAO implements Rcd_rptDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo �]�٬� Domain objects
 				rcd_rpt = new Rcd_rptVO();
 				rcd_rpt.setRcd_rpt_no(rs.getString("rcd_rpt_no"));
 				rcd_rpt.setRpt_reason(rs.getString("rpt_reason"));
@@ -236,7 +234,6 @@ public class Rcd_rptJDBCDAO implements Rcd_rptDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO �]�٬� Domain objects
 				rcd_rptVO = new Rcd_rptVO();
 				rcd_rptVO.setRcd_rpt_no(rs.getString("rcd_rpt_no"));
 				rcd_rptVO.setRpt_reason(rs.getString("rpt_reason"));
@@ -280,6 +277,101 @@ public class Rcd_rptJDBCDAO implements Rcd_rptDAO_interface {
 		return list;
 	}
 	
+	
+	@Override
+	public void updateByRcdNo(Rcd_rptVO rcd_rptVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATE_ALL_RPT_STATUS,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setInt(1, rcd_rptVO.getRpt_status());
+			pstmt.setString(2, rcd_rptVO.getRcd_no());
+			
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+	}
+	
+	
+	@Override
+	public String getRptedMb_id(String rcd_no) {
+		String rpted_mb_id;//被檢舉會員編號
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_RPTED_MB_ID,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			
+			pstmt.setString(1, rcd_no);
+			
+			rs = pstmt.executeQuery();
+
+			rs.next();
+			rpted_mb_id = rs.getString("mb_id");	
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return rpted_mb_id;
+	}
 	
 	public static void main(String[] args) {
 
@@ -327,5 +419,12 @@ public class Rcd_rptJDBCDAO implements Rcd_rptDAO_interface {
 //			System.out.println();
 //		}
 	}
+
+
+
+	
+
+
+
 
 }

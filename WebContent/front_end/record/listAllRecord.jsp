@@ -97,13 +97,13 @@
 			<td>${recordVO.mb_id}</td>
 			<td>
 
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/record/record.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/record/record.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="­×§ï">
 			     <input type="hidden" name="rcd_no"  value="${recordVO.rcd_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/record/record.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/record/record.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="§R°£">
 			     <input type="hidden" name="rcd_no"  value="${recordVO.rcd_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>

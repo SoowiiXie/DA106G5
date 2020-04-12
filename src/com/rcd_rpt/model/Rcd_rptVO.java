@@ -2,7 +2,7 @@ package com.rcd_rpt.model;
 
 
 
-public class Rcd_rptVO {
+public class Rcd_rptVO implements java.io.Serializable{
 	private String rcd_rpt_no;
 	private String rpt_reason;
 	private Integer rpt_status;
