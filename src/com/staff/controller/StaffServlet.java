@@ -288,9 +288,9 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 		
-		if ("logout".equals(action)) { // 登出
-			session.removeAttribute("memberVO");
-			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+		if ("logout".equals(action)) { // 登出  OK
+			session.removeAttribute("staffVO");
+			RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
 			failureView.forward(req, res);
 		}
 	}

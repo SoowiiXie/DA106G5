@@ -31,7 +31,7 @@
 		<input type="hidden" name="staff_status" value="${staffVO.staff_status}">
 		
         <input type="hidden" name="action" value="update"><br>
-        <input type="reset" value="清除">
+        <input type ="button" onclick="history.back()" value="返回">
         <input type="submit" value="送出"><br>
         
         

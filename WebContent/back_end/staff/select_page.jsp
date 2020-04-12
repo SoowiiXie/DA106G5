@@ -24,7 +24,7 @@
 	<a href="update_staff.jsp">個人資料管理</a><br><br>
 	
 	<form METHOD="POST" action="staff.do" id="form1">
-	
+		<%-- 用button是為了讓value可以使用 --%>
 		<button type="submit" form="form1" name="management" value="01">管理員管理</button><br><br>
 		<button type="submit" form="form1" name="management" value="02">留言管理</button><br><br>
 		<button type="submit" form="form1" name="management" value="03">檢舉管理</button><br><br>
@@ -32,6 +32,12 @@
 		<button type="submit" form="form1" name="management" value="05">問題回報管理</button><br><br>
 		<input type="hidden" name="action" value="select_management">
 		
+	</form>
+	
+	<%-- 登出 --%>
+	<form METHOD="POST" action="staff.do">
+        <input type="hidden" name="action" value="logout">
+        <input type="submit" value="登出"><br>
 	</form>
 
 </body>
