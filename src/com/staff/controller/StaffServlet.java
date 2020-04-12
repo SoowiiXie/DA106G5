@@ -30,7 +30,7 @@ public class StaffServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 
 		if ("getOne_For_Display".equals(action)) { // 登入
-
+			// XX
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -82,7 +82,7 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 
-		if ("update".equals(action)) { // 修改
+		if ("getOne_For_Update".equals(action)) { // 修改
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.

@@ -76,9 +76,9 @@
 			<td>${staffVO.staff_join}</td>
 			<td>${staffVO.staff_status}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="staff.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="н╫зя">
-			     <input type="hidden" name="empno"  value="${staffVO.staff_id}">
+			     <input type="hidden" name="staff_id"  value="${staffVO.staff_id}">
 			     <input type="hidden" name="action"	value="getOne_For_Update">
 			  </FORM>
 			</td>
