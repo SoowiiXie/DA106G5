@@ -7,16 +7,17 @@
 <title>login</title>
 </head>
 <body>
-<h2>管理員登入</h2>
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-	    <c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+	<h2>管理員登入</h2>
+
+	<%-- 錯誤表列 --%>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color:red">請修正以下錯誤:</font>
+		<ul>
+		    <c:forEach var="message" items="${errorMsgs}">
+				<li style="color:red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
 
 	<form METHOD="POST" action="staff.do">
 		<input type="text" name="staff_id" placeholder="請輸入帳號" ><br>

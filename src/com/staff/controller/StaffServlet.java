@@ -2,6 +2,7 @@ package com.staff.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -35,7 +36,6 @@ public class StaffServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 
 		if ("getOne_For_Display".equals(action)) { // 登入   OK
-			// XX
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -87,7 +87,7 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 		
-		if ("select_management".equals(action)) { // 選擇管理項目
+		if ("select_management".equals(action)) { // 選擇管理項目  OK 一半
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -143,102 +143,59 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 
-		if ("update".equals(action)) { // 修改
+		if ("update".equals(action)) { // 修改  OK
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String mb_id = req.getParameter("mb_id").trim();
+				String staff_id = req.getParameter("staff_id").trim();
 				
-				String mb_pwd = req.getParameter("mb_pwd").trim();
-				if (mb_pwd == null || mb_pwd.length() == 0) {
+				String staff_pwd = req.getParameter("staff_pwd").trim();
+				if (staff_pwd == null || staff_pwd.length() == 0) {
 					errorMsgs.add("密碼不得為空白");
 				}
 				
-				String mb_name = req.getParameter("mb_name").trim();
-				if (mb_name == null || mb_name.length() == 0) {
+				String staff_name = req.getParameter("staff_name").trim();
+				if (staff_name == null || staff_name.length() == 0) {
 					errorMsgs.add("姓名不得為空白");
 				}
 				
-				String mb_email = req.getParameter("mb_email").trim();
-				if (mb_email == null || mb_email.length() == 0) {
-					errorMsgs.add("e-mail不得為空白");
-				}
+				Timestamp staff_join = Timestamp.valueOf(req.getParameter("staff_join"));
+				Integer staff_status = Integer.parseInt(req.getParameter("staff_status"));
 				
-				Integer mb_gender = Integer.parseInt(req.getParameter("mb_gender"));
-				
-				String mb_line = req.getParameter("mb_line");
-				if( mb_line != null && mb_line.length() != 0)
-					mb_line.trim();
-				
-				
-				java.sql.Date mb_birthday = null;
-				String date = req.getParameter("mb_birthday");
-				if( date != null && date.length() != 0)
-					mb_birthday = java.sql.Date.valueOf(date.trim());;
-				
-				
-				// 圖片    
-					
-				byte[] mb_pic = null;
-				Part part = req.getPart("mb_pic");
-				if(part.getSize() != 0) {  // 有上傳圖片
-					
-					InputStream in = part.getInputStream();
-					mb_pic = new byte[in.available()];
-					in.read(mb_pic);
-					in.close();
-					
-				}else {  // 沒有上傳圖片，用原來的圖片
-					mb_pic = ((MemberVO)session.getAttribute("memberVO")).getMb_pic();
-				}
-				
-				
-				Integer mb_lv = Integer.parseInt(req.getParameter("mb_lv"));
-				Integer mb_rpt_times = Integer.parseInt(req.getParameter("mb_rpt_times"));
-				Integer mb_status = Integer.parseInt(req.getParameter("mb_status"));
-				
-				MemberVO memberVO = new MemberVO();
-				memberVO.setMb_id(mb_id);
-				memberVO.setMb_pwd(mb_pwd);
-				memberVO.setMb_name(mb_name);
-				memberVO.setMb_gender(mb_gender);
-				memberVO.setMb_line(mb_line);
-				memberVO.setMb_birthday(mb_birthday);
-				memberVO.setMb_line(mb_email);
-				memberVO.setMb_pic(mb_pic);
-				memberVO.setMb_lv(mb_lv);
-				memberVO.setMb_rpt_times(mb_rpt_times);
-				memberVO.setMb_status(mb_status);
-				
+				StaffVO staffVO = new StaffVO();
+				staffVO.setStaff_id(staff_id);
+				staffVO.setStaff_pwd(staff_pwd);
+				staffVO.setStaff_name(staff_name);
+				staffVO.setStaff_join(staff_join);
+				staffVO.setStaff_status(staff_status);
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的memberVO物件,也存入req
+					req.setAttribute("staffVO", staffVO); // 含有輸入格式錯誤的memberVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/emp/addEmp.jsp");
+							.getRequestDispatcher("/back_end/staff/update_staff.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
 				/*************************** 2.開始查詢資料 *****************************************/
-				MemberService memberSvc = new MemberService();
-				memberVO = memberSvc.updateMember(mb_id, mb_pwd, mb_name, mb_gender, mb_line, mb_birthday, 
-						mb_email, mb_pic, mb_lv, mb_rpt_times, mb_status);
-
+				StaffService staffSvc = new StaffService();
+				staffVO = staffSvc.updateStaff(staff_id, staff_pwd, staff_name, staff_status);
+				// 因為更新不需要更新加入時間，傳回的物件也沒有加入時間，所以要再自己加上加入時間
+				staffVO.setStaff_join(staff_join);
+				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				session.setAttribute("memberVO", memberVO);
-				String url = "/front_end/member/listOneMember.jsp";  // 
+				session.setAttribute("staffVO", staffVO);
+				String url = "/back_end/staff/select_page.jsp";  // 
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/update_staff.jsp");
 				failureView.forward(req, res);
 			}
 		}
