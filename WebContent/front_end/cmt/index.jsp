@@ -88,9 +88,9 @@ html {
 }
 
 /* 給假高度(內容) */
-#contentTop {
+/* #contentTop {
 	height: 4000px;
-}
+} */
 
 #contentTop .btn, #contentRight .btn {
 	height: 2.25rem;
@@ -204,7 +204,7 @@ nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
 					class="sidebar-brand d-flex align-items-center justify-content-center"
 					id="topPicA" href="index.html">
 					<div class="sidebar-brand-icon">
-						<img src="../images/LogoNoBack.png" class="topPic" />
+						<img src="<%= request.getContextPath() %>/img/LogoNoBack.png" class="topPic" />
 						<!-- <img src="../images/LogoText2.png" class="topPic"> -->
 					</div>
 					<div class="sidebar-brand-text mx-3">
@@ -217,7 +217,7 @@ nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
 				<li class="nav-item active">
 					<!-- <li class="nav-item"> --> <a class="nav-link"
 					href="index.html"> <i class="fas fa-fw fa-thumbs-up"></i> <span>個人<img
-							src="img/ya.png" alt="" class="fas fa-fw">面
+							src="<%= request.getContextPath() %>/img/ya.png" alt="" class="fas fa-fw">面
 					</span></a>
 				</li>
 
@@ -449,7 +449,7 @@ nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> <span
 							class="mr-2 d-none d-lg-inline text-gray-600 small">謝戍乂</span> <img
-							class="img-profile rounded-circle" src="../images/soowii2.jpg" />
+							class="img-profile rounded-circle" src="<%= request.getContextPath() %>/img/soowii2.jpg" />
 					</a> <!-- Dropdown - User Information -->
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -505,100 +505,99 @@ nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
 				<a href="index.html" class="btn btn-primary col-6"> 
 					<b>紀錄</b>
 				</a> 
-					<a href="index.html" class="btn bg-white col-6"> <b>追蹤</b>
+				<a href="index.html" class="btn bg-white col-6"> 
+					<b>追蹤</b>
 				</a>
-				<div class="w-100"></div>
-				<h4>此頁練習採用 EL 的寫法取值:</h4>
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>所有留言資料 - listAllCmt.jsp</h3>
-				<h4>
-					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
-						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">
-						回首頁
-					</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
+				<table id="table-1" class="col-12">
+					<tr>
+						<td>
+							<h3>所有留言資料 - listAllCmt.jsp</h3>
+							<h4>
+								<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
+									<img src="<%= request.getContextPath() %>/img/back1.gif" width="100" height="32" border="0">
+									回首頁
+								</a>
+							</h4>
+						</td>
+					</tr>
+				</table>
 
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
-	<table>
-		<tr>
-			<th>留言編號</th>
-			<th>內容</th>
-			<th>時間</th>
-			<th>狀態</th>
-			<th>紀錄編號</th>
-			<th>留言會員</th>
-			<th>修改</th>
-<!-- 			<th>上/下架</th> -->
-			<th>按讚</th>
-			<th>meToo</th>
-		</tr>
-		<%@ include file="page1.file"%>
-		<c:forEach var="cmtVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->			
-			<tr>
-				<td>${cmtVO.cmt_no}</td>
-				<td>${cmtVO.cmt_content}</td>
-				<td>${cmtVO.cmt_time}</td>
-				<td>${(cmtVO.cmt_status==1?'上架':'下架')}</td>
-				<td>${cmtVO.rcd_no}</td>
-				<td>${cmtVO.mb_id}</td>
-				<td>
-					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" style="margin-bottom: 0px;">
-						<input type="submit" value="修改"> 
-						<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"> 
-						<input type="hidden" name="action" value="getOne_For_Update">
-					</FORM>
-				</td>
-<!-- 				<td> -->
-<%-- 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" style="margin-bottom: 0px;"> --%>
-<!-- 						<input type="submit" value="上/下架">  -->
-<%-- 						<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}">  --%>
-<%-- 						<input type="hidden" name="cmt_time" value="${cmtVO.cmt_time}"> --%>
-<%-- 						<input type="hidden" name="cmt_status" value="${cmtVO.cmt_status}"> --%>
-<%-- 						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}"> --%>
-<%-- 						<input type="hidden" name="mb_id" value="${cmtVO.mb_id}"> --%>
-<%-- 						<input type="hidden" name="cmt_content" value="${cmtVO.cmt_content}"> --%>
-<!-- 						<input type="hidden" name="action" value="fakeDelete"> -->
-<!-- 					</FORM> -->
-<!-- 				</td> -->
-				<jsp:useBean id="thumbSvc" scope="page"	class="com.thumb.model.ThumbService" />
-				<td>
-				${thumbSvc.countAllThumbs(cmtVO.rcd_no)}
-					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/thumb/thumb.do" style="margin-bottom: 0px;">
-						<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/front_end/cmt/images/unnamed2.jpg"  onClick="document.form1.submit()" style="height:2rem;">
-						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
-						<input type="hidden" name="mb_id" value="soowii123">
-						<input type="hidden" name="action" value="insert">
-					</FORM>
-				</td>
-				<jsp:useBean id="meTooSvc" scope="page"	class="com.metoo.model.MeTooService" />
-				<td>
-				${meTooSvc.countAllMeToos(cmtVO.rcd_no)}
-					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/metoo/metoo.do" style="margin-bottom: 0px;">
-						<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/front_end/cmt/images/ya.png"  onClick="document.form1.submit()" style="height:2rem;">
-						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
-						<input type="hidden" name="mb_id" value="soowii123">
-						<input type="hidden" name="action" value="insert">
-					</FORM>
-				</td>
-				
-			</tr>
-		</c:forEach>
-	</table>
-	<%@ include file="page2.file"%>
+				<%-- 錯誤表列 --%>
+				<c:if test="${not empty errorMsgs}">
+					<font style="color: red">請修正以下錯誤:</font>
+					<ul>
+						<c:forEach var="message" items="${errorMsgs}">
+							<li style="color: red">${message}</li>
+						</c:forEach>
+					</ul>
+				</c:if>
+				<table>
+					<tr>
+						<th>留言編號</th>
+						<th>內容</th>
+						<th>時間</th>
+						<th>狀態</th>
+						<th>紀錄編號</th>
+						<th>留言會員</th>
+						<th>修改</th>
+			<!-- 			<th>上/下架</th> -->
+						<th>按讚</th>
+						<th>meToo</th>
+					</tr>
+					<%@ include file="page1.file"%>
+					<c:forEach var="cmtVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+					<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->			
+						<tr>
+							<td>${cmtVO.cmt_no}</td>
+							<td>${cmtVO.cmt_content}</td>
+							<td>${cmtVO.cmt_time}</td>
+							<td>${(cmtVO.cmt_status==1?'上架':'下架')}</td>
+							<td>${cmtVO.rcd_no}</td>
+							<td>${cmtVO.mb_id}</td>
+							<td>
+								<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" style="margin-bottom: 0px;">
+									<input type="submit" value="修改"> 
+									<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"> 
+									<input type="hidden" name="action" value="getOne_For_Update">
+								</FORM>
+							</td>
+			<!-- 				<td> -->
+			<%-- 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" style="margin-bottom: 0px;"> --%>
+			<!-- 						<input type="submit" value="上/下架">  -->
+			<%-- 						<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}">  --%>
+			<%-- 						<input type="hidden" name="cmt_time" value="${cmtVO.cmt_time}"> --%>
+			<%-- 						<input type="hidden" name="cmt_status" value="${cmtVO.cmt_status}"> --%>
+			<%-- 						<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}"> --%>
+			<%-- 						<input type="hidden" name="mb_id" value="${cmtVO.mb_id}"> --%>
+			<%-- 						<input type="hidden" name="cmt_content" value="${cmtVO.cmt_content}"> --%>
+			<!-- 						<input type="hidden" name="action" value="fakeDelete"> -->
+			<!-- 					</FORM> -->
+			<!-- 				</td> -->
+							<jsp:useBean id="thumbSvc" scope="page"	class="com.thumb.model.ThumbService" />
+							<td>
+							${thumbSvc.countAllThumbs(cmtVO.rcd_no)}
+								<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/thumb/thumb.do" style="margin-bottom: 0px;">
+									<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/unnamed2.jpg"  onClick="document.form1.submit()" style="height:2rem;">
+									<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
+									<input type="hidden" name="mb_id" value="soowii123">
+									<input type="hidden" name="action" value="insert">
+								</FORM>
+							</td>
+							<jsp:useBean id="meTooSvc" scope="page"	class="com.metoo.model.MeTooService" />
+							<td>
+							${meTooSvc.countAllMeToos(cmtVO.rcd_no)}
+								<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/metoo/metoo.do" style="margin-bottom: 0px;">
+									<input type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png"  onClick="document.form1.submit()" style="height:2rem;">
+									<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
+									<input type="hidden" name="mb_id" value="soowii123">
+									<input type="hidden" name="action" value="insert">
+								</FORM>
+							</td>
+							
+						</tr>
+					</c:forEach>
+				</table>
+				<%@ include file="page2.file"%>
 			</div>
 
 			<div id="contentRight" class="col-3">
@@ -610,7 +609,7 @@ nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
 					<h4 class="nake-title--sidebar medium m-3">跑量統計</h4>
 					<div class="statis-chart">
 						<!-- <canvas id="week_chart" width="300" height="200"></canvas> -->
-						<img src="img/statistics.png" alt="" class="col-12">
+						<img src="<%= request.getContextPath() %>/img/statistics.png" alt="" class="col-12">
 					</div>
 				</div>
 			</div>
