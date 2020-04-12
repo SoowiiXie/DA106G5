@@ -85,13 +85,13 @@ public class Group_rptDAO implements Group_rptDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
-
-			pstmt.setString(1, group_rptVO.getGroup_rpt_no());
-			pstmt.setString(2, group_rptVO.getGrp_no());			
-			pstmt.setString(3, group_rptVO.getMb_id());
-			pstmt.setString(4, group_rptVO.getRpt_reason());
-			pstmt.setInt(5, group_rptVO.getRpt_status());
-
+			
+			pstmt.setString(1, group_rptVO.getGrp_no());			
+			pstmt.setString(2, group_rptVO.getMb_id());
+			pstmt.setString(3, group_rptVO.getRpt_reason());
+			pstmt.setInt(4, group_rptVO.getRpt_status());
+			pstmt.setString(5, group_rptVO.getGroup_rpt_no());
+			
 			pstmt.executeUpdate();
 
 			// Handle any driver errors

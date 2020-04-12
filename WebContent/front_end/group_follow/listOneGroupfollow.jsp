@@ -1,14 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.group_detail.model.*"%>
+<%@ page import="com.group_follow.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
-	Grp_detailVO grp_detailVO = (Grp_detailVO) request.getAttribute("grp_detailVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+	Group_followVO group_followVO = (Group_followVO) request.getAttribute("group_followVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
 %>
 
 <html>
 <head>
-<title>員工資料 - listOneGroup.jsp</title>
+<title>員工資料 - listOneGroupfollow.jsp</title>
 
 <style>
   table#table-1 {
@@ -49,23 +49,20 @@
 <h4>此頁暫練習採用 Script 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>揪團資料 - ListOneGroup.jsp</h3>
+		 <h3>揪團資料 - ListOneGroupfollow.jsp</h3>
 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>會員編號</th>
 		<th>揪團編號</th>
-		<th>報到狀態</th>
+		<th>會員編號</th>
 		
 	</tr>
-	<tr>		
-		<td><%=grp_detailVO.getMb_id()%></td>
-		<td><%=grp_detailVO.getGrp_no()%></td>
-		<td><%=grp_detailVO.getGrp_register()%></td>
-
+	<tr>
+		<td><%=group_followVO.getGrp_no()%></td>
+		<td><%=group_followVO.getMb_id()%></td>
 	</tr>
 	
 </table>

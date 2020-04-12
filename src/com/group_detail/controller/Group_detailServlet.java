@@ -1,4 +1,4 @@
-package com.grp_detail.controller;
+package com.group_detail.controller;
 
 import java.io.*;
 import java.util.*;
@@ -6,11 +6,9 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import com.group_detail.model.Grp_detailService;
-import com.group_detail.model.Grp_detailVO;
-import com.grouper.model.*;
+import com.group_detail.model.*;
 
-public class Grp_detailServlet extends HttpServlet {
+public class Group_detailServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {

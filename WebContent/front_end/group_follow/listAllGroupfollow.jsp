@@ -2,19 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.group_detail.model.*"%>
+<%@ page import="com.group_follow.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-    Grp_detailService grpdetailSvc = new Grp_detailService();
-    List<Grp_detailVO> list = grpdetailSvc.getAll();
+    Group_followService group_followSvc = new Group_followService();
+    List<Group_followVO> list = group_followSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
 
 
 <html>
 <head>
-<title>所有員工資料 - listAllGroupdetail.jsp</title>
+<title>所有員工資料 - listAllGroup.jsp</title>
 
 <style>
   table#table-1 {
@@ -56,10 +56,10 @@
 <table id="table-1">
 	<tr>
 		<td>
-		 	<h3>所有揪團資料 - listAllGroupdetail.jsp</h3>
+		 	<h3>所有揪團資料 - listAllGroupfollow.jsp</h3>
 		 	<h4>
-			 <a href="<%= request.getContextPath() %>/front_end/group_detail/select_page.jsp">
-		 	<img src="<%= request.getContextPath() %>/front_end/group_detail/images/back1.gif" width="100" height="32" border="0">回首頁
+			 <a href="<%= request.getContextPath() %>/front_end/group_follow/select_page.jsp">
+		 	<img src="<%= request.getContextPath() %>/front_end/group_follow/images/back1.gif" width="100" height="32" border="0">回首頁
 	   		</a>
 	   		</h4>
 		</td>
@@ -78,30 +78,28 @@
 
 <table>
 	<tr>
-		<th>會員編號</th>
 		<th>揪團編號</th>
-		<th>報到狀態</th>
+		<th>會員編號</th>
+		
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
 	<%@ include file="page1.file" %> 
-	<c:forEach var="grp_detailVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+	<c:forEach var="group_followVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td>${grp_detailVO.mb_id}</td>
-			<td>${grp_detailVO.grp_no}</td>			
-			<td>${grp_detailVO.grp_register}</td>
-			
+			<td>${group_followVO.grp_no}</td>
+			<td>${group_followVO.mb_id}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="group_detail.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="group_follow.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
-			     <input type="hidden" name="mb_id"  value="${grp_detailVO.mb_id}">
+			     <input type="hidden" name="grp_no"  value="${group_followVO.grp_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="group_detail.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="group_follow.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
-			     <input type="hidden" name="mb_id"  value="${grp_detailVO.mb_id}">
+			     <input type="hidden" name="grp_no"  value="${group_followVO.grp_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
 		</tr>
