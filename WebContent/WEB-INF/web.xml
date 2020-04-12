@@ -349,6 +349,19 @@
 		
 	<!-- 會員結束 -->
 	
+	<!-- 管理員開始 -->
+	
+		<servlet>
+			<servlet-name>StaffServlet</servlet-name>
+			<servlet-class>com.staff.controller.StaffServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>StaffServlet</servlet-name>
+			<url-pattern>/back_end/staff/staff.do</url-pattern>
+		</servlet-mapping>
+	
+	<!-- 管理員結束 -->
+	
 <!--名軒責任區結束-->
 
 <!--偉誌責任區開始-->
