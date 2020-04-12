@@ -16,177 +16,181 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="" />
-<meta name="author" content="" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
 
-<title>Runn able</title>
+	<title>Runn able</title>
 
-<!-- Custom fonts for this template-->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet" />
+	<!-- Custom fonts for this template-->
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+		type="text/css" />
+	<link
+		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet" />
 
-<!-- Custom styles for this template-->
-<link href="css/sb-admin-2.min.css" rel="stylesheet" />
-<style>
-* {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-	position: relative;
-}
+	<!-- Custom styles for this template-->
+	<link href="css/sb-admin-2.min.css" rel="stylesheet" />
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+			position: relative;
+		}
 
-html {
-	width: 100%;
-	overflow-x: hidden;
-}
+		html {
+			width: 100%;
+			overflow-x: hidden;
+		}
 
-.navbar {
-	position: relative;
-	top: 0px;
-}
+		.navbar {
+			position: relative;
+			top: 0px;
+		}
 
-/* #accordionSidebar>*, */
-#stikyDiv, .collapseTwo, #contentTop {
-	position: sticky !important;
-	top: 0px !important;
-}
+		/* #accordionSidebar>*, */
+		#stikyDiv, .collapseTwo, #contentTop {
+			position: sticky !important;
+			top: 0px !important;
+		}
 
-.collapseTwo>*, .collapseTwo {
-	width: 88% !important;
-	min-width: 0px !important;
-	left: 0.1rem !important;
-}
+		.collapseTwo>*, .collapseTwo {
+			width: 88% !important;
+			min-width: 0px !important;
+			left: 0.1rem !important;
+		}
 
-.collapse-item {
-	padding-left: 0.1rem !important;
-}
+		.collapse-item {
+			padding-left: 0.1rem !important;
+		}
 
-.topPic {
-	/* height: 100%; */
-	width: 100%;
-}
+		.topPic {
+			/* height: 100%; */
+			width: 100%;
+		}
 
-#topPicA {
-	padding: 0 !important;
-	left: -0.2rem;
-	background-color: rgba(255, 255, 255, 0) !important;
-}
+		#topPicA {
+			padding: 0 !important;
+			left: -0.2rem;
+			background-color: rgba(255, 255, 255, 0) !important;
+		}
 
-.topPic img {
-	display: inline-block;
-	height: 100%;
-}
+		.topPic img {
+			display: inline-block;
+			height: 100%;
+		}
 
-#sidebarToggleTop {
-	margin-left: 1rem;
-}
+		#sidebarToggleTop {
+			margin-left: 1rem;
+		}
 
-/* 給假高度(內容) */
-/* #contentTop {
-	height: 4000px;
-} */
+		/* 給假高度(內容) */
+		/* #contentTop {
+			height: 4000px;
+		} */
 
-#contentTop .btn, #contentRight .btn {
-	height: 2.25rem;
-	position: sticky;
-	top: 0px;
-}
+		#contentTop .btn, #contentRight .btn {
+			height: 2.25rem;
+			position: sticky;
+			top: 0px;
+		}
 
-#contentRow {
-	height: 100%;
-}
+		#contentRow {
+			height: 100%;
+		}
 
-#contentLeft {
-	padding-top: 4rem;
-}
+		#contentLeft {
+			padding-top: 4rem;
+		}
 
-#contentLeft>*, #contentRight div {
-	position: sticky;
-	top: 4rem;
-}
+		#contentLeft>*, #contentRight div {
+			position: sticky;
+			top: 4rem;
+		}
 
-.live {
-	top: 4rem;
-	height: 4rem;
-	width: 80%;
-	margin: 0.25rem auto;
-	padding: 0.1rem;
-	overflow: hidden;
-}
+		.live {
+			top: 4rem;
+			height: 4rem;
+			width: 80%;
+			margin: 0.25rem auto;
+			padding: 0.1rem;
+			overflow: hidden;
+		}
 
-.liveImg {
-	border-radius: 10px;
-	width: 100%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
+		.liveImg {
+			border-radius: 10px;
+			width: 100%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 
-.row {
-	background-color: rgb(229, 233, 236) !important;
-	width: 100%;
-}
+		.row {
+			background-color: rgb(229, 233, 236) !important;
+			width: 100%;
+		}
 
-#sidebarToggleDiv {
-	padding-top: 1rem;
-}
+		#sidebarToggleDiv {
+			padding-top: 1rem;
+		}
 
-nav.my_breadcrumb ol.breadcrumb {
-	background-color: rgb(229, 233, 236);
-}
+		nav.my_breadcrumb ol.breadcrumb {
+			background-color: rgb(229, 233, 236);
+		}
 
-nav.my_breadcrumb ol.breadcrumb .breadcrumb-item>a {
-	color: rgb(154, 185, 250);
-}
+		nav.my_breadcrumb ol.breadcrumb .breadcrumb-item>a {
+			color: rgb(154, 185, 250);
+		}
 
-nav.my_breadcrumb ol.breadcrumb .breadcrumb-item.active {
-	color: rgb(78, 115, 223);
-}
+		nav.my_breadcrumb ol.breadcrumb .breadcrumb-item.active {
+			color: rgb(78, 115, 223);
+		}
 
-nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
-	{
-	content: ">";
-	color: rgb(154, 185, 250);
-}
+		nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
+			{
+			content: ">";
+			color: rgb(154, 185, 250);
+		}
 
-.navbar {
-	justify-content: flex-end;
-}
+		.navbar {
+			justify-content: flex-end;
+		}
 
-#sidebarToggleDiv {
-	text-align: center;
-	position: relative;
-	left: -0.2rem;
-}
+		#sidebarToggleDiv {
+			text-align: center;
+			position: relative;
+			left: -0.2rem;
+		}
 
-#sidebarToggle {
-	margin: 0 !important;
-}
+		#sidebarToggle {
+			margin: 0 !important;
+		}
 
-.nav-link, .sidebar-brand {
-	width: 100% !important;
-	padding-left: 0.4rem !important;
-}
+		.nav-link, .sidebar-brand {
+			width: 100% !important;
+			padding-left: 0.4rem !important;
+		}
 
-#searchBar {
-	margin-right: 1rem;
-}
+		#searchBar {
+			margin-right: 1rem;
+		}
 
-/* #wrapper {
-            padding-right: 0.1rem;
-        } */
+		/* #wrapper {
+					padding-right: 0.1rem;
+				} */
 
-/* #wrapperRight {
-            width: cal(100%-5rem);
-        } */
-</style>
+		/* #wrapperRight {
+					width: cal(100%-5rem);
+				} */
+		
+		.jspContent > * > * > * {
+			border:1px dotted black;
+		}
+	</style>
 </head>
 
 <body id="page-top">
@@ -531,7 +535,7 @@ nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
 						</c:forEach>
 					</ul>
 				</c:if>
-				<table>
+				<table bgcolor="#FFF" cellpadding="5" class="jspContent">
 					<tr>
 						<th>留言編號</th>
 						<th>內容</th>
@@ -546,7 +550,8 @@ nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
 					</tr>
 					<%@ include file="page1.file"%>
 					<c:forEach var="cmtVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-					<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->			
+					<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
+						
 						<tr>
 							<td>${cmtVO.cmt_no}</td>
 							<td>${cmtVO.cmt_content}</td>
