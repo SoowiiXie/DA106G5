@@ -1,18 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.cmt.model.CmtVO"%>
 <%@ page import="com.cmt.model.CmtService"%>
 <%@ page import="com.cmt.model.*"%>
+<%@ page import="com.record.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <% 
-	CmtService cmtSvc = new CmtService();
-	List<CmtVO> list = cmtSvc.getAll();
+	String mb_id=(String)session.getAttribute("mb_id");
+	if(mb_id==null || "".equals(mb_id)){
+		session.setAttribute("mb_id","anjavababy520");
+	}
+	pageContext.setAttribute("mb_id", mb_id);
+	
+	RecordService recordSvc = new RecordService();
+	List<CmtVO> list = recordSvc.getAll();
 	pageContext.setAttribute("list", list);
 %>
+<!--會員Service -->
+<jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
+<!--紀錄Service -->
+<jsp:useBean id="recordSvcEL" scope="page" class="com.record.model.RecordService" />
+<!--按讚Service -->
+<jsp:useBean id="thumbSvcEL" scope="page"	class="com.thumb.model.ThumbService" />
+<!--meTooService -->
+<jsp:useBean id="meTooSvcEL" scope="page"	class="com.metoo.model.MeTooService" />
+<!--留言Service -->
+<jsp:useBean id="cmtSvcEL" scope="page"	class="com.cmt.model.CmtService" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -453,8 +470,10 @@
 					<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> 
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small">謝戍乂</span> 
-					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/img/soowii2.jpg" />
+					<!--會員照片-->
+					<span class="mr-2 d-none d-lg-inline text-gray-600 small">${memberSvcEL.getOneMember("anjavababy520").mb_name}</span> 
+					<!--會員姓名-->
+					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=anjavababy520" />
 					</a> <!-- Dropdown - User Information -->
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -534,22 +553,22 @@
 							<span class="ml-3 d-none d-lg-inline text-gray-600">${cmtVO.cmt_content}</span>
 							<div class="w-100">
 								<div class="col-5 form-inline">							
-									<jsp:useBean id="thumbSvc" scope="page"	class="com.thumb.model.ThumbService" />
+									
 									<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/thumb/thumb.do" style="margin-bottom: 0px;">
 										<input class="my-2 mr-1" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png"  onClick="document.form1.submit()" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
 										<input type="hidden" name="mb_id" value="soowii123">
 										<input type="hidden" name="action" value="insert">
 									</FORM>
-									${thumbSvc.countAllThumbs(cmtVO.rcd_no)}
-									<jsp:useBean id="meTooSvc" scope="page"	class="com.metoo.model.MeTooService" />
+									${thumbSvcEL.countAllThumbs(cmtVO.rcd_no)}
+									
 									<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/metoo/metoo.do" style="margin-bottom: 0px;">
 										<input class="my-2 mx-1" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png"  onClick="document.form1.submit()" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
 										<input type="hidden" name="mb_id" value="soowii123">
 										<input type="hidden" name="action" value="insert">
 									</FORM>
-									${meTooSvc.countAllMeToos(cmtVO.rcd_no)}
+									${meTooSvcEL.countAllMeToos(cmtVO.rcd_no)}
 								</div>
 							</div>
 						</div>
