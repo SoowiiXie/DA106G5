@@ -1190,7 +1190,7 @@ ALTER TABLE live ADD CONSTRAINT PK_live PRIMARY KEY (live_no);
 
 CREATE TABLE live_rpt (
  live_rpt_no VARCHAR2(20) NOT NULL,
- rpt_status NUMBER(1) NOT NULL,
+ rpt_status NUMBER(1) DEFAULT'1' NOT NULL,
  rpt_reason CLOB,
  live_no VARCHAR2(20) NOT NULL,
  mb_id VARCHAR2(20) NOT NULL
