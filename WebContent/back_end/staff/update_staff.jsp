@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>update_staff</title>
+<title>update_self</title>
 </head>
 <body>
 	<h2>個人資料修改</h2>
@@ -30,7 +30,7 @@
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 		<input type="hidden" name="staff_status" value="${staffVO.staff_status}">
 		
-        <input type="hidden" name="action" value="update"><br>
+        <input type="hidden" name="action" value="update_self"><br>
         <input type ="button" onclick="history.back()" value="返回">
         <input type="submit" value="送出"><br>
         
