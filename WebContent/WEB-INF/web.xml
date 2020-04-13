@@ -297,6 +297,15 @@
 			<url-pattern>/front_end/record/record.do</url-pattern>
 		</servlet-mapping>
 		
+		<servlet>
+			<servlet-name>Rcd_rptServlet</servlet-name>
+			<servlet-class>com.rcd_rpt.controller.Rcd_rptServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Rcd_rptServlet</servlet-name>
+			<url-pattern>/back_end/rcd_rpt/rcd_rpt.do</url-pattern>
+		</servlet-mapping>
+		
 		
 		
 		<servlet>

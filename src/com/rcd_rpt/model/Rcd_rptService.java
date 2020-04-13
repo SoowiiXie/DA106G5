@@ -47,7 +47,7 @@ public class Rcd_rptService {
 		return dao.getAll();
 	}
 	
-	public Rcd_rptVO updateRcd_rptByRcdNO(String rcd_rpt_no, String rpt_reason, Integer rpt_status, String rcd_no, String mb_id) {
+	public Rcd_rptVO updateRcd_rptByRcdNo(String rcd_rpt_no, String rpt_reason, Integer rpt_status, String rcd_no, String mb_id) {
 		Rcd_rptVO rcd_rptVO = new Rcd_rptVO();
 		rcd_rptVO.setRpt_status(rpt_status);
 		rcd_rptVO.setRcd_no(rcd_no);
