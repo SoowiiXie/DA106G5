@@ -8,4 +8,6 @@ public interface Rcd_rptDAO_interface {
      public void delete(String rcd_rpt_no);
      public Rcd_rptVO findByPrimaryKey(String rcd_rpt_no);
      public List<Rcd_rptVO> getAll();
+     public void updateByRcdNo(Rcd_rptVO rcd_rptVO);
+     public String getRptedMb_id(String rcd_no);
 }
