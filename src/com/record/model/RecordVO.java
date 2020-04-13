@@ -3,6 +3,10 @@ package com.record.model;
 import java.sql.Date;
 
 public class RecordVO implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String rcd_no;
 	private Date rcd_uploadtime;
 	private String rcd_content;

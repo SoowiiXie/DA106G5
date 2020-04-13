@@ -7,8 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-
+import java.util.Map;
 
 public class RecordJDBCDAO implements RecordDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -286,7 +285,7 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 	
 	public static void main(String[] args) {
 
-		RecordJDBCDAO dao = new RecordJDBCDAO();
+//		RecordJDBCDAO dao = new RecordJDBCDAO();
 
 //		//新增
 //		RecordVO recordVO1 = new RecordVO();
@@ -340,6 +339,14 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 		
 		
 		
+	}
+
+
+
+	@Override
+	public List<RecordVO> getAllUWish(Map<String, String[]> map, String orderBy) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
