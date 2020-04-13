@@ -16,7 +16,7 @@
 	pageContext.setAttribute("mb_id", mb_id);
 	
 	RecordService recordSvc = new RecordService();
-	List<CmtVO> list = recordSvc.getAll();
+	List<RecordVO> list = recordSvc.getByMb_id(mb_id);
 	pageContext.setAttribute("list", list);
 %>
 <!--會員Service -->
@@ -470,9 +470,9 @@
 					<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> 
-					<!--會員照片-->
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small">${memberSvcEL.getOneMember("anjavababy520").mb_name}</span> 
 					<!--會員姓名-->
+					<span class="mr-2 d-none d-lg-inline text-gray-600 small">${memberSvcEL.getOneMember("anjavababy520").mb_name}</span> 
+					<!--會員照片-->
 					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=anjavababy520" />
 					</a> <!-- Dropdown - User Information -->
 						<div
@@ -536,7 +536,7 @@
 				</div>
 				
 
-					<c:forEach var="cmtVO" items="${list}">
+					<c:forEach var="RecordVO" items="${list}">
 					<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
 						<!--一則紀錄 -->
 						<div class="container bg-white m-3 rounded p-0 " >

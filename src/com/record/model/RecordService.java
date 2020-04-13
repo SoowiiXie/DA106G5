@@ -1,6 +1,8 @@
 package com.record.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RecordService {
 	private RecordDAO_interface dao;//為了框架所以使用介面多型宣告,可以做到0相依性
@@ -51,5 +53,11 @@ public class RecordService {
 
 	public List<RecordVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public List<RecordVO> getByMb_id(String mb_id) {
+		Map<String, String[]> map = new HashMap<>();
+		map.put("mb_id", new String[] { mb_id });
+		return dao.getAllUWish(map,"");
 	}
 }
