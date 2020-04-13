@@ -170,7 +170,7 @@ values('yiwen123','1234566','yiwen_line','yiwen123','1',TO_DATE('1985-09-14','YY
 Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
 values('weijhih123','1234577','weijhih_line','weijhih123','1',TO_DATE('1989-10-19','YYYY-MM-DD'),'weijhih123@yahoo.com');
 Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
-values('andriodlababy520','andriodlababy520','andriodlababy520','安卓拉寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'andriodlababy520@yahoo.com');
+values('androidlababy520','androidlababy520','androidlababy520','安卓拉寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'androidlababy520@yahoo.com');
 Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
 values('anjavababy520','anjavababy520','anjavababy520','一個爪哇寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'anjavababy520@yahoo.com');
 
@@ -1127,7 +1127,7 @@ VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-02 20
 INSERT INTO RECORD (RCD_NO, RCD_UPLOADTIME, RCD_CONTENT, RCD_THUMB_AMOUNT, RCD_METOO_AMOUNT, RCD_STATUS, PATH_NO, MB_ID)
 VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-03 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), '安卓寶貝根本404', '99', '99', '1', 'p00008', 'anjavababy520');
 INSERT INTO RECORD (RCD_NO, RCD_UPLOADTIME, RCD_CONTENT, RCD_THUMB_AMOUNT, RCD_METOO_AMOUNT, RCD_STATUS, PATH_NO, MB_ID)
-VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-04 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), '爪哇寶貝才404，爪哇全家都404', '99', '99', '1', 'p00009', 'andriodlababy520');
+VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-04 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), '爪哇寶貝才404，爪哇全家都404', '99', '99', '1', 'p00009', 'androidlababy520');
 --留言
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'commemt1', TO_DATE('2020-03-05', 'YYYY-MM-DD'), '1', 'rcd00001', 'soowii123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment2', TO_DATE('2020-03-05', 'YYYY-MM-DD'), '1', 'rcd00002', 'xuan123');
