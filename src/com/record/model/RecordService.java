@@ -58,6 +58,6 @@ public class RecordService {
 	public List<RecordVO> getByMb_id(String mb_id) {
 		Map<String, String[]> map = new HashMap<>();
 		map.put("mb_id", new String[] { mb_id });
-		return dao.getAllUWish(map,"");
+		return dao.getAllUWish(map,"RCD_NO desc");
 	}
 }

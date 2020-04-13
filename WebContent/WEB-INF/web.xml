@@ -325,6 +325,15 @@
 			<servlet-name>MemberServlet</servlet-name>
 			<url-pattern>/android/member.do</url-pattern>
 		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>DBGifReader4Path</servlet-name>
+			<servlet-class>com.path.model.DBGifReader4Path</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Path</servlet-name>
+			<url-pattern>/DBGifReader4Path</url-pattern>
+		</servlet-mapping>
 <!-- 麥克責任區結束 -->
 
 <!-- 昱盛責任區開始 -->

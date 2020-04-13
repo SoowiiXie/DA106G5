@@ -23,6 +23,8 @@
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
 <!--紀錄Service -->
 <jsp:useBean id="recordSvcEL" scope="page" class="com.record.model.RecordService" />
+<!--路徑Service -->
+<jsp:useBean id="pathSvcEL" scope="page" class="com.path.model.PathService" />
 <!--按讚Service -->
 <jsp:useBean id="thumbSvcEL" scope="page"	class="com.thumb.model.ThumbService" />
 <!--meTooService -->
@@ -146,6 +148,14 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
+		
+		.pathImg {
+			width: 90%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 
 		.row {
 			background-color: rgb(229, 233, 236) !important;
@@ -204,10 +214,7 @@
 		/* #wrapperRight {
 					width: cal(100%-5rem);
 				} */
-		
-		.jspContent > * > * > * {
-			border:1px dotted black;
-		}
+
 	</style>
 </head>
 
@@ -237,10 +244,13 @@
 
 				<!-- Nav Item - Dashboard -->
 				<li class="nav-item active">
-					<!-- <li class="nav-item"> --> <a class="nav-link"
-					href="index.html"> <i class="fas fa-fw fa-thumbs-up"></i> <span>個人<img
-							src="<%= request.getContextPath() %>/img/ya.png" alt="" class="fas fa-fw">面
-					</span></a>
+					<!-- <li class="nav-item"> --> 
+					<a class="nav-link"	href="index.html">
+						<i class="fas fa-fw fa-thumbs-up"></i> 
+						<span>
+							個人<img src="<%= request.getContextPath() %>/img/ya.png" alt="" class="fas fa-fw">面
+						</span>
+					</a>
 				</li>
 
 				<!-- Nav Item - Pages Collapse Menu -->
@@ -471,9 +481,9 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> 
 					<!--會員姓名-->
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small">${memberSvcEL.getOneMember("anjavababy520").mb_name}</span> 
+					<span class="mr-2 d-none d-lg-inline text-gray-600 small">${memberSvcEL.getOneMember(mb_id).mb_name}</span> 
 					<!--會員照片-->
-					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=anjavababy520" />
+					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
 					</a> <!-- Dropdown - User Information -->
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -534,22 +544,24 @@
 						<b>追蹤</b>
 					</a>
 				</div>
-				
-
-					<c:forEach var="RecordVO" items="${list}">
+					<c:forEach var="recordVO" items="${list}">
 					<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
 						<!--一則紀錄 -->
 						<div class="container bg-white m-3 rounded p-0 " >
 							<div class="d-inline-block mt-3 ml-3">
 								<div>
-									<img class="img-profile rounded-circle" height=50rem; src="<%= request.getContextPath() %>/img/soowii2.jpg" />
-									<span class="ml-2 d-none d-lg-inline text-gray-600">${cmtVO.mb_id};${cmtVO.rcd_no}</span>
+									<!--會員照片-->
+									<img class="img-profile rounded-circle" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${recordVO.mb_id}" />
+									<!--會員姓名-->
+									<span class="ml-2 d-none d-lg-inline text-gray-600">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
 								</div>
 								<div>
-									<span class="ml-5 d-none d-lg-inline text-gray-400">${cmtVO.cmt_time}</span>
+									<span class="ml-5 d-none d-lg-inline text-gray-400">${recordVO.rcd_uploadtime}</span>
 								</div>
 							</div>
-							<img src="<%= request.getContextPath() %>/img/map.PNG" class="rounded mx-auto d-block my-2" alt="Responsive image">
+							<div style="overflow:hidden; height:15rem;" class="mx-auto my-2 col-12">
+								<img src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}" class="rounded mx-auto d-block pathImg" alt="Responsive image">
+							</div>
 							<span class="ml-3 d-none d-lg-inline text-gray-600">${cmtVO.cmt_content}</span>
 							<div class="w-100">
 								<div class="col-5 form-inline">							
