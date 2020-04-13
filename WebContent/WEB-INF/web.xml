@@ -235,7 +235,7 @@
 		    <description></description>
 		    <display-name>MeTooAjaxResponse</display-name>
 		    <servlet-name>MeTooAjaxResponse</servlet-name>
-		    <servlet-class>com.meToo.controller.MeTooAjaxResponse</servlet-class>
+		    <servlet-class>com.metoo.controller.MeTooAjaxResponse</servlet-class>
 		</servlet>
 		<servlet-mapping>
 		    <servlet-name>MeTooAjaxResponse</servlet-name>

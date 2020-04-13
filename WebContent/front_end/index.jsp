@@ -49,7 +49,7 @@
 
 	<!-- Custom styles for this template-->
 	<link href="<%= request.getContextPath() %>/css/sb-admin-2.min.css" rel="stylesheet" />
-	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+	
 	<style>
 		* {
 			padding: 0;
@@ -293,12 +293,14 @@
 					</div></li>
 
 				<!-- Nav Item - Pages Collapse Menu -->
-				<li class="nav-item"><a class="nav-link collapsed"
-					href="../VainPd/eShopHome.html" data-toggle="collapse"
-					data-target="#collapsePages" aria-expanded="true"
-					aria-controls="collapsePages"> <i class="fas fa-fw fa-store"></i>
+				<li class="nav-item">
+					<a class="nav-link collapsed"
+						href="../VainPd/eShopHome.html" data-toggle="collapse"
+						data-target="#collapsePages" aria-expanded="true"
+						aria-controls="collapsePages"> 
+						<i class="fas fa-fw fa-store"></i>
 						<span>商城</span>
-				</a>
+					</a>
 					<div id="collapsePages" class="collapse collapseTwo"
 						aria-labelledby="headingPages" data-parent="#accordionSidebar">
 						<div class="bg-white py-0 m-0 collapse-inner rounded">
@@ -307,7 +309,8 @@
 								class="collapse-item py-1" href="register.html">購物車</a> <a
 								class="collapse-item py-1" href="forgot-password.html">我的訂單</a>
 						</div>
-					</div></li>
+					</div>
+				</li>
 				<!-- Sidebar Toggler (Sidebar) -->
 				<div id="sidebarToggleDiv">
 					<button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -568,25 +571,25 @@
 							<div style="overflow:hidden; height:15rem;" class="mx-auto my-2 col-12">
 								<img src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}" class="rounded mx-auto d-block pathImg" alt="Responsive image">
 							</div>
-							<span class="ml-3 d-none d-lg-inline text-gray-600">${cmtVO.cmt_content}</span>
+							<span class="ml-3 d-none d-lg-inline text-gray-600">${recordVO.rcd_content}</span>
 							<div class="w-100">
 								<div class="col-5 form-inline">							
 									
 									<div style="margin-bottom: 0px;">
 										<input class="my-2 mr-1 thumbBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
-										<input type="hidden" name="mb_id" value="${recordVO.mb_id}" class="mb_id">
+										<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
 										<input type="hidden" name="action" value="insert">
 									</div>
 									<span class="thumbAmount">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
 																		
-									<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/metoo/metoo.do" style="margin-bottom: 0px;">
-										<input class="my-2 mx-1 yaBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png" style="height:2rem;">
-										<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
-										<input type="hidden" name="mb_id" value="soowii123">
+									<div style="margin-bottom: 0px;">
+										<input class="my-2 mx-1 meTooBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png" style="height:2rem;">
+										<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
+										<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
 										<input type="hidden" name="action" value="insert">
-									</FORM>
-									${meTooSvcEL.countAllMeToos(cmtVO.rcd_no)}
+									</div>
+									<span class="thumbAmount">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
 								</div>
 							</div>
 						</div>
@@ -660,8 +663,10 @@
 
 		<!-- Custom scripts for all pages-->
 		<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
+		
+		<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript">
-			$(document).ready(function(e){
+			$(document).ready(function(){
 				 $('.thumbBtn').click(function(){
 					 var thumbImg = $(this);
 					 $.ajax({
@@ -671,6 +676,20 @@
 						 dataType: "json",
 						 success: function (data){
 							 thumbImg.parent().next().text(data);
+					     },
+			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
+			         })
+				 })
+				 
+				 $('.meTooBtn').click(function(){
+					 var meTooImg = $(this);
+					 $.ajax({
+						 type: "GET",
+						 url: "<%=request.getContextPath()%>/meTooAjaxResponse.do",
+						 data: {"action":"insert", "rcd_no":$(this).siblings('.rcd_no').val(), "mb_id":$(this).siblings('.mb_id').val()},
+						 dataType: "json",
+						 success: function (data){
+							 meTooImg.parent().next().text(data);
 					     },
 			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 			         })
