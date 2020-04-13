@@ -32,8 +32,8 @@ public class StaffServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		// *** listAllStaff中移除自己或Boss
-		
 		// ** listAllEmp  更改狀態、權限、下拉式選單篩選在職、離職
+		// *** listAllEmp 離職用紅字粗體顯示
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");

@@ -28,13 +28,14 @@
 		
 		狀態：
 		<select>
-			<option>在職</option>
-			<option>離職</option>
+			<c:set var="entrySet" value="${staffStatus.entrySet()}"/> 
+			<c:forEach var="map" items="${entrySet}">
+				<option name="staff_status" value="${map.key}" ${staffVO.staff_status==map.key?'selected':''}>${map.value}</option>
+			</c:forEach>
 		</select>
 		
 		<input type="hidden" name="staff_join" value="${staffVO.staff_join}">
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
-		<input type="hidden" name="staff_status" value="${staffVO.staff_status}">
 		
         <input type="hidden" name="action" value="update_staff"><br>
         <input type ="button" onclick="history.back()" value="返回">
