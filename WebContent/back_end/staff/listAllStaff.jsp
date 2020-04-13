@@ -85,7 +85,7 @@
 			<td>${staffVO.staff_id}</td>
 			<td>${staffVO.staff_name}</td>
 			<td>${staffVO.staff_join}</td>
-			<td>${staffVO.staff_status}</td>
+			<td>${staffStatus[staffVO.staff_status]}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="staff.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="н╫зя">
