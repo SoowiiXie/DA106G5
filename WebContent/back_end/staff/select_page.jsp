@@ -21,7 +21,7 @@
 		</ul>
 	</c:if>
 	
-	<a href="update_staff.jsp">個人資料管理</a><br><br>
+	<a href="update_self.jsp">個人資料管理</a><br><br>
 	
 	<form METHOD="POST" action="staff.do" id="form1">
 		<%-- 用button是為了讓value可以使用 --%>

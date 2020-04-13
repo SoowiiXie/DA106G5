@@ -32,6 +32,17 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
+<!-- 我們共用的狀態對應資料 -->
+	<servlet>
+		<servlet-name>InitData</servlet-name>
+		<servlet-class>com.common.InitData</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitData</servlet-name>
+		<url-pattern>/InitData</url-pattern>
+	</servlet-mapping>
+	
 
 <!-- 戍乂責任區 開始-->
 
