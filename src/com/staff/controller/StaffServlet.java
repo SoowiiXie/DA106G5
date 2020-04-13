@@ -37,7 +37,7 @@ public class StaffServlet extends HttpServlet{
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
 
-		if ("getOne_For_Display".equals(action)) { // 登入   OK
+		if ("login".equals(action)) { // 登入   OK
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -145,7 +145,7 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 
-		if ("update".equals(action)) { // 修改  OK
+		if ("update_self".equals(action)) { // 個人修改  OK
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
@@ -202,6 +202,32 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 
+		if ("getOne_For_Update".equals(action)) { 
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				
+				/***************************查詢資料****************************************/
+				StaffService staffSvc = new StaffService();
+				StaffVO staffVO = staffSvc.getOneStaff(req.getParameter("staff_id"));
+								
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("staffVO", staffVO);         
+				String url = "/back_end/staff/update_staff";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back_end/staff/listAllStaff.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 		if ("insert".equals(action)) { // 新增
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
