@@ -197,7 +197,7 @@
 		</servlet>
 		<servlet-mapping>
 		    <servlet-name>ThumbAjaxResponse</servlet-name>
-		    <url-pattern>/front_end/thumb/ajaxResponse.do</url-pattern>
+		    <url-pattern>/front_end/thumbAjaxResponse.do</url-pattern>
 		</servlet-mapping>
 	<!-- 按讚結束 -->
 	
@@ -239,7 +239,7 @@
 		</servlet>
 		<servlet-mapping>
 		    <servlet-name>MeTooAjaxResponse</servlet-name>
-		    <url-pattern>/front_end/meToo/ajaxResponse.do</url-pattern>
+		    <url-pattern>/front_end/meToo/meTooAjaxResponse.do</url-pattern>
 		</servlet-mapping>
 	<!-- meToo結束 -->
 
