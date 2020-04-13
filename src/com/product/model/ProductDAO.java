@@ -14,15 +14,16 @@ public class ProductDAO implements ProductDAO_interface {
 	String userid = "DA106G5";
 	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "INSERT INTO product (pd_no, pd_name, pd_price, pd_detail, pd_typeno) VALUES ('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO product (pd_no, pd_name, pd_price, pd_detail, pd_typeno, pd_pic) VALUES ('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status FROM product order by pd_no";
 	private static final String GET_ONE_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status FROM product where pd_no = ?";
 	private static final String DELETE = "DELETE FROM product where pd_no = ?";
-	private static final String UPDATE = "UPDATE product set pd_name=?, pd_price=?, pd_detail=? , pd_typeno=?, pd_status=?where pd_no = ?";
+	private static final String UPDATE = "UPDATE product set pd_name=?, pd_price=?, pd_detail=? , pd_typeno=? , pd_status=? ,pd_pic=? where pd_no = ?";
 	private static final String CHANGE_STATUS = "update product set pd_status = ? where pd_no = ?";
-	private static final String TYPE_SEARCH = "select pd_no, pd_name from product where pd_typeno = ?";
+	private static final String TYPE_SEARCH = "select pd_no, pd_name, pd_price, pd_detail, pd_status , pd_typeNo from product where pd_typeno = ?";
 	private static final String UPDATE_PIC = "UPDATE product SET pd_PIC = ? WHERE pd_NO = ?";
-
+    private static final String LIST_ON_THE_MARKET = "select pd_no, pd_name ,pd_typeNo, pd_price ,pd_detail"
+    		                                      + " from product where pd_status = ?";
 	@Override
 	public int addProduct(ProductVO productVO) {
 		int updateCount = 0;
@@ -40,6 +41,7 @@ public class ProductDAO implements ProductDAO_interface {
 			pstmt.setInt(2, productVO.getPd_price());
 			pstmt.setString(3, productVO.getPd_detail());
 			pstmt.setString(4, productVO.getPd_typeNo());
+			pstmt.setBytes(5, productVO.getPd_pic());
 			
 
 			updateCount = pstmt.executeUpdate();
@@ -104,7 +106,9 @@ public class ProductDAO implements ProductDAO_interface {
 			pstmt.setString(3, productVO.getPd_detail());
 			pstmt.setString(4, productVO.getPd_typeNo());
 			pstmt.setInt(5,productVO.getPd_status());
-			pstmt.setString(6, productVO.getPd_no());
+			pstmt.setBytes(6, productVO.getPd_pic());
+			pstmt.setString(7, productVO.getPd_no());
+			
 			
 
 			updateCount = pstmt.executeUpdate();
@@ -373,6 +377,10 @@ public class ProductDAO implements ProductDAO_interface {
 				productVO = new ProductVO();
 				productVO.setPd_no(rs.getString("pd_no"));
 				productVO.setPd_name(rs.getString("pd_name"));
+				productVO.setPd_price(rs.getInt("pd_price"));
+				productVO.setPd_detail(rs.getString("pd_detail"));
+				productVO.setPd_status(rs.getInt("pd_status"));
+				productVO.setPd_typeNo(rs.getString("pd_typeNo"));
 				list.add(productVO);
 
 			}
@@ -548,38 +556,135 @@ public class ProductDAO implements ProductDAO_interface {
 
 	}
 
+	
+	public List<ProductVO> listOnTheMarket(Integer pd_status){
+		
+		List<ProductVO> list = new ArrayList<ProductVO>();
+		ProductVO productVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(LIST_ON_THE_MARKET);
+			pstmt.setInt(1, pd_status);
+			rs = pstmt.executeQuery();
+			System.out.println("搜尋的商品狀態：" + pd_status);
+			while (rs.next()) {
+				productVO = new ProductVO();
+				productVO.setPd_no(rs.getString("pd_no"));
+				productVO.setPd_name(rs.getString("pd_name"));
+				productVO.setPd_price(rs.getInt("pd_price"));
+				productVO.setPd_detail(rs.getString("pd_detail"));
+				productVO.setPd_typeNo(rs.getString("pd_typeNo"));
+				productVO.setPd_status(pd_status);
+				list.add(productVO);
+
+			}
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+		
+		
+		
+		
+		
+		return list;
+	}
+	
+	
 	public static void main(String[] args) {
 
-		ProductDAO dao = new ProductDAO();
-
-		// 新增
-//		ProductVO productVO1 = new ProductVO();
-//		productVO1.setPd_name("ccccc");
-//		productVO1.setPd_price(50000);
-//		productVO1.setPd_detail("XXXXXX");
-//		productVO1.setPd_typeNo("PTN00003");
-//		int updateCount_insert = dao.addProduct(productVO1);
-//		System.out.println("商品資料庫新增" + updateCount_insert + "筆商品資料");
-//		System.out.println("商品名稱：" + productVO1.getPd_name() + " " + "商品價格：" + productVO1.getPd_price() + " " + "商品詳述："
-//				+ productVO1.getPd_detail() + " " + "商品類型：" + productVO1.getPd_typeNo());
+		ProductDAO dao = new ProductDAO();		
+		try {
+			FileInputStream in;
+			in = new FileInputStream("/Users/cenaliou/Desktop/1.jpg");
+			BufferedInputStream bf = new BufferedInputStream(in);
+			// 方法1.使用byte陣列setBytes
+		    try {
+				byte[] image = new byte[bf.available()];
+				 bf.read(image);
+					// 新增
+					ProductVO productVO1 = new ProductVO();
+					productVO1.setPd_name("ccccc");
+					productVO1.setPd_price(50000);
+					productVO1.setPd_detail("XXXXXX");
+					productVO1.setPd_typeNo("PTN00003");
+					productVO1.setPd_pic(image);
+					int updateCount_insert = dao.addProduct(productVO1);
+					bf.close();
+					System.out.println("商品資料庫新增" + updateCount_insert + "筆商品資料");
+					System.out.println("商品名稱：" + productVO1.getPd_name() + " " + "商品價格：" + productVO1.getPd_price() + " " + "商品詳述："
+							+ productVO1.getPd_detail() + " " + "商品類型：" + productVO1.getPd_typeNo()+" "
+							+productVO1.getPd_pic_path());
+					
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}//讀入的圖檔,暫存在記憶體
+		    
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 
 //		 修改
-		 ProductVO productVO2 = new ProductVO();	
-		 productVO2.setPd_no("PDN00015");
-		 productVO2.setPd_name("測試用球鞋");
-		 productVO2.setPd_price(1111111);
-		 productVO2.setPd_detail("XXXXXX");
-		 productVO2.setPd_status(1);
-		 productVO2.setPd_typeNo("PTN00003");
-//		
-		 int updateCount_update = dao.updateProductInformation(productVO2);
-		 System.out.println("更新"+updateCount_update+"筆商品資料");		
-		 System.out.println("商品編號"+productVO2.getPd_no()+"更新內容");
-		 System.out.println("商品名稱："+productVO2.getPd_name());
-		 System.out.println("商品價格："+productVO2.getPd_price());
-		 System.out.println("商品詳述："+productVO2.getPd_detail());
-		 System.out.println("商品分類："+productVO2.getPd_typeNo());
-		 System.out.println("商品狀態："+productVO2.getPd_status());
+//		 ProductVO productVO2 = new ProductVO();	
+//		 productVO2.setPd_no("PDN00015");
+//		 productVO2.setPd_name("測試用球鞋");
+//		 productVO2.setPd_price(1111111);
+//		 productVO2.setPd_detail("XXXXXX");
+//		 productVO2.setPd_status(1);
+//		 productVO2.setPd_typeNo("PTN00003");
+////		
+//		 int updateCount_update = dao.updateProductInformation(productVO2);
+//		 System.out.println("更新"+updateCount_update+"筆商品資料");		
+//		 System.out.println("商品編號"+productVO2.getPd_no()+"更新內容");
+//		 System.out.println("商品名稱："+productVO2.getPd_name());
+//		 System.out.println("商品價格："+productVO2.getPd_price());
+//		 System.out.println("商品詳述："+productVO2.getPd_detail());
+//		 System.out.println("商品分類："+productVO2.getPd_typeNo());
+//		 System.out.println("商品狀態："+productVO2.getPd_status());
 
 		// 刪除（此功能僅刪除未成立訂單明細之商品）
 
@@ -616,6 +721,20 @@ public class ProductDAO implements ProductDAO_interface {
 //			System.out.println("");
 //		}
 //	
+		 
+		 //用狀態查詢商品
+//		List<ProductVO> list1 = dao.listOnTheMarket(2);
+//		for(ProductVO aproductVO : list1) {
+//			System.out.print("商品編號："+aproductVO.getPd_no()+" ");
+//			System.out.print("商品名稱："+aproductVO.getPd_name()+" ");
+//			System.out.print("商品金額："+aproductVO.getPd_price()+" ");
+//			System.out.print("商品分類："+aproductVO.getPd_typeNo()+" ");
+//			System.out.print("商品詳述："+aproductVO.getPd_detail()+" ");
+//			System.out.println("");
+//		} 
+		
+		
+		
 		// 查詢 所有商品
 //		System.out.println("-----列出所有商品-----");
 //		System.out.println("");

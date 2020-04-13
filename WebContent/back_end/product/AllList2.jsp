@@ -1,25 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.Base64"%>
-<%@ page import="java.util.*"%>
-<%@ page import="com.product.model.*"%>
-
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-	ProductService productService = new ProductService();
-
-	List<ProductVO> list = productService.getAll();
-
-	 pageContext.setAttribute("list", list);  
-%>
-
-<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
 <html>
 <head>
 <meta charset="UTF-8">
-<title>後端管理頁面</title>
+<title>Insert title here</title>
 </head>
 <body>
 <%-- 錯誤表列 --%>
