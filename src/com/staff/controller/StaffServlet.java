@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.abl.model.AbilityService;
 import com.auth.model.AuthorityService;
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
@@ -30,12 +32,14 @@ public class StaffServlet extends HttpServlet{
 
 		// *** 用MAP取出XXX權限
 		// *** 延伸上面，在Switch-case中，比對字串改為MAP的KEY
+		// *** listAllStaff中移除自己或Boss
 		
 		// ** listAllEmp  更改狀態、權限、下拉式選單篩選在職、離職
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
+		ServletContext context = getServletContext();
 
 		if ("login".equals(action)) { // 登入   OK
 			List<String> errorMsgs = new LinkedList<String>();
@@ -135,7 +139,9 @@ public class StaffServlet extends HttpServlet{
 					break;
 				}
 			}else {
-				errorMsgs.add("您尚未擁有該權限");   // 用MAP取出XXX權限
+				AbilityService abilitySvc = new AbilityService();
+				abilitySvc.getAll();
+				errorMsgs.add("您尚未擁有"+ context.getAttribute(management) +"該權限");   // 用MAP取出XXX權限
 			}
 			
 			if (!errorMsgs.isEmpty()) {
