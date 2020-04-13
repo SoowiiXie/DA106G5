@@ -32,6 +32,17 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
+<!-- 我們共用的狀態對應資料 -->
+	<servlet>
+		<servlet-name>InitData</servlet-name>
+		<servlet-class>com.common.InitData</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitData</servlet-name>
+		<url-pattern>/InitData</url-pattern>
+	</servlet-mapping>
+	
 
 <!-- 戍乂責任區 開始-->
 
@@ -283,7 +294,16 @@
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>RecordServlet</servlet-name>
-			<url-pattern>/record/record.do</url-pattern>
+			<url-pattern>/front_end/record/record.do</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>Rcd_rptServlet</servlet-name>
+			<servlet-class>com.rcd_rpt.controller.Rcd_rptServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Rcd_rptServlet</servlet-name>
+			<url-pattern>/back_end/rcd_rpt/rcd_rpt.do</url-pattern>
 		</servlet-mapping>
 		
 		

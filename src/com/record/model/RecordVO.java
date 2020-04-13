@@ -2,7 +2,7 @@ package com.record.model;
 
 import java.sql.Date;
 
-public class RecordVO {
+public class RecordVO implements java.io.Serializable{
 	private String rcd_no;
 	private Date rcd_uploadtime;
 	private String rcd_content;

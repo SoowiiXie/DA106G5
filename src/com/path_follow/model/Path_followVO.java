@@ -2,7 +2,7 @@ package com.path_follow.model;
 
 
 
-public class Path_followVO {
+public class Path_followVO implements java.io.Serializable{
 	private String path_no;
 	private String mb_id;
 	
