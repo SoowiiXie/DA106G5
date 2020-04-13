@@ -44,14 +44,12 @@
 	<title>Runn able</title>
 
 	<!-- Custom fonts for this template-->
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-		type="text/css" />
-	<link
-		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-		rel="stylesheet" />
+	<link href="<%= request.getContextPath() %>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
 	<!-- Custom styles for this template-->
-	<link href="css/sb-admin-2.min.css" rel="stylesheet" />
+	<link href="<%= request.getContextPath() %>/css/sb-admin-2.min.css" rel="stylesheet" />
+	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 	<style>
 		* {
 			padding: 0;
@@ -216,36 +214,18 @@
 				} */
 
 	</style>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		 $('.thumbBtn').click(function(){
-			 $.ajax({
-				 type: "GET",
-				 url: "ajaxResponse.do",
-				 data: creatQueryString($(this).val(), ""),
-				 dataType: "json",
-				 success: function (data){
-					clearSelect();
-// 					$.each(data, function(i, item){
-// 						$('#class').append("<option value='"+item.classId+"'>"+item.className+"</option>");
-// 					});
-					$(data).each(function(i, item){
-						$('#class').append("<option value='"+item.classId+"'>"+item.className+"</option>");
-					});
-// 					jQuery.each(data, function(i, item){
-// 						$('#class').append("<option value='"+item.classId+"'>"+item.className+"</option>");
-// 					});
-			     },
-	             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
-	         })
-		 })
-	})
-
-</script>
 </head>
 
 <body id="page-top">
-
+	<%-- 錯誤表列 --%>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -592,16 +572,16 @@
 							<div class="w-100">
 								<div class="col-5 form-inline">							
 									
-									<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/thumb/thumb.do" style="margin-bottom: 0px;">
-										<input class="my-2 mr-1 thumbBtn" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png" style="height:2rem;">
-										<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
-										<input type="hidden" name="mb_id" value="soowii123">
+									<div style="margin-bottom: 0px;">
+										<input class="my-2 mr-1 thumbBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png" style="height:2rem;">
+										<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
+										<input type="hidden" name="mb_id" value="${recordVO.mb_id}" class="mb_id">
 										<input type="hidden" name="action" value="insert">
-									</FORM>
-									${thumbSvcEL.countAllThumbs(cmtVO.rcd_no)}
-									
+									</div>
+									<span class="thumbAmount">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
+																		
 									<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/metoo/metoo.do" style="margin-bottom: 0px;">
-										<input class="my-2 mx-1 yaBtn" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png"  onClick="document.form1.submit()" style="height:2rem;">
+										<input class="my-2 mx-1 yaBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
 										<input type="hidden" name="mb_id" value="soowii123">
 										<input type="hidden" name="action" value="insert">
@@ -672,14 +652,31 @@
 		</div>
 
 		<!-- Bootstrap core JavaScript-->
-		<script src="vendor/jquery/jquery.min.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
+		<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 		<!-- Core plugin JavaScript-->
-		<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+		<script src="<%= request.getContextPath() %>/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 		<!-- Custom scripts for all pages-->
-		<script src="js/sb-admin-2.min.js"></script>
+		<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(e){
+				 $('.thumbBtn').click(function(){
+					 var thumbImg = $(this);
+					 $.ajax({
+						 type: "GET",
+						 url: "<%=request.getContextPath()%>/thumbAjaxResponse.do",
+						 data: {"action":"insert", "rcd_no":$(this).siblings('.rcd_no').val(), "mb_id":$(this).siblings('.mb_id').val()},
+						 dataType: "json",
+						 success: function (data){
+							 thumbImg.parent().next().text(data);
+					     },
+			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
+			         })
+				 })
+			})
+		</script>
 </body>
 
 </html>
