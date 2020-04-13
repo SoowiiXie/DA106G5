@@ -45,7 +45,7 @@ public class InitData extends HttpServlet {
     	// 管理員狀態
     	Map<Integer,String> staffStatus = new HashMap<Integer,String>();
     	staffStatus.put(1, "在職");
-    	staffStatus.put(2, "已離職");
+    	staffStatus.put(2, "離職");
     	context.setAttribute("staffStatus", staffStatus);
     	
     	// 回報問題狀態

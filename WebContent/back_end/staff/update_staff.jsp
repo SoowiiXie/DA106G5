@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>update_self</title>
+<title>update_staff</title>
 </head>
 <body>
-	<h2>個人資料修改</h2>
+	<h2>管理員資料修改</h2>
 	
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -26,11 +26,17 @@
 		名字：<input type="text" name="staff_name" value="${staffVO.staff_name}"><br>
 		加入時間：${staffVO.staff_join}<br>
 		
+		狀態：
+		<select>
+			<option>在職</option>
+			<option>離職</option>
+		</select>
+		
 		<input type="hidden" name="staff_join" value="${staffVO.staff_join}">
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 		<input type="hidden" name="staff_status" value="${staffVO.staff_status}">
 		
-        <input type="hidden" name="action" value="update_self"><br>
+        <input type="hidden" name="action" value="update_staff"><br>
         <input type ="button" onclick="history.back()" value="返回">
         <input type="submit" value="送出"><br>
         

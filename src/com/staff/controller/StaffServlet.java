@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -30,8 +31,6 @@ public class StaffServlet extends HttpServlet{
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		// *** 用MAP取出XXX權限
-		// *** 延伸上面，在Switch-case中，比對字串改為MAP的KEY
 		// *** listAllStaff中移除自己或Boss
 		
 		// ** listAllEmp  更改狀態、權限、下拉式選單篩選在職、離職
@@ -39,7 +38,6 @@ public class StaffServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
-		ServletContext context = getServletContext();
 
 		if ("login".equals(action)) { // 登入   OK
 			List<String> errorMsgs = new LinkedList<String>();
@@ -140,8 +138,8 @@ public class StaffServlet extends HttpServlet{
 				}
 			}else {
 				AbilityService abilitySvc = new AbilityService();
-				abilitySvc.getAll();
-				errorMsgs.add("您尚未擁有"+ context.getAttribute(management) +"該權限");   // 用MAP取出XXX權限
+				Map<String,String> allAbility = abilitySvc.getAllToMap();
+				errorMsgs.add("您尚未擁有"+ allAbility.get(management) +"的權限");   // 用MAP取出XXX權限
 			}
 			
 			if (!errorMsgs.isEmpty()) {
@@ -208,7 +206,7 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 
-		if ("getOne_For_Update".equals(action)) { 
+		if ("getOne_For_Update".equals(action)) { // 顯示一筆管理員資料For更新 OK
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -221,7 +219,7 @@ public class StaffServlet extends HttpServlet{
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("staffVO", staffVO);         
-				String url = "/back_end/staff/update_staff";
+				String url = "/back_end/staff/update_staff.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
@@ -230,6 +228,63 @@ public class StaffServlet extends HttpServlet{
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back_end/staff/listAllStaff.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		if ("update_staff".equals(action)) { // 管理員資料修改
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String staff_id = req.getParameter("staff_id").trim();
+				
+				String staff_pwd = req.getParameter("staff_pwd").trim();
+				if (staff_pwd == null || staff_pwd.length() == 0) {
+					errorMsgs.add("密碼不得為空白");
+				}
+				
+				String staff_name = req.getParameter("staff_name").trim();
+				if (staff_name == null || staff_name.length() == 0) {
+					errorMsgs.add("姓名不得為空白");
+				}
+				
+				Timestamp staff_join = Timestamp.valueOf(req.getParameter("staff_join"));
+				Integer staff_status = Integer.parseInt(req.getParameter("staff_status"));
+				
+				StaffVO staffVO = new StaffVO();
+				staffVO.setStaff_id(staff_id);
+				staffVO.setStaff_pwd(staff_pwd);
+				staffVO.setStaff_name(staff_name);
+				staffVO.setStaff_join(staff_join);
+				staffVO.setStaff_status(staff_status);
+				
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("staffVO", staffVO); // 含有輸入格式錯誤的memberVO物件,也存入req
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back_end/staff/update_staff.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				StaffService staffSvc = new StaffService();
+				staffVO = staffSvc.updateStaff(staff_id, staff_pwd, staff_name, staff_status);
+				// 因為更新不需要更新加入時間，傳回的物件也沒有加入時間，所以要再自己加上加入時間
+				staffVO.setStaff_join(staff_join);
+				
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				session.setAttribute("staffVO", staffVO);
+				String url = "/back_end/staff/select_page.jsp";  // 
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/update_staff.jsp");
 				failureView.forward(req, res);
 			}
 		}
