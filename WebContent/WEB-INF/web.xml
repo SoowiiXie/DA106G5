@@ -188,6 +188,17 @@
 			<servlet-name>ThumbServletAll</servlet-name>
 			<url-pattern>/thumb/thumb.do</url-pattern>
 		</servlet-mapping>
+		
+		<servlet>
+		    <description></description>
+		    <display-name>ThumbAjaxResponse</display-name>
+		    <servlet-name>ThumbAjaxResponse</servlet-name>
+		    <servlet-class>com.thumb.controller.ThumbAjaxResponse</servlet-class>
+		</servlet>
+		<servlet-mapping>
+		    <servlet-name>ThumbAjaxResponse</servlet-name>
+		    <url-pattern>/front_end/thumb/ajaxResponse.do</url-pattern>
+		</servlet-mapping>
 	<!-- 按讚結束 -->
 	
 	<!-- meToo開始 -->
@@ -218,6 +229,17 @@
 		<servlet-mapping>
 			<servlet-name>MeTooServletAll</servlet-name>
 			<url-pattern>/metoo/metoo.do</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
+		    <description></description>
+		    <display-name>MeTooAjaxResponse</display-name>
+		    <servlet-name>MeTooAjaxResponse</servlet-name>
+		    <servlet-class>com.meToo.controller.MeTooAjaxResponse</servlet-class>
+		</servlet>
+		<servlet-mapping>
+		    <servlet-name>MeTooAjaxResponse</servlet-name>
+		    <url-pattern>/front_end/meToo/ajaxResponse.do</url-pattern>
 		</servlet-mapping>
 	<!-- meToo結束 -->
 

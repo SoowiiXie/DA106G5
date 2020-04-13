@@ -216,6 +216,32 @@
 				} */
 
 	</style>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		 $('.thumbBtn').click(function(){
+			 $.ajax({
+				 type: "GET",
+				 url: "ajaxResponse.do",
+				 data: creatQueryString($(this).val(), ""),
+				 dataType: "json",
+				 success: function (data){
+					clearSelect();
+// 					$.each(data, function(i, item){
+// 						$('#class').append("<option value='"+item.classId+"'>"+item.className+"</option>");
+// 					});
+					$(data).each(function(i, item){
+						$('#class').append("<option value='"+item.classId+"'>"+item.className+"</option>");
+					});
+// 					jQuery.each(data, function(i, item){
+// 						$('#class').append("<option value='"+item.classId+"'>"+item.className+"</option>");
+// 					});
+			     },
+	             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
+	         })
+		 })
+	})
+
+</script>
 </head>
 
 <body id="page-top">
@@ -567,7 +593,7 @@
 								<div class="col-5 form-inline">							
 									
 									<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/thumb/thumb.do" style="margin-bottom: 0px;">
-										<input class="my-2 mr-1" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png"  onClick="document.form1.submit()" style="height:2rem;">
+										<input class="my-2 mr-1 thumbBtn" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
 										<input type="hidden" name="mb_id" value="soowii123">
 										<input type="hidden" name="action" value="insert">
@@ -575,7 +601,7 @@
 									${thumbSvcEL.countAllThumbs(cmtVO.rcd_no)}
 									
 									<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/metoo/metoo.do" style="margin-bottom: 0px;">
-										<input class="my-2 mx-1" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png"  onClick="document.form1.submit()" style="height:2rem;">
+										<input class="my-2 mx-1 yaBtn" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png"  onClick="document.form1.submit()" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
 										<input type="hidden" name="mb_id" value="soowii123">
 										<input type="hidden" name="action" value="insert">
