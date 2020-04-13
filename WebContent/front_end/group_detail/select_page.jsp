@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -65,10 +64,10 @@
    
   <li>
      <FORM METHOD="post" ACTION="group_detail.do" >
-       <b>選擇揪團編號:</b>
+       <b>選擇會員編號:</b>
        <select size="1" name="mb_id">
          <c:forEach var="Grp_detailVO" items="${grpdetailSvc.all}" > 
-          <option value="${Grp_detailVO.grp_no}">${Grp_detailVO.grp_no}
+          <option value="${Grp_detailVO.mb_id}">${Grp_detailVO.mb_id}
          </c:forEach>   
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">
