@@ -1,4 +1,4 @@
-package com.grp_detail.model;
+package com.group_detail.model;
 
 
 public class Grp_detailVO implements java.io.Serializable{
@@ -6,6 +6,7 @@ public class Grp_detailVO implements java.io.Serializable{
 	private String mb_id;
 	private String grp_no;
 	private Integer grp_register;
+	
 	public String getMb_id() {
 		return mb_id;
 	}
@@ -26,4 +27,4 @@ public class Grp_detailVO implements java.io.Serializable{
 	}
 	
 
-}
+}	

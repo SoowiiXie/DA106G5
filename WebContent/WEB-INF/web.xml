@@ -349,6 +349,19 @@
 		
 	<!-- 會員結束 -->
 	
+	<!-- 管理員開始 -->
+	
+		<servlet>
+			<servlet-name>StaffServlet</servlet-name>
+			<servlet-class>com.staff.controller.StaffServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>StaffServlet</servlet-name>
+			<url-pattern>/back_end/staff/staff.do</url-pattern>
+		</servlet-mapping>
+	
+	<!-- 管理員結束 -->
+	
 <!--名軒責任區結束-->
 
 <!--偉誌責任區開始-->
@@ -386,7 +399,7 @@
 	<!-- 揪團檢舉開始 -->
 		<servlet>
 			<servlet-name>Group_rptTest</servlet-name>
-			<servlet-class>com.grouper.model.Group_rptTest</servlet-class>
+			<servlet-class>com.group_rpt.model.Group_rptTest</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>Group_rptTest</servlet-name>
@@ -407,13 +420,73 @@
 		
 		<servlet>
 			<servlet-name>DBGifReader4Group_rpt</servlet-name>
-			<servlet-class>com.grouper.model.DBGifReader4Group_rpt</servlet-class>
+			<servlet-class>com.group_rpt.model.DBGifReader4Group_rpt</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>DBGifReader4Group_rpt</servlet-name>
 			<url-pattern>/DBGifReader4Group_rpt</url-pattern>
 		</servlet-mapping>
 	<!-- 揪團檢舉結束 -->
+	<!-- 揪團明細開始 -->
+		<servlet>
+			<servlet-name>Group_detailTest</servlet-name>
+			<servlet-class>com.group_detail.model.Group_detailTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Group_detailTest</servlet-name>
+			<url-pattern>/Group_detailTest</url-pattern>
+		</servlet-mapping>
+	
+		<servlet>
+			<servlet-name>Group_detailServlet</servlet-name>
+			<servlet-class>com.group_detail.controller.Group_detailServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Group_detailServlet</servlet-name>
+			<url-pattern>/front_end/group_detail/group_detail.do</url-pattern>
+		</servlet-mapping>
+	
+	
+		
+		<servlet>
+			<servlet-name>DBGifReader4Group_detail</servlet-name>
+			<servlet-class>com.group_detail.model.DBGifReader4Group_detail</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Group_detail</servlet-name>
+			<url-pattern>/DBGifReader4Group_detail</url-pattern>
+		</servlet-mapping>
+	<!-- 揪團明細結束 -->
+	<!-- 揪團關注開始 -->
+		<servlet>
+			<servlet-name>Group_followTest</servlet-name>
+			<servlet-class>com.group_follow.model.Group__followTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Group_followTest</servlet-name>
+			<url-pattern>/Group_followTest</url-pattern>
+		</servlet-mapping>
+	
+		<servlet>
+			<servlet-name>Group_followServlet</servlet-name>
+			<servlet-class>com.group_follow.controller.Group_followServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Group_followServlet</servlet-name>
+			<url-pattern>/front_end/group_follow/group_follow.do</url-pattern>
+		</servlet-mapping>
+	
+	
+		
+		<servlet>
+			<servlet-name>DBGifReader4Group_follow</servlet-name>
+			<servlet-class>com.group_follow.model.DBGifReader4Group_follow</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Group_follow</servlet-name>
+			<url-pattern>/DBGifReader4Group_follow</url-pattern>
+		</servlet-mapping>
+	<!-- 揪團關注結束 -->
 <!--偉誌責任區結束-->
 
 </web-app>

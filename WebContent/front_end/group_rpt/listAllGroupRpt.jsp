@@ -5,15 +5,15 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-    Group_rptService grouprptSvc = new Group_rptService();
-    List<Group_rptVO> list = grouprptSvc.getAll();
+    Group_rptService group_rptSvc = new Group_rptService();
+    List<Group_rptVO> list = group_rptSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
 
 
 <html>
 <head>
-<title>所有員工資料 - listAllGroupRpt.jsp</title>
+<title>所有員工資料 - listAllGroup.jsp</title>
 
 <style>
   table#table-1 {
@@ -54,7 +54,7 @@
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>所有揪團檢舉資料 - listAllGroupRpt.jsp</h3>
+		 <h3>所有揪團資料 - listAllGroup.jsp</h3>
 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -71,10 +71,10 @@
 
 <table>
 	<tr>
-		<th>檢舉編號</th>
+		<th>檢舉揪團編號</th>
 		<th>揪團編號</th>
-		<th>揪團原因</th>
 		<th>檢舉會員編號</th>
+		<th>檢舉原因</th>
 		<th>處理狀態</th>
 		<th>修改</th>
 		<th>刪除</th>
@@ -85,20 +85,20 @@
 		<tr>
 			<td>${group_rptVO.group_rpt_no}</td>
 			<td>${group_rptVO.grp_no}</td>
-			<td>${group_rptVO.rpt_reason}</td>
 			<td>${group_rptVO.mb_id}</td>
+			<td>${group_rptVO.rpt_reason}</td>
 			<td>${group_rptVO.rpt_status}</td>
-
+			
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="group_rpt.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
-			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
+			     <input type="hidden" name="group_rpt_no"  value="${group_rptVO.group_rpt_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="group_rpt.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
-			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
+			     <input type="hidden" name="group_rpt_no"  value="${group_rptVO.group_rpt_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
 		</tr>

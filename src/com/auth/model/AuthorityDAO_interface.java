@@ -1,6 +1,7 @@
 package com.auth.model;
 
 import java.util.List;
+import java.util.Set;
 
 public interface AuthorityDAO_interface {
 	public void insert(AuthorityVO authorityVO);
@@ -9,4 +10,5 @@ public interface AuthorityDAO_interface {
     public List<AuthorityVO> getAll();
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
+    public Set<String> getOneStaffAuthority(String staff_id);
 }

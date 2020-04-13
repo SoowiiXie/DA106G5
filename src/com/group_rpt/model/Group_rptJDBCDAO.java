@@ -310,14 +310,14 @@ public class Group_rptJDBCDAO implements Group_rptDAO_interface {
 //		// 刪
 //		dao.delete("grr00006");
 //
-//		// 查
-//		Group_rptVO group_rptVO3 = dao.findByPrimaryKey("grr00002");
-//		System.out.print(group_rptVO3.getGroup_rpt_no() + ",");
-//		System.out.print(group_rptVO3.getGrp_no() + ",");	
-//		System.out.print(group_rptVO3.getMb_id() + ",");
-//		System.out.print(group_rptVO3.getRpt_reason() + ",");
-//		System.out.println(group_rptVO3.getRpt_status());
-//		System.out.println("---------------------");
+		// 查
+		Group_rptVO group_rptVO3 = dao.findByPrimaryKey("grr00002");
+		System.out.print(group_rptVO3.getGroup_rpt_no() + ",");
+		System.out.print(group_rptVO3.getGrp_no() + ",");	
+		System.out.print(group_rptVO3.getMb_id() + ",");
+		System.out.print(group_rptVO3.getRpt_reason() + ",");
+		System.out.println(group_rptVO3.getRpt_status());
+		System.out.println("---------------------");
 //
 		// 查全部
 		List<Group_rptVO> list = dao.getAll();

@@ -1,6 +1,7 @@
 package com.auth.model;
 
 import java.util.List;
+import java.util.Set;
 
 public class AuthorityService {
 	
@@ -29,5 +30,9 @@ public class AuthorityService {
 
 	public List<AuthorityVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public Set<String> getOneStaffAuthority(String staff_id){
+		return dao.getOneStaffAuthority(staff_id);
 	}
 }

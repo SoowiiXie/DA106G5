@@ -17,6 +17,8 @@
 		</c:forEach>
 	</ul>
 </c:if>
+
+<h2>會員登入</h2>
 	<form METHOD="POST" action="member.do">
 		<input type="text" name="mb_id" placeholder="請輸入帳號" ><br>
         <input type="password" name="mb_pwd" placeholder="請輸入密碼"><br>
