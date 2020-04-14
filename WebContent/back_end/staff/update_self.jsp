@@ -30,10 +30,11 @@
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 		<input type="hidden" name="staff_status" value="${staffVO.staff_status}">
 		
-        <input type="hidden" name="action" value="update_self"><br>
-        <input type ="button" onclick="history.back()" value="返回">
-        <input type="submit" value="送出"><br>
+		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
+        <input type="hidden" name="action" value="update"><br>
         
+        <a href="select_page.jsp"><input type ="button" value="返回"></a>
+        <input type="submit" value="送出"><br>
         
 	</form>
 	
