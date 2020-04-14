@@ -565,34 +565,56 @@
 									<!--會員照片-->
 									<img class="img-profile rounded-circle" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${recordVO.mb_id}" />
 									<!--會員姓名-->
-									<span class="ml-2 d-none d-lg-inline text-gray-600">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
+									<span class="ml-2 d-none d-lg-inline text-gray-900">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
 								</div>
 								<div>
-									<span class="ml-5 d-none d-lg-inline text-gray-400">${recordVO.rcd_uploadtime}</span>
+									<span class="ml-5 d-none d-lg-inline text-gray-500">${recordVO.rcd_uploadtime}</span>
 								</div>
 							</div>
 							<div style="overflow:hidden; height:15rem;" class="mx-auto my-2 col-12">
 								<img src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}" class="rounded mx-auto d-block pathImg" alt="Responsive image">
 							</div>
-							<span class="ml-3 d-none d-lg-inline text-gray-600">${recordVO.rcd_content}</span>
+							<span class="ml-3 d-none d-lg-inline text-gray-900">${recordVO.rcd_content}</span>
 							<div class="w-100">
 								<div class="col-5 form-inline">							
-									
+									<!-- 按讚 -->
 									<div style="margin-bottom: 0px;">
 										<input class="my-2 mr-1 thumbBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
 										<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
 										<input type="hidden" name="action" value="insert">
 									</div>
-									<span class="thumbAmount">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
-																		
+									<span class="text-primary">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
+									<!-- meToo -->									
 									<div style="margin-bottom: 0px;">
 										<input class="my-2 mx-1 meTooBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
 										<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
 										<input type="hidden" name="action" value="insert">
 									</div>
-									<span class="thumbAmount">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
+									<span class="mr-2 text-success">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
+									<!-- 留言-->
+									<div style="margin-bottom: 0px;">
+										<input class="my-2 mr-2 ml-1 cmtBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/comment.png" style="height:2rem;">
+									</div>
+									<span>${cmtSvcEL.countAllCmts(recordVO.rcd_no)}</span>
+								</div>
+								<!-- 新增留言 -->
+								<div class="col-11 mx-auto my-2 bg-gray-300 rounded-lg">
+									<img class="img-profile rounded-circle my-2 mx-1" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
+									<span class="text-primary lg">${memberSvcEL.getOneMember(mb_id).mb_name}</span>
+									<input type="text" class="bg-gray-200 w-50">
+									<input class="align-middle mx-2 sendBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/send.png" style="height:2rem;">
+								</div>
+								<!-- 所有留言 -->
+								<div class="cmtDiv" style="display:none">
+									<c:forEach var="cmtVO" items="${cmtSvcEL.getByRcd_no(recordVO.rcd_no)}">
+									<div class="col-11 mx-auto my-1 bg-gray-300 rounded-lg">
+										<img class="img-profile rounded-circle my-2 mx-1" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${cmtVO.mb_id}" />
+										<span class="text-primary lg">${memberSvcEL.getOneMember(cmtVO.mb_id).mb_name}</span>
+										<span class="text-dark">${cmtVO.cmt_content}</span>
+									</div>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -681,8 +703,8 @@
 							 thumbImg.parent().next().text(data);
 					     },
 			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
-			         })
-				 })
+			         });
+				 });
 				 
 				 $('.meTooBtn').click(function(){
 					 var meTooImg = $(this);
@@ -695,9 +717,18 @@
 							 meTooImg.parent().next().text(data);
 					     },
 			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
-			         })
-				 })
-			})
+			         });
+				 });
+				 
+				 $('.cmtBtn').click(function(){
+					 $(this).parents().siblings('.cmtDiv').toggle(function(){
+// 						    $(this).animate({height:400},200);
+// 						  },function(){
+// 						    $(this).animate({height:10},200);
+							height: 'toggle'
+						  });
+				 });
+			});
 		</script>
 </body>
 

@@ -13,6 +13,8 @@ public interface Cmt_interface {
 	public CmtVO findByPrimaryKey(String cmt_no);
 
 	public List<CmtVO> getAll();
+	
+	public Integer countAllCmts(String rcd_no);
 
 	// 萬用型
 	public List<CmtVO> getAllUWish(Map<String, String[]> map);
