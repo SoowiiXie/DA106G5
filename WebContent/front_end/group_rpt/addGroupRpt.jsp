@@ -68,14 +68,14 @@
 <FORM METHOD="post" ACTION="group_rpt.do" name="form1">
 <table>
 	<tr>
-		<td>輸入揪團檢舉編號:</td>
-		<td><input type="TEXT" name="group_rpt_no" size="45" 
-			 value="<%= (group_rptVO==null)? "grr00010" : group_rptVO.getGroup_rpt_no()%>" /></td>
+		<td>輸入揪團檢舉編號:</td><td>自動產生</td>
+		<td><input type="hidden" name="group_rpt_no" size="45" 
+			 value="<%= (group_rptVO==null)? "grr00001" : group_rptVO.getGroup_rpt_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>揪團編號:</td>
 		<td><input type="TEXT" name="grp_no" size="45"
-			 value="<%= (group_rptVO==null)? "grp00010" : group_rptVO.getGrp_no()%>" /></td>
+			 value="<%= (group_rptVO==null)? "grp00001" : group_rptVO.getGrp_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>檢舉會員編號:</td>

@@ -65,7 +65,7 @@
   <li>
      <FORM METHOD="post" ACTION="group_rpt.do" >
        <b>選擇揪團檢舉編號:</b>
-       <select size="1" name="grp_rpt_no">
+       <select size="1" name="group_rpt_no">
          <c:forEach var="Group_rptVO" items="${group_rptSvc.all}" > 
           <option value="${Group_rptVO.group_rpt_no}">${Group_rptVO.group_rpt_no}
          </c:forEach>   
