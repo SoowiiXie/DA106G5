@@ -6,17 +6,20 @@
 <%@ page import="com.cmt.model.CmtService"%>
 <%@ page import="com.cmt.model.*"%>
 <%@ page import="com.record.model.*"%>
+<%@ page import="com.mb.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <% 
-	String mb_id=(String)session.getAttribute("mb_id");
-	if(mb_id==null || "".equals(mb_id)){
-		session.setAttribute("mb_id","anjavababy520");
-	}
-	pageContext.setAttribute("mb_id", mb_id);
-	
+// 	String mb_id=(String)session.getAttribute("mb_id");
+// 	if(mb_id==null || "".equals(mb_id)){
+// 		session.setAttribute("mb_id","anjavababy520");
+// 	}
+// 	pageContext.setAttribute("mb_id", mb_id);
+
+	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	pageContext.setAttribute("mb_id", memberVO.getMb_id());
 	RecordService recordSvc = new RecordService();
-	List<RecordVO> list = recordSvc.getByMb_id(mb_id);
+	List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
 	pageContext.setAttribute("list", list);
 %>
 <!--會員Service -->
