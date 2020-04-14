@@ -35,6 +35,7 @@ public class StaffServlet extends HttpServlet{
 		// ** listAllEmp  更改狀態、權限、下拉式選單篩選在職、離職
 		// *** listAllEmp 離職用紅字粗體顯示
 		// *** 返回鍵改用超連結
+		// *** 同樣操作可以合併一個if
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
