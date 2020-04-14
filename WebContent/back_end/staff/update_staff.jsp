@@ -27,10 +27,10 @@
 		加入時間：${staffVO.staff_join}<br>
 		
 		狀態：
-		<select>
+		<select name="staff_status">
 			<c:set var="entrySet" value="${staffStatus.entrySet()}"/> 
 			<c:forEach var="map" items="${entrySet}">
-				<option name="staff_status" value="${map.key}" ${staffVO.staff_status==map.key?'selected':''}>${map.value}</option>
+				<option value="${map.key}" ${staffVO.staff_status==map.key?'selected':''}>${map.value}</option>
 			</c:forEach>
 		</select>
 		

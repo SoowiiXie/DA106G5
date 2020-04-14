@@ -34,6 +34,7 @@ public class StaffServlet extends HttpServlet{
 		// *** listAllStaff中移除自己或Boss
 		// ** listAllEmp  更改狀態、權限、下拉式選單篩選在職、離職
 		// *** listAllEmp 離職用紅字粗體顯示
+		// *** 返回鍵改用超連結
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -232,13 +233,13 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 		
-		if ("update_staff".equals(action)) { // 管理員資料修改
+		if ("update_staff".equals(action)) { // 管理員資料修改  OK
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String staff_id = req.getParameter("staff_id").trim();
+				String staff_id = req.getParameter("staff_id");
 				
 				String staff_pwd = req.getParameter("staff_pwd").trim();
 				if (staff_pwd == null || staff_pwd.length() == 0) {
@@ -277,7 +278,7 @@ public class StaffServlet extends HttpServlet{
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("staffVO", staffVO);
-				String url = "/back_end/staff/select_page.jsp";  // 
+				String url = "/back_end/staff/listAllStaff.jsp";  // 
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
