@@ -23,6 +23,7 @@ public class CmtDAO implements Cmt_interface {
 	private static final String INSERT_STMT = "INSERT INTO commentt (cmt_no,cmt_content,cmt_time,rcd_no,mb_id) values ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'),?,?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id FROM commentt ORDER BY cmt_no";
 	private static final String GET_ONE_STMT = "SELECT cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id FROM commentt WHERE cmt_no = ?";
+	private static final String COUNT_ALL = "SELECT COUNT ('a cmt') AS COUNTCMTS FROM commentt WHERE rcd_no = ?";
 	private static final String DELETE = "DELETE FROM commentt where cmt_no = ?";
 	private static final String UPDATE = "UPDATE commentt SET cmt_content = ?, cmt_status = ? where cmt_no = ?";
 
@@ -345,6 +346,57 @@ public class CmtDAO implements Cmt_interface {
 			}
 		}
 		return list_map;
+	}
+
+	@Override
+	public Integer countAllCmts(String rcd_no) {
+		Integer cmts = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(COUNT_ALL,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			pstmt.setString(1, rcd_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				cmts = Integer.parseInt(rs.getString("COUNTCMTS"));
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return cmts;
 	}
 
 }

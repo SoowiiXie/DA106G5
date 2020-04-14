@@ -66,4 +66,8 @@ public class CmtService {
 		map.put("mb_id", new String[] { str });
 		return dao.getAllUWish(map);
 	}
+	
+	public Integer countAllCmts(String rcd_no) {
+    	return dao.countAllCmts(rcd_no);
+    }
 }
