@@ -343,7 +343,10 @@ public class Loc_rptDAO implements Loc_rpt_interface {
 			}
 			sb.append(") and ");
 		}
-		sb.append(" 1=1 order by " + orderBy);
+		sb.append("1=1");
+		if(orderBy!="" && orderBy!=null) {
+			sb.append(" order by " + orderBy);
+		}
 
 		try {
 

@@ -55,12 +55,14 @@ public class ShoppingServlet extends HttpServlet {
 					ProductVO productVO = productService.findOneProduct(pd_no);
 
 					/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-					req.setAttribute("productVO", productVO); // 資料庫取出的empVO物件,存入req
+					req.setAttribute("productVO", productVO); 
 					String url = "/front_end/product/GoOneProduct.jsp";
 
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 OneProductInformation.jsp
 					successView.forward(req, res);
 
+					return;
+					    
 				} catch (Exception e) {
 					errorMsgs.add("無法取得商品的資料:" + e.getMessage());
 					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/ShopHome.jsp");
@@ -115,7 +117,7 @@ public class ShoppingServlet extends HttpServlet {
 
 		// 結帳，計算購物車商品價錢總數
 		else if (action.equals("CHECKOUT")) {
-			float total = 0;
+			int total = 0;
 			for (int i = 0; i < buylist.size(); i++) {
 				ProductVO order = buylist.get(i);
 				int price = order.getPd_price();
@@ -128,8 +130,11 @@ public class ShoppingServlet extends HttpServlet {
 			String url = "/front_end/product/Checkout.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
+					
 		}
 
+	
+		
 	}
 
 	private ProductVO getProduct(HttpServletRequest req) {

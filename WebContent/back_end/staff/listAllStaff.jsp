@@ -77,7 +77,8 @@
 		<th>管理員姓名</th>
 		<th>加入日期</th>
 		<th>狀態</th>
-		<th>修改</th>
+		<th>資料修改</th>
+		<th>權限修改</th>
 	</tr>
 	<c:forEach var="staffVO" items="${list}">
 		
@@ -85,7 +86,7 @@
 			<td>${staffVO.staff_id}</td>
 			<td>${staffVO.staff_name}</td>
 			<td>${staffVO.staff_join}</td>
-			<td>${staffVO.staff_status}</td>
+			<td>${staffStatus[staffVO.staff_status]}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="staff.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
@@ -93,6 +94,7 @@
 			     <input type="hidden" name="action"	value="getOne_For_Update">
 			  </FORM>
 			</td>
+			<td><button >修改</button></td>
 		</tr>
 	</c:forEach>
 </table>

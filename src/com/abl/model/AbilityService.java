@@ -1,6 +1,7 @@
 package com.abl.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class AbilityService {
 	
@@ -37,6 +38,10 @@ public class AbilityService {
 
 	public List<AbilityVO> getAll() {
 		return dao.getAll();
+	}
+	
+	public Map<String, String> getAllToMap(){
+		return dao.getAllToMap();
 	}
 	
 }

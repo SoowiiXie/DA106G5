@@ -50,6 +50,7 @@ public class LiveDAO implements LiveDAO_interface {
 
 		try {
 //			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 

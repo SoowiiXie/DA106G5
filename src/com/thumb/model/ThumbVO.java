@@ -3,6 +3,10 @@ package com.thumb.model;
 
 
 public class ThumbVO implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String rcd_no;
 	private String mb_id;
 	
