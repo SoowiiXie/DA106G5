@@ -39,6 +39,7 @@ public class StaffServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
+		String servletPath = req.getParameter("servletPath");  // 從哪裡來
 
 		if ("login".equals(action)) { // 登入   OK
 			List<String> errorMsgs = new LinkedList<String>();
@@ -60,7 +61,7 @@ public class StaffServlet extends HttpServlet{
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -73,7 +74,7 @@ public class StaffServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -87,7 +88,7 @@ public class StaffServlet extends HttpServlet{
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
 			}
 		}
@@ -95,7 +96,7 @@ public class StaffServlet extends HttpServlet{
 		if ("update".equals(action)) {   // 個人 / 管理員 資料修改  OK
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			String servletPath = req.getParameter("servletPath");
+			
 			
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
@@ -209,7 +210,7 @@ public class StaffServlet extends HttpServlet{
 			}
 			
 			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
 				return;// 程式中斷
 			}
@@ -236,7 +237,7 @@ public class StaffServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back_end/staff/listAllStaff.jsp");
+						.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
 			}
 		}

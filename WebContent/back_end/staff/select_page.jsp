@@ -31,7 +31,7 @@
 		<button type="submit" form="form1" name="management" value="04">商城管理</button><br><br>
 		<button type="submit" form="form1" name="management" value="05">問題回報管理</button><br><br>
 		<input type="hidden" name="action" value="select_management">
-		
+		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
 	</form>
 	
 	<%-- 登出 --%>
