@@ -603,7 +603,7 @@
 								<div class="col-11 mx-auto my-2 bg-gray-300 rounded-lg">
 									<img class="img-profile rounded-circle my-2 mx-1" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
 									<span class="text-primary lg">${memberSvcEL.getOneMember(mb_id).mb_name}</span>
-									<input type="text" class="bg-gray-200 w-50">
+									<input type="text" class="bg-gray-200 w-50" placeholder=" 新留言...">
 									<input class="align-middle mx-2 sendBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/send.png" style="height:2rem;">
 								</div>
 								<!-- 所有留言 -->
@@ -613,6 +613,7 @@
 										<img class="img-profile rounded-circle my-2 mx-1" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${cmtVO.mb_id}" />
 										<span class="text-primary lg">${memberSvcEL.getOneMember(cmtVO.mb_id).mb_name}</span>
 										<span class="text-dark">${cmtVO.cmt_content}</span>
+										<input class="align-middle mx-2 sendBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/flag.png" style="height:2rem;">
 									</div>
 									</c:forEach>
 								</div>
