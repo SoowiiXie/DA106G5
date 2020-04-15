@@ -16,6 +16,7 @@
     pageContext.setAttribute("abilityList",abilityList);
     
     AuthorityService authoritySvc = new AuthorityService();
+    pageContext.setAttribute("authoritySvc",authoritySvc);
 %>
 
 <html>
@@ -109,15 +110,18 @@
 		</tr>
 		<%-- ลvญญ --%>
 		<c:set var="staff_id" value="${staffVO.staff_id}" scope="request"/>
-		<%
-			Set<String> authoritySet = authoritySvc.getOneStaffAuthority(((StaffVO)request.getAttribute("staffVO")).getStaff_id());
-			System.out.println(((StaffVO)request.getAttribute("staffVO")).getStaff_id());
-		%>
+		
 		<tr>
 			<td colspan="6">
 				<c:set var="entrySet" value="${abilityList.entrySet()}"/> 
+				<c:set var="authoritySet" value="${authoritySvc.getOneStaffAuthority(staffVO.staff_id)}"/> 
+				
+					
 				<c:forEach var="map" items="${entrySet}">
-					<input type="checkbox" value="${map.key}" ${staffVO.staff_status==map.key?'ckecked':''}>
+					<label>
+					<input type="checkbox" value="${map.key}" ${authoritySet.contains(map.key)?'checked':''}>
+					${map.value}
+					</label>
 				</c:forEach>
 			</td>
 		</tr>
