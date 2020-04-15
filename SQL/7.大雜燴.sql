@@ -1233,6 +1233,7 @@ CREATE TABLE live (
  live_startteaser TIMESTAMP,
  live_start TIMESTAMP,
  live_store BLOB,
+ live_pic BLOB,
  mb_id VARCHAR2(30) NOT NULL
 );
 
