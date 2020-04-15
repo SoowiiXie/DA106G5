@@ -252,11 +252,33 @@ values('staff_xuan','01');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_xuan','02');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
-values('staff_michael','03');
+values('staff_xuan','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_xuan','05');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_michael','01');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_michael','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_michael','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_michael','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','01');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','05');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_weijhih','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_weijhih','04');
 
 --------------------------------------------------------
 --  2.戍乂 天氣、地標 Drop
