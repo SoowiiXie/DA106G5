@@ -28,7 +28,7 @@ public class LiveDAO implements LiveDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO LIVE ( LIVE_NO, LIVE_CONTENT, LIVE_STATUS, LIVE_STARTTEASER ,LIVE_START, MB_ID, LIVE_STORE, LIVE_PIC) VALUES ( 'LIV'||LPAD(to_char(LIVE_NO_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM LIVE ORDER BY LIVE_NO";
 	private static final String GET_STMT = "SELECT * FROM LIVE WHERE MB_ID = ?";
-	private static final String UPDATE = "UPDATE LIVE SET LIVE_CONTENT=?, LIVE_STATUS=?, LIVE_STARTTEASER=?, LIVE_START=?, LIVE_STORE=? WHERE LIVE_NO = ?";
+	private static final String UPDATE = "UPDATE LIVE SET LIVE_CONTENT=?, LIVE_STATUS=?, LIVE_STARTTEASER=?, LIVE_START=?, LIVE_STORE=?, LIVE_PIC=? WHERE LIVE_NO = ?";
 	private static final String DELETE = "DELETE FROM LIVE WHERE LIVE_NO = ?";
 	
 	
@@ -104,7 +104,8 @@ public class LiveDAO implements LiveDAO_interface {
 			pstmt.setDate(3, LiveVO.getLive_startteaser());
 			pstmt.setDate(4, LiveVO.getLive_start());
 			pstmt.setBytes(5, LiveVO.getLive_store());
-			pstmt.setString(6, LiveVO.getLive_no());
+			pstmt.setBytes(6, LiveVO.getLive_pic());
+			pstmt.setString(7, LiveVO.getLive_no());
 
 			pstmt.executeUpdate();
 
@@ -197,6 +198,7 @@ public class LiveDAO implements LiveDAO_interface {
 				liveVO.setLive_startteaser(rs.getDate("LIVE_STARTTEASER"));
 				liveVO.setLive_start(rs.getDate("LIVE_START"));
 				liveVO.setLive_store(rs.getBytes("LIVE_STORE"));
+				liveVO.setLive_pic(rs.getBytes("LIVE_PIC"));
 				liveVO.setMb_id(rs.getString("MB_ID"));
 				list.add(liveVO); // Store the row in the list
 			}
@@ -258,6 +260,7 @@ public class LiveDAO implements LiveDAO_interface {
 				liveVO.setLive_startteaser(rs.getDate("LIVE_STARTTEASER"));
 				liveVO.setLive_start(rs.getDate("LIVE_START"));
 				liveVO.setLive_store(rs.getBytes("LIVE_STORE"));
+				liveVO.setLive_pic(rs.getBytes("LIVE_PIC"));
 				liveVO.setMb_id(rs.getString("MB_ID"));
 				list.add(liveVO); // Store the row in the list
 			}
@@ -337,7 +340,8 @@ public class LiveDAO implements LiveDAO_interface {
 //		liveVO.setLive_status(6);
 //		liveVO.setLive_startteaser(new Date(90,05,25));
 //		liveVO.setLive_start(new Date(90,05,25));
-////		liveVO.setLive_store();
+//		liveVO.setLive_pic(pic);
+//		liveVO.setLive_store(vid);
 //		liveVO.setMb_id("xuan123");
 //		dao.update(liveVO);
 		
