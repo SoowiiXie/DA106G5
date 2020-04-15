@@ -65,20 +65,20 @@
 <script>
 	function show(data){
 		
-		$(".keep").find("*").addClass("authorityRow");
-		$(".keep").animate({height:'0px'},"slow",function(){
-			if($(data).attr("style") == "height: 0px;"){
-				$(data).toggleClass("authorityRow");
-				$(data).animate({height:'50px'},"slow",function(){
-					$(data).find("*").toggleClass("authorityRow");
-				})
-			}else{
-				$(data).find("*").toggleClass("authorityRow");
-				$(data).animate({height:'0px'},"slow",function(){
-					$(data).toggleClass("authorityRow");
-				})
-			}
-		})
+// 		$(".keep").find("*").addClass("authorityRow");
+// 		$(".keep").animate({height:'0px'},"slow",function(){
+// 			if($(data).attr("style") == "height: 0px;"){
+// 				$(data).toggleClass("authorityRow");
+// 				$(data).animate({height:'50px'},"slow",function(){
+// 					$(data).find("*").toggleClass("authorityRow");
+// 				})
+// 			}else{
+// 				$(data).find("*").toggleClass("authorityRow");
+// 				$(data).animate({height:'0px'},"slow",function(){
+// 					$(data).toggleClass("authorityRow");
+// 				})
+// 			}
+// 		})
 		
 		if($(data).attr("style") == "height: 0px;"){
 			$(data).toggleClass("authorityRow");
