@@ -1,3 +1,4 @@
+<%@page import="java.lang.ProcessBuilder.Redirect"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -17,6 +18,11 @@
 // 	pageContext.setAttribute("mb_id", mb_id);
 
 	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	if(memberVO==null){
+		System.out.println(1);
+		response.setContentType("text/html; charset=gb2312");
+		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
+	}
 	pageContext.setAttribute("mb_id", memberVO.getMb_id());
 	RecordService recordSvc = new RecordService();
 	List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
@@ -51,9 +57,15 @@
 
 	<!-- Custom styles for this template-->
 	<link href="<%= request.getContextPath() %>/css/sb-admin-2.min.css" rel="stylesheet" />
+	
+	<!-- modal -->
 <!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	
+	<!-- 會員智慧搜尋 -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
 	
 	<style>
 		* {
@@ -62,10 +74,7 @@
 			box-sizing: border-box;
 			position: relative;
 		}
-		*{
-		  margin:0;
-		  padding:0;
-		}
+
 		#fblightbox{
 		  background: rgba(82, 82, 82, .7);
 		  color: #333;
@@ -315,14 +324,10 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+		<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<div id="stikyDiv">
 				<!-- Sidebar - Brand -->
-				<a
-					class="sidebar-brand d-flex align-items-center justify-content-center"
-					id="topPicA" href="index.html">
+				<a	class="sidebar-brand d-flex align-items-center justify-content-center" id="topPicA" href="index.html">
 					<div class="sidebar-brand-icon">
 						<img src="<%= request.getContextPath() %>/img/LogoNoBack.png" class="topPic" />
 						<!-- <img src="../images/LogoText2.png" class="topPic"> -->
@@ -419,15 +424,15 @@
 
 				<!-- <div id="navbarRight"> -->
 				<!-- Topbar Search -->
-				<form
-					class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-					id="searchBar">
-					<div class="input-group">
-						<input type="text" class="form-control bg-light border-0 small"
-							placeholder="查詢會員..." aria-label="Search"
-							aria-describedby="basic-addon2" />
+				<form METHOD="post"	ACTION="<%=request.getContextPath()%>/front_end/member/member.do" 
+				class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+				id="searchBar">
+					<div class="input-group" id="memberSearch">
+						<input type="text" class="form-control bg-light border-0 small tagsess" name="mb_id"
+						 placeholder="查詢會員..." aria-label="Search" aria-describedby="basic-addon2" />
+						<input type="hidden" name="action" value="searchMb">
 						<div class="input-group-append">
-							<button class="btn btn-primary" type="button">
+							<button class="btn btn-primary" type="submit" name="submit_Btn">
 								<i class="fas fa-search fa-sm"></i>
 							</button>
 						</div>
@@ -511,7 +516,8 @@
 					<a	class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> 
-						<i class="fas fa-envelope fa-fw"></i> <!-- Counter - Messages -->
+						<i class="fas fa-envelope fa-fw"></i> 
+						<!-- Counter - Messages -->
 						<span class="badge badge-danger badge-counter">7</span>
 					</a> <!-- Dropdown - Messages -->
 						<div
@@ -520,16 +526,15 @@
 							<h6 class="dropdown-header">Message Center</h6>
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle"
-										src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="" />
+									<img class="rounded-circle"	src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="" />
 									<div class="status-indicator bg-success"></div>
 								</div>
 								<div class="font-weight-bold">
-									<div class="text-truncate">Hi there! I am wondering if
-										you can help me with a problem I've been having.</div>
+									<div class="text-truncate">Hi there!help me with a problem I've been having.</div>
 									<div class="small text-gray-500">Emily Fowler · 58m</div>
 								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
+							</a> 
+							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
 									<img class="rounded-circle"
 										src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="" />
@@ -540,13 +545,13 @@
 										ordered last month, how would you like them sent to you?</div>
 									<div class="small text-gray-500">Jae Chun · 1d</div>
 								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
+							</a> 
+							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle"
-										src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="" />
+									<img class="rounded-circle"	src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="" />
 									<div class="status-indicator bg-warning"></div>
 								</div>
-								<div>
+							<div>
 									<div class="text-truncate">Last month's report looks
 										great, I am very happy with the progress so far, keep up the
 										good work!</div>
@@ -580,28 +585,30 @@
 					<!--會員照片-->
 					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
 					</a> <!-- Dropdown - User Information -->
-						<div
-							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> <i
-								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-							</a> <a class="dropdown-item" href="#"> <i
-								class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
-							</a> <a class="dropdown-item" href="#"> <i
-								class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity
-								Log
+						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="<%= request.getContextPath() %>/front_end/member/listOneMember.jsp"> 
+								<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 個人資訊
+							</a> 
+							<a class="dropdown-item" href="#"> 
+								<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> 設定
+							</a> 
+							<a class="dropdown-item" href="#"> 
+								<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 日誌
 							</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> 
 							<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-								Logout
+								登出
 							</a>
 						</div></li>
 				</ul>
 				<!-- </div> -->
 			</nav>
 			<!-- End of Topbar -->
+			
 			<div class="w-100"></div>
+			
+			<!-- 當頁路徑 -->
 			<!-- <div class="col-3">&nbsp&nbsp個人頁面</div> -->
 			<nav aria-label="breadcrumb" class="col-12 my_breadcrumb">
 				<ol class="breadcrumb m-0">
@@ -611,7 +618,7 @@
 			</nav>
 
 			<div class="w-100"></div>
-			<%-- 直播開始 --%>
+			<!-- 內容左邊-直播 -->
 			<div id="contentLeft" class="col-3 navbar-nav">
 				<div class="live btn btn-secondary">
 					<img src="<%= request.getContextPath() %>/img/undraw_posting_photo.svg" class="liveImg">
@@ -629,7 +636,9 @@
 					<div class="liveImg">查看全部</div>
 				</div>
 			</div>
+			<!-- 內容中間-紀錄 -->
 			<div id="contentMiddle" class="btn-group row col-6">
+				<!-- 分頁按鈕 -->
 				<div class="btn-group col-12" id="contentTop">
 					<a href="index.html" class="btn btn-primary"> 
 						<b>紀錄</b>
@@ -638,104 +647,116 @@
 						<b>追蹤</b>
 					</a>
 				</div>
-					<c:forEach var="recordVO" items="${list}">
-					<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
-						<!--一則紀錄 -->
-						<div class="container bg-white m-3 rounded p-0 " >
-							<div class="d-inline-block mt-3 ml-3">
-								<div>
-									<!--會員照片-->
-									<img class="img-profile rounded-circle" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${recordVO.mb_id}" />
-									<!--會員姓名-->
-									<span class="ml-2 d-none d-lg-inline text-gray-900" style="font-size:1.2rem;">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
-								</div>
-								<div>
-									<span class="ml-5 d-none d-lg-inline text-gray-500">${recordVO.rcd_uploadtime}</span>
-								</div>
-							</div>
-							<div style="overflow:hidden; height:15rem;" class="mx-auto my-2 col-12">
-								<img src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}" class="rounded mx-auto d-block pathImg" alt="Responsive image">
-							</div>
-							<span class="ml-3 d-none d-lg-inline text-gray-900">${recordVO.rcd_content}</span>
-							<div class="w-100">
-								<div class="col-5 form-inline">							
-									<!-- 按讚 -->
-									<div style="margin-bottom: 0px;">
-										<input class="my-2 mr-1 thumbBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png" style="height:2rem;">
-										<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
-										<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
-										<input type="hidden" name="action" value="insert">
-									</div>
-									<span class="text-primary">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
-									<!-- meToo -->									
-									<div style="margin-bottom: 0px;">
-										<input class="my-2 mx-1 meTooBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png" style="height:2rem;">
-										<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
-										<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
-										<input type="hidden" name="action" value="insert">
-									</div>
-									<span class="mr-2 text-success">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
-									<!-- 留言-->
-									<div style="margin-bottom: 0px;">
-										<input class="my-2 mr-2 ml-1 cmtBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/comment.png" style="height:2rem;">
-									</div>
-									<span>${cmtSvcEL.countAllCmts(recordVO.rcd_no)}</span>
-								</div>
-								<!-- 新增留言 -->
-								<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" class="col-11 mx-auto my-2 bg-gray-200 rounded-lg">
-									<img class="img-profile rounded-circle my-2 ml-1 mr-2" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
-									<span class='text-primary ml-1 mr-2' style="font-size:1.2rem;">${memberSvcEL.getOneMember(mb_id).mb_name}</span>
-									<input type="text" class="bg-gray-100 w-50" placeholder=" 新留言..." name="cmt_content">
-									<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
-									<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
-									<input type="hidden" name="action" value="insert">
-									<input class="align-middle mx-2 sendBtn my-2" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/send.png" style="height:2rem;">
-								</FORM>
-								<!-- 所有留言 -->
-								<div class="cmtDiv" style="display:none">
-									<c:forEach var="cmtVO" items="${cmtSvcEL.getByRcd_no(recordVO.rcd_no)}">
-									<c:if test="${cmtVO.cmt_status==1}">
-									<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
-										<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem;  src='<%= request.getContextPath() %>/MemberPicReader?mb_id=${cmtVO.mb_id}' />
-										<span class='text-primary col-2 mx-auto' style="font-size:1.2rem;">${memberSvcEL.getOneMember(cmtVO.mb_id).mb_name}</span>
-										<span class='text-dark col-2 mx-auto' style="font-size:1.2rem;">${cmtVO.cmt_content}</span>
-										<c:if test='${mb_id==cmtVO.mb_id}'>
-										<!-- 修改留言 -->
-										<div style="display:inline;">
-											<input style='display:none; height:1rem; opacity:0.5;' class='flagBtn' type='image'  name='submit_Btn'  src='<%= request.getContextPath() %>/img/pen.png'>
-											<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no">
-											<input type="hidden" name="action" value="ajaxGetOne4Update">
-										</div>
-										</c:if>
-										<!-- 刪除留言 -->
-										<c:if test='${mb_id==cmtVO.mb_id}'>
-										<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" class="form-horizontal" style="display:inline;">
-											<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no">
-											<input type="hidden" name="action" value="fakeDelete">
-											<input style='display:none; height:1rem; opacity:0.5; float:right; margin: 1rem 0;' class='garbageBtn' type='image'  name='submit_Btn'  src='<%= request.getContextPath() %>/img/garbage.png'>
-										</FORM>
-										</c:if>
-										<!-- 檢舉留言 -->
-										<c:if test='${mb_id!=cmtVO.mb_id}'>
-										<div style="display:inline;">
-											<input style='display:none; height:1rem; opacity:0.5;' class='flagBtn' type='image'  name='submit_Btn'  src='<%= request.getContextPath() %>/img/flag.png'>
-											<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no">
-											<input type="hidden" name="action" value="insert">
-										</div>
-										</c:if>
-									</div>
-									</c:if>
-									</c:forEach>
-								</div>
-							</div>
+				<c:forEach var="recordVO" items="${list}">
+				<!--一則紀錄 -->
+				<div class="container bg-white m-3 rounded p-0 " >
+					<div class="d-inline-block mt-3 ml-3">
+						<div>
+							<!--會員照片-->
+							<img class="img-profile rounded-circle" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${recordVO.mb_id}" />
+							<!--會員姓名-->
+							<span class="ml-2 d-none d-lg-inline text-gray-900" style="font-size:1.2rem;">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
 						</div>
-					</c:forEach>
+						<!-- 紀錄上傳時間 -->
+						<div>
+							<span class="ml-5 d-none d-lg-inline text-gray-500">${recordVO.rcd_uploadtime}</span>
+						</div>
+					</div>
+					<!-- 路徑圖片 -->
+					<div style="overflow:hidden; height:15rem;" class="mx-auto my-2 col-12">
+						<img src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}" class="rounded mx-auto d-block pathImg" alt="Responsive image">
+					</div>
+					<!-- 紀錄內容 -->
+					<span class="ml-3 d-none d-lg-inline text-gray-900" style="font-size:1.2rem;">${recordVO.rcd_content}</span>
+					<div class="w-100">
+						<div class="col-5 form-inline">							
+							<!-- 按讚按鈕 -->
+							<div style="margin-bottom: 0px;">
+								<c:if test="${thumbSvcEL.countOneThumb(recordVO.rcd_no , mb_id)==1}">
+									<input class="my-2 mr-1 thumbBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png" style="height:2rem;">
+								</c:if>
+								<c:if test="${thumbSvcEL.countOneThumb(recordVO.rcd_no , mb_id)==0}">
+									<input class="my-2 mr-1 thumbBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/thumb.png" style="height:2rem;">
+								</c:if>
+								<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
+								<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
+								<input type="hidden" name="action" value="insert">
+							</div>
+							<span class="text-primary">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
+							<!-- meToo按鈕 -->									
+							<div style="margin-bottom: 0px;">
+								<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==1}">
+									<input class="my-2 mr-1 meTooBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/yaColor.png" style="height:2.2rem;">
+								</c:if>
+								<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==0}">
+									<input class="my-2 mr-1 meTooBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png" style="height:2.2rem;">
+								</c:if>
+								<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
+								<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
+								<input type="hidden" name="action" value="insert">
+							</div>
+							<span class="mr-2 text-success">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
+							<!-- 留言按鈕-->
+							<div style="margin-bottom: 0px;">
+								<input class="my-2 mr-2 ml-1 cmtBtn" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/comment.png" style="height:2rem;">
+							</div>
+							<span>${cmtSvcEL.countAllCmts(recordVO.rcd_no)}</span>
+						</div>
+						<!-- 新增留言 -->
+						<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" class="col-11 mx-auto my-2 bg-gray-200 rounded-lg">
+							<img class="img-profile rounded-circle my-2 ml-1 mr-2" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
+							<span class='text-primary ml-1 mr-2' style="font-size:1.2rem;">${memberSvcEL.getOneMember(mb_id).mb_name}</span>
+							<input type="text" class="bg-gray-100 w-50" placeholder=" 新留言..." name="cmt_content">
+							<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
+							<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
+							<input type="hidden" name="action" value="insert">
+							<input class="align-middle mx-2 sendBtn my-2" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/send.png" style="height:2rem;">
+						</FORM>
+						<!-- 所有留言內容 -->
+						<div class="cmtDiv" style="display:none">
+							<c:forEach var="cmtVO" items="${cmtSvcEL.getByRcd_no(recordVO.rcd_no)}">
+							<c:if test="${cmtVO.cmt_status==1}">
+							<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+								<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem;  src='<%= request.getContextPath() %>/MemberPicReader?mb_id=${cmtVO.mb_id}' />
+								<span class='text-primary col-2 mx-auto' style="font-size:1.2rem;">${memberSvcEL.getOneMember(cmtVO.mb_id).mb_name}</span>
+								<span class='text-dark col-2 mx-auto' style="font-size:1.2rem;">${cmtVO.cmt_content}</span>
+								<c:if test='${mb_id==cmtVO.mb_id}'>
+								<!-- 修改留言 -->
+								<div style="display:inline;">
+									<input style='display:none; height:1rem; opacity:0.5;' class='flagBtn' type='image'  name='submit_Btn'  src='<%= request.getContextPath() %>/img/pen.png'>
+									<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no">
+									<input type="hidden" name="action" value="ajaxGetOne4Update">
+								</div>
+								</c:if>
+								<!-- 刪除留言 -->
+								<c:if test='${mb_id==cmtVO.mb_id}'>
+								<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" class="form-horizontal" style="display:inline;">
+									<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no">
+									<input type="hidden" name="action" value="fakeDelete">
+									<input style='display:none; height:1rem; opacity:0.5; float:right; margin: 1rem 0;' class='garbageBtn' type='image'  name='submit_Btn'  src='<%= request.getContextPath() %>/img/garbage.png'>
+								</FORM>
+								</c:if>
+								<!-- 檢舉留言 -->
+								<c:if test='${mb_id!=cmtVO.mb_id}'>
+								<div style="display:inline;">
+									<input style='display:none; height:1rem; opacity:0.5;' class='flagBtn' type='image'  name='submit_Btn'  src='<%= request.getContextPath() %>/img/flag.png'>
+									<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no">
+									<input type="hidden" name="action" value="insert">
+								</div>
+								</c:if>
+							</div>
+							</c:if>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+				</c:forEach>
 			</div>
 
 			<div id="contentRight" class="col-3">
-				<a href="index.html" class="btn btn-primary col-11"> <b>上傳紀錄</b>
-				</a><br>
-				<br>
+				<a href="index.html" class="btn btn-primary col-11"> 
+					<b>上傳紀錄</b>
+				</a><br><br>
 				<div
 					class="sidebar-statis card--5 shadow-z1 bg-white col-11 rounded p-1">
 					<h4 class="nake-title--sidebar medium m-3">跑量統計</h4>
@@ -746,7 +767,6 @@
 				</div>
 			</div>
 			<!-- End of Main Content -->
-
 			<!-- Footer -->
 			<!-- <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -758,74 +778,100 @@
 			<!-- End of Footer -->
 		</div>
 		<!-- End of Content Wrapper -->
-		<!-- </div> -->
 		<!-- End of Page Wrapper -->
+	</div>
+		
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
 
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top"> <i
-			class="fas fa-angle-up"></i>
-		</a>
-
-<!-- 		Logout Modal -->
-		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Ready to
-							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">Select "Logout" below if you are
-						ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button"
-							data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="../XuanMb/Login/Login.html">Logout</a>
-					</div>
+	<!-- Logout Modal -->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">確認登出？</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					你要離開了嗎? QAQ
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"	data-dismiss="modal">取消</button>
+					<form METHOD="post"	ACTION="<%=request.getContextPath()%>/front_end/member/member.do">
+						<input type="hidden"  name="${mb_id}" />
+						<input type="hidden" name="action" value="logout">
+						<input class="btn btn-primary" type="submit" value="登出">
+					</form>
 				</div>
 			</div>
 		</div>
-		
-		
+	</div>
+	
+	<!-- 檢舉或修改留言的燈箱 -->
+	<div id="fblightbox">
+	  <div class="fblightbox-wrap">
+	    <div class="fblightbox-header">
+	      	我來打打看
+	    </div>
+	    <div class="fblightbox-content">
+			<jsp:include page="cmt/update_cmt_input.jsp" />
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
 
-		<!-- Bootstrap core JavaScript-->
-		<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
-		<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<!-- Core plugin JavaScript-->
-		<script src="<%= request.getContextPath() %>/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="<%= request.getContextPath() %>/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-		<!-- Custom scripts for all pages-->
-		<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
-		
-		<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				 $('.thumbBtn').click(function(){
-					 var thumbImg = $(this);
-					 $.ajax({
-						 type: "GET",
-						 url: "<%=request.getContextPath()%>/thumbAjaxResponse.do",
-						 data: {"action":"insert", "rcd_no":$(this).siblings('.rcd_no').val(), "mb_id":$(this).siblings('.mb_id').val()},
-						 dataType: "json",
-						 success: function (data){
-							 thumbImg.parent().next().text(data);
-					     },
-			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
-			         });
-				 });
-				 
-				 $('.meTooBtn').click(function(){
-					 var meTooImg = $(this);
-					 $.ajax({
-						 type: "GET",
-						 url: "<%=request.getContextPath()%>/meTooAjaxResponse.do",
+	<!-- Custom scripts for all pages-->
+	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
+	
+	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			 $('.thumbBtn').click(function(){
+				 var thumbImg = $(this);
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/thumbAjaxResponse.do",
+					 data: {"action":"insert", "rcd_no":$(this).siblings('.rcd_no').val(), "mb_id":$(this).siblings('.mb_id').val()},
+					 dataType: "json",
+					 success: function (data){
+						 thumbImg.parent().next().text(data);
+						 if ($(".thumbBtn").attr("src")=="<%= request.getContextPath() %>/img/thumb.png"){
+						 	$(".thumbBtn").attr("src", "<%= request.getContextPath() %>/img/thumbColor.png");
+						 }
+						 else{
+							$(".thumbBtn").attr("src", "<%= request.getContextPath() %>/img/thumb.png");
+						 }
+				     },
+		             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
+		         });
+			 });
+			 
+			 $('.meTooBtn').click(function(){
+				 var meTooImg = $(this);
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/meTooAjaxResponse.do",
 						 data: {"action":"insert", "rcd_no":$(this).siblings('.rcd_no').val(), "mb_id":$(this).siblings('.mb_id').val()},
 						 dataType: "json",
 						 success: function (data){
 							 meTooImg.parent().next().text(data);
+							 if ($(".meTooBtn").attr("src")=="<%= request.getContextPath() %>/img/ya.png"){
+							 	$(".meTooBtn").attr("src", "<%= request.getContextPath() %>/img/yaColor.png");
+							 }
+							 else{
+								$(".meTooBtn").attr("src", "<%= request.getContextPath() %>/img/ya.png");
+							 }
 					     },
 			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 			         });
@@ -877,21 +923,26 @@
 				 });
 			});
 		</script>
-
-		<div id="fblightbox">
-		  <div class="fblightbox-wrap">
-		    <div class="fblightbox-header">
-		      	我來打打看
-		    </div>
-		    <div class="fblightbox-content">
-				<jsp:include page="cmt/update_cmt_input.jsp" />
-		    </div>
-<!-- 		    <div class="fblightbox-footer"> -->
-<!-- 		      <a href="#" class="fbbutton">Update</a> -->
-<!-- 		      <a href="#" id="close" class="fbbutton">Close</a> -->
-<!-- 		    </div> -->
-		  </div>
-		</div>
-		<div class="overlay"></div>
+	
+	<!-- 會員智慧搜尋 -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		var availableTags = [
+			<%MemberDAO memberDAO = new MemberDAO();
+						List<MemberVO> listMbAll = memberDAO.getAll();
+		
+						for (MemberVO mb : listMbAll) {
+		
+							out.print("'" + mb.getMb_name() + "',");
+							out.print("'" + mb.getMb_id() + "',");
+		
+						}%>
+			];
+		$(function() { $( ".tagsess" ).autocomplete({ source: availableTags }); });
+		     
+		$("#memberSearch").on(
+			"focus",".tagsess",function() { $( ".tagsess" ).autocomplete({ source: availableTags});}
+		);
+	</script>
 </body>
 </html>

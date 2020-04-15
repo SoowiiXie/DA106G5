@@ -40,5 +40,8 @@ public class MeTooService {
     public Integer countAllMeToos(String rcd_no) {
     	return dao.countAllMeToos(rcd_no);
     }
+    public Integer countOneMeToo(String rcd_no, String mb_id) {
+    	return dao.countOneMeToo(rcd_no, mb_id);
+    }
 	
 }

@@ -22,6 +22,7 @@ public class MeTooDAO implements MeToo_interface {
 //	private static final String GET_ALL_STMT = "SELECT rcd_no,mb_id FROM metoo ORDER BY rcd_no";
 //	private static final String GET_ONE_STMT = "SELECT rcd_no,mb_id FROM metoo WHERE rcd_no=? and mb_id = ?";
 	private static final String COUNT_ALL = "SELECT COUNT ('a meToo') AS COUNTMETOOS FROM METOO WHERE rcd_no = ?";
+	private static final String COUNT_ONE = "SELECT COUNT ('a meToo') AS COUNTMETOO FROM METOO WHERE rcd_no = ? AND mb_id = ?";
 	private static final String DELETE = "DELETE FROM metoo where mb_id = ? and rcd_no=?";
 //	private static final String UPDATE = "UPDATE path_follow SET path_no = ?, mb_id = ? where mb_id = ?";
 
@@ -158,7 +159,7 @@ public class MeTooDAO implements MeToo_interface {
 	@Override
 	public Integer countAllMeToos(String rcd_no) {
 		// TODO Auto-generated method stub
-		Integer thumbs = null;
+		Integer meToos = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -172,10 +173,8 @@ public class MeTooDAO implements MeToo_interface {
 			pstmt = con.prepareStatement(COUNT_ALL,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			pstmt.setString(1, rcd_no);
 			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				thumbs = Integer.parseInt(rs.getString("COUNTMETOOS"));
-			}
+			rs.next();
+			meToos = Integer.parseInt(rs.getString("COUNTMETOOS"));
 
 			// Handle any SQL errors
 		} catch (SQLException se) {
@@ -204,7 +203,58 @@ public class MeTooDAO implements MeToo_interface {
 				}
 			}
 		}
-		return thumbs;
+		return meToos;
+	}
+
+	@Override
+	public Integer countOneMeToo(String rcd_no, String mb_id) {
+		// TODO Auto-generated method stub
+		Integer metoo = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(COUNT_ONE,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			pstmt.setString(1, rcd_no);
+			pstmt.setString(2, mb_id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			metoo = Integer.parseInt(rs.getString("COUNTMETOO"));
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return metoo;
 	}
 
 }

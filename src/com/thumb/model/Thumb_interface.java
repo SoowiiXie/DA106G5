@@ -6,6 +6,6 @@ public interface Thumb_interface {
      public void delete(String rcd_no, String mb_id);
 //     public ThumbVO findByPrimaryKey(String rcd_no, String mb_id);
 //     public List<ThumbVO> getAll();
-	 // 萬用型
-	 public Integer countAllThumb(String rcd_no);
+	 public Integer countAllThumbs(String rcd_no);
+	 public Integer countOneThumb(String rcd_no, String mb_id);
 }

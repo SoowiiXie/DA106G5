@@ -7,4 +7,5 @@ public interface MeToo_interface {
 //     public MeTooVO findByPrimaryKey(String rcd_no, String mb_id);
 //     public List<MeTooVO> getAll();
   	 public Integer countAllMeToos(String rcd_no);
+  	 public Integer countOneMeToo(String rcd_no, String mb_id);
 }
