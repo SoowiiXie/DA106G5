@@ -22,7 +22,7 @@ public class Live_rptDAO implements Live_rptDAO_interface{
 	String userid = "DA106G5";
 	String passwd = "DA106G5";
 	
-	private static final String INSERT_STMT = "INSERT INTO LIVE_RPT (LIVE_RPT_NO,RPT_STATUS,RPT_REASON,LIVE_NO,MB_ID) values ('LIR'||LPAD(to_char(LIVE_RPT_NO_SEQ.NEXTVAL), 5, '0'), 5, '0'),?,?,?,?)";
+	private static final String INSERT_STMT = "INSERT INTO LIVE_RPT (LIVE_RPT_NO, RPT_STATUS, RPT_REASON, LIVE_NO, MB_ID) VALUES ('LIR'||LPAD(to_char(LIVE_RPT_NO_SEQ.NEXTVAL), 5, '0'),?,?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM LIVE_RPT ORDER BY LIVE_RPT_NO";
 	private static final String GET_ONE_STMT = "SELECT * FROM LIVE_RPT WHERE LIVE_RPT_NO = ?";
 	private static final String DELETE = "DELETE FROM LIVE_RPT WHERE LIVE_RPT_NO = ?";
@@ -56,7 +56,9 @@ public class Live_rptDAO implements Live_rptDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 //			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-
+			
+			
+//			pstmt.setString(1, Live_rptVO.getLive_rpt_no());
 			pstmt.setInt(1, Live_rptVO.getRpt_status());
 			pstmt.setString(2, Live_rptVO.getRpt_reason());
 			pstmt.setString(3, Live_rptVO.getLive_no());
@@ -289,17 +291,19 @@ public class Live_rptDAO implements Live_rptDAO_interface{
 	
 	
 	public static void main (String args[]) {
+		
+		
 		Live_rptDAO dao = new Live_rptDAO();
-		
-		
 		
 		//增
 		Live_rptVO live_rptVO = new Live_rptVO();
-		live_rptVO.setLive_no("LIR00006");
-		live_rptVO.setLive_rpt_no("LIV00002");
-		live_rptVO.setMb_id("soowii123");
-		live_rptVO.setRpt_reason("not good");
 		live_rptVO.setRpt_status(1);
+		live_rptVO.setRpt_reason("not good");
+		live_rptVO.setLive_no("LIV00002");
+//		live_rptVO.setLive_rpt_no("LIR00006");
+		live_rptVO.setMb_id("soowii123");
+		
+		
 		
 		dao.insert(live_rptVO);
 		
