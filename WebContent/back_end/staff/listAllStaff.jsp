@@ -12,8 +12,8 @@
     pageContext.setAttribute("list",list);
     
     AbilityService abilitySvc = new AbilityService();
-    Map<String, String> abilityList = abilitySvc.getAllToMap();
-    pageContext.setAttribute("abilityList",abilityList);
+    Map<String, String> abilityMap = abilitySvc.getAllToMap();
+    pageContext.setAttribute("abilityMap",abilityMap);
     
     AuthorityService authoritySvc = new AuthorityService();
     pageContext.setAttribute("authoritySvc",authoritySvc);
@@ -22,7 +22,7 @@
 <html>
 <head>
 <title>所有管理員資料 - listAllStaff.jsp</title>
-
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style>
   #table-1 {
 	width: 450px;
@@ -56,8 +56,44 @@
     padding: 5px;
     text-align: center;
   }
+  
+  .authorityRow{
+  	display:none;
+  }
 </style>
 
+<script>
+	function show(data){
+		
+		$(".keep").find("*").addClass("authorityRow");
+		$(".keep").animate({height:'0px'},"slow",function(){
+			if($(data).attr("style") == "height: 0px;"){
+				$(data).toggleClass("authorityRow");
+				$(data).animate({height:'50px'},"slow",function(){
+					$(data).find("*").toggleClass("authorityRow");
+				})
+			}else{
+				$(data).find("*").toggleClass("authorityRow");
+				$(data).animate({height:'0px'},"slow",function(){
+					$(data).toggleClass("authorityRow");
+				})
+			}
+		})
+		
+		if($(data).attr("style") == "height: 0px;"){
+			$(data).toggleClass("authorityRow");
+			$(data).animate({height:'50px'},"slow",function(){
+				$(data).find("*").toggleClass("authorityRow");
+			})
+		}else{
+			$(data).find("*").toggleClass("authorityRow");
+			$(data).animate({height:'0px'},"slow",function(){
+				$(data).toggleClass("authorityRow");
+			})
+		}
+	}
+	
+</script>
 </head>
 <body>
 
@@ -106,23 +142,23 @@
 			     <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
 			  </FORM>
 			</td>
-			<td><button >修改</button></td>
+			<td><button onclick="show(${staffVO.staff_id})">修改</button></td>
 		</tr>
 		<%-- 權限 --%>
 		<c:set var="staff_id" value="${staffVO.staff_id}" scope="request"/>
 		
-		<tr>
-			<td colspan="6">
-				<c:set var="entrySet" value="${abilityList.entrySet()}"/> 
+		<tr id="${staffVO.staff_id}" class="authorityRow keep" style="height: 0px;">
+			<td colspan="6" class="authorityRow">
+				<c:set var="entrySet" value="${abilityMap.entrySet()}"/> 
 				<c:set var="authoritySet" value="${authoritySvc.getOneStaffAuthority(staffVO.staff_id)}"/> 
-				
 					
 				<c:forEach var="map" items="${entrySet}">
-					<label>
-					<input type="checkbox" value="${map.key}" ${authoritySet.contains(map.key)?'checked':''}>
+					<label class="authorityRow">
+					<input type="checkbox" value="${map.key}" ${authoritySet.contains(map.key)?'checked':''} class="authorityRow">
 					${map.value}
-					</label>
-				</c:forEach>
+					</label>&emsp;
+				</c:forEach>&emsp;
+				<input type="submit" value="送出修改" class="authorityRow">
 			</td>
 		</tr>
 	</c:forEach>
