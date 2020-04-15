@@ -4,7 +4,7 @@ public class Live_rptVO implements java.io.Serializable{
 	private String live_rpt_no;
 	private String live_no;
 	private String rpt_reason;
-	private String md_id;
+	private String mb_id;
 	private Integer rpt_status;
 	
 	
@@ -19,7 +19,7 @@ public class Live_rptVO implements java.io.Serializable{
 		this.live_rpt_no = live_rpt_no;
 		this.live_no = live_no;
 		this.rpt_reason = rpt_reason;
-		this.md_id = md_id;
+		this.mb_id = md_id;
 		this.rpt_status = rpt_status;
 	}
 
@@ -54,13 +54,13 @@ public class Live_rptVO implements java.io.Serializable{
 	}
 
 
-	public String getMd_id() {
-		return md_id;
+	public String getMb_id() {
+		return mb_id;
 	}
 
 
-	public void setMd_id(String md_id) {
-		this.md_id = md_id;
+	public void setMb_id(String md_id) {
+		this.mb_id = md_id;
 	}
 
 

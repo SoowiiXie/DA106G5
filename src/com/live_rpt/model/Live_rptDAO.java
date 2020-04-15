@@ -60,7 +60,7 @@ public class Live_rptDAO implements Live_rptDAO_interface{
 			pstmt.setInt(1, Live_rptVO.getRpt_status());
 			pstmt.setString(2, Live_rptVO.getRpt_reason());
 			pstmt.setString(3, Live_rptVO.getLive_no());
-			pstmt.setString(4, Live_rptVO.getMd_id());
+			pstmt.setString(4, Live_rptVO.getMb_id());
 
 			pstmt.executeUpdate();
 
@@ -226,7 +226,7 @@ public class Live_rptDAO implements Live_rptDAO_interface{
 				live_rptVO.setLive_rpt_no(rs.getString("LIVE_RPT_NO"));
 				live_rptVO.setLive_no(rs.getString("LIVE_NO"));
 				live_rptVO.setRpt_reason(rs.getString("RPT_REASON)"));
-				live_rptVO.setMd_id(rs.getString("MB_ID"));
+				live_rptVO.setMb_id(rs.getString("MB_ID"));
 				live_rptVO.setRpt_status(rs.getInt("RPT_STATUS"));
 				list.add(live_rptVO); // Store the row in the list				
 			}
@@ -297,7 +297,7 @@ public class Live_rptDAO implements Live_rptDAO_interface{
 		Live_rptVO live_rptVO = new Live_rptVO();
 		live_rptVO.setLive_no("LIR00006");
 		live_rptVO.setLive_rpt_no("LIV00002");
-		live_rptVO.setMd_id("soowii123");
+		live_rptVO.setMb_id("soowii123");
 		live_rptVO.setRpt_reason("not good");
 		live_rptVO.setRpt_status(1);
 		
