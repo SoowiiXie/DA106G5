@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.location.model.LocationVO;
+
 
 public class CmtService {
 
@@ -70,4 +72,5 @@ public class CmtService {
 	public Integer countAllCmts(String rcd_no) {
     	return dao.countAllCmts(rcd_no);
     }
+
 }

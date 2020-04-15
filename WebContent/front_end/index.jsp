@@ -45,13 +45,15 @@
 	<meta name="author" content="" />
 
 	<title>Runn able</title>
-
 	<!-- Custom fonts for this template-->
 	<link href="<%= request.getContextPath() %>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
 	<!-- Custom styles for this template-->
 	<link href="<%= request.getContextPath() %>/css/sb-admin-2.min.css" rel="stylesheet" />
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 	
 	<style>
 		* {
@@ -59,6 +61,82 @@
 			margin: 0;
 			box-sizing: border-box;
 			position: relative;
+		}
+		*{
+		  margin:0;
+		  padding:0;
+		}
+		#fblightbox{
+		  background: rgba(82, 82, 82, .7);
+		  color: #333;
+		  font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+		  border-radius: 8px;
+		  padding:10px;
+		  width: 575px;
+		  position: fixed;
+		  left:50%;
+		  top:50%;
+		  z-index: 99999;
+		  display:none;
+		}
+		.fblightbox-wrap{
+		  border: 1px solid #3B5998;
+		}
+		.fblightbox-header{
+		  background:#6C83B8;
+		  border-bottom: 1px solid #29447E;
+		  color: #fff;
+		  font-size: 14px;
+		  padding:5px;
+		}
+		.fblightbox-header h3{
+		  font-size:14px;
+		}
+		.fblightbox-content{
+		  background:#fff;
+		  font-size: 12px;
+		  padding:10px;
+		}
+		.fblightbox-footer{
+		  background: #f2f2f2;
+		  border-top: 1px solid #ccc;
+		  color: #333;
+		  padding: 10px;
+		  text-align:right;
+		}
+		.fbbutton{
+		  text-decoration:none;
+		  color:#fff;
+		  font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+		  font-size: 13px;
+		  border-style: solid;
+		  background-image: url(https://i.imgur.com/tu8qPWG.png);
+		  cursor: pointer;
+		  font-weight: bold;
+		  padding: 4px 8px 4px 8px;
+		  text-align: center;
+		  vertical-align: top;
+		  white-space: nowrap;
+		  border-width: 1px;
+		  margin-left: 3px;
+		  background-position: 125px 235px;
+		  border-color: #29447E #29447E #1A356E;
+		  line-height: normal !important;
+		  display: inline-block;
+		}
+		.overlay{
+		  background: rgba(0,0,0,0.2);
+		  position:fixed;
+		  width:100%;
+		  height: 100%;
+		  z-index: 99;
+		  display:none;
+		  top:0;
+		  left:0;
+		}
+		
+		.demo{
+		  padding:30px 50px;
 		}
 
 		html {
@@ -429,11 +507,12 @@
 						</div></li>
 
 					<!-- Nav Item - Messages -->
-					<li class="nav-item dropdown no-arrow mx-1"><a
-						class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
+					<li class="nav-item dropdown no-arrow mx-1">
+					<a	class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i> <!-- Counter - Messages -->
-							<span class="badge badge-danger badge-counter">7</span>
+						aria-expanded="false"> 
+						<i class="fas fa-envelope fa-fw"></i> <!-- Counter - Messages -->
+						<span class="badge badge-danger badge-counter">7</span>
 					</a> <!-- Dropdown - Messages -->
 						<div
 							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -497,7 +576,7 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> 
 					<!--會員姓名-->
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small">${memberSvcEL.getOneMember(mb_id).mb_name}</span> 
+					<span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:1.2rem;">${memberSvcEL.getOneMember(mb_id).mb_name}</span> 
 					<!--會員照片-->
 					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
 					</a> <!-- Dropdown - User Information -->
@@ -513,9 +592,8 @@
 								Log
 							</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#" data-toggle="modal"
-								data-target="#logoutModal"> <i
-								class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+							<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> 
+							<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 								Logout
 							</a>
 						</div></li>
@@ -527,8 +605,8 @@
 			<!-- <div class="col-3">&nbsp&nbsp個人頁面</div> -->
 			<nav aria-label="breadcrumb" class="col-12 my_breadcrumb">
 				<ol class="breadcrumb m-0">
-					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Library</li>
+					<li class="breadcrumb-item"><a href="<%= request.getContextPath() %>/front_end/member/login.jsp">登入畫面</a></li>
+					<li class="breadcrumb-item active" aria-current="page">個人頁面</li>
 				</ol>
 			</nav>
 
@@ -569,7 +647,7 @@
 									<!--會員照片-->
 									<img class="img-profile rounded-circle" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${recordVO.mb_id}" />
 									<!--會員姓名-->
-									<span class="ml-2 d-none d-lg-inline text-gray-900">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
+									<span class="ml-2 d-none d-lg-inline text-gray-900" style="font-size:1.2rem;">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
 								</div>
 								<div>
 									<span class="ml-5 d-none d-lg-inline text-gray-500">${recordVO.rcd_uploadtime}</span>
@@ -604,21 +682,49 @@
 									<span>${cmtSvcEL.countAllCmts(recordVO.rcd_no)}</span>
 								</div>
 								<!-- 新增留言 -->
-								<div class="col-11 mx-auto my-2 bg-gray-300 rounded-lg">
-									<img class="img-profile rounded-circle my-2 mx-1" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
-									<span class="text-primary lg">${memberSvcEL.getOneMember(mb_id).mb_name}</span>
-									<input type="text" class="bg-gray-200 w-50" placeholder=" 新留言...">
+								<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" class="col-11 mx-auto my-2 bg-gray-200 rounded-lg">
+									<img class="img-profile rounded-circle my-2 ml-1 mr-2" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
+									<span class='text-primary ml-1 mr-2' style="font-size:1.2rem;">${memberSvcEL.getOneMember(mb_id).mb_name}</span>
+									<input type="text" class="bg-gray-100 w-50" placeholder=" 新留言..." name="cmt_content">
+									<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no">
+									<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
+									<input type="hidden" name="action" value="insert">
 									<input class="align-middle mx-2 sendBtn my-2" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/send.png" style="height:2rem;">
-								</div>
+								</FORM>
 								<!-- 所有留言 -->
 								<div class="cmtDiv" style="display:none">
 									<c:forEach var="cmtVO" items="${cmtSvcEL.getByRcd_no(recordVO.rcd_no)}">
-									<div class="col-11 mx-auto my-2 bg-gray-300 rounded-lg">
-										<img class="img-profile rounded-circle my-2 mx-1" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${cmtVO.mb_id}" />
-										<span class="text-primary lg">${memberSvcEL.getOneMember(cmtVO.mb_id).mb_name}</span>
-										<span class="text-dark">${cmtVO.cmt_content}</span>
-										<input class="align-middle mx-2 sendBtn my-2" type="image"  name="submit_Btn"  src="<%= request.getContextPath() %>/img/flag.png" style="height:2rem;">
+									<c:if test="${cmtVO.cmt_status==1}">
+									<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+										<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem;  src='<%= request.getContextPath() %>/MemberPicReader?mb_id=${cmtVO.mb_id}' />
+										<span class='text-primary col-2 mx-auto' style="font-size:1.2rem;">${memberSvcEL.getOneMember(cmtVO.mb_id).mb_name}</span>
+										<span class='text-dark col-2 mx-auto' style="font-size:1.2rem;">${cmtVO.cmt_content}</span>
+										<c:if test='${mb_id==cmtVO.mb_id}'>
+										<!-- 修改留言 -->
+										<div style="display:inline;">
+											<input style='display:none; height:1rem; opacity:0.5;' class='flagBtn' type='image'  name='submit_Btn'  src='<%= request.getContextPath() %>/img/pen.png'>
+											<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no">
+											<input type="hidden" name="action" value="ajaxGetOne4Update">
+										</div>
+										</c:if>
+										<!-- 刪除留言 -->
+										<c:if test='${mb_id==cmtVO.mb_id}'>
+										<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/cmt/cmt.do" class="form-horizontal" style="display:inline;">
+											<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no">
+											<input type="hidden" name="action" value="fakeDelete">
+											<input style='display:none; height:1rem; opacity:0.5; float:right; margin: 1rem 0;' class='garbageBtn' type='image'  name='submit_Btn'  src='<%= request.getContextPath() %>/img/garbage.png'>
+										</FORM>
+										</c:if>
+										<!-- 檢舉留言 -->
+										<c:if test='${mb_id!=cmtVO.mb_id}'>
+										<div style="display:inline;">
+											<input style='display:none; height:1rem; opacity:0.5;' class='flagBtn' type='image'  name='submit_Btn'  src='<%= request.getContextPath() %>/img/flag.png'>
+											<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no">
+											<input type="hidden" name="action" value="insert">
+										</div>
+										</c:if>
 									</div>
+									</c:if>
 									</c:forEach>
 								</div>
 							</div>
@@ -660,16 +766,14 @@
 			class="fas fa-angle-up"></i>
 		</a>
 
-		<!-- Logout Modal-->
-		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- 		Logout Modal -->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Ready to
 							Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">×</span>
 						</button>
 					</div>
@@ -683,6 +787,8 @@
 				</div>
 			</div>
 		</div>
+		
+		
 
 		<!-- Bootstrap core JavaScript-->
 		<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
@@ -733,8 +839,59 @@
 							height: 'toggle'
 						  });
 				 });
+				 
+				 $('.oneCmtDiv').hover(function(){
+					 $(this).find('.flagBtn').css("display","");
+					 $(this).find('.garbageBtn').css("display","");
+					 },function(){
+						 $(this).find('.flagBtn').css("display","none");
+						 $(this).find('.garbageBtn').css("display","none");
+				 });
+				 
+				 var fblightbox = $('#fblightbox');
+				 fblightbox.css({'margin-left':'-'+(fblightbox.width()/2)+'px','margin-top':'-'+(fblightbox.height()/2)+'px'});
+
+				 $('.flagBtn').click(function(){
+					 $.ajax({
+						 type: "GET",
+						 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+						 data: {"action":"ajaxGetOne4Update", "cmt_no":$(this).siblings('.cmt_no').val()},
+						 dataType: "json",
+						 success: function (data){
+// 							$("#cmt_contentFB").val(data.cmt_content);
+							$("#cmt_noFB").val(data.cmt_no);
+							$("#cmt_statusFB").val(data.cmt_status);
+							$("#cmt_timeFB").val(data.cmt_time);
+							$("#mb_idFB").val(data.mb_id);
+							$("#rcd_noFB").val(data.rcd_no);
+							$('.overlay').fadeIn();
+							  fblightbox.fadeIn();
+						 },					
+						 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+				 		});
+				 });
+				
+				 $("#close").click(function() {
+					  $('.overlay').fadeOut();
+					  fblightbox.fadeOut();
+				 });
 			});
 		</script>
-</body>
 
+		<div id="fblightbox">
+		  <div class="fblightbox-wrap">
+		    <div class="fblightbox-header">
+		      	我來打打看
+		    </div>
+		    <div class="fblightbox-content">
+				<jsp:include page="cmt/update_cmt_input.jsp" />
+		    </div>
+<!-- 		    <div class="fblightbox-footer"> -->
+<!-- 		      <a href="#" class="fbbutton">Update</a> -->
+<!-- 		      <a href="#" id="close" class="fbbutton">Close</a> -->
+<!-- 		    </div> -->
+		  </div>
+		</div>
+		<div class="overlay"></div>
+</body>
 </html>

@@ -23,7 +23,7 @@ public class CmtDAO implements Cmt_interface {
 	private static final String INSERT_STMT = "INSERT INTO commentt (cmt_no,cmt_content,cmt_time,rcd_no,mb_id) values ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'),?,?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id FROM commentt ORDER BY cmt_no";
 	private static final String GET_ONE_STMT = "SELECT cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id FROM commentt WHERE cmt_no = ?";
-	private static final String COUNT_ALL = "SELECT COUNT ('a cmt') AS COUNTCMTS FROM commentt WHERE rcd_no = ?";
+	private static final String COUNT_ALL = "SELECT COUNT ('a cmt') AS COUNTCMTS FROM commentt WHERE cmt_status =1 and rcd_no = ?";
 	private static final String DELETE = "DELETE FROM commentt where cmt_no = ?";
 	private static final String UPDATE = "UPDATE commentt SET cmt_content = ?, cmt_status = ? where cmt_no = ?";
 
