@@ -11,38 +11,27 @@ public class PathService {
 		dao = new PathJDBCDAO();
 	}
 
-	public PathVO addPath(String path_name, Integer path_difficulty, java.sql.Timestamp path_start, java.sql.Timestamp path_end, byte[] path_pic, Double path_distance, String path_kml, Double path_lng, Double path_lat) {
+	public String addPath() {
 
 		PathVO pathVO = new PathVO();
 
-		pathVO.setPath_name(path_name);
-		pathVO.setPath_difficulty(path_difficulty);
-		pathVO.setPath_start(path_start);
-		pathVO.setPath_end(path_end);
-		pathVO.setPath_pic(path_pic);
-		pathVO.setPath_distance(path_distance);
-		pathVO.setPath_kml(path_kml);
-		pathVO.setPath_lng(path_lng);
-		pathVO.setPath_lat(path_lat);
 		dao.insert(pathVO);
 
-		return pathVO;
+		return pathVO.getPath_no();
 	}
 
-	public PathVO updatePath(String path_name, Integer path_difficulty,Integer path_popular, java.sql.Timestamp path_start, java.sql.Timestamp path_end, byte[] path_pic, Double path_distance, String path_kml, Double path_lng, Double path_lat) {
+	public PathVO updatePath(String path_name, Integer path_difficulty, java.sql.Timestamp path_end, Double path_distance, String path_kml, Double path_lng, Double path_lat, String path_no) {
 
 		PathVO pathVO = new PathVO();
 
 		pathVO.setPath_name(path_name);
 		pathVO.setPath_difficulty(path_difficulty);
-		pathVO.setPath_popular(path_popular);
-		pathVO.setPath_start(path_start);
 		pathVO.setPath_end(path_end);
-		pathVO.setPath_pic(path_pic);
 		pathVO.setPath_distance(path_distance);
 		pathVO.setPath_kml(path_kml);
 		pathVO.setPath_lng(path_lng);
 		pathVO.setPath_lat(path_lat);
+		pathVO.setPath_no(path_no);
 		dao.update(pathVO);
 
 		return pathVO;

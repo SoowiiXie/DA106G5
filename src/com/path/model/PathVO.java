@@ -2,7 +2,7 @@ package com.path.model;
 
 import java.sql.Timestamp;
 
-public class PathVO implements java.io.Serializable{
+public class PathVO {
 	private String path_no;
 	private String path_name;
 	private Integer path_difficulty;

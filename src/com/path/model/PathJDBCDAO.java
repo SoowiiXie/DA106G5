@@ -16,14 +16,14 @@ public class PathJDBCDAO implements PathDAO_interface {
 	String userid = "DA106G5";
 	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "INSERT INTO PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_START,PATH_END,PATH_DISTANCE,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.nextval), 5, '0'),?,?,?,?,?,?,?,?)";
+	private static final String INSERT_STMT = "INSERT INTO PATH (path_no) values ('p'||LPAD(to_char(PATH_NO_SEQ.nextval), 5, '0'))";
 	private static final String GET_ALL_STMT = "SELECT path_no, path_name, path_difficulty, path_popular, path_start, path_end, path_distance, path_status, path_kml, path_lng, path_lat FROM path ORDER BY path_no";
 	private static final String GET_ONE_STMT = "SELECT path_no, path_name, path_difficulty, path_popular, path_start, path_end, path_distance, path_status, path_kml, path_lng, path_lat FROM path WHERE path_no = ?";
 	private static final String DELETE = "DELETE FROM path where path_no = ?";
-	private static final String UPDATE = "UPDATE path SET path_name = ?, path_difficulty = ? where path_no = ?";
+	private static final String UPDATE = "UPDATE path SET path_name = ?, path_difficulty = ?, path_end = ?, path_distance = ?, path_kml = ?, path_lng = ?, path_lat = ? where path_no = ?";
 
 	@Override
-	public void insert(PathVO pathVO) {
+	public PathVO insert(PathVO pathVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -31,19 +31,23 @@ public class PathJDBCDAO implements PathDAO_interface {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(INSERT_STMT);
-
-			pstmt.setString(1, pathVO.getPath_name());
-			pstmt.setInt(2, pathVO.getPath_difficulty());
-			pstmt.setTimestamp(3, pathVO.getPath_start());
-			pstmt.setTimestamp(4, pathVO.getPath_end());
-			pstmt.setDouble(5, pathVO.getPath_distance());
-			pstmt.setString(6, pathVO.getPath_kml());
-			pstmt.setDouble(7, pathVO.getPath_lng());
-			pstmt.setDouble(8, pathVO.getPath_lat());
-
+			
+			String cols[] = {"path_no"};
+			pstmt = con.prepareStatement(INSERT_STMT , cols);
 			pstmt.executeUpdate();
-
+			
+			String path_no = null;
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if(rs.next()) {
+				path_no = rs.getString(1);
+				System.out.println("path_no = "+path_no);
+			}else {
+				System.out.println("未取得path_no");
+			}
+			rs.close();
+			
+			pathVO.setPath_no(path_no);
+//System.out.println("OK");
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
@@ -67,6 +71,7 @@ public class PathJDBCDAO implements PathDAO_interface {
 				}
 			}
 		}
+		return pathVO;
 	}
 
 	@Override
@@ -82,8 +87,12 @@ public class PathJDBCDAO implements PathDAO_interface {
 
 			pstmt.setString(1, pathVO.getPath_name());
 			pstmt.setInt(2, pathVO.getPath_difficulty());
-			pstmt.setString(3, pathVO.getPath_no());
-
+			pstmt.setTimestamp(3, pathVO.getPath_end());
+			pstmt.setDouble(4, pathVO.getPath_distance());
+			pstmt.setString(5, pathVO.getPath_kml());
+			pstmt.setDouble(6, pathVO.getPath_lng());
+			pstmt.setDouble(7, pathVO.getPath_lat());
+			pstmt.setString(8, pathVO.getPath_no());
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -216,7 +225,8 @@ public class PathJDBCDAO implements PathDAO_interface {
 			}
 		}
 		return pathVO;
-	}
+		}
+	
 
 	@Override
 	public List<PathVO> getAll() {
@@ -235,7 +245,6 @@ public class PathJDBCDAO implements PathDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO �]�٬� Domain objects
 				pathVO = new PathVO();
 				pathVO.setPath_no(rs.getString("path_no"));
 				pathVO.setPath_name(rs.getString("path_name"));
@@ -288,22 +297,19 @@ public class PathJDBCDAO implements PathDAO_interface {
 
 		PathJDBCDAO dao = new PathJDBCDAO();
 
-//		//新增
+		//新增
 //		PathVO pathVO1 = new PathVO();
-//		pathVO1.setPath_name("PATH6");
-//		pathVO1.setPath_difficulty(2);
-//		pathVO1.setPath_start(java.sql.Timestamp.valueOf("2005-01-01 22:22:22"));
-//		pathVO1.setPath_end(java.sql.Timestamp.valueOf("2005-01-01 22:44:22"));
-//		pathVO1.setPath_distance(10.22);
-//		pathVO1.setPath_kml("{}");
-//		pathVO1.setPath_lng(20.2323);
-//		pathVO1.setPath_lat(105.2323);
 //		dao.insert(pathVO1);
 
-//		//修改
+////		//修改
 //		PathVO pathVO2 = new PathVO();
 //		pathVO2.setPath_name("大操場");
 //		pathVO2.setPath_difficulty(2);
+//		pathVO2.setPath_end(java.sql.Timestamp.valueOf("2020-04-13 22:22:22"));
+//		pathVO2.setPath_distance(123.05);
+//		pathVO2.setPath_kml("[{\"LNG\":\"121.199769\",\"LAT\":\"24.963707\"},{\"LNG\":\"121.199770\"}]");
+//		pathVO2.setPath_lng(121.199769);
+//		pathVO2.setPath_lat(24.963707);
 //		pathVO2.setPath_no("p00006");
 //		dao.update(pathVO2);
 
