@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.staff.model.*"%>
+<%@ page import="com.abl.model.*"%>
+<%@ page import="com.auth.model.*"%>
 <%@ page import="java.util.*"%>
 
 <%
@@ -8,12 +10,19 @@
 	StaffService staffSvc = new StaffService();
     List<StaffVO> list = staffSvc.getAll();
     pageContext.setAttribute("list",list);
+    
+    AbilityService abilitySvc = new AbilityService();
+    Map<String, String> abilityMap = abilitySvc.getAllToMap();
+    pageContext.setAttribute("abilityMap",abilityMap);
+    
+    AuthorityService authoritySvc = new AuthorityService();
+    pageContext.setAttribute("authoritySvc",authoritySvc);
 %>
 
 <html>
 <head>
 <title>所有管理員資料 - listAllStaff.jsp</title>
-
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style>
   #table-1 {
 	width: 450px;
@@ -47,15 +56,52 @@
     padding: 5px;
     text-align: center;
   }
+  
+  .authorityRow{
+  	display:none;
+  }
 </style>
 
+<script>
+	function show(data){
+		
+// 		$(".keep").find("*").addClass("authorityRow");
+// 		$(".keep").animate({height:'0px'},"slow",function(){
+// 			if($(data).attr("style") == "height: 0px;"){
+// 				$(data).toggleClass("authorityRow");
+// 				$(data).animate({height:'50px'},"slow",function(){
+// 					$(data).find("*").toggleClass("authorityRow");
+// 				})
+// 			}else{
+// 				$(data).find("*").toggleClass("authorityRow");
+// 				$(data).animate({height:'0px'},"slow",function(){
+// 					$(data).toggleClass("authorityRow");
+// 				})
+// 			}
+// 		})
+		
+		if($(data).attr("style") == "height: 0px;"){
+			$(data).toggleClass("authorityRow");
+			$(data).animate({height:'50px'},"slow",function(){
+				$(data).find("*").toggleClass("authorityRow");
+			})
+		}else{
+			$(data).find("*").toggleClass("authorityRow");
+			$(data).animate({height:'0px'},"slow",function(){
+				$(data).toggleClass("authorityRow");
+			})
+		}
+	}
+	
+</script>
 </head>
 <body>
 
 <table id="table-1">
 	<tr>
 		<td>
-			<h3>所有管理員資料 - listAllEmp.jsp</h3>
+			<h3>管理員${staffVO.staff_name}</h3>
+			<h3>所有管理員資料 - listAllStaff.jsp</h3>
 			<h4><a href="select_page.jsp">回首頁</a></h4>
 		</td>
 	</tr>
@@ -76,8 +122,9 @@
 		<th>管理員ID</th>
 		<th>管理員姓名</th>
 		<th>加入日期</th>
-		<th>狀態</th>
-		<th>修改</th>
+		<th>狀態   篩選</th>
+		<th>資料修改</th>
+		<th>權限修改</th>
 	</tr>
 	<c:forEach var="staffVO" items="${list}">
 		
@@ -85,13 +132,33 @@
 			<td>${staffVO.staff_id}</td>
 			<td>${staffVO.staff_name}</td>
 			<td>${staffVO.staff_join}</td>
-			<td>${staffVO.staff_status}</td>
+			<td>${staffStatus[staffVO.staff_status]}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="staff.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
+			     
 			     <input type="hidden" name="staff_id"  value="${staffVO.staff_id}">
 			     <input type="hidden" name="action"	value="getOne_For_Update">
+			     <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
 			  </FORM>
+			</td>
+			<td><button onclick="show(${staffVO.staff_id})">修改</button></td>
+		</tr>
+		<%-- 權限 --%>
+		<c:set var="staff_id" value="${staffVO.staff_id}" scope="request"/>
+		
+		<tr id="${staffVO.staff_id}" class="authorityRow keep" style="height: 0px;">
+			<td colspan="6" class="authorityRow">
+				<c:set var="entrySet" value="${abilityMap.entrySet()}"/> 
+				<c:set var="authoritySet" value="${authoritySvc.getOneStaffAuthority(staffVO.staff_id)}"/> 
+					
+				<c:forEach var="map" items="${entrySet}">
+					<label class="authorityRow">
+					<input type="checkbox" value="${map.key}" ${authoritySet.contains(map.key)?'checked':''} class="authorityRow">
+					${map.value}
+					</label>&emsp;
+				</c:forEach>&emsp;
+				<input type="submit" value="送出修改" class="authorityRow">
 			</td>
 		</tr>
 	</c:forEach>

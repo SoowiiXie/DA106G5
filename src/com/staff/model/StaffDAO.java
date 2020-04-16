@@ -20,7 +20,7 @@ public class StaffDAO implements StaffDAO_interface{
 	private static final String INSERT_STMT = 
 		"INSERT INTO STAFF (STAFF_ID, STAFF_PWD, STAFF_NAME) VALUES ( ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT * FROM STAFF order by STAFF_ID";
+		"SELECT * FROM STAFF order by STAFF_JOIN";
 	private static final String GET_ONE_STMT = 
 		"SELECT * FROM STAFF where STAFF_ID = ?";
 	private static final String UPDATE = 

@@ -126,7 +126,7 @@ public class Group_followServlet extends HttpServlet {
 		
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				String grp_no = new String(req.getParameter("grp_no").trim());
+				String grp_no = req.getParameter("grp_no").trim()                                                        ;
 				
 				
 				String mb_id = req.getParameter("mb_id").trim();

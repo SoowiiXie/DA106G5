@@ -252,11 +252,33 @@ values('staff_xuan','01');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_xuan','02');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
-values('staff_michael','03');
+values('staff_xuan','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_xuan','05');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_michael','01');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_michael','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_michael','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_michael','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','01');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','05');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_weijhih','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_weijhih','04');
 
 --------------------------------------------------------
 --  2.戍乂 天氣、地標 Drop
@@ -793,7 +815,7 @@ NOCYCLE;
 Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷50元','50');
 Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷100元','100');
 Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷150元','150');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷300元','300');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷200元','200');
 Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷250元','250');
 Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷300元','300');
 
@@ -827,36 +849,169 @@ NOMAXVALUE
 NOCYCLE;
 
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾類＿上身');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-男上身');
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾類＿下身');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-男下身');
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'鞋類');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'鞋類-男');
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'配件類');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-女上身');
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'運動食品類');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-女下身'); 
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'鞋類-女');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-兒童上身');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-兒童下身');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'鞋類-兒童');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'配件-護具');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'配件-包款');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'配件-3C');
 
 -----------------------PRODUCT商品-----------------------
-
 CREATE SEQUENCE PRODUCT_seq
 INCREMENT BY 1
 START WITH 1
 NOMAXVALUE
 NOCYCLE;
 
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'+8鐵手套','10000','PTN00004');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'+10黃金甲','10000','PTN00001');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'+8卍褲子卍','10000','PTN00002');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'洛克人Ｅ罐','10000','PTN00005');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'館長台灣價值雞胸肉','10000','PTN00005');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'走到飛球鞋','10000','PTN00003');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子速乾排汗路跑背心_螢光綠','650','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子速乾排汗路跑背心_藍綠','650','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子簡單主張銀離子運動短袖上衣_黑','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子素面拼接運動短袖上衣_黑色','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子素面拼接運動短袖上衣_螢光黃','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子迷彩運動短袖上衣_黑','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子簡單主張銀離子運動短袖上衣_青石綠','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子ZP定番運動短袖上衣_深藍','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子軍事主義迷彩拼接鋪棉外套_迷彩藍','1250','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子斜紋印花防風外套_黑色','1250','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子經典側邊字母休閒外套_麻灰','1250','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子五分緊身慢跑褲-黑橘','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子長條反光運動短褲_黑螢光綠','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子炫彩LOGO排汗運動短褲_深灰','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子素面防風運動褲_黑','980','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子素面專業運動短褲_深藍','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子撞色剪裁排汗運動短褲_鐵灰_螢光綠','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子LOGO素面防風運動褲內刷毛款_黑','980','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'美津濃男子路跑鞋_黑灰','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'美津濃男子路跑鞋_藍紅','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋_黑黃色','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋_黑黃色','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋_螢綠黑','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋_藍綠','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋II代_閃電橘','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子科技世代運動休閒短袖上衣_水藍','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子科技感炫彩運動短袖上衣_湖水綠','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子素面拼接運動短袖上衣_玫瑰桃','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子素面拼接運動短袖上衣_寶貝橘','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子速乾排汗路跑背心_桃紅','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子多功能九分薄運動褲_黑','690','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子動能緊身運動訓練褲_黑','690','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子復古滾邊休閒長褲_粉膚','770','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子復古滾邊休閒長褲_寶藍','770','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子經典滾邊休閒長褲_湖水綠','770','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'美津濃女子路跑鞋_粉','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子EASYWALK緩震健走鞋_亮橘黑','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子EASYWALK緩震健走鞋_珊瑚紅','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子KIRIN系列減震耐磨運動跑鞋_艷桃紅','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子MissQ多功能休閒鞋_馬卡龍粉','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童經典百搭休閒外套_珊瑚粉','1100','PTN00007','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童經典百搭休閒外套_經典黑','1100','PTN00007','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童撞色休閒刷毛外套_裸磚紅','1100','PTN00007','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童百搭休閒長褲_珊瑚粉','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童百搭休閒長褲_藍綠','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童雙拉鍊休閒長褲_時尚藍','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童雙拉鍊休閒長褲_經典黑','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童百搭休閒長褲_經典黑','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'動感潮童舒適減震運動鞋_橘紅','1750','PTN00009','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'動感潮童舒適減震運動鞋_紫','1750','PTN00009','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'動感潮童舒適減震運動鞋_黑','1750','PTN00009','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'美津濃-半截式頭套_黑','1680','PTN00010','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男女運動壓力襪_藍黃','1680','PTN00010','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男女運動壓力襪_白黑','1680','PTN00010','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'率性經典休閒後背包_時尚藍','3310','PTN00011','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'單色跑步運動裝備包_俄羅斯綠','3310','PTN00011','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'經典跑步運動裝備包_玫瑰桃','3310','PTN00011','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'Obeat1光學心率臂帶','3310','PTN00012','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'GPS全方位運動心率錶','3310','PTN00012','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'GPS三用光學心率錶','3310','PTN00012','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+
 
 -----------------------CP_GET持有優惠卷-----------------------
 
@@ -1121,20 +1276,24 @@ VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-01 18
 INSERT INTO RECORD (RCD_NO, RCD_UPLOADTIME, RCD_CONTENT, RCD_THUMB_AMOUNT, RCD_METOO_AMOUNT, RCD_STATUS, PATH_NO, MB_ID)
 VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-01 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), 'record5', '99', '99', '1', 'p00005', 'weijhih123');
 INSERT INTO RECORD (RCD_NO, RCD_UPLOADTIME, RCD_CONTENT, RCD_THUMB_AMOUNT, RCD_METOO_AMOUNT, RCD_STATUS, PATH_NO, MB_ID)
-VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-02 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), '爪哇寶貝美翻了', '99', '99', '1', 'p00006', 'anjavababy520');
+VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-02 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), '安卓拉寶貝的臉太500了，我對她只能405', '99', '99', '1', 'p00006', 'anjavababy520');
 INSERT INTO RECORD (RCD_NO, RCD_UPLOADTIME, RCD_CONTENT, RCD_THUMB_AMOUNT, RCD_METOO_AMOUNT, RCD_STATUS, PATH_NO, MB_ID)
-VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-02 20:22:44', 'YYYY-MM-DD HH24:MI:SS'), '爪哇寶貝美翻了，根本300', '99', '99', '1', 'p00007', 'anjavababy520');
+VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-02 20:22:44', 'YYYY-MM-DD HH24:MI:SS'), '爪哇寶貝美翻了，很200', '99', '99', '1', 'p00007', 'anjavababy520');
 INSERT INTO RECORD (RCD_NO, RCD_UPLOADTIME, RCD_CONTENT, RCD_THUMB_AMOUNT, RCD_METOO_AMOUNT, RCD_STATUS, PATH_NO, MB_ID)
-VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-03 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), '安卓寶貝根本404', '99', '99', '1', 'p00008', 'anjavababy520');
+VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-03 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), '我跑到差點404', '99', '99', '1', 'p00008', 'anjavababy520');
 INSERT INTO RECORD (RCD_NO, RCD_UPLOADTIME, RCD_CONTENT, RCD_THUMB_AMOUNT, RCD_METOO_AMOUNT, RCD_STATUS, PATH_NO, MB_ID)
-VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-04 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), '爪哇寶貝才404，爪哇全家都404', '99', '99', '1', 'p00009', 'androidlababy520');
+VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-04 20:22:33', 'YYYY-MM-DD HH24:MI:SS'), '爪哇寶貝才500，爪哇全家都500', '99', '99', '1', 'p00009', 'androidlababy520');
 --留言
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'commemt1', TO_DATE('2020-03-05', 'YYYY-MM-DD'), '1', 'rcd00001', 'soowii123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment2', TO_DATE('2020-03-05', 'YYYY-MM-DD'), '1', 'rcd00002', 'xuan123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment3', TO_DATE('2020-03-10', 'YYYY-MM-DD'), '1', 'rcd00003', 'michael123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment4', TO_DATE('2020-03-15', 'YYYY-MM-DD'), '1', 'rcd00001', 'vain123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment5', TO_DATE('2020-03-30', 'YYYY-MM-DD'), '1', 'rcd00001', 'yiwen123');
-
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '爪哇', TO_DATE('2020-04-05', 'YYYY-MM-DD'), '1', 'rcd00008', 'soowii123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '我愛妳', TO_DATE('2020-04-05', 'YYYY-MM-DD'), '1', 'rcd00008', 'xuan123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '安卓拉基醜八怪', TO_DATE('2020-04-10', 'YYYY-MM-DD'), '1', 'rcd00008', 'michael123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '讚讚', TO_DATE('2020-04-15', 'YYYY-MM-DD'), '1', 'rcd00007', 'vain123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '妳好美', TO_DATE('2020-04-30', 'YYYY-MM-DD'), '1', 'rcd00007', 'yiwen123');
 
 --路徑收藏
 INSERT INTO "PATH_FOLLOW" (PATH_NO, MB_ID) VALUES ('p00001', 'soowii123');
@@ -1150,6 +1309,11 @@ INSERT INTO "DA106G5"."THUMB" (RCD_NO, MB_ID) VALUES ('rcd00002', 'xuan123');
 INSERT INTO "DA106G5"."THUMB" (RCD_NO, MB_ID) VALUES ('rcd00003', 'vain123');
 INSERT INTO "DA106G5"."THUMB" (RCD_NO, MB_ID) VALUES ('rcd00004', 'vain123');
 INSERT INTO "DA106G5"."THUMB" (RCD_NO, MB_ID) VALUES ('rcd00005', 'yiwen123');
+INSERT INTO "DA106G5"."THUMB" (RCD_NO, MB_ID) VALUES ('rcd00008', 'soowii123');
+INSERT INTO "DA106G5"."THUMB" (RCD_NO, MB_ID) VALUES ('rcd00008', 'xuan123');
+INSERT INTO "DA106G5"."THUMB" (RCD_NO, MB_ID) VALUES ('rcd00008', 'vain123');
+INSERT INTO "DA106G5"."THUMB" (RCD_NO, MB_ID) VALUES ('rcd00007', 'vain123');
+INSERT INTO "DA106G5"."THUMB" (RCD_NO, MB_ID) VALUES ('rcd00007', 'yiwen123');
 
 
 --METOO
@@ -1158,6 +1322,11 @@ INSERT INTO "METOO" (RCD_NO, MB_ID) VALUES ('rcd00002', 'xuan123');
 INSERT INTO "METOO" (RCD_NO, MB_ID) VALUES ('rcd00003', 'vain123');
 INSERT INTO "METOO" (RCD_NO, MB_ID) VALUES ('rcd00004', 'yiwen123');
 INSERT INTO "METOO" (RCD_NO, MB_ID) VALUES ('rcd00005', 'weijhih123');
+INSERT INTO "METOO" (RCD_NO, MB_ID) VALUES ('rcd00008', 'soowii123');
+INSERT INTO "METOO" (RCD_NO, MB_ID) VALUES ('rcd00008', 'xuan123');
+INSERT INTO "METOO" (RCD_NO, MB_ID) VALUES ('rcd00007', 'vain123');
+INSERT INTO "METOO" (RCD_NO, MB_ID) VALUES ('rcd00007', 'yiwen123');
+INSERT INTO "METOO" (RCD_NO, MB_ID) VALUES ('rcd00006', 'weijhih123');
 
 
 --紀錄檢舉
@@ -1197,6 +1366,7 @@ CREATE TABLE live (
  live_startteaser TIMESTAMP,
  live_start TIMESTAMP,
  live_store BLOB,
+ live_pic BLOB,
  mb_id VARCHAR2(30) NOT NULL
 );
 
@@ -1204,13 +1374,8 @@ ALTER TABLE live ADD CONSTRAINT PK_live PRIMARY KEY (live_no);
 
 
 CREATE TABLE live_rpt (
-<<<<<<< HEAD
- live_rpt_no VARCHAR2(20) NOT NULL,
- rpt_status NUMBER(1) DEFAULT'1' NOT NULL,
-=======
  live_rpt_no VARCHAR2(30) NOT NULL,
- rpt_status NUMBER(1) NOT NULL,
->>>>>>> SoowiiLoc
+ rpt_status NUMBER(1) DEFAULT'1' NOT NULL,
  rpt_reason CLOB,
  live_no VARCHAR2(30) NOT NULL,
  mb_id VARCHAR2(30) NOT NULL

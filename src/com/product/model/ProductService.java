@@ -14,7 +14,7 @@ public class ProductService {
 
 	}
 
-	public ProductVO addProduct(String pd_name, Integer pd_price, String pd_detail, String pd_typeNo) {
+	public ProductVO addProduct(String pd_name, Integer pd_price, String pd_detail, String pd_typeNo ,byte[] pd_pic) {
 
 		ProductVO productVO = new ProductVO();
 
@@ -22,6 +22,7 @@ public class ProductService {
 		productVO.setPd_price(pd_price);
 		productVO.setPd_detail(pd_detail);
 		productVO.setPd_typeNo(pd_typeNo);
+		productVO.setPd_pic(pd_pic);
 		dao.addProduct(productVO);
 		
 		return productVO;
@@ -34,7 +35,7 @@ public class ProductService {
 		
 	}
 	
-	public ProductVO updateProduct(String pd_no, String pd_name, Integer pd_price, String pd_detail, String pd_typeNo,Integer pd_status) {
+	public ProductVO updateProduct(String pd_no, String pd_name, Integer pd_price, String pd_detail, String pd_typeNo,Integer pd_status, byte[] pd_pic) {
 		
 		ProductVO productVO = new ProductVO();
 		productVO.setPd_no(pd_no);
@@ -43,6 +44,7 @@ public class ProductService {
 		productVO.setPd_detail(pd_detail);
 		productVO.setPd_typeNo(pd_typeNo);
 		productVO.setPd_status(pd_status);
+		productVO.setPd_pic(pd_pic);
 		dao.updateProductInformation(productVO);
 		return productVO;
 	}
@@ -53,6 +55,17 @@ public class ProductService {
 	
 	public void deleteProduct(String pd_no) {
 		dao.deleteProduct(pd_no);
+		
 	}
+	
+	public List<ProductVO> listOnTheMarket(Integer pd_status){
+		return dao.listOnTheMarket(pd_status);
+		
+	}
+	
+	 public List<ProductVO> useTypeSearchProducts(String pd_typeNo){
+		 
+		 return dao.useTypeSearchProducts(pd_typeNo);
+	 }
 	
 }

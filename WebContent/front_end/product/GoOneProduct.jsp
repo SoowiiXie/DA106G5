@@ -5,17 +5,17 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 
-
+<%-- 
 <%
-	ProductVO productVO = (ProductVO) request.getAttribute("productVO");
+	 ProductVO productVO = (ProductVO) request.getAttribute("productVO");  
 %>
-
+ --%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${productVO.pd_name}</title>
 </head>
 <body>
 
@@ -31,28 +31,30 @@
 
 	<form method="POST" action="<%=request.getContextPath()%>/ShoppingServlet" name="form1">
 		<table>
-
-
+            <tr>
+            <td width="100">商品圖片：</td>
+             <td width="100"><img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}" width="100px"></td>
+			</tr>
 			<tr>
-				<td>商品類別：</td>
-				<td>${productVO.pd_typeNo}</td>
+				<td width="100">商品類別：</td>
+				<td width="100">${productVO.pd_typeNo}</td>
 			</tr>
 
 
 			<tr>
-				<td>商品名稱：</td>
-				<td>${productVO.pd_name}</td>
+				<td width="100">商品名稱：</td>
+				<td width="100">${productVO.pd_name}</td>
 			</tr>
 			<tr>
-				<td>商品價格：</td>
-				<td>${productVO.pd_price}</td>
+				<td width="100">商品價格：</td>
+				<td width="100">${productVO.pd_price}</td>
 			</tr>
 			<tr>
-				<td>商品詳述：</td>
-				<td>${productVO.pd_detail}</td>
+				<td width="100">商品詳述：</td>
+				<td width="400">${productVO.pd_detail}</td>
 			</tr>
 			<tr>
-				<td>數量：</td>
+				<td width="100">數量：</td>
 				<td><select name="pd_quantity">
 						<option value="1">1
 						<option value="2">2
@@ -76,7 +78,8 @@
 		<input type="hidden" name="action" value="AddProductToCar">
 	</form>
 
-	<a href="ShopHome.jsp">回商城首頁</a>
+	<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">回商城首頁</a>
+
 
 </body>
 </html>

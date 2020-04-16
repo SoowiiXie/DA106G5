@@ -1,18 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.cmt.model.CmtVO"%>
 <%@ page import="com.cmt.model.CmtService"%>
 <%@ page import="com.cmt.model.*"%>
+<%@ page import="com.record.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <% 
-	CmtService cmtSvc = new CmtService();
-	List<CmtVO> list = cmtSvc.getAll();
+	String mb_id=(String)session.getAttribute("mb_id");
+	if(mb_id==null || "".equals(mb_id)){
+		session.setAttribute("mb_id","anjavababy520");
+	}
+	pageContext.setAttribute("mb_id", mb_id);
+	
+	RecordService recordSvc = new RecordService();
+	List<RecordVO> list = recordSvc.getByMb_id(mb_id);
 	pageContext.setAttribute("list", list);
 %>
+<!--會員Service -->
+<jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
+<!--紀錄Service -->
+<jsp:useBean id="recordSvcEL" scope="page" class="com.record.model.RecordService" />
+<!--路徑Service -->
+<jsp:useBean id="pathSvcEL" scope="page" class="com.path.model.PathService" />
+<!--按讚Service -->
+<jsp:useBean id="thumbSvcEL" scope="page"	class="com.thumb.model.ThumbService" />
+<!--meTooService -->
+<jsp:useBean id="meTooSvcEL" scope="page"	class="com.metoo.model.MeTooService" />
+<!--留言Service -->
+<jsp:useBean id="cmtSvcEL" scope="page"	class="com.cmt.model.CmtService" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +44,14 @@
 	<title>Runn able</title>
 
 	<!-- Custom fonts for this template-->
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	<link href="<%= request.getContextPath() %>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 		type="text/css" />
 	<link
 		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 		rel="stylesheet" />
 
 	<!-- Custom styles for this template-->
-	<link href="css/sb-admin-2.min.css" rel="stylesheet" />
+	<link href="<%= request.getContextPath() %>/css/sb-admin-2.min.css" rel="stylesheet" />
 	<style>
 		* {
 			padding: 0;
@@ -129,6 +148,14 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
+		
+		.pathImg {
+			width: 90%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 
 		.row {
 			background-color: rgb(229, 233, 236) !important;
@@ -187,11 +214,34 @@
 		/* #wrapperRight {
 					width: cal(100%-5rem);
 				} */
-		
-		.jspContent > * > * > * {
-			border:1px dotted black;
-		}
+
 	</style>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		 $('.thumbBtn').click(function(){
+			 $.ajax({
+				 type: "GET",
+				 url: "thumbAjaxResponse.do",
+				 data: creatQueryString($(this).val(), ""),
+				 dataType: "json",
+				 success: function (data){
+					clearSelect();
+// 					$.each(data, function(i, item){
+// 						$('#class').append("<option value='"+item.classId+"'>"+item.className+"</option>");
+// 					});
+					$(data).each(function(i, item){
+						$('#class').append("<option value='"+item.classId+"'>"+item.className+"</option>");
+					});
+// 					jQuery.each(data, function(i, item){
+// 						$('#class').append("<option value='"+item.classId+"'>"+item.className+"</option>");
+// 					});
+			     },
+	             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
+	         })
+		 })
+	})
+
+</script>
 </head>
 
 <body id="page-top">
@@ -220,10 +270,13 @@
 
 				<!-- Nav Item - Dashboard -->
 				<li class="nav-item active">
-					<!-- <li class="nav-item"> --> <a class="nav-link"
-					href="index.html"> <i class="fas fa-fw fa-thumbs-up"></i> <span>個人<img
-							src="<%= request.getContextPath() %>/img/ya.png" alt="" class="fas fa-fw">面
-					</span></a>
+					<!-- <li class="nav-item"> --> 
+					<a class="nav-link"	href="index.html">
+						<i class="fas fa-fw fa-thumbs-up"></i> 
+						<span>
+							個人<img src="<%= request.getContextPath() %>/img/ya.png" alt="" class="fas fa-fw">面
+						</span>
+					</a>
 				</li>
 
 				<!-- Nav Item - Pages Collapse Menu -->
@@ -453,8 +506,10 @@
 					<a class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> 
-					<span class="mr-2 d-none d-lg-inline text-gray-600 small">謝戍乂</span> 
-					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/img/soowii2.jpg" />
+					<!--會員姓名-->
+					<span class="mr-2 d-none d-lg-inline text-gray-600 small">${memberSvcEL.getOneMember(mb_id).mb_name}</span> 
+					<!--會員照片-->
+					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
 					</a> <!-- Dropdown - User Information -->
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -515,41 +570,43 @@
 						<b>追蹤</b>
 					</a>
 				</div>
-				
-
-					<c:forEach var="cmtVO" items="${list}">
+					<c:forEach var="recordVO" items="${list}">
 					<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
 						<!--一則紀錄 -->
 						<div class="container bg-white m-3 rounded p-0 " >
 							<div class="d-inline-block mt-3 ml-3">
 								<div>
-									<img class="img-profile rounded-circle" height=50rem; src="<%= request.getContextPath() %>/img/soowii2.jpg" />
-									<span class="ml-2 d-none d-lg-inline text-gray-600">${cmtVO.mb_id};${cmtVO.rcd_no}</span>
+									<!--會員照片-->
+									<img class="img-profile rounded-circle" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${recordVO.mb_id}" />
+									<!--會員姓名-->
+									<span class="ml-2 d-none d-lg-inline text-gray-600">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
 								</div>
 								<div>
-									<span class="ml-5 d-none d-lg-inline text-gray-400">${cmtVO.cmt_time}</span>
+									<span class="ml-5 d-none d-lg-inline text-gray-400">${recordVO.rcd_uploadtime}</span>
 								</div>
 							</div>
-							<img src="<%= request.getContextPath() %>/img/map.PNG" class="rounded mx-auto d-block my-2" alt="Responsive image">
+							<div style="overflow:hidden; height:15rem;" class="mx-auto my-2 col-12">
+								<img src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}" class="rounded mx-auto d-block pathImg" alt="Responsive image">
+							</div>
 							<span class="ml-3 d-none d-lg-inline text-gray-600">${cmtVO.cmt_content}</span>
 							<div class="w-100">
 								<div class="col-5 form-inline">							
-									<jsp:useBean id="thumbSvc" scope="page"	class="com.thumb.model.ThumbService" />
+									
 									<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/thumb/thumb.do" style="margin-bottom: 0px;">
-										<input class="my-2 mr-1" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png"  onClick="document.form1.submit()" style="height:2rem;">
+										<input class="my-2 mr-1 thumbBtn" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/thumbColor.png" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
 										<input type="hidden" name="mb_id" value="soowii123">
 										<input type="hidden" name="action" value="insert">
 									</FORM>
-									${thumbSvc.countAllThumbs(cmtVO.rcd_no)}
-									<jsp:useBean id="meTooSvc" scope="page"	class="com.metoo.model.MeTooService" />
+									${thumbSvcEL.countAllThumbs(cmtVO.rcd_no)}
+									
 									<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/metoo/metoo.do" style="margin-bottom: 0px;">
-										<input class="my-2 mx-1" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png"  onClick="document.form1.submit()" style="height:2rem;">
+										<input class="my-2 mx-1 yaBtn" type="image"  name="submit_Btn"  id="submit_Btn"  src="<%= request.getContextPath() %>/img/ya.png"  onClick="document.form1.submit()" style="height:2rem;">
 										<input type="hidden" name="rcd_no" value="${cmtVO.rcd_no}">
 										<input type="hidden" name="mb_id" value="soowii123">
 										<input type="hidden" name="action" value="insert">
 									</FORM>
-									${meTooSvc.countAllMeToos(cmtVO.rcd_no)}
+									${meTooSvcEL.countAllMeToos(cmtVO.rcd_no)}
 								</div>
 							</div>
 						</div>

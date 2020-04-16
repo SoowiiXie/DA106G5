@@ -38,7 +38,11 @@ public class ThumbService {
 	}
 
     public Integer countAllThumbs(String rcd_no) {
-    	return dao.countAllThumb(rcd_no);
+    	return dao.countAllThumbs(rcd_no);
+    }
+    
+    public Integer countOneThumb(String rcd_no, String mb_id) {
+    	return dao.countOneThumb(rcd_no, mb_id);
     }
 	
 }
