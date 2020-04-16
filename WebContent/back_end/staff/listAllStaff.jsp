@@ -17,6 +17,9 @@
     
     AuthorityService authoritySvc = new AuthorityService();
     pageContext.setAttribute("authoritySvc",authoritySvc);
+    
+    String staff_id = request.getParameter("staff_id");
+    pageContext.setAttribute("staff_id",staff_id);
 %>
 
 <html>
@@ -60,9 +63,19 @@
   .authorityRow{
   	display:none;
   }
+  form{
+  	margin:0px;
+  }
 </style>
 
 <script>
+	$(document).ready(function(){
+		$(".authorityRow").find("*").addClass("authorityRow");
+		<%if(staff_id != null){%>
+			alert("修改成功!");
+		<%};%>
+	});
+	
 	function show(data){
 		
 		
@@ -91,9 +104,8 @@
 		
 		if($(data).attr("style") == "height: 0px;"){
 			$(data).toggleClass("authorityRow");
-			$(data).animate({height:'50px'},"slow",function(){
+			$(data).animate({height:'30px'},"slow",function(){
 				$(data).find("*").toggleClass("authorityRow");
-				
 			})
 		}else{
 			$(data).find("*").toggleClass("authorityRow");
@@ -138,7 +150,7 @@
 	</tr>
 	<c:forEach var="staffVO" items="${list}">
 		
-		<tr>
+		<tr ${staff_id.equals(staffVO.staff_id)?"bgcolor='#CCCCFF'":""}>
 			<td>${staffVO.staff_id}</td>
 			<td>${staffVO.staff_name}</td>
 			<td>${staffVO.staff_join}</td>
@@ -156,18 +168,18 @@
 		</tr>
 		<%-- 權限 --%>
 		<tr id="${staffVO.staff_id}" class="authorityRow" style="height: 0px;">
-			<td colspan="6" class="authorityRow">
-				<FORM METHOD="post" ACTION="authority.do">
+			<td colspan="6">
+				<FORM METHOD="post" ACTION="authority.do"">
 				<c:set var="entrySet" value="${abilityMap.entrySet()}"/> 
 				<c:set var="authoritySet" value="${authoritySvc.getOneStaffAuthority(staffVO.staff_id)}"/> 
 					
 				<c:forEach var="map" items="${entrySet}">
-					<label class="authorityRow">
-					<input type="checkbox" value="${map.key}" ${authoritySet.contains(map.key)?'checked':''} class="authorityRow">
+					<label>
+					<input type="checkbox" name="ability_no" value="${map.key}" ${authoritySet.contains(map.key)?'checked':''}>
 					${map.value}
 					</label>&emsp;
 				</c:forEach>&emsp;
-				<input type="submit" value="送出修改" class="authorityRow">
+				<input type="submit" value="送出修改">
 				<input type="hidden" name="action"	value="update_authority">
 				<input type="hidden" name="staff_id"  value="${staffVO.staff_id}">
 				<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">

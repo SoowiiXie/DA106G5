@@ -34,7 +34,7 @@ public class AuthorityDAO implements AuthorityDAO_interface{
 			"SELECT ABILITY_NO FROM AUTHORITY WHERE STAFF_ID = ?";
 	// 刪除一個管理員的所有權限
 	private static final String DELETE_ONE_STAFF_ALL_AUTHORITY = 
-			"DELETE * FROM AUTHORITY WHERE STAFF_ID = ?";
+			"DELETE FROM AUTHORITY WHERE STAFF_ID = ?";
 	
 	// 連線池
 		private static DataSource ds = null;

@@ -34,7 +34,6 @@ public class StaffServlet extends HttpServlet{
 		// *** listAllStaff中移除自己或Boss
 		// ** listAllEmp  更改狀態、權限、下拉式選單篩選在職、離職
 		// *** listAllEmp 離職用紅字粗體顯示
-		// *** 同樣操作可以合併一個if
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -158,13 +157,14 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 		
-		if ("select_management".equals(action)) { // 選擇管理項目  OK 一半
+		if ("select_management".equals(action)) { // 選擇管理項目  OK ***一半  ***判斷是否登入
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			// 取得管理員
 			StaffVO staffVO = (StaffVO) session.getAttribute("staffVO");
+			
 			// 取得被點選的管理按鈕
 			String management = req.getParameter("management");
 			
