@@ -34,6 +34,7 @@ public class StaffServlet extends HttpServlet{
 		// *** listAllStaff中移除自己或Boss
 		// ** listAllEmp  更改狀態、權限、下拉式選單篩選在職、離職
 		// *** listAllEmp 離職用紅字粗體顯示
+		// 選擇管理項目  ***一半  ***判斷是否登入
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");

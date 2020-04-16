@@ -129,6 +129,7 @@
 	</tr>
 </table>
 
+<a href="addStaff.jsp"><button>新增管理員</button></a>
 <%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color:red">請修正以下錯誤:</font>
@@ -150,7 +151,7 @@
 	</tr>
 	<c:forEach var="staffVO" items="${list}">
 		
-		<tr ${staff_id.equals(staffVO.staff_id)?"bgcolor='#CCCCFF'":""}>
+		<tr ${param.staff_id.equals(staffVO.staff_id)?"bgcolor='#CCCCFF'":""}>
 			<td>${staffVO.staff_id}</td>
 			<td>${staffVO.staff_name}</td>
 			<td>${staffVO.staff_join}</td>
@@ -169,7 +170,7 @@
 		<%-- 權限 --%>
 		<tr id="${staffVO.staff_id}" class="authorityRow" style="height: 0px;">
 			<td colspan="6">
-				<FORM METHOD="post" ACTION="authority.do"">
+				<FORM METHOD="post" ACTION="authority.do">
 				<c:set var="entrySet" value="${abilityMap.entrySet()}"/> 
 				<c:set var="authoritySet" value="${authoritySvc.getOneStaffAuthority(staffVO.staff_id)}"/> 
 					
