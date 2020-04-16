@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 import com.mb.model.MemberVO;
 
-public class MemberDAO extends com.mb.model.MemberDAO {
+public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.MemberDAO_interface{
 
 	private static final String INSERT_STMT = "INSERT INTO MEMBER ( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_PIC, MB_EMAIL) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM MEMBER order by MB_ID";

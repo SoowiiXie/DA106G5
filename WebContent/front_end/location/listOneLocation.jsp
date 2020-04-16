@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.location.model.LocationVO"%>
-<%@ page import="com.location.model.LocationService"%>
-<%@ page import="com.location.model.*"%>
+<%@ page import="android.com.location.model.LocationVO"%>
+<%@ page import="android.com.location.model.LocationService"%>
+<%@ page import="android.com.location.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
