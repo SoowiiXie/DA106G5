@@ -337,7 +337,19 @@
 			<servlet-name>Rcd_rptServlet</servlet-name>
 			<url-pattern>/back_end/rcd_rpt/rcd_rpt.do</url-pattern>
 		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>DBGifReader4Path</servlet-name>
+			<servlet-class>com.path.model.DBGifReader4Path</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Path</servlet-name>
+			<url-pattern>/DBGifReader4Path</url-pattern>
+		</servlet-mapping>
 			
+		
+		
+		
 		
 		<servlet>
 			<servlet-name>MemberServlet</servlet-name>
@@ -349,13 +361,14 @@
 		</servlet-mapping>
 		
 		<servlet>
-			<servlet-name>DBGifReader4Path</servlet-name>
-			<servlet-class>com.path.model.DBGifReader4Path</servlet-class>
+			<servlet-name>PathServlet</servlet-name>
+			<servlet-class>android.com.path.controller.PathServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
-			<servlet-name>DBGifReader4Path</servlet-name>
-			<url-pattern>/DBGifReader4Path</url-pattern>
+			<servlet-name>PathServlet</servlet-name>
+			<url-pattern>/android/path.do</url-pattern>
 		</servlet-mapping>
+		
 <!-- 麥克責任區結束 -->
 
 <!-- 昱盛責任區開始 -->
