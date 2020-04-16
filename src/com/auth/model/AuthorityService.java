@@ -35,4 +35,8 @@ public class AuthorityService {
 	public Set<String> getOneStaffAuthority(String staff_id){
 		return dao.getOneStaffAuthority(staff_id);
 	}
+	
+	public void deleteOneStaffAllAuthority(String staff_id) {
+		dao.deleteOneStaffAllAuthority(staff_id);
+	}
 }

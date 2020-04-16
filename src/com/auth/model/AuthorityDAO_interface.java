@@ -10,5 +10,6 @@ public interface AuthorityDAO_interface {
     public List<AuthorityVO> getAll();
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
-    public Set<String> getOneStaffAuthority(String staff_id);
+    public Set<String> getOneStaffAuthority(String staff_id);  // 取得一個管理員的全部權限
+    public void deleteOneStaffAllAuthority(String staff_id);  // 刪除一個管理員的全部權限
 }

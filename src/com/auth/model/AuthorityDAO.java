@@ -32,6 +32,9 @@ public class AuthorityDAO implements AuthorityDAO_interface{
 	// 列出一個管理員的所有權限
 	private static final String GET_ONE_STAFF_AUTHORITY = 
 			"SELECT ABILITY_NO FROM AUTHORITY WHERE STAFF_ID = ?";
+	// 刪除一個管理員的所有權限
+	private static final String DELETE_ONE_STAFF_ALL_AUTHORITY = 
+			"DELETE * FROM AUTHORITY WHERE STAFF_ID = ?";
 	
 	// 連線池
 		private static DataSource ds = null;
@@ -271,6 +274,21 @@ public class AuthorityDAO implements AuthorityDAO_interface{
 			}
 		}
 		return set;
+	}
+
+	@Override  // 連線池
+	public void deleteOneStaffAllAuthority(String staff_id) {
+		// 改用try()方法，自動關閉連線
+		try (Connection con = ds.getConnection();PreparedStatement pstmt = con.prepareStatement(DELETE_ONE_STAFF_ALL_AUTHORITY);){
+			
+			pstmt.setString(1, staff_id);
+			pstmt.executeUpdate();
+			
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		}
 	}
 	
 //	// 測試
