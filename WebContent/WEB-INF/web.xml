@@ -422,6 +422,19 @@
 	
 	<!-- 管理員結束 -->
 	
+	<!-- 權限開始 -->
+	
+		<servlet>
+			<servlet-name>AuthorityServlet</servlet-name>
+			<servlet-class>com.auth.controller.AuthorityServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AuthorityServlet</servlet-name>
+			<url-pattern>/back_end/staff/authority.do</url-pattern>
+		</servlet-mapping>
+	
+	<!-- 權限結束 -->
+	
 <!--名軒責任區結束-->
 
 <!--偉誌責任區開始-->
