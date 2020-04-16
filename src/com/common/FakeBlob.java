@@ -185,5 +185,35 @@ class FakeBlob {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		// 存圖片到資料庫
+		String sql_updateLive = "UPDATE LIVE SET LIVE_PIC = ? WHERE LIVE_NO = ?";
+		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+				PreparedStatement ps = connection.prepareStatement(sql_updateLive);) {
+			int rowCount = 0;
+			FileInputStream in;
+			BufferedInputStream bf;
+			// 塞六張假圖
+			for (int i = 1; i <= 6; i++) {
+				// 共五位數字，不足補0
+				in = new FileInputStream("WebContent/fake_picture/LIV" + String.format("%05d", i) + ".jpg");
+				bf = new BufferedInputStream(in);
+				// 方法1.使用byte陣列setBytes
+//					    byte[] image = new byte[bf.available()];//讀入的圖檔,暫存在記憶體
+//					    bf.read(image);
+//					    ps.setBytes(1, image);
+				
+				// 方法2.讀入圖檔後setBinaryStream到DB
+				ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
+				
+				ps.setString(2, "LIV" + String.format("%05d", i));
+				rowCount += ps.executeUpdate();
+				bf.close();
+				in.close();
+			}
+			System.out.println(rowCount + " row(s) inserted!!");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

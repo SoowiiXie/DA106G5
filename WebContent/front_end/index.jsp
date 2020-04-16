@@ -8,6 +8,7 @@
 <%@ page import="com.cmt.model.*"%>
 <%@ page import="com.record.model.*"%>
 <%@ page import="com.msg.model.*"%>
+<%@ page import="com.live.model.*"%>
 <%@ page import="com.mb.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
@@ -29,10 +30,14 @@
 		RecordService recordSvc = new RecordService();
 		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("list", list);
-		//拿出所有訊息
+		//拿出四則訊息
 		MessageService messageSvc = new MessageService();
 		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("messageList", messageList);
+		//拿出四個直播
+		LiveService liveSvc = new LiveService();
+		List<LiveVO> liveList = liveSvc.getAllTake4();
+		pageContext.setAttribute("liveList", liveList);
 	}
 %>
 <!--會員Service -->
@@ -613,18 +618,12 @@
 			<div class="w-100"></div>
 			<!-- 內容左邊-直播 -->
 			<div id="contentLeft" class="col-3 navbar-nav">
+				<c:forEach var="liveVO" items="${liveList}">
 				<div class="live btn btn-secondary">
-					<img src="<%= request.getContextPath() %>/img/undraw_posting_photo.svg" class="liveImg">
+					${liveVO.live_no}
+					<img src="<%= request.getContextPath() %>/DBGifReader4Live?live_no=${liveVO.live_no}" class="liveImg" alt="live image">
 				</div>
-				<div class="live btn btn-secondary">
-					<img src="<%= request.getContextPath() %>/img/500x300.png" class="liveImg">
-				</div>
-				<div class="live btn btn-secondary">
-					<img src="<%= request.getContextPath() %>/img/statistics.png" class="liveImg">
-				</div>
-				<div class="live btn btn-secondary">
-					<img src="<%= request.getContextPath() %>/img/ya.png" class="liveImg">
-				</div>
+				</c:forEach>
 				<div class="live btn btn-secondary">
 					<div class="liveImg">查看全部</div>
 				</div>

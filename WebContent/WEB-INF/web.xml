@@ -575,4 +575,17 @@
 	<!-- 揪團關注結束 -->
 <!--偉誌責任區結束-->
 
+<!-- 以文責任區開始 -->
+	<!-- 直播開始 -->
+		<servlet>
+			<servlet-name>DBGifReader4Live</servlet-name>
+			<servlet-class>com.live.model.DBGifReader4Live</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Live</servlet-name>
+			<url-pattern>/DBGifReader4Live</url-pattern>
+		</servlet-mapping>
+	<!-- 直播結束 -->
+<!-- 以文責任區結束 -->
+
 </web-app>

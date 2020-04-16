@@ -1,12 +1,6 @@
 package com.live.model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,11 +21,11 @@ public class LiveDAO implements LiveDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO LIVE ( LIVE_NO, LIVE_CONTENT, LIVE_STATUS, LIVE_STARTTEASER ,LIVE_START, MB_ID, LIVE_STORE, LIVE_PIC) VALUES ( 'LIV'||LPAD(to_char(LIVE_NO_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM LIVE ORDER BY LIVE_NO";
+	private static final String GET_ALL_TAKE_4 = "SELECT * FROM (SELECT * FROM LIVE order by LIVE_NO DESC) where rownum between 1 and 4";
 	private static final String GET_STMT = "SELECT * FROM LIVE WHERE MB_ID = ?";
 	private static final String UPDATE = "UPDATE LIVE SET LIVE_CONTENT=?, LIVE_STATUS=?, LIVE_STARTTEASER=?, LIVE_START=?, LIVE_STORE=?, LIVE_PIC=? WHERE LIVE_NO = ?";
 	private static final String DELETE = "DELETE FROM LIVE WHERE LIVE_NO = ?";
-	
-	
+
 	// 連線池
 	private static DataSource ds = null;
 	static {
@@ -62,7 +56,6 @@ public class LiveDAO implements LiveDAO_interface {
 			pstmt.setString(5, LiveVO.getMb_id());
 			pstmt.setBytes(6, LiveVO.getLive_store());
 			pstmt.setBytes(7, LiveVO.getLive_pic());
-			
 
 			pstmt.executeUpdate();
 
@@ -170,8 +163,7 @@ public class LiveDAO implements LiveDAO_interface {
 
 	@Override
 	public List<LiveVO> findByMbId(String mb_id) {
-		
-		
+
 		List<LiveVO> list = new ArrayList<LiveVO>();
 		LiveVO liveVO = null;
 		Connection con = null;
@@ -184,9 +176,9 @@ public class LiveDAO implements LiveDAO_interface {
 //			con = DriverManager.getConnection(url, userid, passwd);
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_STMT);
-			
+
 			pstmt.setString(1, mb_id);
-			
+
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -205,8 +197,7 @@ public class LiveDAO implements LiveDAO_interface {
 
 			// Handle any driver errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -267,8 +258,7 @@ public class LiveDAO implements LiveDAO_interface {
 
 			// Handle any driver errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -295,17 +285,11 @@ public class LiveDAO implements LiveDAO_interface {
 		}
 		return list;
 	}
-	
-	
-	
-	
-	
-	
-	public static void main (String[] args) throws Exception {
-		
-		
+
+	public static void main(String[] args) throws Exception {
+
 //		LiveDAO dao = new LiveDAO();
-		
+
 		// 增
 //		
 //		InputStream fin = new FileInputStream(new File("C:\\pic\\LIV00001.jpg"));
@@ -329,11 +313,11 @@ public class LiveDAO implements LiveDAO_interface {
 //		liveVO.setLive_store(vid);
 //		liveVO.setMb_id("yiwen123");
 //		dao.insert(liveVO);
-		
-		//刪
+
+		// 刪
 //		dao.delete("LIV00007");
-		
-		//改
+
+		// 改
 //		LiveVO liveVO = new LiveVO();
 //		liveVO.setLive_no("LIV00007");
 //		liveVO.setLive_content("TEST_LIVE2");
@@ -344,9 +328,7 @@ public class LiveDAO implements LiveDAO_interface {
 //		liveVO.setLive_store(vid);
 //		liveVO.setMb_id("xuan123");
 //		dao.update(liveVO);
-		
-		
-		
+
 //		
 		// 查
 //		List<LiveVO> all = dao.getAll();
@@ -359,7 +341,7 @@ public class LiveDAO implements LiveDAO_interface {
 //			System.out.println(LiveVO.getMb_id());
 //				
 //		}
-		
+
 		// 用PK查詢
 //		List<LiveVO> list = new ArrayList<LiveVO>();
 //		list = dao.findByMbId("michael123");
@@ -373,11 +355,67 @@ public class LiveDAO implements LiveDAO_interface {
 //			System.out.println(LiveVO.getMb_id());
 //				
 //		}
-		
-		
-		
-		
-	}
-	
 
+	}
+
+	@Override
+	public List<LiveVO> getAllTake4() {
+		List<LiveVO> list = new ArrayList<LiveVO>();
+		LiveVO liveVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_TAKE_4);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				liveVO = new LiveVO();
+				liveVO.setLive_no(rs.getString("LIVE_NO"));
+				liveVO.setLive_content(rs.getString("LIVE_CONTENT"));
+				liveVO.setLive_status(rs.getInt("LIVE_STATUS"));
+				liveVO.setLive_startteaser(rs.getDate("LIVE_STARTTEASER"));
+				liveVO.setLive_start(rs.getDate("LIVE_START"));
+				liveVO.setLive_store(rs.getBytes("LIVE_STORE"));
+				liveVO.setLive_pic(rs.getBytes("LIVE_PIC"));
+				liveVO.setMb_id(rs.getString("MB_ID"));
+				list.add(liveVO); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 }
