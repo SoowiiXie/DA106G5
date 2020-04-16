@@ -7,6 +7,7 @@
 <%@ page import="com.cmt.model.CmtService"%>
 <%@ page import="com.cmt.model.*"%>
 <%@ page import="com.record.model.*"%>
+<%@ page import="com.msg.model.*"%>
 <%@ page import="com.mb.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
@@ -22,22 +23,30 @@
 		//還沒登入的話
 		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
 	}else{
+		//用memberVO先取得會常使用到的mb_id
 		pageContext.setAttribute("mb_id", memberVO.getMb_id());
+		//拿出所有紀錄
 		RecordService recordSvc = new RecordService();
 		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("list", list);
+		//拿出所有訊息
+		MessageService messageSvc = new MessageService();
+		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
+		pageContext.setAttribute("messageList", messageList);
 	}
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
 <!--紀錄Service -->
+<jsp:useBean id="messageSvcEL" scope="page" class="com.msg.model.MessageService" />
+<!--紀錄Service -->
 <jsp:useBean id="recordSvcEL" scope="page" class="com.record.model.RecordService" />
 <!--路徑Service -->
 <jsp:useBean id="pathSvcEL" scope="page" class="com.path.model.PathService" />
 <!--按讚Service -->
-<jsp:useBean id="thumbSvcEL" scope="page"	class="com.thumb.model.ThumbService" />
+<jsp:useBean id="thumbSvcEL" scope="page" class="com.thumb.model.ThumbService" />
 <!--meTooService -->
-<jsp:useBean id="meTooSvcEL" scope="page"	class="com.metoo.model.MeTooService" />
+<jsp:useBean id="meTooSvcEL" scope="page" class="com.metoo.model.MeTooService" />
 <!--留言Service -->
 <jsp:useBean id="cmtSvcEL" scope="page"	class="com.cmt.model.CmtService" />
 
@@ -49,6 +58,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
+	
 
 	<title>Runn able</title>
 	<!-- Custom fonts for this template-->
@@ -65,6 +75,7 @@
 	
 	<!-- 會員智慧搜尋 -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
 	
 	
 	<style>
@@ -414,8 +425,7 @@
 		<!-- Main Content -->
 		<div class="row" id="wrapperRight">
 			<!-- Topbar -->
-			<nav
-				class="col-12 navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+			<nav class="col-12 navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 				<!-- Sidebar Toggle (Topbar) -->
 				<button id="sidebarToggleTop"
 					class="btn btn-link d-md-none rounded-circle">
@@ -478,17 +488,16 @@
 						<div
 							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="alertsDropdown">
-							<h6 class="dropdown-header">Alerts Center</h6>
+							<h6 class="dropdown-header">通知</h6>
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="mr-3">
 									<div class="icon-circle bg-primary">
 										<i class="fas fa-file-alt text-white"></i>
 									</div>
 								</div>
-								<div>
+								<div class="ml-2">
 									<div class="small text-gray-500">December 12, 2019</div>
-									<span class="font-weight-bold">A new monthly report is
-										ready to download!</span>
+									<span class="font-weight-bold">這是一般通知</span>
 								</div>
 							</a> <a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="mr-3">
@@ -496,23 +505,23 @@
 										<i class="fas fa-donate text-white"></i>
 									</div>
 								</div>
-								<div>
+								<div class="ml-2">
 									<div class="small text-gray-500">December 7, 2019</div>
-									$290.29 has been deposited into your account!
+									這是商城通知
 								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
+							</a> 
+							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="mr-3">
 									<div class="icon-circle bg-warning">
 										<i class="fas fa-exclamation-triangle text-white"></i>
 									</div>
 								</div>
-								<div>
+								<div class="ml-2">
 									<div class="small text-gray-500">December 2, 2019</div>
-									Spending Alert: We've noticed unusually high spending for your
-									account.
+									這是重要通知
 								</div>
-							</a> <a class="dropdown-item text-center small text-gray-500"
-								href="#">Show All Alerts</a>
+							</a> 
+							<a class="dropdown-item text-center small text-gray-500" href="#">所有通知</a>
 						</div>
 					</li>
 
@@ -523,32 +532,34 @@
 							aria-expanded="false"> 
 							<i class="fas fa-envelope fa-fw"></i> 
 							<!-- Counter - Messages 計數器 -->
-							<span class="badge badge-danger badge-counter">7</span>
+							<c:if test="${messageSvcEL.countNotReads(mb_id)>0}">
+							<span class="badge badge-danger badge-counter">
+								${messageSvcEL.countNotReads(mb_id)>9?"9+":messageSvcEL.countNotReads(mb_id)}
+							</span>
+							</c:if>
 						</a> 
 						<!-- Dropdown - Messages -->
 						<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							 aria-labelledby="messagesDropdown">
 							<h6 class="dropdown-header">悄悄跟你說</h6>
+							<!-- 所有訊息 -->
+							<c:forEach var="messageVO" items="${messageList}">
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle"	src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="" />
+									<img class="rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${messageVO.mb_id_1}" alt="" />
 									<div class="status-indicator bg-success"></div>
 								</div>
-								<div class="font-weight-bold">
-									<div class="text-truncate">Hi there!help me with a problem I've been having.</div>
-									<div class="small text-gray-500">Emily Fowler · 58m</div>
+								<c:if test="${messageVO.msg_status==1}">
+								<div class="font-weight-bold ml-2">
+								</c:if>
+								<c:if test="${messageVO.msg_status==2}">
+								<div class="ml-2">
+								</c:if>
+									<div class="text-truncate">${messageVO.msg_content}</div>
+									<div class="small text-gray-500">${memberSvcEL.getOneMember(messageVO.mb_id_1).mb_name} · ${messageVO.msg_time} </div>
 								</div>
 							</a> 
-							<a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="" />
-									<div class="status-indicator"></div>
-								</div>
-								<div>
-									<div class="text-truncate">I have the photos that you
-									<div class="small text-gray-500">Jae Chun · 1d</div>
-								</div>
-							</a> 
+							</c:forEach>
 							<a class="dropdown-item text-center small text-gray-500" href="#">
 								更多訊息
 							</a>
@@ -900,6 +911,11 @@
 				 });
 				
 				 $("#close").click(function() {
+					  $('.overlay').fadeOut();
+					  fblightbox.fadeOut();
+				 });
+				 
+				 $(".overlay").click(function() {
 					  $('.overlay').fadeOut();
 					  fblightbox.fadeOut();
 				 });

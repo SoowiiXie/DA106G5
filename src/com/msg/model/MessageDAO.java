@@ -23,7 +23,7 @@ public class MessageDAO implements MessageDAO_interface{
 	private static final String GET_ALL_STMT = 
 		"SELECT * FROM MESSAGE order by MSG_NO";
 	private static final String GET_ALL_BY_MB_ID_2_STMT = 
-		"SELECT * FROM MESSAGE WHERE MB_ID_2 = ? order by MSG_NO";
+		"SELECT * FROM (SELECT * FROM MESSAGE WHERE MB_ID_2 = ? order by MSG_NO DESC) where rownum between 1 and 4";
 	private static final String GET_ONE_STMT = 
 		"SELECT * FROM MESSAGE where MSG_NO = ?";
 	private static final String DELETE = 
