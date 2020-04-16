@@ -44,4 +44,12 @@ public class MessageService {
 	public List<MessageVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public List<MessageVO> getAllByMb_id_2(String mb_id_2) {
+		return dao.getAllByMb_id_2(mb_id_2);
+	}
+	
+	public Integer countNotReads(String mb_id_2) {
+    	return dao.countNotReads(mb_id_2);
+    }
 }
