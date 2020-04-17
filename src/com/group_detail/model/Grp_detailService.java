@@ -1,6 +1,7 @@
 package com.group_detail.model;
 
 import java.util.List;
+import java.util.Set;
 
 public class Grp_detailService {
 
@@ -44,5 +45,8 @@ public class Grp_detailService {
 
 	public List<Grp_detailVO> getAll() {
 		return dao.getAll();
+	}
+	public int getTotalPeople(String grp_no) {
+		return dao.totalPeople(grp_no);
 	}
 }

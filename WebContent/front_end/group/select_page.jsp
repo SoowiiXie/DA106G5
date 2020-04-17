@@ -48,7 +48,7 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllGroup.jsp'>List</a> all Groups.  <br><br></li>
+  <li><a href='listAllGroup.jsp'>查詢</a>揪團列表<br><br></li>
   
   
   <li>
@@ -80,7 +80,7 @@
 <h3>揪團管理</h3>
 
 <ul>
-  <li><a href='addGroup.jsp'>Add</a> a new Group.</li>
+  <li><a href='addGroup.jsp'>成立</a>揪團</li>
 </ul>
 
 </body>

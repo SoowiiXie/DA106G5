@@ -73,4 +73,12 @@ public class GrouperService {
 	public List<GrouperVO> getAll() {
 		return dao.getAll();
 	}
+	public GrouperVO goinGroup(Integer grp_personcount) {
+
+		GrouperVO grouperVO = new GrouperVO();
+		grouperVO.setGrp_personcount(grp_personcount);		
+
+		return grouperVO;
+	}
+	
 }

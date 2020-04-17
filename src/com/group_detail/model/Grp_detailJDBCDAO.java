@@ -19,6 +19,8 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 			"DELETE FROM grp_detail where mb_id = ?";
 	private static final String UPDATE = 
 			"UPDATE grp_detail set grp_no=?, grp_register=? where mb_id = ?";
+	private static final String COUNTP = 
+			"select count(1) from grp_detail where grp_no = ?";
 
 	@Override
 	public void insert(Grp_detailVO grp_detaiVO) {
@@ -220,9 +222,9 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 
 	@Override
 	public List<Grp_detailVO> getAll() {
+		
 		List<Grp_detailVO> list = new ArrayList<Grp_detailVO>();
 		Grp_detailVO grp_detailVO = null;
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -278,6 +280,54 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 		return list;
 	}
 
+	@Override
+	public int totalPeople(String grp_no) {
+		// TODO Auto-generated method stub		
+		Grp_detailVO grp_detailVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int i;
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(COUNTP);
+			
+			pstmt.setString(1, grp_no);
+			System.out.println(grp_no);
+
+			i = pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return i ;
+	}
+	
+
+
 	public static void main(String[] args) {
 
 		Grp_detailJDBCDAO dao = new Grp_detailJDBCDAO();
@@ -300,21 +350,24 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 //		// 刪除
 //		dao.delete("yiwen123");
 //
-//		// 查詢
-//		Grp_detailVO grp_detailVO3 = dao.findByPrimaryKey("xuan123");
-//		System.out.print(grp_detailVO3.getMb_id() + ",");
-//		System.out.print(grp_detailVO3.getGrp_no() + ",");
-//		System.out.println(grp_detailVO3.getGrp_register() + ",");
-//		
-//		System.out.println("---------------------");
+		// 查詢
+		Grp_detailVO grp_detailVO3 = dao.findByPrimaryKey("xuan123");
+		System.out.print(grp_detailVO3.getMb_id() + ",");
+		System.out.print(grp_detailVO3.getGrp_no() + ",");
+		System.out.println(grp_detailVO3.getGrp_register() + ",");
+		
+		System.out.println("---------------------");
 //
-//		// 列表
-//		List<Grp_detailVO> list = dao.getAll();
-//		for (Grp_detailVO aEmp : list) {
-//			System.out.print(aEmp.getMb_id() + ",");
-//			System.out.print(aEmp.getGrp_no() + ",");
-//			System.out.print(aEmp.getGrp_register() + ",");
-//			System.out.println();
-//		}
-	}
+		// 列表
+		List<Grp_detailVO> list = dao.getAll();
+		for (Grp_detailVO aEmp : list) {
+			System.out.print(aEmp.getMb_id() + ",");
+			System.out.print(aEmp.getGrp_no() + ",");
+			System.out.print(aEmp.getGrp_register() + ",");
+			System.out.println();
+		}	
+		//總數
+		int i = dao.totalPeople("grp00004");
+		System.out.print(i);			
+	}	
 }

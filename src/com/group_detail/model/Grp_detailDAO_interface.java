@@ -8,6 +8,8 @@ public interface Grp_detailDAO_interface {
           public void delete(String mb_id);
           public Grp_detailVO findByPrimaryKey(String mb_id);
           public List<Grp_detailVO> getAll();
+          //查詢揪團總人數
+          public int totalPeople(String grp_no);
         //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //        public List<EmpVO> getAll(Map<String, String[]> map);  
 }

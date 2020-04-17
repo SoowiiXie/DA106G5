@@ -140,6 +140,8 @@ public class GrouperServlet extends HttpServlet {
 				if (mb_id == null || mb_id.trim().length() == 0) {
 					errorMsgs.add("請輸入會員名稱");
 				}
+				//test
+				System.out.println(mb_id);
 				
 				String loc_no = req.getParameter("loc_no").trim();
 				if (loc_no == null || loc_no.trim().length() == 0) {
@@ -277,7 +279,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				java.sql.Timestamp grp_applystart = null;
 				try {
-					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim()+":00");
+					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim());
 				} catch (IllegalArgumentException e) {
 					grp_applystart=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團開始時間!");
@@ -396,6 +398,67 @@ public class GrouperServlet extends HttpServlet {
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front_end/group/listAllGroup.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+//			try {
+				/***************************1.接收請求參數****************************************/
+				String grp_no = new String(req.getParameter("grp_no"));
+				
+				/***************************2.開始查詢資料****************************************/
+				GrouperService grpSvc = new GrouperService();
+				GrouperVO grouperVO = grpSvc.getOneGroup(grp_no);
+								
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("grouperVO", grouperVO);         // 資料庫取出的grouperVO物件,存入req
+				String url = "/front_end/group/update_group_input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_grouper_input.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+//			} catch (Exception e) {
+//				errorMsgs.add("無法取得資料:" + e.getMessage());
+//				RequestDispatcher failureView = req
+//						.getRequestDispatcher("/front_end/group/listAllGroup.jsp");
+//				failureView.forward(req, res);
+//			}
+		}
+		
+		
+		if ("goinGroup".equals(action)) { // 來自listAllEmp.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				String grp_no = new String(req.getParameter("grp_no"));
+				
+				/***************************2.開始查詢資料****************************************/
+				GrouperService grpSvc = new GrouperService();
+				GrouperVO grouperVO = grpSvc.getOneGroup(grp_no);
+								
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("grouperVO", grouperVO);         // 資料庫取出的grouperVO物件,存入req
+				String url = "/front_end/group/goinGroup.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_grouper_input.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front_end/group/listAllGroup.jsp");
 				failureView.forward(req, res);

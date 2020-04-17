@@ -31,7 +31,8 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			"DELETE FROM grp_detail where mb_id = ?";
 	private static final String UPDATE = 
 			"UPDATE grp_detail set grp_no=?, grp_register=? where mb_id = ?";
-
+	private static final String COUNTP = 
+			"select count(1) from grp_detail where grp_no = ?";
 	@Override
 	public void insert(Grp_detailVO grp_detailVO) {
 
@@ -262,5 +263,48 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public int totalPeople(String grp_no) {
+		// TODO Auto-generated method stub			
+				int i;
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				
+				try {
+					
+					con = ds.getConnection();
+					pstmt = con.prepareStatement(COUNTP);
+					rs = pstmt.executeQuery();
+					
+					pstmt.setString(1, grp_no);
+					System.out.println(grp_no);
+
+					i = pstmt.executeUpdate();
+
+					// Handle any driver errors
+				} catch (SQLException se) {
+					throw new RuntimeException("A database error occured. "
+							+ se.getMessage());
+					// Clean up JDBC resources
+				} finally {
+					if (pstmt != null) {
+						try {
+							pstmt.close();
+						} catch (SQLException se) {
+							se.printStackTrace(System.err);
+						}
+					}
+					if (con != null) {
+						try {
+							con.close();
+						} catch (Exception e) {
+							e.printStackTrace(System.err);
+						}
+					}
+				}
+				return i ;
 	}
 }

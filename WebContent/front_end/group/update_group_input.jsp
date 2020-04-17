@@ -70,13 +70,13 @@
 <FORM METHOD="post" ACTION="group.do" name="form1">
 <table>
 	<tr>
-		<td>揪團名稱:</td>
-		<td><input type="TEXT" name="grp_no" size="45" 
+		<td>揪團名稱:</td><td><%=grouperVO.getGrp_no()%></td>
+		<td><input type="hidden" name="grp_no" size="45" 
 			 value="<%= (grouperVO==null)? "gro00010" : grouperVO.getGrp_no()%>" /></td>
 	</tr>
 	<tr>
-		<td>發起人會員編號:</td>
-		<td><input type="TEXT" name="mb_id" size="45"
+		<td>發起人會員編號:</td><td><%=grouperVO.getMb_id()%></td>
+		<td><input type="hidden" name="mb_id" size="45"
 			 value="<%= (grouperVO==null)? "Tommy" : grouperVO.getMb_id()%>" /></td>
 	</tr>
 	<tr>
@@ -113,7 +113,7 @@
 	
 	<tr>
 		<td>揪團內容:</td>
-		<td><input type="TEXT" name="grp_content" size="45"
+		<td><input type="TEXTarea" name="grp_content" size="45 rows="5""
 			 value="<%= (grouperVO==null)? "別睡了，起床" : grouperVO.getGrp_content()%>" /></td>
 	</tr>
 	
@@ -170,108 +170,68 @@
            height: 151px;   /* height:  151px; */
   }
 </style>
-
+		
 <script>
-        $.datetimepicker.setLocale('zh');
-        $('#a_date1').datetimepicker({
-           theme: '',              //theme: 'dark',
- 	       timepicker:true,        //timepicker:true,
- 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
- 	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
- 		   value: '${grouperVO.grp_applystart}', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
-           //startDate:	            '2017/07/10',  // 起始日
-           //minDate:               '-1970-01-01', // 去除今日(不含)之前
-           //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+// 設定時間彼此關係及時間表格內容
+$(function(){  
+	
+		$.datetimepicker.setLocale('zh');
+	    $('#a_date1').datetimepicker({
+        	theme: '',             		   //theme: 'dark',
+		       timepicker:true,     	   //timepicker:true,
+		       step: 10,				   //step: 60 (這是timepicker的預設間隔60分鐘)
+		       format:'Y-m-d H:i:s',       //format:'Y-m-d H:i:s',
+			   value: '<%=grouperVO.getGrp_applystart()%>', // value:   new Date(),	       
+        	   onShow:function(){
+			   this.setOptions({
+			    maxDate:$('#a_date2').val()?$('#a_date2').val():false
+			   })
+			  },			  
         });
         
         $.datetimepicker.setLocale('zh');
         $('#a_date2').datetimepicker({
-           theme: '',              //theme: 'dark',
- 	       timepicker:true,        //timepicker:true,
- 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
- 	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
- 		   value: '${grouperVO.grp_applyend}', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
-           //startDate:	            '2017/07/10',  // 起始日
-           //minDate:               '-1970-01-01', // 去除今日(不含)之前
-           //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+	       theme: '',            	  	 //theme: 'dark',
+	       timepicker:true,      		 //timepicker:true,
+	       step: 10,				     //step: 60 (這是timepicker的預設間隔60分鐘)
+	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+ 		   value: '<%=grouperVO.getGrp_applyend()%>', // value:   new Date(),
+		   onShow:function(){
+			   this.setOptions({
+			    minDate:$('#a_date1').val()?$('#a_date1').val():false
+			   })
+			  },
         });
         
         $.datetimepicker.setLocale('zh');
         $('#s_date1').datetimepicker({
-           theme: '',              //theme: 'dark',
- 	       timepicker:true,        //timepicker:true,
- 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
- 	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
- 		   value: '${grouperVO.grp_start}', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
-           //startDate:	            '2017/07/10',  // 起始日
-           //minDate:               '-1970-01-01', // 去除今日(不含)之前
-           //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+	       theme: '',           	     //theme: 'dark',
+	       timepicker:true,      		 //timepicker:true,
+	       step: 10,				  	 //step: 60 (這是timepicker的預設間隔60分鐘)
+	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+	 	   value: '<%=grouperVO.getGrp_start()%>', // value:   new Date(),
+		   onShow:function(){
+			   this.setOptions({
+				minDate:$('#a_date2').val()?$('#a_date2').val():false,
+			    maxDate:$('#s_date2').val()?$('#s_date2').val():false
+			   })
+			  },
         });
         
         $.datetimepicker.setLocale('zh');
         $('#s_date2').datetimepicker({
-           theme: '',              //theme: 'dark',
- 	       timepicker:true,        //timepicker:true,
- 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
- 	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
- 		   value: '${grouperVO.grp_end}', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
-           //startDate:	            '2017/07/10',  // 起始日
-           //minDate:               '-1970-01-01', // 去除今日(不含)之前
-           //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+	       theme: '',             		 //theme: 'dark',
+	       timepicker:true,      		 //timepicker:true,
+	       step: 10,					 //step: 60 (這是timepicker的預設間隔60分鐘)
+	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+		   value: '<%=grouperVO.getGrp_end()%>', // value:   new Date(),          
+		   onShow:function(){
+			   this.setOptions({
+			    minDate:$('#s_date1').val()?$('#s_date1').val():false
+			   })
+			  },
         });
-        
-   
-        // ----------------------------------------------------------以下用來排定無法選擇的日期-----------------------------------------------------------
+});     
 
-        //      1.以下為某一天之前的日期無法選擇
-        //      var somedate1 = new Date('2017-06-15');
-        //      $('#f_date1').datetimepicker({
-        //          beforeShowDay: function(date) {
-        //        	  if (  date.getYear() <  somedate1.getYear() || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-        //              ) {
-        //                   return [false, ""]
-        //              }
-        //              return [true, ""];
-        //      }});
-
-        
-        //      2.以下為某一天之後的日期無法選擇
-        //      var somedate2 = new Date('2017-06-15');
-        //      $('#f_date1').datetimepicker({
-        //          beforeShowDay: function(date) {
-        //        	  if (  date.getYear() >  somedate2.getYear() || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-        //              ) {
-        //                   return [false, ""]
-        //              }
-        //              return [true, ""];
-        //      }});
-
-
-        //      3.以下為兩個日期之外的日期無法選擇 (也可按需要換成其他日期)
-        //      var somedate1 = new Date('2017-06-15');
-        //      var somedate2 = new Date('2017-06-25');
-        //      $('#f_date1').datetimepicker({
-        //          beforeShowDay: function(date) {
-        //        	  if (  date.getYear() <  somedate1.getYear() || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-        //		             ||
-        //		            date.getYear() >  somedate2.getYear() || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-        //              ) {
-        //                   return [false, ""]
-        //              }
-        //              return [true, ""];
-        //      }});
-        
 </script>
 </html>

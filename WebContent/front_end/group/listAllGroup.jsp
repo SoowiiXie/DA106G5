@@ -127,6 +127,12 @@
 			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
+			<td>
+			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="加入揪團">
+			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
+			     <input type="hidden" name="action" value="goinGroup"></FORM>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
