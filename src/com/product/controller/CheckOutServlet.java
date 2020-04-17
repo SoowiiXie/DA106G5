@@ -33,33 +33,10 @@ public class CheckOutServlet extends HttpServlet {
 
 		HttpSession session = req.getSession();
 
-//		if (action.equals("goToPayAndAdd")) {
-//			String mb_id = (String) session.getAttribute("mb_id");
-//			Integer amount = new Integer(req.getParameter("amount"));
-//			String od_add = req.getParameter("od_add");
-//			Integer od_totalPrice = amount;
-//			OrdersVO ordersVO = new OrdersVO();
-//			ordersVO.setMb_id(mb_id);
-//			ordersVO.setOd_totalPrice(od_totalPrice);
-//			ordersVO.setOd_add(od_add);
-//
-//			OrdersService ordersService = new OrdersService();
-//
-//			ordersVO = ordersService.addOrders(mb_id, od_totalPrice, od_add);
-//
-//			Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");
-//
-//			
-//
-//			String url = "/front_end/product/WriteAddAndPayInformation.jsp";
-//
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//
-//			successView.forward(req, res);
-//		}
+
 
 		if (action.equals("getOd_detail_Information")) {
-
+             
 			String mb_id = (String) session.getAttribute("mb_id");
 			Integer amount = new Integer(req.getParameter("amount"));
 			Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");

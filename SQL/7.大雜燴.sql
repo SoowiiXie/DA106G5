@@ -184,7 +184,7 @@ values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'michael123','vain123','
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
 values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','我是Vain',2);
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michaanjavababy520el123','哩賀',2);
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','哩賀',2);
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
 values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'soowii123','anjavababy520','哈囉你好啊',2);
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
