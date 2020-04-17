@@ -181,10 +181,30 @@ Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT)
 values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'xuan123','soowii123','嗨嗨你好');
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
 values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'michael123','vain123','我是麥可');
-Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michael123','我是Vain');
-Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michael123','哩賀');
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','我是Vain',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michaanjavababy520el123','哩賀',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'soowii123','anjavababy520','哈囉你好啊',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'xuan123','anjavababy520','嗨嗨你好',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'michael123','anjavababy520','我是麥可',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','我是Vain',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','哩賀',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'soowii123','anjavababy520','哈囉你好啊',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'androidlababy520','anjavababy520','嗨嗨你好',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'michael123','anjavababy520','我是麥可',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','我是Vain',1);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','哩賀',1);
 
 --通知
 Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
@@ -252,11 +272,33 @@ values('staff_xuan','01');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_xuan','02');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
-values('staff_michael','03');
+values('staff_xuan','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_xuan','05');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_michael','01');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_michael','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_michael','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_michael','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','01');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','05');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_weijhih','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_weijhih','04');
 
 --------------------------------------------------------
 --  2.戍乂 天氣、地標 Drop
@@ -827,36 +869,169 @@ NOMAXVALUE
 NOCYCLE;
 
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾類＿上身');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-男上身');
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾類＿下身');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-男下身');
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'鞋類');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'鞋類-男');
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'配件類');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-女上身');
 Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
-values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'運動食品類');
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-女下身'); 
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'鞋類-女');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-兒童上身');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'服飾-兒童下身');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'鞋類-兒童');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'配件-護具');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'配件-包款');
+Insert into PD_TYPE(PD_TYPENO, PD_TYPENAME) 
+values('PTN'||LPAD(to_char(PD_TYPE_SEQ.NEXTVAL), 5, '0'),'配件-3C');
 
 -----------------------PRODUCT商品-----------------------
-
 CREATE SEQUENCE PRODUCT_seq
 INCREMENT BY 1
 START WITH 1
 NOMAXVALUE
 NOCYCLE;
 
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'+8鐵手套','10000','PTN00004');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'+10黃金甲','10000','PTN00001');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'+8卍褲子卍','10000','PTN00002');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'洛克人Ｅ罐','10000','PTN00005');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'館長台灣價值雞胸肉','10000','PTN00005');
-Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO) 
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'走到飛球鞋','10000','PTN00003');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子速乾排汗路跑背心_螢光綠','650','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子速乾排汗路跑背心_藍綠','650','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子簡單主張銀離子運動短袖上衣_黑','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子素面拼接運動短袖上衣_黑色','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子素面拼接運動短袖上衣_螢光黃','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子迷彩運動短袖上衣_黑','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子簡單主張銀離子運動短袖上衣_青石綠','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子ZP定番運動短袖上衣_深藍','850','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子軍事主義迷彩拼接鋪棉外套_迷彩藍','1250','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子斜紋印花防風外套_黑色','1250','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子經典側邊字母休閒外套_麻灰','1250','PTN00001','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子五分緊身慢跑褲-黑橘','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子長條反光運動短褲_黑螢光綠','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子炫彩LOGO排汗運動短褲_深灰','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子素面防風運動褲_黑','980','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子素面專業運動短褲_深藍','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子撞色剪裁排汗運動短褲_鐵灰_螢光綠','750','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子LOGO素面防風運動褲內刷毛款_黑','980','PTN00002','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'美津濃男子路跑鞋_黑灰','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'美津濃男子路跑鞋_藍紅','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋_黑黃色','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋_黑黃色','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋_螢綠黑','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋_藍綠','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男子雲豹系列競速路跑鞋II代_閃電橘','2150','PTN00003','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子科技世代運動休閒短袖上衣_水藍','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子科技感炫彩運動短袖上衣_湖水綠','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子素面拼接運動短袖上衣_玫瑰桃','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子素面拼接運動短袖上衣_寶貝橘','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子速乾排汗路跑背心_桃紅','580','PTN00004','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子多功能九分薄運動褲_黑','690','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子動能緊身運動訓練褲_黑','690','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子復古滾邊休閒長褲_粉膚','770','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子復古滾邊休閒長褲_寶藍','770','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子經典滾邊休閒長褲_湖水綠','770','PTN00005','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'美津濃女子路跑鞋_粉','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子EASYWALK緩震健走鞋_亮橘黑','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子EASYWALK緩震健走鞋_珊瑚紅','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子KIRIN系列減震耐磨運動跑鞋_艷桃紅','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子MissQ多功能休閒鞋_馬卡龍粉','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童經典百搭休閒外套_珊瑚粉','1100','PTN00007','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童經典百搭休閒外套_經典黑','1100','PTN00007','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童撞色休閒刷毛外套_裸磚紅','1100','PTN00007','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童百搭休閒長褲_珊瑚粉','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童百搭休閒長褲_藍綠','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童雙拉鍊休閒長褲_時尚藍','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童雙拉鍊休閒長褲_經典黑','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL) 
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童百搭休閒長褲_經典黑','1100','PTN00008','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'動感潮童舒適減震運動鞋_橘紅','1750','PTN00009','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'動感潮童舒適減震運動鞋_紫','1750','PTN00009','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'動感潮童舒適減震運動鞋_黑','1750','PTN00009','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'美津濃-半截式頭套_黑','1680','PTN00010','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男女運動壓力襪_藍黃','1680','PTN00010','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'男女運動壓力襪_白黑','1680','PTN00010','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'率性經典休閒後背包_時尚藍','3310','PTN00011','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'單色跑步運動裝備包_俄羅斯綠','3310','PTN00011','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'經典跑步運動裝備包_玫瑰桃','3310','PTN00011','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'Obeat1光學心率臂帶','3310','PTN00012','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'GPS全方位運動心率錶','3310','PTN00012','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL)  
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'GPS三用光學心率錶','3310','PTN00012','每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。');
+
 
 -----------------------CP_GET持有優惠卷-----------------------
 
@@ -1098,15 +1273,15 @@ ALTER TABLE cmt_rpt ADD CONSTRAINT FK_cmtrpt_member FOREIGN KEY (mb_id) REFERENC
 
 
 --PATH   																							         							
-Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(path_NO_SEQ.NEXTVAL), 5, '0'),'path1','1',1,to_timestamp('2020-03-01 00:00:00', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-01 00:20:00', 'YYYY-MM-DD HH24:MI:SS'),300.22,1,'[{"LNG":"121.083945","LAT":"24.964264"},{"LNG":"121.083950","LAT":"24.964270"},{"LNG":"121.083955","LAT":"24.964275"},{"LNG":"121.083960","LAT":"24.964275"},{"LNG":"121.083965","LAT":"24.964280"},{"LNG":"121.083970","LAT":"24.964280"},{"LNG":"121.083975","LAT":"24.964285"},{"LNG":"121.083980","LAT":"24.964290"}]',121.083945,24.964264);
-Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path2','2',2,to_timestamp('2020-03-05 01:12:12', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-05 01:28:12', 'YYYY-MM-DD HH24:MI:SS'),3001.65,1,'[{"LNG":"121.068628","LAT":"24.956572"},{"LNG":"121.068630","LAT":"24.956575"},{"LNG":"121.068635","LAT":"24.956580"},{"LNG":"121.068640","LAT":"24.956585"}{"LNG":"121.068645","LAT":"24.956590"},{"LNG":"121.068650","LAT":"24.956595"},{"LNG":"121.068655","LAT":"24.956600"},{"LNG":"121.068660","LAT":"24.956600"}]',121.068628,24.956572);
-Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path3','3',1,to_timestamp('2020-03-10 11:11:11', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-10 11:17:58', 'YYYY-MM-DD HH24:MI:SS'),501,1,'[{"LNG":"121.030953","LAT":"24.954836"},{"LNG":"121.030955","LAT":"24.954840"},{"LNG":"121.030960","LAT":"24.954845"},{"LNG":"121.030965","LAT":"24.954850"},{"LNG":"121.030970","LAT":"24.954855"},{"LNG":"121.030975","LAT":"24.954860"},{"LNG":"121.030980","LAT":"24.954865"},{"LNG":"121.030985","LAT":"24.954870"}]',121.030953,24.954836);
-Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path4','1',1,to_timestamp('2020-03-15 22:22:22', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-15 23:22:25', 'YYYY-MM-DD HH24:MI:SS'),1500.88,1,'[{"LNG":"121.199769","LAT":"24.963707"},{"LNG":"121.199770","LAT":"24.963710"},{"LNG":"121.199775","LAT":"24.963715"},{"LNG":"121.199780","LAT":"24.963730"},{"LNG":"121.199785","LAT":"24.963725"},{"LNG":"121.199790","LAT":"24.963730"},{"LNG":"121.199795","LAT":"24.963735"},{"LNG":"121.199800","LAT":"24.963740"}]',121.199769,24.963707);
-Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path5','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"121.236168","LAT":"24.985739"},{"LNG":"121.236170","LAT":"24.985740"},{"LNG":"121.236175","LAT":"24.985745"},{"LNG":"121.236180","LAT":"24.985750"},{"LNG":"121.236185","LAT":"24.985755"},{"LNG":"121.236190","LAT":"24.985760"},{"LNG":"121.236195","LAT":"24.985765"},{"LNG":"121.236300","LAT":"24.985780"}]',121.236168,24.985739);
-Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path6','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"121.236168","LAT":"24.985739"},{"LNG":"121.236170","LAT":"24.985740"},{"LNG":"121.236175","LAT":"24.985745"},{"LNG":"121.236180","LAT":"24.985750"},{"LNG":"121.236185","LAT":"24.985755"},{"LNG":"121.236190","LAT":"24.985760"},{"LNG":"121.236195","LAT":"24.985765"},{"LNG":"121.236300","LAT":"24.985780"}]',121.236168,24.985739);
-Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path7','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"121.236168","LAT":"24.985739"},{"LNG":"121.236170","LAT":"24.985740"},{"LNG":"121.236175","LAT":"24.985745"},{"LNG":"121.236180","LAT":"24.985750"},{"LNG":"121.236185","LAT":"24.985755"},{"LNG":"121.236190","LAT":"24.985760"},{"LNG":"121.236195","LAT":"24.985765"},{"LNG":"121.236300","LAT":"24.985780"}]',121.236168,24.985739);
-Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path8','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"121.236168","LAT":"24.985739"},{"LNG":"121.236170","LAT":"24.985740"},{"LNG":"121.236175","LAT":"24.985745"},{"LNG":"121.236180","LAT":"24.985750"},{"LNG":"121.236185","LAT":"24.985755"},{"LNG":"121.236190","LAT":"24.985760"},{"LNG":"121.236195","LAT":"24.985765"},{"LNG":"121.236300","LAT":"24.985780"}]',121.236168,24.985739);
-Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path9','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"121.236168","LAT":"24.985739"},{"LNG":"121.236170","LAT":"24.985740"},{"LNG":"121.236175","LAT":"24.985745"},{"LNG":"121.236180","LAT":"24.985750"},{"LNG":"121.236185","LAT":"24.985755"},{"LNG":"121.236190","LAT":"24.985760"},{"LNG":"121.236195","LAT":"24.985765"},{"LNG":"121.236300","LAT":"24.985780"}]',121.236168,24.985739);
+Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(path_NO_SEQ.NEXTVAL), 5, '0'),'path1','1',1,to_timestamp('2020-03-01 00:00:00', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-01 00:20:00', 'YYYY-MM-DD HH24:MI:SS'),300.22,1,'[{"LNG":"121.4179018","LAT":"25.12907787"},{"LNG":"121.4177913","LAT":"25.12897565"},{"LNG":"121.4177227","LAT":"25.12900364"},{"LNG":"121.4176863","LAT":"25.12891084"},{"LNG":"121.417482","LAT":"25.12892272"},{"LNG":"121.4174582","LAT":"25.12903347"},{"LNG":"121.4174005","LAT":"25.12906141"},{"LNG":"121.4173325","LAT":"25.12906964"},{"LNG":"121.4173052","LAT":"25.12911155"},{"LNG":"121.4173021","LAT":"25.12919337"},{"LNG":"121.4172564","LAT":"25.12923145"},{"LNG":"121.4171765","LAT":"25.12923716"},{"LNG":"121.4171212","LAT":"25.12916482"},{"LNG":"121.4169185","LAT":"25.12901096"},{"LNG":"121.4167501","LAT":"25.12893259"},{"LNG":"121.4167139","LAT":"25.1289402"},{"LNG":"121.4166587","LAT":"25.12900302"},{"LNG":"121.4166054","LAT":"25.12901825"},{"LNG":"121.4165749","LAT":"25.12899921"},{"LNG":"121.4164836","LAT":"25.1287251"},{"LNG":"121.4163712","LAT":"25.12866989"},{"LNG":"121.4163363","LAT":"25.12868583"},{"LNG":"121.4163363","LAT":"25.1287715"},{"LNG":"121.4162977","LAT":"25.12883003"},{"LNG":"121.4162306","LAT":"25.12884145"},{"LNG":"121.416178","LAT":"25.12880369"},{"LNG":"121.4161378","LAT":"25.12880433"},{"LNG":"121.4161264","LAT":"25.12883289"},{"LNG":"121.4161257","LAT":"25.12891736"},{"LNG":"121.4160743","LAT":"25.1289421"},{"LNG":"121.4159997","LAT":"25.12891962"},{"LNG":"121.4159504","LAT":"25.12892655"},{"LNG":"121.4159224","LAT":"25.12894069"},{"LNG":"121.4158855","LAT":"25.1289398"},{"LNG":"121.4158399","LAT":"25.12895563"},{"LNG":"121.4158121","LAT":"25.12899035"},{"LNG":"121.4158263","LAT":"25.12912418"},{"LNG":"121.4158337","LAT":"25.12917458"},{"LNG":"121.4157995","LAT":"25.12922217"},{"LNG":"121.4156103","LAT":"25.12933807"},{"LNG":"121.4155798","LAT":"25.12939327"},{"LNG":"121.4155684","LAT":"25.12972069"},{"LNG":"121.4156023","LAT":"25.12980578"},{"LNG":"121.4156051","LAT":"25.12980744"},{"LNG":"121.4156122","LAT":"25.12985013"},{"LNG":"121.4155951","LAT":"25.12991104"},{"LNG":"121.4151534","LAT":"25.13036409"},{"LNG":"121.4151439","LAT":"25.13039455"},{"LNG":"121.4151668","LAT":"25.13051638"},{"LNG":"121.4151572","LAT":"25.13055064"},{"LNG":"121.4151321","LAT":"25.13057489"},{"LNG":"121.4149936","LAT":"25.13065627"},{"LNG":"121.4147509","LAT":"25.1307148"},{"LNG":"121.4145567","LAT":"25.13073051"},{"LNG":"121.4145157","LAT":"25.13072958"},{"LNG":"121.4144896","LAT":"25.13074193"},{"LNG":"121.4141978","LAT":"25.13103034"},{"LNG":"121.4141369","LAT":"25.13118834"}]',121.4179018,25.12907787);
+Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path2','2',2,to_timestamp('2020-03-05 01:12:12', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-05 01:28:12', 'YYYY-MM-DD HH24:MI:SS'),3001.65,1,'[{"LNG":"121.426705","LAT":"25.13590826"},{"LNG":"121.4266732","LAT":"25.13592384"},{"LNG":"121.4266057","LAT":"25.13593099"},{"LNG":"121.4265606","LAT":"25.13590883"},{"LNG":"121.4265255","LAT":"25.13590571"},{"LNG":"121.4264895","LAT":"25.13592217"},{"LNG":"121.4263113","LAT":"25.13597638"},{"LNG":"121.4260701","LAT":"25.13602407"},{"LNG":"121.4256089","LAT":"25.13603539"},{"LNG":"121.4253291","LAT":"25.13604681"},{"LNG":"121.4252232","LAT":"25.13607757"},{"LNG":"121.4251882","LAT":"25.13608679"},{"LNG":"121.4251521","LAT":"25.13607536"},{"LNG":"121.4250044","LAT":"25.13597879"},{"LNG":"121.4244308","LAT":"25.13578384"},{"LNG":"121.4240193","LAT":"25.13560759"},{"LNG":"121.4236398","LAT":"25.1353461"},{"LNG":"121.4236053","LAT":"25.1352828"},{"LNG":"121.4236196","LAT":"25.13482951"},{"LNG":"121.4237334","LAT":"25.13378602"},{"LNG":"121.4240871","LAT":"25.13323051"},{"LNG":"121.4248188","LAT":"25.13239175"},{"LNG":"121.4250956","LAT":"25.13199404"},{"LNG":"121.4250849","LAT":"25.13166568"},{"LNG":"121.4250116","LAT":"25.1316101"},{"LNG":"121.4249259","LAT":"25.13166007"},{"LNG":"121.4248757","LAT":"25.13180197"},{"LNG":"121.4247152","LAT":"25.13190729"},{"LNG":"121.4244504","LAT":"25.1319525"},{"LNG":"121.4242945","LAT":"25.13196059"},{"LNG":"121.424141","LAT":"25.13192871"},{"LNG":"121.4237615","LAT":"25.13185209"},{"LNG":"121.4237234","LAT":"25.13181973"},{"LNG":"121.4234782","LAT":"25.13127959"},{"LNG":"121.4235013","LAT":"25.13124835"},{"LNG":"121.4235464","LAT":"25.13124485"},{"LNG":"121.4236263","LAT":"25.13127341"},{"LNG":"121.4237082","LAT":"25.13127531"},{"LNG":"121.4238205","LAT":"25.13122011"},{"LNG":"121.4238587","LAT":"25.1311242"},{"LNG":"121.4238357","LAT":"25.13108686"},{"LNG":"121.4237082","LAT":"25.13089079"},{"LNG":"121.4236778","LAT":"25.13074764"},{"LNG":"121.423712","LAT":"25.13071566"},{"LNG":"121.4238026","LAT":"25.13070798"},{"LNG":"121.4238433","LAT":"25.13066426"},{"LNG":"121.423849","LAT":"25.13048723"},{"LNG":"121.4238243","LAT":"25.13035589"},{"LNG":"121.4237824","LAT":"25.13026642"},{"LNG":"121.4237367","LAT":"25.13024929"},{"LNG":"121.4237242","LAT":"25.1302082"},{"LNG":"121.4237478","LAT":"25.13018013"},{"LNG":"121.423796","LAT":"25.13018873"},{"LNG":"121.4239239","LAT":"25.13026904"},{"LNG":"121.424004","LAT":"25.13024202"},{"LNG":"121.4240548","LAT":"25.13018873"},{"LNG":"121.4244801","LAT":"25.12972473"},{"LNG":"121.4246262","LAT":"25.12941276"},{"LNG":"121.4249895","LAT":"25.12888108"},{"LNG":"121.4250036","LAT":"25.1288372"},{"LNG":"121.424971","LAT":"25.12881656"},{"LNG":"121.42468","LAT":"25.12888478"},{"LNG":"121.4246479","LAT":"25.12888003"},{"LNG":"121.4246426","LAT":"25.12885357"},{"LNG":"121.4248192","LAT":"25.12865636"},{"LNG":"121.4248251","LAT":"25.12862542"},{"LNG":"121.4248001","LAT":"25.12861947"},{"LNG":"121.4244869","LAT":"25.12864527"},{"LNG":"121.4244103","LAT":"25.12859284"},{"LNG":"121.4243766","LAT":"25.12855999"},{"LNG":"121.4243778","LAT":"25.12840532"}]',121.426705,25.13590826);
+Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path3','3',1,to_timestamp('2020-03-10 11:11:11', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-10 11:17:58', 'YYYY-MM-DD HH24:MI:SS'),501,1,'[{"LNG":"121.0237348","LAT":"24.65538953"},{"LNG":"121.0236574","LAT":"24.65544188"},{"LNG":"121.0236182","LAT":"24.65546448"},{"LNG":"121.0235907","LAT":"24.65552716"},{"LNG":"121.023585","LAT":"24.65559378"},{"LNG":"121.0236154","LAT":"24.65564327"},{"LNG":"121.0236991","LAT":"24.65568458"},{"LNG":"121.02378","LAT":"24.65569648"},{"LNG":"121.0238972","LAT":"24.65569848"},{"LNG":"121.0240487","LAT":"24.65572289"},{"LNG":"121.0241144","LAT":"24.65578"},{"LNG":"121.0240932","LAT":"24.6558698"},{"LNG":"121.0240951","LAT":"24.65598211"},{"LNG":"121.0241417","LAT":"24.65619141"},{"LNG":"121.0242594","LAT":"24.65637939"},{"LNG":"121.0243519","LAT":"24.65646927"},{"LNG":"121.0244533","LAT":"24.65648212"},{"LNG":"121.0245446","LAT":"24.65644625"},{"LNG":"121.0246645","LAT":"24.65629206"},{"LNG":"121.0247616","LAT":"24.65617784"},{"LNG":"121.0248388","LAT":"24.65606411"}]',121.023734,24.655389);
+Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path4','1',1,to_timestamp('2020-03-15 22:22:22', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-15 23:22:25', 'YYYY-MM-DD HH24:MI:SS'),1500.88,1,'[{"LNG":"121.0229761","LAT":"24.65562083"},{"LNG":"121.0230731","LAT":"24.65547806"},{"LNG":"121.0231729","LAT":"24.655306"},{"LNG":"121.0231931","LAT":"24.65521537"},{"LNG":"121.0232149","LAT":"24.655077"},{"LNG":"121.0232599","LAT":"24.654975"},{"LNG":"121.0233359","LAT":"24.654894"},{"LNG":"121.0234159","LAT":"24.65481746"},{"LNG":"121.0235872","LAT":"24.65476035"},{"LNG":"121.0236519","LAT":"24.65469943"},{"LNG":"121.02369","LAT":"24.65459855"},{"LNG":"121.0236881","LAT":"24.65451669"},{"LNG":"121.0236691","LAT":"24.65442151"},{"LNG":"121.0236557","LAT":"24.65429397"},{"LNG":"121.023709","LAT":"24.65418357"},{"LNG":"121.0237947","LAT":"24.65407316"},{"LNG":"121.0238137","LAT":"24.65394943"},{"LNG":"121.0237852","LAT":"24.65387709"},{"LNG":"121.0236938","LAT":"24.65378953"},{"LNG":"121.0236177","LAT":"24.65363344"},{"LNG":"121.0235073","LAT":"24.65350019"},{"LNG":"121.023296","LAT":"24.65341262"},{"LNG":"121.0232312","LAT":"24.65340501"},{"LNG":"121.0231875","LAT":"24.65336884"},{"LNG":"121.0228981","LAT":"24.65296148"},{"LNG":"121.0228505","LAT":"24.65283774"},{"LNG":"121.0228658","LAT":"24.65272353"},{"LNG":"121.0229019","LAT":"24.65262264"},{"LNG":"121.0229857","LAT":"24.65252175"},{"LNG":"121.0231303","LAT":"24.65247607"},{"LNG":"121.0232255","LAT":"24.65250843"},{"LNG":"121.023275","LAT":"24.65255411"},{"LNG":"121.0234007","LAT":"24.65259218"},{"LNG":"121.0235225","LAT":"24.65255792"},{"LNG":"121.0235986","LAT":"24.6524399"},{"LNG":"121.0235757","LAT":"24.65221725"},{"LNG":"121.0235224","LAT":"24.65192981"},{"LNG":"121.0234691","LAT":"24.65163476"},{"LNG":"121.0233055","LAT":"24.65121154"},{"LNG":"121.0224987","LAT":"24.65049824"},{"LNG":"121.0221355","LAT":"24.65016077"},{"LNG":"121.0219228","LAT":"24.65002681"},{"LNG":"121.0218638","LAT":"24.65001539"},{"LNG":"121.0218009","LAT":"24.65004204"},{"LNG":"121.0217724","LAT":"24.65009343"},{"LNG":"121.0216087","LAT":"24.65054077"},{"LNG":"121.0215478","LAT":"24.65059407"},{"LNG":"121.021464","LAT":"24.6506093"},{"LNG":"121.0213533","LAT":"24.65057726"},{"LNG":"121.0212353","LAT":"24.65050111"}]',121.0229761,24.65562083);
+Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path5','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"120.9972322","LAT":"24.57346143"},{"LNG":"120.9973021","LAT":"24.57328157"},{"LNG":"120.9973288","LAT":"24.57325967"},{"LNG":"120.9973545","LAT":"24.57326253"},{"LNG":"120.9973669","LAT":"24.57323017"},{"LNG":"120.9973716","LAT":"24.573194"},{"LNG":"120.997383","LAT":"24.57317401"},{"LNG":"120.99742","LAT":"24.57317353"},{"LNG":"120.9975034","LAT":"24.57316162"},{"LNG":"120.997557","LAT":"24.57311046"},{"LNG":"120.9975472","LAT":"24.57305774"},{"LNG":"120.9974523","LAT":"24.57296769"},{"LNG":"120.9973345","LAT":"24.57289869"},{"LNG":"120.9973202","LAT":"24.57286775"},{"LNG":"120.9974035","LAT":"24.57283444"},{"LNG":"120.9974963","LAT":"24.57285348"},{"LNG":"120.9975496","LAT":"24.57284834"},{"LNG":"120.9975544","LAT":"24.57280313"},{"LNG":"120.997433","LAT":"24.57268654"},{"LNG":"120.9973688","LAT":"24.57265799"},{"LNG":"120.997323","LAT":"24.572663"},{"LNG":"120.997248","LAT":"24.572669"},{"LNG":"120.997184","LAT":"24.572619"},{"LNG":"120.9970716","LAT":"24.57258103"},{"LNG":"120.9969847","LAT":"24.57254653"},{"LNG":"120.996955","LAT":"24.57247038"},{"LNG":"120.996974","LAT":"24.57239662"},{"LNG":"120.9970597","LAT":"24.57238353"},{"LNG":"120.9971572","LAT":"24.57245611"},{"LNG":"120.9972809","LAT":"24.57247871"},{"LNG":"120.9973833","LAT":"24.57249537"},{"LNG":"120.997424","LAT":"24.572476"},{"LNG":"120.9974082","LAT":"24.57243469"},{"LNG":"120.9972831","LAT":"24.57232486"},{"LNG":"120.9970799","LAT":"24.57222173"},{"LNG":"120.9969383","LAT":"24.57217652"},{"LNG":"120.9968931","LAT":"24.57210395"},{"LNG":"120.9968824","LAT":"24.57202186"},{"LNG":"120.9969109","LAT":"24.5719469"},{"LNG":"120.9969966","LAT":"24.57192906"},{"LNG":"120.997043","LAT":"24.57193857"},{"LNG":"120.9970537","LAT":"24.57200282"},{"LNG":"120.9970751","LAT":"24.57203375"},{"LNG":"120.9972274","LAT":"24.57208491"},{"LNG":"120.9972964","LAT":"24.57208134"},{"LNG":"120.9973131","LAT":"24.57203732"},{"LNG":"120.9972426","LAT":"24.57188704"},{"LNG":"120.9970475","LAT":"24.57167448"},{"LNG":"120.996898","LAT":"24.571453"},{"LNG":"120.9968182","LAT":"24.57122857"},{"LNG":"120.996817","LAT":"24.57115"},{"LNG":"120.9968695","LAT":"24.57105011"},{"LNG":"120.9968738","LAT":"24.57092733"},{"LNG":"120.996871","LAT":"24.57087307"},{"LNG":"120.996901","LAT":"24.57084595"},{"LNG":"120.997084","LAT":"24.570742"},{"LNG":"120.9972307","LAT":"24.57070604"},{"LNG":"120.9972921","LAT":"24.57068177"},{"LNG":"120.9972993","LAT":"24.57062323"},{"LNG":"120.9973021","LAT":"24.57051473"},{"LNG":"120.9973864","LAT":"24.57043478"},{"LNG":"120.9975206","LAT":"24.5704048"},{"LNG":"120.997669","LAT":"24.57037624"},{"LNG":"120.9978375","LAT":"24.5703948"},{"LNG":"120.997896","LAT":"24.5703791"},{"LNG":"120.9979631","LAT":"24.57030771"},{"LNG":"120.9980145","LAT":"24.57029344"},{"LNG":"120.9980588","LAT":"24.57032342"},{"LNG":"120.9981687","LAT":"24.57049902"},{"LNG":"120.9982801","LAT":"24.57056184"},{"LNG":"120.9983229","LAT":"24.57055327"}]',120.997232,24.573461);
+Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path6','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"121.19312","LAT":"25.09531"},{"LNG":"121.19311","LAT":"25.09530000000001"},{"LNG":"121.1931","LAT":"25.09529"},{"LNG":"121.19308","LAT":"25.09529"},{"LNG":"121.19305","LAT":"25.09527"},{"LNG":"121.19282","LAT":"25.09515"},{"LNG":"121.19278","LAT":"25.09512"},{"LNG":"121.1926","LAT":"25.09503000000001"},{"LNG":"121.19221","LAT":"25.09483"},{"LNG":"121.19208","LAT":"25.09476"},{"LNG":"121.19193","LAT":"25.09468"},{"LNG":"121.1915","LAT":"25.09446000000001"},{"LNG":"121.19145","LAT":"25.09443"},{"LNG":"121.19103","LAT":"25.0942"},{"LNG":"121.19098","LAT":"25.09418"},{"LNG":"121.19075","LAT":"25.09405"},{"LNG":"121.19051","LAT":"25.09393"},{"LNG":"121.1901","LAT":"25.0937"},{"LNG":"121.1897","LAT":"25.09351"},{"LNG":"121.18944","LAT":"25.0934"},{"LNG":"121.18934","LAT":"25.09337"},{"LNG":"121.18918","LAT":"25.09334"},{"LNG":"121.18893","LAT":"25.09332"},{"LNG":"121.18885","LAT":"25.09331"},{"LNG":"121.1888","LAT":"25.0933"},{"LNG":"121.18879","LAT":"25.0933"},{"LNG":"121.18873","LAT":"25.0933"},{"LNG":"121.18868","LAT":"25.09331"},{"LNG":"121.18864","LAT":"25.09332"},{"LNG":"121.18857","LAT":"25.09333000000001"},{"LNG":"121.18852","LAT":"25.09334"},{"LNG":"121.18842","LAT":"25.09336"},{"LNG":"121.18809","LAT":"25.09345"},{"LNG":"121.1865","LAT":"25.09369"},{"LNG":"121.18636","LAT":"25.09371000000001"},{"LNG":"121.18627","LAT":"25.09371000000001"},{"LNG":"121.1862","LAT":"25.09371000000001"},{"LNG":"121.18612","LAT":"25.0937"},{"LNG":"121.18601","LAT":"25.09367"},{"LNG":"121.18546","LAT":"25.09346"},{"LNG":"121.18492","LAT":"25.09324"},{"LNG":"121.1842","LAT":"25.09295"},{"LNG":"121.18288","LAT":"25.09231"},{"LNG":"121.18061","LAT":"25.09126"},{"LNG":"121.17877","LAT":"25.09035"},{"LNG":"121.17743","LAT":"25.08961"},{"LNG":"121.17664","LAT":"25.08916"},{"LNG":"121.17621","LAT":"25.08889"},{"LNG":"121.17606","LAT":"25.08879"},{"LNG":"121.17598","LAT":"25.08873"},{"LNG":"121.17594","LAT":"25.08868"},{"LNG":"121.17589","LAT":"25.08862"},{"LNG":"121.17572","LAT":"25.08833"},{"LNG":"121.1757","LAT":"25.08824"},{"LNG":"121.17568","LAT":"25.08819"},{"LNG":"121.17568","LAT":"25.08816"},{"LNG":"121.17567","LAT":"25.08814"},{"LNG":"121.17567","LAT":"25.08808"},{"LNG":"121.17567","LAT":"25.08804"},{"LNG":"121.17568","LAT":"25.08801"},{"LNG":"121.17569","LAT":"25.08798"},{"LNG":"121.1757","LAT":"25.08796"},{"LNG":"121.17572","LAT":"25.08794"},{"LNG":"121.17573","LAT":"25.08793"},{"LNG":"121.17575","LAT":"25.08791"},{"LNG":"121.17576","LAT":"25.08789"},{"LNG":"121.17578","LAT":"25.08788"},{"LNG":"121.1758","LAT":"25.08788"},{"LNG":"121.17585","LAT":"25.08786"}]',121.19312,25.09531);
+Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path7','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"121.3250832650106","LAT":"25.00544417656836"},{"LNG":"121.3251761510035","LAT":"25.00547814404438"},{"LNG":"121.3252505370496","LAT":"25.00552203903235"},{"LNG":"121.3252901031221","LAT":"25.00555904059737"},{"LNG":"121.3253597197128","LAT":"25.00560737746126"},{"LNG":"121.3254283399294","LAT":"25.00566405589403"},{"LNG":"121.3255555912521","LAT":"25.00574750899899"},{"LNG":"121.3256281268092","LAT":"25.00581238114048"},{"LNG":"121.3257225114357","LAT":"25.00588180661664"},{"LNG":"121.3257866745548","LAT":"25.0059376325707"},{"LNG":"121.3258675646701","LAT":"25.00599034019119"},{"LNG":"121.3259444902029","LAT":"25.00604238071971"},{"LNG":"121.3260268120369","LAT":"25.00606743418543"},{"LNG":"121.3260694117051","LAT":"25.00607926303647"},{"LNG":"121.3261209422151","LAT":"25.00605682676028"},{"LNG":"121.3261757141727","LAT":"25.00603340347091"},{"LNG":"121.3262115790797","LAT":"25.00600472719029"},{"LNG":"121.3262371791356","LAT":"25.00596882287927"},{"LNG":"121.3262781154226","LAT":"25.00593725590239"},{"LNG":"121.3262921912166","LAT":"25.00588008381728"},{"LNG":"121.3263024228076","LAT":"25.00584217585303"},{"LNG":"121.3263092488359","LAT":"25.00581688535813"},{"LNG":"121.3263119502897","LAT":"25.00579258183586"},{"LNG":"121.3263118475018","LAT":"25.00576483555847"},{"LNG":"121.3263411536273","LAT":"25.00571632987537"},{"LNG":"121.3263824533374","LAT":"25.00566514278046"},{"LNG":"121.3264149143043","LAT":"25.00563195839024"},{"LNG":"121.3264562573238","LAT":"25.00559293724561"},{"LNG":"121.3264961574071","LAT":"25.0055583609852"},{"LNG":"121.3265570312525","LAT":"25.00549977508937"},{"LNG":"121.3265851540066","LAT":"25.00546042151104"},{"LNG":"121.3266124839757","LAT":"25.00539191154801"},{"LNG":"121.326614951586","LAT":"25.00535648700975"},{"LNG":"121.3266078279414","LAT":"25.00529233587199"},{"LNG":"121.3265935840649","LAT":"25.0052445314235"},{"LNG":"121.3265787609358","LAT":"25.00519422028436"},{"LNG":"121.3265678719676","LAT":"25.00514239094386"},{"LNG":"121.3265822406181","LAT":"25.00506636283203"},{"LNG":"121.3266052253696","LAT":"25.0049600104075"},{"LNG":"121.3266149531497","LAT":"25.00487874716703"},{"LNG":"121.3266342810929","LAT":"25.00480055483117"},{"LNG":"121.3266767052993","LAT":"25.00470476724617"}]',121.325083,25.005444);
+Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path8','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"121.2585925911483","LAT":"24.94122442898075"},{"LNG":"121.2586181119702","LAT":"24.94132420504848"},{"LNG":"121.25856","LAT":"24.941449"},{"LNG":"121.2585","LAT":"24.941535"},{"LNG":"121.258394","LAT":"24.941609"},{"LNG":"121.258235","LAT":"24.94168"},{"LNG":"121.258087","LAT":"24.94171400000001"},{"LNG":"121.257961","LAT":"24.941711"},{"LNG":"121.257834","LAT":"24.941708"},{"LNG":"121.257708","LAT":"24.9417"},{"LNG":"121.257571","LAT":"24.94171"},{"LNG":"121.257458","LAT":"24.941713"},{"LNG":"121.257347","LAT":"24.941668"},{"LNG":"121.257262","LAT":"24.941587"},{"LNG":"121.257184","LAT":"24.941478"},{"LNG":"121.257109","LAT":"24.941329"},{"LNG":"121.257055","LAT":"24.94121000000001"},{"LNG":"121.257005","LAT":"24.941103"},{"LNG":"121.256968","LAT":"24.941007"},{"LNG":"121.25695","LAT":"24.94089"},{"LNG":"121.256908","LAT":"24.94079"},{"LNG":"121.256883","LAT":"24.940679"},{"LNG":"121.256817","LAT":"24.940557"},{"LNG":"121.256781","LAT":"24.940495"},{"LNG":"121.256793","LAT":"24.940371"},{"LNG":"121.256763","LAT":"24.940323"},{"LNG":"121.256698","LAT":"24.940225"},{"LNG":"121.256651","LAT":"24.940155"},{"LNG":"121.256592","LAT":"24.94009300000001"},{"LNG":"121.2563801","LAT":"24.940019"}]',121.258592,24.941224);
+Insert into PATH (PATH_NO,PATH_NAME,PATH_DIFFICULTY,PATH_POPULAR,PATH_START,PATH_END,PATH_DISTANCE,PATH_STATUS,PATH_KML,PATH_LNG,PATH_LAT) values ('p'||LPAD(to_char(PATH_NO_SEQ.NEXTVAL), 5, '0'),'path9','3',2,to_timestamp('2020-03-30 18:18:18', 'YYYY-MM-DD HH24:MI:SS'),to_timestamp('2020-03-30 18:56:12', 'YYYY-MM-DD HH24:MI:SS'),464.21,1,'[{"LNG":"121.2795706","LAT":"24.8860415"},{"LNG":"121.2793937","LAT":"24.8859604"},{"LNG":"121.2792589","LAT":"24.88590200000001"},{"LNG":"121.2791353","LAT":"24.8858379"},{"LNG":"121.2790365","LAT":"24.8857866"},{"LNG":"121.2789148","LAT":"24.8857151"},{"LNG":"121.2788053","LAT":"24.8856423"},{"LNG":"121.2786778","LAT":"24.8855695"},{"LNG":"121.2785603","LAT":"24.8854984"},{"LNG":"121.2784868","LAT":"24.885369"},{"LNG":"121.2783887","LAT":"24.8851789"},{"LNG":"121.2783098","LAT":"24.8850757"},{"LNG":"121.2782533","LAT":"24.88498450000001"},{"LNG":"121.2782123","LAT":"24.8849004"},{"LNG":"121.2782083","LAT":"24.8848331"},{"LNG":"121.278233","LAT":"24.88478"},{"LNG":"121.278186","LAT":"24.884784"},{"LNG":"121.278109","LAT":"24.884818"},{"LNG":"121.278066","LAT":"24.884844"},{"LNG":"121.278002","LAT":"24.884844"},{"LNG":"121.277962","LAT":"24.884843"},{"LNG":"121.277892","LAT":"24.884826"},{"LNG":"121.27783","LAT":"24.884788"},{"LNG":"121.277779","LAT":"24.884755"},{"LNG":"121.277756","LAT":"24.884706"},{"LNG":"121.277714","LAT":"24.884634"},{"LNG":"121.277667","LAT":"24.884595"},{"LNG":"121.277623","LAT":"24.88456400000001"},{"LNG":"121.277573","LAT":"24.884525"},{"LNG":"121.277508","LAT":"24.884481"},{"LNG":"121.277479","LAT":"24.884396"}]',121.2795706,24.8860415);
 
 
 --RECORD  TO_DATE('2020-03-01 00:00:00', 'YYYY-MM-DD HH24:MI:SS') TO_TIMESTAMP('2020-03-14 06:00:00', 'YYYY-MM-DD HH24:MI:SS')
@@ -1134,7 +1309,11 @@ INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment3', TO_DATE('2020-03-10', 'YYYY-MM-DD'), '1', 'rcd00003', 'michael123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment4', TO_DATE('2020-03-15', 'YYYY-MM-DD'), '1', 'rcd00001', 'vain123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment5', TO_DATE('2020-03-30', 'YYYY-MM-DD'), '1', 'rcd00001', 'yiwen123');
-
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '爪哇', TO_DATE('2020-04-05', 'YYYY-MM-DD'), '1', 'rcd00008', 'soowii123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '我愛妳', TO_DATE('2020-04-05', 'YYYY-MM-DD'), '1', 'rcd00008', 'xuan123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '安卓拉基醜八怪', TO_DATE('2020-04-10', 'YYYY-MM-DD'), '1', 'rcd00008', 'michael123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '讚讚', TO_DATE('2020-04-15', 'YYYY-MM-DD'), '1', 'rcd00007', 'vain123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '妳好美', TO_DATE('2020-04-30', 'YYYY-MM-DD'), '1', 'rcd00007', 'yiwen123');
 
 --路徑收藏
 INSERT INTO "PATH_FOLLOW" (PATH_NO, MB_ID) VALUES ('p00001', 'soowii123');
@@ -1207,6 +1386,7 @@ CREATE TABLE live (
  live_startteaser TIMESTAMP,
  live_start TIMESTAMP,
  live_store BLOB,
+ live_pic BLOB,
  mb_id VARCHAR2(30) NOT NULL
 );
 

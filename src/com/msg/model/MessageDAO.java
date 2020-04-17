@@ -22,13 +22,16 @@ public class MessageDAO implements MessageDAO_interface{
 		"INSERT INTO MESSAGE (MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) VALUES ('MSN'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'), ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT * FROM MESSAGE order by MSG_NO";
+	private static final String GET_ALL_BY_MB_ID_2_STMT = 
+		"SELECT * FROM (SELECT * FROM MESSAGE WHERE MB_ID_2 = ? order by MSG_NO DESC) where rownum between 1 and 4";
 	private static final String GET_ONE_STMT = 
 		"SELECT * FROM MESSAGE where MSG_NO = ?";
 	private static final String DELETE = 
 		"DELETE FROM MESSAGE where MSG_NO = ?";
 	private static final String UPDATE = 
 		"UPDATE MESSAGE set MB_ID_1=?, MB_ID_2=?, MSG_CONTENT=?, MSG_STATUS=? where MSG_NO = ?";
-	
+	private static final String COUNT_ALL_NOTREADS = 
+		"SELECT COUNT ('a notRead') AS NOTREADS FROM MESSAGE WHERE MB_ID_2 = ? AND MSG_STATUS = ?";
 	
 	@Override
 	public void insert(MessageVO messageVO) {
@@ -230,7 +233,8 @@ public class MessageDAO implements MessageDAO_interface{
 	}
 
 	@Override
-	public List<MessageVO> getAll() {
+	public List<MessageVO> getAllByMb_id_2(String mb_id_2) {
+		// TODO Auto-generated method stub
 		List<MessageVO> list = new ArrayList<MessageVO>();
 		MessageVO messageVO = null;
 
@@ -242,7 +246,10 @@ public class MessageDAO implements MessageDAO_interface{
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ALL_STMT);
+			pstmt = con.prepareStatement(GET_ALL_BY_MB_ID_2_STMT);
+
+			pstmt.setString(1, mb_id_2);
+
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -257,6 +264,69 @@ public class MessageDAO implements MessageDAO_interface{
 				list.add(messageVO); // Store the row in the list
 			}
 
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<MessageVO> getAll() {
+		List<MessageVO> list = new ArrayList<MessageVO>();
+		MessageVO messageVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				messageVO = new MessageVO();
+				messageVO.setMsg_no(rs.getString("msg_no"));
+				messageVO.setMb_id_1(rs.getString("mb_id_1"));
+				messageVO.setMb_id_2(rs.getString("mb_id_2"));
+				messageVO.setMsg_content(rs.getString("msg_content"));
+				messageVO.setMsg_time(rs.getTimestamp("msg_time"));
+				messageVO.setMsg_status(rs.getInt("msg_status"));
+				list.add(messageVO); // Store the row in the list
+			}
+			
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
@@ -425,5 +495,58 @@ public class MessageDAO implements MessageDAO_interface{
 			System.out.println(messageVO.getMsg_status());
 		}
 	}
+
+	@Override
+	public Integer countNotReads(String mb_id_2) {
+	// TODO Auto-generated method stub
+			Integer notreads = null;
+
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				Class.forName(driver);
+				con = DriverManager.getConnection(url, userid, passwd);
+//				con = ds.getConnection();
+				pstmt = con.prepareStatement(COUNT_ALL_NOTREADS,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+				pstmt.setString(1, mb_id_2);
+				pstmt.setInt(2, 1);
+				rs = pstmt.executeQuery();
+				rs.next();
+				notreads = Integer.parseInt(rs.getString("NOTREADS"));
+
+				// Handle any SQL errors
+			} catch (SQLException se) {
+				throw new RuntimeException("A database error occured. " + se.getMessage());
+				// Clean up JDBC resources
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return notreads;
+		}
 
 }

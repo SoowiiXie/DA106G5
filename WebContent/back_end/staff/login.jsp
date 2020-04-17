@@ -22,8 +22,10 @@
 	<form METHOD="POST" action="staff.do">
 		<input type="text" name="staff_id" placeholder="請輸入帳號" ><br>
         <input type="password" name="staff_pwd" placeholder="請輸入密碼"><br>
-        <input type="hidden" name="action" value="login">
         <input type="submit" value="LOGIN"><br>
+        
+        <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
+        <input type="hidden" name="action" value="login">
 	</form>
 
 </body>

@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.grouper.model.GrouperVO"%>
 <%@ page import="com.grouper.model.*"%>
-<%@ page import="com.location.model.*"%>
+<%@ page import="android.com.location.model.*"%>
 
 <%
-  GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
+	GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,9 +13,9 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>揪團資料新增 - addGroup.jsp</title>
-<link href="<%= request.getContextPath() %>/js/select2/dist/css/select2.min.css" rel="stylesheet" />
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/select2/dist/js/select2.min.js"></script>
+<link href="<%=request.getContextPath()%>/js/select2/dist/css/select2.min.css" rel="stylesheet" />
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/select2/dist/js/select2.min.js"></script>
 <style>
   table#table-1 {
 	background-color: #CCCCFF;
@@ -55,8 +55,8 @@
 	<tr><td>
 		 <h3>揪團資料新增 - addGroup.jsp</h3></td><td>
 		 <h4>
-			<a href="<%= request.getContextPath() %>/front_end/group/select_page.jsp">
-			<img src="<%= request.getContextPath() %>/front_end/group/images/back1.gif" width="100" height="32" border="0">
+			<a href="<%=request.getContextPath()%>/front_end/group/select_page.jsp">
+			<img src="<%=request.getContextPath()%>/front_end/group/images/back1.gif" width="100" height="32" border="0">
 			回首頁</a>
 		 </h4>
 	</td></tr>
@@ -79,18 +79,18 @@
 	<tr>
 		<td>揪團名稱:</td> <td>自動產生</td>
 		<td><input type="hidden" name="grp_no" size="45" 
-			 value="<%= (grouperVO==null)? "自動產生" : grouperVO.getGrp_no()%>" /></td>
+			 value="<%=(grouperVO==null)? "自動產生" : grouperVO.getGrp_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>發起人會員編號:</td>
 		<td>
-			<input type="TEXT" name="mb_id" size="45" value="<%= (grouperVO==null)? "yiwen123" : grouperVO.getMb_id()%>" />
+			<input type="TEXT" name="mb_id" size="45" value="<%=(grouperVO==null)? "yiwen123" : grouperVO.getMb_id()%>" />
 		</td>
 	</tr>
 	<tr>
 		<td>地標編號:</td>
 		<td>
-			<jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />
+			<jsp:useBean id="locationSvc" scope="page" class="android.com.location.model.LocationService" />
 			<br>
 			<select size="1" name="loc_no" class="myselect" style="width:500px;">
 			<!--方法1 (可填複數個需求)-->

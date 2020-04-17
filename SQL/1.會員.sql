@@ -1,5 +1,5 @@
---------------------------------------------------------
---1.¶W∞a ∑|≠˚Drop
+Ôªø--------------------------------------------------------
+--1.ÂêçËªí ÊúÉÂì°Drop
 --------------------------------------------------------
 DROP SEQUENCE "DA106G5"."ABILITY_NO_SEQ";
 DROP SEQUENCE "DA106G5"."MB_RPT_NO_SEQ";
@@ -18,23 +18,23 @@ DROP TABLE "DA106G5"."STAFF" cascade constraints;
 
 CREATE TABLE ability (
  ability_no VARCHAR2(2) NOT NULL,
- ability_name VARCHAR2(20) NOT NULL
+ ability_name VARCHAR2(30) NOT NULL
 );
 
 ALTER TABLE ability ADD CONSTRAINT PK_ability PRIMARY KEY (ability_no);
 
 
 CREATE TABLE member (
- mb_id VARCHAR2(20) NOT NULL,
- mb_pwd VARCHAR2(20) NOT NULL,
- mb_line VARCHAR2(20),
- mb_name VARCHAR2(20) NOT NULL,
+ mb_id VARCHAR2(30) NOT NULL,
+ mb_pwd VARCHAR2(30) NOT NULL,
+ mb_name VARCHAR2(30) NOT NULL,
  mb_gender NUMBER(1) NOT NULL,
+ mb_line VARCHAR2(30),
  mb_birthday DATE,
- mb_lv NUMBER(2) DEFAULT '1' NOT NULL,
+ mb_email VARCHAR2(50) NOT NULL,
  mb_pic BLOB,
+ mb_lv NUMBER(2) DEFAULT '1' NOT NULL,
  mb_rpt_times NUMBER(2) DEFAULT '0' NOT NULL,
- mb_email VARCHAR2(20) NOT NULL,
  mb_status NUMBER(1) DEFAULT '1' NOT NULL
 );
 
@@ -42,9 +42,9 @@ ALTER TABLE member ADD CONSTRAINT PK_member PRIMARY KEY (mb_id);
 
 
 CREATE TABLE message (
- msg_no VARCHAR2(20) NOT NULL,
- mb_id_1 VARCHAR2(20) NOT NULL,
- mb_id_2 VARCHAR2(20) NOT NULL,
+ msg_no VARCHAR2(30) NOT NULL,
+ mb_id_1 VARCHAR2(30) NOT NULL,
+ mb_id_2 VARCHAR2(30) NOT NULL,
  msg_content CLOB NOT NULL,
  msg_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  msg_status NUMBER(1) DEFAULT '1' NOT NULL
@@ -54,8 +54,8 @@ ALTER TABLE message ADD CONSTRAINT PK_message PRIMARY KEY (msg_no);
 
 
 CREATE TABLE notify (
- ntf_no VARCHAR2(20) NOT NULL,
- mb_id VARCHAR2(20) NOT NULL,
+ ntf_no VARCHAR2(30) NOT NULL,
+ mb_id VARCHAR2(30) NOT NULL,
  ntf_content CLOB NOT NULL,
  ntf_status NUMBER(1) DEFAULT '1' NOT NULL
 );
@@ -64,8 +64,8 @@ ALTER TABLE notify ADD CONSTRAINT PK_notify PRIMARY KEY (ntf_no);
 
 
 CREATE TABLE question_rpt (
- question_no VARCHAR2(20) NOT NULL,
- mb_id VARCHAR2(20) NOT NULL,
+ question_no VARCHAR2(30) NOT NULL,
+ mb_id VARCHAR2(30) NOT NULL,
  question_content CLOB NOT NULL,
  question_status NUMBER(1) DEFAULT '1' NOT NULL
 );
@@ -74,9 +74,9 @@ ALTER TABLE question_rpt ADD CONSTRAINT PK_question_rpt PRIMARY KEY (question_no
 
 
 CREATE TABLE staff (
- staff_id VARCHAR2(20) NOT NULL,
- staff_pwd VARCHAR2(20) NOT NULL,
- staff_name VARCHAR2(20) NOT NULL,
+ staff_id VARCHAR2(30) NOT NULL,
+ staff_pwd VARCHAR2(30) NOT NULL,
+ staff_name VARCHAR2(30) NOT NULL,
  staff_join TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  staff_status NUMBER(1) DEFAULT '1' NOT NULL
 );
@@ -85,7 +85,7 @@ ALTER TABLE staff ADD CONSTRAINT PK_staff PRIMARY KEY (staff_id);
 
 
 CREATE TABLE authority (
- staff_id VARCHAR2(20) NOT NULL,
+ staff_id VARCHAR2(30) NOT NULL,
  ability_no VARCHAR2(2) NOT NULL
 );
 
@@ -93,9 +93,9 @@ ALTER TABLE authority ADD CONSTRAINT PK_authority PRIMARY KEY (staff_id,ability_
 
 
 CREATE TABLE mb_rpt (
- mb_rpt_no VARCHAR2(20) NOT NULL,
- mb_id_1 VARCHAR2(20) NOT NULL,
- mb_id_2 VARCHAR2(20) NOT NULL,
+ mb_rpt_no VARCHAR2(30) NOT NULL,
+ mb_id_1 VARCHAR2(30) NOT NULL,
+ mb_id_2 VARCHAR2(30) NOT NULL,
  rpt_reason CLOB NOT NULL,
  rpt_status NUMBER(1) DEFAULT '1' NOT NULL
 );
@@ -156,7 +156,7 @@ NOMAXVALUE
 NOCYCLE
 NOCACHE;
 
---∑|≠˚
+--ÊúÉÂì°
 Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
 values('soowii123','123456','soowii_line','soowii','1',TO_DATE('1990-02-15','YYYY-MM-DD'),'soowii123@yahoo.com');
 Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
@@ -169,56 +169,60 @@ Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_
 values('yiwen123','1234566','yiwen_line','yiwen123','1',TO_DATE('1985-09-14','YYYY-MM-DD'),'yiwen123@yahoo.com');
 Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
 values('weijhih123','1234577','weijhih_line','weijhih123','1',TO_DATE('1989-10-19','YYYY-MM-DD'),'weijhih123@yahoo.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('androidlababy520','androidlababy520','androidlababy520','ÂÆâÂçìÊãâÂØ∂Ë≤ù','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'androidlababy520@yahoo.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('anjavababy520','anjavababy520','anjavababy520','‰∏ÄÂÄãÁà™ÂìáÂØ∂Ë≤ù','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'anjavababy520@yahoo.com');
 
---∞TÆß
+--Ë®äÊÅØ
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'soowii123','xuan123','´¢≈oßA¶n∞⁄');
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'soowii123','xuan123','ÂìàÂõâ‰Ω†Â•ΩÂïä');
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'xuan123','soowii123','∂Ÿ∂ŸßA¶n');
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'xuan123','soowii123','Âó®Âó®‰Ω†Â•Ω');
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'michael123','vain123','ß⁄¨O≥¡•i');
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'michael123','vain123','ÊàëÊòØÈ∫•ÂèØ');
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michael123','ß⁄¨OVain');
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michael123','ÊàëÊòØVain');
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michael123','≠˘∂P');
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michael123','Âì©Ë≥Ä');
 
---≥q™æ
+--ÈÄöÁü•
 Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
-values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'xuan123','≥o¨Oµπxuan123™∫≥q™æ');
+values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'xuan123','ÈÄôÊòØÁµ¶xuan123ÁöÑÈÄöÁü•');
 Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
-values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'xuan123','≥o¨Oµπxuan123™∫≥q™æ2');
+values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'xuan123','ÈÄôÊòØÁµ¶xuan123ÁöÑÈÄöÁü•2');
 Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
-values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'soowii123','≥o¨Oµπsoowii123™∫≥q™æ');
+values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'soowii123','ÈÄôÊòØÁµ¶soowii123ÁöÑÈÄöÁü•');
 Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
-values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'michael123','≥o¨Oµπmichael123™∫≥q™æ');
+values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'michael123','ÈÄôÊòØÁµ¶michael123ÁöÑÈÄöÁü•');
 Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
-values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'vain123','≥o¨Oµπvain123™∫≥q™æ');
+values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'vain123','ÈÄôÊòØÁµ¶vain123ÁöÑÈÄöÁü•');
 
---∑|≠˚¿À¡|
+--ÊúÉÂì°Ê™¢Ëàâ
 Insert into MB_RPT( MB_RPT_NO, MB_ID_1, MB_ID_2, RPT_REASON) 
-values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'xuan123','michael123','xuan123¿À¡|michael123');
+values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'xuan123','michael123','xuan123Ê™¢Ëàâmichael123');
 Insert into MB_RPT( MB_RPT_NO, MB_ID_1, MB_ID_2, RPT_REASON) 
-values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'soowii123','vain123','soowii123¿À¡|vain123');
+values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'soowii123','vain123','soowii123Ê™¢Ëàâvain123');
 Insert into MB_RPT( MB_RPT_NO, MB_ID_1, MB_ID_2, RPT_REASON) 
-values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'yiwen123','weijhih123','yiwen123¿À¡|weijhih123');
+values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'yiwen123','weijhih123','yiwen123Ê™¢Ëàâweijhih123');
 Insert into MB_RPT( MB_RPT_NO, MB_ID_1, MB_ID_2, RPT_REASON) 
-values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'weijhih123','xuan123','weijhih123¿À¡|xuan123');
+values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'weijhih123','xuan123','weijhih123Ê™¢Ëàâxuan123');
 Insert into MB_RPT( MB_RPT_NO, MB_ID_1, MB_ID_2, RPT_REASON) 
-values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'vain123','yiwen123','vain123¿À¡|yiwen123');
+values('MBR'||LPAD(to_char(MB_RPT_NO_SEQ.NEXTVAL), 5, '0'),'vain123','yiwen123','vain123Ê™¢Ëàâyiwen123');
 
---¶^≥¯∞›√D
+--ÂõûÂ†±ÂïèÈ°å
 Insert into QUESTION_RPT( QUESTION_NO, MB_ID, QUESTION_CONTENT) 
-values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'xuan123','xuan123¶^≥¯∞›√D');
+values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'xuan123','xuan123ÂõûÂ†±ÂïèÈ°å');
 Insert into QUESTION_RPT( QUESTION_NO, MB_ID, QUESTION_CONTENT) 
-values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'michael123','michael123¶^≥¯∞›√D');
+values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'michael123','michael123ÂõûÂ†±ÂïèÈ°å');
 Insert into QUESTION_RPT( QUESTION_NO, MB_ID, QUESTION_CONTENT) 
-values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'vain123','vain123¶^≥¯∞›√D');
+values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'vain123','vain123ÂõûÂ†±ÂïèÈ°å');
 Insert into QUESTION_RPT( QUESTION_NO, MB_ID, QUESTION_CONTENT) 
-values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'weijhih123','weijhih123¶^≥¯∞›√D');
+values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'weijhih123','weijhih123ÂõûÂ†±ÂïèÈ°å');
 Insert into QUESTION_RPT( QUESTION_NO, MB_ID, QUESTION_CONTENT) 
-values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'soowii123','soowii123¶^≥¯∞›√D');
+values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'soowii123','soowii123ÂõûÂ†±ÂïèÈ°å');
 
---∫ﬁ≤z≠˚
+--ÁÆ°ÁêÜÂì°
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
 values('staff_xuan','1234','xuan');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
@@ -230,26 +234,50 @@ values('staff_soowii','1234567','soowii');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
 values('staff_weijhih','12345678','weijhih');
 
---•\Ø‡
+--ÂäüËÉΩ
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
-values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'≈v≠≠∫ﬁ≤z');
+values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'Ê¨äÈôêÁÆ°ÁêÜ');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
-values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'Ød®•∫ﬁ≤z');
+values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'ÁïôË®ÄÁÆ°ÁêÜ');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
-values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'¿À¡|∫ﬁ≤z');
+values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'Ê™¢ËàâÁÆ°ÁêÜ');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
-values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'∞”´∞∫ﬁ≤z');
+values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'ÂïÜÂüéÁÆ°ÁêÜ');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
-values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'∞›√D¶^≥¯∫ﬁ≤z');
+values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'ÂïèÈ°åÂõûÂ†±ÁÆ°ÁêÜ');
 
---•\Ø‡
+--ÂäüËÉΩ
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_xuan','01');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_xuan','02');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
-values('staff_michael','03');
+values('staff_xuan','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_xuan','05');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_michael','01');
 Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
 values('staff_michael','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_michael','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_michael','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_vain','04');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','01');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','03');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_soowii','05');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_weijhih','02');
+Insert into AUTHORITY( STAFF_ID, ABILITY_NO) 
+values('staff_weijhih','04');
+
+commit;

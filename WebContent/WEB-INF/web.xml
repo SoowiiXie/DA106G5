@@ -337,7 +337,19 @@
 			<servlet-name>Rcd_rptServlet</servlet-name>
 			<url-pattern>/back_end/rcd_rpt/rcd_rpt.do</url-pattern>
 		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>DBGifReader4Path</servlet-name>
+			<servlet-class>com.path.model.DBGifReader4Path</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Path</servlet-name>
+			<url-pattern>/DBGifReader4Path</url-pattern>
+		</servlet-mapping>
 			
+		
+		
+		
 		
 		<servlet>
 			<servlet-name>MemberServlet</servlet-name>
@@ -349,13 +361,14 @@
 		</servlet-mapping>
 		
 		<servlet>
-			<servlet-name>DBGifReader4Path</servlet-name>
-			<servlet-class>com.path.model.DBGifReader4Path</servlet-class>
+			<servlet-name>PathServlet</servlet-name>
+			<servlet-class>android.com.path.controller.PathServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
-			<servlet-name>DBGifReader4Path</servlet-name>
-			<url-pattern>/DBGifReader4Path</url-pattern>
+			<servlet-name>PathServlet</servlet-name>
+			<url-pattern>/android/path.do</url-pattern>
 		</servlet-mapping>
+		
 <!-- 麥克責任區結束 -->
 
 <!-- 昱盛責任區開始 -->
@@ -421,6 +434,19 @@
 		</servlet-mapping>
 	
 	<!-- 管理員結束 -->
+	
+	<!-- 權限開始 -->
+	
+		<servlet>
+			<servlet-name>AuthorityServlet</servlet-name>
+			<servlet-class>com.auth.controller.AuthorityServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AuthorityServlet</servlet-name>
+			<url-pattern>/back_end/staff/authority.do</url-pattern>
+		</servlet-mapping>
+	
+	<!-- 權限結束 -->
 	
 <!--名軒責任區結束-->
 
@@ -548,5 +574,18 @@
 		</servlet-mapping>
 	<!-- 揪團關注結束 -->
 <!--偉誌責任區結束-->
+
+<!-- 以文責任區開始 -->
+	<!-- 直播開始 -->
+		<servlet>
+			<servlet-name>DBGifReader4Live</servlet-name>
+			<servlet-class>com.live.model.DBGifReader4Live</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>DBGifReader4Live</servlet-name>
+			<url-pattern>/DBGifReader4Live</url-pattern>
+		</servlet-mapping>
+	<!-- 直播結束 -->
+<!-- 以文責任區結束 -->
 
 </web-app>

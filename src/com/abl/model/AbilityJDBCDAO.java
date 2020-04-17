@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -279,7 +280,7 @@ public class AbilityJDBCDAO implements AbilityDAO_interface{
 
 	@Override  // 取得全部權限，用MAP傳回
 	public Map<String, String> getAllToMap() {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new LinkedHashMap<String, String>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

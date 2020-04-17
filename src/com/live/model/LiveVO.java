@@ -11,6 +11,10 @@ public class LiveVO implements java.io.Serializable{
 	private Date live_startteaser;
 	private Date live_start;
 	private byte[] live_store;
+	private byte[] live_pic;
+	
+	
+	
 	
 	
 	public LiveVO() {
@@ -18,8 +22,10 @@ public class LiveVO implements java.io.Serializable{
 	}
 
 
+
+
 	public LiveVO(String live_no, String mb_id, String live_content, Integer live_status, Date live_startteaser,
-			Date live_start, byte[] live_store) {
+			Date live_start, byte[] live_store, byte[] live_pic) {
 		super();
 		this.live_no = live_no;
 		this.mb_id = mb_id;
@@ -28,7 +34,10 @@ public class LiveVO implements java.io.Serializable{
 		this.live_startteaser = live_startteaser;
 		this.live_start = live_start;
 		this.live_store = live_store;
+		this.live_pic = live_pic;
 	}
+
+
 
 
 	public String getLive_no() {
@@ -36,9 +45,13 @@ public class LiveVO implements java.io.Serializable{
 	}
 
 
+
+
 	public void setLive_no(String live_no) {
 		this.live_no = live_no;
 	}
+
+
 
 
 	public String getMb_id() {
@@ -46,9 +59,13 @@ public class LiveVO implements java.io.Serializable{
 	}
 
 
+
+
 	public void setMb_id(String mb_id) {
 		this.mb_id = mb_id;
 	}
+
+
 
 
 	public String getLive_content() {
@@ -56,9 +73,13 @@ public class LiveVO implements java.io.Serializable{
 	}
 
 
+
+
 	public void setLive_content(String live_content) {
 		this.live_content = live_content;
 	}
+
+
 
 
 	public Integer getLive_status() {
@@ -66,9 +87,13 @@ public class LiveVO implements java.io.Serializable{
 	}
 
 
+
+
 	public void setLive_status(Integer live_status) {
 		this.live_status = live_status;
 	}
+
+
 
 
 	public Date getLive_startteaser() {
@@ -76,9 +101,13 @@ public class LiveVO implements java.io.Serializable{
 	}
 
 
+
+
 	public void setLive_startteaser(Date live_startteaser) {
 		this.live_startteaser = live_startteaser;
 	}
+
+
 
 
 	public Date getLive_start() {
@@ -86,9 +115,13 @@ public class LiveVO implements java.io.Serializable{
 	}
 
 
+
+
 	public void setLive_start(Date live_start) {
 		this.live_start = live_start;
 	}
+
+
 
 
 	public byte[] getLive_store() {
@@ -96,9 +129,29 @@ public class LiveVO implements java.io.Serializable{
 	}
 
 
+
+
 	public void setLive_store(byte[] live_store) {
 		this.live_store = live_store;
 	}
+
+
+
+
+	public byte[] getLive_pic() {
+		return live_pic;
+	}
+
+
+
+
+	public void setLive_pic(byte[] live_pic) {
+		this.live_pic = live_pic;
+	}
+	
+	
+	
+	
 	
 	
 	

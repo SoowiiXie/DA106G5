@@ -35,10 +35,56 @@ public class MemberServlet extends HttpServlet {
 		// ***註冊、修改的資料判斷
 		// ***登入、註冊時，若已登入過會直接導向XXX
 		// ***AJAX改到Controller
+		// *** 性別選擇改用Context的MAP
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
+		
+		if ("searchMb".equals(action)) { // 登入
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String mb_id = req.getParameter("mb_id");
+				if (mb_id == null || (mb_id.trim()).length() == 0) {
+					errorMsgs.add("帳號不得為空白");
+				}
+				
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				MemberService memberSvc = new MemberService();
+				MemberVO memberVO = memberSvc.getOneMember(mb_id);
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
+				String url = "/front_end/member/listOneMember.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+				failureView.forward(req, res);
+			}
+		}
 
 		if ("getOne_For_Display".equals(action)) { // 登入
 
@@ -81,7 +127,8 @@ public class MemberServlet extends HttpServlet {
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
-				String url = "/front_end/member/listOneMember.jsp";  // 
+//				String url = "/front_end/member/listOneMember.jsp";  // 
+				String url = "/front_end/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 

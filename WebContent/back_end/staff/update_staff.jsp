@@ -27,18 +27,19 @@
 		加入時間：${staffVO.staff_join}<br>
 		
 		狀態：
-		<select>
+		<select name="staff_status">
 			<c:set var="entrySet" value="${staffStatus.entrySet()}"/> 
 			<c:forEach var="map" items="${entrySet}">
-				<option name="staff_status" value="${map.key}" ${staffVO.staff_status==map.key?'selected':''}>${map.value}</option>
+				<option value="${map.key}" ${staffVO.staff_status==map.key?'selected':''}>${map.value}</option>
 			</c:forEach>
 		</select>
 		
-		<input type="hidden" name="staff_join" value="${staffVO.staff_join}">
+		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
+		<input type="hidden" name="staff_join" value="${staffVO.staff_join}">
 		
-        <input type="hidden" name="action" value="update_staff"><br>
-        <input type ="button" onclick="history.back()" value="返回">
+        <input type="hidden" name="action" value="update"><br>
+        <a href="listAllStaff.jsp"><input type ="button" value="返回"></a>
         <input type="submit" value="送出"><br>
         
         

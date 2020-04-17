@@ -6,6 +6,10 @@
 
 <%
 	CmtVO cmtVO = (CmtVO) request.getAttribute("cmtVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+	CmtService cmtSrv= new CmtService();
+	if (cmtVO==null){
+		cmtVO=cmtSrv.getOneCmt("cmt00001");
+	}
 %>
 
 <html>
@@ -52,20 +56,20 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>留言資料修改 - update_cmt_input.jsp</h3>
-				<h4>
-					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp">
-						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">回首頁
-					</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
+<!-- 	<table id="table-1"> -->
+<!-- 		<tr> -->
+<!-- 			<td> -->
+<!-- 				<h3>留言資料修改 - update_cmt_input.jsp</h3> -->
+<!-- 				<h4> -->
+<%-- 					<a href="<%= request.getContextPath() %>/front_end/cmt/select_page.jsp"> --%>
+<%-- 						<img src="<%= request.getContextPath() %>/front_end/cmt/images/back1.gif" width="100" height="32" border="0">回首頁 --%>
+<!-- 					</a> -->
+<!-- 				</h4> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<!-- 	</table> -->
 
-	<h3>資料修改:</h3>
+<!-- 	<h3>資料修改:</h3> -->
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -77,42 +81,46 @@ th, td {
 		</ul>
 	</c:if>
 	<!--cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id -->
-	<FORM METHOD="post" ACTION="cmt.do" name="form1" enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/cmt/cmt.do" name="form1" enctype="multipart/form-data">
 		<table>
-			<tr>
-				<td>留言編號:</td>
-				<td><%=cmtVO.getCmt_no()%></td>
-			</tr>
-			<tr>
-				<td>時間:</td>
-				<td><%=cmtVO.getCmt_time()%></td>
-			</tr>
-			<tr>
-				<td>狀態:</td>
-				<td><%=cmtVO.getCmt_status()%></td>
-			</tr>
-			<tr>
-				<td>紀錄編號:</td>
-				<td><%=cmtVO.getRcd_no()%></td>
-			</tr>
-			<tr>
-				<td>留言會員:</td>
-				<td><%=cmtVO.getMb_id()%></td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td>留言編號:</td> -->
+<%-- 				<td><%=cmtVO.getCmt_no()%></td> --%>
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>時間:</td> -->
+<%-- 				<td><%=cmtVO.getCmt_time()%></td> --%>
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>狀態:</td> -->
+<%-- 				<td><%=cmtVO.getCmt_status()%></td> --%>
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>紀錄編號:</td> -->
+<%-- 				<td><%=cmtVO.getRcd_no()%></td> --%>
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>留言會員:</td> -->
+<%-- 				<td><%=cmtVO.getMb_id()%></td> --%>
+<!-- 			</tr> -->
 			<tr>
 				<td>內容:</td>
-				<td><input type="TEXT" name="cmt_content" size="45" value="<%=cmtVO.getCmt_content()%>" /></td>
+				<td><input type="TEXT" id="cmt_contentFB" name="cmt_content" size="45" value="" /></td>
 			</tr>
 
 		</table>
 		<br> 
 		<input type="hidden" name="action" value="update"> 
-		<input type="hidden" name="cmt_no" value="<%=cmtVO.getCmt_no()%>">
-		<input type="hidden" name="cmt_time" value="<%=cmtVO.getCmt_time()%>">
-		<input type="hidden" name="cmt_status" value="<%=cmtVO.getCmt_status()%>">
-		<input type="hidden" name="rcd_no" value="<%=cmtVO.getRcd_no()%>">
-		<input type="hidden" name="mb_id" value="<%=cmtVO.getMb_id()%>">
-		<input type="submit" value="送出修改">
+		<input type="hidden" id="cmt_noFB" name="cmt_no" value="">
+		<input type="hidden" id="cmt_timeFB" name="cmt_time" value="">
+		<input type="hidden" id="cmt_statusFB" name="cmt_status" value="">
+		<input type="hidden" id="rcd_noFB" name="rcd_no" value="">
+		<input type="hidden" id="mb_idFB" name="mb_id" value="">
+		<div class="fblightbox-footer bg-white">
+		    <input type="submit" value="送出這些字" class="fbbutton">
+			<a href="#" id="close" class="fbbutton">先不送了</a>
+		 </div>
+		
 	</FORM>
 </body>
 </html>
