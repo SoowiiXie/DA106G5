@@ -246,20 +246,20 @@ public class MemberServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
-//			try {
+			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String mb_id = req.getParameter("mb_id").trim();
-				if (mb_id == null || mb_id.length() == 0) {
+				String mb_id = req.getParameter("mb_id");
+				if (mb_id == null || mb_id.trim().length() == 0) {
 					errorMsgs.add("帳號不得為空白");
 				}
 				
-				String mb_pwd = req.getParameter("mb_pwd").trim();
-				if (mb_pwd == null || mb_pwd.length() == 0) {
+				String mb_pwd = req.getParameter("mb_pwd");
+				if (mb_pwd == null || mb_pwd.trim().length() == 0) {
 					errorMsgs.add("密碼不得為空白");
 				}
 				
-				String mb_name = req.getParameter("mb_name").trim();
-				if (mb_name == null || mb_name.length() == 0) {
+				String mb_name = req.getParameter("mb_name");
+				if (mb_name == null || mb_name.trim().length() == 0) {
 					errorMsgs.add("姓名不得為空白");
 				}
 				
@@ -272,8 +272,8 @@ public class MemberServlet extends HttpServlet {
 					mb_gender = Integer.parseInt(req.getParameter("mb_gender"));
 				}
 				
-				String mb_email = req.getParameter("mb_email").trim();
-				if (mb_email == null || mb_email.length() == 0) {
+				String mb_email = req.getParameter("mb_email");
+				if (mb_email == null || mb_email.trim().length() == 0) {
 					errorMsgs.add("e-mail不得為空白");
 				}
 				
@@ -326,11 +326,11 @@ public class MemberServlet extends HttpServlet {
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("無法取得資料:" + e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+				failureView.forward(req, res);
+			}
 		}
 		
 		if ("logout".equals(action)) { // 登出

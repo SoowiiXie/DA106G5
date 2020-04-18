@@ -7,6 +7,7 @@
 
 <%
 	// 封裝此頁面(不能直接透過網址列進來)，需要登入管理員並擁有權限
+	// 會員帳號若是全數字，會有問題(權限列表打不開)
 	StaffService staffSvc = new StaffService();
     List<StaffVO> list = staffSvc.getAll();
     pageContext.setAttribute("list",list);
@@ -18,8 +19,8 @@
     AuthorityService authoritySvc = new AuthorityService();
     pageContext.setAttribute("authoritySvc",authoritySvc);
     
-    String staff_id = request.getParameter("staff_id");
-    pageContext.setAttribute("staff_id",staff_id);
+    String action = request.getParameter("action");
+    pageContext.setAttribute("action",action);
 %>
 
 <html>
@@ -71,8 +72,10 @@
 <script>
 	$(document).ready(function(){
 		$(".authorityRow").find("*").addClass("authorityRow");
-		<%if(staff_id != null){%>
+		<%if("update_authority".equals(action) || "update".equals(action)){%>
 			alert("修改成功!");
+		<%}else if("insert".equals(action)){%>
+			alert("新增成功!");
 		<%};%>
 	});
 	

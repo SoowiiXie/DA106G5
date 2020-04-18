@@ -41,21 +41,22 @@
 </c:if>
 
 	<h2>新增管理員</h2>
-	<form METHOD="POST" action="member.do" enctype="multipart/form-data">
+	<form METHOD="POST" action="staff.do">
 		<span id="star">*</span>為必填
 		<div>
 			<span id="star">*</span>
-			帳號：<input id="staff_id" type="text" name="staff_id" value="${staffVO.staff_id}">
+			帳號：<input id="staff_id" type="text" name="staff_id" value="${requestScope.staffVO.staff_id}">
 			<img id="icon"/><span id="check"></span>
 		</div>
 		
 		<span id="star">*</span>
-		密碼：<input type="password" name="mb_pwd" value="${memberVO.mb_pwd}"><br>
+		密碼：<input type="password" name="staff_pwd" value="${requestScope.staffVO.staff_pwd}"><br>
 		
 		<span id="star">*</span>
-		名字：<input type="text" name="mb_name" value="${memberVO.mb_name}"><br>
+		名字：<input type="text" name="staff_name" value="${requestScope.staffVO.staff_name}"><br>
 		
         <input type="hidden" name="action" value="insert"><br>
+        <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
         <input type="reset" value="清除">
         <input id="submit" type="submit" value="送出"><br>
         
