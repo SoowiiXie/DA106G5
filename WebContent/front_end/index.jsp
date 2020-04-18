@@ -555,10 +555,10 @@
 									<div class="status-indicator bg-success"></div>
 								</div>
 								<c:if test="${messageVO.msg_status==1}">
-								<div class="font-weight-bold ml-2">
+								<div class="font-weight-bold ml-2 msgNotRead">
 								</c:if>
 								<c:if test="${messageVO.msg_status==2}">
-								<div class="ml-2">
+								<div class="ml-2 msgRead">
 								</c:if>
 									<div class="text-truncate">${messageVO.msg_content}</div>
 									<div class="small text-gray-500">${memberSvcEL.getOneMember(messageVO.mb_id_1).mb_name} · ${messageVO.msg_time} </div>
@@ -917,6 +917,26 @@
 				 $(".overlay").click(function() {
 					  $('.overlay').fadeOut();
 					  fblightbox.fadeOut();
+				 });
+				 
+				 $('.flagBtn').click(function(){
+					 $.ajax({
+						 type: "GET",
+						 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+						 data: {"action":"ajaxGetOne4Update", "cmt_no":$(this).siblings('.cmt_no').val()},
+						 dataType: "json",
+						 success: function (data){
+// 							$("#cmt_contentFB").val(data.cmt_content);
+							$("#cmt_noFB").val(data.cmt_no);
+							$("#cmt_statusFB").val(data.cmt_status);
+							$("#cmt_timeFB").val(data.cmt_time);
+							$("#mb_idFB").val(data.mb_id);
+							$("#rcd_noFB").val(data.rcd_no);
+							$('.overlay').fadeIn();
+							  fblightbox.fadeIn();
+						 },					
+						 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+				 		});
 				 });
 			});
 		</script>
