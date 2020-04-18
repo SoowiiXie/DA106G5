@@ -44,7 +44,8 @@
 	<form METHOD="POST" action="staff.do">
 		<span id="star">*</span>為必填
 		<div>
-			<span id="star">*</span>
+			<span id="star">*</span> 		
+			<%-- 用requestScope是因為sessionScope存著登入管理員資訊，第一次進來時會抓到登入管理員的資料 --%>
 			帳號：<input id="staff_id" type="text" name="staff_id" value="${requestScope.staffVO.staff_id}">
 			<img id="icon"/><span id="check"></span>
 		</div>
@@ -57,7 +58,8 @@
 		
         <input type="hidden" name="action" value="insert"><br>
         <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
-        <input type="reset" value="清除">
+        
+        <a href="listAllStaff.jsp"><input type ="button" value="返回"></a>
         <input id="submit" type="submit" value="送出"><br>
         
 	</form>
@@ -91,6 +93,8 @@
 						$("#submit").removeAttr("disabled");
 					}
 				}
+				error: function(){alert("AJAX-class發生錯誤囉!");
+				
 			})
 		})
 	})

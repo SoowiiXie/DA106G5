@@ -23,8 +23,6 @@ import org.json.JSONObject;
 
 import com.abl.model.AbilityService;
 import com.auth.model.AuthorityService;
-import com.mb.model.MemberService;
-import com.mb.model.MemberVO;
 import com.staff.model.StaffService;
 import com.staff.model.StaffVO;
 
@@ -36,8 +34,8 @@ public class StaffServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		// *** listAllStaff中移除自己或Boss
-		// ** listAllEmp  更改狀態、權限、下拉式選單篩選在職、離職
-		// *** listAllEmp 離職用紅字粗體顯示
+		// ** listAllStaff  更改狀態、權限、下拉式選單篩選在職、離職
+		// *** listAllStaff 離職用紅字粗體顯示
 		// 選擇管理項目  ***一半  ***判斷是否登入
 		
 		req.setCharacterEncoding("UTF-8");
@@ -129,7 +127,7 @@ public class StaffServlet extends HttpServlet{
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("staffVO", staffVO); // 含有輸入格式錯誤的memberVO物件,也存入req
+					req.setAttribute("staffVO", staffVO); // 含有輸入格式錯誤的staffVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);
@@ -147,7 +145,7 @@ public class StaffServlet extends HttpServlet{
 				if("/back_end/staff/update_self.jsp".equals(servletPath)) {  // 管理員個人資料修改
 					session.setAttribute("staffVO", staffVO);
 					url = "/back_end/staff/select_page.jsp";
-				}else if("/back_end/staff/update_staff.jsp".equals(servletPath)) {  // 管理管理員資料修改
+				}else if("/back_end/staff/update_staff.jsp".equals(servletPath)) {  // 管理 管理員資料修改
 					url = "/back_end/staff/listAllStaff.jsp";
 				}
 				
@@ -208,16 +206,12 @@ public class StaffServlet extends HttpServlet{
 					successView.forward(req, res);
 					break;
 				}
-			}else {
+			}else {  // 沒有權限
 				AbilityService abilitySvc = new AbilityService();
 				Map<String,String> allAbility = abilitySvc.getAllToMap();
 				errorMsgs.add("您尚未擁有"+ allAbility.get(management) +"的權限");   // 用MAP取出XXX權限
-			}
-			
-			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
-				return;// 程式中斷
 			}
 		}
 
@@ -295,10 +289,8 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 		
-		if ("insert".equals(action)) { // 新增
+		if ("insert".equals(action)) { // 新增  OK
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
@@ -325,7 +317,7 @@ public class StaffServlet extends HttpServlet{
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("staffVO", staffVO); // 含有輸入格式錯誤的memberVO物件,也存入req
+					req.setAttribute("staffVO", staffVO); // 含有輸入格式錯誤的staffVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);

@@ -19,7 +19,7 @@
     AuthorityService authoritySvc = new AuthorityService();
     pageContext.setAttribute("authoritySvc",authoritySvc);
     
-    String action = request.getParameter("action");
+    String action = request.getParameter("action");  // 用來判斷是怎麼回來此頁面，決定alert什麼訊息
     pageContext.setAttribute("action",action);
 %>
 
