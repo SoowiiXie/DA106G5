@@ -89,7 +89,7 @@
 			icon.width="25";
 			icon.height="32";
 			check.innerHTML = "帳號不得空白";
-			test.style.color = "red";
+			check.style.color = "red";
 		}
 		
 	  	var xhr = new XMLHttpRequest();

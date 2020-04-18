@@ -2,6 +2,7 @@ package com.staff.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.abl.model.AbilityService;
 import com.auth.model.AuthorityService;
@@ -240,6 +244,54 @@ public class StaffServlet extends HttpServlet{
 				RequestDispatcher failureView = req
 						.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
+			}
+		}
+		
+		if ("check_id".equals(action)) { // Ajax 檢查ID  OK
+			
+			res.setContentType("text/plain");
+			res.setCharacterEncoding("UTF-8");
+			PrintWriter out = res.getWriter();
+			
+			JSONObject jsonObj = new JSONObject();
+			String result = null;
+			try {
+			String staff_id = req.getParameter("staff_id");
+			if (staff_id == null || (staff_id.trim()).length() == 0) {
+				result = "帳號不得為空白";
+			}
+			
+			StaffService staffSvc = new StaffService();
+			StaffVO staffVO = staffSvc.getOneStaff(staff_id);
+			if(staffVO != null) {
+				result = "此帳號已被使用";
+			}
+			
+			if(result != null) {  // 錯誤回傳
+				jsonObj.put("result", result);
+				out.write(jsonObj.toString());
+				out.flush();
+				out.close();
+				return;
+			}
+			
+			result = "此帳號可以使用";  // 正確
+			jsonObj.put("result", result);
+			out.write(jsonObj.toString());
+			out.flush();
+			out.close();
+			
+			}catch(Exception e) {
+				result = "AJAX發生錯誤";  
+				try {
+					jsonObj.put("result", result);
+					out.write(jsonObj.toString());
+					out.flush();
+					out.close();
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+				
 			}
 		}
 		
