@@ -95,8 +95,6 @@ public class MemberServlet extends HttpServlet {
 		if ("getOne_For_Display".equals(action)) { // 登入
 
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
@@ -113,7 +111,7 @@ public class MemberServlet extends HttpServlet {
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -126,7 +124,7 @@ public class MemberServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -141,7 +139,7 @@ public class MemberServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
 			}
 		}
@@ -152,20 +150,20 @@ public class MemberServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String mb_id = req.getParameter("mb_id").trim();
+				String mb_id = req.getParameter("mb_id");
 				
-				String mb_pwd = req.getParameter("mb_pwd").trim();
-				if (mb_pwd == null || mb_pwd.length() == 0) {
+				String mb_pwd = req.getParameter("mb_pwd");
+				if (mb_pwd == null || mb_pwd.trim().length() == 0) {
 					errorMsgs.add("密碼不得為空白");
 				}
 				
-				String mb_name = req.getParameter("mb_name").trim();
-				if (mb_name == null || mb_name.length() == 0) {
+				String mb_name = req.getParameter("mb_name");
+				if (mb_name == null || mb_name.trim().length() == 0) {
 					errorMsgs.add("姓名不得為空白");
 				}
 				
-				String mb_email = req.getParameter("mb_email").trim();
-				if (mb_email == null || mb_email.length() == 0) {
+				String mb_email = req.getParameter("mb_email");
+				if (mb_email == null || mb_email.trim().length() == 0) {
 					errorMsgs.add("e-mail不得為空白");
 				}
 				
@@ -220,7 +218,7 @@ public class MemberServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的memberVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/member/update_member.jsp");
+							.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);
 					return;
 				}
@@ -239,7 +237,7 @@ public class MemberServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
 			}
 		}

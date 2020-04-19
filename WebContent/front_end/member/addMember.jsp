@@ -7,11 +7,11 @@
 <head>
 <meta charset="BIG5">
 <title>addMember</title>
-<%
+<%  // 圖片路徑初始化
 	String imgStr = request.getContextPath() + "/NoData/null2.jpg";
 
 	MemberVO memberVO = (MemberVO)request.getAttribute("memberVO");
-	if(memberVO != null && memberVO.getMb_pic() != null){
+	if(memberVO != null && memberVO.getMb_pic() != null){  // 錯誤處理回來後，若先前有上傳圖片，則顯示原圖片
 		imgStr = "data:image/png;base64," + Base64.getEncoder().encodeToString(memberVO.getMb_pic());
 	}
 %>
