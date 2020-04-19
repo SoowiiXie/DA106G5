@@ -7,7 +7,6 @@ import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -71,6 +70,8 @@ public class CheckOutServlet extends HttpServlet {
 			req.setAttribute("ordersVO",ordersVO);
 			req.setAttribute("payMethod", payMethod);
 			session.setAttribute("buylistCount", 0);
+			//送給PG要有od_no,mb_id,od_status
+			ordersService.addOrdersPG(od_no, mb_id, 1);
 			
 			String url = "/front_end/product/MemberLookOd_detail.jsp";
 

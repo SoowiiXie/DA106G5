@@ -14,9 +14,9 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 	private static final String GET_ALL_STMT = "SELECT  id, \"OD_NO\", \"MB_ID\", \"OD_STATUS\" FROM public.orders";
 	//"SELECT id, \"GRP_NO\", \"MB_ID\", \"GRP_PERSONCOUNT\", \"GRP_STATUS\", \"GRP_FOLLOW\" FROM public.grouper";
 	private static final String GET_ONE_STMT = "SELECT * FROM public.orders where \"OD_NO\" = ?";
-	private static final String USE_MB_ID_SEARCH_ORDERS = "SELECT * FROM Orders where mb_id = ?";
-	private static final String DELETE = "DELETE FROM ORDERS where od_no = ?";
-	private static final String UPDATE = "UPDATE orders set MB_ID = ?, OD_TOTALPRICE = ?, OD_ADD = ? where OD_NO = ?";
+	private static final String USE_MB_ID_SEARCH_ORDERS = "SELECT * FROM public.orders where \"MB_ID\" = ?";
+	private static final String DELETE = "DELETE FROM public.orders where \"OD_NO\" = ?";
+	private static final String UPDATE = "UPDATE public.orders set \"OD_STATUS\" = ? where \"OD_NO\" = ?";
 
 	@Override
 	public OrdersVO addOrders(OrdersVO ordersVO) {
@@ -86,16 +86,10 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, ordersVO.getMb_id());
-			pstmt.setInt(2, ordersVO.getOd_totalPrice());
-			pstmt.setString(3, ordersVO.getOd_add());
-			pstmt.setString(4, ordersVO.getOd_no());
+			pstmt.setInt(1, ordersVO.getOd_status());
+			pstmt.setString(2, ordersVO.getOd_no());
 
 			updateCount = pstmt.executeUpdate();
-
-			System.out.println("修改訂單資料");
-			System.out.println("");
-			System.out.println("輸入該訂單編號：" + ordersVO.getMb_id());
 
 			// Handle any driver errors
 		} catch (SQLException se) {
@@ -182,11 +176,7 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 				ordersVO = new OrdersVO();
 				ordersVO.setOd_no(rs.getString("od_no"));
 				ordersVO.setMb_id(rs.getString("mb_id"));
-				ordersVO.setOd_time(rs.getTimestamp("od_time"));
 				ordersVO.setOd_status(rs.getInt("od_status"));
-				ordersVO.setOd_totalPrice(rs.getInt("od_totalPrice"));
-				ordersVO.setCp_no(rs.getString("cp_no"));
-				ordersVO.setOd_add(rs.getString("od_add"));
 
 			}
 			System.out.println("輸入查詢的號碼為：" + od_no);
@@ -241,12 +231,6 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 				ordersVO.setOd_no(rs.getString("od_no"));
 				ordersVO.setMb_id(rs.getString("mb_id"));
 				ordersVO.setOd_status(rs.getInt("od_status"));
-				ordersVO.setOd_totalPrice(rs.getInt("od_totalprice"));
-				ordersVO.setOd_discount(rs.getInt("od_discount"));
-				ordersVO.setOd_add(rs.getString("od_add"));
-				ordersVO.setOd_time(rs.getTimestamp("od_time"));
-				ordersVO.setCp_no(rs.getString("cp_no"));
-				ordersVO.setOd_add(rs.getString("od_add"));
 				list.add(ordersVO); // Store the row in the vector
 
 //				System.out.print("訂單編號：" + ordersVO.getOd_no() + ",");
@@ -383,12 +367,7 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 				ordersVO = new OrdersVO();
 				ordersVO.setOd_no(rs.getString("od_no"));
 				ordersVO.setMb_id(rs.getString("mb_id"));
-				ordersVO.setOd_time(rs.getTimestamp("od_time"));
 				ordersVO.setOd_status(rs.getInt("od_status"));
-				ordersVO.setOd_totalPrice(rs.getInt("od_totalPrice"));
-				ordersVO.setCp_no(rs.getString("cp_no"));
-				ordersVO.setOd_discount(rs.getInt("od_discount"));
-				ordersVO.setOd_add(rs.getString("od_add"));
 				list.add(ordersVO);
 			}
 
@@ -438,21 +417,11 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 //		ordersVO1.setOd_status(5);	
 //		daoPG.addOrders(ordersVO1);
 //		System.out.println("訂單新增資料: "+ordersVO1);
-				
-
-		// 修改，用訂單編號，修改該訂單資料
-//		OrdersVO ordersVO2 = new OrdersVO();
-//		ordersVO2.setOd_no("20200408-000017");
-//		ordersVO2.setMb_id("soowii123");
-//		ordersVO2.setOd_totalPrice(100000);
-//		ordersVO2.setOd_add("XXX");
-//		 int updateCount_update = dao.updateOrdersInformation(ordersVO2);
-//		 if(updateCount_update == 1) {
-//			 System.out.println("修改後訂單資料");
-//			 System.out.println("會員帳號："+ordersVO2.getMb_id());
-//			 System.out.println("訂單總金額："+ordersVO2.getOd_totalPrice());
-//			 System.out.println("收貨地址："+ordersVO2.getOd_add());
-//		 }
+//		ordersVO1.setMb_id("vain123");
+//		ordersVO1.setOd_no("20200324-000004");
+//		ordersVO1.setOd_status(4);	
+//		daoPG.addOrders(ordersVO1);
+//		System.out.println("訂單新增資料: "+ordersVO1);
 
 		// 刪除，用訂單編號刪除該訂單
 //		 int updateCount_delete = dao.deleteOrders("20200408-000018");
@@ -462,7 +431,8 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 //		 }
 
 		// 查詢，用訂單編號查詢該訂單資料
-//		OrdersVO ordersVO3 = dao.searchOneOrders("20200329-000020");
+		OrdersVO ordersVO3 = daoPG.searchOneOrders("20200324-000001");
+		System.out.println(ordersVO3);
 //		System.out.println("會員帳號："+ordersVO3.getMb_id());
 //		System.out.println("訂單狀態："+ordersVO3.getOd_status());
 //		System.out.println("訂單總金額："+ordersVO3.getOd_totalPrice());
@@ -471,22 +441,24 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 //		System.out.println("訂單產生時間："+ordersVO3.getOd_time());
 //		System.out.println("");
 //		System.out.println("---------------------");
+		
+		// 修改，用訂單編號，修改該訂單資料
+		OrdersVO ordersVO2 = new OrdersVO();
+		ordersVO2.setOd_no("20200324-000001");
+		ordersVO2.setOd_status(2);
+		 int updateCount_update = daoPG.updateOrdersInformation(ordersVO2);
+		 if(updateCount_update == 1) {
+			 System.out.println("修改後訂單資料");
+			 System.out.println(ordersVO2);
+		 }
 
-//		// 查詢，查詢資料庫全部訂單
-//		List<OrdersVO> list = dao.getAll();
-//		System.out.println("資料庫全部訂單查詢");
-//		System.out.println("");
-//		for (OrdersVO aOrdersVO : list) {
-//			System.out.print("訂單編號：" + aOrdersVO.getOd_no() + ",");
-//			System.out.print("會員帳號：" + aOrdersVO.getMb_id() + ",");
-//			System.out.print("訂單產生時間：" + aOrdersVO.getOd_time() +",");
-//			System.out.print("訂單狀態：" + aOrdersVO.getOd_status() + ",");
-//			System.out.print("訂單總金額：" + aOrdersVO.getOd_totalPrice() + ",");
-//			System.out.print("優貨券編號：" + aOrdersVO.getCp_no());
-//			System.out.println("優惠後金額："+aOrdersVO.getOd_discount() +",");
-//			System.out.println("收貨地址：" + aOrdersVO.getOd_add());
-//			
-//		}
+		// 查詢，查詢資料庫全部訂單
+		List<OrdersVO> list = daoPG.getAll();
+		System.out.println("資料庫全部訂單查詢");
+		System.out.println("");
+		for (OrdersVO aOrdersVO : list) {
+			System.out.println(aOrdersVO);
+		}
 
 		// 新增訂單與訂單編號(同時)
 
@@ -509,12 +481,20 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 //		testList.add(od_detailVO1);
 //        dao.addOrdersWithPd_detail(ordersVO, testList);
 
-		// 用會員搜尋該會員所有訂單編號
+		// 修改，用訂單編號，修改該訂單資料
+		ordersVO2.setOd_status(1);
+		 int updateCount_updateFix = daoPG.updateOrdersInformation(ordersVO2);
+		 if(updateCount_updateFix == 1) {
+			 System.out.println("修改後訂單資料");
+			 System.out.println(ordersVO2);
+		 }
 
-//		List<OrdersVO> list = dao.searchMemberOrders("michael123");
-//		             
-//		  for(OrdersVO aOrdersVO : list) {
-//			  System.out.println(aOrdersVO.getOd_no());
-//		  }
+		
+		// 用會員搜尋該會員所有訂單編號
+		List<OrdersVO> listMO = daoPG.searchMemberOrders("soowii123");
+		             
+		  for(OrdersVO aOrdersVO : listMO) {
+			  System.out.println(aOrdersVO);
+		  }
 	}
 }
