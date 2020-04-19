@@ -65,7 +65,7 @@ h4 {
 			</FORM>
 		</li>
 		<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
-		<jsp:useBean id="locationSvc" scope="page" class="android.com.location.model.LocationService" />
+		<jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />
 
 		<li>
 			<FORM METHOD="post" ACTION="location.do">
