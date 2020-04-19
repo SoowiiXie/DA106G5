@@ -103,7 +103,8 @@ public class Pd_followServlet extends HttpServlet {
 		}
 		if (action.equals("DeleteOnePd_follow")) {
 			String whichPage = req.getParameter("whichPage");
-			System.out.println("測試頁數"+whichPage);
+			System.out.println("頁數測試"+whichPage);
+			String requestURL = req.getParameter("requestURL");
 			String pd_no = req.getParameter("pd_no");
 			String mb_id = (String) session.getAttribute("mb_id");
 			Pd_followVO pd_followVO = new Pd_followVO();
@@ -111,9 +112,11 @@ public class Pd_followServlet extends HttpServlet {
 			pd_followVO.setMb_id(mb_id);
 			Pd_followService pd_followService = new Pd_followService();
 			pd_followService.deleteMemberOneProduct(pd_followVO);
-			String url = "/front_end/product/MemberLookSelfPd_follow.jsp?whichPage="+whichPage;
-			RequestDispatcher failureView = req.getRequestDispatcher(url);
+			String url = requestURL;
+			req.setAttribute("whichPage", whichPage);
+			RequestDispatcher failureView = req.getRequestDispatcher(url+"?whichPage="+whichPage);
 			failureView.forward(req, res);
+			return;
 		}
 	}
 }

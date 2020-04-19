@@ -446,6 +446,14 @@
 		<url-pattern>/Pd_followServlet</url-pattern>
 	</servlet-mapping>
     
+    <servlet>
+		<servlet-name>ShopMemberServlet</servlet-name>
+		<servlet-class>com.product.controller.MemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShopMemberServlet</servlet-name>
+		<url-pattern>/ShopMemberServlet</url-pattern>
+	</servlet-mapping>
        
      <!-- 商城結束 -->
 <!-- 昱盛責任區結束 -->

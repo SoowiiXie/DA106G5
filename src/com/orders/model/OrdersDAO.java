@@ -13,7 +13,7 @@ public class OrdersDAO implements OrdersDAO_interface {
 	String userid = "DA106G5";
 	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT ,cp_no) values(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(orders_seq.NEXTVAL), 6, '0'),?,?,?,?,?)";
+	private static final String INSERT_STMT = "Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) values(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(orders_seq.NEXTVAL), 6, '0'),?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT  OD_NO, MB_ID, OD_TIME, OD_STATUS, OD_TOTALPRICE, CP_NO, OD_DISCOUNT, OD_ADD  FROM Orders order by OD_TIME DESC ";
 	private static final String GET_ONE_STMT = "SELECT * FROM Orders where OD_NO = ?";
 	private static final String USE_MB_ID_SEARCH_ORDERS = "SELECT * FROM Orders where mb_id = ?";
@@ -261,7 +261,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 				ordersVO.setMb_id(rs.getString("mb_id"));
 				ordersVO.setOd_status(rs.getInt("od_status"));
 				ordersVO.setOd_totalPrice(rs.getInt("od_totalprice"));
-				ordersVO.setOd_discount(rs.getInt("od_discount"));
 				ordersVO.setOd_add(rs.getString("od_add"));
 				ordersVO.setOd_time(rs.getTimestamp("od_time"));
 				ordersVO.setCp_no(rs.getString("cp_no"));
@@ -330,8 +329,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 			pstmt.setString(1, ordersVO.getMb_id());
 			pstmt.setInt(2, ordersVO.getOd_totalPrice());
 			pstmt.setString(3, ordersVO.getOd_add());
-			pstmt.setInt(4, ordersVO.getOd_discount());
-			pstmt.setString(5, ordersVO.getCp_no());
 			pstmt.executeUpdate();
 			// 掘取對應的自增主鍵值
 			String next_od_no = null;
@@ -508,7 +505,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 //			System.out.print("訂單狀態：" + aOrdersVO.getOd_status() + ",");
 //			System.out.print("訂單總金額：" + aOrdersVO.getOd_totalPrice() + ",");
 //			System.out.print("優貨券編號：" + aOrdersVO.getCp_no());
-//			System.out.println("優惠後金額："+aOrdersVO.getOd_discount() +",");
 //			System.out.println("收貨地址：" + aOrdersVO.getOd_add());
 //			
 //		}
@@ -536,10 +532,10 @@ public class OrdersDAO implements OrdersDAO_interface {
 
 		// 用會員搜尋該會員所有訂單編號
 
-//		List<OrdersVO> list = dao.searchMemberOrders("michael123");
-//		             
-//		  for(OrdersVO aOrdersVO : list) {
-//			  System.out.println(aOrdersVO.getOd_no());
-//		  }
+		List<OrdersVO> list = dao.searchMemberOrders("michael123");
+		             
+		  for(OrdersVO aOrdersVO : list) {
+			  System.out.println(aOrdersVO.getOd_no());
+		  }
 	}
 }

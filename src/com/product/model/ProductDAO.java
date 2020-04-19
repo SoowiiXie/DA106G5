@@ -780,7 +780,9 @@ public class ProductDAO implements ProductDAO_interface {
 			sizeList.add("XL");
 			sizeList.add("XXL");
 			System.out.print("服飾尺寸:"+sizeList);
-	
+			Collections.reverse(sizeList);
+			System.out.print("服飾尺寸:"+sizeList);
+			
 
 		}
 

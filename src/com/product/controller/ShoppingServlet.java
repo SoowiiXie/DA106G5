@@ -14,13 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.coupon.model.CouponService;
-import com.coupon.model.CouponVO;
 import com.cp_get.model.Cp_getService;
 import com.cp_get.model.Cp_getVO;
 import com.od_detail.model.Od_detailVO;
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
+
+
+
+
 
 public class ShoppingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +39,8 @@ public class ShoppingServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");
 		String action = req.getParameter("action");
+		
+		
 
 		if (!action.equals("GoToWriteShopInformation")) {
 
@@ -58,10 +62,9 @@ public class ShoppingServlet extends HttpServlet {
 					if (productVO.getPd_typeNo().equals("PTN00010") || productVO.getPd_typeNo().equals("PTN00011")
 							|| productVO.getPd_typeNo().equals("PTN00012")) {
 						sizeList.add("無");
-						System.out.print("配件尺寸:" + sizeList);
+						System.out.print("配件尺寸:"+sizeList);
 
-					} else if (productVO.getPd_typeNo().equals("PTN00003")
-							|| productVO.getPd_typeNo().equals("PTN00006")
+					} else if (productVO.getPd_typeNo().equals("PTN00003") || productVO.getPd_typeNo().equals("PTN00006")
 							|| productVO.getPd_typeNo().equals("PTN00009")) {
 						sizeList.add("US7.5");
 						sizeList.add("US8.0");
@@ -69,8 +72,8 @@ public class ShoppingServlet extends HttpServlet {
 						sizeList.add("US9.0");
 						sizeList.add("US9.5");
 						sizeList.add("US10.0");
-						System.out.print("鞋類尺寸:" + sizeList);
-
+						System.out.print("鞋類尺寸:"+sizeList);
+						
 					} else {
 						sizeList.add("XS");
 						sizeList.add("S");
@@ -78,12 +81,13 @@ public class ShoppingServlet extends HttpServlet {
 						sizeList.add("L");
 						sizeList.add("XL");
 						sizeList.add("XXL");
-						System.out.print("服飾尺寸:" + sizeList);
+						System.out.print("服飾尺寸:"+sizeList);
+				
 
 					}
 
 					/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-					req.setAttribute("productVO", productVO);
+					req.setAttribute("productVO", productVO); 
 					req.setAttribute("sizeList", sizeList);
 					String url = "/front_end/product/GoOneProduct.jsp";
 
@@ -91,7 +95,7 @@ public class ShoppingServlet extends HttpServlet {
 					successView.forward(req, res);
 
 					return;
-
+					    
 				} catch (Exception e) {
 					errorMsgs.add("無法取得商品的資料:" + e.getMessage());
 					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/ShopHome.jsp");
@@ -110,12 +114,12 @@ public class ShoppingServlet extends HttpServlet {
 			// 新增商品至購物車中
 			else if (action.equals("AddProductToCar")) {
 				boolean match = false;
-
+                 
 				// 取得後來新增的商品
 				ProductVO aProduct = getProduct(req);
-				System.out.println("新增的商品，商品編號：" + aProduct.getPd_no());
-				System.out.println("新增的商品，商品尺寸：" + aProduct.getPd_name());
-				System.out.println("新增的商品，商品尺寸：" + aProduct.getPd_typeNo());
+				System.out.println("新增的商品，商品編號："+aProduct.getPd_no());
+				System.out.println("新增的商品，商品尺寸："+aProduct.getPd_name());
+				System.out.println("新增的商品，商品尺寸："+aProduct.getPd_typeNo());
 
 				// 新增第一個商品籍至購物車時
 				if (buylist == null) {
@@ -124,15 +128,14 @@ public class ShoppingServlet extends HttpServlet {
 				} else {
 					for (int i = 0; i < buylist.size(); i++) {
 						ProductVO productVO = buylist.get(i);
-
+                          
 						// 假若新增的商品和購物車的商品一樣時
-						if (productVO.getPd_name().equals(aProduct.getPd_name())
-								&& productVO.getPd_typeSize().equals(aProduct.getPd_typeSize())) {
-
+						if (productVO.getPd_name().equals(aProduct.getPd_name()) && productVO.getPd_typeSize().equals(aProduct.getPd_typeSize())) {
+							
 							productVO.setPd_quantity(productVO.getPd_quantity() + aProduct.getPd_quantity());
 							buylist.setElementAt(productVO, i);
 							match = true;
-
+							
 						} // end of if name matches
 					} // end of for
 
@@ -140,36 +143,21 @@ public class ShoppingServlet extends HttpServlet {
 					if (!match)
 						buylist.add(aProduct);
 				}
-
+				
+				
 			}
-			int total = 0;
-			for (int i = 0; i < buylist.size(); i++) {
-				ProductVO order = buylist.get(i);
-				int price = order.getPd_price();
-				int quantity = order.getPd_quantity();
-				total += (price * quantity);
-			}
-			req.setAttribute("total", total);
-			String mb_id = (String) session.getAttribute("mb_id");
-			String buylistCount = String.valueOf(buylist.size());
-			session.setAttribute("buylistCount", buylistCount);
+              String buylistCount = String.valueOf(buylist.size());
+              session.setAttribute("buylistCount", buylistCount);
 			session.setAttribute("shoppingCart", buylist);
-			Cp_getService cp_getService = new Cp_getService();
-			Cp_getVO cp_getVO = new Cp_getVO();
-			cp_getVO.setMb_id(mb_id);
-			cp_getVO.setCp_status(1);
-			List<Cp_getVO> couponList = cp_getService.listAmemberCpGetStatus(cp_getVO);
-			session.setAttribute("couponList", couponList);
+			
 			String url = "/front_end/product/ProductCart.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 			return;
 		}
 
-		// 計算總金額後，進入填寫資訊頁面
+		// 結帳，計算購物車商品價錢總數
 		else if (action.equals("GoToWriteShopInformation")) {
-			String cp_get = req.getParameter("cp_get");
-
 			int total = 0;
 			for (int i = 0; i < buylist.size(); i++) {
 				ProductVO order = buylist.get(i);
@@ -177,39 +165,24 @@ public class ShoppingServlet extends HttpServlet {
 				int quantity = order.getPd_quantity();
 				total += (price * quantity);
 			}
-			String mb_id = (String) session.getAttribute("mb_id");
-
-			Integer totalPrice = total;
-			if (cp_get.equals("請選擇")) {
-				Integer discount = totalPrice;
-				session.setAttribute("totalPrice", totalPrice);
-				session.setAttribute("discount", discount);
-				String url = "/front_end/product/Checkout.jsp";
-				RequestDispatcher rd = req.getRequestDispatcher(url);
-				rd.forward(req, res);
-				return;
-			}
-			CouponService couponService = new CouponService();
-			CouponVO couponVO = couponService.searchCoupon(cp_get);
-			 Integer couponPrice  = couponVO.getCp_price();
+			String mb_id = (String)session.getAttribute("mb_id");
+			Cp_getService cp_getService = new Cp_getService();
 			Cp_getVO cp_getVO = new Cp_getVO();
 			cp_getVO.setMb_id(mb_id);
-			cp_getVO.setCp_no(cp_get);
-			cp_getVO.setCp_status(2);
-			Cp_getService cp_getService = new Cp_getService();
-			cp_getService.aMemberUseCoupon(cp_getVO);
-
-			Integer discount = (totalPrice - couponPrice);
-			session.setAttribute("cp_get", cp_get);
-			session.setAttribute("discount", discount);
-			session.setAttribute("totalPrice", totalPrice);
-
+			cp_getVO.setCp_status(1);
+			List<Cp_getVO> couponList = cp_getService.listAmemberCpGetStatus(cp_getVO);
+			
+			String totalPrice = String.valueOf(total);
+			req.setAttribute("totalPrice", totalPrice);
+			req.setAttribute("couponList", couponList);
 			String url = "/front_end/product/Checkout.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
-			return;
+		    return;
 		}
 
+	
+		
 	}
 
 	private ProductVO getProduct(HttpServletRequest req) {

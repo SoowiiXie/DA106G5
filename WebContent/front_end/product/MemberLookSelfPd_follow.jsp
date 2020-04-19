@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<%=request.getServletPath()%>
 <%  
    
 	String mb_id = (String) session.getAttribute("mb_id");
@@ -25,7 +25,7 @@
 </head>
 <body>
 
-	<form method="POST" action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
+	
 		<table border="3">
 
 			<tr>
@@ -50,18 +50,21 @@
 					<td><a
 						href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${pd_followVO.pd_no}'>${productService.findOneProduct(pd_followVO.pd_no).pd_name}</a></td>
 					<td>${productService.findOneProduct(pd_followVO.pd_no).pd_price}</td>
+					<form method="POST" action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
 					<td><input type="submit" name="Submit" value="刪除商品收藏">
 						<input type="hidden" name="pd_no" value="${pd_followVO.pd_no}">
+						<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
+						<input type="hidden" name="whichPage" value="<%=whichPage%>">
 						<input type="hidden" name="action" value="DeleteOnePd_follow">
-						
+						</form>
 						</td>
 
 				</tr>
 
 			</c:forEach>
 		</table>
-		<%@ include file="page4.file"%>
-	</form>
+		
+	
 
 	<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">回商城首頁</a>
 </body>

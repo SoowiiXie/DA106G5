@@ -11,7 +11,7 @@ List<OrdersVO>	list = (List<OrdersVO>)session.getAttribute("list");
 
 %>
 
-<jsp:useBean id="couponService" scope="page" class="com.coupon.model.CouponService" />
+
 
 <!DOCTYPE html>
 <html>
@@ -71,14 +71,10 @@ List<OrdersVO>	list = (List<OrdersVO>)session.getAttribute("list");
 				<td align="center">${ordersVO.od_time}</td>
 				<td align="center">${ordersVO.od_status==1?'已發貨':'未發貨'}</td>
 				<td align="center">${ordersVO.od_totalPrice}</td>
-				<td align="center">${couponService.searchCoupon(ordersVO.cp_no).cp_name} 
-				<c:if test="${ordersVO.cp_no==null}">
-	                   無使用優惠券
-  </c:if>
-				</td>
+				<td align="center">${ordersVO.cp_no}</td>
 				<td align="center">${ordersVO.od_discount}</td>
 				<td align="center">${ordersVO.od_add}</td>
-     
+
 				<td align="center"><FORM method="POST"
 						ACTION="<%=request.getContextPath()%>/OrdersServlet">
 

@@ -89,17 +89,6 @@
 				<td><font color="red"><b>${ordersVO.od_totalPrice}</b></font></td>
 				<td></td>
 			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><div align="center">
-						<font color="red"><b>優惠後的金額：</b></font>
-					</div></td>
-				<td></td>
-				<td><font color="red"><b>${ordersVO.od_discount}</b></font></td>
-				<td></td>
-			</tr>
 			<td>付費方式:</td><td>${payMethod}</td>
 			<td> ${ordersVO.od_add}</td>
 	</table>

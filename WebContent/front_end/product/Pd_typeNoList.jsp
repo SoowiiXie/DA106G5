@@ -7,7 +7,7 @@
 <%
                 
 	List<ProductVO> list = (List<ProductVO>) request.getAttribute("list");
-
+    Collections.reverse(list);
     if(list==null){
     list = (List<ProductVO>) session.getAttribute("list");
     }

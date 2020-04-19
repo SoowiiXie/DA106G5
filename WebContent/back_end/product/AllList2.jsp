@@ -20,14 +20,18 @@
 	if (pd_typeNo == null || pd_typeNo.equals("")) {
 
 		list = productService.getAll();
-
+		
+		
+	
+		Collections.reverse(list);
+		
 		session.setAttribute("list", list);
 	
 		
 	}
 		else {
 		list = productService.useTypeSearchProducts(pd_typeNo);
-
+		Collections.reverse(list);
 		session.setAttribute("list", list);
 	}
 	
@@ -122,7 +126,7 @@
 
 		</c:forEach>
 	</table>
-	<%@ include file="page2.file"%>
+	
 
 	<br>
 	<br>

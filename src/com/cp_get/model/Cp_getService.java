@@ -23,9 +23,4 @@ public class Cp_getService {
 		
 		return dao.listAmemberCpGetStatus(cp_getVO);
 	}
-	
-	public int aMemberUseCoupon(Cp_getVO cp_getVO) {
-		
-		return dao.aMemberUseCoupon(cp_getVO);
-	}
 }

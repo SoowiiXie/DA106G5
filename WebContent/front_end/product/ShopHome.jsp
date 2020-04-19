@@ -13,6 +13,8 @@ ProductService productService = new ProductService();
 
 List<ProductVO> list = productService.listOnTheMarket(2);
 
+Collections.reverse(list);
+
 pageContext.setAttribute("list", list); //for EL
 %>
 
