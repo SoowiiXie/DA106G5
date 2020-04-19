@@ -44,6 +44,17 @@ private MemberDAO_interface dao;
 		dao.update(memberVO);
 		return memberVO;
 	}
+	public MemberVO updateLine(String mb_line_id, String mb_line_pic, String mb_line_display, String mb_line_status, String mb_id) {
+		
+		MemberVO memberVO = new MemberVO();
+		memberVO.setMb_line_id(mb_line_id);
+		memberVO.setMb_line_pic(mb_line_pic);
+		memberVO.setMb_line_display(mb_line_display);
+		memberVO.setMb_line_status(mb_line_status);
+		memberVO.setMb_id(mb_id);
+		dao.updateLine(memberVO);
+		return memberVO;
+	}
 	
 	public MemberVO getOneMember(String mb_id) {
 		return dao.findByPrimaryKey(mb_id);
