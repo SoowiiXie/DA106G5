@@ -919,11 +919,11 @@
 					  fblightbox.fadeOut();
 				 });
 				 
-				 $('.flagBtn').click(function(){
+				 $('.msgRead').click(function(){
 					 $.ajax({
 						 type: "GET",
 						 url: "<%=request.getContextPath()%>/cmt/cmt.do",
-						 data: {"action":"ajaxGetOne4Update", "cmt_no":$(this).siblings('.cmt_no').val()},
+						 data: {"action":"ajaxGetOne4Read", "cmt_no":$(this).siblings('.cmt_no').val()},
 						 dataType: "json",
 						 success: function (data){
 // 							$("#cmt_contentFB").val(data.cmt_content);
