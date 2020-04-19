@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class MemberServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
+		String servletPath = req.getParameter("servletPath");  // 從哪裡來
 		
 		if ("searchMb".equals(action)) { // 登入
 
@@ -127,8 +129,8 @@ public class MemberServlet extends HttpServlet {
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
-//				String url = "/front_end/member/listOneMember.jsp";  // 
-				String url = "/front_end/index.jsp";
+				String url = "/front_end/member/listOneMember.jsp";  // 
+//				String url = "/front_end/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
@@ -142,8 +144,6 @@ public class MemberServlet extends HttpServlet {
 
 		if ("update".equals(action)) { // 修改
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
@@ -242,8 +242,6 @@ public class MemberServlet extends HttpServlet {
 
 		if ("insert".equals(action)) { // 新增
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
@@ -266,10 +264,10 @@ public class MemberServlet extends HttpServlet {
 				// 性別
 				String gender = req.getParameter("mb_gender");
 				Integer mb_gender = null;
-				if (gender == null || gender.length() == 0) {
+				if (gender == null) {
 					errorMsgs.add("請選擇性別");
 				}else {
-					mb_gender = Integer.parseInt(req.getParameter("mb_gender"));
+					mb_gender = Integer.parseInt(gender);
 				}
 				
 				String mb_email = req.getParameter("mb_email");
@@ -290,10 +288,16 @@ public class MemberServlet extends HttpServlet {
 				
 				// 圖片
 				Part part = req.getPart("mb_pic");
-				InputStream in = part.getInputStream();
-				byte[] mb_pic = new byte[in.available()];
-				in.read(mb_pic);
-				in.close();
+				byte[] mb_pic = null;
+				String picBase64 = req.getParameter("picBase64");
+				if(part.getSize() != 0) {  // 有上傳圖片
+					InputStream in = part.getInputStream();
+					mb_pic = new byte[in.available()];
+					in.read(mb_pic);
+					in.close();
+				}else if(picBase64 != null && picBase64.trim().length() != 0) {  // 第一次有上傳圖片，第二次無，使用參數傳進來的picBase64
+					mb_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+				}  // 若都沒有，mb_pic 以 null 送出
 				
 				MemberVO memberVO = new MemberVO();
 				memberVO.setMb_id(mb_id);
@@ -305,13 +309,11 @@ public class MemberServlet extends HttpServlet {
 				memberVO.setMb_email(mb_email);
 				memberVO.setMb_pic(mb_pic);
 				
-				
-				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的memberVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/member/addMember.jsp");
+							.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);
 					return;
 				}
@@ -328,7 +330,7 @@ public class MemberServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
 			}
 		}

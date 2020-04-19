@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>addMember</title>
+<title>addStaff</title>
 <style>
 
 	#icon{

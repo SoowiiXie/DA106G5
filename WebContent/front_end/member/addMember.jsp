@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.mb.model.*" %>
+<%@ page import="java.util.Base64"%>
 
 <html>
 <head>
 <meta charset="BIG5">
 <title>addMember</title>
+<%
+	String imgStr = request.getContextPath() + "/NoData/null2.jpg";
+
+	MemberVO memberVO = (MemberVO)request.getAttribute("memberVO");
+	if(memberVO != null && memberVO.getMb_pic() != null){
+		imgStr = "data:image/png;base64," + Base64.getEncoder().encodeToString(memberVO.getMb_pic());
+	}
+%>
 <style>
 
 	#icon{
@@ -50,10 +60,13 @@
 		
 		<span id="star">*</span>
 		性別：
-		<input type="radio" id="gender1" name="mb_gender" value="1" ${(memberVO.mb_gender==1)?'checked':''}>
-    	<label for="gender1">男</label>
-    	<input type="radio" id="gender2" name="mb_gender" value="2" ${(memberVO.mb_gender==2)?'checked':''}>
-    	<label for="gender2">女</label><br>
+		<c:forEach var="genderMapEntry" items="${memberGender}">
+			<label>
+			<input type="radio" name="mb_gender" value="${genderMapEntry.key}" ${memberVO.mb_gender==genderMapEntry.key?"checked":""}>
+	    	${genderMapEntry.value}
+	    	</label>
+		</c:forEach>
+    	<br>
     	
 		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br>
 		
@@ -62,10 +75,13 @@
 		<span id="star">*</span>
 		e-mail：<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
 		
-		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>  <!-- 改版限定圖片種類 -->
-		<img id="mb_pic" src="<%= request.getContextPath()%>/NoData/null2.jpg">
-		<br>
-		
+		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)" accept="image/*"><br>  <!-- 改版限定圖片種類 -->
+		<img id="mb_pic" src="<%=imgStr%>" width="100px"><br>
+		<!-- 第一次有送出照片，錯誤回來後沒有再選擇照片時，用picBase64送出 -->
+		<%if(memberVO != null && memberVO.getMb_pic() != null){ %>
+			<input type="hidden" name="picBase64" value="<%=Base64.getEncoder().encodeToString(memberVO.getMb_pic())%>">
+		<%}; %>
+		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
         <input type="hidden" name="action" value="insert"><br>
         <input type="reset" value="清除">
         <input id="submit" type="submit" value="送出"><br>
