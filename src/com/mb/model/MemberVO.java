@@ -1,13 +1,19 @@
 package com.mb.model;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 public class MemberVO implements java.io.Serializable {
 	
-	private String mb_id, mb_pwd, mb_line, mb_name, mb_email;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String mb_id, mb_pwd, mb_name, mb_email;
 	private Integer mb_gender, mb_lv, mb_rpt_times, mb_status;
 	private Date mb_birthday;
 	private byte[] mb_pic;
+	private String mb_line_id, mb_line_pic, mb_line_display, mb_line_status;
 	
 	public MemberVO() {
 		super();
@@ -24,12 +30,6 @@ public class MemberVO implements java.io.Serializable {
 	}
 	public void setMb_pwd(String mb_pwd) {
 		this.mb_pwd = mb_pwd;
-	}
-	public String getMb_line() {
-		return mb_line;
-	}
-	public void setMb_line(String mb_line) {
-		this.mb_line = mb_line;
 	}
 	public String getMb_name() {
 		return mb_name;
@@ -79,5 +79,37 @@ public class MemberVO implements java.io.Serializable {
 	public void setMb_pic(byte[] mb_pic) {
 		this.mb_pic = mb_pic;
 	}
-	
+	public String getMb_line_id() {
+		return mb_line_id;
+	}
+	public void setMb_line_id(String mb_line_id) {
+		this.mb_line_id = mb_line_id;
+	}
+	public String getMb_line_pic() {
+		return mb_line_pic;
+	}
+	public void setMb_line_pic(String mb_line_pic) {
+		this.mb_line_pic = mb_line_pic;
+	}
+	public String getMb_line_display() {
+		return mb_line_display;
+	}
+	public void setMb_line_display(String mb_line_display) {
+		this.mb_line_display = mb_line_display;
+	}
+	public String getMb_line_status() {
+		return mb_line_status;
+	}
+	public void setMb_line_status(String mb_line_status) {
+		this.mb_line_status = mb_line_status;
+	}
+	@Override
+	public String toString() {
+		return "MemberVO [mb_id=" + mb_id + ", mb_pwd=" + mb_pwd + ", mb_name=" + mb_name + ", mb_email=" + mb_email
+				+ ", mb_gender=" + mb_gender + ", mb_lv=" + mb_lv + ", mb_rpt_times=" + mb_rpt_times + ", mb_status="
+				+ mb_status + ", mb_birthday=" + mb_birthday + ", mb_pic=" + Arrays.toString(mb_pic) + ", mb_line_id="
+				+ mb_line_id + ", mb_line_pic=" + mb_line_pic + ", mb_line_display=" + mb_line_display
+				+ ", mb_line_status=" + mb_line_status + "]";
+	}
+		
 }

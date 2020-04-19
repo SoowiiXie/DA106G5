@@ -1,12 +1,9 @@
 package com.mb.controller;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.Base64;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,20 +16,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.location.model.LocationService;
-import com.location.model.LocationVO;
-import com.mb.model.MemberDAO;
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
-import com.staff.model.StaffService;
-import com.staff.model.StaffVO;
 
 @MultipartConfig
 public class MemberServlet extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		doPost(req, res);
 	}
@@ -169,11 +165,6 @@ public class MemberServlet extends HttpServlet {
 				
 				Integer mb_gender = Integer.parseInt(req.getParameter("mb_gender"));
 				
-				String mb_line = req.getParameter("mb_line");
-				if( mb_line != null && mb_line.length() != 0)
-					mb_line.trim();
-				
-				
 				java.sql.Date mb_birthday = null;
 				String date = req.getParameter("mb_birthday");
 				if( date != null && date.length() != 0)
@@ -205,7 +196,6 @@ public class MemberServlet extends HttpServlet {
 				memberVO.setMb_pwd(mb_pwd);
 				memberVO.setMb_name(mb_name);
 				memberVO.setMb_gender(mb_gender);
-				memberVO.setMb_line(mb_line);
 				memberVO.setMb_birthday(mb_birthday);
 				memberVO.setMb_email(mb_email);
 				memberVO.setMb_pic(mb_pic);
@@ -225,7 +215,7 @@ public class MemberServlet extends HttpServlet {
 
 				/*************************** 2.開始查詢資料 *****************************************/
 				MemberService memberSvc = new MemberService();
-				memberVO = memberSvc.updateMember(mb_id, mb_pwd, mb_name, mb_gender, mb_line, mb_birthday, 
+				memberVO = memberSvc.updateMember(mb_id, mb_pwd, mb_name, mb_gender, mb_birthday, 
 						mb_email, mb_pic, mb_lv, mb_rpt_times, mb_status);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
@@ -277,11 +267,6 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("e-mail不得為空白");
 				}
 				
-				String mb_line = req.getParameter("mb_line");
-				if( mb_line != null && mb_line.length() != 0)
-					mb_line.trim();
-				
-				
 				java.sql.Date mb_birthday = null;
 				String date = req.getParameter("mb_birthday");
 				if( date != null && date.length() != 0)
@@ -306,7 +291,6 @@ public class MemberServlet extends HttpServlet {
 				memberVO.setMb_pwd(mb_pwd);
 				memberVO.setMb_name(mb_name);
 				memberVO.setMb_gender(mb_gender);
-				memberVO.setMb_line(mb_line);
 				memberVO.setMb_birthday(mb_birthday);
 				memberVO.setMb_email(mb_email);
 				memberVO.setMb_pic(mb_pic);
@@ -322,7 +306,7 @@ public class MemberServlet extends HttpServlet {
 
 				/*************************** 2.開始查詢資料 *****************************************/
 				MemberService memberSvc = new MemberService();
-				memberVO = memberSvc.addMember(mb_id, mb_pwd, mb_name, mb_gender, mb_line, mb_birthday, mb_email, mb_pic);
+				memberVO = memberSvc.addMember(mb_id, mb_pwd, mb_name, mb_gender, mb_birthday, mb_email, mb_pic);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				String url = "/front_end/member/login.jsp";  // 

@@ -19,6 +19,10 @@ import javax.sql.DataSource;
 
 public class MemberPicReader extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Connection con;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
