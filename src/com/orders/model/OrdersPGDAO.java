@@ -4,18 +4,16 @@ import java.util.*;
 
 import com.od_detail.model.Od_detailDAO;
 import com.od_detail.model.Od_detailVO;
+import static com.common.Common.*;
 
 import java.sql.*;
 
-public class OrdersDAO implements OrdersDAO_interface {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:49161:xe";
-	String userid = "DA106G5";
-	String passwd = "DA106G5";
-
-	private static final String INSERT_STMT = "Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT ,cp_no) values(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(orders_seq.NEXTVAL), 6, '0'),?,?,?,?,?)";
-	private static final String GET_ALL_STMT = "SELECT  OD_NO, MB_ID, OD_TIME, OD_STATUS, OD_TOTALPRICE, CP_NO, OD_DISCOUNT, OD_ADD  FROM Orders order by OD_TIME DESC ";
-	private static final String GET_ONE_STMT = "SELECT * FROM Orders where OD_NO = ?";
+public class OrdersPGDAO implements OrdersDAO_interface {
+	//INSERT INTO TABLE_NAME (column1, column2, column3,...columnN) VALUES (value1, value2, value3,...valueN);
+	private static final String INSERT_STMT = "INSERT INTO public.orders(\"OD_NO\", \"MB_ID\", \"OD_STATUS\") values(?,?,?)";
+	private static final String GET_ALL_STMT = "SELECT  id, \"OD_NO\", \"MB_ID\", \"OD_STATUS\" FROM public.orders";
+	//"SELECT id, \"GRP_NO\", \"MB_ID\", \"GRP_PERSONCOUNT\", \"GRP_STATUS\", \"GRP_FOLLOW\" FROM public.grouper";
+	private static final String GET_ONE_STMT = "SELECT * FROM public.orders where \"OD_NO\" = ?";
 	private static final String USE_MB_ID_SEARCH_ORDERS = "SELECT * FROM Orders where mb_id = ?";
 	private static final String DELETE = "DELETE FROM ORDERS where od_no = ?";
 	private static final String UPDATE = "UPDATE orders set MB_ID = ?, OD_TOTALPRICE = ?, OD_ADD = ? where OD_NO = ?";
@@ -28,14 +26,13 @@ public class OrdersDAO implements OrdersDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			String cols[] = { "OD_NO" };
 			pstmt = con.prepareStatement(INSERT_STMT, cols);
 
-			pstmt.setString(1, ordersVO.getMb_id());
-			pstmt.setInt(2, ordersVO.getOd_totalPrice());
-			pstmt.setString(3, ordersVO.getOd_add());
+			pstmt.setString(1, ordersVO.getOd_no());
+			pstmt.setString(2, ordersVO.getMb_id());
+			pstmt.setInt(3, ordersVO.getOd_status());
 
 			pstmt.executeUpdate();
 
@@ -56,9 +53,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 			rs.close();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -89,8 +83,7 @@ public class OrdersDAO implements OrdersDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, ordersVO.getMb_id());
@@ -105,9 +98,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 			System.out.println("輸入該訂單編號：" + ordersVO.getMb_id());
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -138,8 +128,7 @@ public class OrdersDAO implements OrdersDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, od_no);
@@ -149,9 +138,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 			System.out.println("輸入該訂單編號：" + od_no);
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -184,8 +170,7 @@ public class OrdersDAO implements OrdersDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, od_no);
@@ -206,9 +191,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 			}
 			System.out.println("輸入查詢的號碼為：" + od_no);
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -249,8 +231,7 @@ public class OrdersDAO implements OrdersDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -279,9 +260,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -318,8 +296,7 @@ public class OrdersDAO implements OrdersDAO_interface {
 		String test_no = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			con.setAutoCommit(false);
 
 			System.out.println("經過DAO");
@@ -358,9 +335,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 			System.out.println("list.size()-B=" + list.size());
 			System.out.println("新增訂單" + next_od_no + "時,共有訂單明細" + list.size() + "筆同時被新增");
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException se) {
 			if (con != null) {
 				try {
@@ -401,8 +375,7 @@ public class OrdersDAO implements OrdersDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(USE_MB_ID_SEARCH_ORDERS);
 			pstmt.setString(1, mb_id);
 			rs = pstmt.executeQuery();
@@ -419,9 +392,6 @@ public class OrdersDAO implements OrdersDAO_interface {
 				list.add(ordersVO);
 			}
 
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -454,16 +424,21 @@ public class OrdersDAO implements OrdersDAO_interface {
 
 	public static void main(String[] args) {
 
-		OrdersDAO dao = new OrdersDAO();
+		OrdersPGDAO daoPG = new OrdersPGDAO();
 
 		// 新增，新增商品訂單
 //		OrdersVO ordersVO1 = new OrdersVO();
 //		ordersVO1.setMb_id("soowii123");
-//		ordersVO1.setOd_totalPrice(20000);
-//		ordersVO1.setOd_add("中壢喔");		
-//		dao.addOrders(ordersVO1);
-//		System.out.println("訂單新增資料");
-//				
+//		ordersVO1.setOd_no("20200324-000001");
+//		ordersVO1.setOd_status(1);	
+//		daoPG.addOrders(ordersVO1);
+//		System.out.println("訂單新增資料: "+ordersVO1);
+//		ordersVO1.setMb_id("xuan123");
+//		ordersVO1.setOd_no("20200324-000002");
+//		ordersVO1.setOd_status(5);	
+//		daoPG.addOrders(ordersVO1);
+//		System.out.println("訂單新增資料: "+ordersVO1);
+				
 
 		// 修改，用訂單編號，修改該訂單資料
 //		OrdersVO ordersVO2 = new OrdersVO();

@@ -1,8 +1,6 @@
 package com.grouper.model;
 
 import java.util.*;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.*;
 import static com.common.Common.*;
 
@@ -27,8 +25,7 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(DRIVER_CLASS_PG);
-			con = DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);;
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 //			pstmt.setString(1, grouperVO.getGrp_no());
@@ -49,10 +46,6 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -83,8 +76,7 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(DRIVER_CLASS_PG);
-			con = DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);;
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(UPDATE);
 
 			
@@ -106,10 +98,6 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -140,8 +128,7 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(DRIVER_CLASS_PG);
-			con = DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);;
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, grp_no);
@@ -149,10 +136,6 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -185,8 +168,7 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			Class.forName(DRIVER_CLASS_PG);
-			con = DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);;
+			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, grp_no);
@@ -213,10 +195,6 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -257,15 +235,14 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			URI dbUri = new URI("postgres://tlnlkxrtnbepdl:2a372ee7bedb7e93309cb56336a42fe8824885adb6a6509d27d86cdba914c5d3@ec2-52-86-73-86.compute-1.amazonaws.com:5432/daqfqhdshludoq");
-
-		    String username = dbUri.getUserInfo().split(":")[0];
-		    System.out.println(username);
-		    String password = dbUri.getUserInfo().split(":")[1];
-		    System.out.println(password);
-		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-		    System.out.println(dbUrl);
-		    con= DriverManager.getConnection(dbUrl, username, password);
+//			URI dbUri = new URI(URI_PG);
+//		    String username = dbUri.getUserInfo().split(":")[0];
+//		    System.out.println(username);
+//		    String password = dbUri.getUserInfo().split(":")[1];
+//		    System.out.println(password);
+//		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+//		    System.out.println(dbUrl);
+		    con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -292,9 +269,6 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
