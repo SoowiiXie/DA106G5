@@ -12,7 +12,7 @@
 
 	List<ProductVO> list = productService.getAll();
 
-	 pageContext.setAttribute("list", list);  
+	 pageContext.setAttribute("list", list); 
 %>
 
 <jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />

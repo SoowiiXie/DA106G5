@@ -374,23 +374,78 @@
 <!-- 昱盛責任區開始 -->
 
     <!-- 商城開始 -->
-        <servlet>
-            <servlet-name>ProductServlet</servlet-name>
-            <servlet-class>com.product.controller.ProductServlet</servlet-class>
-        </servlet>
-            <servlet-mapping>
-            <servlet-name>ProductServlet</servlet-name>
-        <url-pattern>/ProductServlet</url-pattern>
-        </servlet-mapping>
-        
-         <servlet>
-            <servlet-name>ShoppingServlet</servlet-name>
-            <servlet-class>com.product.controller.ShoppingServlet</servlet-class>
-        </servlet>
-            <servlet-mapping>
-            <servlet-name>ShoppingServlet</servlet-name>
-        <url-pattern>/product/ShoppingServlet</url-pattern>
-        </servlet-mapping> 
+ 	<servlet>
+		<servlet-name>ProductServlet</servlet-name>
+		<servlet-class>com.product.controller.ProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductServlet</servlet-name>
+		<url-pattern>/ProductServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ShoppingServlet</servlet-name>
+		<servlet-class>com.product.controller.ShoppingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShoppingServlet</servlet-name>
+		<url-pattern>/ShoppingServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CpGetServlet</servlet-name>
+		<servlet-class>com.product.controller.CpGetServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CpGetServlet</servlet-name>
+		<url-pattern>/CpGetServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CheckOutServlet</servlet-name>
+		<servlet-class>com.product.controller.CheckOutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckOutServlet</servlet-name>
+		<url-pattern>/CheckOutServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ProductPicReader</servlet-name>
+		<servlet-class>com.product.model.ProductPicReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductPicReader</servlet-name>
+		<url-pattern>/ProductPicReader</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>OrdersServlet</servlet-name>
+		<servlet-class>com.product.controller.OrdersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrdersServlet</servlet-name>
+		<url-pattern>/OrdersServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FrontEndProductServlet</servlet-name>
+		<servlet-class>com.product.controller.FrontEndProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FrontEndProductServlet</servlet-name>
+		<url-pattern>/FrontEndProductServlet</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+		<servlet-name>Pd_followServlet</servlet-name>
+		<servlet-class>com.product.controller.Pd_followServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Pd_followServlet</servlet-name>
+		<url-pattern>/Pd_followServlet</url-pattern>
+	</servlet-mapping>
+    
        
      <!-- 商城結束 -->
 <!-- 昱盛責任區結束 -->

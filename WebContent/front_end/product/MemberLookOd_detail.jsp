@@ -8,6 +8,7 @@
 
 
 <% request.getAttribute("ordersVO"); %>
+<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
 </head>
 <body bgcolor="#FFFFFF">
 	<img src="images/tomcat.gif">
@@ -18,11 +19,11 @@
 	訂單編號${ordersVO.od_no}
 	<table border="1" width="720">
 		<tr bgcolor="#999999">
+		    <th width="200">產品圖片</th> 
+		    <th width="100">產品名稱</th>
 			<th width="200">產品分類</th>
-			<th width="100">產品名稱</th>
 			<th width="100">單價</th>
 			<th width="100">產品數量</th>
-			<th width="100">數量</th>
 			<th width="120"></th>
 		</tr>
 
@@ -41,23 +42,28 @@
 				int pd_price = order.getPd_price();
 				String pd_typeNo = order.getPd_typeNo();
 				int pd_quantity = order.getPd_quantity();
+				pageContext.setAttribute("pd_typeNo", pd_typeNo);
 		%>
 
-
-
-
-
 		<form ac>
+		
 			<tr>
+				
 				<td width="100"><div align="center">
 						<a
 							href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=<%=order.getPd_no()%>'><img
 							src="<%=request.getContextPath()%>/ProductPicReader?pd_no=<%=order.getPd_no()%>"
-							width="100px"> <b><%=pd_typeNo%></b>
+							width="100px"></a> ${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}
 					</div></td>
+					
 				<td width="100"><div align="center">
 						<b><%=pd_name%></b>
 					</div></td>
+					
+					<td width="100"><div align="center">
+						<b>${pd_typeService.searchType(pd_typeNo).pd_typeName}</b>
+					</div></td>
+					
 				<td width="200"><div align="center">
 						<b><%=pd_no%></b>
 					</div></td>
@@ -68,9 +74,6 @@
 						<b><%=pd_quantity%></b>
 					</div></td>
 			</tr>
-
-
-
 
 			<%
 				}
@@ -86,6 +89,19 @@
 				<td><font color="red"><b>${ordersVO.od_totalPrice}</b></font></td>
 				<td></td>
 			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div align="center">
+						<font color="red"><b>優惠後的金額：</b></font>
+					</div></td>
+				<td></td>
+				<td><font color="red"><b>${ordersVO.od_discount}</b></font></td>
+				<td></td>
+			</tr>
+			<td>付費方式:</td><td>${payMethod}</td>
+			<td> ${ordersVO.od_add}</td>
 	</table>
 	</form ac>
 

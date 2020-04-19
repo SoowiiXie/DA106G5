@@ -6,6 +6,7 @@
 <%@ page import="com.product.model.*"%>
 <%@ page import="com.pd_type.model.*"%>
 <%
+        String whichPage  = (String)request.getAttribute("whichPage");
 	ProductVO productVO = (ProductVO) request.getAttribute("productVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 	productVO.getPd_status();
 %>
@@ -84,12 +85,15 @@
 
 			<tr>
 				<td>商品圖片</td>
-				<td><input type="file" name="pd_pic" id="upfile1"
-					value="${productVO.pd_pic}"></td>
+				<td><input type="file" name="pd_pic" onchange="setImg(this)">
+				<img width="200px" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}">
+			</td>
 			<tr>
 		</table>
 		<input type="hidden" name="action" value="updateProduct"> <input
-			type="hidden" name="pd_no" value="${productVO.pd_no}"> <input
+			type="hidden" name="pd_no" value="${productVO.pd_no}"> 
+			<input type = "hidden" name="whichPage" value = "<%=whichPage%>">
+			<input
 			type="submit" name=送出修改>
 	</form>
 
@@ -99,6 +103,20 @@
 		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
 
 
+	<script>
+	
+	// 預覽圖片
+	function setImg(input){
+  		if(input.files && input.files[0]){
+  			var reader = new FileReader();
+  			reader.onload = function (e) {
+    			document.getElementById("pd_pic").setAttribute("src", e.target.result);
+    		}
+    	reader.readAsDataURL(input.files[0]);
+  		}
+	}
+	
 
+	</script>
 </body>
 </html>

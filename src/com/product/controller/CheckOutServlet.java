@@ -36,12 +36,12 @@ public class CheckOutServlet extends HttpServlet {
 
 
 		if (action.equals("getOd_detail_Information")) {
-             
+             System.out.println("ddddd");
 			String mb_id = (String) session.getAttribute("mb_id");
-			Integer amount = new Integer(req.getParameter("amount"));
+			Integer totalPrice = new Integer(req.getParameter("totalPrice"));
 			Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");
 			String od_add = req.getParameter("od_add");
-			Integer od_totalPrice = amount;
+			Integer od_totalPrice = totalPrice;
 			OrdersVO ordersVO = new OrdersVO();
 			ordersVO.setMb_id(mb_id);
 			ordersVO.setOd_totalPrice(od_totalPrice);

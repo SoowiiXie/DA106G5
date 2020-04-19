@@ -113,13 +113,12 @@ th, td {
 			</tr>
 			<tr>
 				<td>商品圖片</td>
-				<td><input type="file" name="pd_pic" id="upfile1"></td>
+				<td><input type="file" name="pd_pic" onchange="setImg(this)">
+						<img width = "200px" id="pd_pic" src="<%= request.getContextPath()%>/NoData/null2.jpg">
+						</td>
 			</tr>
 
-			<tr>
-				<td>預覽:</td>
-				<td><img src="/DA106_G5/NoData/none2.jpg" width="100px"></td>
-			</tr>
+			
 
 
 		</table>
@@ -129,15 +128,15 @@ th, td {
 	</form>
 
 	<script>
-		var x = new FileReader;
-
-		document.forms[0].elements[5].onchange = function() {
-			x.readAsDataURL(this.files[0]);
-		}
-		x.onloadend = function() {
-			document.images[1].src = this.result;
-			console.log(x.herf);
-		}
+	function setImg(input){
+  		if(input.files && input.files[0]){
+  			var reader = new FileReader();
+  			reader.onload = function (e) {
+    			document.getElementById("pd_pic").setAttribute("src", e.target.result);
+    		}
+    	reader.readAsDataURL(input.files[0]);
+  		}
+	}
 	</script>
 
 
