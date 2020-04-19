@@ -10,8 +10,8 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 	String userid = "DA106G5";
 	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "INSERT INTO od_detail (od_no, pd_no, od_amount, od_price) VALUES (?,?,?,?)";
-	private static final String GET_ONE_OEDER_DETAIL_ALL_STMT = // 內容有錯
+	private static final String INSERT_STMT = "INSERT INTO od_detail (od_no, pd_no, od_amount, od_price, pd_size) VALUES (?,?,?,?,?)";
+	private static final String GET_ONE_OEDER_DETAIL_ALL_STMT = 
 			"SELECT * FROM od_detail where od_no = ?";
 	private static final String GET_ALL_STMT_FOR_OD_DETAIL = "SELECT * FROM od_detail ";
 	private static final String DELETE_OD_DETAIL = "DELETE FROM od_detail where od_no = ?";
@@ -32,6 +32,7 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 			pstmt.setString(2, od_detailVO.getPd_no());
 			pstmt.setInt(3, od_detailVO.getOd_amount());
 			pstmt.setInt(4, od_detailVO.getOd_price());
+			pstmt.setString(5, od_detailVO.getPd_size());
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -128,6 +129,7 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 				od_detailVO.setPd_no(rs.getString("pd_no"));
 				od_detailVO.setOd_amount(rs.getInt("od_amount"));
 				od_detailVO.setOd_price(rs.getInt("od_price"));
+				od_detailVO.setPd_size(rs.getString("pd_size"));
 				list.add(od_detailVO);
 
 			}
@@ -234,7 +236,7 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 			pstmt.setString(2, od_detailVO.getPd_no());
 			pstmt.setInt(3, od_detailVO.getOd_amount());
 			pstmt.setInt(4, od_detailVO.getOd_price());
-			
+			pstmt.setString(5, od_detailVO.getPd_size());
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			if (con != null) {
@@ -269,10 +271,11 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 
 		// 新增，新增一個訂單編號的訂單明細。
 //		Od_detailVO od_detailVO1 = new Od_detailVO();
-//		od_detailVO1.setOd_no("20200324-000005");
-//		od_detailVO1.setPd_no("PDN00004");
-//		od_detailVO1.setOd_amount(20);
-//		od_detailVO1.setOd_price(8888888);
+//		od_detailVO1.setOd_no("20200418-000019");
+//		od_detailVO1.setPd_no("PDN00001");
+//		od_detailVO1.setOd_amount(2);
+//		od_detailVO1.setOd_price(650);
+//		od_detailVO1.setPd_size("XXL");
 //		dao.addOneOdDetail(od_detailVO1);
 //		System.out.println("訂單編號：" + od_detailVO1.getOd_no());
 //		System.out.println("新增：" + od_detailVO1.getPd_no() + "商品");
@@ -285,15 +288,17 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 //			 System.out.println("已刪除資料，共"+updateCount_delete+"筆");
 
 		// 查詢，單一編號的訂單明細
-		List<Od_detailVO> list = dao.search_one_oeder_detail("20200412-000006");
-		for(Od_detailVO aOd_detailVO : list) {
-			System.out.print("訂單編號："+aOd_detailVO.getOd_no()+" ");
-			System.out.print("產品編號"+aOd_detailVO.getPd_no()+" ");
-			System.out.print("數量："+aOd_detailVO.getOd_amount()+" ");
-			System.out.print("價格"+aOd_detailVO.getOd_price());
-			System.out.println("");
-				
-		}
+//		List<Od_detailVO> list = dao.search_one_oeder_detail("20200418-000015");
+//		for(Od_detailVO aOd_detailVO : list) {
+//			System.out.print("訂單編號："+aOd_detailVO.getOd_no()+" ");
+//			System.out.print("產品編號"+aOd_detailVO.getPd_no()+" ");
+//			System.out.print("尺寸："+aOd_detailVO.getPd_size()+" ");
+//			System.out.print("數量："+aOd_detailVO.getOd_amount()+" ");
+//			System.out.print("價格"+aOd_detailVO.getOd_price());
+//			
+//			System.out.println("");
+//				
+//		}
 
 		// 查詢，全部訂單編號的訂單明細
 //		List<Od_detailVO> lists = dao.getAll();                       

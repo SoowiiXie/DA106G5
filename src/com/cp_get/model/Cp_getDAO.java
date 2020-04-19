@@ -233,16 +233,16 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 
 		// 新增持有優惠卷，某會員得到該優惠卷。
 //		Cp_getVO cp_getVO1 = new Cp_getVO();
-//		cp_getVO1.setMb_id("weijhih123");
-//		cp_getVO1.setCp_no("CPN00003");
+//		cp_getVO1.setMb_id("michael123");
+//		cp_getVO1.setCp_no("CPN00005");
 //		int updateCount_insert = dao.aMemberGetCoupon(cp_getVO1);
 //		System.out.println("會員" + cp_getVO1.getMb_id() + "新增" + updateCount_insert + "種優惠券");
 
 //		// 會員使用優惠卷，更改優惠卷狀態
 //		Cp_getVO cp_getVO2 = new Cp_getVO();
-//		cp_getVO2.setMb_id("weijhih123");
-//		cp_getVO2.setCp_no("CPN00002");
-//		cp_getVO2.setCp_status(2);
+//		cp_getVO2.setMb_id("michael123");
+//		cp_getVO2.setCp_no("CPN00006");
+//		cp_getVO2.setCp_status(1);
 //		int updateCount = dao.aMemberUseCoupon(cp_getVO2);
 //
 //		if (updateCount == 1 && cp_getVO2.getCp_status() == 2) {
@@ -250,23 +250,23 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 //		}
 
 		// 查詢開會員某狀態的優惠券，例如列出"可使用狀態"的優惠卷
-		Cp_getVO cp_getVO = new Cp_getVO();
-		cp_getVO.setMb_id("weijhih123");
-		cp_getVO.setCp_status(1);
-		List<Cp_getVO> list = dao.listAmemberCpGetStatus(cp_getVO);
-		System.out.println("會員：" + cp_getVO.getMb_id());
-
-		if (cp_getVO.getCp_status() == 1) {
-			for (Cp_getVO aCp_getVO : list) {
-				System.out.println("可使用的優惠券編號:" + aCp_getVO.getCp_no());
-
-			}
-		} else if (cp_getVO.getCp_status() == 2) {
-			for (Cp_getVO aCp_getVO : list) {
-				System.out.println("已使用的優惠券編號:" + aCp_getVO.getCp_no());
-
-			}
-		}
+//		Cp_getVO cp_getVO = new Cp_getVO();
+//		cp_getVO.setMb_id("weijhih123");
+//		cp_getVO.setCp_status(1);
+//		List<Cp_getVO> list = dao.listAmemberCpGetStatus(cp_getVO);
+//		System.out.println("會員：" + cp_getVO.getMb_id());
+//
+//		if (cp_getVO.getCp_status() == 1) {
+//			for (Cp_getVO aCp_getVO : list) {
+//				System.out.println("可使用的優惠券編號:" + aCp_getVO.getCp_no());
+//
+//			}
+//		} else if (cp_getVO.getCp_status() == 2) {
+//			for (Cp_getVO aCp_getVO : list) {
+//				System.out.println("已使用的優惠券編號:" + aCp_getVO.getCp_no());
+//
+//			}
+//		}
 
 		// 查詢該會員所有的優惠卷
 //		List<Cp_getVO> list = dao.searchMemberGetCoupon("weijhih123");

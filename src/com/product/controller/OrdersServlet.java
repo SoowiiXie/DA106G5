@@ -1,6 +1,7 @@
 package com.product.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.orders.model.OrdersService;
+import com.orders.model.OrdersVO;
 
 public class OrdersServlet extends HttpServlet {
 
@@ -34,6 +37,31 @@ public class OrdersServlet extends HttpServlet {
 			successView.forward(req, res);
 			return;
 
+		}
+		
+		if(action.equals("getAllList")) {
+			OrdersService ordersService = new OrdersService();
+			List<OrdersVO> list = ordersService.getAllOrders();
+            req.getSession().setAttribute("list", list);			
+
+            String url = "/back_end/product/ListAllOrders.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			return;
+		}
+
+		if (action.equals("searchMemberOrders")) {
+
+			String mb_id = req.getParameter("mb_id");
+
+			OrdersService ordersService = new OrdersService();
+			List<OrdersVO> list = ordersService.searchMemberOrders(mb_id);
+			
+			req.getSession().setAttribute("list", list);
+			String url = "/back_end/product/ListAllOrders.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			return;
 		}
 
 	}

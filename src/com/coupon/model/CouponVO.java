@@ -10,6 +10,15 @@ public class CouponVO implements java.io.Serializable {
 	private Integer cp_price;
 	private byte[] cp_pic;
 
+	public CouponVO() {
+
+		cp_no = "";
+		cp_name = "";
+		cp_price = 0;
+		cp_pic = null;
+
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	public String getCp_no() {

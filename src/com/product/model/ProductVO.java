@@ -9,27 +9,41 @@ public class ProductVO implements java.io.Serializable {
 	private String pd_no;
 	private String pd_name;
 	private Integer pd_price;
-	private byte[] pd_pic; // 尚未上傳圖片
+	private byte[] pd_pic; 
 	private String pd_detail;
 	private Integer pd_status;
 	private String pd_typeNo;
 	private String pd_statusName;
-	private Integer pd_quantity;
+	private Integer pd_quantity; //方便儲存數量用，表格沒有
+	private String pd_typeSize; //方便訂單明細數量儲存用，表格沒有
 
 	public ProductVO() {
 		pd_no = "";
 		pd_name = "";
 		pd_price = 0;
-		pd_pic = null; // 尚未上傳圖片
+		pd_pic = null; 
 		pd_detail = "";
 		pd_status = 0;
 		pd_typeNo = "";
 		pd_statusName = "";
 		pd_quantity = 0;
+		pd_typeSize = "";
 
 	}
 
 	
+
+	public String getPd_typeSize() {
+		return pd_typeSize;
+	}
+
+
+
+	public void setPd_typeSize(String pd_typeSize) {
+		this.pd_typeSize = pd_typeSize;
+	}
+
+
 
 	public Integer getPd_quantity() {
 		return pd_quantity;

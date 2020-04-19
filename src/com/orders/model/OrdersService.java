@@ -30,9 +30,12 @@ public class OrdersService {
 	}
 
 	public String addOrdersWithPd_detail(OrdersVO ordersVO, List<Od_detailVO> list) {
-		System.out.println("經過service");
 		return dao.addOrdersWithPd_detail(ordersVO, list);
 
 	}
+	
+	 public List<OrdersVO> searchMemberOrders(String mb_id){
+		     return dao.searchMemberOrders(mb_id);
+	 }
 
 }
