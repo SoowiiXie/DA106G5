@@ -3,6 +3,7 @@ package com.mb.controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.Base64;
 import java.util.Collection;
@@ -18,11 +19,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.location.model.LocationService;
 import com.location.model.LocationVO;
 import com.mb.model.MemberDAO;
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
+import com.staff.model.StaffService;
+import com.staff.model.StaffVO;
 
 @MultipartConfig
 public class MemberServlet extends HttpServlet {
@@ -35,8 +41,6 @@ public class MemberServlet extends HttpServlet {
 
 		// ***註冊、修改的資料判斷
 		// ***登入、註冊時，若已登入過會直接導向XXX
-		// ***AJAX改到Controller
-		// *** 性別選擇改用Context的MAP
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -332,6 +336,45 @@ public class MemberServlet extends HttpServlet {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
+			}
+		}
+		
+		if ("check_id".equals(action)) { // Ajax 檢查ID  OK
+			
+			res.setContentType("text/plain");
+			res.setCharacterEncoding("UTF-8");
+			PrintWriter out = res.getWriter();
+			
+			JSONObject jsonObj = new JSONObject();
+			String result = null;
+			try {
+			String mb_id = req.getParameter("mb_id");
+			if (mb_id == null || (mb_id.trim()).length() == 0) {
+				result = "帳號不得為空白";
+			}
+			
+			MemberService memberSvc = new MemberService();
+			MemberVO memberVO = memberSvc.getOneMember(mb_id);
+			if(memberVO != null) {
+				result = "此帳號已被使用";
+			}
+			
+			if(result != null) {  // 錯誤回傳
+				jsonObj.put("result", result);
+				out.write(jsonObj.toString());
+				out.flush();
+				out.close();
+				return;
+			}
+			
+			result = "此帳號可以使用";  // 正確
+			jsonObj.put("result", result);
+			out.write(jsonObj.toString());
+			out.flush();
+			out.close();
+			
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
 		}
 		

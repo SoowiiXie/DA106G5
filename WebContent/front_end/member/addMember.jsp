@@ -32,6 +32,11 @@
 	}
 	
 </style>
+<script
+  src="https://code.jquery.com/jquery-3.5.0.js"
+  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+  crossorigin="anonymous">
+</script>
 </head>
 <body>
 
@@ -48,7 +53,7 @@
 		<span id="star">*</span>為必填
 		<div>
 			<span id="star">*</span>
-			帳號：<input id="mb_id" type="text" name="mb_id" onblur="checkId()" value="${memberVO.mb_id}">
+			帳號：<input id="mb_id" type="text" name="mb_id" value="${memberVO.mb_id}">
 			<img id="icon"/><span id="check"></span>
 		</div>
 		
@@ -96,51 +101,36 @@
 <script>  
 
 // AJAX 測試會員帳號
-	var xhr = null;
-	
-	function checkId(){ 
-		var mb_id = document.getElementById("mb_id").value;
-		if(mb_id.trim().length == 0){
-			icon.src="images/no.png";
-			icon.width="25";
-			icon.height="32";
-			check.innerHTML = "帳號不得空白";
-			check.style.color = "red";
-		}
-		
-	  	var xhr = new XMLHttpRequest();
-	  	//設定好回呼函數   
-	  	xhr.onload = function (){
-	   	   if( xhr.status == 200){
-	    	  var check = document.getElementById("check");
-	    	  var icon = document.getElementById("icon"); 
-	    	  var submit = document.getElementById("submit"); 
-	    	  if(xhr.response == 1){
-	    		  icon.src="images/ok.png";
-	    		  icon.width="25";
-	    		  icon.height="32";
-	    		  check.innerHTML = "此帳號可以使用";
-	    		  check.style.color = "black";
-	    		  submit.removeAttribute("disabled");;
-	    	  }else{
-	    		  icon.src="images/no.png";
-	    		  icon.width="25";
-	    		  icon.height="32";
-	    		  check.innerHTML = "此帳號已被使用";
-	    		  check.style.color = "red";
-	    		  submit.disabled="disabled";
-	    	  }
-	      	}else{
-	        	alert( xhr.status );
-	      	}//xhr.status == 200
-	 	 };//onload 
-	  
-	  	//建立好Get連接
-	  	var url= "checkId.jsp?mb_id=" + document.getElementById("mb_id").value;
-	  	xhr.open("Get",url,true); 
-	  	//送出請求 
-	  	xhr.send( null );
-	}
+
+	$(document).ready(function(){
+		$("#mb_id").on("blur",function(){
+			$.ajax({
+				type:"GET",
+				url: "member.do",
+				data:{
+					"action":"check_id",
+					"mb_id":$(this).val()
+				},
+				dataType: "json",
+				success: function(data){
+					$("#check").html(data.result);
+					$("#icon").css("height","32");
+					$("#icon").css("width","25");
+					
+					if(data.result != "此帳號可以使用"){
+						$("#check").css("color","red");
+						$("#icon").attr("src","images/no.png");
+						$("#submit").attr("disabled","disabled");
+					}else{
+						$("#check").css("color","black");
+						$("#icon").attr("src","images/ok.png");
+						$("#submit").removeAttr("disabled");
+					}
+				},
+				error: function(){alert("AJAX-class發生錯誤囉!")}
+			});
+		});
+	});
 
 	// 預覽圖片
 	function setImg(input){
