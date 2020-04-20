@@ -17,7 +17,7 @@
 	<p>
 	
 	訂單編號${ordersVO.od_no}
-	<table style="border:1px; width:720px">
+	<table border="1" width="720">
 		<tr bgcolor="#999999">
 		    <th width="200">產品圖片</th> 
 		    <th width="100">產品名稱</th>
@@ -87,6 +87,17 @@
 					</div></td>
 				<td></td>
 				<td><font color="red"><b>${ordersVO.od_totalPrice}</b></font></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div align="center">
+						<font color="red"><b>優惠後的金額：</b></font>
+					</div></td>
+				<td></td>
+				<td><font color="red"><b>${ordersVO.od_discount}</b></font></td>
 				<td></td>
 			</tr>
 			<td>付費方式:</td><td>${payMethod}</td>

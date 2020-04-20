@@ -10,6 +10,20 @@
 </head>
 <jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
 <body bgcolor="#FFFFFF">
+
+會員：${mb_id}
+
+
+	<%-- 錯誤表列 --%>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
+	
 	<img src="images/tomcat.gif">
 	<font size="+3">商城 - 填寫收費與取貨資訊 </font>
 	<hr>
@@ -28,9 +42,9 @@
 		<%
 
 			Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");
-			String amount = (String) request.getAttribute("amount");
+		Integer totalPrice =  (Integer)session.getAttribute("totalPrice");
 			List<Cp_getVO> couponList = (List<Cp_getVO> )request.getAttribute("couponList");
-			pageContext.setAttribute("couponList", couponList);
+			request.setAttribute("couponList", couponList);
 		%>
 		<%
 			for (int i = 0; i < buylist.size(); i++) {
@@ -76,6 +90,7 @@
 			<%
 				}
 			%>
+			
 			<tr>
 				<td></td>
 				<td></td>
@@ -84,9 +99,22 @@
 						<font color="red"><b>總金額：</b></font>
 					</div></td>
 				<td></td>
-				<td><font color="red"><b>$<%=amount%></b></font></td>
+				<td><font color="red"><b>$<%=totalPrice%></b></font></td>
 				<td></td>
 			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div align="center">
+						<font color="red"><b>優惠後金額：</b></font>
+					</div></td>
+				<td></td>
+				<td><font color="red"><b>${discount}</b></font></td>
+				<td></td>
+			</tr>
+			
 	</table>
 	</form ac>
 
@@ -106,15 +134,12 @@
 			</tr>
 
 		</table>
-		
-
-		<input type="hidden" name="amount" value="<%=amount%>"> 
-		
+	   
 
 		<input type="hidden" name="action" value="getOd_detail_Information"> <input
 			type="submit" name="Submit" value="結帳">
+		
 	</form>
-
 
 	<p>
 		<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">是否繼續購物</a>
