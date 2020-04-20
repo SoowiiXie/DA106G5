@@ -34,10 +34,11 @@ public class MemberPicReader extends HttpServlet {
 
 		try {
 			Statement stmt = con.createStatement();
+			Statement stmtLine = con.createStatement();
 			String mb_id = req.getParameter("mb_id").trim();
 			ResultSet rs = stmt.executeQuery(
 				"SELECT MB_PIC FROM MEMBER WHERE MB_ID = '" + mb_id + "'");
-			ResultSet rsLine = stmt.executeQuery(
+			ResultSet rsLine = stmtLine.executeQuery(
 				"SELECT MB_LINE_PIC FROM MEMBER WHERE MB_ID = '" + mb_id + "'");
 			
 			if (rs.next()) {
