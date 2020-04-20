@@ -18,12 +18,14 @@
 	
 %>
 <jsp:useBean id="couponService" scope="page" class="com.coupon.model.CouponService" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 <body>
 
 	<%-- 錯誤表列 --%>

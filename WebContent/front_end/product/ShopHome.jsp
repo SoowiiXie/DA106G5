@@ -21,7 +21,7 @@ pageContext.setAttribute("list", list); //for EL
 %>
 
 
-  購物車品項數量: 
+<%--   購物車品項數量: 
 <c:if test="${buylistCount!=0}">
 	                   ${buylistCount}
   </c:if>
@@ -30,7 +30,7 @@ pageContext.setAttribute("list", list); //for EL
 
 登入的會員帳號:${mb_id}
 	<br>
-	<br>
+	<br> --%>
 <jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 
 
