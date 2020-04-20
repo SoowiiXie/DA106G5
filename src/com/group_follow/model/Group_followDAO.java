@@ -31,6 +31,10 @@ public class Group_followDAO implements Group_followDAO_interface {
 			"DELETE FROM grp_follow where GRP_NO = ?";
 		private static final String UPDATE = 
 			"UPDATE grp_follow set MB_ID=? where GRP_NO = ?";
+		private static final String GET_FOLLOWPEOPLE_COUNT = 
+				"select count(1) as count from grp_follow where grp_no = ?";
+		private static final String GET_FOLLOWGROUP_COUNT = 
+				"select count(1) as count from grp_follow where mb_id = ?";
 
 	@Override
 	public void insert(Group_followVO group_followVO) {
@@ -258,5 +262,80 @@ public class Group_followDAO implements Group_followDAO_interface {
 			}
 		}
 		return list;
+	}
+	@Override
+	public int totalFollowPeople(String grp_no) {
+		int totalFollowPeople = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();					
+			pstmt = con.prepareStatement(GET_FOLLOWPEOPLE_COUNT);
+			pstmt.setString(1, grp_no);
+			rs = pstmt.executeQuery();
+			rs.next();
+			totalFollowPeople = rs.getInt("count");
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return totalFollowPeople ;
+	}
+	@Override
+	public int totalFollowGroup(String mb_id) {
+		// TODO Auto-generated method stub
+		int totalFollowGroup = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();					
+			pstmt = con.prepareStatement(GET_FOLLOWGROUP_COUNT);
+			pstmt.setString(1, mb_id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			totalFollowGroup = rs.getInt("count");
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return totalFollowGroup ;
 	}
 }

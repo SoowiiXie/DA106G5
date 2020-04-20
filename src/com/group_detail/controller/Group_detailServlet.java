@@ -255,5 +255,66 @@ public class Group_detailServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		
+		if ("getGroupCount".equals(action)) { // 來自listAllGroup.jsp
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+	
+			try {
+				/***************************1.接收請求參數***************************************/
+				String grp_no = new String(req.getParameter("grp_no"));
+				
+				/***************************2.開始處理資料***************************************/
+				Grp_detailService grp_detailSvc = new Grp_detailService();
+				int peoplecount = grp_detailSvc.getTotalPeople(grp_no);
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)***********/								
+				req.setAttribute("peoplecount", peoplecount);
+				String url = "/front_end/group_detail/countpeople.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// �R�����\��,���^�e�X�R�����ӷ�����
+				successView.forward(req, res);
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("查詢不到該資料:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front_end/group_detail/countpeople.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		if ("getPeopleCount".equals(action)) { // 來自listAllGroup.jsp
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+	
+			try {
+				/***************************1.接收請求參數***************************************/
+				String mb_id = new String(req.getParameter("mb_id"));
+				
+				/***************************2.開始處理資料***************************************/
+				Grp_detailService grp_detailSvc = new Grp_detailService();
+				int groupcount = grp_detailSvc.getTotalGroup(mb_id);
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)***********/								
+				req.setAttribute("groupcount", groupcount);
+				String url = "/front_end/group_detail/countgroup.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// �R�����\��,���^�e�X�R�����ӷ�����
+				successView.forward(req, res);
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("查詢不到該資料:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front_end/group_detail/countgroup.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 	}
 }

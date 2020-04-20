@@ -45,4 +45,10 @@ public class Group_followService {
 	public List<Group_followVO> getAll() {
 		return dao.getAll();
 	}
+	public int totalFollowPeople(String grp_no) {
+		return dao.totalFollowPeople(grp_no);		
+	}
+	public int totalFollowGroup(String mb_id) {
+		return dao.totalFollowGroup(mb_id);		
+	}
 }

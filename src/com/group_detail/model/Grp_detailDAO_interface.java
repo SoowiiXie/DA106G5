@@ -10,6 +10,8 @@ public interface Grp_detailDAO_interface {
           public List<Grp_detailVO> getAll();
           //查詢揪團總人數
           public int totalPeople(String grp_no);
+          //查詢會員揪團總數
+          public int totalGroup(String mb_id);
         //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //        public List<EmpVO> getAll(Map<String, String[]> map);  
 }

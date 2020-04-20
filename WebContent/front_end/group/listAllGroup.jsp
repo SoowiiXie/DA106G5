@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.grouper.model.GrouperVO"%>
-<%@ page import="com.grouper.model.GrouperService"%>
 <%@ page import="com.grouper.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
@@ -12,7 +10,7 @@
     List<GrouperVO> list = grpSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
-
+<jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
 
 <html>
 <head>
@@ -103,7 +101,19 @@
 		<tr>
 			<td>${grouperVO.grp_no}</td>
 			<td>${grouperVO.mb_id}</td>
-			<td>${grouperVO.loc_no}</td>
+<%-- 			<td>${grouperVO.loc_no}</td> --%>
+<!-- 			改寫join -->
+
+			<td>${locSvc.getOneLocation(grouperVO.getLoc_no()).loc_address} </td>
+			
+<%-- 			<td><c:forEach var="LocationVO" items="${locSvc.all}"> --%>
+<%--                     <c:if test="${grouperVO.loc_no==LocationVO.loc_no}"> --%>
+<%-- 	                    ${LocationVO.loc_no} --%>
+<%-- 	                                                【${LocationVO.loc_address}】 --%>
+<%--                     </c:if> --%>
+<%--                 </c:forEach> --%>
+<!-- 			</td> -->
+
 			<td>${grouperVO.grp_applystart}</td>
 			<td>${grouperVO.grp_applyend}</td>
 			<td>${grouperVO.grp_start}</td> 

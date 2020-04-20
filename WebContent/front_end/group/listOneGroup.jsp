@@ -2,10 +2,16 @@
 <%@ page import="com.grouper.model.GrouperVO"%>
 <%@ page import="com.grouper.model.GrouperService"%>
 <%@ page import="com.grouper.model.*"%>
+<%@ page import="com.location.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
 	GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+%>
+<!-- 取出對應的LocationVO物件 -->
+<%
+	LocationService locSvc = new LocationService();
+	LocationVO locationVO = locSvc.getOneLocation(grouperVO.getLoc_no());	
 %>
 
 <html>
@@ -76,7 +82,7 @@
 	<tr>
 		<td><%=grouperVO.getGrp_no()%></td>
 		<td><%=grouperVO.getMb_id()%></td>
-		<td><%=grouperVO.getLoc_no()%></td>
+		<td><%=grouperVO.getLoc_no()%>【<%=locationVO.getLoc_address() %>】</td>
 		<td><%=grouperVO.getGrp_applystart()%></td>
 		<td><%=grouperVO.getGrp_applyend()%></td>
 		<td><%=grouperVO.getGrp_start()%></td>

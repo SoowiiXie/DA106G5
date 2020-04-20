@@ -74,6 +74,22 @@
        <input type="submit" value="送出">
     </FORM>
   </li>
+  <li>
+    <FORM METHOD="post" ACTION="group_follow.do" >
+        <b>輸入揪團編號 (如grp00001):</b>
+        <input type="text" name="grp_no">
+        <input type="hidden" name="action" value="getGroupFollowCount">
+        <input type="submit" value="送出">
+    </FORM>
+  </li>
+   <li>
+    <FORM METHOD="post" ACTION="group_follow.do" >
+        <b>輸入會員編號 :</b>
+        <input type="text" name="mb_id">
+        <input type="hidden" name="action" value="getPeopleFollowCount">
+        <input type="submit" value="送出">
+    </FORM>
+  </li>
 </ul>
 
 

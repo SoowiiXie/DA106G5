@@ -47,6 +47,9 @@ public class Grp_detailService {
 		return dao.getAll();
 	}
 	public int getTotalPeople(String grp_no) {
-		return dao.totalPeople(grp_no);
+		return dao.totalPeople(grp_no);		
+	}
+	public int getTotalGroup(String mb_id) {
+		return dao.totalGroup(mb_id);		
 	}
 }

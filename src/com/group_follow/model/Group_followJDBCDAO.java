@@ -20,6 +20,10 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 		"DELETE FROM grp_follow where GRP_NO = ?";
 	private static final String UPDATE = 
 		"UPDATE grp_follow set MB_ID=? where GRP_NO = ?";
+	private static final String GET_FOLLOWPEOPLE_COUNT = 
+			"select count(1) as count from grp_follow where grp_no = ?";
+	private static final String GET_FOLLOWGROUP_COUNT = 
+			"select count(1) as count from grp_follow where mb_id = ?";
 
 	@Override
 	public void insert(Group_followVO group_followVO) {
@@ -274,16 +278,106 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 		}
 		return list;
 	}
+	
+	public int totalFollowPeople(String grp_no) {
+		// TODO Auto-generated method stub		
+		int groupHowManyPeopleFollow = 0 ;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_FOLLOWPEOPLE_COUNT);					
+			pstmt.setString(1, grp_no);			
+			rs = pstmt.executeQuery();
+			rs.next();
+			groupHowManyPeopleFollow = rs.getInt("count");
+			 
+		 
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return  groupHowManyPeopleFollow;
+	}
+	
+	public int totalFollowGroup(String mb_id) {
+		// TODO Auto-generated method stub		
+		int peopleHowManyGroupFollow = 0 ;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_FOLLOWGROUP_COUNT);					
+			pstmt.setString(1, mb_id);			
+			rs = pstmt.executeQuery();
+			rs.next();
+			peopleHowManyGroupFollow = rs.getInt("count");
+			 
+		 
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return  peopleHowManyGroupFollow;
+	}
 
 	public static void main(String[] args) {
 
 		Group_followJDBCDAO dao = new Group_followJDBCDAO();
 		
 		// 新增
-		Group_followVO group_followVO1 = new Group_followVO();		
-		group_followVO1.setGrp_no("grp00004");
-		group_followVO1.setMb_id("soowii123");		
-		dao.insert(group_followVO1);
+//		Group_followVO group_followVO1 = new Group_followVO();		
+//		group_followVO1.setGrp_no("grp00004");
+//		group_followVO1.setMb_id("soowii123");		
+//		dao.insert(group_followVO1);
 //		
 //		// 修
 //		Group_followVO group_followVO2 = new Group_followVO();
@@ -293,20 +387,27 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 //
 //		// 刪
 //		dao.delete("grp00004");
-
-		//查
-		Group_followVO group_followVO3 = dao.findByPrimaryKey("grp00001");
-		System.out.print(group_followVO3.getGrp_no() + ",");
-		System.out.println(group_followVO3.getMb_id() + ",");
+//
+//		//查
+//		Group_followVO group_followVO3 = dao.findByPrimaryKey("grp00001");
+//		System.out.print(group_followVO3.getGrp_no() + ",");
+//		System.out.println(group_followVO3.getMb_id() + ",");
+//		
+//		System.out.println("---------------------");
+//
+//		// 查全部
+//		List<Group_followVO> list = dao.getAll();
+//		for (Group_followVO aGrp : list) {
+//			System.out.print(aGrp.getGrp_no() + ",");
+//			System.out.print(aGrp.getMb_id() + ",");
+//			System.out.println();
+//		}
+		// 查詢追蹤該揪團之人數
+		int groupHowManyPeopleFollow = dao.totalFollowPeople("grp00005");
+		System.out.println("groupHowManyPeopleFollow " + groupHowManyPeopleFollow);
 		
-		System.out.println("---------------------");
-
-		// 查全部
-		List<Group_followVO> list = dao.getAll();
-		for (Group_followVO aGrp : list) {
-			System.out.print(aGrp.getGrp_no() + ",");
-			System.out.print(aGrp.getMb_id() + ",");
-			System.out.println();
-		}
+		// 查詢追蹤該揪團之人數
+		int peopleHowManyGroupFollow = dao.totalFollowGroup("soowii123");
+		System.out.println("peopleHowManyGroupFollow " + peopleHowManyGroupFollow);
 	}
 }

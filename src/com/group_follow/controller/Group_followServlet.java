@@ -6,6 +6,7 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.group_detail.model.Grp_detailService;
 import com.group_follow.model.*;
 
 public class Group_followServlet extends HttpServlet {
@@ -252,5 +253,65 @@ public class Group_followServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("getGroupFollowCount".equals(action)) { // 來自listAllGroup.jsp
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+	
+			try {
+				/***************************1.接收請求參數***************************************/
+				String grp_no = new String(req.getParameter("grp_no"));
+				
+				/***************************2.開始處理資料***************************************/
+				Group_followService group_followSvc = new Group_followService();
+				Integer peoplefollowcount = group_followSvc.totalFollowPeople(grp_no);
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)***********/								
+				req.setAttribute("peoplefollowcount", peoplefollowcount);
+				String url = "/front_end/group_follow/totalFollowGroup.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// �R�����\��,���^�e�X�R�����ӷ�����
+				successView.forward(req, res);
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("查詢不到該資料:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front_end/group_follow/totalFollowGroup.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		if ("getPeopleFollowCount".equals(action)) { // 來自listAllGroup.jsp
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+	
+			try {
+				/***************************1.接收請求參數***************************************/
+				String mb_id = new String(req.getParameter("mb_id"));
+				
+				/***************************2.開始處理資料***************************************/
+				Group_followService group_followSvc = new Group_followService();
+				Integer groupfollowcount = group_followSvc.totalFollowGroup(mb_id);
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)***********/								
+				req.setAttribute("groupfollowcount", groupfollowcount);
+				String url = "/front_end/group_follow/totalFollowPeople.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// �R�����\��,���^�e�X�R�����ӷ�����
+				successView.forward(req, res);
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("查詢不到該資料:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front_end/group_follow/totalFollowPeople.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 	}
 }

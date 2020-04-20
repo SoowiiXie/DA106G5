@@ -31,8 +31,10 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			"DELETE FROM grp_detail where mb_id = ?";
 	private static final String UPDATE = 
 			"UPDATE grp_detail set grp_no=?, grp_register=? where mb_id = ?";
-	private static final String COUNTP = 
-			"select count(1) from grp_detail where grp_no = ?";
+	private static final String GET_PEOPLE_COUNT = 
+			"select count(1) as count from grp_detail where grp_no = ?";
+	private static final String GET_GROUP_COUNT = 
+			"select count(1) as count from grp_detail where mb_id = ?";
 	@Override
 	public void insert(Grp_detailVO grp_detailVO) {
 
@@ -268,22 +270,18 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 	@Override
 	public int totalPeople(String grp_no) {
 		// TODO Auto-generated method stub			
-				int i;
+				int PeopleCount = 0 ;
 				Connection con = null;
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
-				
-				try {
-					
-					con = ds.getConnection();
-					pstmt = con.prepareStatement(COUNTP);
-					rs = pstmt.executeQuery();
-					
+				try {					
+					con = ds.getConnection();					
+					pstmt = con.prepareStatement(GET_PEOPLE_COUNT);
 					pstmt.setString(1, grp_no);
-					System.out.println(grp_no);
-
-					i = pstmt.executeUpdate();
-
+					rs = pstmt.executeQuery();
+					rs.next();
+					PeopleCount = rs.getInt("count");
+		
 					// Handle any driver errors
 				} catch (SQLException se) {
 					throw new RuntimeException("A database error occured. "
@@ -305,6 +303,44 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 						}
 					}
 				}
-				return i ;
+				return PeopleCount ;
+	}
+
+	@Override
+	public int totalGroup(String mb_id) {
+		int groupcount = 0 ;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {					
+			con = ds.getConnection();					
+			pstmt = con.prepareStatement(GET_GROUP_COUNT);
+			pstmt.setString(1, mb_id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			groupcount = rs.getInt("count");
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return groupcount ;
 	}
 }
