@@ -259,7 +259,7 @@ values('staff_weijhih','12345678','weijhih');
 
 --功能
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
-values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'權限管理');
+values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'管理員資料管理');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
 values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'留言管理');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
