@@ -13,7 +13,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.od_detail.model.*;
-import static com.common.Common.*;
 
 import java.sql.*;
 
@@ -386,8 +385,9 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			Class.forName(DRIVER_CLASS_PG);
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(USE_MB_ID_SEARCH_ORDERS);
 			pstmt.setString(1, mb_id);
 			rs = pstmt.executeQuery();
@@ -401,9 +401,6 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (rs != null) {

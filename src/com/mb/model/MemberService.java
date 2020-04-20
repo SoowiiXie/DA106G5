@@ -6,9 +6,11 @@ import java.util.List;
 public class MemberService {
 
 private MemberDAO_interface dao;
+private MemberDAO_interface pgdao;
 	
 	public MemberService() {
 		dao = new MemberDAO();
+		pgdao = new MemberPGDAO();
 	}
 	
 	public MemberVO addMember(String mb_id, String mb_pwd, String mb_name, Integer mb_gender, 
@@ -58,6 +60,10 @@ private MemberDAO_interface dao;
 	
 	public MemberVO getOneMember(String mb_id) {
 		return dao.findByPrimaryKey(mb_id);
+	}
+	
+	public MemberVO getOneMemberPG(String mb_id) {
+		return pgdao.findByPrimaryKey(mb_id);
 	}
 
 	public List<MemberVO> getAll() {

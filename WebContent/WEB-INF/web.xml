@@ -354,10 +354,6 @@
 			<url-pattern>/DBGifReader4Path</url-pattern>
 		</servlet-mapping>
 			
-		
-		
-		
-		
 		<servlet>
 			<servlet-name>MemberServlet</servlet-name>
 			<servlet-class>android.com.mb.controller.MemberServlet</servlet-class>
@@ -497,6 +493,15 @@
 		<servlet-mapping>
 			<servlet-name>MemberPicReader</servlet-name>
 			<url-pattern>/MemberPicReader</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>MemberTest</servlet-name>
+			<servlet-class>com.mb.model.MemberTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>MemberTest</servlet-name>
+			<url-pattern>/MemberTest</url-pattern>
 		</servlet-mapping>
 		
 	<!-- 會員結束 -->
