@@ -24,7 +24,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
+<div class="third" align="center" >
 	<form method="POST" action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
 		<table border="3">
 
@@ -62,7 +63,7 @@
 		</table>
 		<%@ include file="page4.file"%>
 	</form>
-
+</div>
 	<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">回商城首頁</a>
 </body>
 </html>
