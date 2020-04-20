@@ -7,7 +7,8 @@
 <%
                 
 	List<ProductVO> list = (List<ProductVO>) request.getAttribute("list");
-    Collections.reverse(list);
+
+Collections.reverse(list);
     if(list==null){
     list = (List<ProductVO>) session.getAttribute("list");
     }
@@ -41,7 +42,7 @@
 			</c:forEach>
 		</ul>
 	</c:if>
-	<table style="border:3px;">
+	<table border="3">
 
 		<tr>
 			<th width="100">商品圖片</th>

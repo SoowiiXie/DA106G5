@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -10,6 +11,8 @@
 
 ProductService productService = new ProductService();
 
+
+
 List<ProductVO> list = productService.listOnTheMarket(2);
 
 Collections.reverse(list);
@@ -21,9 +24,9 @@ pageContext.setAttribute("list", list); //for EL
   購物車品項數量: 
 <c:if test="${buylistCount!=0}">
 	                   ${buylistCount}
-</c:if>
-<br>
-<br>
+  </c:if>
+</br>
+</br>
 
 登入的會員帳號:${mb_id}
 	<br>
@@ -58,7 +61,7 @@ pageContext.setAttribute("list", list); //for EL
 		</ul>
 	</c:if>
 	
-	<table style="border:3px;">
+	<table border="3">
 
 		<tr>
 			<th width="100">商品圖片</th>
