@@ -773,7 +773,6 @@
                 </div>
             </footer> -->
 			<!-- End of Footer -->
-		</div>
 		<!-- End of Content Wrapper -->
 		<!-- End of Page Wrapper -->
 	</div>
@@ -809,7 +808,20 @@
 	</div>
 	
 	<!-- 檢舉或修改留言的燈箱 -->
-	<div id="fblightbox">
+	<div id="fblightbox" class="cmtNrpt">
+	  <div class="fblightbox-wrap">
+	    <div class="fblightbox-header">
+	      	我來打打看
+	    </div>
+	    <div class="fblightbox-content">
+			<jsp:include page="cmt/update_cmt_input.jsp" />
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
+	
+	<!-- 檢舉或修改留言的燈箱 -->
+	<div id="fblightbox" class="msgLightBox">
 	  <div class="fblightbox-wrap">
 	    <div class="fblightbox-header">
 	      	我來打打看
@@ -872,7 +884,7 @@
 					     },
 			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 			         });
-				 });
+			  });
 				 
 				 $('.cmtBtn').click(function(){
 					 $(this).parents().siblings('.cmtDiv').toggle(function(){
@@ -891,9 +903,12 @@
 						 $(this).find('.garbageBtn').css("display","none");
 				 });
 				 
+				 //燈箱共用參數
 				 var fblightbox = $('#fblightbox');
-				 fblightbox.css({'margin-left':'-'+(fblightbox.width()/2)+'px','margin-top':'-'+(fblightbox.height()/2)+'px'});
-
+				 fblightbox.css({'margin-left':'-'+(cmtNrpt.width()/2) + 'px' , 'margin-top' : '-' + (cmtNrpt.height()/2)+'px'});
+				 
+				 //檢舉和留言的燈箱
+				 var cmtNrpt = $('.cmtNrpt');
 				 $('.flagBtn').click(function(){
 					 $.ajax({
 						 type: "GET",
@@ -908,26 +923,18 @@
 							$("#mb_idFB").val(data.mb_id);
 							$("#rcd_noFB").val(data.rcd_no);
 							$('.overlay').fadeIn();
-							  fblightbox.fadeIn();
+							cmtNrpt.fadeIn();
 						 },					
 						 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
 				 		});
 				 });
-				
-				 $("#close").click(function() {
-					  $('.overlay').fadeOut();
-					  fblightbox.fadeOut();
-				 });
 				 
-				 $(".overlay").click(function() {
-					  $('.overlay').fadeOut();
-					  fblightbox.fadeOut();
-				 });
-				 
+				 //訊息的燈箱
+				 var msgLightBox = $('.msgLightBox');
 				 $('.msgRead').click(function(){
 					 $.ajax({
 						 type: "GET",
-						 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+						 url: "<%=request.getContextPath()%>/msg/msg.do",
 						 data: {"action":"ajaxGetOne4Read", "cmt_no":$(this).siblings('.cmt_no').val()},
 						 dataType: "json",
 						 success: function (data){
@@ -938,13 +945,24 @@
 							$("#mb_idFB").val(data.mb_id);
 							$("#rcd_noFB").val(data.rcd_no);
 							$('.overlay').fadeIn();
-							  fblightbox.fadeIn();
+							msgLightBox.fadeIn();
 						 },					
 						 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
 				 		});
 				 });
-			});
-		</script>
+				 
+				 //讓燈箱共用關閉按鈕
+				 $("#close").click(function() {
+					  $('.overlay').fadeOut();
+					  fblightbox.fadeOut();
+				 });
+				 
+				 $(".overlay").click(function() {
+					  $('.overlay').fadeOut();
+					  fblightbox.fadeOut();
+				 });
+		});
+	</script>
 	
 	<!-- 會員智慧搜尋 -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
