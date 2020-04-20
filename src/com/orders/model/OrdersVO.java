@@ -3,6 +3,7 @@ package com.orders.model;
 import java.sql.*;
 
 public class OrdersVO implements java.io.Serializable {
+
 	/**
 	* 
 	*/
@@ -89,13 +90,6 @@ public class OrdersVO implements java.io.Serializable {
 
 	public void setOd_add(String od_add) {
 		this.od_add = od_add;
-	}
-
-	@Override
-	public String toString() {
-		return "OrdersVO [od_no=" + od_no + ", mb_id=" + mb_id + ", od_time=" + od_time + ", od_status=" + od_status
-				+ ", od_totalPrice=" + od_totalPrice + ", cp_no=" + cp_no + ", od_discount=" + od_discount + ", od_add="
-				+ od_add + "]";
 	}
 
 }

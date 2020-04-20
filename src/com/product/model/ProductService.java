@@ -1,75 +1,74 @@
 package com.product.model;
 
-import java.util.List;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Servlet implementation class ProductPicReader
+ */
 
-public class ProductService {
+public class ProductPicReader extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:49161:xe";
+	String userid = "DA106G5";
+	String passwd = "DA106G5";
 
-	private ProductDAO_interface dao;
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8"); // 接收相對應的編碼請求(有中文時)
+		res.setContentType("image/gif");
+		Connection con = null;
+//		PreparedStatement pstmt = null;
+		ServletOutputStream out = res.getOutputStream(); // 瀏覽器的輸出
 
-	public ProductService() {
-
-		dao = new ProductDAO();
-
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			Statement stmt = con.createStatement();
+			String pd_no = req.getParameter("pd_no").trim();
+			System.out.println(pd_no);
+			ResultSet rs = stmt.executeQuery("SELECT pd_pic FROM PRODUCT WHERE pd_no = '" + pd_no + "'");
+             System.out.println(rs);
+			if (rs.next()) {
+				// 用高階水管
+				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("pd_pic"));
+				byte[] buf = new byte[4 * 1024]; // 4K buffer
+				int len;
+				while ((len = in.read(buf)) != -1) {
+					out.write(buf, 0, len);
+				}
+				in.close();
+			} else {
+				// res.sendError(HttpServletResponse.SC_NOT_FOUND);
+				InputStream in = getServletContext().getResourceAsStream("/NoData/null2.jpg");
+				byte[] b = new byte[in.available()];
+				in.read(b);
+				out.write(b);
+				in.close();
+			}
+			rs.close();
+			stmt.close();
+		} catch (Exception e) {
+			// System.out.println(e);
+			InputStream in = getServletContext().getResourceAsStream("/NoData/null2.jpg");
+			byte[] b = new byte[in.available()];
+			in.read(b);
+			out.write(b);
+			in.close();
+		}
 	}
 
-	public ProductVO addProduct(String pd_name, Integer pd_price, String pd_detail, String pd_typeNo ,byte[] pd_pic) {
-
-		ProductVO productVO = new ProductVO();
-
-		productVO.setPd_name(pd_name);
-		productVO.setPd_price(pd_price);
-		productVO.setPd_detail(pd_detail);
-		productVO.setPd_typeNo(pd_typeNo);
-		productVO.setPd_pic(pd_pic);
-		dao.addProduct(productVO);
-		
-		return productVO;
-		
-
-	}
-	
-	public List<ProductVO> getAll(){
-		return dao.getAll();
-		
-	}
-	
-	public ProductVO updateProduct(String pd_no, String pd_name, Integer pd_price, String pd_detail, String pd_typeNo,Integer pd_status, byte[] pd_pic) {
-		
-		ProductVO productVO = new ProductVO();
-		productVO.setPd_no(pd_no);
-		productVO.setPd_name(pd_name);
-		productVO.setPd_price(pd_price);
-		productVO.setPd_detail(pd_detail);
-		productVO.setPd_typeNo(pd_typeNo);
-		productVO.setPd_status(pd_status);
-		productVO.setPd_pic(pd_pic);
-		dao.updateProductInformation(productVO);
-		return productVO;
-	}
-	
-	public ProductVO findOneProduct(String pd_no) {
-		return dao.findOneProduct(pd_no);
-	}
-	
-	public void deleteProduct(String pd_no) {
-		dao.deleteProduct(pd_no);
-		
-	}
-	
-	public List<ProductVO> listOnTheMarket(Integer pd_status){
-		return dao.listOnTheMarket(pd_status);
-		
-	}
-	
-	 public List<ProductVO> useTypeSearchProducts(String pd_typeNo){
-		 
-		 return dao.useTypeSearchProducts(pd_typeNo);
-	 }
-	 public List<ProductVO> OnMarketWithPd_typeNO(Integer pd_status, String pd_typeNo){
-		 
-		       return dao.OnMarketWithPd_typeNO(pd_status, pd_typeNo);
-	 }
-	
 }
