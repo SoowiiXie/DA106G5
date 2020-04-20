@@ -127,7 +127,7 @@ public class MemberServlet extends HttpServlet {
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
-				String url = "/front_end/member/listOneMember.jsp";  // 
+				String url = "/front_end/member/listOneMember.jsp";  // 測試
 //				String url = "/front_end/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);

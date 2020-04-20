@@ -33,7 +33,9 @@
 		</c:forEach>
     	<br>
     	
-		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br>
+<!--     	Line -->
+<%-- 		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br> --%>
+		
 		生日：<input type="text" id="f_date" name="mb_birthday" value="${memberVO.mb_birthday}"><br>
 		e-mail：<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
 		

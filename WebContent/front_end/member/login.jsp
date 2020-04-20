@@ -22,6 +22,7 @@
 	<form METHOD="POST" action="member.do">
 		<input type="text" name="mb_id" placeholder="請輸入帳號" ><br>
         <input type="password" name="mb_pwd" placeholder="請輸入密碼"><br>
+        <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
         <input type="hidden" name="action" value="getOne_For_Display">
         <input type="submit" value="LOGIN"><br>
 	</form>
