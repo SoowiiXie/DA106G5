@@ -25,6 +25,8 @@
 	
 	<form METHOD="POST" action="staff.do" id="form1">
 		<%-- 用button是為了讓value可以使用 --%>
+		
+		
 		<button type="submit" form="form1" name="management" value="01">管理員管理</button><br><br>
 		<button type="submit" form="form1" name="management" value="02">留言管理</button><br><br>
 		<button type="submit" form="form1" name="management" value="03">檢舉管理</button><br><br>
