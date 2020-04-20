@@ -7,13 +7,23 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.*;
+
 //只使用findByPrimaryKey 其他都是亂寫的
 public class MemberPGDAO implements MemberDAO_interface {
-	//INSERT INTO TABLE_NAME (column1, column2, column3,...columnN) VALUES (value1, value2, value3,...valueN);
-	//"SELECT id, \"GRP_NO\", \"MB_ID\", \"GRP_PERSONCOUNT\", \"GRP_STATUS\", \"GRP_FOLLOW\" FROM public.grouper";
+	// INSERT INTO TABLE_NAME (column1, column2, column3,...columnN) VALUES (value1,
+	// value2, value3,...valueN);
+	// "SELECT id, \"GRP_NO\", \"MB_ID\", \"GRP_PERSONCOUNT\", \"GRP_STATUS\",
+	// \"GRP_FOLLOW\" FROM public.grouper";
 	private static final String GET_ONE_STMT = "SELECT * FROM public.orders where \"MB_ID\" = ?";
-	
+
 	// 連線池
 	private static DataSource pgds = null;
 	static {
@@ -24,6 +34,7 @@ public class MemberPGDAO implements MemberDAO_interface {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public MemberVO findByPrimaryKey(String mb_id) {
 		MemberVO memberVO = null;
@@ -47,15 +58,33 @@ public class MemberPGDAO implements MemberDAO_interface {
 				memberVO = new MemberVO();
 				memberVO.setMb_id(rs.getString("mb_id"));
 				memberVO.setMb_line_id(rs.getString("mb_line_id"));
-				memberVO.setMb_line_pic(rs.getString("mb_line_pic"));
 				memberVO.setMb_line_display(rs.getString("mb_line_display"));
 				memberVO.setMb_line_status(rs.getString("mb_line_status"));
+				
+				URL myURL = new URL(rs.getString("mb_line_pic"));
+				HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				InputStream in = conn.getInputStream();
+				BufferedInputStream bf = new BufferedInputStream(in);
+				byte[] buffer = new byte[16*1024];
+				int a;
+				while ((a = bf.read(buffer)) != -1) {
+					baos.write(buffer, 0, a);
+				}
+				memberVO.setMb_line_pic(baos.toByteArray());
+				bf.close();
+				in.close();
 			}
 			// Handle any driver errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -81,32 +110,37 @@ public class MemberPGDAO implements MemberDAO_interface {
 		}
 		return memberVO;
 	}
+
 	@Override
 	public void insert(MemberVO memberVO) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void update(MemberVO memberVO) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void updateLine(MemberVO memberVO) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public List<MemberVO> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	@Override
 	public String addOneToRptTime(String mb_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 //	// 測試
 //	public static void main(String[] args) throws Exception {
 //		MemberDAO dao = new MemberDAO();

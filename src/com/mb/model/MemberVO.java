@@ -12,8 +12,8 @@ public class MemberVO implements java.io.Serializable {
 	private String mb_id, mb_pwd, mb_name, mb_email;
 	private Integer mb_gender, mb_lv, mb_rpt_times, mb_status;
 	private Date mb_birthday;
-	private byte[] mb_pic;
-	private String mb_line_id, mb_line_pic, mb_line_display, mb_line_status;
+	private byte[] mb_pic, mb_line_pic;
+	private String mb_line_id, mb_line_display, mb_line_status;
 	
 	public MemberVO() {
 		super();
@@ -85,10 +85,10 @@ public class MemberVO implements java.io.Serializable {
 	public void setMb_line_id(String mb_line_id) {
 		this.mb_line_id = mb_line_id;
 	}
-	public String getMb_line_pic() {
+	public byte[] getMb_line_pic() {
 		return mb_line_pic;
 	}
-	public void setMb_line_pic(String mb_line_pic) {
+	public void setMb_line_pic(byte[] mb_line_pic) {
 		this.mb_line_pic = mb_line_pic;
 	}
 	public String getMb_line_display() {

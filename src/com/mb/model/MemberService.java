@@ -46,7 +46,7 @@ private MemberDAO_interface pgdao;
 		dao.update(memberVO);
 		return memberVO;
 	}
-	public MemberVO updateLine(String mb_line_id, String mb_line_pic, String mb_line_display, String mb_line_status, String mb_id) {
+	public MemberVO updateLine(String mb_line_id, byte[] mb_line_pic, String mb_line_display, String mb_line_status, String mb_id) {
 		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMb_line_id(mb_line_id);
