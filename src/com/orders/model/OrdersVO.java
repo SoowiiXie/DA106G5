@@ -92,4 +92,10 @@ public class OrdersVO implements java.io.Serializable {
 		this.od_add = od_add;
 	}
 
+	@Override
+	public String toString() {
+		return "OrdersVO [od_no=" + od_no + ", mb_id=" + mb_id + ", od_time=" + od_time + ", od_status=" + od_status
+				+ ", od_totalPrice=" + od_totalPrice + ", cp_no=" + cp_no + ", od_discount=" + od_discount + ", od_add="
+				+ od_add + "]";
+	}
 }

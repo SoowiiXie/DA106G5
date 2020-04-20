@@ -15,8 +15,6 @@ public class OrdersTest extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		OrdersService OrderSvc = new OrdersService();
-		
-		
 		System.out.println(OrderSvc.searchMemberOrdersPG("soowii123"));
 		System.out.println(OrderSvc.getAllOrdersPG());
 	}
