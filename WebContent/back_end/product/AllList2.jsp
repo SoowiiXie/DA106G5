@@ -17,7 +17,7 @@
 	ProductService productService = new ProductService();
 	
 	List<ProductVO> list = (List<ProductVO>)session.getAttribute("list");
-	Collections.reverse(list);
+	
 	if (pd_typeNo == null || pd_typeNo.equals("")) {
 
 		list = productService.getAll();
