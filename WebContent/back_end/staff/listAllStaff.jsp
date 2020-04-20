@@ -104,7 +104,7 @@
 // 			$(data).append($("<span id='node'>"));
 // 		})
 		
-		
+		$(data).stop(false,true);
 		if($(data).attr("style") == "height: 0px;"){
 			$(data).toggleClass("authorityRow");
 			$(data).animate({height:'30px'},"slow",function(){

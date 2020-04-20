@@ -1,10 +1,18 @@
 package com.orders.model;
 
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.od_detail.model.Od_detailDAO;
-import com.od_detail.model.Od_detailVO;
-import static com.common.Common.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import com.od_detail.model.*;
 
 import java.sql.*;
 
@@ -17,16 +25,28 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 	private static final String USE_MB_ID_SEARCH_ORDERS = "SELECT * FROM public.orders where \"MB_ID\" = ?";
 	private static final String DELETE = "DELETE FROM public.orders where \"OD_NO\" = ?";
 	private static final String UPDATE = "UPDATE public.orders set \"OD_STATUS\" = ? where \"OD_NO\" = ?";
+	
+	// 連線池
+	private static DataSource pgds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			pgds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_PGDB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public OrdersVO addOrders(OrdersVO ordersVO) {
 		System.out.println("進入DAO");
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		
 		try {
-
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			String cols[] = { "OD_NO" };
 			pstmt = con.prepareStatement(INSERT_STMT, cols);
 
@@ -82,8 +102,9 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, ordersVO.getOd_status());
@@ -121,8 +142,9 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, od_no);
@@ -163,8 +185,9 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 		ResultSet rs = null;
 
 		try {
-
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, od_no);
@@ -220,8 +243,9 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 		ResultSet rs = null;
 
 		try {
-
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -280,7 +304,9 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 		String test_no = null;
 
 		try {
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			con.setAutoCommit(false);
 
 			System.out.println("經過DAO");
@@ -359,7 +385,9 @@ public class OrdersPGDAO implements OrdersDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(USE_MB_ID_SEARCH_ORDERS);
 			pstmt.setString(1, mb_id);
 			rs = pstmt.executeQuery();

@@ -73,7 +73,8 @@
 		</c:forEach>
     	<br>
     	
-		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br>
+<!--     	Line部分 -->
+<%-- 		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br> --%>
 		
 		生日：<input type="text" name="mb_birthday" id="f_date" value="${memberVO.mb_birthday}"><br>
 		
