@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -175,37 +176,22 @@ public class StaffServlet extends HttpServlet{
 			AuthorityService authoritySvc = new AuthorityService();
 			Set<String> staffAuthority = authoritySvc.getOneStaffAuthority(staffVO.getStaff_id());
 			
+			// 用Map裝管理編號與相對應的路徑
+			Map<String,String> managementMapPath = new HashMap<String,String>();
+			managementMapPath.put("01", "/back_end/staff/listAllStaff.jsp");  // 導至管理員資料管理頁面
+			managementMapPath.put("02", "/back_end/staff/listAllStaff.jsp");  // 導至會員管理頁面
+			managementMapPath.put("03", "/back_end/staff/listAllStaff.jsp");  // 導至留言管理頁面
+			managementMapPath.put("04", "/back_end/staff/listAllStaff.jsp");  // 導至檢舉管理頁面
+			managementMapPath.put("05", "/back_end/staff/listAllStaff.jsp");  // 導至商城管理頁面	
+			managementMapPath.put("06", "/back_end/staff/listAllStaff.jsp");  // 導至問題回報管理頁面
+			
 			// 判斷管理員是否有該權限
 			if(staffAuthority.contains(management)) {
 				
-				RequestDispatcher successView;
-				// ***只有01完成，其餘需要再修改***
-				switch(management) {
-				case "01":  // 導至管理員管理頁面
-					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
-					successView.forward(req, res);
-					break;
+				RequestDispatcher successView = req.getRequestDispatcher(managementMapPath.get(management));
+				successView.forward(req, res);
+				return;
 				
-				case "02":  // 導至留言管理頁面
-					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
-					successView.forward(req, res);
-					break;
-				
-				case "03":  // 導至檢舉管理頁面
-					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
-					successView.forward(req, res);
-					break;
-					
-				case "04":  // 導至商城管理頁面	
-					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
-					successView.forward(req, res);
-					break;
-				
-				case "05":  // 導至問題回報管理頁面
-					successView = req.getRequestDispatcher("/back_end/staff/listAllStaff.jsp"); 
-					successView.forward(req, res);
-					break;
-				}
 			}else {  // 沒有權限
 				AbilityService abilitySvc = new AbilityService();
 				Map<String,String> allAbility = abilitySvc.getAllToMap();
