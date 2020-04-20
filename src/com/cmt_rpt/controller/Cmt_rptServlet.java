@@ -242,7 +242,7 @@ public class Cmt_rptServlet extends HttpServlet {
 					MemberService memberSvc = new MemberService();
 					Cmt_rptService cmt_rptSrv = new Cmt_rptService();
 					MemberVO memberVO = memberSvc.getOneMember(cmt_rptSrv.getRptedMb_id(cmt_no));
-					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_line(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv(), memberVO.getMb_rpt_times()-1, memberVO.getMb_status());
+					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv(), memberVO.getMb_rpt_times()-1, memberVO.getMb_status());
 					/*************************** 把被檢舉的留言上架(1) ****************************************/
 					CmtService cmtSvc = new CmtService();
 					CmtVO cmtVO = cmtSvc.getOneCmt(cmt_no);

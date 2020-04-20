@@ -32,6 +32,13 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
+	<resource-ref>
+		<description>PGDB Connection for DA106G5</description>
+		<res-ref-name>jdbc/DA106G5_PGDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
 <!-- 我們共用的狀態對應資料 -->
 	<servlet>
 		<servlet-name>InitData</servlet-name>
@@ -426,6 +433,15 @@
 	<servlet-mapping>
 		<servlet-name>OrdersServlet</servlet-name>
 		<url-pattern>/OrdersServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>OrdersTest</servlet-name>
+		<servlet-class>com.orders.model.OrdersTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrdersTest</servlet-name>
+		<url-pattern>/OrdersTest</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

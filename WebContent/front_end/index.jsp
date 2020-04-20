@@ -56,6 +56,8 @@
 <jsp:useBean id="meTooSvcEL" scope="page" class="com.metoo.model.MeTooService" />
 <!--留言Service -->
 <jsp:useBean id="cmtSvcEL" scope="page"	class="com.cmt.model.CmtService" />
+<!--訂單Service -->
+<jsp:useBean id="ordersSvcEL" scope="page"	class="com.orders.model.OrdersService" />
 
 <!DOCTYPE html>
 <html>
@@ -716,7 +718,7 @@
 								<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem;  src='<%= request.getContextPath() %>/MemberPicReader?mb_id=${cmtVO.mb_id}' />
 								</c:if>
 								<c:if test="${memberSvcEL.getOneMember(cmtVO.mb_id).mb_pic==null}">
-								<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem;  src='${memberSvcEL.getOneMember(cmtVO.mb_id).mb_line_pic}' />
+<%-- 								<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem;  src='${ordersSvcEL.searchMemberOrdersPG(cmtVO.mb_id).mb_line_pic}' /> --%>
 								</c:if>
 								<span class='text-primary col-2 mx-auto' style="font-size:1.2rem;">${memberSvcEL.getOneMember(cmtVO.mb_id).mb_name}</span>
 								<span class='text-dark col-2 mx-auto' style="font-size:1.2rem;">${cmtVO.cmt_content}</span>
