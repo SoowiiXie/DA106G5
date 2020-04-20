@@ -814,7 +814,7 @@
 	      	我來打打看
 	    </div>
 	    <div class="fblightbox-content">
-			<jsp:include page="cmt/update_cmt_input.jsp" />
+	    	<jsp:include page="cmt/update_cmt_input.jsp" />
 	    </div>
 	  </div>
 	</div>
@@ -846,7 +846,7 @@
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			 $('.thumbBtn').click(function(){
+			$('.thumbBtn').click(function(){
 				 var thumbImg = $(this);
 				 $.ajax({
 					 type: "GET",
@@ -864,9 +864,9 @@
 				     },
 		             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 		         });
-			 });
+			});
 			 
-			 $('.meTooBtn').click(function(){
+			$('.meTooBtn').click(function(){
 				 var meTooImg = $(this);
 				 $.ajax({
 					 type: "GET",
@@ -884,83 +884,83 @@
 					     },
 			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 			         });
-			  });
+			});
 				 
-				 $('.cmtBtn').click(function(){
-					 $(this).parents().siblings('.cmtDiv').toggle(function(){
+			$('.cmtBtn').click(function(){
+				 $(this).parents().siblings('.cmtDiv').toggle(function(){
 // 						    $(this).animate({height:400},200);
 // 						  },function(){
 // 						    $(this).animate({height:10},200);
-							height: 'toggle'
-						  });
+						height: 'toggle'
+					  });
 				 });
 				 
-				 $('.oneCmtDiv').hover(function(){
-					 $(this).find('.flagBtn').css("display","");
-					 $(this).find('.garbageBtn').css("display","");
+			 $('.oneCmtDiv').hover(function(){
+				 $(this).find('.flagBtn').css("display","");
+				 $(this).find('.garbageBtn').css("display","");
 					 },function(){
 						 $(this).find('.flagBtn').css("display","none");
 						 $(this).find('.garbageBtn').css("display","none");
 				 });
 				 
-				 //燈箱共用參數
-				 var fblightbox = $('#fblightbox');
-				 fblightbox.css({'margin-left':'-'+(cmtNrpt.width()/2) + 'px' , 'margin-top' : '-' + (cmtNrpt.height()/2)+'px'});
+			 //燈箱共用參數
+			 var fblightbox = $('#fblightbox');
+			 fblightbox.css({'margin-left':'-' + (fblightbox.width()/2) + 'px' , 'margin-top' : '-' + (fblightbox.height()/2)+'px'});
 				 
-				 //檢舉和留言的燈箱
-				 var cmtNrpt = $('.cmtNrpt');
-				 $('.flagBtn').click(function(){
-					 $.ajax({
-						 type: "GET",
-						 url: "<%=request.getContextPath()%>/cmt/cmt.do",
-						 data: {"action":"ajaxGetOne4Update", "cmt_no":$(this).siblings('.cmt_no').val()},
-						 dataType: "json",
-						 success: function (data){
-// 							$("#cmt_contentFB").val(data.cmt_content);
-							$("#cmt_noFB").val(data.cmt_no);
-							$("#cmt_statusFB").val(data.cmt_status);
-							$("#cmt_timeFB").val(data.cmt_time);
-							$("#mb_idFB").val(data.mb_id);
-							$("#rcd_noFB").val(data.rcd_no);
-							$('.overlay').fadeIn();
-							cmtNrpt.fadeIn();
-						 },					
-						 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
-				 		});
-				 });
+			 //檢舉和留言的燈箱
+			 var cmtNrpt = $('.cmtNrpt');
+			 $('.flagBtn').click(function(){
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+					 data: {"action":"ajaxGetOne4Update", "cmt_no":$(this).siblings('.cmt_no').val()},
+					 dataType: "json",
+					 success: function (data){
+// 						 $("#cmt_contentFB").val(data.cmt_content);
+						 $("#cmt_noFB").val(data.cmt_no);
+					     $("#cmt_statusFB").val(data.cmt_status);
+						 $("#cmt_timeFB").val(data.cmt_time);
+						 $("#mb_idFB").val(data.mb_id);
+						 $("#rcd_noFB").val(data.rcd_no);
+						 $('.overlay').fadeIn();
+						 cmtNrpt.fadeIn();
+				 	 },					
+				 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+		 		 });
+			 });
 				 
-				 //訊息的燈箱
-				 var msgLightBox = $('.msgLightBox');
-				 $('.msgRead').click(function(){
-					 $.ajax({
-						 type: "GET",
-						 url: "<%=request.getContextPath()%>/msg/msg.do",
+			 //訊息的燈箱
+			 var msgLightBox = $('.msgLightBox');
+			 $('.msgRead').click(function(){
+			 	$.ajax({
+					type: "GET",
+					url: "<%=request.getContextPath()%>/msg/msg.do",
 						 data: {"action":"ajaxGetOne4Read", "cmt_no":$(this).siblings('.cmt_no').val()},
 						 dataType: "json",
 						 success: function (data){
-// 							$("#cmt_contentFB").val(data.cmt_content);
-							$("#cmt_noFB").val(data.cmt_no);
-							$("#cmt_statusFB").val(data.cmt_status);
-							$("#cmt_timeFB").val(data.cmt_time);
-							$("#mb_idFB").val(data.mb_id);
-							$("#rcd_noFB").val(data.rcd_no);
-							$('.overlay').fadeIn();
-							msgLightBox.fadeIn();
-						 },					
-						 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
-				 		});
-				 });
+// 					   		 $("#cmt_contentFB").val(data.cmt_content);
+							 $("#cmt_noFB").val(data.cmt_no);
+							 $("#cmt_statusFB").val(data.cmt_status);
+							 $("#cmt_timeFB").val(data.cmt_time);
+							 $("#mb_idFB").val(data.mb_id);
+							 $("#rcd_noFB").val(data.rcd_no);
+							 $('.overlay').fadeIn();
+							 msgLightBox.fadeIn();
+					 	 },					
+					 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+			 		});
+			 });
 				 
-				 //讓燈箱共用關閉按鈕
-				 $("#close").click(function() {
-					  $('.overlay').fadeOut();
-					  fblightbox.fadeOut();
-				 });
-				 
-				 $(".overlay").click(function() {
-					  $('.overlay').fadeOut();
-					  fblightbox.fadeOut();
-				 });
+			 //讓燈箱共用關閉按鈕
+			 $("#close").click(function() {
+				  $('.overlay').fadeOut();
+				  fblightbox.fadeOut();
+			 });
+			 
+			 $(".overlay").click(function() {
+				  $('.overlay').fadeOut();
+				  fblightbox.fadeOut();
+			 });
 		});
 	</script>
 	
