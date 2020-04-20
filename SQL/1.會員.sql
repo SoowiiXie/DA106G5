@@ -1,4 +1,4 @@
-﻿--------------------------------------------------------
+﻿﻿--------------------------------------------------------
 --1.名軒 會員Drop
 --------------------------------------------------------
 DROP SEQUENCE "DA106G5"."ABILITY_NO_SEQ";
@@ -29,13 +29,16 @@ CREATE TABLE member (
  mb_pwd VARCHAR2(30) NOT NULL,
  mb_name VARCHAR2(30) NOT NULL,
  mb_gender NUMBER(1) NOT NULL,
- mb_line VARCHAR2(30),
  mb_birthday DATE,
  mb_email VARCHAR2(50) NOT NULL,
  mb_pic BLOB,
  mb_lv NUMBER(2) DEFAULT '1' NOT NULL,
  mb_rpt_times NUMBER(2) DEFAULT '0' NOT NULL,
- mb_status NUMBER(1) DEFAULT '1' NOT NULL
+ mb_status NUMBER(1) DEFAULT '1' NOT NULL,
+ mb_line_id VARCHAR2(100),
+ mb_line_pic VARCHAR2(100),
+ mb_line_display VARCHAR2(100),
+ mb_line_status VARCHAR2(100)
 );
 
 ALTER TABLE member ADD CONSTRAINT PK_member PRIMARY KEY (mb_id);
@@ -157,22 +160,22 @@ NOCYCLE
 NOCACHE;
 
 --會員
-Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
-values('soowii123','123456','soowii_line','soowii','1',TO_DATE('1990-02-15','YYYY-MM-DD'),'soowii123@yahoo.com');
-Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
-values('xuan123','1234567','xuan_line','xuan','1',TO_DATE('1992-05-01','YYYY-MM-DD'),'xuan123@hotmail.com');
-Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
-values('michael123','12345678','michael_line','Michael','1',TO_DATE('1989-06-25','YYYY-MM-DD'),'Michael123@yahoo.com');
-Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
-values('vain123','123456789','vain)line','vain','1',TO_DATE('1987-07-01','YYYY-MM-DD'),'vain123@hotmail.com');
-Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
-values('yiwen123','1234566','yiwen_line','yiwen123','1',TO_DATE('1985-09-14','YYYY-MM-DD'),'yiwen123@yahoo.com');
-Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
-values('weijhih123','1234577','weijhih_line','weijhih123','1',TO_DATE('1989-10-19','YYYY-MM-DD'),'weijhih123@yahoo.com');
-Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
-values('androidlababy520','androidlababy520','androidlababy520','安卓拉寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'androidlababy520@yahoo.com');
-Insert into MEMBER( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
-values('anjavababy520','anjavababy520','anjavababy520','一個爪哇寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'anjavababy520@yahoo.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('soowii123','123456','soowii','1',TO_DATE('1990-02-15','YYYY-MM-DD'),'soowii123@yahoo.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('xuan123','1234567','xuan','1',TO_DATE('1992-05-01','YYYY-MM-DD'),'xuan123@hotmail.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('michael123','12345678','Michael','1',TO_DATE('1989-06-25','YYYY-MM-DD'),'Michael123@yahoo.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('vain123','123456789','vain','1',TO_DATE('1987-07-01','YYYY-MM-DD'),'vain123@hotmail.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('yiwen123','1234566','yiwen123','1',TO_DATE('1985-09-14','YYYY-MM-DD'),'yiwen123@yahoo.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('weijhih123','1234577','weijhih123','1',TO_DATE('1989-10-19','YYYY-MM-DD'),'weijhih123@yahoo.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('androidlababy520','androidlababy520','安卓拉寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'androidlababy520@yahoo.com');
+Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL) 
+values('anjavababy520','anjavababy520','一個爪哇寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'anjavababy520@yahoo.com');
 
 --訊息
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
@@ -181,10 +184,30 @@ Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT)
 values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'xuan123','soowii123','嗨嗨你好');
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
 values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'michael123','vain123','我是麥可');
-Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michael123','我是Vain');
-Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
-values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','michael123','哩賀');
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','我是Vain',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','哩賀',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'soowii123','anjavababy520','哈囉你好啊',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'xuan123','anjavababy520','嗨嗨你好',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'michael123','anjavababy520','我是麥可',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','我是Vain',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','哩賀',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'soowii123','anjavababy520','哈囉你好啊',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'androidlababy520','anjavababy520','嗨嗨你好',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'michael123','anjavababy520','我是麥可',2);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','我是Vain',1);
+Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT, MSG_STATUS) 
+values('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'),'vain123','anjavababy520','哩賀',1);
 
 --通知
 Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
@@ -236,7 +259,9 @@ values('staff_weijhih','12345678','weijhih');
 
 --功能
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
-values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'權限管理');
+values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'管理員資料管理');
+Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
+values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'會員管理');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
 values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'留言管理');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 

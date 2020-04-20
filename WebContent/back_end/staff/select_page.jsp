@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.abl.model.*"%>
+<%@ page import="java.util.*"%>
 
+<%
+	AbilityService abilitySvc = new AbilityService();
+	Map<String, String> abilityMap = abilitySvc.getAllToMap();
+	pageContext.setAttribute("abilityMap",abilityMap);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,13 +32,12 @@
 	
 	<form METHOD="POST" action="staff.do" id="form1">
 		<%-- 用button是為了讓value可以使用 --%>
+		<c:set var="entrySet" value="${abilityMap}"/> 
+		<c:forEach var="map" items="${entrySet}">
+		<button type="submit" form="form1" name="management" value="${map.key}">${map.value}</button>
+		<br><br>
+		</c:forEach>
 		
-		
-		<button type="submit" form="form1" name="management" value="01">管理員管理</button><br><br>
-		<button type="submit" form="form1" name="management" value="02">留言管理</button><br><br>
-		<button type="submit" form="form1" name="management" value="03">檢舉管理</button><br><br>
-		<button type="submit" form="form1" name="management" value="04">商城管理</button><br><br>
-		<button type="submit" form="form1" name="management" value="05">問題回報管理</button><br><br>
 		<input type="hidden" name="action" value="select_management">
 		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
 	</form>

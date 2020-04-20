@@ -261,6 +261,8 @@ values('staff_weijhih','12345678','weijhih');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
 values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'管理員資料管理');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
+values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'會員管理');
+Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
 values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'留言管理');
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
 values(LPAD(to_char(ABILITY_NO_SEQ.NEXTVAL), 2, '0'),'檢舉管理');
