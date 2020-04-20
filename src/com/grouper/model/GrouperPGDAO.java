@@ -1,9 +1,13 @@
 package com.grouper.model;
 
 import java.util.*;
-import java.sql.*;
-import static com.common.Common.*;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import java.sql.*;
 
 public class GrouperPGDAO implements GrouperDAO_interface {
 
@@ -18,6 +22,17 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 	private static final String UPDATE = 
 		"UPDATE Grouper set MB_ID=?, LOC_NO=?, GRP_APPLYSTART=?, GRP_APPLYEND=?, GRP_START=?, GRP_END=?, GRP_NAME=?, GRP_CONTENT=?, GRP_PERSONMAX=?, GRP_PERSONMIN=?, GRP_PERSONCOUNT=?, GRP_STATUS=?, GRP_FOLLOW=? where GRP_NO = ?";
 
+	// 連線池
+		private static DataSource pgds = null;
+		static {
+			try {
+				Context ctx = new InitialContext();
+				pgds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_PGDB");
+			} catch (NamingException e) {
+				e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void insert(GrouperVO grouperVO) {
 
@@ -25,7 +40,9 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 //			pstmt.setString(1, grouperVO.getGrp_no());
@@ -76,7 +93,9 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			
@@ -128,7 +147,9 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, grp_no);
@@ -168,7 +189,9 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, grp_no);
@@ -242,7 +265,9 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 //		    System.out.println(password);
 //		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 //		    System.out.println(dbUrl);
-		    con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+//			Class.forName(DRIVER_CLASS_PG);
+//			con= DriverManager.getConnection(URL_PG, USER_PG, PASSWORD_PG);
+			con = pgds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
