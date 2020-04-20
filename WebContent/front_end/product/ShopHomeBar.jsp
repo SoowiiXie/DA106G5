@@ -167,7 +167,7 @@ div img{
   <div id="page" >
     <div id="first">
      <div class="logo" align="center">
-      <img src="<%=request.getContextPath()%>/fake_picture/ProductLogo.png"></div>
+      <img src="<%=request.getContextPath()%>/img/ProductLogo.png"></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
         <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:30px;border-radius:5px;">
@@ -244,7 +244,7 @@ div img{
         </div> 
      
     </div>
-    <div class="third" align="center" ><img src="<%=request.getContextPath()%>/fake_picture/ProductAD.jpg" alt="跑馬燈圖片"></div>
+    <div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
 <%-- <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00001">服飾-男上身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00002">服飾-男下身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00003">服飾-男鞋</a>
