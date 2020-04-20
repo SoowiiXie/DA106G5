@@ -13,13 +13,15 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <% 
-// 	String mb_id=(String)session.getAttribute("mb_id");
-// 	if(mb_id==null || "".equals(mb_id)){
-// 		session.setAttribute("mb_id","anjavababy520");
-// 	}
-// 	pageContext.setAttribute("mb_id", mb_id);
-
+	MemberService memberSvc = new MemberService();
 	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	//登入畫面壞掉時用，其餘時候註解起來
+	String mb_id=(String)session.getAttribute("mb_id");
+	if(mb_id==null || "".equals(mb_id) || memberVO==null){
+		session.setAttribute("mb_id","anjavababy520");
+		session.setAttribute("memberVO",memberSvc.getOneMember(mb_id));
+	}
+	//正式上線時用
 	if(memberVO==null){
 		//還沒登入的話
 		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
@@ -710,7 +712,12 @@
 							<c:forEach var="cmtVO" items="${cmtSvcEL.getByRcd_no(recordVO.rcd_no)}">
 							<c:if test="${cmtVO.cmt_status==1}">
 							<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+								<c:if test="${memberSvcEL.getOneMember(cmtVO.mb_id).mb_pic!=null}">
 								<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem;  src='<%= request.getContextPath() %>/MemberPicReader?mb_id=${cmtVO.mb_id}' />
+								</c:if>
+								<c:if test="${memberSvcEL.getOneMember(cmtVO.mb_id).mb_pic==null}">
+								<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem;  src='${memberSvcEL.getOneMember(cmtVO.mb_id).mb_line_pic}' />
+								</c:if>
 								<span class='text-primary col-2 mx-auto' style="font-size:1.2rem;">${memberSvcEL.getOneMember(cmtVO.mb_id).mb_name}</span>
 								<span class='text-dark col-2 mx-auto' style="font-size:1.2rem;">${cmtVO.cmt_content}</span>
 								<c:if test='${mb_id==cmtVO.mb_id}'>
