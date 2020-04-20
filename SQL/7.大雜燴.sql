@@ -35,10 +35,10 @@ CREATE TABLE member (
  mb_lv NUMBER(2) DEFAULT '1' NOT NULL,
  mb_rpt_times NUMBER(2) DEFAULT '0' NOT NULL,
  mb_status NUMBER(1) DEFAULT '1' NOT NULL,
- mb_line_id VARCHAR2(100),
- mb_line_pic VARCHAR2(100),
- mb_line_display VARCHAR2(100),
- mb_line_status VARCHAR2(100)
+ mb_line_id VARCHAR2(200),
+ mb_line_pic BLOB,
+ mb_line_display VARCHAR2(200),
+ mb_line_status VARCHAR2(200)
 );
 
 ALTER TABLE member ADD CONSTRAINT PK_member PRIMARY KEY (mb_id);

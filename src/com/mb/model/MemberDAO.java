@@ -172,7 +172,7 @@ public class MemberDAO  implements MemberDAO_interface{
 				memberVO.setMb_email(rs.getString("mb_email"));
 				memberVO.setMb_status(rs.getInt("mb_status"));
 				memberVO.setMb_line_id(rs.getString("mb_line_id"));
-				memberVO.setMb_line_pic(rs.getString("mb_line_pic"));
+				memberVO.setMb_line_pic(rs.getBytes("mb_line_pic"));
 				memberVO.setMb_line_display(rs.getString("mb_line_display"));
 				memberVO.setMb_line_status(rs.getString("mb_line_status"));
 			}
@@ -239,7 +239,7 @@ public class MemberDAO  implements MemberDAO_interface{
 				memberVO.setMb_email(rs.getString("mb_email"));
 				memberVO.setMb_status(rs.getInt("mb_status"));
 				memberVO.setMb_line_id(rs.getString("mb_line_id"));
-				memberVO.setMb_line_pic(rs.getString("mb_line_pic"));
+				memberVO.setMb_line_pic(rs.getBytes("mb_line_pic"));
 				memberVO.setMb_line_display(rs.getString("mb_line_display"));
 				memberVO.setMb_line_status(rs.getString("mb_line_status"));
 				list.add(memberVO); // Store the row in the list
@@ -326,7 +326,7 @@ public class MemberDAO  implements MemberDAO_interface{
 			pstmt = con.prepareStatement(UPDATE_LINE);
 			
 			pstmt.setString(1, memberVO.getMb_line_id());
-			pstmt.setString(2, memberVO.getMb_line_pic());
+			pstmt.setBytes(2, memberVO.getMb_line_pic());
 			pstmt.setString(3, memberVO.getMb_line_display());
 			pstmt.setString(4, memberVO.getMb_line_status());
 			pstmt.setString(5, memberVO.getMb_id());
