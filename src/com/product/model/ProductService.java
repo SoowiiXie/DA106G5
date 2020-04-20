@@ -67,5 +67,14 @@ public class ProductService {
 		 
 		 return dao.useTypeSearchProducts(pd_typeNo);
 	 }
+	 public List<ProductVO> OnMarketWithPd_typeNO(Integer pd_status, String pd_typeNo){
+		 
+		       return dao.OnMarketWithPd_typeNO(pd_status, pd_typeNo);
+	 }
 	
+	 public byte[] search_pd_pic(String pd_no) {
+		 
+		 return dao.search_pd_pic(pd_no);
+	 }
+	 
 }

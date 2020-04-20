@@ -17,6 +17,7 @@
 	
 	
 %>
+<jsp:useBean id="couponService" scope="page" class="com.coupon.model.CouponService" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +49,7 @@
 
 <c:forEach var="cp_getVO" items="${list}">
 
-<td width="100">${cp_getVO.cp_no}</td>
+<td width="100">${couponService.searchCoupon(cp_getVO.cp_no).cp_name}</td>
 
 
 </c:forEach>
@@ -59,7 +60,7 @@
 
        <select size="1" name="cp_non">
          <c:forEach var="cp_getVO2" items="${list}" > 
-          <option value="${cp_getVO2.cp_no}">${cp_getVO2.cp_no}
+          <option value="${cp_getVO2.cp_no}">${couponService.searchCoupon(cp_getVO2.cp_no).cp_name}
          </c:forEach>   
        </select>
 

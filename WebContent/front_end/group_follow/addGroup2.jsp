@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.grouper.model.GrouperVO"%>
 <%@ page import="com.grouper.model.*"%>
-<%@ page import="android.com.location.model.*"%>
+<%@ page import="com.location.model.*"%>
 
 <%
 	GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
@@ -90,7 +90,7 @@
 	<tr>
 		<td>地標編號:</td>
 		<td>
-			<jsp:useBean id="locationSvc" scope="page" class="android.com.location.model.LocationService" />
+			<jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />
 			<br>
 			<select size="1" name="loc_no" class="myselect" style="width:500px;">
 			<!--方法1 (可填複數個需求)-->

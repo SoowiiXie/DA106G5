@@ -7,15 +7,36 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 <%
-	ProductService productService = new ProductService();
 
-	List<ProductVO> list = productService.listOnTheMarket(2);
 
-	pageContext.setAttribute("list", list);
+ProductService productService = new ProductService();
+
+
+
+List<ProductVO> list = productService.listOnTheMarket(2);
+
+Collections.reverse(list);
+
+pageContext.setAttribute("list", list); //for EL
 %>
+
+
+  購物車品項數量: 
+<c:if test="${buylistCount!=0}">
+	                   ${buylistCount}
+  </c:if>
+</br>
+</br>
+
+登入的會員帳號:${mb_id}
+	<br>
+	<br>
+<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
+
 
 <jsp:useBean id="pd_typeService" scope="page"
 	class="com.pd_type.model.Pd_typeService" />
+	
 <html>
 <head>
 <meta charset="UTF-8">
@@ -23,14 +44,13 @@
 </head>
 <body>
 
-	登入的會員帳號:${mb_id}
-	<br>
-	<br>
+
+	
 	<a
 		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp">會員登錄</a>
 	<br>
 	<br>
-
+    
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -40,32 +60,31 @@
 			</c:forEach>
 		</ul>
 	</c:if>
+	
 	<table border="3">
 
 		<tr>
 			<th width="100">商品圖片</th>
-			<th width="100">商品編號</th>
 			<th width="100">商品名稱</th>
 			<th width="100">商品價格</th>
-			<th width="100">商品詳述</th>
 			<th width="100">商品類別</th>
+			
 
 
 		</tr>
 		<%@ include file="page3.file"%>
+		<%@ include file="page4.file"%>
 		<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
 
 			<tr>
 				<td><a
-					href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}'><img
+					href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}&&whichPage=<%=whichPage%>'><img
 						src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"
 						width="100px"></a></td>
-				<td>${productVO.pd_no}</td>
 				<td><a
-					href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}'>${productVO.pd_name}</a></td>
+					href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}&&whichPage=<%=whichPage%>'>${productVO.pd_name}</a></td>
 				<td>${productVO.pd_price}</td>
-				<td>${productVO.pd_detail}</td>
 				<td>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
 
 			</tr>
@@ -89,6 +108,10 @@
 		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp">會員${mb_id}的優惠卷</a>
 	<br>
 	<br>
+	<a
+		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp">${mb_id}的商品收藏</a>
+	
+	
 
 </body>
 </html>

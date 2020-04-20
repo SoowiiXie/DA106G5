@@ -23,6 +23,12 @@ public class InitData extends HttpServlet {
     	
     	/** 名軒區域開始 **/
     	
+    	// 會員性別 LinkedHashMap
+    	Map<Integer,String> memberGender = new LinkedHashMap<Integer,String>();
+    	memberGender.put(1, "男");
+    	memberGender.put(2, "女");
+    	context.setAttribute("memberGender", memberGender);
+    	
     	// 會員狀態 LinkedHashMap
     	Map<Integer,String> memberStatus = new LinkedHashMap<Integer,String>();
     	memberStatus.put(1, "未驗證");

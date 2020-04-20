@@ -28,20 +28,20 @@ public class ProductPicReader extends HttpServlet {
 	String passwd = "DA106G5";
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");  // 接收相對應的編碼請求(有中文時)
+		req.setCharacterEncoding("UTF-8"); // 接收相對應的編碼請求(有中文時)
 		res.setContentType("image/gif");
 		Connection con = null;
 //		PreparedStatement pstmt = null;
-		ServletOutputStream out = res.getOutputStream();  // 瀏覽器的輸出
+		ServletOutputStream out = res.getOutputStream(); // 瀏覽器的輸出
 
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			Statement stmt = con.createStatement();
 			String pd_no = req.getParameter("pd_no").trim();
-			ResultSet rs = stmt.executeQuery(
-				"SELECT pd_pic FROM PRODUCT WHERE pd_no = '" +pd_no + "'");
-			
+			System.out.println(pd_no);
+			ResultSet rs = stmt.executeQuery("SELECT pd_pic FROM PRODUCT WHERE pd_no = '" + pd_no + "'");
+             System.out.println(rs);
 			if (rs.next()) {
 				// 用高階水管
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("pd_pic"));
@@ -70,7 +70,5 @@ public class ProductPicReader extends HttpServlet {
 			in.close();
 		}
 	}
-
-
 
 }

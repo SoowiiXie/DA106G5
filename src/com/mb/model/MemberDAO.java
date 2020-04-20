@@ -1,12 +1,6 @@
 package com.mb.model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,8 +12,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.abl.model.AbilityVO;
-
 public class MemberDAO  implements MemberDAO_interface{
 
 //	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -28,13 +20,15 @@ public class MemberDAO  implements MemberDAO_interface{
 //	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO MEMBER ( MB_ID, MB_PWD, MB_LINE, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_PIC, MB_EMAIL) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO MEMBER ( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_PIC, MB_EMAIL) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT * FROM MEMBER order by MB_ID";
 	private static final String GET_ONE_STMT = 
 		"SELECT * FROM MEMBER where MB_ID = ?";
 	private static final String UPDATE = 
-		"UPDATE MEMBER set MB_PWD=?, MB_LINE=?, MB_NAME=?, MB_GENDER=?, MB_BIRTHDAY=?, MB_LV=?, MB_PIC=?, MB_RPT_TIMES=?, MB_EMAIL=?, MB_STATUS=? where MB_ID = ?";
+		"UPDATE MEMBER set MB_PWD=?, MB_NAME=?, MB_GENDER=?, MB_BIRTHDAY=?, MB_LV=?, MB_PIC=?, MB_RPT_TIMES=?, MB_EMAIL=?, MB_STATUS=? where MB_ID = ?";
+	private static final String UPDATE_LINE = 
+		"UPDATE MEMBER set MB_LINE_ID=?, MB_LINE_PIC=?, MB_LINE_DISPLAY=?, MB_LINE_STATUS=? where MB_ID = ?";
 	// 被檢舉次數+1
 	private static final String GET_ONE_RPT_TIME = 
 		"SELECT MB_RPT_TIMES FROM MEMBER where MB_ID = ?";
@@ -67,12 +61,11 @@ public class MemberDAO  implements MemberDAO_interface{
 			
 			pstmt.setString(1, memberVO.getMb_id());
 			pstmt.setString(2, memberVO.getMb_pwd());
-			pstmt.setString(3, memberVO.getMb_line());
-			pstmt.setString(4, memberVO.getMb_name());
-			pstmt.setInt(5, memberVO.getMb_gender());
-			pstmt.setDate(6, memberVO.getMb_birthday());
-			pstmt.setBytes(7, memberVO.getMb_pic());
-			pstmt.setString(8, memberVO.getMb_email());
+			pstmt.setString(3, memberVO.getMb_name());
+			pstmt.setInt(4, memberVO.getMb_gender());
+			pstmt.setDate(5, memberVO.getMb_birthday());
+			pstmt.setBytes(6, memberVO.getMb_pic());
+			pstmt.setString(7, memberVO.getMb_email());
 			
 			pstmt.executeUpdate();
 
@@ -110,18 +103,16 @@ public class MemberDAO  implements MemberDAO_interface{
 //			con = DriverManager.getConnection(url, userid, passwd);
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
-			
 			pstmt.setString(1, memberVO.getMb_pwd());
-			pstmt.setString(2, memberVO.getMb_line());
-			pstmt.setString(3, memberVO.getMb_name());
-			pstmt.setInt(4, memberVO.getMb_gender());
-			pstmt.setDate(5, memberVO.getMb_birthday());
-			pstmt.setInt(6, memberVO.getMb_lv());
-			pstmt.setBytes(7, memberVO.getMb_pic());
-			pstmt.setInt(8, memberVO.getMb_rpt_times());
-			pstmt.setString(9, memberVO.getMb_email());
-			pstmt.setInt(10, memberVO.getMb_status());
-			pstmt.setString(11, memberVO.getMb_id());
+			pstmt.setString(2, memberVO.getMb_name());
+			pstmt.setInt(3, memberVO.getMb_gender());
+			pstmt.setDate(4, memberVO.getMb_birthday());
+			pstmt.setInt(5, memberVO.getMb_lv());
+			pstmt.setBytes(6, memberVO.getMb_pic());
+			pstmt.setInt(7, memberVO.getMb_rpt_times());
+			pstmt.setString(8, memberVO.getMb_email());
+			pstmt.setInt(9, memberVO.getMb_status());
+			pstmt.setString(10, memberVO.getMb_id());
 
 			pstmt.executeUpdate();
 
@@ -172,7 +163,6 @@ public class MemberDAO  implements MemberDAO_interface{
 				memberVO = new MemberVO();
 				memberVO.setMb_id(rs.getString("mb_id"));
 				memberVO.setMb_pwd(rs.getString("mb_pwd"));
-				memberVO.setMb_line(rs.getString("mb_line"));
 				memberVO.setMb_name(rs.getString("mb_name"));
 				memberVO.setMb_gender(rs.getInt("mb_gender"));
 				memberVO.setMb_birthday(rs.getDate("mb_birthday"));
@@ -181,6 +171,10 @@ public class MemberDAO  implements MemberDAO_interface{
 				memberVO.setMb_rpt_times(rs.getInt("mb_rpt_times"));
 				memberVO.setMb_email(rs.getString("mb_email"));
 				memberVO.setMb_status(rs.getInt("mb_status"));
+				memberVO.setMb_line_id(rs.getString("mb_line_id"));
+				memberVO.setMb_line_pic(rs.getBytes("mb_line_pic"));
+				memberVO.setMb_line_display(rs.getString("mb_line_display"));
+				memberVO.setMb_line_status(rs.getString("mb_line_status"));
 			}
 
 			// Handle any driver errors
@@ -236,7 +230,6 @@ public class MemberDAO  implements MemberDAO_interface{
 				memberVO = new MemberVO();
 				memberVO.setMb_id(rs.getString("mb_id"));
 				memberVO.setMb_pwd(rs.getString("mb_pwd"));
-				memberVO.setMb_line(rs.getString("mb_line"));
 				memberVO.setMb_name(rs.getString("mb_name"));
 				memberVO.setMb_gender(rs.getInt("mb_gender"));
 				memberVO.setMb_birthday(rs.getDate("mb_birthday"));
@@ -245,6 +238,10 @@ public class MemberDAO  implements MemberDAO_interface{
 				memberVO.setMb_rpt_times(rs.getInt("mb_rpt_times"));
 				memberVO.setMb_email(rs.getString("mb_email"));
 				memberVO.setMb_status(rs.getInt("mb_status"));
+				memberVO.setMb_line_id(rs.getString("mb_line_id"));
+				memberVO.setMb_line_pic(rs.getBytes("mb_line_pic"));
+				memberVO.setMb_line_display(rs.getString("mb_line_display"));
+				memberVO.setMb_line_status(rs.getString("mb_line_status"));
 				list.add(memberVO); // Store the row in the list
 			}
 
@@ -314,6 +311,49 @@ public class MemberDAO  implements MemberDAO_interface{
 			}
 		}
 		return str;
+	}
+
+	@Override
+	public void updateLine(MemberVO memberVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_LINE);
+			
+			pstmt.setString(1, memberVO.getMb_line_id());
+			pstmt.setBytes(2, memberVO.getMb_line_pic());
+			pstmt.setString(3, memberVO.getMb_line_display());
+			pstmt.setString(4, memberVO.getMb_line_status());
+			pstmt.setString(5, memberVO.getMb_id());
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	}
 	
 //	// 測試

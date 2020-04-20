@@ -9,6 +9,11 @@ public class Pd_followVO implements java.io.Serializable {
 	private String mb_id;
 	private String pd_no;
 	
+
+    public Pd_followVO() {
+    	mb_id = "";
+    	pd_no = "";
+    }	
 	public String getMb_id() {
 		return mb_id;
 	}

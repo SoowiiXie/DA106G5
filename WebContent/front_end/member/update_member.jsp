@@ -25,12 +25,17 @@
 		名字：<input type="text" name="mb_name" value="${memberVO.mb_name}"><br>
 		
 		性別：
-		<input type="radio" id="gender1" name="mb_gender" value="1" ${(memberVO.mb_gender==1)?'checked':''}>   
-		<label for="gender1">男</label>
-    	<input type="radio" id="gender2" name="mb_gender" value="2" ${(memberVO.mb_gender==2)?'checked':''}>
-    	<label for="gender2">女</label><br>
+		<c:forEach var="genderMapEntry" items="${memberGender}">
+			<label>
+			<input type="radio" name="mb_gender" value="${genderMapEntry.key}" ${memberVO.mb_gender==genderMapEntry.key?"checked":""}>
+	    	${genderMapEntry.value}
+	    	</label>
+		</c:forEach>
+    	<br>
     	
-		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br>
+<!--     	Line -->
+<%-- 		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br> --%>
+		
 		生日：<input type="text" id="f_date" name="mb_birthday" value="${memberVO.mb_birthday}"><br>
 		e-mail：<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
 		
@@ -42,6 +47,7 @@
 		<input type="hidden" name="mb_rpt_times" value="${memberVO.mb_rpt_times}"><br>
 		<input type="hidden" name="mb_status" value="${memberVO.mb_status}"><br>
 		
+		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
         <input type="hidden" name="action" value="update"><br>
         <input type="reset" value="清除">
         <input type="submit" value="送出"><br>

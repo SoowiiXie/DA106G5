@@ -5,12 +5,13 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 
-<%-- 
+ <%=request.getRequestURI()%>
+
 <%
 	 ProductVO productVO = (ProductVO) request.getAttribute("productVO");  
 %>
- --%>
-
+ 
+<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,10 @@
 <title>${productVO.pd_name}</title>
 </head>
 <body>
-
+<br>
+<br>
+<br>
+ ${addType_follow}
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -37,7 +41,7 @@
 			</tr>
 			<tr>
 				<td width="100">商品類別：</td>
-				<td width="100">${productVO.pd_typeNo}</td>
+				<td width="100">${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
 			</tr>
 
 
@@ -53,6 +57,18 @@
 				<td width="100">商品詳述：</td>
 				<td width="400">${productVO.pd_detail}</td>
 			</tr>
+			
+			<tr>
+			<td width="100">商品尺寸：</td>
+			<td>      <select size="1" name="pd_typeSize">
+         <c:forEach var="pd_typeSize" items="${sizeList}" > 
+          <option value="${pd_typeSize}">${pd_typeSize}
+         </c:forEach>   
+       </select></td>
+			
+			</tr>
+			
+			
 			<tr>
 				<td width="100">數量：</td>
 				<td><select name="pd_quantity">
@@ -75,10 +91,20 @@
 			type="hidden" name="pd_name" value="${productVO.pd_name}"> <input
 			type="hidden" name="pd_price" value="${productVO.pd_price}">
 		<input type="hidden" name="pd_typeNo" value="${productVO.pd_typeNo}">
+		<input type="hidden" name="pd_typeSize" value="${pd_typeSize}">
 		<input type="hidden" name="action" value="AddProductToCar">
 	</form>
-
-	<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">回商城首頁</a>
+	
+	<form method="POST" action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
+	<input type="hidden" name="pd_no" value="${productVO.pd_no}"> 
+	<input type="hidden" name="pd_name" value="${productVO.pd_name}"> 
+	<input type="hidden" name="action" value="AddPd_follow">
+	<input type="submit" name="Submit" value="加入商品收藏">
+	
+	</form>
+<a href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp">會員的商品收藏</a>
+<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp?">回商城首頁</a>
+	
 
 
 </body>

@@ -14,7 +14,9 @@ public interface ProductDAO_interface {
     public List<ProductVO> listOnTheMarket(Integer pd_status); //用商品狀態搜尋物品
 	public List<ProductVO> getAll(Map<String, String[]> map);//萬用複合查詢 
     public int updatePic(String pd_no, String pic_path); //上傳圖片
-  
+    public List<ProductVO> OnMarketWithPd_typeNO(Integer pd_status, String pd_typeNo); //用商品狀態以及商品種類列出商品
+    public byte[] search_pd_pic(String pd_no);//用商品編號回傳該圖片byte陣列
+   
  
 }
 	

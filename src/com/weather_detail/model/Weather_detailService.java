@@ -69,6 +69,7 @@ public class Weather_detailService {
 	}
 
 	public List<Weather_detailVO> getAll() {
+		dao.getAll().forEach(System.out::println);
 		return dao.getAll();
 	}
 

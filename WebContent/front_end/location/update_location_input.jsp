@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="android.com.location.model.LocationVO"%>
-<%@ page import="android.com.location.model.LocationService"%>
-<%@ page import="android.com.location.model.*"%>
+<%@ page import="com.location.model.LocationVO"%>
+<%@ page import="com.location.model.LocationService"%>
+<%@ page import="com.location.model.*"%>
 
 <%
 	LocationVO locationVO = (LocationVO) request.getAttribute("locationVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)

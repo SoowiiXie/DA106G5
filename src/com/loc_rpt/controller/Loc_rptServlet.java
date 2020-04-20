@@ -248,7 +248,7 @@ public class Loc_rptServlet extends HttpServlet {
 					/*************************** 找到檢舉成功的人給獎勵(LV+1) ****************************************/
 					MemberService memberSvc = new MemberService();
 					MemberVO memberVO = memberSvc.getOneMember(mb_id);
-					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_line(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv()+1, memberVO.getMb_rpt_times(), memberVO.getMb_status());
+					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv()+1, memberVO.getMb_rpt_times(), memberVO.getMb_status());
 					/*************************** 把被檢舉的地標下架(2) ****************************************/
 					LocationService locationSvc = new LocationService();
 					LocationVO locationVO = locationSvc.getOneLocation(loc_no);

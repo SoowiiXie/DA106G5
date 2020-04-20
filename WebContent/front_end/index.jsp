@@ -13,13 +13,15 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <% 
-// 	String mb_id=(String)session.getAttribute("mb_id");
-// 	if(mb_id==null || "".equals(mb_id)){
-// 		session.setAttribute("mb_id","anjavababy520");
-// 	}
-// 	pageContext.setAttribute("mb_id", mb_id);
-
+	MemberService memberSvc = new MemberService();
 	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	//登入畫面壞掉時用，其餘時候註解起來
+// 	String mb_id=(String)session.getAttribute("mb_id");
+// 	if(mb_id==null || "".equals(mb_id) || memberVO==null){
+// 		session.setAttribute("mb_id","anjavababy520");
+// 		session.setAttribute("memberVO",memberSvc.getOneMember(mb_id));
+// 	}
+	//正式上線時用
 	if(memberVO==null){
 		//還沒登入的話
 		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
@@ -54,6 +56,8 @@
 <jsp:useBean id="meTooSvcEL" scope="page" class="com.metoo.model.MeTooService" />
 <!--留言Service -->
 <jsp:useBean id="cmtSvcEL" scope="page"	class="com.cmt.model.CmtService" />
+<!--訂單Service -->
+<jsp:useBean id="ordersSvcEL" scope="page"	class="com.orders.model.OrdersService" />
 
 <!DOCTYPE html>
 <html>
@@ -555,10 +559,10 @@
 									<div class="status-indicator bg-success"></div>
 								</div>
 								<c:if test="${messageVO.msg_status==1}">
-								<div class="font-weight-bold ml-2">
+								<div class="font-weight-bold ml-2 msgNotRead">
 								</c:if>
 								<c:if test="${messageVO.msg_status==2}">
-								<div class="ml-2">
+								<div class="ml-2 msgRead">
 								</c:if>
 									<div class="text-truncate">${messageVO.msg_content}</div>
 									<div class="small text-gray-500">${memberSvcEL.getOneMember(messageVO.mb_id_1).mb_name} · ${messageVO.msg_time} </div>
@@ -582,6 +586,7 @@
 					<span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:1.2rem;">${memberSvcEL.getOneMember(mb_id).mb_name}</span> 
 					<!--會員照片-->
 					<img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
+					<!--<img class="img-profile rounded-circle" src="https://profile.line-scdn.net/0hkW0Z-fy1NHgNIxwum5dLLzFmOhV6DTIwdUQuSiEqaxslEnN7NxcoHHx3PRtwQSN5Y0xzF3wqOUgi" /> -->
 					</a> <!-- Dropdown - User Information -->
 						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 							<a class="dropdown-item" href="<%= request.getContextPath() %>/front_end/member/listOneMember.jsp"> 
@@ -917,6 +922,26 @@
 				 $(".overlay").click(function() {
 					  $('.overlay').fadeOut();
 					  fblightbox.fadeOut();
+				 });
+				 
+				 $('.msgRead').click(function(){
+					 $.ajax({
+						 type: "GET",
+						 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+						 data: {"action":"ajaxGetOne4Read", "cmt_no":$(this).siblings('.cmt_no').val()},
+						 dataType: "json",
+						 success: function (data){
+// 							$("#cmt_contentFB").val(data.cmt_content);
+							$("#cmt_noFB").val(data.cmt_no);
+							$("#cmt_statusFB").val(data.cmt_status);
+							$("#cmt_timeFB").val(data.cmt_time);
+							$("#mb_idFB").val(data.mb_id);
+							$("#rcd_noFB").val(data.rcd_no);
+							$('.overlay').fadeIn();
+							  fblightbox.fadeIn();
+						 },					
+						 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+				 		});
 				 });
 			});
 		</script>

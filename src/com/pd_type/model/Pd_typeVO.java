@@ -12,6 +12,12 @@ public class Pd_typeVO implements java.io.Serializable {
   private String pd_typeName;
   private byte[] cp_pic;
   
+  public Pd_typeVO() {
+	  pd_typeNo = "";
+	  pd_typeName = "";
+	  cp_pic = null;
+  }
+  
 public String getPd_typeNo() {
 	return pd_typeNo;
 }

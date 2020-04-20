@@ -71,4 +71,12 @@ public class Weather_detailVO implements java.io.Serializable {
 		this.wth_rain_chance = wth_rain_chance;
 	}
 
+	@Override
+	public String toString() {
+		return "Weather_detailVO [weather_time=" + weather_time + ", weather_place=" + weather_place + ", wth_status="
+				+ wth_status + ", wth_high=" + wth_high + ", wth_low=" + wth_low + ", wth_comfort=" + wth_comfort
+				+ ", wth_rain_chance=" + wth_rain_chance + "]";
+	}
+
+	
 }

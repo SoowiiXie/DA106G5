@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +22,11 @@ import com.mb.model.MemberVO;
  */
 
 public class Rcd_rptServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -248,7 +252,7 @@ public class Rcd_rptServlet extends HttpServlet {
 					MemberService memberSvc = new MemberService();
 					Rcd_rptService rcd_rptSrv = new Rcd_rptService();
 					MemberVO memberVO = memberSvc.getOneMember(rcd_rptSrv.getRptedMb_id(rcd_no));
-					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_line(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv(), memberVO.getMb_rpt_times()-1, memberVO.getMb_status());
+					memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), memberVO.getMb_gender(), memberVO.getMb_birthday(), memberVO.getMb_email(), memberVO.getMb_pic(), memberVO.getMb_lv(), memberVO.getMb_rpt_times()-1, memberVO.getMb_status());
 					/*************************** 把被檢舉的留言上架(1) ****************************************/
 					RecordService recordSvc = new RecordService();
 					RecordVO recordVO = recordSvc.getOneRecord(rcd_no);

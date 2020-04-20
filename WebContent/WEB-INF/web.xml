@@ -32,6 +32,13 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
+	<resource-ref>
+		<description>PGDB Connection for DA106G5</description>
+		<res-ref-name>jdbc/DA106G5_PGDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
 <!-- 我們共用的狀態對應資料 -->
 	<servlet>
 		<servlet-name>InitData</servlet-name>
@@ -347,10 +354,6 @@
 			<url-pattern>/DBGifReader4Path</url-pattern>
 		</servlet-mapping>
 			
-		
-		
-		
-		
 		<servlet>
 			<servlet-name>MemberServlet</servlet-name>
 			<servlet-class>android.com.mb.controller.MemberServlet</servlet-class>
@@ -374,23 +377,95 @@
 <!-- 昱盛責任區開始 -->
 
     <!-- 商城開始 -->
-        <servlet>
-            <servlet-name>ProductServlet</servlet-name>
-            <servlet-class>com.product.controller.ProductServlet</servlet-class>
-        </servlet>
-            <servlet-mapping>
-            <servlet-name>ProductServlet</servlet-name>
-        <url-pattern>/ProductServlet</url-pattern>
-        </servlet-mapping>
-        
-         <servlet>
-            <servlet-name>ShoppingServlet</servlet-name>
-            <servlet-class>com.product.controller.ShoppingServlet</servlet-class>
-        </servlet>
-            <servlet-mapping>
-            <servlet-name>ShoppingServlet</servlet-name>
-        <url-pattern>/product/ShoppingServlet</url-pattern>
-        </servlet-mapping> 
+ 	<servlet>
+		<servlet-name>ProductServlet</servlet-name>
+		<servlet-class>com.product.controller.ProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductServlet</servlet-name>
+		<url-pattern>/ProductServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ShoppingServlet</servlet-name>
+		<servlet-class>com.product.controller.ShoppingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShoppingServlet</servlet-name>
+		<url-pattern>/ShoppingServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CpGetServlet</servlet-name>
+		<servlet-class>com.product.controller.CpGetServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CpGetServlet</servlet-name>
+		<url-pattern>/CpGetServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CheckOutServlet</servlet-name>
+		<servlet-class>com.product.controller.CheckOutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckOutServlet</servlet-name>
+		<url-pattern>/CheckOutServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ProductPicReader</servlet-name>
+		<servlet-class>com.product.model.ProductPicReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductPicReader</servlet-name>
+		<url-pattern>/ProductPicReader</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>OrdersServlet</servlet-name>
+		<servlet-class>com.product.controller.OrdersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrdersServlet</servlet-name>
+		<url-pattern>/OrdersServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>OrdersTest</servlet-name>
+		<servlet-class>com.orders.model.OrdersTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrdersTest</servlet-name>
+		<url-pattern>/OrdersTest</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FrontEndProductServlet</servlet-name>
+		<servlet-class>com.product.controller.FrontEndProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FrontEndProductServlet</servlet-name>
+		<url-pattern>/FrontEndProductServlet</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+		<servlet-name>Pd_followServlet</servlet-name>
+		<servlet-class>com.product.controller.Pd_followServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Pd_followServlet</servlet-name>
+		<url-pattern>/Pd_followServlet</url-pattern>
+	</servlet-mapping>
+    
+    <servlet>
+		<servlet-name>ShopMemberServlet</servlet-name>
+		<servlet-class>com.product.controller.MemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShopMemberServlet</servlet-name>
+		<url-pattern>/ShopMemberServlet</url-pattern>
+	</servlet-mapping>
        
      <!-- 商城結束 -->
 <!-- 昱盛責任區結束 -->
@@ -418,6 +493,15 @@
 		<servlet-mapping>
 			<servlet-name>MemberPicReader</servlet-name>
 			<url-pattern>/MemberPicReader</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>MemberTest</servlet-name>
+			<servlet-class>com.mb.model.MemberTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>MemberTest</servlet-name>
+			<url-pattern>/MemberTest</url-pattern>
 		</servlet-mapping>
 		
 	<!-- 會員結束 -->

@@ -5,8 +5,12 @@
 <%@ page import="com.pd_type.model.*"%>
 <%@ page import="java.util.*"%>
 
-<%
+<%  //圖片路徑初始化
+    String imgStr = request.getContextPath() + "/NoData/null2.jpg";
 	ProductVO productVO = (ProductVO) request.getAttribute("productVO");
+	if(productVO != null && productVO.getPd_pic() != null){  // 錯誤處理回來後，若先前有上傳圖片，則顯示原圖片
+		imgStr = "data:image/png;base64," + Base64.getEncoder().encodeToString(productVO.getPd_pic());
+	}
 %>
 
 
@@ -113,13 +117,16 @@ th, td {
 			</tr>
 			<tr>
 				<td>商品圖片</td>
-				<td><input type="file" name="pd_pic" id="upfile1"></td>
+				<td><input type="file" name="pd_pic" onchange="setImg(this)">
+						<img width = "200px" id="pd_pic" src="<%=imgStr%>">
+						<!-- 第一次有送出照片，錯誤回來後沒有再選擇照片時，用picBase64送出 -->
+						<%if(productVO != null && productVO.getPd_pic() != null){ %>
+			<input type="hidden" name="picBase64" value="<%=Base64.getEncoder().encodeToString(productVO.getPd_pic())%>">
+		<%}; %>
+						</td>
 			</tr>
 
-			<tr>
-				<td>預覽:</td>
-				<td><img src="/DA106_G5/NoData/none2.jpg" width="100px"></td>
-			</tr>
+			
 
 
 		</table>
@@ -129,15 +136,15 @@ th, td {
 	</form>
 
 	<script>
-		var x = new FileReader;
-
-		document.forms[0].elements[5].onchange = function() {
-			x.readAsDataURL(this.files[0]);
-		}
-		x.onloadend = function() {
-			document.images[1].src = this.result;
-			console.log(x.herf);
-		}
+	function setImg(input){
+  		if(input.files && input.files[0]){
+  			var reader = new FileReader();
+  			reader.onload = function (e) {
+    			document.getElementById("pd_pic").setAttribute("src", e.target.result);
+    		}
+    	reader.readAsDataURL(input.files[0]);
+  		}
+	}
 	</script>
 
 
