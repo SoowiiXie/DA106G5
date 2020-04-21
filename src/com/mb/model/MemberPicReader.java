@@ -34,12 +34,10 @@ public class MemberPicReader extends HttpServlet {
 
 		try {
 			Statement stmt = con.createStatement();
-			Statement stmtLine = con.createStatement();
 			String mb_id = req.getParameter("mb_id").trim();
 			ResultSet rs = stmt.executeQuery(
 				"SELECT MB_PIC FROM MEMBER WHERE MB_ID = '" + mb_id + "'");
-			ResultSet rsLine = stmtLine.executeQuery(
-				"SELECT MB_LINE_PIC FROM MEMBER WHERE MB_ID = '" + mb_id + "'");
+			
 			
 			if (rs.next()) {
 				// 用高階水管
@@ -50,47 +48,50 @@ public class MemberPicReader extends HttpServlet {
 					out.write(buf, 0, len);
 				}
 				in.close();
-			}
-			else if (rsLine.next()) {
-				// 用高階水管
-				BufferedInputStream in = new BufferedInputStream(rsLine.getBinaryStream("mb_line_pic"));
-				byte[] buf = new byte[4 * 1024]; // 4K buffer
-				int len;
-				while ((len = in.read(buf)) != -1) {
-					out.write(buf, 0, len);
+			}else {
+				Statement stmtLine = con.createStatement();
+				ResultSet rsLine = stmtLine.executeQuery(
+						"SELECT MB_LINE_PIC FROM MEMBER WHERE MB_ID = '" + mb_id + "'");
+				if (rsLine.next()) {
+					// 用高階水管
+					BufferedInputStream in = new BufferedInputStream(rsLine.getBinaryStream("mb_line_pic"));
+					byte[] buf = new byte[4 * 1024]; // 4K buffer
+					int len;
+					while ((len = in.read(buf)) != -1) {
+						out.write(buf, 0, len);
+					}
+					in.close();
 				}
-				in.close();
+//				else if (rsLine.next()) {
+//					res.setContentType("text/plain");
+//					res.setCharacterEncoding("UTF-8");
+//					PrintWriter outLine = res.getWriter();
+//					outLine.write(rsLine.getString("mb_line_pic"));
+//				} 
+//				else if (rsLine.next()) {
+//					URL myURL = new URL(rsLine.getString("mb_line_pic"));
+//					HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
+//					InputStream is = conn.getInputStream();
+//					BufferedInputStream in = new BufferedInputStream(is);
+//					byte[] buf = new byte[4 * 1024]; // 4K buffer
+//					int len;
+//					while ((len = in.read(buf)) != -1) {
+//						out.write(buf, 0, len);
+//					}
+//					in.close();
+//				} 
+				else {
+					// res.sendError(HttpServletResponse.SC_NOT_FOUND);
+					InputStream in = getServletContext().getResourceAsStream("/NoData/null2.jpg");
+					byte[] b = new byte[in.available()];
+					in.read(b);
+					out.write(b);
+					in.close();
+				}
 			}
-//			else if (rsLine.next()) {
-//				res.setContentType("text/plain");
-//				res.setCharacterEncoding("UTF-8");
-//				PrintWriter outLine = res.getWriter();
-//				outLine.write(rsLine.getString("mb_line_pic"));
-//			} 
-//			else if (rsLine.next()) {
-//				URL myURL = new URL(rsLine.getString("mb_line_pic"));
-//				HttpURLConnection conn = (HttpURLConnection) myURL.openConnection();
-//				InputStream is = conn.getInputStream();
-//				BufferedInputStream in = new BufferedInputStream(is);
-//				byte[] buf = new byte[4 * 1024]; // 4K buffer
-//				int len;
-//				while ((len = in.read(buf)) != -1) {
-//					out.write(buf, 0, len);
-//				}
-//				in.close();
-//			} 
-			else {
-				// res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in = getServletContext().getResourceAsStream("/NoData/null2.jpg");
-				byte[] b = new byte[in.available()];
-				in.read(b);
-				out.write(b);
-				in.close();
-			}
-			rs.close();
-			stmt.close();
+				
 		} catch (Exception e) {
-			// System.out.println(e);
+			System.out.println(e);
 			InputStream in = getServletContext().getResourceAsStream("/NoData/null2.jpg");
 			byte[] b = new byte[in.available()];
 			in.read(b);
