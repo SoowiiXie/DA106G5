@@ -32,7 +32,7 @@
 	<img src="images/tomcat.gif">
 	<font size="+3">目前您購物車的內容如下：</font>
 	<p>
-	<table border="1" width="740">
+	<table style="border:1 ;width:740;">
 		<tr bgcolor="#999999">
 			<th width="200">產品圖片</th>
 			<th width="200">產品分類</th>
@@ -75,14 +75,12 @@
 
 
 			<td width="100"><div align="center">
-					<form name="deleteForm"
-						action="<%=request.getContextPath()%>/ShoppingServlet"
-						method="POST">
+				<form name="deleteForm" action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
 						<input type="hidden" name="action" value="DELETE"> <input
 							type="hidden" name="del" value="<%=index%>"> <input
 							type="submit" value="刪除">
-				</div></td>
-			</form>
+				</form></div></td>
+			
 		</tr>
 		<%
 			}

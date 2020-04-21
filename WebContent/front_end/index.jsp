@@ -814,7 +814,7 @@
 	      	我來打打看
 	    </div>
 	    <div class="fblightbox-content">
-	    	<jsp:include page="<%= request.getContextPath() %>/update_cmt_input.jsp" />
+	    	<jsp:include page="cmt/update_cmt_input.jsp" />
 	    </div>
 	  </div>
 	</div>
