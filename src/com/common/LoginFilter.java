@@ -30,7 +30,7 @@ public class LoginFilter implements Filter{
 		MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
 		if(memberVO == null) {
 			session.setAttribute("originalJSP", req.getRequestURI());
-			res.sendRedirect(req.getContextPath() + "/front_end/member/login.jsp");
+			res.sendRedirect(req.getContextPath() + "/front_end/member/login.jsp");  // 登入換地址，此處也要換
 			return;
 		}else {
 			chain.doFilter(request, response);

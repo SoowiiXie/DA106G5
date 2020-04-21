@@ -31,7 +31,7 @@
 	<a href="update_self.jsp">個人資料管理</a><br><br>
 	
 	<form METHOD="POST" action="staff.do" id="form1">
-		<%-- 用button是為了讓value可以使用 --%>
+		<%-- 權限，用button是為了讓value可以使用 --%>
 		<c:set var="entrySet" value="${abilityMap}"/> 
 		<c:forEach var="map" items="${entrySet}">
 		<button type="submit" form="form1" name="management" value="${map.key}">${map.value}</button>
