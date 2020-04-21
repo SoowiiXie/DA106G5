@@ -179,7 +179,7 @@ public class StaffServlet extends HttpServlet{
 			// 用Map裝管理編號與相對應的路徑
 			Map<String,String> managementMapPath = new HashMap<String,String>();
 			managementMapPath.put("01", "/back_end/staff/listAllStaff.jsp");  // 導至管理員資料管理頁面
-			managementMapPath.put("02", "/back_end/staff/listAllStaff.jsp");  // 導至會員管理頁面
+			managementMapPath.put("02", "/back_end/staff/listAllMember.jsp");  // 導至會員管理頁面
 			managementMapPath.put("03", "/back_end/staff/listAllStaff.jsp");  // 導至留言管理頁面
 			managementMapPath.put("04", "/back_end/staff/listAllStaff.jsp");  // 導至檢舉管理頁面
 			managementMapPath.put("05", "/back_end/staff/listAllStaff.jsp");  // 導至商城管理頁面	
