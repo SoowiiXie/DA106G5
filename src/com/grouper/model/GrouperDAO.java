@@ -308,4 +308,9 @@ public class GrouperDAO implements GrouperDAO_interface {
 		}
 		return list;
 	}
+	@Override
+	public List<GrouperVO> getAll(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
