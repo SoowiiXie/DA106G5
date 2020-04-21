@@ -1,22 +1,25 @@
 package com.msg.model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class MessageDAO implements MessageDAO_interface{
 	
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "DA106G5";
-	String passwd = "DA106G5";
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+//	String userid = "DA106G5";
+//	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO MESSAGE (MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) VALUES ('MSN'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'), ?, ?, ?)";
@@ -33,6 +36,17 @@ public class MessageDAO implements MessageDAO_interface{
 	private static final String COUNT_ALL_NOTREADS = 
 		"SELECT COUNT ('a notRead') AS NOTREADS FROM MESSAGE WHERE MB_ID_2 = ? AND MSG_STATUS = ?";
 	
+	// 連線池
+		private static DataSource ds = null;
+		static {
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
+	
 	@Override
 	public void insert(MessageVO messageVO) {
 		Connection con = null;
@@ -40,8 +54,9 @@ public class MessageDAO implements MessageDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			
@@ -52,10 +67,6 @@ public class MessageDAO implements MessageDAO_interface{
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -86,8 +97,9 @@ public class MessageDAO implements MessageDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, messageVO.getMb_id_1());
@@ -99,10 +111,6 @@ public class MessageDAO implements MessageDAO_interface{
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -133,8 +141,9 @@ public class MessageDAO implements MessageDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, msg_no);
@@ -142,10 +151,6 @@ public class MessageDAO implements MessageDAO_interface{
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -178,8 +183,9 @@ public class MessageDAO implements MessageDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, msg_no);
@@ -198,10 +204,6 @@ public class MessageDAO implements MessageDAO_interface{
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -244,8 +246,9 @@ public class MessageDAO implements MessageDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_BY_MB_ID_2_STMT);
 
 			pstmt.setString(1, mb_id_2);
@@ -265,10 +268,6 @@ public class MessageDAO implements MessageDAO_interface{
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -310,8 +309,9 @@ public class MessageDAO implements MessageDAO_interface{
 		
 		try {
 			
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 			
@@ -328,10 +328,6 @@ public class MessageDAO implements MessageDAO_interface{
 			}
 			
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -385,9 +381,9 @@ public class MessageDAO implements MessageDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(sb.toString());
 			rs = pstmt.executeQuery();
 
@@ -404,10 +400,6 @@ public class MessageDAO implements MessageDAO_interface{
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -439,10 +431,10 @@ public class MessageDAO implements MessageDAO_interface{
 	}
 	
 	
-	// 測試
-	public static void main(String[] args) {
-		MessageDAO dao = new MessageDAO();
-		
+//	// 測試
+//	public static void main(String[] args) {
+//		MessageDAO dao = new MessageDAO();
+//		
 //		// 查
 //		List<MessageVO> all = dao.getAll();
 //		for(MessageVO messageVO:all) {
@@ -481,20 +473,20 @@ public class MessageDAO implements MessageDAO_interface{
 //		System.out.println(messageVO.getMsg_content());
 //		System.out.println(messageVO.getMsg_time());
 //		System.out.println(messageVO.getMsg_status());
-		
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("MB_ID_1", "'vain123'");
-		map.put("MB_ID_2", "'michael123'");
-		List<MessageVO>  list = dao.getAllPlu(map);
-		for (MessageVO messageVO : list) {
-			System.out.println(messageVO.getMsg_no());	
-			System.out.println(messageVO.getMb_id_1());
-			System.out.println(messageVO.getMb_id_2());
-			System.out.println(messageVO.getMsg_content());
-			System.out.println(messageVO.getMsg_time());
-			System.out.println(messageVO.getMsg_status());
-		}
-	}
+//		
+//		Map<String,String> map = new HashMap<String,String>();
+//		map.put("MB_ID_1", "'vain123'");
+//		map.put("MB_ID_2", "'michael123'");
+//		List<MessageVO>  list = dao.getAllPlu(map);
+//		for (MessageVO messageVO : list) {
+//			System.out.println(messageVO.getMsg_no());	
+//			System.out.println(messageVO.getMb_id_1());
+//			System.out.println(messageVO.getMb_id_2());
+//			System.out.println(messageVO.getMsg_content());
+//			System.out.println(messageVO.getMsg_time());
+//			System.out.println(messageVO.getMsg_status());
+//		}
+//	}
 
 	@Override
 	public Integer countNotReads(String mb_id_2) {
@@ -506,9 +498,9 @@ public class MessageDAO implements MessageDAO_interface{
 			ResultSet rs = null;
 
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
-//				con = ds.getConnection();
+//				Class.forName(driver);
+//				con = DriverManager.getConnection(url, userid, passwd);
+				con = ds.getConnection();
 				pstmt = con.prepareStatement(COUNT_ALL_NOTREADS,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 				pstmt.setString(1, mb_id_2);
 				pstmt.setInt(2, 1);
@@ -520,9 +512,6 @@ public class MessageDAO implements MessageDAO_interface{
 			} catch (SQLException se) {
 				throw new RuntimeException("A database error occured. " + se.getMessage());
 				// Clean up JDBC resources
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} finally {
 				if (rs != null) {
 					try {

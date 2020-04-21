@@ -1,14 +1,16 @@
 package com.mb_rpt.model;
 
-import static com.common.Common.*;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class MB_RPTDAO implements MB_RPTDAO_interface{
 //	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -25,7 +27,17 @@ public class MB_RPTDAO implements MB_RPTDAO_interface{
 	private static final String UPDATE = 
 			"UPDATE MB_RPT set MB_ID_1=?, MB_ID_2=?, RPT_REASON=?, RPT_STATUS=? where MB_RPT_NO = ?";
 	
-
+	// 連線池
+		private static DataSource ds = null;
+		static {
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
+	
 	@Override
 	public void insert(MB_RPTVO mb_rptVO) {
 		Connection con = null;
@@ -33,8 +45,9 @@ public class MB_RPTDAO implements MB_RPTDAO_interface{
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			
@@ -45,10 +58,6 @@ public class MB_RPTDAO implements MB_RPTDAO_interface{
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -79,8 +88,9 @@ public class MB_RPTDAO implements MB_RPTDAO_interface{
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, mb_rptVO.getMb_id_1());
@@ -92,10 +102,6 @@ public class MB_RPTDAO implements MB_RPTDAO_interface{
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -128,8 +134,9 @@ public class MB_RPTDAO implements MB_RPTDAO_interface{
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, mb_rpt_no);
@@ -147,10 +154,6 @@ public class MB_RPTDAO implements MB_RPTDAO_interface{
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -192,8 +195,9 @@ public class MB_RPTDAO implements MB_RPTDAO_interface{
 
 		try {
 
-			Class.forName(DRIVER_CLASS);
-			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -209,10 +213,6 @@ public class MB_RPTDAO implements MB_RPTDAO_interface{
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
