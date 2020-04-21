@@ -403,4 +403,10 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 			System.out.println();
 		}
 	}
+
+	@Override
+	public List<GrouperVO> getAll(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

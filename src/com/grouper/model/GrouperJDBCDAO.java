@@ -322,6 +322,12 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<GrouperVO> getAll(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public static void main(String[] args) {
 
@@ -404,4 +410,5 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 			System.out.println();
 		}
 	}
+
 }
