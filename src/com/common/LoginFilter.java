@@ -8,6 +8,11 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.mb.model.MemberVO;
 
 public class LoginFilter implements Filter{
 	
@@ -17,9 +22,19 @@ public class LoginFilter implements Filter{
 	}
 	
 	@Override
-	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		HttpServletRequest req = (HttpServletRequest)request;
+		HttpServletResponse res = (HttpServletResponse)response;
+		HttpSession session = req.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+		if(memberVO == null) {
+			session.setAttribute("originalJSP", req.getRequestURI());
+			res.sendRedirect(req.getContextPath() + "/front_end/member/login.jsp");
+			return;
+		}else {
+			chain.doFilter(request, response);
+		}
 		
 	}
 	

@@ -672,4 +672,25 @@
 	<!-- 直播結束 -->
 <!-- 以文責任區結束 -->
 
+<!-- 過濾器Filter開始 -->
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>com.common.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<!-- 測試 -->
+		<url-pattern>/front_end/member/listOneMember.jsp</url-pattern>
+		<url-pattern>/front_end/member/update_member.jsp</url-pattern>
+		<!-- 測試 -->
+		
+		
+		<dispatcher>REQUEST</dispatcher>
+	    <dispatcher>FORWARD</dispatcher>
+	    <dispatcher>INCLUDE</dispatcher>
+	    <dispatcher>ERROR</dispatcher>
+	    <dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+<!-- 過濾器Filter結束 -->
+
 </web-app>

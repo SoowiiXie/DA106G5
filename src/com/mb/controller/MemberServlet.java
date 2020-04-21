@@ -43,7 +43,7 @@ public class MemberServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		String servletPath = req.getParameter("servletPath"); // 從哪裡來
 
-		if ("searchMb".equals(action)) { // 登入
+		if ("searchMb".equals(action)) { 
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -133,10 +133,17 @@ public class MemberServlet extends HttpServlet {
 				}
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
-//				String url = "/front_end/member/listOneMember.jsp";  // 測試
-				String url = "/front_end/index.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
-				successView.forward(req, res);
+//				String url = req.getContextPath() + "/front_end/member/listOneMember.jsp";  // 測試
+				
+				String url = req.getContextPath() + "/front_end/index.jsp";
+				
+				String originalJSP = (String)session.getAttribute("originalJSP");  // 
+				if(originalJSP != null) {
+					url = originalJSP;
+					session.removeAttribute("originalJSP");
+				}
+				res.sendRedirect(url);
+				return;
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {

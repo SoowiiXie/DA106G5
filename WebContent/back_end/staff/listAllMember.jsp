@@ -6,7 +6,6 @@
 <%@ page import="java.util.*"%>
 
 <%
-	// 封裝此頁面(不能直接透過網址列進來)，需要登入管理員並擁有權限
 	// 會員帳號若是全數字，會有問題(權限列表打不開)
 	StaffService staffSvc = new StaffService();
     List<StaffVO> list = staffSvc.getAll();
