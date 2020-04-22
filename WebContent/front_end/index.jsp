@@ -22,10 +22,10 @@
 // 		session.setAttribute("memberVO",memberSvc.getOneMember(mb_id));
 // 	}
 	//正式上線時用
-	if(memberVO==null){
-		//還沒登入的話
-		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
-	}else{
+// 	if(memberVO==null){
+// 		//還沒登入的話
+// 		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
+// 	}else{
 		//用memberVO先取得會常使用到的mb_id
 		pageContext.setAttribute("mb_id", memberVO.getMb_id());
 		//拿出所有紀錄
@@ -37,11 +37,15 @@
 		LiveService liveSvc = new LiveService();
 		List<LiveVO> liveList = liveSvc.getAllTake4();
 		pageContext.setAttribute("liveList", liveList);
+<<<<<<< HEAD
 		//拿出四則訊息
 				MessageService messageSvc = new MessageService();
 				List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
 				pageContext.setAttribute("messageList", messageList);
 	}
+=======
+// 	}
+>>>>>>> branch 'master' of https://github.com/SoowiiXie/DA106G5.git
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
@@ -757,10 +761,10 @@
 				</a><br><br>
 				<div
 					class="sidebar-statis card--5 shadow-z1 bg-white col-11 rounded p-1">
-					<h4 class="nake-title--sidebar medium m-3">跑量統計</h4>
+					<h4 class="nake-title--sidebar medium d-inline-block mt-3 ml-4">Runn Able 官方Line</h4>
 					<div class="statis-chart">
 						<!-- <canvas id="week_chart" width="300" height="200"></canvas> -->
-						<img src="<%= request.getContextPath() %>/img/statistics.png" alt="" class="col-12">
+						<img src="<%= request.getContextPath() %>/img/lineAddFriend.PNG" alt="" class="col-12">
 					</div>
 				</div>
 			</div>

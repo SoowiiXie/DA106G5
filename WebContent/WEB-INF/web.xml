@@ -683,7 +683,7 @@
 		<url-pattern>/front_end/member/listOneMember.jsp</url-pattern>
 		<url-pattern>/front_end/member/update_member.jsp</url-pattern>
 		<!-- 測試 -->
-		
+		<url-pattern>/front_end/index.jsp</url-pattern>
 		
 		<dispatcher>REQUEST</dispatcher>
 	    <dispatcher>FORWARD</dispatcher>
