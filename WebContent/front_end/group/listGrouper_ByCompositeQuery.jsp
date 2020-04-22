@@ -61,43 +61,53 @@
 
 <table>
 	<tr>
-		<th>員工編號</th>
-		<th>員工姓名</th>
-		<th>職位</th>
-		<th>雇用日期</th>
-		<th>薪水</th>
-		<th>獎金</th>
-		<th>部門</th>
+		<th>揪團編號</th>
+		<th>會員編號</th>
+		<th>地標編號</th>
+		<th>報名開始時間</th>
+		<th>報名結束時間</th>
+		<th>揪團開始時間</th>
+		<th>揪團結束時間</th>
+		<th>揪團名稱</th>
+		<th>揪團內容</th>
+		<th>人數上限</th>
+		<th>人數下限</th>
+		<th>人數</th>
+		<th>揪團狀態</th>
+		<th>關注揪團數</th>
+		
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
 	<%@ include file="pages/page1_ByCompositeQuery.file" %>
-	<c:forEach var="empVO" items="${listEmps_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		<tr align='center' valign='middle' ${(empVO.empno==param.empno) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
-			<td>${empVO.empno}</td>
-			<td>${empVO.ename}</td>
-			<td>${empVO.job}</td>
-			<td>${empVO.hiredate}</td>
-			<td>${empVO.sal}</td>
-			<td>${empVO.comm}</td>			
-			<td><c:forEach var="deptVO" items="${deptSvc.all}">
-                    <c:if test="${empVO.deptno==deptVO.deptno}">
-	                    ${deptVO.deptno}【${deptVO.dname} - ${deptVO.loc}】
-                    </c:if>
-                </c:forEach>
-			</td>
-						<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
+	<c:forEach var="grouperVO" items="${listGrouper_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+		<tr align='center' valign='middle' ${(groupVO.grp_no==param.grp_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
+			<td>${grouperVO.grp_no}</td>
+			<td>${grouperVO.mb_id}</td>
+			<td>${grouperVO.loc_no}</td>
+			<td>${grouperVO.grp_applystart}</td>
+			<td>${grouperVO.grp_applyend}</td>
+			<td>${grouperVO.grp_start}</td>
+			<td>${grouperVO.grp_end}</td>
+			<td>${grouperVO.grp_name}</td>
+			<td>${grouperVO.grp_content}</td>
+			<td>${grouperVO.grp_personmax}</td>
+			<td>${grouperVO.grp_personmin}</td>
+			<td>${grouperVO.grp_personcount}</td>			
+			<td>${grouperVO.grp_status}</td>
+			<td>${grouperVO.grp_follow}</td>	
+			<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改"> 
-			     <input type="hidden" name="empno"      value="${empVO.empno}">
+			     <input type="hidden" name="grp_no"      value="${grouperVO.grp_no}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 			     <input type="hidden" name="action"	    value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
-			     <input type="hidden" name="empno"      value="${empVO.empno}">
+			     <input type="hidden" name="grp_no"      value="${grouperVO.grp_no}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 			     <input type="hidden" name="action"     value="delete"></FORM>

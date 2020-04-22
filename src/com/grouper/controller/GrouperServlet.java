@@ -441,7 +441,7 @@ public class GrouperServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-			try {
+//			try {
 				/***************************1.接收請求參數****************************************/
 				//採用Map<String,String[]> getParameterMap()的方法 
 				//注意:an immutable java.util.Map 
@@ -465,12 +465,12 @@ public class GrouperServlet extends HttpServlet {
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理**********************************/
-			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/select_page.jsp");
-				failureView.forward(req, res);
-			}
+//			} catch (Exception e) {
+//				errorMsgs.add("無法取得資料:" + e.getMessage());
+//				RequestDispatcher failureView = req
+//						.getRequestDispatcher("/select_page.jsp");
+//				failureView.forward(req, res);
+//			}
 		}
 	}
 }

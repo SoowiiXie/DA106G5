@@ -1,0 +1,27 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+  <%if (rowsPerPage<rowNumber) {%>
+    <%if(pageIndex>=rowsPerPage){%>
+        <A href="<%=request.getContextPath()%>/front_end/group/group.do?whichPage=1&action=listGrouper_ByCompositeQuery">至第一頁</A>&nbsp;
+        <A href="<%=request.getContextPath()%>/front_end/group/group.do?whichPage=<%=whichPage-1%>&action=listGrouper_ByCompositeQuery">上一頁</A>
+    <%}%>
+  
+    <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
+        <td><A href="<%=request.getContextPath()%>/front_end/group/group.do?whichPage=<%=whichPage+1%>&action=listGrouper_ByCompositeQuery">下一頁 </A>&nbsp;
+        <td><A href="<%=request.getContextPath()%>/front_end/group/group.do?whichPage=<%=pageNumber%>&action=listGrouper_ByCompositeQuery">至最後一頁</A>&nbsp;
+    <%}%>
+  <%}%>  
+ 
+<br><br>
+
+  <%if ( pageNumber > 1) {%>
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do">   
+       <select size="1" name="whichPage">
+         <%for (int i=1; i<=pageNumber; i++){%>
+            <option value="<%=i%>">跳至第<%=i%>頁
+         <%}%> 
+       </select>
+       <input type="submit" value="確定" >
+       <input type="hidden" name="action" value="listGrouper_ByCompositeQuery">  
+    </FORM>
+  <%}%>
