@@ -33,35 +33,40 @@ public class MemberPicReader extends HttpServlet {
 		ServletOutputStream out = res.getOutputStream();  // 瀏覽器的輸出
 
 		try {
-			Statement stmt = con.createStatement();
+//			Statement stmt = con.createStatement();
 			String mb_id = req.getParameter("mb_id").trim();
-			ResultSet rs = stmt.executeQuery(
-				"SELECT MB_PIC FROM MEMBER WHERE MB_ID = '" + mb_id + "'");
+//			ResultSet rs = stmt.executeQuery(
+//				"SELECT MB_PIC FROM MEMBER WHERE MB_ID = '" + mb_id + "'");
 			
 			
-			if (rs.next()) {
+//			if (rs.next()) {
+//				// 用高階水管
+//				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("mb_pic"));
+//				byte[] buf = new byte[4 * 1024]; // 4K buffer
+//				int len;
+//				while ((len = in.read(buf)) != -1) {
+//					out.write(buf, 0, len);
+//				}
+//				in.close();
+//			}else {
+			BufferedInputStream bf = null;
+			Statement stmtLine = con.createStatement();
+			ResultSet rsLine = stmtLine.executeQuery(
+					"SELECT MB_PIC, MB_LINE_PIC FROM MEMBER WHERE MB_ID = '" + mb_id + "'");
+			if (rsLine.next()) {
 				// 用高階水管
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("mb_pic"));
+				if(rsLine.getBinaryStream("mb_pic")!=null){
+					bf = new BufferedInputStream(rsLine.getBinaryStream("mb_pic"));
+				}else {
+					bf = new BufferedInputStream(rsLine.getBinaryStream("mb_line_pic"));
+				}
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
 				int len;
-				while ((len = in.read(buf)) != -1) {
+				while ((len = bf.read(buf)) != -1) {
 					out.write(buf, 0, len);
 				}
-				in.close();
-			}else {
-				Statement stmtLine = con.createStatement();
-				ResultSet rsLine = stmtLine.executeQuery(
-						"SELECT MB_LINE_PIC FROM MEMBER WHERE MB_ID = '" + mb_id + "'");
-				if (rsLine.next()) {
-					// 用高階水管
-					BufferedInputStream in = new BufferedInputStream(rsLine.getBinaryStream("mb_line_pic"));
-					byte[] buf = new byte[4 * 1024]; // 4K buffer
-					int len;
-					while ((len = in.read(buf)) != -1) {
-						out.write(buf, 0, len);
-					}
-					in.close();
-				}
+				bf.close();
+			}
 //				else if (rsLine.next()) {
 //					res.setContentType("text/plain");
 //					res.setCharacterEncoding("UTF-8");
@@ -80,15 +85,15 @@ public class MemberPicReader extends HttpServlet {
 //					}
 //					in.close();
 //				} 
-				else {
-					// res.sendError(HttpServletResponse.SC_NOT_FOUND);
-					InputStream in = getServletContext().getResourceAsStream("/NoData/null2.jpg");
-					byte[] b = new byte[in.available()];
-					in.read(b);
-					out.write(b);
-					in.close();
-				}
+			else {
+				// res.sendError(HttpServletResponse.SC_NOT_FOUND);
+				InputStream in = getServletContext().getResourceAsStream("/NoData/null2.jpg");
+				byte[] b = new byte[in.available()];
+				in.read(b);
+				out.write(b);
+				in.close();
 			}
+//			}
 				
 		} catch (Exception e) {
 			System.out.println(e);
