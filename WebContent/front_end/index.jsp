@@ -22,10 +22,10 @@
 // 		session.setAttribute("memberVO",memberSvc.getOneMember(mb_id));
 // 	}
 	//正式上線時用
-	if(memberVO==null){
-		//還沒登入的話
-		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
-	}else{
+// 	if(memberVO==null){
+// 		//還沒登入的話
+// 		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
+// 	}else{
 		//用memberVO先取得會常使用到的mb_id
 		pageContext.setAttribute("mb_id", memberVO.getMb_id());
 		//拿出所有紀錄
@@ -40,7 +40,7 @@
 		LiveService liveSvc = new LiveService();
 		List<LiveVO> liveList = liveSvc.getAllTake4();
 		pageContext.setAttribute("liveList", liveList);
-	}
+// 	}
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
