@@ -96,7 +96,7 @@ public class MemberPicReader extends HttpServlet {
 //			}
 				
 		} catch (Exception e) {
-			System.out.println(e);
+//			System.out.println(e);
 			InputStream in = getServletContext().getResourceAsStream("/NoData/null2.jpg");
 			byte[] b = new byte[in.available()];
 			in.read(b);

@@ -32,15 +32,17 @@
 		RecordService recordSvc = new RecordService();
 		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("list", list);
-		//拿出四則訊息
-		MessageService messageSvc = new MessageService();
-		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
-		pageContext.setAttribute("messageList", messageList);
+		
 		//拿出四個直播
 		LiveService liveSvc = new LiveService();
 		List<LiveVO> liveList = liveSvc.getAllTake4();
 		pageContext.setAttribute("liveList", liveList);
-// 	}
+
+		//拿出四則訊息
+		MessageService messageSvc = new MessageService();
+		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
+		pageContext.setAttribute("messageList", messageList);
+
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
@@ -85,7 +87,8 @@
 	<!-- 會員智慧搜尋 -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
-	
+	<!-- switch button -->
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	
 	<style>
 		* {
@@ -94,20 +97,6 @@
 			box-sizing: border-box;
 			position: relative;
 		}
-		
-		        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-        #map {
-            height: 100%;
-        }
-
-        /* Optional: Makes the sample page fill the window. */
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
 
 		#fblightbox{
 		  background: rgba(82, 82, 82, .7);
@@ -630,13 +619,16 @@
 			<nav aria-label="breadcrumb" class="col-12 my_breadcrumb">
 				<ol class="breadcrumb m-0">
 					<li class="breadcrumb-item"><a href="<%= request.getContextPath() %>/front_end/member/login.jsp">登入畫面</a></li>
-					<li class="breadcrumb-item active" aria-current="page">個人頁面</li>
+					<li class="breadcrumb-item"><a href="<%= request.getContextPath() %>/front_end/member/login.jsp">準備</a></li>
+					<li class="breadcrumb-item active" aria-current="page">地標</li>
 				</ol>
 			</nav>
 
 			<div class="w-100"></div>
-			<jsp:include page="maps/maps.html"/>
-	</div>
+			<!-- 內容左邊-直播 -->
+			<div id="contentMiddle" class="col-12 d-block">
+				<jsp:include page="maps/googleMap.jsp"/>
+			</div>
 		
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top"> <i
@@ -694,23 +686,6 @@
 	</div>
 	<div class="overlay"></div>
 
-
-	    <script>
-        var map;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: 24.9677686,
-                    lng: 121.1916822
-                },
-                zoom: 17
-            });
-        }
-
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZv52MGeQchjobQgjXxUNTBzgUmY1qN7g&callback=initMap"
-        async defer></script>
 	<!-- Bootstrap core JavaScript-->
 	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
 	<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -720,6 +695,9 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
+	
+	<!-- switch button -->
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">

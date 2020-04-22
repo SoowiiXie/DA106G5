@@ -32,15 +32,17 @@
 		RecordService recordSvc = new RecordService();
 		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("list", list);
-		//拿出四則訊息
-		MessageService messageSvc = new MessageService();
-		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
-		pageContext.setAttribute("messageList", messageList);
+		
 		//拿出四個直播
 		LiveService liveSvc = new LiveService();
 		List<LiveVO> liveList = liveSvc.getAllTake4();
 		pageContext.setAttribute("liveList", liveList);
-// 	}
+
+		//拿出四則訊息
+		MessageService messageSvc = new MessageService();
+		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
+		pageContext.setAttribute("messageList", messageList);
+
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
@@ -621,7 +623,35 @@
 			</nav>
 
 			<div class="w-100"></div>
-			<jsp:include page="maps/maps.html"/>
+			<!-- 內容左邊-直播 -->
+			<div id="contentLeft" class="col-11 navbar-nav">
+						<!-- 分頁按鈕 -->
+				<div class="btn-group col-12" id="contentTop">
+					<a href="index.html" class="btn btn-primary"> 
+						<b>紀錄</b>
+					</a> 
+					<a href="index.html" class="btn bg-white"> 
+						<b>追蹤</b>
+					</a>
+				</div>
+				<div>
+					<jsp:include page="maps/googleMapDemo.jsp"/>
+				</div>
+			</div>
+
+
+			<!-- End of Main Content -->
+			<!-- Footer -->
+			<!-- <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2019</span>
+                    </div>
+                </div>
+            </footer> -->
+			<!-- End of Footer -->
+		<!-- End of Content Wrapper -->
+		<!-- End of Page Wrapper -->
 	</div>
 		
 	<!-- Scroll to Top Button-->
