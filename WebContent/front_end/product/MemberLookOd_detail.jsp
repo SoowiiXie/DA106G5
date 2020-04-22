@@ -1,113 +1,35 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.product.model.*"%>
 <%@ page import="com.cp_get.model.*, java.util.List"%>
+<%@ page import="java.util.* "%>
 
 
-<%
-	String mb_id = (String)session.getAttribute("mb_id");
-
-	Cp_getService cp_getService = new Cp_getService();
-	Cp_getVO cp_getVO = new Cp_getVO();
-	cp_getVO.setMb_id(mb_id);
-	cp_getVO.setCp_status(1);
-	List<Cp_getVO> list = cp_getService.listAmemberCpGetStatus(cp_getVO);
-	
-	pageContext.setAttribute("list", list );
-	
-	
-%>
-<jsp:useBean id="couponService" scope="page" class="com.coupon.model.CouponService" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-	<%-- éŒ¯èª¤è¡¨åˆ— --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
-
-
-
-<table >
-<tr>  
-<th width="100">æœƒå“¡å¸³è™Ÿ</th>
-<th width="100">å¯ä½¿ç”¨çš„å„ªæƒ åˆ¸</th>
-</tr>
-<tr>
-<td width="100">${mb_id}</td>
-
-
-<c:forEach var="cp_getVO" items="${list}">
-
-<td width="100">${couponService.searchCoupon(cp_getVO.cp_no).cp_name}</td>
-
-
-</c:forEach>
-</tr>
-</table>
-
-
-
-       <select size="1" name="cp_non">
-         <c:forEach var="cp_getVO2" items="${list}" > 
-          <option value="${cp_getVO2.cp_no}">${couponService.searchCoupon(cp_getVO2.cp_no).cp_name}
-         </c:forEach>   
-       </select>
-
-<%-- <table>
-<tr>
-<% for(Cp_getVO cp_getVO : list){%>
-<td><%=cp_getVO.getCp_no()%></td>
-<%}%>
-</tr>
-</table> --%>
-
-<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">å›å•†åŸé¦–é </a>
-
-</body>
-</html>
-=======
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
-<%@ page import="java.util.* "%>
-<%@ page import="com.product.model.*"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>­q³æ©ú²Ó</title>
-
+<title>è¨‚å–®æ˜ç´°</title>
 
 <% request.getAttribute("ordersVO"); %>
 <jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
 </head>
 <body bgcolor="#FFFFFF">
-	<img src="images/tomcat.gif">
-	<font size="+3">­q³æ©ú²Ó </font>
+	<font size="+3">è¨‚å–®æ˜ç´° </font>
 	<hr>
 	<p>
 	
-	­q³æ½s¸¹${ordersVO.od_no}
-	<table border="1" width="720">
-		<tr bgcolor="#999999">
-		    <th width="200">²£«~¹Ï¤ù</th> 
-		    <th width="100">²£«~¦WºÙ</th>
-			<th width="200">²£«~¤ÀÃş</th>
-			<th width="100">³æ»ù</th>
-			<th width="100">²£«~¼Æ¶q</th>
+	è¨‚å–®ç·¨è™Ÿ${ordersVO.od_no}
+	<table border="1" width=720px;>
+		<tr>
+		    <th width="200">ç”¢å“åœ–ç‰‡</th> 
+		    <th width="100">ç”¢å“åç¨±</th>
+			<th width="200">ç”¢å“åˆ†é¡</th>
+			<th width="100">å–®åƒ¹</th>
+			<th width="100">ç”¢å“æ•¸é‡</th>
 			<th width="120"></th>
 		</tr>
-
-
 
 
 		<%
@@ -125,9 +47,9 @@
 				pageContext.setAttribute("pd_typeNo", pd_typeNo);
 		%>
 
-		<form ac>
-		
-			<tr>
+
+
+     			<tr>
 				
 				<td width="100"><div align="center">
 						<a
@@ -163,7 +85,7 @@
 				<td></td>
 				<td></td>
 				<td><div align="center">
-						<font color="red"><b>Á`ª÷ÃB¡G</b></font>
+						<font color="red"><b>ç¸½é‡‘é¡ï¼š</b></font>
 					</div></td>
 				<td></td>
 				<td><font color="red"><b>${ordersVO.od_totalPrice}</b></font></td>
@@ -174,22 +96,27 @@
 				<td></td>
 				<td></td>
 				<td><div align="center">
-						<font color="red"><b>Àu´f«áªºª÷ÃB¡G</b></font>
+						<font color="red"><b>å„ªæƒ å¾Œçš„é‡‘é¡ï¼š</b></font>
 					</div></td>
 				<td></td>
 				<td><font color="red"><b>${ordersVO.od_discount}</b></font></td>
 				<td></td>
 			</tr>
-			<td>¥I¶O¤è¦¡:</td><td>${payMethod}</td>
+			<tr>
+			<td>ä»˜è²»æ–¹å¼:</td> <td>${payMethod}</td>
 			<td> ${ordersVO.od_add}</td>
+	</tr>
 	</table>
-	</form ac>
 
+<%-- <table>
+<tr>
+<% for(Cp_getVO cp_getVO : list){%>
+<td><%=cp_getVO.getCp_no()%></td>
+<%}%>
+</tr>
+</table> --%>
 
+<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“ï¿½ï¿½ï¿½</a>
 
-
-	<p>
-		<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">¬O§_Ä~ÄòÁÊª«</a>
 </body>
 </html>
->>>>>>> branch 'master' of https://github.com/SoowiiXie/DA106G5.git

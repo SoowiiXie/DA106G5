@@ -42,7 +42,7 @@ Collections.reverse(list);
 			</c:forEach>
 		</ul>
 	</c:if>
-	<table border="3">
+	<table border="1">
 
 		<tr>
 			<th width="100">商品圖片</th>

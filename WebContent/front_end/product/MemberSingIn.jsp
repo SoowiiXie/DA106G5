@@ -35,7 +35,7 @@
 	</ul>
 </c:if>
 
-	<form method="POST" action="<%=request.getContextPath()%>/MemberServlet" name="form1">
+	<form method="POST" action="<%=request.getContextPath()%>/ShopMemberServlet" name="form1">
 	<table>
 		<tr>
 			<td>會員帳號：</td>

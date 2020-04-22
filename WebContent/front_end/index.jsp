@@ -32,14 +32,15 @@
 		RecordService recordSvc = new RecordService();
 		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("list", list);
-		//拿出四則訊息
-		MessageService messageSvc = new MessageService();
-		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
-		pageContext.setAttribute("messageList", messageList);
+		
 		//拿出四個直播
 		LiveService liveSvc = new LiveService();
 		List<LiveVO> liveList = liveSvc.getAllTake4();
 		pageContext.setAttribute("liveList", liveList);
+		//拿出四則訊息
+				MessageService messageSvc = new MessageService();
+				List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
+				pageContext.setAttribute("messageList", messageList);
 	}
 %>
 <!--會員Service -->
