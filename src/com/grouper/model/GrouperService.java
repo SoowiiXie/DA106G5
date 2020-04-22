@@ -1,6 +1,7 @@
 package com.grouper.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class GrouperService {
 
@@ -73,12 +74,7 @@ public class GrouperService {
 	public List<GrouperVO> getAll() {
 		return dao.getAll();
 	}
-	public GrouperVO goinGroup(Integer grp_personcount) {
-
-		GrouperVO grouperVO = new GrouperVO();
-		grouperVO.setGrp_personcount(grp_personcount);		
-
-		return grouperVO;
+	public List<GrouperVO> getAll(Map<String, String[]> map) {
+		return dao.getAll(map);
 	}
-	
 }

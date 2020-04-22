@@ -435,8 +435,7 @@ public class GrouperServlet extends HttpServlet {
 		}
 		
 		
-		if ("goinGroup".equals(action)) { // 來自listAllEmp.jsp的請求
-
+		if ("listGrouper_ByCompositeQuery".equals(action)) { // 來自listAllEmp.jsp的請求
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -444,15 +443,24 @@ public class GrouperServlet extends HttpServlet {
 			
 			try {
 				/***************************1.接收請求參數****************************************/
-				String grp_no = new String(req.getParameter("grp_no"));
+				//採用Map<String,String[]> getParameterMap()的方法 
+				//注意:an immutable java.util.Map 
+				//Map<String, String[]> map = req.getParameterMap();				
+				HttpSession session = req.getSession();
+				Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
+				if (req.getParameter("whichPage") == null){
+					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());
+					session.setAttribute("map",map1);
+					map = map1;
+				} 
 				
 				/***************************2.開始查詢資料****************************************/
 				GrouperService grpSvc = new GrouperService();
-				GrouperVO grouperVO = grpSvc.getOneGroup(grp_no);
+				List<GrouperVO> list = grpSvc.getAll(map);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("grouperVO", grouperVO);         // 資料庫取出的grouperVO物件,存入req
-				String url = "/front_end/group/goinGroup.jsp";
+				req.setAttribute("listGrouper_ByCompositeQuery", list);         // 資料庫取出的grouperVO物件,存入req
+				String url = "/front_end/group/listGrouper_ByCompositeQuery.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_grouper_input.jsp
 				successView.forward(req, res);
 
@@ -460,7 +468,7 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/group/listAllGroup.jsp");
+						.getRequestDispatcher("/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
