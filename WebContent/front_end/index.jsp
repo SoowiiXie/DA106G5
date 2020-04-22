@@ -10,6 +10,7 @@
 <%@ page import="com.msg.model.*"%>
 <%@ page import="com.live.model.*"%>
 <%@ page import="com.mb.model.*"%>
+<%@ page import="com.location.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <% 
@@ -37,24 +38,17 @@
 		LiveService liveSvc = new LiveService();
 		List<LiveVO> liveList = liveSvc.getAllTake4();
 		pageContext.setAttribute("liveList", liveList);
-<<<<<<< HEAD
-<<<<<<< HEAD
-		//拿出四則訊息
-				MessageService messageSvc = new MessageService();
-				List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
-				pageContext.setAttribute("messageList", messageList);
-	}
-=======
-// 	}
->>>>>>> branch 'master' of https://github.com/SoowiiXie/DA106G5.git
-=======
-		
+
 		//拿出四則訊息
 		MessageService messageSvc = new MessageService();
 		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("messageList", messageList);
+		
+		//取出所有地標
+		LocationService locationSvc = new LocationService();
+		List<LocationVO> locationList = locationSvc.getAll();
+		pageContext.setAttribute("locationList", locationList);
 
->>>>>>> SoowiiLoc
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
@@ -99,6 +93,8 @@
 	<!-- 會員智慧搜尋 -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
+	<!-- switch button -->
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	
 	
 	<style>
@@ -792,8 +788,8 @@
 	</div>
 		
 	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
+	<a class="scroll-to-top rounded" href="#page-top"> 
+		<i class="fas fa-angle-up"></i>
 	</a>
 
 	<!-- Logout Modal -->
@@ -856,6 +852,9 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
+	
+	<!-- switch button -->
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
