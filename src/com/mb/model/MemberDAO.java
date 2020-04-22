@@ -213,17 +213,12 @@ public class MemberDAO  implements MemberDAO_interface{
 		List<MemberVO> list = new ArrayList<MemberVO>();
 		MemberVO memberVO = null;
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
-		try {
+		try(Connection con = ds.getConnection();PreparedStatement pstmt = con.prepareStatement(GET_ALL_STMT);
+				ResultSet rs = pstmt.executeQuery();) {
 
 //			Class.forName(driver);
 //			con = DriverManager.getConnection(url, userid, passwd);
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
-			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
@@ -250,29 +245,7 @@ public class MemberDAO  implements MemberDAO_interface{
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+		} 
 		return list;
 	}
 

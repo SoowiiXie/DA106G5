@@ -18,7 +18,7 @@
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style>
   #table-1 {
-	width: 450px;
+  	width: 450px;
 	background-color: #CCCCFF;
 	margin-top: 5px;
 	margin-bottom: 10px;
@@ -37,7 +37,6 @@
   }
   
   table {
-	width: 800px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -84,40 +83,41 @@
 <table>
 	<tr>
 		<th>會員ID</th>
-		<th>會員密碼</th>
+<!-- 		<th>會員密碼</th> -->
 		<th>會員姓名</th>
 		<th>會員性別</th>
 		<th>會員生日</th>
 		<th>會員信箱</th>
 		<th>會員照片</th>
-		<th>會員等級</th>
-		<th>會員被檢舉次數</th>
+<!-- 		<th>會員等級</th> -->
+<!-- 		<th>會員被檢舉次數</th> -->
 		<th>會員狀態</th>
-		<th>會員Line ID</th>
-		<th>會員Line頭貼</th>
-		<th>會員Line名稱</th>
-		<th>會員Line狀態</th>
+<!-- 		<th>會員Line ID</th> -->
+<!-- 		<th>會員Line頭貼</th> -->
+<!-- 		<th>會員Line名稱</th> -->
+<!-- 		<th>會員Line狀態</th> -->
+		<th>詳細資料</th>
 	</tr>
 	<c:forEach var="memberVO" items="${list}">
 		
 		<tr ${param.member_id.equals(memberVO.mb_id)?"bgcolor='#CCCCFF'":""}>
 			<td>${memberVO.mb_id}</td>
-			<td>${memberVO.mb_pwd}</td>
+<%-- 			<td>${memberVO.mb_pwd}</td> --%>
 			<td>${memberVO.mb_name}</td>
 			<td>${memberGender[memberVO.mb_gender]}</td>
 			<td>${memberVO.mb_birthday}</td>
 			<td>${memberVO.mb_email}</td>
-			<td>${memberVO.mb_pic}</td>
-			<td>${memberVO.mb_lv}</td>
-			<td>${memberVO.mb_rpt_times}</td>
+			<td><img src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px"></td>
+<%-- 			<td>${memberVO.mb_lv}</td> --%>
+<%-- 			<td>${memberVO.mb_rpt_times}</td> --%>
 			<td>${memberStatus[memberVO.mb_status]}</td>
-			<td>${memberVO.mb_line_id}</td>
-			<td>${memberVO.mb_line_pic}</td>
-			<td>${memberVO.mb_line_display}</td>
-			<td>${memberVO.mb_line_status}</td>
+<%-- 			<td>${memberVO.mb_line_id}</td> --%>
+<%-- 			<td>${memberVO.mb_line_pic}</td> --%>
+<%-- 			<td>${memberVO.mb_line_display}</td> --%>
+<%-- 			<td>${memberVO.mb_line_status}</td> --%>
 			<td>
 			  <FORM METHOD="post" ACTION="staff.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
+			     <input type="submit" value="查看">
 			     
 			     <input type="hidden" name="mb_id"  value="${memberVO.mb_id}">
 			     <input type="hidden" name="action"	value="getOne_For_Update">

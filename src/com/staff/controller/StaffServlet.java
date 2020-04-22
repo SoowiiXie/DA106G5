@@ -187,7 +187,6 @@ public class StaffServlet extends HttpServlet{
 			
 			// 判斷管理員是否有該權限
 			if(staffAuthority.contains(management)) {
-				
 				RequestDispatcher successView = req.getRequestDispatcher(managementMapPath.get(management));
 				successView.forward(req, res);
 				return;
