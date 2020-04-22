@@ -73,7 +73,7 @@ public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.Me
 			ps.setString(1, mb_id);
 			ps.setString(2, mb_pwd);
 			ResultSet rs = ps.executeQuery();
-			isMember = rs.next();
+			isMember = rs.next();	
 			return isMember;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -140,12 +140,12 @@ public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.Me
 				member.setMb_pwd(rs.getString(2));
 				member.setMb_name(rs.getString(3));
 				member.setMb_gender(rs.getInt(4));
-				member.setMb_line(rs.getString(5));
-				member.setMb_birthday(rs.getDate(6));
-				member.setMb_email(rs.getString(7));
-				member.setMb_lv(rs.getInt(9));
-				member.setMb_rpt_times(rs.getInt(10));
-				member.setMb_status(rs.getInt(11));
+				member.setMb_line_id(rs.getString(5));
+//				member.setMb_birthday(rs.getDate(6));
+//				member.setMb_email(rs.getString(7));
+//				member.setMb_lv(rs.getInt(9));
+//				member.setMb_rpt_times(rs.getInt(10));
+//				member.setMb_status(rs.getInt(11));
 
 			}
 			// Handle any driver errors
