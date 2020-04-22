@@ -38,6 +38,7 @@
 		List<LiveVO> liveList = liveSvc.getAllTake4();
 		pageContext.setAttribute("liveList", liveList);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//拿出四則訊息
 				MessageService messageSvc = new MessageService();
 				List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
@@ -46,6 +47,14 @@
 =======
 // 	}
 >>>>>>> branch 'master' of https://github.com/SoowiiXie/DA106G5.git
+=======
+		
+		//拿出四則訊息
+		MessageService messageSvc = new MessageService();
+		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
+		pageContext.setAttribute("messageList", messageList);
+
+>>>>>>> SoowiiLoc
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
