@@ -756,10 +756,10 @@
 				</a><br><br>
 				<div
 					class="sidebar-statis card--5 shadow-z1 bg-white col-11 rounded p-1">
-					<h4 class="nake-title--sidebar medium m-3">跑量統計</h4>
+					<h4 class="nake-title--sidebar medium d-inline-block mt-3 ml-4">Runn Able 官方Line</h4>
 					<div class="statis-chart">
 						<!-- <canvas id="week_chart" width="300" height="200"></canvas> -->
-						<img src="<%= request.getContextPath() %>/img/statistics.png" alt="" class="col-12">
+						<img src="<%= request.getContextPath() %>/img/lineAddFriend.PNG" alt="" class="col-12">
 					</div>
 				</div>
 			</div>
