@@ -68,5 +68,34 @@ public class InitData extends HttpServlet {
     	context.setAttribute("mbRptStatus", mbRptStatus);
     	
     	/** 名軒區域結束 **/
+    	
+    	/** 麥克區域開始**/
+    	// 路徑狀態
+    	Map<Integer,String> rcd_status = new LinkedHashMap<Integer,String>();
+    	rcd_status.put(1, "上架");
+    	rcd_status.put(2, "下架");
+    	
+    	//紀錄檢舉狀態
+    	Map<Integer,String> rcdRpt_status = new LinkedHashMap<Integer,String>();
+    	rcdRpt_status.put(1, "未處理");
+    	rcdRpt_status.put(2,"檢舉成功");
+    	rcdRpt_status.put(3, "檢舉失敗");
+    	
+    	//路徑難度狀態
+    	Map<Integer,String> path_difficulty = new LinkedHashMap<Integer,String>();
+    	path_difficulty.put(1, "簡單");
+    	path_difficulty.put(2, "中等");
+    	path_difficulty.put(3, "困難");
+    	
+    	//路徑困難度狀態
+    	Map<Integer,String> path_popular = new LinkedHashMap<Integer,String>();
+    	path_popular.put(1, "一般");
+    	path_popular.put(2, "熱門");
+    	
+    	//路徑狀態
+    	Map<Integer,String> path_status = new LinkedHashMap<Integer,String>();
+    	path_status.put(1, "上架");
+    	path_status.put(2, "下架");
+    	/** 麥克區域結束**/
     }
 }
