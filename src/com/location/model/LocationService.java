@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.*;
+
 public class LocationService {
 
 	private Location_interface dao;
@@ -86,6 +88,10 @@ public class LocationService {
 
 	public List<LocationVO> getAll() {
 		return dao.getAll();
+	}
+	 
+	public JSONArray getAllJSON() {
+		return new JSONArray(dao.getAllJSON());
 	}
 	
 	public List<LocationVO> getByLoc_typeno(String[] loc_typeno, String orderBy) {

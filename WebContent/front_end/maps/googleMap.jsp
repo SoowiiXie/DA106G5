@@ -30,6 +30,8 @@ html, body {
 <body>
     <div id="map" class="ml-4 mr-2"></div>
     <div id="tableOutput m-0">
+    				all ${locationList} all
+    				json ${locationJSON} json
     
     				<div class="form-check form-check-inline ml-5 my-5">
     					<label for="inlineCheckbox1" class="form-check-label mr-2">補水點</label>
@@ -54,21 +56,13 @@ html, body {
     <script>
     var map;
     var markers = [];
-    var position = [
-      {label:'A',lat:25.0336962,lng:121.5643673},
-      {label:'B',lat:25.0333698,lng:121.5641564},
-      {label:'C',lat:25.033899,lng:121.564329},
-      {label:'D',lat:25.0338407,lng:121.5645269},
-      {label:'E',lat:25.0336377,lng:121.5645727}
-    ];
+    var position = ${locationJSON};
 
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 19,
-        center: {
-          lat: 25.0336962,
-          lng: 121.5643673
-        }
+        zoom: 17,
+        center: {"lat": 24.9677686, "lng": 121.1916822}
+//      	animation: google.maps.Animation.BOUNCE
       });
 
       for (var i = 0; i < position.length; i++) {
@@ -86,96 +80,6 @@ html, body {
         label: position[e].label
       });
     }
-//       function initMap() {
-//         var myLatlng = {lat: 24.9677686, lng: 121.1916822};
-
-//         map = new google.maps.Map(document.getElementById('map'), {
-//           center: myLatlng,
-//           zoom: 17
-//         });
-//         var marker = new google.maps.Marker({
-//           position: myLatlng,
-//           map: map,
-//           title: 'Click to zoom'
-//         });
-
-//         // 擷取及時公車資訊
-//         getJSON('http://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeByFrequency/City/Taoyuan?$format=JSON', callback);
-      
-//         map.addListener('center_changed', function() {
-// 	        	deleteMarkers();
-// 	        	getJSON('http://ptx.transportdata.tw/MOTC/v2/Bus/RealTimeByFrequency/City/Taoyuan?$format=JSON', callback);
-//         });
-//       }
-          
-//       function getJSON(url, callback) {
-//         var xhr = new XMLHttpRequest();
-//         xhr.open('GET', url, true);
-//         xhr.responseType = 'json';
-//         xhr.onload = function() {
-//           var status = xhr.status;
-//           if (status === 200) {
-//             callback(null, xhr.response);
-//           } else {
-//             callback(status, xhr.response);
-//           }
-//         };
-//         xhr.send();
-//       }
-
-//       function callback(err, data) {
-//         if (err !== null) {
-//           alert('Something went wrong: ' + err);
-//         } else {
-// 		  searchResult = data;
-//           console.log(data[0]);
-//           $("#place").empty();
-//           var index = 1;
-//           for(var i = 0; i < data.length; i++){
-//             var plateNumb = data[i].PlateNumb;
-//             var routeName = data[i].RouteName.Zh_tw;
-//             var operatorID = data[i].OperatorID;
-//             var busPosition = data[i].BusPosition;
-//             var latLng = new google.maps.LatLng(busPosition.PositionLat, busPosition.PositionLon);
-//           	if(map.getBounds().contains(latLng)){
-//           		addMarker(latLng, data[i]);
-//           		$("#place").append("<tr><td>"+index+"</td><td>"+routeName+"</td><td>"+plateNumb+"</td><td>"+operatorID+"</td><td>"+busPosition.PositionLat+"</td><td>"+busPosition.PositionLon+"</td></tr>");
-//           		index++;
-//           	}
-//           }
-//         }
-//       }
-      
-//       // Adds a marker to the map and push to the array.
-//       function addMarker(latLng, result) {
-//         var marker = new google.maps.Marker({
-//           position: latLng,
-//           map: map,
-//           icon: iconBase + 'bus_maps.png'
-//         });
-//         markers.push(marker);
-//         var infowindow = new google.maps.InfoWindow({
-//             content: "<h2>"+result.RouteName.Zh_tw+"</h2><div><p><b>車號: </b>"+result.PlateNumb+"</p><p><b>司機: </b>"+result.OperatorID+"</p><p><b>位置: </b>{"+result.BusPosition.PositionLat+","+result.BusPosition.PositionLon+"}</p></div>"
-//         });
-//         marker.addListener('click', function() {
-//             infowindow.open(map, marker);
-//         });
-//       }
-      
-//       // Deletes all markers in the array by removing references to them.
-//       function deleteMarkers() {
-//     		setMapOnAll(null);
-//        	markers = [];
-//       }
-      
-//       // Sets the map on all markers in the array.
-//       function setMapOnAll(map) {
-//         for (var i = 0; i < markers.length; i++) {
-//           markers[i].setMap(map);
-//         }
-//       }
-
-      // window.onload = initMap;  //測試用
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZv52MGeQchjobQgjXxUNTBzgUmY1qN7g&callback=initMap"></script>
 </body>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
+<%@ page import="org.json.*"%>
 <%@ page import="com.cmt.model.CmtVO"%>
 <%@ page import="com.cmt.model.CmtService"%>
 <%@ page import="com.cmt.model.*"%>
@@ -10,6 +11,7 @@
 <%@ page import="com.msg.model.*"%>
 <%@ page import="com.live.model.*"%>
 <%@ page import="com.mb.model.*"%>
+<%@ page import="com.location.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <% 
@@ -42,6 +44,13 @@
 		MessageService messageSvc = new MessageService();
 		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("messageList", messageList);
+		
+		//取出所有地標
+		LocationService locationSvc = new LocationService();
+		List<LocationVO> locationList = locationSvc.getAll();
+		request.setAttribute("locationList", locationList);
+		JSONArray locationJSON = locationSvc.getAllJSON();
+		request.setAttribute("locationJSON", locationJSON);
 
 %>
 <!--會員Service -->

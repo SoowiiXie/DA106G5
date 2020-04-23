@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
+<%@ page import="org.json.*"%>
 <%@ page import="com.cmt.model.CmtVO"%>
 <%@ page import="com.cmt.model.CmtService"%>
 <%@ page import="com.cmt.model.*"%>
@@ -13,7 +14,7 @@
 <%@ page import="com.location.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
-<% 
+<%
 	MemberService memberSvc = new MemberService();
 	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
 	//登入畫面壞掉時用，其餘時候註解起來
@@ -43,12 +44,13 @@
 		MessageService messageSvc = new MessageService();
 		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("messageList", messageList);
-		
+
 		//取出所有地標
 		LocationService locationSvc = new LocationService();
 		List<LocationVO> locationList = locationSvc.getAll();
-		pageContext.setAttribute("locationList", locationList);
-
+		request.setAttribute("locationList", locationList);
+		JSONArray locationJSON = locationSvc.getAllJSON();
+		request.setAttribute("locationJSON", locationJSON);
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />

@@ -352,18 +352,18 @@ NOMAXVALUE
 NOCYCLE;
 
 --地標 假資料--
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9695021,121.1899436,1,'中央大學網球場');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9700902,121.1896228,'公立游泳池');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9696086,121.1906534,1,'中央大學籃球場');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9691063,121.1908299,'國立中央大學羽球館');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9684828,121.1908519,1,'中央大學健身房');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9689838,121.1894409,'國立中央大學攀岩塔');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9683377,121.1899126,1,'國立中央大學田徑場');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,24.9678452,121.1913374,1,'資策會一樓右邊廁所');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,24.9677461,121.1915513,1,'資策會二樓廁所');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,24.9677546,121.1918363,1,'資策會二樓飲水機');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,24.9682972,121.1944231,1,'中大總圖飲水機');
-Insert into location (loc_no,loc_typeno,longitude,latitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,24.9694752,121.1951473,1,'中大通識教育中心');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9695021,121.1899436,1,'中央大學網球場');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9700902,121.1896228,'公立游泳池');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9696086,121.1906534,1,'中央大學籃球場');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9691063,121.1908299,'國立中央大學羽球館');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9684828,121.1908519,1,'中央大學健身房');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9689838,121.1894409,'國立中央大學攀岩塔');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),1,24.9683377,121.1899126,1,'國立中央大學田徑場');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,24.9678452,121.1913374,1,'資策會一樓右邊廁所');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),2,24.9677461,121.1915513,1,'資策會二樓廁所');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,24.9677546,121.1918363,1,'資策會二樓飲水機');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,24.9682972,121.1944231,1,'中大總圖飲水機');
+Insert into location (loc_no,loc_typeno,latitude,longitude,loc_status,loc_address) values ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),3,24.9694752,121.1951473,1,'中大通識教育中心');
 
 --地標檢舉 Create--
 CREATE TABLE loc_rpt (

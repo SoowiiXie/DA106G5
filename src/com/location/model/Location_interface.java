@@ -12,10 +12,12 @@ public interface Location_interface {
 	public LocationVO findByPrimaryKey(String loc_no);
 
 	public List<LocationVO> getAll();
+	
+	public List<LocationJsonVO> getAllJSON();
 
 	// 查詢某地點種類的地點(一對多)(回傳 Set)
 	public Set<LocationVO> getLocationByLoc_typeno(String loc_typeno);
 	
 	// 萬用型
-		public List<LocationVO> getAllUWish(Map<String, String[]> map, String orderBy);
+	public List<LocationVO> getAllUWish(Map<String, String[]> map, String orderBy);
 }

@@ -302,6 +302,61 @@ public class LocationDAO implements Location_interface {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<LocationJsonVO> getAllJSON() {
+		List<LocationJsonVO> list = new ArrayList<LocationJsonVO>();
+		LocationJsonVO locationJsonVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				locationJsonVO = new LocationJsonVO();
+				locationJsonVO.setLat(Double.parseDouble(rs.getString("latitude")));
+				locationJsonVO.setLng(Double.parseDouble(rs.getString("longitude")));
+				
+				list.add(locationJsonVO); // Store the row in the list
+			}
+			
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 
 	@Override
 	public Set<LocationVO> getLocationByLoc_typeno(String loc_typeno) {
