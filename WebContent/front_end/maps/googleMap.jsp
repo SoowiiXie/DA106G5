@@ -28,10 +28,19 @@ html, body {
 
 </head>
 <body>
+	<!-- <div class="col-3">&nbsp&nbsp個人頁面</div> -->
+	<nav aria-label="breadcrumb" class="col-12 my_breadcrumb">
+		<ol class="breadcrumb m-0">
+			<li class="breadcrumb-item"><a href="<%= request.getContextPath() %>/front_end/member/login.jsp">登入畫面</a></li>
+			<li class="breadcrumb-item"><a href="<%= request.getContextPath() %>/front_end/member/login.jsp">準備</a></li>
+			<li class="breadcrumb-item active" aria-current="page">地標</li>
+		</ol>
+	</nav>
+
+	<div class="w-100"></div>
+	<!-- 當頁內容 -->
     <div id="map" class="ml-4 mr-2"></div>
     <div id="tableOutput m-0">
-    				all ${locationList} all
-    				json ${locationJSON} json
     
     				<div class="form-check form-check-inline ml-5 my-5">
     					<label for="inlineCheckbox1" class="form-check-label mr-2">補水點</label>
@@ -57,12 +66,10 @@ html, body {
     var map;
     var markers = [];
     var position = ${locationJSON};
-
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         zoom: 17,
         center: {"lat": 24.9677686, "lng": 121.1916822}
-//      	animation: google.maps.Animation.BOUNCE
       });
 
       for (var i = 0; i < position.length; i++) {
@@ -77,7 +84,9 @@ html, body {
           lng: position[e].lng
         },
         map: map,
-        label: position[e].label
+        animation: google.maps.Animation.BOUNCE,
+        label: position[e].label,
+        icon: "<%= request.getContextPath() %>/img/"+position[e].icon,
       });
     }
     </script>

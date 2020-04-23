@@ -311,7 +311,7 @@ public class LocationDAO implements Location_interface {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		String icon = null;
 		try {
 //			Class.forName(DRIVER_CLASS);
 //			con = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -320,12 +320,20 @@ public class LocationDAO implements Location_interface {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				// empVO 也稱為 Domain objects
-				locationJsonVO = new LocationJsonVO();
-				locationJsonVO.setLat(Double.parseDouble(rs.getString("latitude")));
-				locationJsonVO.setLng(Double.parseDouble(rs.getString("longitude")));
-				
-				list.add(locationJsonVO); // Store the row in the list
+				if(rs.getInt("loc_status")==1) {
+					locationJsonVO = new LocationJsonVO();
+					locationJsonVO.setLat(Double.parseDouble(rs.getString("latitude")));
+					locationJsonVO.setLng(Double.parseDouble(rs.getString("longitude")));
+					if (rs.getInt("loc_typeno")==1) {
+						icon="rsz_location-icon-green.png";
+					}else if(rs.getInt("loc_typeno")==2) {
+						icon="rsz_location-icon-blue.png";
+					}else {
+						icon="rsz_location-icon-grey.png";
+					}
+					locationJsonVO.setIcon(icon);
+					list.add(locationJsonVO); // Store the row in the list
+				}
 			}
 			
 			// Handle any driver errors

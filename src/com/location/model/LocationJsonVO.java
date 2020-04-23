@@ -7,6 +7,7 @@ public class LocationJsonVO implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Double lat;
 	private Double lng;
+	private String icon;
 	
 	public Double getLat() {
 		return lat;
@@ -19,6 +20,12 @@ public class LocationJsonVO implements java.io.Serializable {
 	}
 	public void setLng(Double lng) {
 		this.lng = lng;
+	}
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 }

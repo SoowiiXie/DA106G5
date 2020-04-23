@@ -683,9 +683,9 @@
 		<url-pattern>/front_end/member/listOneMember.jsp</url-pattern>
 		<url-pattern>/front_end/member/update_member.jsp</url-pattern>
 		<url-pattern>/front_end/index2.jsp</url-pattern>
-		<url-pattern>/front_end/index3.jsp</url-pattern>
 		<!-- 測試 -->
 		<url-pattern>/front_end/index.jsp</url-pattern>
+		<url-pattern>/front_end/location.jsp</url-pattern>
 		
 		<dispatcher>REQUEST</dispatcher>
 	    <dispatcher>FORWARD</dispatcher>
