@@ -87,13 +87,20 @@
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" name="form1">
         <b><font color=blue>萬用複合查詢:</font></b> <br>
         <b>輸入揪團編號:</b>
-        <input type="text" name="grp_no" value="<%= (grouperVO==null)? " " : grouperVO.getGrp_no()%>"><br>
+        <input type="text" name="grp_no" value="grp00001"><br>
            
         <b>輸入會員編號:</b>
-        <input type="text" name="mb_id" value="<%= (grouperVO==null)? " " :grouperVO.getMb_id()%>"><br>
+        <input type="text" name="mb_id"><br>
+        
+<jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />        
        
-        <b>輸入地標編號:</b>
-        <input type="text" name="loc_no" value="<%= (grouperVO==null)? " " :grouperVO.getLoc_no()%>"><br>
+        <b>輸入地標:</b>
+       <select size="1" name="loc_no" >
+          <option value="">
+         <c:forEach var="LocationVO" items="${locationSvc.all}" > 
+          <option value="${LocationVO.loc_no}">${LocationVO.loc_address}
+         </c:forEach>   
+       </select><br>
            
         <b>揪團報名開始時間:</b>
 	    <input name="grp_applystart" id="a_date1" type="text"><br>
@@ -108,19 +115,19 @@
 	    <input name="grp_end" id="s_date2" type="text"><br>
 	    
 	    <b>輸入揪團標題:</b>
-        <input type="text" name="grp_name" value="<%= (grouperVO==null)? " " :grouperVO.getGrp_name()%>"><br>
+        <input type="text" name="grp_name"><br>
        
         <b>輸入揪團內容:</b>
-        <input type="text" name="grp_content" value="<%= (grouperVO==null)? " " :grouperVO.getGrp_content()%>"><br>
+        <input type="text" name="grp_content"><br>
 	   
 	    <b>輸入揪團人數上限:</b>
-        <input type="text" name="grp_personmax" value="<%= (grouperVO==null)? " " :grouperVO.getGrp_personmax()%>"><br>
+        <input type="text" name="grp_personmax"><br>
            
         <b>輸入揪團人數下限:</b>
-        <input type="text" name="grp_personmin" value="<%= (grouperVO==null)? " " :grouperVO.getGrp_personmin()%>"><br>
+        <input type="text" name="grp_personmin"><br>
        
         <b>揪團人數:</b>
-        <input type="text" name="grp_personcount" value="<%= (grouperVO==null)? " " :grouperVO.getGrp_personcount()%>"><br>
+        <input type="text" name="grp_personcount"><br>
    		
    		<b>揪團狀態:</b>
 		<td><INPUT TYPE="checkbox" NAME="grp_status" VALUE="1">未滿</td><br>
@@ -129,7 +136,7 @@
 		<td><INPUT TYPE="checkbox" NAME="grp_status" VALUE="4">成功</td><br>
        
         <b>揪團關注人數:</b>
-        <input type="text" name="grp_follow" value="<%= (grouperVO==null)? " " :grouperVO.getGrp_follow()%>"><br>
+        <input type="text" name="grp_follow"><br>
                 
         <input type="submit" value="送出">
         <input type="hidden" name="action" value="listGrouper_ByCompositeQuery">

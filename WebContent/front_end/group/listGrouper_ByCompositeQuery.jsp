@@ -6,7 +6,7 @@
 <%-- 此頁只作為複合查詢時之結果練習，可視需要再增加分頁、送出修改、刪除之功能--%>
 
 <jsp:useBean id="listGrouper_ByCompositeQuery" scope="request" type="java.util.List<GrouperVO>" /> <!-- 於EL此行可省略 -->
-<jsp:useBean id="LocSvc" scope="page" class="com.location.model.LocationService" />
+<jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" /> 
 
 
 <html>
@@ -83,8 +83,14 @@
 	<c:forEach var="grouperVO" items="${listGrouper_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		<tr align='center' valign='middle' ${(groupVO.grp_no==param.grp_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
 			<td>${grouperVO.grp_no}</td>
-			<td>${grouperVO.mb_id}</td>
-			<td>${grouperVO.loc_no}</td>
+			<td>${grouperVO.mb_id}</td>			
+<%-- 			<td>${grouperVO.loc_no}</td> --%>
+			<td><c:forEach var="LocationVO" items="${locationSvc.all}">
+                    <c:if test="${grouperVO.loc_no==LocationVO.loc_no}">
+	                    ${LocationVO.loc_no}【${LocationVO.loc_address}】
+                    </c:if>
+                </c:forEach>
+			</td>									
 			<td>${grouperVO.grp_applystart}</td>
 			<td>${grouperVO.grp_applyend}</td>
 			<td>${grouperVO.grp_start}</td>
