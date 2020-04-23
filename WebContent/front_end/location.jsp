@@ -385,9 +385,9 @@
 			
 			<div class="w-100"></div>
 			
-<!-- 			<!-- 當頁路徑 --> -->
+ 			<!-- 當頁路徑 -->
 			<div id="contentMiddle" class="col-12 d-block">
-				<jsp:include page="maps/googleMap.jsp"/>
+				<jsp:include page="maps/googleMap2.jsp"/>
 			</div>
 		
 	<!-- Scroll to Top Button-->
