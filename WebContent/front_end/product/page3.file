@@ -33,7 +33,7 @@
 %>
 
 <%if (pageNumber>0){%>
-  <b><font color=red>��<%=whichPage%>/<%=pageNumber%>��</font></b>
+  <b><font color=red>第<%=whichPage%>/<%=pageNumber%>頁</font></b>
 <%}%>
 
-<b>���� �X �d �� �� �� �p �U �� ��: �@<font color=red><%=rowNumber%></font>��</b>
+<b>符合查詢條件如下所示:<font color=red><%=rowNumber%></font>筆</b>
