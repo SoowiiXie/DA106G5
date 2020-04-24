@@ -134,6 +134,16 @@
 			<servlet-name>Weather_detailTest</servlet-name>
 			<url-pattern>/Weather_detailTest</url-pattern>
 		</servlet-mapping>
+
+
+		<servlet>
+			<servlet-name>WeatherJsonURL</servlet-name>
+			<servlet-class>com.weather_detail.model.WeatherJsonURL</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>WeatherJsonURL</servlet-name>
+			<url-pattern>/WeatherJsonURL</url-pattern>
+		</servlet-mapping>
 	
 	
 		<servlet>
@@ -485,6 +495,11 @@
 			<servlet-name>AndroidMemberServlet</servlet-name>
 			<url-pattern>/front_end/member/member.do</url-pattern>
 		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>AndroidMemberServlet</servlet-name>
+			<url-pattern>/back_end/staff/member.do</url-pattern>
+		</servlet-mapping>
+		
 		
 		<servlet>
 			<servlet-name>MemberPicReader</servlet-name>

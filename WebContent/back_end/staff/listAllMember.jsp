@@ -91,7 +91,15 @@
 		<th>會員照片</th>
 <!-- 		<th>會員等級</th> -->
 <!-- 		<th>會員被檢舉次數</th> -->
-		<th>會員狀態</th>
+		<th>
+			會員狀態<br>
+			<select>
+				<option value="0">全部</option>
+				<c:forEach var="map" items="${memberStatus}">
+					<option value="${map.key}">${map.value}</option>
+				</c:forEach>
+			</select>
+		</th>
 <!-- 		<th>會員Line ID</th> -->
 <!-- 		<th>會員Line頭貼</th> -->
 <!-- 		<th>會員Line名稱</th> -->
@@ -100,7 +108,7 @@
 	</tr>
 	<c:forEach var="memberVO" items="${list}">
 		
-		<tr ${param.member_id.equals(memberVO.mb_id)?"bgcolor='#CCCCFF'":""}>
+		<tr ${param.mb_id.equals(memberVO.mb_id)?"bgcolor='#CCCCFF'":""}>
 			<td>${memberVO.mb_id}</td>
 <%-- 			<td>${memberVO.mb_pwd}</td> --%>
 			<td>${memberVO.mb_name}</td>
@@ -116,11 +124,11 @@
 <%-- 			<td>${memberVO.mb_line_display}</td> --%>
 <%-- 			<td>${memberVO.mb_line_status}</td> --%>
 			<td>
-			  <FORM METHOD="post" ACTION="staff.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="member.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="查看">
 			     
 			     <input type="hidden" name="mb_id"  value="${memberVO.mb_id}">
-			     <input type="hidden" name="action"	value="getOne_For_Update">
+			     <input type="hidden" name="action"	value="getOne_Member_For_Update">
 			     <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
 			  </FORM>
 			</td>

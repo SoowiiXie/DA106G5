@@ -24,7 +24,14 @@ public class Weather_detailTest extends HttpServlet {
 		Weather_detailVO weather_detailVO_insert = new Weather_detailVO();
 		// WEATHER_TIME, WEATHER_PLACE, WTH_STATUS, WTH_HIGH, WTH_LOW, WTH_COMFORT,
 		// WTH_RAIN_CHANCE
-		weather_detailVO_insert.setWeather_time(java.sql.Timestamp.valueOf("2020-03-14 10:06:09"));
+        String time = "2020-04-24T13:00:00+08:00";
+        String[] timeArray = time.split("T");
+        String yyyyMMdd = timeArray[0];
+        System.out.println(timeArray[0]+"T"+timeArray[1]);
+        String[] onlyTime = timeArray[1].split("\\+");
+        String hhmmss = onlyTime[0];
+        System.out.println(yyyyMMdd+" "+hhmmss);
+		weather_detailVO_insert.setWeather_time(java.sql.Timestamp.valueOf(yyyyMMdd+" "+hhmmss));
 		weather_detailVO_insert.setWeather_place("健志愛的小窩");
 		weather_detailVO_insert.setWth_status("晴時多雲偶陣雨");
 		weather_detailVO_insert.setWth_high(69);
@@ -47,21 +54,22 @@ public class Weather_detailTest extends HttpServlet {
 		dao.update(weather_detailVO_update);
 
 		// 用PK查詢
-		Weather_detailVO weather_detailVO_getByPK = dao
-				.findByPrimaryKey(java.sql.Timestamp.valueOf("2020-03-14 10:06:09"), "健志愛的小窩");
-		System.out.println("新增並修改的PK是:" + weather_detailVO_getByPK.getWeather_time() + "的"
-				+ weather_detailVO_getByPK.getWeather_place());
-		System.out.print("修改後的值是:");
+//		Weather_detailVO weather_detailVO_getByPK = dao
+//				.findByPrimaryKey(java.sql.Timestamp.valueOf("2020-03-14 10:06:09"), "健志愛的小窩");
+//		System.out.println("新增並修改的PK是:" + weather_detailVO_getByPK.getWeather_time() + "的"
+//				+ weather_detailVO_getByPK.getWeather_place());
+//		System.out.print("修改後的值是:");
 		// WEATHER_TIME, WEATHER_PLACE, WTH_STATUS, WTH_HIGH, WTH_LOW, WTH_COMFORT,
 		// WTH_RAIN_CHANCE
-		System.out.print(weather_detailVO_getByPK.getWth_status() + ",");
-		System.out.print(weather_detailVO_getByPK.getWth_high() + ",");
-		System.out.print(weather_detailVO_getByPK.getWth_low() + ",");
-		System.out.print(weather_detailVO_getByPK.getWth_comfort() + ",");
-		System.out.print(weather_detailVO_getByPK.getWth_rain_chance());
+//		System.out.print(weather_detailVO_getByPK.getWth_status() + ",");
+//		System.out.print(weather_detailVO_getByPK.getWth_high() + ",");
+//		System.out.print(weather_detailVO_getByPK.getWth_low() + ",");
+//		System.out.print(weather_detailVO_getByPK.getWth_comfort() + ",");
+//		System.out.print(weather_detailVO_getByPK.getWth_rain_chance());
 
 		// 刪
-		dao.delete(java.sql.Timestamp.valueOf("2020-03-14 10:06:09"), "健志愛的小窩");
+//		dao.delete(java.sql.Timestamp.valueOf("2020-03-14 10:06:09"), "健志愛的小窩");
+		dao.deleteAll();
 
 		// 查
 		List<Weather_detailVO> all = dao.getAll();
