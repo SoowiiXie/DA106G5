@@ -405,6 +405,10 @@ Insert into weather (wth_status) values ('雨');
 Insert into weather (wth_status) values ('陰');
 Insert into weather (wth_status) values ('晴時多雲偶陣雨');
 Insert into weather (wth_status) values ('颱風');
+Insert into weather (wth_status) values ('多雲時陰');
+Insert into weather (wth_status) values ('多雲時晴');
+Insert into weather (wth_status) values ('多雲');
+Insert into weather (wth_status) values ('陰時多雲短暫陣雨');
 
 --詳細天氣 Create--
 CREATE TABLE weather_detail (
@@ -420,7 +424,7 @@ CREATE TABLE weather_detail (
 ALTER TABLE weather_detail ADD CONSTRAINT PK_weather_detail PRIMARY KEY (weather_time,weather_place);
 
 --詳細天氣有個外鍵在天氣--
-ALTER TABLE weather_detail ADD CONSTRAINT FK_weather_detail FOREIGN KEY (wth_status) REFERENCES weather (wth_status);
+--ALTER TABLE weather_detail ADD CONSTRAINT FK_weather_detail FOREIGN KEY (wth_status) REFERENCES weather (wth_status);
 
 --詳細天氣 假資料--
 Insert into weather_detail (weather_time,weather_place,wth_status) values (TO_TIMESTAMP('2020-03-14 06:00:00', 'YYYY-MM-DD HH24:MI:SS'), '桃園市','晴');

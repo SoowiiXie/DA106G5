@@ -10,6 +10,8 @@ public interface Weather_detail_interface {
 
 	public void delete(Timestamp weather_time, String weather_place);
 
+	public void deleteAll();
+
 	public Weather_detailVO findByPrimaryKey(Timestamp weather_time, String weather_place);
 
 	public List<Weather_detailVO> getAll();
