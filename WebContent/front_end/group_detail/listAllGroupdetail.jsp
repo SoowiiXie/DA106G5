@@ -3,7 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.group_detail.model.*"%>
+
 <%-- 此頁練習採用 EL 的寫法取值 --%>
+
+<jsp:useBean id="GrouperDAO"  scope="page" class="com.grouper.model.GrouperDAO" />
+<jsp:useBean id="Grp_detailDAO" scope="page" class="com.group_detail.model.Grp_detailDAO" />
 
 <%
     Grp_detailService grpdetailSvc = new Grp_detailService();
@@ -15,6 +19,10 @@
 <html>
 <head>
 <title>所有員工資料 - listAllGroupdetail.jsp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
   table#table-1 {
@@ -88,7 +96,7 @@
 	<c:forEach var="grp_detailVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td>${grp_detailVO.mb_id}</td>
+			<td><A href="group_detail.do?mb_id=${grp_detailVO.mb_id}&action=getOne_From">${grp_detailVO.mb_id}</a></td>
 			<td>${grp_detailVO.grp_no}</td>			
 			<td>${grp_detailVO.grp_register}</td>
 			
@@ -108,6 +116,35 @@
 	</c:forEach>
 </table>
 <%@ include file="page2.file" %>
+<c:if test="${openModal!=null}">
 
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+				
+			<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
+            </div>
+			
+			<div class="modal-body">
+<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+               <jsp:include page="listOneGroupdetail.jsp" />
+<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+			</div>
+			
+			<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+		
+		</div>
+	</div>
+</div>
+
+        <script>
+    		 $("#basicModal").modal({show: true});
+        </script>
+ </c:if>
 </body>
 </html>

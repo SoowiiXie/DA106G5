@@ -2,10 +2,8 @@ package com.group_detail.controller;
 
 import java.io.*;
 import java.util.*;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
-
 import com.group_detail.model.*;
 
 public class Group_detailServlet extends HttpServlet {
@@ -316,5 +314,34 @@ public class Group_detailServlet extends HttpServlet {
 			}
 		}
 		
+		if ("getOne_From".equals(action)) {
+
+			try {
+				// Retrieve form parameters.
+				String mb_id = new String(req.getParameter("mb_id"));
+
+				Grp_detailDAO dao = new Grp_detailDAO();
+				Grp_detailVO grp_detailVO = dao.findByPrimaryKey(mb_id);
+
+				req.setAttribute("grp_detailVO", grp_detailVO); // 資料庫取出的empVO物件,存入req
+				
+				//Bootstrap_modal
+				boolean openModal=true;
+				req.setAttribute("openModal",openModal );
+				
+				// 取出的empVO送給listOneEmp.jsp
+				RequestDispatcher successView = req
+						.getRequestDispatcher("/front_end/group_detail/listAllGroupdetail.jsp");
+				successView.forward(req, res);
+				return;
+
+				// Handle any unusual exceptions
+			} catch (Exception e) {
+				throw new ServletException(e);
+			}
+		}
+		
+		
+				
 	}
 }

@@ -73,7 +73,7 @@
 <table>
 	
 	<tr>
-		<td>發起人會員編號:</td>
+		<td>會員編號:</td>
 		<td><input type="TEXT" name="mb_id" size="45"
 			 value="<%= (grp_detailVO==null)? "yiwen123" : grp_detailVO.getMb_id()%>" /></td>
 	</tr>

@@ -1,10 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.group_detail.model.*"%>
+<%@ page import="com.location.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
 	Grp_detailVO grp_detailVO = (Grp_detailVO) request.getAttribute("grp_detailVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+	LocationVO locationVO = (LocationVO) request.getAttribute("locationVO");
 %>
+
+<jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
+<jsp:useBean id="grpSvc" scope="page" class="com.grouper.model.GrouperService" />
 
 <html>
 <head>
@@ -58,12 +65,76 @@
 	<tr>
 		<th>會員編號</th>
 		<th>揪團編號</th>
+		
+		<th>發起人會員編號</th>
+		<th>地點</th>
+		<th>報名開始時間</th>
+		<th>報名結束時間</th>
+		<th>活動開始時間</th>
+		<th>活動結束時間</th>
+		<th>揪團標題</th>
+		<th>揪團內容</th>
+		
 		<th>報到狀態</th>
 		
 	</tr>
 	<tr>		
 		<td><%=grp_detailVO.getMb_id()%></td>
 		<td><%=grp_detailVO.getGrp_no()%></td>
+				
+		<td><%=grp_detailVO.getMb_id()%></td>
+		<td>
+				<c:forEach var="locationVO" items="${locSvc.all}">
+		        <c:if test="${grp_detailVO.grp_no()=grouperVO.grp_no()}"> 
+		        	<c:if test="${grouperVO.loc_no()=locationVO.loc_no()}">   		        				    
+		                 ${locationVO.loc_address}<br>
+		       		 </c:if >
+		        </c:if >        
+		        </c:forEach>
+		</td>
+		<td>
+		<c:forEach var="grouperVO" items="${grpSvc.all}">
+                   <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}">
+                    ${grouperVO.grp_applystart}                                           
+                   </c:if>
+        </c:forEach>
+		</td>
+		<td>
+		<c:forEach var="grouperVO" items="${grpSvc.all}">
+                   <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}">
+                    ${grouperVO.grp_applyend}                                           
+                   </c:if>
+        </c:forEach>
+		</td>
+		<td>
+		<c:forEach var="grouperVO" items="${grpSvc.all}">
+                   <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}">
+                    ${grouperVO.grp_start}                                           
+                   </c:if>
+        </c:forEach>
+		</td>
+		<td>
+		<c:forEach var="grouperVO" items="${grpSvc.all}">
+                   <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}">
+                    ${grouperVO.grp_end}                                           
+                   </c:if>
+        </c:forEach>
+		</td>
+		<td>
+		<c:forEach var="grouperVO" items="${grpSvc.all}">
+                   <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}">
+                    ${grouperVO.grp_name}                                           
+                   </c:if>
+        </c:forEach>
+		</td>
+		<td>
+		<c:forEach var="grouperVO" items="${grpSvc.all}">
+                   <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}">
+                    ${grouperVO.grp_content}                                           
+                   </c:if>
+        </c:forEach>
+		</td>
+		
 		<td><%=grp_detailVO.getGrp_register()%></td>
 
 	</tr>
