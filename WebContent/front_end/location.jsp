@@ -133,7 +133,7 @@
 				</a>
 
 				<!-- Nav Item - Dashboard -->
-				<li class="nav-item active">
+				<li class="nav-item">
 					<!-- <li class="nav-item"> --> 
 					<a class="nav-link"	href="index.html">
 						<i class="fas fa-fw fa-thumbs-up"></i> 
@@ -144,7 +144,7 @@
 				</li>
 
 				<!-- Nav Item - Pages Collapse Menu -->
-				<li class="nav-item"><a class="nav-link collapsed" href="#"
+				<li class="nav-item active"><a class="nav-link collapsed" href="#"
 					data-toggle="collapse" data-target="#collapseTwo"
 					aria-expanded="true" aria-controls="collapseTwo"> <i
 						class="fas fa-fw fa-cloud-sun-rain"></i> <span>準備</span>
@@ -383,11 +383,10 @@
 			</nav>
 			<!-- End of Topbar -->
 			
-			<div class="w-100"></div>
-			
  			<!-- 當頁路徑 -->
-			<div id="contentMiddle" class="col-12 d-block">
-				<jsp:include page="maps/googleMap2.jsp"/>
+			<div id="contentMiddle" class="col-12 d-block" style="hight:100%;">
+					<jsp:include page="weather_detail/taiwanMap.jsp"/>
+<%-- 					<jsp:include page="maps/googleMap2.jsp"/> --%>
 			</div>
 		
 	<!-- Scroll to Top Button-->

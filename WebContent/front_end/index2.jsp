@@ -1,3 +1,6 @@
+<%@page import="java.lang.ProcessBuilder.Redirect"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!-- <div class="col-3">&nbsp&nbsp個人頁面</div> -->
 <nav aria-label="breadcrumb" class="col-12 my_breadcrumb">
 	<ol class="breadcrumb m-0">
@@ -195,17 +198,4 @@
 				alt="" class="col-12">
 		</div>
 	</div>
-</div>
-<!-- End of Main Content -->
-<!-- Footer -->
-<!-- <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
-                    </div>
-                </div>
-            </footer> -->
-<!-- End of Footer -->
-<!-- End of Content Wrapper -->
-<!-- End of Page Wrapper -->
 </div>
