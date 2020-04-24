@@ -134,6 +134,16 @@
 			<servlet-name>Weather_detailTest</servlet-name>
 			<url-pattern>/Weather_detailTest</url-pattern>
 		</servlet-mapping>
+
+
+		<servlet>
+			<servlet-name>WeatherJsonURL</servlet-name>
+			<servlet-class>com.weather_detail.model.WeatherJsonURL</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>WeatherJsonURL</servlet-name>
+			<url-pattern>/WeatherJsonURL</url-pattern>
+		</servlet-mapping>
 	
 	
 		<servlet>

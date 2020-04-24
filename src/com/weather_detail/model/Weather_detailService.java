@@ -54,6 +54,11 @@ public class Weather_detailService {
 		// 刪
 		dao.delete(weather_time, weather_place);
 	}
+	
+	public void deleteAllWeather_detail() {
+		// 刪
+		dao.deleteAll();
+	}
 
 	public List<Weather_detailVO> getOneWeather_detail(Timestamp weather_time, String weather_place) {
 		Map<String, String[]> map = new HashMap<>();

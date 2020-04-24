@@ -22,6 +22,7 @@ public class Weather_detailDAO implements Weather_detail_interface {
 	private static final String INSERT_STMT = "INSERT INTO Weather_detail (WEATHER_TIME, WEATHER_PLACE, WTH_STATUS, WTH_HIGH, WTH_LOW, WTH_COMFORT, WTH_RAIN_CHANCE) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE Weather_detail set WTH_STATUS=?, WTH_HIGH=?, WTH_LOW=?, WTH_COMFORT=?, WTH_RAIN_CHANCE=? where WEATHER_TIME=? and WEATHER_PLACE=?";
 	private static final String DELETE = "DELETE from Weather_detail where WEATHER_TIME=? and WEATHER_PLACE=?";
+	private static final String DELETE_ALL = "DELETE FROM weather_detail";
 	private static final String GET_ONE_STMT = "SELECT * FROM Weather_detail where WEATHER_TIME=? and WEATHER_PLACE=?";
 	private static final String GET_ALL_STMT = "SELECT * FROM Weather_detail order by WEATHER_PLACE , WEATHER_TIME";
 	
@@ -145,6 +146,50 @@ public class Weather_detailDAO implements Weather_detail_interface {
 
 			rs = pstmt.executeQuery();
 
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void deleteAll() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE_ALL,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			
+			rs = pstmt.executeQuery();
+			
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
