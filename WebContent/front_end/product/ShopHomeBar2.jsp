@@ -10,9 +10,9 @@
 margin-right:8px;
 margin-left:-8px;
 margin-top:-8px;  
-height:2000px;
+height:200px;
 width:1450px;
-background-color:#FBFBFF;
+background-color:white;
 }
 #first {
 margin-right:8px;
@@ -160,6 +160,28 @@ div img{
   position: relative;
 
 }
+.aaa{
+text-align: center;
+width:200px;
+height:300px;
+}
+.bbb{
+text-align: center;
+width:200px;
+height:100x;
+}
+.Product{
+width:300px;
+float:left;
+padding:0;
+margin:5px;
+}
+.foot{
+clear:both;
+
+}
+
+
 </style>
 <title>ShopHomeBar</title>
 </head>
@@ -244,7 +266,7 @@ div img{
         </div> 
      
     </div>
-    
+    </div>
 <%-- <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00001">服飾-男上身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00002">服飾-男下身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00003">服飾-男鞋</a>
