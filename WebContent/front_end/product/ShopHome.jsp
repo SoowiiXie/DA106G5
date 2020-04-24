@@ -43,13 +43,6 @@ pageContext.setAttribute("list", list); //for EL
 <title>列出所有商品</title>
 </head>
 <body>
-
-
-	
-	<a
-		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp">會員登錄</a>
-	<br>
-	<br>
     
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -60,57 +53,72 @@ pageContext.setAttribute("list", list); //for EL
 			</c:forEach>
 		</ul>
 	</c:if>
-	
-	<table border="3">
+	<div class="a" align="right">
+		<form method="POST"
+			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
-		<tr>
-			<th width="100">商品圖片</th>
-			<th width="100">商品名稱</th>
-			<th width="100">商品價格</th>
-			<th width="100">商品類別</th>
-			
+			<table>
+				<tr>
+					<td>產品商品分類：</td>
+					<td><select size="1" name="pd_typeNo">
+							<c:forEach var="pd_typeVO" items="${typeList}">
+								<option value="${pd_typeVO.pd_typeNo}"
+									${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
+							</c:forEach>
+					</select></td>
+
+					<td>商品名稱：</td>
+					<td><input type="TEXT" name="pd_name" 
+						value="${productVO.pd_name}"></td>
 
 
-		</tr>
-		<%@ include file="page3.file"%>
-		<%@ include file="page4.file"%>
-		<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
-			end="<%=pageIndex+rowsPerPage-1%>">
+					<td>最低價格：</td>
+					<td><input type="TEXT" name="lowPrice" style="width:50px;"
+						value="${productVO.pd_price}"></td>
 
-			<tr>
-				<td><a
-					href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}&&whichPage=<%=whichPage%>'><img
-						src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"
-						width="100px"></a></td>
-				<td><a
-					href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}&&whichPage=<%=whichPage%>'>${productVO.pd_name}</a></td>
-				<td>${productVO.pd_price}</td>
-				<td>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
 
-			</tr>
+					<td>最高價格：</td>
+					<td><input type="TEXT" name="highPrice" style="width:50px;"
+						value="${productVO.pd_price}"></td>
+					<td><input type="submit" name="Submit" value="搜尋商品"></td>
+				</tr>
+			</table>
 
-		</c:forEach>
-	</table>
+
+			<input type="hidden" name="action" value="superGetAll">
+		</form>
+	</div>
+
+		
+	<%@ include file="page3.file"%>
 	<%@ include file="page4.file"%>
+	<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
+		end="<%=pageIndex+rowsPerPage-1%>">
+		<div class="context">
+			<table border="1" class="Product">
 
-	<%--    <jsp:include page="/front_end/product//ProductCart.jsp" flush="true" /> --%>
-	<br>
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
-	<br>
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/front_end/product/ProductCart.jsp">${mb_id}的購物車</a>
-	<br>
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp">會員${mb_id}的優惠卷</a>
-	<br>
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp">${mb_id}的商品收藏</a>
-	
+				<tr>
+					<td class="aaa"><a
+						href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}&&whichPage=<%=whichPage%>'><img
+							src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"
+							></a></td>
+				</tr>
+				<tr>
+					<td class="bbb"><a
+						href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}&&whichPage=<%=whichPage%>'>${productVO.pd_name}</a></td>
+				<tr>
+					<td class="ccc"><font color="red"><b>${productVO.pd_price} 元</b></font></td>
+
+				</tr>
+				<tr>
+					<td class="ccc">${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
+				</tr>
+
+			</table>
+		</div>
+	</c:forEach>
+	<div class="foot"></div>
+
 	
 
 </body>

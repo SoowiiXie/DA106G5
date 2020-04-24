@@ -10,7 +10,7 @@
 margin-right:8px;
 margin-left:-8px;
 margin-top:-8px;  
-height:2000px;
+height:100px;
 width:1450px;
 background-color:#FBFBFF;
 }
@@ -42,7 +42,7 @@ position: relative;
 }
 .search_form{
 position: absolute;  
-margin-top:64px;
+margin-top:54px;
 }
 .backhome{
 margin-left:230px;
@@ -117,7 +117,7 @@ text-align:center;
  
 }
 .Topmenu:hover{
-  height:175px;
+  height:178px;
   cursor:pointer;
  /*   background-color: green;*/
 /*    color:cyan;*/
@@ -148,7 +148,7 @@ float:left;
 margin-top:70px; 
 height:400px;
 width:100%;  
-background-color:#CECEFF;
+background-color:#FBFBFF;
 }
 
 div img{
@@ -159,6 +159,31 @@ div img{
 .Topmenuin{
   position: relative;
 
+}
+.aaa{
+text-align: center;
+width:200px;
+height:300px;
+}
+.bbb{
+text-align: center;
+width:200px;
+height:200x;
+}
+.Product{
+width:300px;
+float:left;
+padding:0;
+margin:5px;
+}
+.foot{
+clear:both;
+
+}
+.context{
+width:930px;
+text-align:center;
+margin:10px auto;
 }
 </style>
 <title>ShopHomeBar</title>
@@ -243,6 +268,7 @@ div img{
         </div>
         </div> 
      
+    </div>
     </div>
     <div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
 <%-- <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00001">服飾-男上身</a>
