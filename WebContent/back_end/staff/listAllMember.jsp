@@ -116,11 +116,11 @@
 <%-- 			<td>${memberVO.mb_line_display}</td> --%>
 <%-- 			<td>${memberVO.mb_line_status}</td> --%>
 			<td>
-			  <FORM METHOD="post" ACTION="staff.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="member.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="¬d¬İ">
 			     
 			     <input type="hidden" name="mb_id"  value="${memberVO.mb_id}">
-			     <input type="hidden" name="action"	value="getOne_For_Update">
+			     <input type="hidden" name="action"	value="getOne_Member_For_Update">
 			     <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
 			  </FORM>
 			</td>

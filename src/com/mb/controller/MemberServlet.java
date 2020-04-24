@@ -20,6 +20,8 @@ import org.json.JSONObject;
 
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
+import com.staff.model.StaffService;
+import com.staff.model.StaffVO;
 
 @MultipartConfig
 public class MemberServlet extends HttpServlet {
@@ -35,8 +37,6 @@ public class MemberServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		// ***註冊、修改的資料判斷
-		// ***登入、註冊時，若已登入過會直接導向XXX
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -374,5 +374,32 @@ public class MemberServlet extends HttpServlet {
 			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
 			failureView.forward(req, res);
 		}
+		
+		// 後台 - 會員管理
+		if ("getOne_Member_For_Update".equals(action)) { // 顯示一筆管理員資料For更新 OK
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				
+				/***************************查詢資料****************************************/
+				StaffService staffSvc = new StaffService();
+				StaffVO staffVO = staffSvc.getOneStaff(req.getParameter("staff_id"));
+								
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("staffVO", staffVO);         
+				String url = "/back_end/staff/update_staff.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher(servletPath);
+				failureView.forward(req, res);
+			}
+		}	
 	}
 }

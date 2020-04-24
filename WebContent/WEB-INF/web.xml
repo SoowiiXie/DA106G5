@@ -485,6 +485,11 @@
 			<servlet-name>AndroidMemberServlet</servlet-name>
 			<url-pattern>/front_end/member/member.do</url-pattern>
 		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>AndroidMemberServlet</servlet-name>
+			<url-pattern>/back_end/staff/member.do</url-pattern>
+		</servlet-mapping>
+		
 		
 		<servlet>
 			<servlet-name>MemberPicReader</servlet-name>
