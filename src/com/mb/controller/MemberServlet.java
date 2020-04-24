@@ -156,7 +156,7 @@ public class MemberServlet extends HttpServlet {
 		if ("update".equals(action)) { // 修改
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			MemberService memberSvc = new MemberService();
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String mb_id = req.getParameter("mb_id");
@@ -196,7 +196,7 @@ public class MemberServlet extends HttpServlet {
 					in.close();
 
 				} else { // 沒有上傳圖片，用原來的圖片
-					mb_pic = ((MemberVO) session.getAttribute("memberVO")).getMb_pic();
+					mb_pic = memberSvc.getOneMember(mb_id).getMb_pic();
 				}
 
 				Integer mb_lv = Integer.parseInt(req.getParameter("mb_lv"));
@@ -224,13 +224,19 @@ public class MemberServlet extends HttpServlet {
 				}
 
 				/*************************** 2.開始查詢資料 *****************************************/
-				MemberService memberSvc = new MemberService();
+				
 				memberVO = memberSvc.updateMember(mb_id, mb_pwd, mb_name, mb_gender, mb_birthday, mb_email, mb_pic,
 						mb_lv, mb_rpt_times, mb_status);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				session.setAttribute("memberVO", memberVO);
-				String url = "/front_end/member/listOneMember.jsp"; //
+				String url = null;
+				if(servletPath.contains("front_end")) {  // 從前端修改
+					session.setAttribute("memberVO", memberVO);
+					url = "/front_end/member/listOneMember.jsp"; 
+				}else {  // 從後端修改
+					url = "/back_end/staff/listAllMember.jsp"; 
+				}
+				
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
@@ -376,7 +382,7 @@ public class MemberServlet extends HttpServlet {
 		}
 		
 		// 後台 - 會員管理
-		if ("getOne_Member_For_Update".equals(action)) { // 顯示一筆管理員資料For更新 OK
+		if ("getOne_Member_For_Update".equals(action)) { // 顯示一筆會員資料For更新 
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -384,12 +390,13 @@ public class MemberServlet extends HttpServlet {
 			try {
 				
 				/***************************查詢資料****************************************/
-				StaffService staffSvc = new StaffService();
-				StaffVO staffVO = staffSvc.getOneStaff(req.getParameter("staff_id"));
+				String mb_id = req.getParameter("mb_id");
+				MemberService memberSvc = new MemberService();
+				MemberVO memberVO = memberSvc.getOneMember(mb_id);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("staffVO", staffVO);         
-				String url = "/back_end/staff/update_staff.jsp";
+				req.setAttribute("memberVO", memberVO);         
+				String url = "/back_end/staff/update_member.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 

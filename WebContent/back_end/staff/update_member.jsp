@@ -32,25 +32,30 @@
 	    	</label>
 		</c:forEach>
     	<br>
-    	
-<!--     	Line -->
-<%-- 		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br> --%>
 		
 		生日：<input type="text" id="f_date" name="mb_birthday" value="${memberVO.mb_birthday}"><br>
 		e-mail：<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
+		
+		等級：${memberVO.mb_lv}<br>
+		被檢舉次數：${memberVO.mb_rpt_times}<br>
+		狀態：
+		<select name="mb_status">
+			<c:forEach var="map" items="${memberStatus}">
+				<option value="${map.key}" ${memberVO.mb_status==map.key?'selected':''}>${map.value}</option>
+			</c:forEach>
+		</select><br>
 		
 		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>
 		<img id="mb_pic" src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px">
 		
 		<input type="hidden" name="mb_id" value="${memberVO.mb_id}"><br>
-		<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}"><br>
 		<input type="hidden" name="mb_rpt_times" value="${memberVO.mb_rpt_times}"><br>
-		<input type="hidden" name="mb_status" value="${memberVO.mb_status}"><br>
+		<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}"><br>
 		
 		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
         <input type="hidden" name="action" value="update"><br>
-        <input type="reset" value="清除">
-        <input type="submit" value="送出"><br>
+        <a href="listAllMember.jsp"><input type ="button" value="返回"></a>
+        <input type="submit" value="修改"><br>
         
         
 	</form>
