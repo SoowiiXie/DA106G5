@@ -198,7 +198,7 @@ margin:10px auto;
   
     <div id="first">
      <div class="logo" align="center">
-     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/fake_picture/ProductLogo.png" style="border-radius:5px;"></a></div>
+     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/images/ProductLogo.png" style="border-radius:5px;"></a></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
         <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px;">
@@ -276,7 +276,7 @@ margin:10px auto;
      
     </div>
  
-    <div class="third" align="center" ><img src="<%=request.getContextPath()%>/fake_picture/ProductAD.jpg" alt="跑馬燈圖片"></div>
+    <div class="third" align="center" ><img src="<%=request.getContextPath()%>/images/ProductAD.jpg" alt="跑馬燈圖片"></div>
 <%-- <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00001">服飾-男上身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00002">服飾-男下身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00003">服飾-男鞋</a>
