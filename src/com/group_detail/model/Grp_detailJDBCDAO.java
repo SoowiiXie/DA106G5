@@ -378,6 +378,11 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 		}
 		return getGroupCount ;
 	}
+	@Override
+	public Grp_detailVO findByPrimaryKeyMbidGetAll(String mb_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 	public static void main(String[] args) {

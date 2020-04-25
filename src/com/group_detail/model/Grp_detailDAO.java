@@ -343,4 +343,10 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 		}
 		return groupcount ;
 	}
+
+	@Override
+	public Grp_detailVO findByPrimaryKeyMbidGetAll(String mb_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

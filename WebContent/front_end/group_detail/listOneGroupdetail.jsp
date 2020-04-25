@@ -84,13 +84,14 @@
 				
 		<td><%=grp_detailVO.getMb_id()%></td>
 		<td>
-				<c:forEach var="locationVO" items="${locSvc.all}">
-		        <c:if test="${grp_detailVO.grp_no()=grouperVO.grp_no()}"> 
-		        	<c:if test="${grouperVO.loc_no()=locationVO.loc_no()}">   		        				    
-		                 ${locationVO.loc_address}<br>
-		       		 </c:if >
-		        </c:if >        
-		        </c:forEach>
+<%-- 				<c:forEach var="locationVO" items="${locSvc.all}"> --%>
+<%-- 		        <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">  --%>
+<%-- 		        	<c:if test="${grouperVO.loc_no==locationVO.loc_no}">   		        				     --%>
+<%-- 		                 ${grouperVOlocationVO.loc_address}<br> --%>
+<%-- 		       		 </c:if > --%>
+<%-- 		        </c:if >         --%>
+					${locSvc.getOneLocation(grpSvc.getOneGroup(grp_detailVO.getGrp_no()).loc_no).loc_address}
+<%-- 		        </c:forEach> --%>
 		</td>
 		<td>
 		<c:forEach var="grouperVO" items="${grpSvc.all}">

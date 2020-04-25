@@ -341,6 +341,69 @@ public class Group_detailServlet extends HttpServlet {
 			}
 		}
 		
+		if ("getAll_For_Display".equals(action)) { // 來自select_page.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				String str = req.getParameter("mb_id");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入會員編號");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/group_detail/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				String mb_id = null;
+				try {
+					 mb_id = new String(str);
+				} catch (Exception e) {
+					errorMsgs.add("會員編號格式不正確");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/group_detail/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				/***************************2.開始查詢資料*****************************************/
+				Grp_detailService grpdetailSvc = new Grp_detailService();
+				Grp_detailVO grp_detailVO = grpdetailSvc.getOneGrp_detail(mb_id);
+				if (grp_detailVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/group_detail/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("grp_detailVO", grp_detailVO); // 資料庫取出的empVO物件,存入req
+				String url = "/front_end/group_detail/listOneGroupdetail.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front_end/group_detail/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 		
 				
 	}
