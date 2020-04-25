@@ -113,7 +113,16 @@
 <%--                     </c:if> --%>
 <%--                 </c:forEach> --%>
 <!-- 			</td> -->
-
+			<%
+			Map<Integer,String>status = new HashMap<>();
+				status.put(1, "未滿");
+				status.put(2, "已滿");
+				status.put(3, "成功");
+				status.put(4, "取消");
+				request.setAttribute("status", new String[]{"","未滿", "已滿","成功","取消"});
+// 				request.setAttribute("status", status);
+			%>
+		
 			<td>${grouperVO.grp_applystart}</td>
 			<td>${grouperVO.grp_applyend}</td>
 			<td>${grouperVO.grp_start}</td> 
@@ -123,7 +132,17 @@
 			<td>${grouperVO.grp_personmax}</td>
 			<td>${grouperVO.grp_personmin}</td>
 			<td>${grouperVO.grp_personcount}</td>
-			<td>${grouperVO.grp_status}</td> 
+			<td>${grouperVO.grp_status}
+				${status[grouperVO.grp_status]}</td> 
+			
+<%-- 		${status.get(Integer.parseInt(2))} --%>
+<%-- 		${status.get(Integer(2))} --%>
+<!-- 			他是基本型別的int -->
+			<%--${status.get("2")} --%>
+			<%--${status.get(String.valueOf(Integer.parseInt(2)))} --%>
+			<%--<%= (String)(grouperVO.getGrp_status()) %> --%>
+			<%--${status.get(grouperVO.grp_status)} --%>
+ 			 
 			<td>${grouperVO.grp_follow}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;">
