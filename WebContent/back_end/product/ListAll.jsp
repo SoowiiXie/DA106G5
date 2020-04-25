@@ -47,7 +47,7 @@
 
 		</tr>
 <%@ include file="page1.file" %>
-<br> 
+
 <%@ include file="page2.file" %>
 <c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 <tr>
