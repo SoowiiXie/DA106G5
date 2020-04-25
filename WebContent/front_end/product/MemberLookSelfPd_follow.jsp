@@ -28,8 +28,7 @@
 bgcolor: #D2E9FF;
 }
 </style>
-<%  
-   
+<%
 	String mb_id = (String) session.getAttribute("mb_id");
 	Pd_followService pd_followService = new Pd_followService();
 
@@ -91,6 +90,6 @@ bgcolor: #D2E9FF;
 			<%@ include file="pagePd_follow3.file"%>
 		</form>
 	</div>
-	<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">回商城首頁</a>
+	
 </body>
 </html>

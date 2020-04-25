@@ -10,7 +10,7 @@
 margin-right:8px;
 margin-left:-8px;
 margin-top:-8px;  
-height:100px;
+height:2000px;
 width:1450px;
 background-color:#FBFBFF;
 }
@@ -185,18 +185,24 @@ width:930px;
 text-align:center;
 margin:10px auto;
 }
+
+
 </style>
+
 <title>ShopHomeBar</title>
 </head>
+
 <body>
-  <div id="page" >
+
+
+  
     <div id="first">
      <div class="logo" align="center">
-      <img src="<%=request.getContextPath()%>/img/ProductLogo.png"></div>
+     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/fake_picture/ProductLogo.png" style="border-radius:5px;"></a></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
-        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:30px;border-radius:5px;">
-        <input type="submit" value="搜尋"style="width:50px;height:50px">  
+        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px;">
+        <input type="submit" value="搜尋"style="width:50px;height:40px; border-radius:5px;">  
       </form></div>
       <div class="backhome" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;"><font color="white" >
@@ -269,8 +275,8 @@ margin:10px auto;
         </div> 
      
     </div>
-    </div>
-    <div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
+ 
+    <div class="third" align="center" ><img src="<%=request.getContextPath()%>/fake_picture/ProductAD.jpg" alt="跑馬燈圖片"></div>
 <%-- <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00001">服飾-男上身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00002">服飾-男下身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00003">服飾-男鞋</a>
@@ -283,6 +289,10 @@ margin:10px auto;
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00010">配件-護具</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00011">配件-包款</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00012">配件-3C</a> --%>
+ <script src="<%=request.getContextPath()%>/plug-in/bootstrap/jquery/jquery-3.4.1.min.js"></script>
+ <script src="<%=request.getContextPath()%>/plug-in/Semantic-UI/semantic.min.js"></script>
+    <script src="<%=request.getContextPath()%>/plug-in/popper/popper.min.js"></script>
+    <script src="<%=request.getContextPath()%>/plug-in/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
