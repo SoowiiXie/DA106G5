@@ -62,52 +62,60 @@ public class WeatherJsonURL extends HttpServlet {
 //             String formattedDate = outputFormat.format(date);
 //             System.out.println(formattedDate); // prints 10-04-2018
              
-             //地點
+             //地點 jsonArrayLocation.length()=22
              JSONArray jsonArrayLocation = jsonObjDataset.getJSONArray("location");
              for (int i = 0; i < jsonArrayLocation.length(); i++) {
             	 //表格所有變數
-                 Timestamp weather_time = null;
+                 Timestamp weather_time = null;//先給假時間建立資料用
                  String weather_place = null;
-                 String wth_comfort = null;
-                 Integer wth_high = null;
-                 Integer wth_low = null;
-            	 String wth_status = null;
-                 Integer wth_rain_chance = null;
+                 String wth_comfort = "爽";
+                 Integer wth_high = 999;
+                 Integer wth_low = -999;
+            	 String wth_status = "愛情來的太快就像龍捲風";
+                 Integer wth_rain_chance = -100;
+                 int wthElements = 0;
                  
                  JSONObject jsonObjLocation = new JSONObject(jsonArrayLocation.get(i).toString());
                  //地點名稱(weather_place)
-                 System.out.println("第"+(i+1)+"個城市："+jsonObjLocation.get("locationName"));
+//               System.out.println("第"+(i+1)+"個城市："+jsonObjLocation.get("locationName"));
                  weather_place = (String)jsonObjLocation.get("locationName");
                  
-                 //天氣元素
+                 //天氣元素 jsonArrayWeatherElement.length()=5
                  JSONArray jsonArrayWeatherElement = jsonObjLocation.getJSONArray("weatherElement");
                  for (int j = 0; j < jsonArrayWeatherElement.length(); j++) {
                 	 JSONObject jsonObjWeatherElement = new JSONObject(jsonArrayWeatherElement.get(j).toString());
                 	 //元素名稱
-                	 System.out.println(jsonObjWeatherElement.get("elementName")+":");
+//                	 System.out.println(jsonObjWeatherElement.get("elementName")+":");
                 	 String elementName=(String)jsonObjWeatherElement.get("elementName");
+                	 wthElements += 1;
                 	 
-                	 //時間(weather_time)
+                	 //時間(weather_time) jsonArrayTime.length()=3
                 	 JSONArray jsonArrayTime = jsonObjWeatherElement.getJSONArray("time");
                 	 for (int k = 0; k < jsonArrayTime.length(); k++) {
                 		 JSONObject jsonObjTime = new JSONObject(jsonArrayTime.get(k).toString());
                 		 //開始到結束
-                		 System.out.print(jsonObjTime.get("startTime").toString()+" 到 "+jsonObjTime.get("endTime").toString() + "時 : ");
+//                		 System.out.print(jsonObjTime.get("startTime").toString()+" 到 "+jsonObjTime.get("endTime").toString() + "時 : ");
+                		 //只存結束時間
                 		 String endTime=(String)jsonObjTime.get("endTime");
                 		 String[] timeArray = endTime.split("T");
                 	     String yyyyMMdd = timeArray[0];
-                	     System.out.println(timeArray[0]+"T"+timeArray[1]);
                 	     String[] onlyTime = timeArray[1].split("\\+");
                 	     String hhmmss = onlyTime[0];
                          weather_time = Timestamp.valueOf(yyyyMMdd+" "+hhmmss);
-                		 
-                		 //參數及單位
+                         
+                         //第一個元素創建時
+                         if (wthElements == 1) {
+                         	 //先建立一個只有地點和時間的物件
+                        	 weather_detailSvc.addWeather_detail(weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort, wth_rain_chance);
+                         }
+                         
+                         //參數及單位
                 		 JSONObject jsonObjParameter = new JSONObject(jsonObjTime.get("parameter").toString());
-                		 if (jsonObjParameter.has("parameterUnit")) {
-                			 System.out.println(jsonObjParameter.get("parameterName").toString()+" ( "+jsonObjParameter.get("parameterUnit").toString()+")");
-                		 }else {
-                			 System.out.println(jsonObjParameter.get("parameterName").toString());
-                		 }
+//                		 if (jsonObjParameter.has("parameterUnit")) {
+//                			 System.out.println(jsonObjParameter.get("parameterName").toString()+" ( "+jsonObjParameter.get("parameterUnit").toString()+")");
+//                		 }else {
+//                			 System.out.println(jsonObjParameter.get("parameterName").toString());
+//                		 }
                 		 String parameterName = jsonObjParameter.get("parameterName").toString();
                 		 if ("Wx".equals(elementName)) {
                 			 wth_comfort = parameterName;
@@ -120,10 +128,9 @@ public class WeatherJsonURL extends HttpServlet {
                 		 }else if("PoP".equals(elementName)) {
                 			 wth_rain_chance = Integer.parseInt(parameterName);
                 		 }
+                		 //元素更新
+                		 weather_detailSvc.updateWeather_detail(weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort, wth_rain_chance);
 					 }
-                	 //每個地點的每個時間都要加入一個weather_detail
-                	 System.out.println(weather_time+","+weather_place+","+wth_status+","+wth_high+","+wth_low+","+wth_comfort+","+wth_rain_chance);
-//            		 weather_detailSvc.addWeather_detail(weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort, wth_rain_chance);
 				 }
              }
         }catch (JSONException e) {

@@ -340,6 +340,32 @@ public class Group_detailServlet extends HttpServlet {
 				throw new ServletException(e);
 			}
 		}
+		if ("getOne_From2".equals(action)) {
+
+			try {
+				// Retrieve form parameters.
+				String grp_no = new String(req.getParameter("grp_no"));
+
+				Grp_detailDAO dao = new Grp_detailDAO();
+				Grp_detailVO grp_detailVO = dao.findByPrimaryKeyByGrp_no(grp_no);
+
+				req.setAttribute("grp_detailVO", grp_detailVO); // 資料庫取出的empVO物件,存入req
+				
+				//Bootstrap_modal
+				boolean openModal=true;
+				req.setAttribute("openModal",openModal );
+				
+				// 取出的empVO送給listOneEmp.jsp
+				RequestDispatcher successView = req
+						.getRequestDispatcher("/front_end/group_detail/listAllGroupdetail.jsp");
+				successView.forward(req, res);
+				return;
+
+				// Handle any unusual exceptions
+			} catch (Exception e) {
+				throw new ServletException(e);
+			}
+		}		
 		
 		if ("getAll_For_Display".equals(action)) { // 來自select_page.jsp的請求
 

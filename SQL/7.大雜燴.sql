@@ -393,7 +393,7 @@ INSERT INTO "LOC_RPT" (LOC_RPT_NO, RPT_REASON, RPT_STATUS, LOC_NO, MB_ID) VALUES
 
 --天氣 Create--
 CREATE TABLE weather (
- wth_status VARCHAR2(30) NOT NULL,
+ wth_status VARCHAR2(100) NOT NULL,
  weather_pic BLOB
 );
 
@@ -414,7 +414,7 @@ Insert into weather (wth_status) values ('陰時多雲短暫陣雨');
 CREATE TABLE weather_detail (
  weather_time TIMESTAMP(6) NOT NULL,
  weather_place VARCHAR2(30) NOT NULL,
- wth_status VARCHAR2(30) NOT NULL,
+ wth_status VARCHAR2(100) NOT NULL,
  wth_high NUMBER(3),
  wth_low NUMBER(3),
  wth_comfort VARCHAR2(30),

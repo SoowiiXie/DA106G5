@@ -27,6 +27,8 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			"SELECT mb_id,grp_no,grp_register FROM grp_detail order by mb_id";
 	private static final String GET_ONE_STMT = 
 			"SELECT mb_id,grp_no,grp_register FROM grp_detail where mb_id = ?";
+	private static final String GET_ONE_STMTGRPNO = 
+			"SELECT mb_id,grp_no,grp_register FROM grp_detail where grp_no = ?";
 	private static final String DELETE = 
 			"DELETE FROM grp_detail where mb_id = ?";
 	private static final String UPDATE = 
@@ -170,6 +172,62 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, mb_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVo �]�٬� Domain objects
+				grp_detailVO = new Grp_detailVO();
+				grp_detailVO.setMb_id(rs.getString("mb_id"));
+				grp_detailVO.setGrp_no(rs.getString("grp_no"));
+				grp_detailVO.setGrp_register(rs.getInt("grp_register"));
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return grp_detailVO;
+	}
+	
+	@Override
+	public Grp_detailVO findByPrimaryKeyByGrp_no(String grp_no) {
+
+		Grp_detailVO grp_detailVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMTGRPNO);
+
+			pstmt.setString(1, grp_no);
 
 			rs = pstmt.executeQuery();
 

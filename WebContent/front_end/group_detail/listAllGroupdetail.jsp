@@ -96,8 +96,8 @@
 	<c:forEach var="grp_detailVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td><A href="group_detail.do?mb_id=${grp_detailVO.mb_id}&action=getOne_From">${grp_detailVO.mb_id}</a></td>
-			<td>${grp_detailVO.grp_no}</td>			
+			<td>${grp_detailVO.mb_id}</a></td>
+			<td><A href="group_detail.do?grp_no=${grp_detailVO.grp_no}&action=getOne_From2">${grp_detailVO.grp_no}</a></td>			
 			<td>${grp_detailVO.grp_register}</td>
 			
 			<td>
@@ -129,8 +129,8 @@
 			
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
-               <jsp:include page="listOneGroupdetail.jsp" />
-<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+               <jsp:include page="listOneGroupdetail2.jsp" />
+<!-- =========================================以上為原listOneEmp.jsp的內容========================================= -->
 			</div>
 			
 			<div class="modal-footer">
