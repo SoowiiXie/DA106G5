@@ -16,6 +16,14 @@ public class OrdersVO implements java.io.Serializable {
 	private String cp_no;
 	private Integer od_discount;
 	private String od_add;
+	private String od_javaTime;
+	public String getOd_javaTime() {
+		return od_javaTime;
+	}
+
+	public void setOd_javaTime(String od_javaTime) {
+		this.od_javaTime = od_javaTime;
+	}
 
 	public OrdersVO() {
 		od_no = "";

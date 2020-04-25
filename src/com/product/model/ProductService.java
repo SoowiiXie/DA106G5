@@ -76,5 +76,12 @@ public class ProductService {
 		 
 		 return dao.search_pd_pic(pd_no);
 	 }
-	 
+public int changeStatus(ProductVO productVO) {
+		 
+		 return dao.changeStatus(productVO);
+		 
+		 
+		 
+		 
+	 }
 }

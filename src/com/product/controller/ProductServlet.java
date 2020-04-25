@@ -320,7 +320,43 @@ public class ProductServlet extends HttpServlet {
 			successView.forward(req, res);
 			return;
 		}
+		if (action.equals("changePd_status1")) {
+			System.out.println("hi");
+			String pd_no = req.getParameter("pd_no");
+			String whichPage = req.getParameter("whichPage");
+			ProductVO productVO = new ProductVO();
 
+			productVO.setPd_no(pd_no);
+			productVO.setPd_status(1);
+
+			ProductService productService = new ProductService();
+			productService.changeStatus(productVO);
+            
+			req.setAttribute("whichPage", whichPage);
+			String url = "/back_end/product/AllList2.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+			successView.forward(req, res);
+			return;
+		}
+		
+		if (action.equals("changePd_status2")) {
+			System.out.println("hi");
+			String pd_no = req.getParameter("pd_no");
+			String whichPage = req.getParameter("whichPage");
+			ProductVO productVO = new ProductVO();
+
+			productVO.setPd_no(pd_no);
+			productVO.setPd_status(2);
+
+			ProductService productService = new ProductService();
+			productService.changeStatus(productVO);
+            
+			req.setAttribute("whichPage", whichPage);
+			String url = "/back_end/product/AllList2.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 AllList2.jsp
+			successView.forward(req, res);
+			return;
+		}
 	}
 
 }
