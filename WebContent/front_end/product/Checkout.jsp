@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Mode II 範例程式 - 結帳頁面</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="plug-in/TWzipcode/jquery.twzipcode.min.js"></script>
+<script src="vendor/TWzipcode/jquery.twzipcode.min.js"></script>
 
 
 <style>
