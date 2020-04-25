@@ -1,6 +1,7 @@
 package com.product.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -60,7 +61,7 @@ public class OrdersServlet extends HttpServlet {
 
 			OrdersService ordersService = new OrdersService();
 			List<OrdersVO> list = ordersService.searchMemberOrders(mb_id);
-			
+			Collections.reverse(list);
 			req.getSession().setAttribute("list", list);
 			String url = "/back_end/product/ListAllOrders.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp

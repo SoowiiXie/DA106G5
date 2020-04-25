@@ -419,7 +419,11 @@ public class OrdersDAO implements OrdersDAO_interface {
 				ordersVO.setCp_no(rs.getString("cp_no"));
 				ordersVO.setOd_discount(rs.getInt("od_discount"));
 				ordersVO.setOd_add(rs.getString("od_add"));
-				list.add(ordersVO);
+				Timestamp sqlTime = ordersVO.getOd_time();
+				String javaTime = sqlTime.toString();  //把用toString 把sqlTime改寫成字串
+				ordersVO.setOd_javaTime(javaTime.substring(0, 16));//取字串裡面索引值0(第一個)到第16(第17個)的字元
+				list.add(ordersVO); // Store the row in the vector
+			
 			}
 
 		} catch (ClassNotFoundException e) {
