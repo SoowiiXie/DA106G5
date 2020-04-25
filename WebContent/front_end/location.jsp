@@ -29,21 +29,21 @@
 // 		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
 // 	}else{
 		//用memberVO先取得會常使用到的mb_id
-		request.setAttribute("mb_id", memberVO.getMb_id());
+		pageContext.setAttribute("mb_id", memberVO.getMb_id());
 		//拿出所有紀錄
 		RecordService recordSvc = new RecordService();
 		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
-		request.setAttribute("list", list);
+		pageContext.setAttribute("list", list);
 		
 		//拿出四個直播
 		LiveService liveSvc = new LiveService();
 		List<LiveVO> liveList = liveSvc.getAllTake4();
-		request.setAttribute("liveList", liveList);
+		pageContext.setAttribute("liveList", liveList);
 
 		//拿出四則訊息
 		MessageService messageSvc = new MessageService();
 		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
-		request.setAttribute("messageList", messageList);
+		pageContext.setAttribute("messageList", messageList);
 		
 		//取出所有地標
 		LocationService locationSvc = new LocationService();
@@ -385,8 +385,8 @@
 			
  			<!-- 當頁路徑 -->
 			<div id="contentMiddle" class="col-12 d-block" style="hight:100%;">
-<%-- 					<jsp:include page="weather_detail/taiwanMap.jsp"/> --%>
-					<jsp:include page="group_detail/webFront/group.jsp"/>
+					<jsp:include page="weather_detail/taiwanMap.jsp"/>
+<%-- 					<jsp:include page="group_detail/webFront/group.jsp"/> --%>
 <%-- 					<jsp:include page="maps/googleMap2.jsp"/> --%>
 			</div>
 		

@@ -13,24 +13,24 @@
 </nav>
 <div class="btn-group-vertical col-1">
 	<div class="mx-auto">離島</div>
-	<button type="button" class="btn btn-secondary">連江縣</button>
-	<button type="button" class="btn btn-secondary">金門縣</button>
-	<button type="button" class="btn btn-secondary">澎湖縣</button>
+	<button type="button" class="btn btn-secondary" value="連江縣">連江縣</button>
+	<button type="button" class="btn btn-secondary" value="金門縣">金門縣</button>
+	<button type="button" class="btn btn-secondary" value="澎湖縣">澎湖縣</button>
 </div>
 <div class="btn-group-vertical col-1">
 	<div class="mx-auto">南部</div>
-	<button type="button" class="btn btn-success">嘉義縣</button>
-	<button type="button" class="btn btn-success">嘉義市</button>
-	<button type="button" class="btn btn-success">台南市</button>
-	<button type="button" class="btn btn-success">高雄市</button>
-	<button type="button" class="btn btn-success">屏東縣</button>
+	<button type="button" class="btn btn-success" value="嘉義縣">嘉義縣</button>
+	<button type="button" class="btn btn-success" value="嘉義市">嘉義市</button>
+	<button type="button" class="btn btn-success" value="台南市">台南市</button>
+	<button type="button" class="btn btn-success" value="高雄市">高雄市</button>
+	<button type="button" class="btn btn-success" value="屏東縣">屏東縣</button>
 </div>
 <div class="btn-group-vertical col-1">
 	<div class="mx-auto">中部</div>
-	<button type="button" class="btn btn-danger">台中市</button>
-	<button type="button" class="btn btn-danger">彰化縣</button>
-	<button type="button" class="btn btn-danger">雲林縣</button>
-	<button type="button" class="btn btn-danger">南投縣</button>
+	<button type="button" class="btn btn-danger" value="台中市">台中市</button>
+	<button type="button" class="btn btn-danger" value="彰化縣">彰化縣</button>
+	<button type="button" class="btn btn-danger" value="雲林縣">雲林縣</button>
+	<button type="button" class="btn btn-danger" value="南投縣">南投縣</button>
 </div>
 
 <img src="<%=request.getContextPath()%>/img/TaiwanMap.png"
@@ -38,20 +38,20 @@
 
 <div class="btn-group-vertical col-1">
 	<div class="mx-auto">天龍國</div>
-	<button type="button" class="btn btn-warning">基隆市</button>
-	<button type="button" class="btn btn-warning">新北市</button>
-	<button type="button" class="btn btn-warning">台北市</button>
+	<button type="button" class="btn btn-warning" value="基隆市">基隆市</button>
+	<button type="button" class="btn btn-warning" value="新北市">新北市</button>
+	<button type="button" class="btn btn-warning" value="台北市">台北市</button>
 </div>
 <div class="btn-group-vertical col-1">
 	<div class="mx-auto">北部</div>
-	<button type="button" class="btn btn-warning">桃園市</button>
-	<button type="button" class="btn btn-warning">新竹縣</button>
-	<button type="button" class="btn btn-warning">新竹市</button>
-	<button type="button" class="btn btn-warning">苗栗國</button>
+	<button type="button" class="btn btn-warning" value="桃園市">桃園市</button>
+	<button type="button" class="btn btn-warning" value="新竹縣">新竹縣</button>
+	<button type="button" class="btn btn-warning" value="新竹市">新竹市</button>
+	<button type="button" class="btn btn-warning" value="苗栗縣">苗栗國</button>
 </div>
 <div class="btn-group-vertical col-1">
 	<div class="mx-auto">東部</div>
-	<button type="button" class="btn btn-primary">宜蘭縣</button>
-	<button type="button" class="btn btn-primary">花蓮縣</button>
-	<button type="button" class="btn btn-primary">台東縣</button>
+	<button type="button" class="btn btn-primary" value="宜蘭縣">宜蘭縣</button>
+	<button type="button" class="btn btn-primary" value="花蓮縣">花蓮縣</button>
+	<button type="button" class="btn btn-primary" value="台東縣">台東縣</button>
 </div>
