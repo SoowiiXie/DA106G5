@@ -135,11 +135,14 @@ public class MemberServlet extends HttpServlet {
 				session.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
 //				String url = req.getContextPath() + "/front_end/member/listOneMember.jsp";  // 測試
 				
-				String url = req.getContextPath() + "/front_end/index.jsp";
+				String url = req.getContextPath() + "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp";
 				
 				String originalJSP = (String)session.getAttribute("originalJSP");  // 
 				if(originalJSP != null) {
 					url = originalJSP;
+					if((req.getContextPath() + "/front_end/index.jsp").equals(originalJSP)) {
+						url = req.getContextPath() + "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp";
+					}
 					session.removeAttribute("originalJSP");
 				}
 				res.sendRedirect(url);

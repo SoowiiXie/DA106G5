@@ -149,7 +149,7 @@ public class ShoppingServlet extends HttpServlet {
 				int quantity = order.getPd_quantity();
 				total += (price * quantity);
 			}
-			req.setAttribute("total", total);
+			session.setAttribute("total", total);
 			String mb_id = (String) session.getAttribute("mb_id");
 			String buylistCount = String.valueOf(buylist.size());
 			session.setAttribute("buylistCount", buylistCount);

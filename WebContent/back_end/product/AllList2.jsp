@@ -4,49 +4,92 @@
 <%@ page import="java.util.Base64"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
+<%@ page import="com.pd_type.model.*"%>
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css" media="screen">
+
+
+  table {
+
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  table, th, td {
+    border: 3px solid 	#FFFFFF;
+  }
+  th, td {
+    padding: 1px;
+    text-align: center;
+  }
+
+</style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>商品管理</title>
 
 
 <%
-
 	String pd_typeNo = (String) session.getAttribute("pd_typeNo");
 	ProductService productService = new ProductService();
-	
-	List<ProductVO> list = (List<ProductVO>)session.getAttribute("list");
-	
+
+	List<ProductVO> list = (List<ProductVO>) session.getAttribute("list");
+
 	if (pd_typeNo == null || pd_typeNo.equals("")) {
 
 		list = productService.getAll();
 
 		session.setAttribute("list", list);
 		Collections.reverse(list);
-		
-	}
-		else {
+
+	} else {
 		list = productService.useTypeSearchProducts(pd_typeNo);
 
 		session.setAttribute("list", list);
 		Collections.reverse(list);
 	}
-	
-	
 %>
 
 
 
-<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
+<jsp:useBean id="pd_typeService" scope="page"
+	class="com.pd_type.model.Pd_typeService" />
+	<jsp:include page="ShopManagerBar.jsp" />
 </head>
 <body>
 
-現在的session.pd_typeNo是 ${pd_typeNo}
-</br>
-  <%=request.getRequestURI()%>
-  </br> 
-	<%-- 錯誤表列 --%>
+
+
+
+<div  style=" margin-left:235px; margin-top:50px; " >
+<form name="checkoutForm" action="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList" method="POST">
+<table>
+           <tr>
+				<td> <select size="1" name="pd_typeNo">
+				 <option value="">全部商品類別
+         <c:forEach var="pd_typeVO" items="${pd_typeService.all}" > 
+          <option value="${pd_typeVO.pd_typeNo}">${pd_typeVO.pd_typeName}
+         </c:forEach>   
+       </select>
+				<input type="submit" value="選取類別">
+				
+				<input type="hidden" name="pd_typeNo" value="${pd_typeVO.pd_typeNo}">
+				</td><td ><%@ include file="AllList2File1.file"%></td>
+				<td style="margin-left:290px; float:left;"><%@ include file="AllList2File2.file"%></td>
+				<td><%@ include file="AllList2File3.file"%></td>
+				<tr>	
+				</table>
+			</form>
+	</div>		
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
@@ -55,68 +98,73 @@
 			</c:forEach>
 		</ul>
 	</c:if>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=">管理所有商品2</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00001">服飾-男上身</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00002">服飾-男下身</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00003">服飾-男鞋</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00004">服飾-女上身</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00005">服飾-女下身</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00006">服飾-女鞋</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00007">服飾-兒童上身</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00008">服飾-兒童下身</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00009">服飾-兒童鞋類</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00010">服飾-配件-護具</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00011">服飾-配件-包款</a>
-<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=PTN00012">服飾-配件-3C</a>
 
 
-	<table border="1">
 
-		<tr>
-			<th width="100">商品圖片</th>
-			<th width="100">商品編號</th>
-			<th width="100">商品名稱</th>
-			<th width="100">商品價格</th>
-			<th width="100">商品詳述</th>
-			<th width="100">商品狀態</th>
-			<th width="100">商品類別</th>
-			<th width="100"></th>
-			<th width="100"></th>
+		
+<div align="center">
+                
+	<table  class ="tableList" style="width: 1000px;">
+
+		<tr bgcolor="#999999">
+			<th width="100px">商品圖片</th>
+			<th width="100px">商品編號</th>
+			<th width="100px">商品名稱</th>
+			<th width="100px">商品價格</th>
+			<th width="100px">商品詳述</th>
+			<th width="100px">商品狀態</th>
+			<th width="100px">商品類別</th>
+			<th width="100px"></th>
+			<th width="100px"></th>
 
 		</tr>
-		<%@ include file="page1.file"%>
-		<br>
-		<%@ include file="page2.file"%>
+		
 		<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
-			<tr>
-				<td><img
+			<tr >
+				<td align="center" style="height: 100px; width: 150px;"><img
 					src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"
-					width="100px"></td>
-				<td>${productVO.pd_no}</td>
-				<td>${productVO.pd_name}</td>
-				<td>${productVO.pd_price}</td>
-				<td>${productVO.pd_detail}</td>
-				<td>${productVO.pd_status==1?'下架':'上架'}</td>
-				<td>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
+					style="width:auto;"></td>
+				<td bgcolor=#FFD2D2>${productVO.pd_no}</td>
+				<td bgcolor=#FFD2D2>${productVO.pd_name}</td>
+				<td bgcolor=#FFD2D2>${productVO.pd_price}元</td>
+				<td bgcolor=#FFD2D2>${productVO.pd_status==1?'下架':'上架'}</td>
+				<td bgcolor=#FFD2D2><FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">
+				<div style="align:center; float:left">
+				<input type="submit" value="下架">
+				<input type="hidden" name="pd_no" value="${productVO.pd_no}">
+				<input type="hidden" name="action" value="changePd_status1">
+				<input type="hidden" name="whichPage" value="<%=whichPage%>">
+				</div>
+				</FORM>
+				<div>	
+				    <FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">	
+				    		
+				<input type="submit" value="上架">
+				<input type="hidden" name="pd_no" value="${productVO.pd_no}">
+				<input type="hidden" name="action" value="changePd_status2">
+				<input type="hidden" name="whichPage" value="<%=whichPage%>"></FORM>
+				</div>
+					</td>
+				<td bgcolor=#FFD2D2>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
 
 
-				<td><FORM METHOD="POST"
+				<td bgcolor=#FFD2D2><FORM METHOD="POST"
 						ACTION="<%=request.getContextPath()%>/ProductServlet"
 						style="margin-bottom: 0px;">
 						<input type="submit" value="修改"> <input type="hidden"
 							name="pd_no" value="${productVO.pd_no}"> <input
 							type="hidden" name="pd_name" value="${productVO.pd_name}">
 						<input type="hidden" name="action" value="getOne_For_update">
-						<input type="hidden" name="whichPage"	value="<%=whichPage%>">    
+						<input type="hidden" name="whichPage" value="<%=whichPage%>">
 					</FORM></td>
-				<td>
+				<td bgcolor=#FFD2D2>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/ProductServlet"
 						style="margin-bottom: 0px;">
 						<input type="submit" value="刪除"> <input type="hidden"
-							name="pd_no" value="${productVO.pd_no}"> 
-							<input type="hidden" name="whichPage"	value="<%=whichPage%>">  <input
+							name="pd_no" value="${productVO.pd_no}"> <input
+							type="hidden" name="whichPage" value="<%=whichPage%>"> <input
 							type="hidden" name="action" value="delete">
 					</FORM>
 				</td>
@@ -124,7 +172,8 @@
 
 		</c:forEach>
 	</table>
-	<%@ include file="page2.file"%>
+	</div>
+	<%@ include file="AllList2File2.file"%>
 
 	<br>
 	<br>

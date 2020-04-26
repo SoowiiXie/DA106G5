@@ -5,18 +5,36 @@
 <%@ page import="com.orders.model.*"%>
 
 <%  
-    
+   
 List<OrdersVO>	list = (List<OrdersVO>)session.getAttribute("list");
 	session.setAttribute("list", list);
-
 %>
 
 <jsp:useBean id="couponService" scope="page" class="com.coupon.model.CouponService" />
-
+<jsp:include page="ShopManagerBar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
+
+<style type="text/css" media="screen">
+
+
+table, th, td {
+	border: 2px solid #FFFFFF;
+}
+
+th, td {
+	padding: 1px;
+	text-align: center;
+}
+</style>
 <title>管理所有訂單</title>
 </head>
 <body>
@@ -31,78 +49,115 @@ List<OrdersVO>	list = (List<OrdersVO>)session.getAttribute("list");
 		</ul>
 	</c:if>
 
+<div align="center" style="float:left; margin-left:235px; margin-top:50px; " >
 	<form method="POST"
 		action="<%=request.getContextPath()%>/OrdersServlet" name="form1">
-		<table>
+		<table border="1">
+
 			<tr>
-				<td>會員名稱：</td>
-				<td><input type="TEXT" name="mb_id"></td>
+				<td>會員名稱：<input type="TEXT" name="mb_id"> <input
+					type="hidden" name="action" value="searchMemberOrders"> <input
+					type="submit" name="Submit" value="搜尋該會員訂單">
+					<%@ include file="page1ForListAllOrders.file"%></td><td style="margin-left:150px; float:left;"><%@ include file="page2ForListAllOrders.file"%></td>
 			</tr>
 		</table>
-		<input type="hidden" name="action" value="searchMemberOrders">
-		
-		<input type="submit" name="Submit" value="搜尋該會員訂單">
-		
 	</form>
+		
+	</div>
 
 
-	<table border="1">
+	<div align="center">
+		<table border="1" Style="width: 1000px; align: center">
 
-		<tr>
-			<th width="100" align="center">訂單編號</th>
-			<th width="100" align="center">會員名稱</th>
-			<th width="100" align="center">訂單時間</th>
-			<th width="100" align="center">訂單狀態</th>
-			<th width="100" align="center">訂單總金額</th>
-			<th width="100" align="center">優惠券號碼</th>
-			<th width="100" align="center">優惠後金額</th>
-			<th width="100" align="center">收貨地址</th>
-			<th width="100" align="center"></th>
-			<th width="100" align="center"></th>
+			<tr bgcolor="#999999">
+				<th Style="width: 100px; align: center">訂單編號</th>
+				<th Style="width: 100px; align: center">會員名稱</th>
+				<th Style="width: 150px; align: center">訂單時間</th>
+				<th Style="width: 100px; align: center">訂單狀態</th>
+				<th Style="width: 100px; align: center">訂單總金額</th>
+				<th Style="width: 100px; align: center">優惠券號碼</th>
+				<th Style="width: 100px; align: center">優惠後金額</th>
+				<th Style="width: 200px; align: center">收貨地址</th>
+				<th Style="width: 150px; align: center"></th>
+				<th Style="width: 100px; align: center"></th>
 
-		</tr>
-		<%@ include file="page1ForListAllOrders.file"%>
-		<c:forEach var="ordersVO" items="${list}" begin="<%=pageIndex%>"
-			end="<%=pageIndex+rowsPerPage-1%>">
-			<tr>
+			</tr>
 
-				<td align="center">${ordersVO.od_no}</td>
-				<td align="center">${ordersVO.mb_id}</td>
-				<td align="center">${ordersVO.od_time}</td>
-				<td align="center">${ordersVO.od_status==1?'已發貨':'未發貨'}</td>
-				<td align="center">${ordersVO.od_totalPrice}</td>
-				<td align="center">${couponService.searchCoupon(ordersVO.cp_no).cp_name} 
-				<c:if test="${ordersVO.cp_no==null}">
+			<c:forEach var="ordersVO" items="${list}" begin="<%=pageIndex%>"
+				end="<%=pageIndex+rowsPerPage-1%>">
+				<tr>
+
+					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_no}</td>
+					<td align="center" bgcolor="#FFB5B5">${ordersVO.mb_id}</td>
+					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_javaTime}</td>
+					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_status==1?'已發貨':'未發貨'}</td>
+					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_totalPrice}元</td>
+					<td align="center" bgcolor="#FFB5B5">${couponService.searchCoupon(ordersVO.cp_no).cp_name}
+						<c:if test="${ordersVO.cp_no==null}">
 	                   無使用優惠券
   </c:if>
-				</td>
-				<td align="center">${ordersVO.od_discount}</td>
-				<td align="center">${ordersVO.od_add}</td>
-     
-				<td align="center"><FORM method="POST"
-						ACTION="<%=request.getContextPath()%>/OrdersServlet">
+					</td>
+					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_discount}元</td>
+					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_add}</td>
 
-						<input type="submit" value="查詢訂單明細"> <input type="hidden"
-							name="od_no" value="${ordersVO.od_no}"> <input
-							type="hidden" name="action" value="getOne_For_Od_detail">
-					</FORM></td>
-				<td align="center"><FORM METHOD="post" ACTION="OrdersServlet"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="刪除"> <input type="hidden"
-							name="pd_no" value="${productVO.pd_no}"> <input
-							type="hidden" name="action" value="delete">
-							
-					</FORM></td>
-			</tr>
-		</c:forEach>
-	</table>
-	<%@ include file="page2ForListAllOrders.file"%>
+					<td align="center" bgcolor="#FFB5B5"><FORM method="POST"
+							ACTION="<%=request.getContextPath()%>/OrdersServlet">
 
-	<br>
-	<br>
-	<a href="<%=request.getContextPath()%>/OrdersServlet?action=getAllList">回到管理所有訂單</a>
-	<a
-		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
+							<input type="submit" value="查詢訂單明細"> <input type="hidden"
+								name="od_no" value="${ordersVO.od_no}"> <input
+								type="hidden" name="action" value="getOne_For_Od_detail">
+							<input type="hidden" name="whichPage" value="<%=whichPage%>">
+						</FORM></td>
+					<td align="center" bgcolor="#FFB5B5"><FORM METHOD="post"
+							ACTION="OrdersServlet" style="margin-bottom: 0px;">
+							<input type="submit" value="刪除"> <input type="hidden"
+								name="pd_no" value="${productVO.pd_no}"> <input
+								type="hidden" name="action" value="delete">
+
+						</FORM></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+	
+
+
+	<c:if test="${openModal!=null}">
+
+		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+			aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h3 class="modal-title" id="myModalLabel">訂單明細</h3>
+					</div>
+
+					<div class="modal-body">
+						<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+						<jsp:include page="One_Od_detail_Information.jsp" />
+						<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$("#basicModal").modal({
+				show : true
+			});
+		</script>
+	</c:if>
+
 
 </body>
 </html>

@@ -10,9 +10,9 @@
 margin-right:8px;
 margin-left:-8px;
 margin-top:-8px;  
-height:200px;
+height:2000px;
 width:1450px;
-background-color:white;
+background-color:#FBFBFF;
 }
 #first {
 margin-right:8px;
@@ -42,10 +42,20 @@ position: relative;
 }
 .search_form{
 position: absolute;  
-margin-top:64px;
+margin-top:54px;
 }
 .backhome{
-margin-left:230px;
+margin-left:130px;
+height:100px;
+width:100px; 
+background-color:#1A356E;
+position: static; 
+line-height:100px; 
+float:left;
+
+}
+
+.transaction_record{
 height:100px;
 width:100px; 
 background-color:#1A356E;
@@ -117,7 +127,7 @@ text-align:center;
  
 }
 .Topmenu:hover{
-  height:175px;
+  height:178px;
   cursor:pointer;
  /*   background-color: green;*/
 /*    color:cyan;*/
@@ -146,9 +156,9 @@ float:left;
 }
 .third{
 margin-top:70px; 
-height:2000px;
+height:400px;
 width:100%;  
-background-color:white;
+background-color:#FBFBFF;
 }
 
 div img{
@@ -168,7 +178,7 @@ height:300px;
 .bbb{
 text-align: center;
 width:200px;
-height:100x;
+height:200x;
 }
 .Product{
 width:300px;
@@ -180,20 +190,26 @@ margin:5px;
 clear:both;
 
 }
+.context{
+width:930px;
+text-align:center;
+margin:10px auto;
+}
 
 
 </style>
+
 <title>ShopHomeBar</title>
 </head>
-<body>
-  <div id="page" >
+
+<body>  
     <div id="first">
      <div class="logo" align="center">
-      <img src="<%=request.getContextPath()%>/fake_picture/ProductLogo.png"></div>
+     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/front_end/images/ProductLogo.png" style="border-radius:5px;"></a></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
-        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:30px;border-radius:5px;">
-        <input type="submit" value="搜尋"style="width:50px;height:50px">  
+        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px;">
+        <input type="submit" value="搜尋"style="width:50px;height:40px; border-radius:5px;">  
       </form></div>
       <div class="backhome" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;"><font color="white" >
@@ -206,6 +222,8 @@ clear:both;
 	                   <font color="red">${buylistCount}</font>
   </c:if></font></a>
       	</div> 
+      	<div class="transaction_record" align="center"><a
+		href="<%=request.getContextPath()%>/front_end/product/MemberTransaction_record.jsp" style="text-decoration:none;"><font color="white" >交易紀錄</font></a></div>
        <div class="memberLogin" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp" style="text-decoration:none;"><font color="white" >會員登入</font></a></div>
       <div class="member" align="center"><font color="white">${mb_id}</font></div>
@@ -266,19 +284,13 @@ clear:both;
         </div> 
      
     </div>
-    </div>
-<%-- <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00001">服飾-男上身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00002">服飾-男下身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00003">服飾-男鞋</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00004">服飾-女上身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00005">服飾-女下身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00006">服飾-女鞋</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00007">服飾-兒童上身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00008">服飾-兒童下身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00009">服飾-兒童鞋類</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00010">配件-護具</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00011">配件-包款</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00012">配件-3C</a> --%>
+ 
+   
+
+ <script src="<%=request.getContextPath()%>/plug-in/bootstrap/jquery/jquery-3.4.1.min.js"></script>
+ <script src="<%=request.getContextPath()%>/plug-in/Semantic-UI/semantic.min.js"></script>
+    <script src="<%=request.getContextPath()%>/plug-in/popper/popper.min.js"></script>
+    <script src="<%=request.getContextPath()%>/plug-in/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

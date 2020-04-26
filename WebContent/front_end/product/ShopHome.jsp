@@ -6,19 +6,20 @@
 
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
+<%@ page import="com.pd_type.model.*"%>
 <%
+	ProductService productService = new ProductService();
 
+	List<ProductVO> list = productService.listOnTheMarket(2);
 
-ProductService productService = new ProductService();
+	Collections.reverse(list);
 
-
-
-List<ProductVO> list = productService.listOnTheMarket(2);
-
-Collections.reverse(list);
-
-pageContext.setAttribute("list", list); //for EL
+	pageContext.setAttribute("list", list); //for EL
 %>
+
+
+<jsp:useBean id="pd_typeService" scope="page"
+	class="com.pd_type.model.Pd_typeService" />
 
 
 <%--   購物車品項數量: 
@@ -34,16 +35,37 @@ pageContext.setAttribute("list", list); //for EL
 <jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 
 
-<jsp:useBean id="pd_typeService" scope="page"
-	class="com.pd_type.model.Pd_typeService" />
-	
 <html>
 <head>
+<style type="text/css" media="screen">
+.a{
+position: relative;
+
+
+}
+.bbb{
+background-color:#context;
+height:50px;
+}
+.ccc{
+background-color:#context;
+height:30px;
+}
+
+</style>
 <meta charset="UTF-8">
 <title>列出所有商品</title>
 </head>
 <body>
-    
+
+
+	<%-- 
+	
+	<a
+		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp">會員登錄</a>
+	<br>
+	<br> --%>
+
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -88,8 +110,11 @@ pageContext.setAttribute("list", list); //for EL
 			<input type="hidden" name="action" value="superGetAll">
 		</form>
 	</div>
+	<%-- <%-- 				<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />	 --%>
 
-		
+
+
+
 	<%@ include file="page3.file"%>
 	<%@ include file="page4.file"%>
 	<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
@@ -119,7 +144,26 @@ pageContext.setAttribute("list", list); //for EL
 	</c:forEach>
 	<div class="foot"></div>
 
-	
+
+	<%--    <jsp:include page="/front_end/product//ProductCart.jsp" flush="true" /> --%>
+	<%-- 	<br>
+	<br>
+	<a
+		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
+	<br>	
+	<br>
+	<a
+		href="<%=request.getContextPath()%>/front_end/product/ProductCart.jsp">${mb_id}的購物車</a>
+	<br>
+	<br>
+	<a
+		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp">會員${mb_id}的優惠卷</a>
+	<br>
+	<br>
+	<a
+		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp">${mb_id}的商品收藏</a> --%>
+
+
 
 </body>
 </html>
