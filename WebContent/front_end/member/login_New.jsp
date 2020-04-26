@@ -12,7 +12,7 @@
             background-image: url(login/Login/running.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 1);
 
             margin: 100px auto;
             width: 850px;
@@ -174,7 +174,9 @@
         	margin-left:60px;
         }
         ul{
-        margin:0px;
+        	font-size: 15px;
+        	font-weight: bold;
+        	margin:0px;
         }
     </style>
     <script>
