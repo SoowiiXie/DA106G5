@@ -106,7 +106,9 @@
 <!-- 		<th>會員Line狀態</th> -->
 		<th>詳細資料</th>
 	</tr>
-	<c:forEach var="memberVO" items="${list}">
+	
+	<%@ include file="pages/page1.file" %> 
+	<c:forEach var="memberVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr ${param.mb_id.equals(memberVO.mb_id)?"bgcolor='#CCCCFF'":""}>
 			<td>${memberVO.mb_id}</td>
@@ -135,6 +137,7 @@
 		</tr>
 	</c:forEach>
 </table>
+<%@ include file="pages/page2.file" %>
 
 </body>
 </html>
