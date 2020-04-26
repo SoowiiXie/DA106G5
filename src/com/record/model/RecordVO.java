@@ -84,6 +84,13 @@ public class RecordVO implements java.io.Serializable{
 		this.mb_id = mb_id;
 	}
 
+	@Override
+	public String toString() {
+		return "RecordVO [rcd_no=" + rcd_no + ", rcd_uploadtime=" + rcd_uploadtime + ", rcd_content=" + rcd_content
+				+ ", rcd_thumb_amount=" + rcd_thumb_amount + ", rcd_metoo_amount=" + rcd_metoo_amount + ", rcd_status="
+				+ rcd_status + ", path_no=" + path_no + ", mb_id=" + mb_id + "]";
+	}
+
 	
 	
 }

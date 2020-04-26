@@ -1523,5 +1523,11 @@ values('androidlababy520','weijhih123');
 Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
 values('anjavababy520','weijhih123');
 
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('anjavababy520','androidlababy520');
+
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('androidlababy520','anjavababy520');
+
 --commit--
 commit;
