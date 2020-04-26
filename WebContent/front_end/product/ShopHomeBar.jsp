@@ -215,7 +215,7 @@ margin:10px auto;
 		href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;"><font color="white" >
 		回到首頁</font></a></div>
       <div class="pd_follow" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp" style="text-decoration:none;"><font color="white">我的收藏</font></a></div> 
+		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp" style="text-decoration:none;"><font color="white">我的收藏</font></a></div> 
       <div class="shopping_trolley" align="center">
       	<a href="<%=request.getContextPath()%>/front_end/product/ProductCart.jsp" style="text-decoration:none;"><font color="white">購物車
       	<c:if test="${buylistCount!=0}">
@@ -225,7 +225,7 @@ margin:10px auto;
       	<div class="transaction_record" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/product/MemberTransaction_record.jsp" style="text-decoration:none;"><font color="white" >交易紀錄</font></a></div>
        <div class="memberLogin" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp" style="text-decoration:none;"><font color="white" >會員登入</font></a></div>
+		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp" style="text-decoration:none;"><font color="white" >我的優惠券</font></a></div>
       <div class="member" align="center"><font color="white">${mb_id}</font></div>
     </div>
     <div class="bar_lift"></div>

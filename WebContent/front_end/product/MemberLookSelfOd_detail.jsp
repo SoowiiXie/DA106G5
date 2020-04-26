@@ -86,8 +86,7 @@ th, td {
 
 	</table>
 </div>
-	<a
-		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
+
 
 </body>
 </html>

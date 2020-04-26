@@ -18,6 +18,7 @@
 	
 %>
 <jsp:useBean id="couponService" scope="page" class="com.coupon.model.CouponService" />
+<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,32 +38,28 @@
 	</c:if>
 
 
+<div align="center" style="margin-top: 100px;">
+		<font size="+3">目前您可使用的優惠券如下：</font>
+		<hr>
+<table style="margin-top: 50px;">
+<tr bgcolor="#999999">  
 
-<table >
-<tr>  
-<th width="100">會員帳號</th>
-<th width="100">可使用的優惠券</th>
+<th style="width:150px;">可使用的優惠券</th>
+<th style="width:150px;">獲取時間</th>
+<th style="width:150px;">備註</th>
 </tr>
-<tr>
-<td width="100">${mb_id}</td>
-
 
 <c:forEach var="cp_getVO" items="${list}">
-
-<td width="100">${couponService.searchCoupon(cp_getVO.cp_no).cp_name}</td>
-
-
-</c:forEach>
+<tr bgcolor=#C4E1FF>
+<td align="center" >${couponService.searchCoupon(cp_getVO.cp_no).cp_name}</td>
+<td align="center" ></td>
+<td align="center" ></td>
 </tr>
+</c:forEach>
+
 </table>
 
-
-
-       <select size="1" name="cp_non">
-         <c:forEach var="cp_getVO2" items="${list}" > 
-          <option value="${cp_getVO2.cp_no}">${couponService.searchCoupon(cp_getVO2.cp_no).cp_name}
-         </c:forEach>   
-       </select>
+</div>
 
 <%-- <table>
 <tr>
@@ -72,7 +69,7 @@
 </tr>
 </table> --%>
 
-<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">回商城首頁</a>
+
 
 </body>
 </html>
