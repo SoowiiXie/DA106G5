@@ -75,11 +75,46 @@ class FakeBlob {
 			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
 			ps.setString(2, "雨");
 			rowCount += ps.executeUpdate();
+			in = new FileInputStream("WebContent/fake_picture/weather00002.jpg");
+			bf = new BufferedInputStream(in);
+			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
+			ps.setString(2, "晴時多雲偶陣雨");
+			rowCount += ps.executeUpdate();
+			in = new FileInputStream("WebContent/fake_picture/weather00002.jpg");
+			bf = new BufferedInputStream(in);
+			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
+			ps.setString(2, "颱風");
+			rowCount += ps.executeUpdate();
+			in = new FileInputStream("WebContent/fake_picture/weather00002.jpg");
+			bf = new BufferedInputStream(in);
+			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
+			ps.setString(2, "陰時多雲短暫陣雨");
+			rowCount += ps.executeUpdate();
 			// 第三張
 			in = new FileInputStream("WebContent/fake_picture/weather00003.jpg");
 			bf = new BufferedInputStream(in);
 			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
 			ps.setString(2, "陰");
+			rowCount += ps.executeUpdate();
+			in = new FileInputStream("WebContent/fake_picture/weather00003.jpg");
+			bf = new BufferedInputStream(in);
+			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
+			ps.setString(2, "多雲時陰");
+			rowCount += ps.executeUpdate();
+			in = new FileInputStream("WebContent/fake_picture/weather00003.jpg");
+			bf = new BufferedInputStream(in);
+			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
+			ps.setString(2, "多雲時晴");
+			rowCount += ps.executeUpdate();
+			in = new FileInputStream("WebContent/fake_picture/weather00003.jpg");
+			bf = new BufferedInputStream(in);
+			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
+			ps.setString(2, "多雲");
+			rowCount += ps.executeUpdate();
+			in = new FileInputStream("WebContent/fake_picture/weather00003.jpg");
+			bf = new BufferedInputStream(in);
+			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
+			ps.setString(2, "abc");
 			rowCount += ps.executeUpdate();
 
 			System.out.println(rowCount + " row(s) inserted!!");

@@ -54,6 +54,9 @@
 		
 		//拿到本頁資訊設參數
 		String pageRun = request.getParameter("pageRun");
+		if (pageRun==null){
+			pageRun = "personal_page/personal_page.jsp";
+		}
 		//給<c:if>裡的EL
 		pageContext.setAttribute("pageRun", pageRun);
 %>
@@ -459,11 +462,24 @@
 	</div>
 	<div class="overlay"></div>
 	
-	<!-- 檢舉或修改留言的燈箱 -->
+	<!-- 天氣的燈箱 -->
+	<div id="fblightbox" class="weatherBox" style="width:40rem; font-size:2rem;">
+	  <div class="fblightbox-wrap">
+<!-- 	    <div class="fblightbox-header"> -->
+<!-- 	      	這是天氣資訊 -->
+<!-- 	    </div> -->
+	    <div class="fblightbox-content p-0">
+	    	<jsp:include page="weather_detail/listAllUWish.jsp" />
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
+	
+	<!-- 訊息的燈箱 -->
 	<div id="fblightbox" class="msgLightBox">
 	  <div class="fblightbox-wrap">
 	    <div class="fblightbox-header">
-	      	我來打打看
+	      	我是訊息
 	    </div>
 	    <div class="fblightbox-content">
 			<jsp:include page="cmt/update_cmt_input.jsp" />
@@ -489,7 +505,147 @@
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 	
 	<!-- index.js -->
-	<script type="text/javascript" src="<%= request.getContextPath() %>/js/index.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.thumbBtn').click(function(){
+				 var thumbImg = $(this);
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/thumbAjaxResponse.do",
+					 data: {"action":"insert", "rcd_no":$(this).siblings('.rcd_no').val(), "mb_id":$(this).siblings('.mb_id').val()},
+					 dataType: "json",
+					 success: function (data){
+						 thumbImg.parent().next().text(data);
+						 if ($(".thumbBtn").attr("src")=="<%= request.getContextPath() %>/img/thumb.png"){
+						 	$(".thumbBtn").attr("src", "<%= request.getContextPath() %>/img/thumbColor.png");
+						 }
+						 else{
+							$(".thumbBtn").attr("src", "<%= request.getContextPath() %>/img/thumb.png");
+						 }
+				     },
+		             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
+		         });
+			});
+			 
+			$('.meTooBtn').click(function(){
+				 var meTooImg = $(this);
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/meTooAjaxResponse.do",
+						 data: {"action":"insert", "rcd_no":$(this).siblings('.rcd_no').val(), "mb_id":$(this).siblings('.mb_id').val()},
+						 dataType: "json",
+						 success: function (data){
+							 meTooImg.parent().next().text(data);
+							 if ($(".meTooBtn").attr("src")=="<%= request.getContextPath() %>/img/ya.png"){
+							 	$(".meTooBtn").attr("src", "<%= request.getContextPath() %>/img/yaColor.png");
+							 }
+							 else{
+								$(".meTooBtn").attr("src", "<%= request.getContextPath() %>/img/ya.png");
+							 }
+					     },
+			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
+			         });
+			});
+				 
+			$('.cmtBtn').click(function(){
+				 $(this).parents().siblings('.cmtDiv').toggle(function(){
+	//						    $(this).animate({height:400},200);
+	//						  },function(){
+	//						    $(this).animate({height:10},200);
+						height: 'toggle'
+					  });
+				 });
+				 
+			 $('.oneCmtDiv').hover(function(){
+				 $(this).find('.flagBtn').css("display","");
+				 $(this).find('.garbageBtn').css("display","");
+					 },function(){
+						 $(this).find('.flagBtn').css("display","none");
+						 $(this).find('.garbageBtn').css("display","none");
+				 });
+				 
+			 //燈箱共用參數
+			 var fblightbox = $('#fblightbox');
+			 fblightbox.css({'margin-left':'-' + (fblightbox.width()/2) + 'px' , 'margin-top' : '-' + (fblightbox.height()/2)+'px'});
+				 
+			 //檢舉和修改留言的燈箱
+			 var cmtNrpt = $('.cmtNrpt');
+			 $('.flagBtn').click(function(){
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+					 data: {"action":"ajaxGetOne4Update", "cmt_no":$(this).siblings('.cmt_no').val()},
+					 dataType: "json",
+					 success: function (data){
+	//						 $("#cmt_contentFB").val(data.cmt_content);
+						 $("#cmt_noFB").val(data.cmt_no);
+					     $("#cmt_statusFB").val(data.cmt_status);
+						 $("#cmt_timeFB").val(data.cmt_time);
+						 $("#mb_idFB").val(data.mb_id);
+						 $("#rcd_noFB").val(data.rcd_no);
+						 $('.overlay').fadeIn();
+						 cmtNrpt.fadeIn();
+				 	 },					
+				 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+		 		 });
+			 });
+			 
+			 //天氣的燈箱
+			 var weatherBox = $('.weatherBox');
+			 weatherBox.css({'margin-left':'-' + (weatherBox.width()/2) + 'px' , 'margin-top' : '-' + (weatherBox.height()/2)+'px'});
+			 $('.wth_loc_btn').click(function(){
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/weather_detail/weather_detail.do",
+					 data: {"action":"ajaxGetByWeatherPlace", "weather_place":$(this).val()},
+					 dataType: "json",
+					 success: function (data){
+//						 $("#cmt_contentFB").val(data.cmt_content);
+// 						 $("#cmt_noFB").val(data);
+						 alert(data);
+						 $('.overlay').fadeIn();
+						 weatherBox.fadeIn();
+					 },					
+					 error: function(){alert("AJAX-wth_loc_btn發生錯誤囉!")}
+				 });
+			 });
+				 
+			 //訊息的燈箱
+			 var msgLightBox = $('.msgLightBox');
+			 $('.msgRead').click(function(){
+			 	$.ajax({
+					type: "GET",
+					url: "<%=request.getContextPath()%>/msg/msg.do",
+						 data: {"action":"ajaxGetOne4Read", "cmt_no":$(this).siblings('.cmt_no').val()},
+						 dataType: "json",
+						 success: function (data){
+	//					   		 $("#cmt_contentFB").val(data.cmt_content);
+							 $("#cmt_noFB").val(data.cmt_no);
+							 $("#cmt_statusFB").val(data.cmt_status);
+							 $("#cmt_timeFB").val(data.cmt_time);
+							 $("#mb_idFB").val(data.mb_id);
+							 $("#rcd_noFB").val(data.rcd_no);
+							 $('.overlay').fadeIn();
+							 msgLightBox.fadeIn();
+					 	 },					
+					 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+			 		});
+			 });
+				 
+			 //讓燈箱共用關閉按鈕
+			 $("#close").click(function() {
+				  $('.overlay').fadeOut();
+				  fblightbox.fadeOut();
+				  weatherBox.fadeOut();
+			 });
+			 
+			 $(".overlay").click(function() {
+				  $('.overlay').fadeOut();
+				  fblightbox.fadeOut();
+				  weatherBox.fadeOut();
+			 });
+		});
+	</script>
 	
 	<!-- 會員智慧搜尋 -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
