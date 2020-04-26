@@ -20,7 +20,7 @@
 
 
   table {
-	width: 800px;
+
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -67,19 +67,29 @@
 </head>
 <body>
 
-<div><form name="checkoutForm" action="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList" method="POST">
-				 <select size="1" name="pd_typeNo">
+
+
+
+<div  style=" margin-left:235px; margin-top:50px; " >
+<form name="checkoutForm" action="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList" method="POST">
+<table>
+           <tr>
+				<td> <select size="1" name="pd_typeNo">
 				 <option value="">全部商品類別
          <c:forEach var="pd_typeVO" items="${pd_typeService.all}" > 
           <option value="${pd_typeVO.pd_typeNo}">${pd_typeVO.pd_typeName}
          </c:forEach>   
        </select>
-					<input type="submit" value="選取類別">
+				<input type="submit" value="選取類別">
 				
 				<input type="hidden" name="pd_typeNo" value="${pd_typeVO.pd_typeNo}">
-				
-			</form></div>
-			
+				</td><td ><%@ include file="AllList2File1.file"%></td>
+				<td style="margin-left:290px; float:left;"><%@ include file="AllList2File2.file"%></td>
+				<td><%@ include file="AllList2File3.file"%></td>
+				<tr>	
+				</table>
+			</form>
+	</div>		
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
@@ -89,9 +99,9 @@
 		</ul>
 	</c:if>
 
-<%@ include file="page1.file"%>
 
-		<%@ include file="page2.file"%>
+
+		
 <div align="center">
                 
 	<table  class ="tableList" style="width: 1000px;">
@@ -163,7 +173,7 @@
 		</c:forEach>
 	</table>
 	</div>
-	<%@ include file="page2.file"%>
+	<%@ include file="AllList2File2.file"%>
 
 	<br>
 	<br>
