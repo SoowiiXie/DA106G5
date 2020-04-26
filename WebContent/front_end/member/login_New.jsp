@@ -1,16 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
     <title>Login</title>
     <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     <style type="text/css">
         body {
-            background-image: url(running.jpg);
+            background-image: url(login/Login/running.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 1);
 
             margin: 100px auto;
             width: 850px;
@@ -49,7 +51,7 @@
             margin: 20px auto -10px auto;
             height: 30px;
             border-radius: 5px;
-            background-image: url(user5.png);
+            background-image: url(login/Login/user5.png);
             background-repeat: no-repeat;
             background-size: 20px;
             background-position: left 3px center;
@@ -57,7 +59,7 @@
         }
 
         input[type="password"] {
-            background-image: url(pwd3.png);
+            background-image: url(login/Login/pwd3.png);
             background-size: 20px;
         }
 
@@ -70,7 +72,7 @@
             font-family: calibri;
             font-size: 24px;
             display: block;
-            margin: 30px auto 0px auto;
+            margin: 5px auto 0px auto;
             border-radius: 10px;
             box-shadow: 5px 5px 3px #333;
             letter-spacing: 2px;
@@ -165,7 +167,17 @@
             background-color: rgba(71, 207, 115, 0.7);
 
         }
-
+        
+        #errorMsgs{
+        	display:block;
+        	height:40px;
+        	margin-left:60px;
+        }
+        ul{
+        	font-size: 15px;
+        	font-weight: bold;
+        	margin:0px;
+        }
     </style>
     <script>
 
@@ -176,24 +188,40 @@
     <div id="wrapAll">
         <div id="wrap2">
             <div>
-                <img src="shopping_cart3.png" id="shopping_cart">
+                <img src="login/Login/shopping_cart3.png" id="shopping_cart">
                 <input id="shop" type="button" value="商城"><br>
             </div>
 
             <div>
-                <img src="group5.png" id="group_img">
+                <img src="login/Login/group5.png" id="group_img">
                 <input id="group" type="button" value="揪團"><br>
             </div>
         </div>
 
         <div id="wrap">
-            <img src="icon5.png">
+        	<form METHOD="POST" action="member.do">
+            <img src="login/Login/icon5.png">
             <p>Sign In</p>
-            <input type="text" placeholder="請輸入帳號"><br>
-            <input type="password" placeholder="請輸入密碼"><br>
-            <input id="login" type="button" value="LOGIN"><br>
-            <div id="div1">會員註冊</div>
+            <input name="mb_id" type="text" placeholder="請輸入帳號"><br>
+            <input name="mb_pwd" type="password" placeholder="請輸入密碼"><br>
+            
+            <div id="errorMsgs">
+	            <c:if test="${not empty errorMsgs}">
+					<ul>
+					    <c:forEach var="message" items="${errorMsgs}">
+							<li style="color:red">${message}</li>
+						</c:forEach>
+					</ul>
+				</c:if>		
+			</div>
+			
+            <input id="login" type="submit" value="LOGIN"><br>
+            <a href="addMember.jsp"><div id="div1">會員註冊</div></a>
             <div id="div2">忘記密碼</div><br>
+            
+            <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
+       		<input type="hidden" name="action" value="getOne_For_Display">
+            </form>
         </div>
     </div>
 

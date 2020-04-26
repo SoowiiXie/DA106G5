@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
@@ -33,9 +34,9 @@ public class OrdersServlet extends HttpServlet {
 			String whichPage = req.getParameter("whichPage");
 			req.setAttribute("od_no", od_no);
 			req.setAttribute("whichPage", whichPage);
-			//Bootstrap_modal
-			boolean openModal=true;
-			req.setAttribute("openModal",openModal );
+			// Bootstrap_modal
+			boolean openModal = true;
+			req.setAttribute("openModal", openModal);
 
 			String url = "/back_end/product/ListAllOrders.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
@@ -43,13 +44,13 @@ public class OrdersServlet extends HttpServlet {
 			return;
 
 		}
-		
-		if(action.equals("getAllList")) {
+
+		if (action.equals("getAllList")) {
 			OrdersService ordersService = new OrdersService();
 			List<OrdersVO> list = ordersService.getAllOrders();
-            req.getSession().setAttribute("list", list);			
+			req.getSession().setAttribute("list", list);
 
-            String url = "/back_end/product/ListAllOrders.jsp";
+			String url = "/back_end/product/ListAllOrders.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);
 			return;
@@ -64,6 +65,30 @@ public class OrdersServlet extends HttpServlet {
 			Collections.reverse(list);
 			req.getSession().setAttribute("list", list);
 			String url = "/back_end/product/ListAllOrders.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			return;
+		}
+
+		if (action.equals("searchSelfOrders")) {
+			String whichPage = req.getParameter("whichPage");
+			req.setAttribute("whichPage", whichPage);
+			String url = "/front_end/product/MemberTransaction_record.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			return;
+		}
+		
+		if (action.equals("MemberSearchSelfOrders")) {
+
+			String od_no = req.getParameter("od_no");
+			String whichPage = req.getParameter("whichPage");
+			req.setAttribute("od_no", od_no);
+			req.setAttribute("whichPage", whichPage);
+			// Bootstrap_modal
+			boolean openModal = true;
+			req.setAttribute("openModal", openModal);
+			String url = "/front_end/product/MemberTransaction_record.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);
 			return;

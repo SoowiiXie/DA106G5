@@ -198,7 +198,7 @@ clear:both;
   <div id="page" >
     <div id="first">
      <div class="logo" align="center">
-      <img src="<%=request.getContextPath()%>/fake_picture/ProductLogo.png"></div>
+      <img src="<%=request.getContextPath()%>/img/ProductLogo.png"></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
         <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:30px;border-radius:5px;">

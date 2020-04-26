@@ -205,7 +205,7 @@ margin:10px auto;
 <body>  
     <div id="first">
      <div class="logo" align="center">
-     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/front_end/images/ProductLogo.png" style="border-radius:5px;"></a></div>
+     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/img/ProductLogo.png" style="border-radius:5px;"></a></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
         <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px;">
@@ -215,7 +215,7 @@ margin:10px auto;
 		href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;"><font color="white" >
 		回到首頁</font></a></div>
       <div class="pd_follow" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp" style="text-decoration:none;"><font color="white">我的收藏</font></a></div> 
+		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp" style="text-decoration:none;"><font color="white">我的收藏</font></a></div> 
       <div class="shopping_trolley" align="center">
       	<a href="<%=request.getContextPath()%>/front_end/product/ProductCart.jsp" style="text-decoration:none;"><font color="white">購物車
       	<c:if test="${buylistCount!=0}">
@@ -225,7 +225,7 @@ margin:10px auto;
       	<div class="transaction_record" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/product/MemberTransaction_record.jsp" style="text-decoration:none;"><font color="white" >交易紀錄</font></a></div>
        <div class="memberLogin" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp" style="text-decoration:none;"><font color="white" >會員登入</font></a></div>
+		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp" style="text-decoration:none;"><font color="white" >我的優惠券</font></a></div>
       <div class="member" align="center"><font color="white">${mb_id}</font></div>
     </div>
     <div class="bar_lift"></div>
@@ -285,7 +285,7 @@ margin:10px auto;
      
     </div>
  
-    <div class="third" align="center" ><img src="<%=request.getContextPath()%>/front_end/images/ProductAD.jpg" alt="跑馬燈圖片"></div>
+    <div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
 <%-- <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00001">服飾-男上身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00002">服飾-男下身</a>
 <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00003">服飾-男鞋</a>

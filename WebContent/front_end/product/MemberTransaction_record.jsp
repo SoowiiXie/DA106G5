@@ -67,7 +67,8 @@ th, td {
 							file="MemberTransaction_record2.file"%></td>
 				</tr>
 			</table>
-			<input type="hidden" name="action" value="searchMemberOrders">
+			<input type="hidden" name="mb_id" value="${mb_id}">
+			<input type="hidden" name="action" value="searchSelfOrders">
 		</form>
 
 	</div>
@@ -110,7 +111,7 @@ th, td {
 
 							<input type="submit" value="查詢訂單明細"> <input type="hidden"
 								name="od_no" value="${ordersVO.od_no}"> <input
-								type="hidden" name="action" value="getOne_For_Od_detail">
+								type="hidden" name="action" value="MemberSearchSelfOrders">
 							<input type="hidden" name="whichPage" value="<%=whichPage%>">
 						</FORM></td>
 					<td align="center" bgcolor="#C4E1FF"><FORM METHOD="post"
@@ -142,7 +143,7 @@ th, td {
 
 					<div class="modal-body">
 						<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
-						<%-- <jsp:include page="One_Od_detail_Information.jsp" /> --%>
+						<jsp:include page="MemberLookSelfOd_detail.jsp" /> 
 						<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
 					</div>
 

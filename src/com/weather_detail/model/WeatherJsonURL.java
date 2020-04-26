@@ -126,13 +126,13 @@ public class WeatherJsonURL extends HttpServlet {
 //                		 }
                 		 String parameterName = jsonObjParameter.get("parameterName").toString();
                 		 if ("Wx".equals(elementName)) {
-                			 wth_comfort = parameterName;
+                			 wth_status = parameterName;
                 		 }else if("MaxT".equals(elementName)) {
                 			 wth_high = Integer.parseInt(parameterName);
                 		 }else if("MinT".equals(elementName)) {
                 			 wth_low = Integer.parseInt(parameterName);
                 		 }else if("CI".equals(elementName)) {
-                			 wth_status = parameterName;
+                			 wth_comfort = parameterName;
                 		 }else if("PoP".equals(elementName)) {
                 			 wth_rain_chance = Integer.parseInt(parameterName);
                 		 }

@@ -733,6 +733,8 @@ CREATE TABLE coupon (
  cp_no VARCHAR2(30) NOT NULL, 
  cp_name VARCHAR2(30) NOT NULL,
  cp_price NUMBER(5) NOT NULL,
+ cp_detail VARCHAR2(100),
+ cp_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  cp_pic BLOB
 );
 
@@ -785,7 +787,9 @@ ALTER TABLE product ADD CONSTRAINT PK_product PRIMARY KEY (pd_no);
 CREATE TABLE cp_get (
  mb_id VARCHAR2(30) NOT NULL,
  cp_no VARCHAR2(30) NOT NULL,
- cp_status NUMBER(1) DEFAULT '1' NOT NULL
+ cp_status NUMBER(1) DEFAULT '1' NOT NULL,
+ cp_getTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ cp_getDetail VARCHAR2(100)
 );
 
 ALTER TABLE cp_get ADD CONSTRAINT PK_cp_get PRIMARY KEY (mb_id,cp_no);
@@ -848,12 +852,12 @@ START WITH 1
 NOMAXVALUE
 NOCYCLE;
 
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷50元','50');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷100元','100');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷150元','150');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷200元','200');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷250元','250');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷300元','300');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷50元','50','優惠券詳述','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷100元','100','優惠券詳述','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷150元','150','優惠券詳述','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷200元','200','優惠券詳述','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷250元','250','優惠券詳述','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷300元','300','優惠券詳述','2020-04-26 21:25');
 
 
 ---------------------ORDERS訂單---------------------
@@ -1051,18 +1055,18 @@ values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'GPS三用光學心率�
 
 -----------------------CP_GET持有優惠卷-----------------------
 
-Insert into CP_GET(MB_ID, CP_NO) 
-values('soowii123','CPN00001');
-Insert into CP_GET(MB_ID, CP_NO) 
-values('xuan123','CPN00003');
-Insert into CP_GET(MB_ID, CP_NO) 
-values('michael123','CPN00001');
-Insert into CP_GET(MB_ID, CP_NO) 
-values('vain123','CPN00006');
-Insert into CP_GET(MB_ID, CP_NO) 
-values('yiwen123','CPN00002');
-Insert into CP_GET(MB_ID, CP_NO) 
-values('weijhih123','CPN00001');
+Insert into CP_GET(MB_ID, CP_NO ,CP_GETTIME ,CP_GETDETAIL) 
+values('soowii123','CPN00001','2020-04-26 21:25','得到優惠券的備註');
+Insert into CP_GET(MB_ID, CP_NO ,CP_GETTIME,CP_GETDETAIL) 
+values('xuan123','CPN00003','2020-04-26 21:25','得到優惠券的備註');
+Insert into CP_GET(MB_ID, CP_NO ,CP_GETTIME,CP_GETDETAIL) 
+values('michael123','CPN00001','2020-04-26 21:25','得到優惠券的備註');
+Insert into CP_GET(MB_ID, CP_NO ,CP_GETTIME,CP_GETDETAIL) 
+values('vain123','CPN00006','2020-04-26 21:25','得到優惠券的備註');
+Insert into CP_GET(MB_ID, CP_NO ,CP_GETTIME,CP_GETDETAIL) 
+values('yiwen123','CPN00002','2020-04-26 21:25','得到優惠券的備註');
+Insert into CP_GET(MB_ID, CP_NO ,CP_GETTIME,CP_GETDETAIL) 
+values('weijhih123','CPN00001','2020-04-26 21:25','得到優惠券的備註');
 
 -----------------------OD_DETAIL-----------------------
 
@@ -1504,6 +1508,20 @@ values('yiwen123','vain123');
 Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
 values('yiwen123','weijhih123');
 
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('anjavababy520','soowii123');
+
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('androidlababy520','soowii123');
+
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('anjavababy520','xuan123');
+
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('androidlababy520','weijhih123');
+
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('anjavababy520','weijhih123');
 
 --commit--
 commit;

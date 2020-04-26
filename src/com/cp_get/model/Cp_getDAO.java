@@ -242,11 +242,11 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 //		System.out.println("會員" + cp_getVO1.getMb_id() + "新增" + updateCount_insert + "種優惠券");
 
 //		// 會員使用優惠卷，更改優惠卷狀態
-//		Cp_getVO cp_getVO2 = new Cp_getVO();
-//		cp_getVO2.setMb_id("michael123");
-//		cp_getVO2.setCp_no("CPN00006");
-//		cp_getVO2.setCp_status(1);
-//		int updateCount = dao.aMemberUseCoupon(cp_getVO2);
+		Cp_getVO cp_getVO2 = new Cp_getVO();
+		cp_getVO2.setMb_id("michael123");
+		cp_getVO2.setCp_no("CPN00006");
+		cp_getVO2.setCp_status(1);
+		int updateCount = dao.aMemberUseCoupon(cp_getVO2);
 //
 //		if (updateCount == 1 && cp_getVO2.getCp_status() == 2) {
 //			System.out.println("會員" + cp_getVO2.getMb_id() + "使用" + cp_getVO2.getCp_no() + "優惠券");

@@ -17,6 +17,6 @@
 <br>
 	<br>
 	<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">到商城頁面</a>
-    
+    <a href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp">會員登入</a>
 </body>
 </html>

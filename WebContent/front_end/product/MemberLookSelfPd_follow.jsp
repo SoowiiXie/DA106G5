@@ -45,12 +45,12 @@ bgcolor: #D2E9FF;
 </head>
 <body>
 	<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
-		<div align="center"><font size="+3">您的商品收藏內容如下：</font></div>
-	<div align="right">
+		<div align="center" style="margin-top:100px;"><font size="+3">您的商品收藏內容如下：</font></div>
+		<Hr>
+	<div align="center">
 	<table>
 	<tr>
 	<td><%@ include file="pagePd_follow1.file"%><%@ include file="pagePd_follow2.file"%></td>
-	
 	</tr></table></div>
 	<div class="listFloow" align="center">
 		<form method="POST"
