@@ -37,6 +37,8 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			"select count(1) as count from grp_detail where grp_no = ?";
 	private static final String GET_GROUP_COUNT = 
 			"select count(1) as count from grp_detail where mb_id = ?";
+	private static final String GET_SELECT_STMT = 
+			"SELECT mb_id,grp_no,grp_register FROM grp_detail where mb_id";
 	@Override
 	public void insert(Grp_detailVO grp_detailVO) {
 
@@ -273,8 +275,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 	@Override
 	public List<Grp_detailVO> getAll() {
 		List<Grp_detailVO> list = new ArrayList<Grp_detailVO>();
-		Grp_detailVO grp_detailVO = null;
-
+		Grp_detailVO grp_detailVO = null;		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -293,7 +294,6 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 				grp_detailVO.setGrp_register(rs.getInt("grp_register"));
 				list.add(grp_detailVO); // Store the row in the list
 			}
-
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
@@ -324,6 +324,8 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 		}
 		return list;
 	}
+	
+	
 
 	@Override
 	public int totalPeople(String grp_no) {
@@ -403,8 +405,60 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 	}
 
 	@Override
-	public Grp_detailVO findByPrimaryKeyMbidGetAll(String mb_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Grp_detailVO> findByPrimaryKeyMbidGetAll(String mb_id) {
+		
+		List<Grp_detailVO> list2 = new ArrayList<Grp_detailVO>();
+		Grp_detailVO grp_detailVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_SELECT_STMT);
+
+			pstmt.setString(1, mb_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// grp_detailVO �]�٬� Domain objects
+				grp_detailVO = new Grp_detailVO();
+				grp_detailVO.setMb_id(rs.getString("mb_id"));
+				grp_detailVO.setGrp_no(rs.getString("grp_no"));
+				grp_detailVO.setGrp_register(rs.getInt("grp_register"));
+				list2.add(grp_detailVO);
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list2;
 	}
 }

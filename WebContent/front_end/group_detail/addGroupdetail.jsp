@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>揪團資料新增 - addGroup.jsp</title>
+<title>加入揪團 - addGroup.jsp</title>
 
 <style>
   table#table-1 {
@@ -48,7 +48,7 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>揪團資料新增 - addGroup.jsp</h3></td><td>
+		 <h3>加入揪團 - addGroup.jsp</h3></td><td>
 		 <h4>
 			<a href="<%= request.getContextPath() %>/front_end/group_detail/select_page.jsp">
 			<img src="<%= request.getContextPath() %>/front_end/group_detail/images/back1.gif" width="100" height="32" border="0">
@@ -57,7 +57,7 @@
 	</td></tr>
 </table>
 
-<h3>資料新增:</h3>
+<h3>加入揪團:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -97,7 +97,7 @@
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
+<input type="submit" value="加入"></FORM>
 </body>
 
 

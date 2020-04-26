@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.group_detail.model.*"%>
 <%@ page import="com.location.model.*"%>
+<%@ page import="java.util.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
@@ -10,6 +11,7 @@
 	LocationVO locationVO = (LocationVO) request.getAttribute("locationVO");
 %>
 
+<jsp:useBean id="grp_detailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
 <jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
 <jsp:useBean id="grpSvc" scope="page" class="com.grouper.model.GrouperService" />
 
@@ -56,7 +58,7 @@
 <h4>此頁暫練習採用 Script 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>456揪團資料 - ListOneGroup.jsp</h3>
+		 <h3>揪團資料 - ListOneGroup.jsp</h3>
 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -73,7 +75,7 @@
 		<th>揪團標題</th>
 		<th>揪團內容</th>
 		
-		<th>報到狀態</th>
+<!-- 		<th>報到狀態</th> -->
 		
 	</tr>
 	<tr>		
@@ -132,7 +134,14 @@
         </c:forEach>
 		</td>
 		
-		<td><%=grp_detailVO.getGrp_register()%></td>
+<%-- 		<%  --%>
+<!-- // 		Map<Integer,String>register = new HashMap<>(); -->
+<!-- // 		register.put(1,"未到"); -->
+<!-- // 		register.put(2,"已到"); -->
+<!-- // 		request.setAttribute("register", new String[]{"","未到","已到"}); -->
+<%-- 		%> --%>
+		
+<%-- 		<td>${register[grp_detailVO.grp_register]}</td> --%>
 
 	</tr>
 	

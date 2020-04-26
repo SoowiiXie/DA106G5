@@ -96,9 +96,16 @@
 	<c:forEach var="grp_detailVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td>${grp_detailVO.mb_id}</a></td>
+			<td>${grp_detailVO.mb_id}</td>
 			<td><A href="group_detail.do?grp_no=${grp_detailVO.grp_no}&action=getOne_From2">${grp_detailVO.grp_no}</a></td>			
-			<td>${grp_detailVO.grp_register}</td>
+			<% 
+			Map<Integer,String>register = new HashMap<>();
+			register.put(1,"未到");
+			register.put(2,"已到");
+			request.setAttribute("register", new String[]{"","未到","已到"});
+			%>
+			
+			<td>${register[grp_detailVO.grp_register]}</td>
 			
 			<td>
 			  <FORM METHOD="post" ACTION="group_detail.do" style="margin-bottom: 0px;">

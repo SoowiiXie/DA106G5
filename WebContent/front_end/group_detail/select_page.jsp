@@ -99,7 +99,7 @@
 <h3>揪團管理</h3>
 
 <ul>
-  <li><a href='addGroupdetail.jsp'>Add</a> a new Groupdetail.</li>
+  <li><a href='addGroupdetail.jsp'>加入</a>揪團</li>
 </ul>
 
 </body>

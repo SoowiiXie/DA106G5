@@ -27,7 +27,9 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 	private static final String GET_PEOPLE_COUNT = 
 			"select count(1) as count from grp_detail where grp_no = ?";
 	private static final String GET_GROUP_COUNT = 
-			"select count(1) as count from grp_detail where mb_id = ?";
+			"select count(1) as count from grp_detail where mb_id = ?";	
+	private static final String GET_SELECT_STMT = 
+			"SELECT mb_id,grp_no,grp_register FROM grp_detail where mb_id = ?";
 
 	@Override
 	public void insert(Grp_detailVO grp_detaiVO) {
@@ -379,11 +381,72 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 		return getGroupCount ;
 	}
 	@Override
-	public Grp_detailVO findByPrimaryKeyMbidGetAll(String mb_id) {
+	public List<Grp_detailVO> findByPrimaryKeyMbidGetAll(String mb_id) {
+		
+		List<Grp_detailVO> list2 = new ArrayList<Grp_detailVO>();
+		Grp_detailVO grp_detailVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_SELECT_STMT);
+
+			pstmt.setString(1, mb_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// grp_detailVO �]�٬� Domain objects
+				grp_detailVO = new Grp_detailVO();
+				grp_detailVO.setMb_id(rs.getString("mb_id"));
+				grp_detailVO.setGrp_no(rs.getString("grp_no"));
+				grp_detailVO.setGrp_register(rs.getInt("grp_register"));
+				list2.add(grp_detailVO);
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list2;
+	}
+	@Override
+	public Grp_detailVO findByPrimaryKeyByGrp_no(String grp_no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	public static void main(String[] args) {
 
@@ -415,7 +478,7 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 //		
 //		System.out.println("---------------------");
 ////
-//		// 列表
+		// 列表
 //		List<Grp_detailVO> list = dao.getAll();
 //		for (Grp_detailVO aEmp : list) {
 //			System.out.print(aEmp.getMb_id() + ",");
@@ -423,11 +486,22 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 //			System.out.print(aEmp.getGrp_register() + ",");
 //			System.out.println();
 //		}	
-		//查詢該揪團之人數
-		int getPeopleCount = dao.totalPeople("grp00001");
-		System.out.print("getPeopleCount " + getPeopleCount);
-		//查詢該會員之揪團
-		int getGroupCount = dao.totalGroup("yiwen123");
-		System.out.print("getGroupCount " + getGroupCount);
+//		//查詢該揪團之人數
+//		int getPeopleCount = dao.totalPeople("grp00001");
+//		System.out.print("getPeopleCount " + getPeopleCount);
+//		//查詢該會員之揪團
+//		int getGroupCount = dao.totalGroup("yiwen123");
+//		System.out.print("getGroupCount " + getGroupCount);
+		
+		// 查詢多筆
+		List<Grp_detailVO> list2 = dao.findByPrimaryKeyMbidGetAll("yiwen123");
+		for (Grp_detailVO aEmp : list2) {
+		System.out.print(aEmp.getMb_id() + ",");
+		System.out.print(aEmp.getGrp_no() + ",");
+		System.out.println(aEmp.getGrp_register() + ",");
+		}
+		System.out.println("---------------------");
 	}
+
+
 }

@@ -119,7 +119,7 @@
 				status.put(2, "已滿");
 				status.put(3, "成功");
 				status.put(4, "取消");
-				request.setAttribute("status", new String[]{"","未滿", "已滿","成功","取消"});
+				request.setAttribute("status", new String[]{"","未滿", "已滿", "成功", "取消"});
 // 				request.setAttribute("status", status);
 			%>
 		
@@ -157,10 +157,11 @@
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="/front_end/group_detail/grp_detail.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="加入揪團">
-			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
-			     <input type="hidden" name="action" value="goinGroup"></FORM>
+			     <input type="text" name="grp_no"  value="${grouperVO.grp_no}">
+			     <input type="text" name="mb_id"  value="${grouperVO.mb_id}">
+			     <input type="hidden" name="action" value="update"></FORM>
 			</td>
 		</tr>
 	</c:forEach>
