@@ -1,18 +1,19 @@
 package com.common;
 
-import java.io.IOException;
 import java.util.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class InitData extends HttpServlet {
 	
-    public InitData() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public InitData() {
     	
     }
     
