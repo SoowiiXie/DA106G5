@@ -60,4 +60,10 @@ public class RecordService {
 		map.put("mb_id", new String[] { mb_id });
 		return dao.getAllUWish(map,"RCD_NO desc");
 	}
+	
+	public List<RecordVO> getByMbs_id(String[] mbs_id) {
+		Map<String, String[]> map = new HashMap<>();
+		map.put("mb_id", mbs_id);
+		return dao.getAllUWish(map,"RCD_NO desc");
+	}
 }
