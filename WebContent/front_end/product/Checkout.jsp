@@ -52,7 +52,7 @@
 		</ul>
 	</c:if>
 	
-<div align="center">
+<div align="center" style="margin-top:100px;">
 	<font size="+3">商城 - 填寫收費與取貨資訊 </font></div>
 	<hr>
 	<p>

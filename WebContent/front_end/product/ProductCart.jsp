@@ -39,8 +39,9 @@
 	%>
 
 	<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
-	<div align="center">
+	<div align="center" style="margin-top: 100px;">
 		<font size="+3">目前您購物車的內容如下：</font>
+		<hr>
 		<p>
 		<div>
 			<form name="deleteForm"
