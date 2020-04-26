@@ -1504,6 +1504,20 @@ values('yiwen123','vain123');
 Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
 values('yiwen123','weijhih123');
 
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('anjavababy520','soowii123');
+
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('androidlababy520','soowii123');
+
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('anjavababy520','xuan123');
+
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('androidlababy520','weijhih123');
+
+Insert into MB_FOLLOW(MB_ID, MB_ID_FOLLOWED) 
+values('anjavababy520','weijhih123');
 
 --commit--
 commit;

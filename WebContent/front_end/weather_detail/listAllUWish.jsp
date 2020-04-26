@@ -112,9 +112,9 @@ th, td {
 				<td class="align-middle">${weather_detailVO.weather_place}</td>
 				<td class="align-middle"><img src="<%= request.getContextPath() %>/DBGifReader4Weather?wth_status=${weather_detailVO.wth_status}" alt="" style="height:4.3rem;"/></td>
 				<td class="align-middle">${weather_detailVO.wth_status}</td>
-				<td class="align-middle">${weather_detailVO.wth_comfort}</td>
-				<td class="align-middle">${weather_detailVO.wth_low}</td>
 				<td class="align-middle">${weather_detailVO.wth_high}</td>
+				<td class="align-middle">${weather_detailVO.wth_low}</td>
+				<td class="align-middle">${weather_detailVO.wth_comfort}</td>
 				<td class="align-middle">${weather_detailVO.wth_rain_chance}%</td>
 <!-- 				<td> -->
 <%-- 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/weather_detail/weather_detail.do"	style="margin-bottom: 0px;"> --%>
