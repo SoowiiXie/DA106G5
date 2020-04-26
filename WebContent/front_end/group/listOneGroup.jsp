@@ -3,6 +3,7 @@
 <%@ page import="com.grouper.model.GrouperService"%>
 <%@ page import="com.grouper.model.*"%>
 <%@ page import="com.location.model.*"%>
+<%@ page import="java.util.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%

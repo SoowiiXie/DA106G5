@@ -1,11 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.group_follow.model.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
 	Group_followVO group_followVO = (Group_followVO) request.getAttribute("group_followVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
 %>
-
+<jsp:useBean id="groupfollowSvc" scope="page" class="com.group_follow.model.Group_followService" />
+<jsp:useBean id="grpSvc" scope="page" class="com.grouper.model.GrouperService" />
 <html>
 <head>
 <title>員工資料 - listOneGroupfollow.jsp</title>
@@ -60,11 +62,14 @@
 		<th>會員編號</th>
 		
 	</tr>
+	<c:forEach var="grpSvc" items="${grpSvc.all}">
+    <c:if test="${grp_followVO.grp_no==grouperVO.grp_no}">
 	<tr>
 		<td><%=group_followVO.getGrp_no()%></td>
 		<td><%=group_followVO.getMb_id()%></td>
 	</tr>
-	
+	</c:if>
+   </c:forEach>
 </table>
 
 </body>
