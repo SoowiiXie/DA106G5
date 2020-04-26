@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.group_detail.model.*"%>
+<%@ page import="com.grouper.model.*"%>
 
 <%
   Grp_detailVO grp_detailVO = (Grp_detailVO) request.getAttribute("grp_detailVO");
+  GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
 %>
-
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -69,18 +70,20 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="group_detail.do" name="form1">
+<FORM METHOD="post" ACTION="/front_end/group_detail/grp_detail.do">
+"${grouperVO.grp_no}"
+
 <table>
 	
 	<tr>
 		<td>會員編號:</td>
 		<td><input type="TEXT" name="mb_id" size="45"
-			 value="<%= (grp_detailVO==null)? "yiwen123" : grp_detailVO.getMb_id()%>" /></td>
+			 value="<%= (grp_detailVO==null)? " " : grp_detailVO.getMb_id()%>" /></td>
 	</tr>
 	<tr>
 		<td>揪團名稱:</td>
 		<td><input type="TEXT" name="grp_no" size="45" 
-			 value="<%= (grp_detailVO==null)? "grp00001" : grp_detailVO.getGrp_no()%>" /></td>
+			 value="${grp_detailVO.grp_no}"/></td>
 	</tr>
 	<tr>
 		<td>揪團狀態:</td>
@@ -91,7 +94,7 @@
 	
 
 	<jsp:useBean id="grpdetailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
-
+	<jsp:useBean id="grpSvc" scope="page" class="com.grouper.model.GrouperService" />
 
 
 </table>

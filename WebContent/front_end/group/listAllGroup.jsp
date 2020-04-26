@@ -114,11 +114,11 @@
 <%--                 </c:forEach> --%>
 <!-- 			</td> -->
 			<%
-			Map<Integer,String>status = new HashMap<>();
-				status.put(1, "未滿");
-				status.put(2, "已滿");
-				status.put(3, "成功");
-				status.put(4, "取消");
+// 			Map<Integer,String>status = new HashMap<>();
+// 				status.put(1, "未滿");
+// 				status.put(2, "已滿");
+// 				status.put(3, "成功");
+// 				status.put(4, "取消");
 				request.setAttribute("status", new String[]{"","未滿", "已滿", "成功", "取消"});
 // 				request.setAttribute("status", status);
 			%>

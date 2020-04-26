@@ -76,8 +76,8 @@
 		<th>檢舉會員編號</th>
 		<th>檢舉原因</th>
 		<th>處理狀態</th>
-		<th>修改</th>
-		<th>刪除</th>
+<!-- 		<th>修改</th> -->
+<!-- 		<th>刪除</th> -->
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="group_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -87,19 +87,25 @@
 			<td>${group_rptVO.grp_no}</td>
 			<td>${group_rptVO.mb_id}</td>
 			<td>${group_rptVO.rpt_reason}</td>
-			<td>${group_rptVO.rpt_status}</td>
+			<%
+			request.setAttribute("status", new String[]{"","未處理","檢舉成功","檢舉失敗"});
+			%>
 			
-			<td>
-			  <FORM METHOD="post" ACTION="group_rpt.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="group_rpt_no"  value="${group_rptVO.group_rpt_no}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			<td>${group_rptVO.rpt_status}
+				${status[group_rptVO.rpt_status]}			
 			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="group_rpt.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="group_rpt_no"  value="${group_rptVO.group_rpt_no}">
-			     <input type="hidden" name="action" value="delete"></FORM>
+			
+<!-- 			<td> -->
+<!-- 			  <FORM METHOD="post" ACTION="group_rpt.do" style="margin-bottom: 0px;"> -->
+<!-- 			     <input type="submit" value="修改"> -->
+<%-- 			     <input type="hidden" name="group_rpt_no"  value="${group_rptVO.group_rpt_no}"> --%>
+<!-- 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 			  <FORM METHOD="post" ACTION="group_rpt.do" style="margin-bottom: 0px;"> -->
+<!-- 			     <input type="submit" value="刪除"> -->
+<%-- 			     <input type="hidden" name="group_rpt_no"  value="${group_rptVO.group_rpt_no}"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"></FORM> -->
 			</td>
 		</tr>
 	</c:forEach>

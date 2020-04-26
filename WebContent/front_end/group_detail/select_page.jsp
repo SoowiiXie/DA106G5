@@ -61,7 +61,7 @@
   </li>
 
   <jsp:useBean id="grpdetailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
-   
+  <jsp:useBean id="grpSvc" scope="page" class="com.grouper.model.GrouperService" />  
   <li>
      <FORM METHOD="post" ACTION="group_detail.do" >
        <b>選擇會員編號:</b>

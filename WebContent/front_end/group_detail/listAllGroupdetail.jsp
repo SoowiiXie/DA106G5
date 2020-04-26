@@ -89,8 +89,8 @@
 		<th>會員編號</th>
 		<th>揪團編號</th>
 		<th>報到狀態</th>
-		<th>修改</th>
-		<th>刪除</th>
+<!-- 		<th>修改</th> -->
+<!-- 		<th>刪除</th> -->
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="grp_detailVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -107,18 +107,20 @@
 			
 			<td>${register[grp_detailVO.grp_register]}</td>
 			
-			<td>
-			  <FORM METHOD="post" ACTION="group_detail.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="mb_id"  value="${grp_detailVO.mb_id}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="group_detail.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="mb_id"  value="${grp_detailVO.mb_id}">
-			     <input type="hidden" name="action" value="delete"></FORM>
-			</td>
+<!-- 			不須修改即刪除 -->
+			
+<!-- 			<td> -->
+<!-- 			  <FORM METHOD="post" ACTION="group_detail.do" style="margin-bottom: 0px;"> -->
+<!-- 			     <input type="submit" value="修改"> -->
+<%-- 			     <input type="hidden" name="mb_id"  value="${grp_detailVO.mb_id}"> --%>
+<!-- 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 			  <FORM METHOD="post" ACTION="group_detail.do" style="margin-bottom: 0px;"> -->
+<!-- 			     <input type="submit" value="刪除"> -->
+<%-- 			     <input type="hidden" name="mb_id"  value="${grp_detailVO.mb_id}"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"></FORM> -->
+<!-- 			</td> -->
 		</tr>
 	</c:forEach>
 </table>

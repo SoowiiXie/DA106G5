@@ -68,7 +68,13 @@
 		<td><%=group_rptVO.getGrp_no()%></td>
 		<td><%=group_rptVO.getMb_id()%></td>
 		<td><%=group_rptVO.getRpt_reason()%></td>
-		<td><%=group_rptVO.getRpt_status()%></td>
+		<%
+			request.setAttribute("status", new String[]{"","未處理","檢舉成功","檢舉失敗"});
+		%>
+			
+		<td>${group_rptVO.rpt_status}
+			${status[group_rptVO.rpt_status]}			
+		</td>
 	</tr>
 	
 </table>
