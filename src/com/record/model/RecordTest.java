@@ -20,6 +20,10 @@ public class RecordTest extends HttpServlet {
 		//查詢
 		List<RecordVO> list= recordSvc.getByMb_id("anjavababy520");
 		System.out.println(list);
+		
+		//查詢
+		List<RecordVO> listFollow= recordSvc.getByMbs_id(new String[] {"anjavababy520","soowii123"});
+		System.out.println(listFollow);
 
 	}
 }

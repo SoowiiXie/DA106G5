@@ -116,6 +116,8 @@ th, td {
 		<input type="hidden" id="cmt_statusFB" name="cmt_status" value="">
 		<input type="hidden" id="rcd_noFB" name="rcd_no" value="">
 		<input type="hidden" id="mb_idFB" name="mb_id" value="">
+		<input type="hidden" id="mbDoThisID" name="mbDoThisID" value="">
+		<input type="hidden" id="pageRun" name="pageRun" value="">
 		<div class="fblightbox-footer bg-white">
 		    <input type="submit" value="送出這些字" class="fbbutton">
 			<a href="#" id="close" class="fbbutton">先不送了</a>

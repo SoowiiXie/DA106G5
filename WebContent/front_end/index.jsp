@@ -31,9 +31,9 @@
 		//用memberVO先取得會常使用到的mb_id
 		pageContext.setAttribute("mb_id", memberVO.getMb_id());
 		//拿出所有紀錄
-		RecordService recordSvc = new RecordService();
-		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
-		pageContext.setAttribute("list", list);
+// 		RecordService recordSvc = new RecordService();
+// 		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
+// 		pageContext.setAttribute("list", list);
 		
 		//拿出四個直播
 		LiveService liveSvc = new LiveService();
@@ -583,6 +583,8 @@
 						 $("#cmt_timeFB").val(data.cmt_time);
 						 $("#mb_idFB").val(data.mb_id);
 						 $("#rcd_noFB").val(data.rcd_no);
+						 $("#mbDoThisID").val("${mb_id}");
+						 $("#pageRun").val("<%=request.getQueryString()%>");
 						 $('.overlay').fadeIn();
 						 cmtNrpt.fadeIn();
 				 	 },					

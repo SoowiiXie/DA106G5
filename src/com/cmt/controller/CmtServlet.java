@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import com.cmt.model.*;
 import com.cmt_rpt.model.Cmt_rptService;
 import com.cmt_rpt.model.Cmt_rptVO;
-import com.record.model.RecordService;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
 		* 1024 * 1024)
@@ -122,10 +121,12 @@ public class CmtServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
+			String pageRun =req.getParameter("pageRun");
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
 //				String loc_no = new String(req.getParameter("loc_no").trim());
+				String mbDoThisID =req.getParameter("mbDoThisID");
 				String cmt_no =req.getParameter("cmt_no");
 				String cmt_content = req.getParameter("cmt_content");
 				String rpt_reason = req.getParameter("cmt_content");
@@ -159,19 +160,17 @@ public class CmtServlet extends HttpServlet {
 				cmt_rptVO.setCmt_no(cmt_no);
 				cmt_rptVO.setRpt_reason(rpt_reason);
 				cmt_rptVO.setMb_id(mb_id);
-
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("cmtVO", cmtVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?"+pageRun);
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
 
 				/*************************** 2.開始修改資料 *****************************************/
-				RecordService rcdSvc = new RecordService();
-				if(mb_id.equals(rcdSvc.getOneRecord(rcd_no).getMb_id())) {
-					CmtService cmtSvc = new CmtService();
+				CmtService cmtSvc = new CmtService();
+				if(mbDoThisID.equals(cmtSvc.getOneCmt(cmt_no).getMb_id())) {
 					cmtVO = cmtSvc.updateCmt(cmt_content, cmt_status, cmt_no, cmt_time, rcd_no, mb_id);
 				}else {
 					Cmt_rptService cmt_rptSvc = new Cmt_rptService();
@@ -180,14 +179,14 @@ public class CmtServlet extends HttpServlet {
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("cmtVO", cmtVO); // 資料庫update成功後,正確的的VO物件,存入req
 				req.setAttribute("cmt_rptVO", cmt_rptVO); // 資料庫update成功後,正確的的VO物件,存入req
-				String url = "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp";
+				String url = "/front_end/index.jsp?"+pageRun;
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?"+pageRun);
 				failureView.forward(req, res);
 			}
 		}
@@ -197,7 +196,7 @@ public class CmtServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			String pageRun =req.getParameter("pageRun");
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
@@ -239,7 +238,7 @@ public class CmtServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("cmtVO", cmtVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?"+pageRun);
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -249,14 +248,14 @@ public class CmtServlet extends HttpServlet {
 				cmtVO = cmtSvc.addCmt(cmt_content, cmt_time, rcd_no, mb_id);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp";
+				String url = "/front_end/index.jsp?"+pageRun;
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?"+pageRun);
 				failureView.forward(req, res);
 			}
 		}
@@ -408,7 +407,6 @@ public class CmtServlet extends HttpServlet {
 			try {
 				// Retrieve form parameters.
 				String cmt_no = req.getParameter("cmt_no");
-
 				CmtDAO dao = new CmtDAO();
 				CmtVO cmtVO = dao.findByPrimaryKey(cmt_no);
 				JSONObject obj = new JSONObject();

@@ -645,7 +645,7 @@
 	<!-- 揪團關注開始 -->
 		<servlet>
 			<servlet-name>Group_followTest</servlet-name>
-			<servlet-class>com.group_follow.model.Group__followTest</servlet-class>
+			<servlet-class>com.group_follow.model.Group_followTest</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>Group_followTest</servlet-name>
@@ -685,6 +685,16 @@
 			<url-pattern>/DBGifReader4Live</url-pattern>
 		</servlet-mapping>
 	<!-- 直播結束 -->
+	<!-- 追蹤開始 -->
+		<servlet>
+			<servlet-name>Mb_followTest</servlet-name>
+			<servlet-class>com.mb_follow.model.Mb_followTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Mb_followTest</servlet-name>
+			<url-pattern>/Mb_followTest</url-pattern>
+		</servlet-mapping>
+	<!-- 追蹤結束 -->
 <!-- 以文責任區結束 -->
 
 <!-- 過濾器Filter開始 -->
