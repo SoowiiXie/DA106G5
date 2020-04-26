@@ -44,12 +44,13 @@
 
 		<table style="width: 1000px;">
 			<tr bgcolor="#999999">
-				<th style="width: 150px;">產品圖片</th>
-				<th style="width: 200px;">產品名稱</th>
+				<th style="width: 150px;">商品圖片</th>
+				<th style="width: 200px;">商品名稱</th>
+				<th style="width: 150px;">商品編號</th>
 				<th style="width: 150px;">產品分類</th>
 				<th style="width: 150px;">單價</th>
 				<th style="width: 150px;">產品數量</th>
-				<th style="width: 150px;"></th>
+
 			</tr>
 
 
@@ -74,25 +75,25 @@
 
 			<tr bgcolor=#C4E1FF>
 
-				<td style ="height:100px;"><div align="center">
+				<td style="width: 150px; height: 100px;"><div align="center">
 						<a
 							href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=<%=order.getPd_no()%>'><img
 							src="<%=request.getContextPath()%>/ProductPicReader?pd_no=<%=order.getPd_no()%>"
-							style="width:auto;"></a>
+							style="width: 70%;"></a>
 						${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}
 					</div></td>
 
 				<td><div align="center">
 						<b><%=pd_name%></b>
 					</div></td>
-
+				<td><div align="center">
+						<b><%=pd_no%></b>
+					</div></td>
 				<td><div align="center">
 						<b>${pd_typeService.searchType(pd_typeNo).pd_typeName}</b>
 					</div></td>
 
-				<td><div align="center">
-						<b><%=pd_no%></b>
-					</div></td>
+
 				<td><div align="center">
 						<b><%=pd_price%></b>
 					</div></td>
@@ -111,9 +112,9 @@
 				<td><div align="center">
 						<font color="red"><b>總金額：</b></font>
 					</div></td>
-				<td></td>
-				<td><font color="red"><b>$${ordersVO.od_totalPrice}</b></font></td>
 
+				<td align="center"><font color="red"><b>$${ordersVO.od_totalPrice}</b></font></td>
+				<td></td>
 			</tr>
 			<tr bgcolor=#C4E1FF>
 				<td></td>
@@ -122,19 +123,19 @@
 				<td><div align="center">
 						<font color="red"><b>優惠後的金額：</b></font>
 					</div></td>
-				<td></td>
-				<td><font color="red"><b>$${ordersVO.od_discount}</b></font></td>
 
+				<td align="center"><font color="red"><b>$${ordersVO.od_discount}</b></font></td>
+				<td></td>
 			</tr>
-			
+
 			<tr bgcolor=#C4E1FF align="center">
 				<td>付款方式:</td>
 				<td>${payMethod}</td>
-				<td >收貨地址:</td>
+				<td>收貨地址:</td>
 				<td colspan="3">${ordersVO.od_add}</td>
-				
-				
-				
+
+
+
 			</tr>
 		</table>
 

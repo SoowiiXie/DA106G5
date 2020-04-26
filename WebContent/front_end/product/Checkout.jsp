@@ -127,7 +127,7 @@
 						<font color="red"><b>總金額：</b></font>
 					</div></td>
 				
-				<td><font color="red"><b>$<%=totalPrice%></b></font></td>
+				<td align="center"><font color="red"><b>$<%=totalPrice%></b></font></td>
 				<td></td>
 				<td></td>
 			</tr>
@@ -139,7 +139,7 @@
 				<td><div align="center">
 						<font color="red"><b>優惠後金額：</b></font>
 					</div></td>
-				<td><font color="red"><b>$${discount}</b></font></td>
+				<td align="center"><font color="red"><b>$${discount}</b></font></td>
 				<td></td>
 				
 				<td></td>

@@ -45,7 +45,17 @@ position: absolute;
 margin-top:64px;
 }
 .backhome{
-margin-left:230px;
+margin-left:130px;
+height:100px;
+width:100px; 
+background-color:#1A356E;
+position: static; 
+line-height:100px; 
+float:left;
+
+}
+
+.transaction_record{
 height:100px;
 width:100px; 
 background-color:#1A356E;
@@ -205,6 +215,8 @@ clear:both;
 	                   <font color="red">${buylistCount}</font>
   </c:if></font></a>
       	</div> 
+      	      	<div class="transaction_record" align="center"><a
+		href="<%=request.getContextPath()%>/front_end/product/MemberTransaction_record.jsp" style="text-decoration:none;"><font color="white" >交易紀錄</font></a></div>
        <div class="memberLogin" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp" style="text-decoration:none;"><font color="white" >會員登入</font></a></div>
       <div class="member" align="center"><font color="white">${mb_id}</font></div>
