@@ -36,6 +36,7 @@
 </head>
 <body bgcolor="#FFFFFF">
 	<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
+	<div align="center" style="margin-top: 100px;">
 	<font size="+3">訂單明細 </font>
 	<hr>
 	<p>
@@ -142,7 +143,7 @@
 
 
 	</div>
-
+</div>
 	<p>
 		<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">是否繼續購物</a>
 </body>
