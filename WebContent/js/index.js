@@ -81,6 +81,28 @@ $(document).ready(function(){
 				 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
 		 		 });
 			 });
+			 
+			 //天氣的燈箱
+			 var wth_loc = $('.wth_loc');
+			 $('.wth_loc_btn').click(function(){
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/weather/weather.do",
+					 data: {"action":"ajaxGetByWeatherPlace", "weather_place":$(this).val()},
+					 dataType: "json",
+					 success: function (data){
+// 						 $("#cmt_contentFB").val(data.cmt_content);
+						 $("#cmt_noFB").val(data.cmt_no);
+						 $("#cmt_statusFB").val(data.cmt_status);
+						 $("#cmt_timeFB").val(data.cmt_time);
+						 $("#mb_idFB").val(data.mb_id);
+						 $("#rcd_noFB").val(data.rcd_no);
+						 $('.overlay').fadeIn();
+						 cmtNrpt.fadeIn();
+					 },					
+					 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+				 });
+			 });
 				 
 			 //訊息的燈箱
 			 var msgLightBox = $('.msgLightBox');

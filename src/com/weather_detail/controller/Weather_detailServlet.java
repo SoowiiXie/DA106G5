@@ -8,6 +8,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import org.json.*;
+
 import com.weather_detail.model.Weather_detailService;
 import com.weather_detail.model.Weather_detailVO;
 
@@ -471,6 +473,34 @@ public class Weather_detailServlet extends HttpServlet {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/weather_detail/select_page.jsp");
 				failureView.forward(req, res);
+			}
+		}
+		
+		if ("ajaxGetByWeatherPlace".equals(action)) {
+			try {
+				// Retrieve form parameters.
+				String weather_place = req.getParameter("weather_place");
+
+				Weather_detailService weather_detailSvc = new Weather_detailService();
+				List<Weather_detailVO> weather_detailVO_list =weather_detailSvc.getByWeather_place(weather_place);
+				HttpSession session = req.getSession();
+				session.setAttribute("weather_detailVO_list", weather_detailVO_list);
+				JSONArray jsArray = new JSONArray(weather_detailVO_list);
+			    
+				// 取出的empVO送給listOneEmp.jsp
+//				RequestDispatcher successView = req.getRequestDispatcher("/front_end/index.jsp");
+//				successView.forward(req, res);
+//				return;
+				res.setContentType("text/plain");
+				res.setCharacterEncoding("UTF-8");
+				PrintWriter out = res.getWriter();
+				out.write(jsArray.toString());
+				out.flush();
+				out.close();
+
+				// Handle any unusual exceptions
+			} catch (Exception e) {
+				throw new ServletException(e);
 			}
 		}
 	}

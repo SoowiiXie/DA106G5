@@ -163,7 +163,7 @@ public class CmtServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("cmtVO", cmtVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -180,14 +180,14 @@ public class CmtServlet extends HttpServlet {
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("cmtVO", cmtVO); // 資料庫update成功後,正確的的VO物件,存入req
 				req.setAttribute("cmt_rptVO", cmt_rptVO); // 資料庫update成功後,正確的的VO物件,存入req
-				String url = "/front_end/index.jsp";
+				String url = "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -239,7 +239,7 @@ public class CmtServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("cmtVO", cmtVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -249,14 +249,14 @@ public class CmtServlet extends HttpServlet {
 				cmtVO = cmtSvc.addCmt(cmt_content, cmt_time, rcd_no, mb_id);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/front_end/index.jsp";
+				String url = "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -285,7 +285,7 @@ public class CmtServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("cmtVO", cmtVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -295,14 +295,14 @@ public class CmtServlet extends HttpServlet {
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("cmtVO", cmtVO); // 資料庫update成功後,正確的的VO物件,存入req
-				String url = "/front_end/index.jsp";
+				String url = "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
