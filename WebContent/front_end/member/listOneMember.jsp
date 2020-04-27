@@ -22,6 +22,11 @@
 		 vertical-align:middle;
 		 margin-left:80px;
 	}
+	table{
+		font-size: 24px;
+		font-weight: bold;
+		font-family: ZhengHei;
+	}
 </style>
 </head>
 <body>
