@@ -122,6 +122,12 @@ public class CmtServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			String pageRun =req.getParameter("pageRun");
+//			System.out.println(pageRun);
+//			if (pageRun==null ||"null".equals(pageRun)) {
+//				System.out.println("in");
+//				pageRun="";
+//			}
+//			System.out.println(pageRun);
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
@@ -180,6 +186,7 @@ public class CmtServlet extends HttpServlet {
 				req.setAttribute("cmtVO", cmtVO); // 資料庫update成功後,正確的的VO物件,存入req
 				req.setAttribute("cmt_rptVO", cmt_rptVO); // 資料庫update成功後,正確的的VO物件,存入req
 				String url = "/front_end/index.jsp?"+pageRun;
+//				System.out.println(url);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -197,6 +204,9 @@ public class CmtServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			String pageRun =req.getParameter("pageRun");
+//			if (pageRun==null) {
+//				pageRun="";
+//			}
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id

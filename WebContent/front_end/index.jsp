@@ -31,9 +31,9 @@
 		//用memberVO先取得會常使用到的mb_id
 		pageContext.setAttribute("mb_id", memberVO.getMb_id());
 		//拿出所有紀錄
-// 		RecordService recordSvc = new RecordService();
-// 		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
-// 		pageContext.setAttribute("list", list);
+		RecordService recordSvc = new RecordService();
+		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
+		pageContext.setAttribute("list", list);
 		
 		//拿出四個直播
 		LiveService liveSvc = new LiveService();
@@ -54,7 +54,7 @@
 		
 		//拿到本頁資訊設參數
 		String pageRun = request.getParameter("pageRun");
-		if (pageRun==null){
+		if (pageRun==null || "null".equals(pageRun) || "".equals(pageRun)){
 			pageRun = "personal_page/personal_page.jsp";
 		}
 		//給<c:if>裡的EL
@@ -128,7 +128,7 @@
 		<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<div id="stikyDiv">
 				<!-- Sidebar - Brand -->
-				<a	class="sidebar-brand d-flex align-items-center justify-content-center" id="topPicA" href="index.html">
+				<a	class="sidebar-brand d-flex align-items-center justify-content-center" id="topPicA" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp">
 					<div class="sidebar-brand-icon">
 						<img src="<%= request.getContextPath() %>/img/LogoNoBack.png" class="topPic" />
 						<!-- <img src="../images/LogoText2.png" class="topPic"> -->
@@ -516,8 +516,8 @@
 					 dataType: "json",
 					 success: function (data){
 						 thumbImg.parent().next().text(data);
-						 if ($(".thumbBtn").attr("src")=="<%= request.getContextPath() %>/img/thumb.png"){
-						 	$(".thumbBtn").attr("src", "<%= request.getContextPath() %>/img/thumbColor.png");
+						 if (thumbImg.attr("src")=="<%= request.getContextPath() %>/img/thumb.png"){
+							 thumbImg.attr("src", "<%= request.getContextPath() %>/img/thumbColor.png");
 						 }
 						 else{
 							$(".thumbBtn").attr("src", "<%= request.getContextPath() %>/img/thumb.png");
@@ -536,8 +536,8 @@
 						 dataType: "json",
 						 success: function (data){
 							 meTooImg.parent().next().text(data);
-							 if ($(".meTooBtn").attr("src")=="<%= request.getContextPath() %>/img/ya.png"){
-							 	$(".meTooBtn").attr("src", "<%= request.getContextPath() %>/img/yaColor.png");
+							 if (meTooImg.attr("src")=="<%= request.getContextPath() %>/img/ya.png"){
+								 meTooImg.attr("src", "<%= request.getContextPath() %>/img/yaColor.png");
 							 }
 							 else{
 								$(".meTooBtn").attr("src", "<%= request.getContextPath() %>/img/ya.png");
