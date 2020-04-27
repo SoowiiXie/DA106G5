@@ -218,7 +218,6 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 		return list;
 	}
 	
-	@Override
 	public Grp_detailVO findByPrimaryKeyByGrp_no(String grp_no) {
 
 		Grp_detailVO grp_detailVO = null;
@@ -462,5 +461,11 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			}
 		}
 		return list2;
+	}
+
+	@Override
+	public Grp_detailVO findByPrimaryKeyByMb_id(String mb_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

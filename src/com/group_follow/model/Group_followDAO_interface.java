@@ -2,11 +2,14 @@ package com.group_follow.model;
 
 import java.util.*;
 
+import com.group_detail.model.Grp_detailVO;
+
 public interface Group_followDAO_interface {
           public void insert(Group_followVO group_followVO);
           public void update(Group_followVO group_followVO);
           public void delete(String grp_no);
-          public Group_followVO findByPrimaryKey(String grp_no);          
+          public List<Group_followVO> findByPrimaryKey(String mb_id);
+          public Group_followVO findByPrimaryKeyByMb_id(String mb_id);                    
           public List<Group_followVO> getAll();
           //查詢該揪團有多少人
           public int totalFollowPeople(String grp_no);

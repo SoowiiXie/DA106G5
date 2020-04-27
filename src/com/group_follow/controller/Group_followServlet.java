@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.group_detail.model.Grp_detailService;
+import com.group_detail.model.Grp_detailVO;
 import com.group_follow.model.*;
 
 public class Group_followServlet extends HttpServlet {
@@ -23,99 +24,99 @@ public class Group_followServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		
 		
-		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
-
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
-
-			try {
-				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				String str = req.getParameter("grp_no");
-				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入揪團編號");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
-					failureView.forward(req, res);
-					return;//程式中斷
-				}
-				String grp_no = null;
-				try {
-					grp_no = new String(str);
-				} catch (Exception e) {
-					errorMsgs.add("揪團格式不正確");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
-					failureView.forward(req, res);
-					return;//程式中斷
-				}
-				
-				/***************************2.開始查詢資料*****************************************/
-				Group_followService group_followSvc = new Group_followService();
-				Group_followVO group_followVO = group_followSvc.getOneGroupfollow(grp_no);
-				if (group_followVO == null) {
-					errorMsgs.add("查無資料");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
-					failureView.forward(req, res);
-					return;//程式中斷
-				}
-				
-				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("group_followVO", group_followVO); // 資料庫取出的empVO物件,存入req
-				String url = "/front_end/group_follow/listOneGroupfollow.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
-				successView.forward(req, res);
-
-				/***************************其他可能的錯誤處理*************************************/
-			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
-				failureView.forward(req, res);
-			}
-		}
+//		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
+//
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+//
+//			try {
+//				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+//				String str = req.getParameter("grp_no");
+//				if (str == null || (str.trim()).length() == 0) {
+//					errorMsgs.add("請輸入揪團編號");
+//				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req
+//							.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
+//					failureView.forward(req, res);
+//					return;//程式中斷
+//				}
+//				String grp_no = null;
+//				try {
+//					grp_no = new String(str);
+//				} catch (Exception e) {
+//					errorMsgs.add("揪團格式不正確");
+//				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req
+//							.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
+//					failureView.forward(req, res);
+//					return;//程式中斷
+//				}
+//				
+//				/***************************2.開始查詢資料*****************************************/
+//				Group_followService group_followSvc = new Group_followService();
+//				Group_followVO group_followVO = group_followSvc.getOneGroupfollow(grp_no);
+//				if (group_followVO == null) {
+//					errorMsgs.add("查無資料");
+//				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req
+//							.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
+//					failureView.forward(req, res);
+//					return;//程式中斷
+//				}
+//				
+//				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+//				req.setAttribute("group_followVO", group_followVO); // 資料庫取出的empVO物件,存入req
+//				String url = "/front_end/group_follow/listOneGroupfollow.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
+//				successView.forward(req, res);
+//
+//				/***************************其他可能的錯誤處理*************************************/
+//			} catch (Exception e) {
+//				errorMsgs.add("無法取得資料:" + e.getMessage());
+//				RequestDispatcher failureView = req
+//						.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
+//				failureView.forward(req, res);
+//			}
+//		}
 		
 		
-		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
-
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
-			
-			try {
-				/***************************1.接收請求參數****************************************/
-				String grp_no = new String(req.getParameter("grp_no"));
-				
-				/***************************2.開始查詢資料****************************************/
-				Group_followService group_followSvc = new Group_followService();
-				Group_followVO group_followVO = group_followSvc.getOneGroupfollow(grp_no);
-								
-				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("group_followVO", group_followVO);         // 資料庫取出的grouperVO物件,存入req
-				String url = "/front_end/group_follow/update_groupfollow_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_grouper_input.jsp
-				successView.forward(req, res);
-
-				/***************************其他可能的錯誤處理**********************************/
-			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/group_follow/listAllGroupfollow.jsp");
-				failureView.forward(req, res);
-			}
-		}
+//		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
+//
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+//			
+//			try {
+//				/***************************1.接收請求參數****************************************/
+//				String grp_no = new String(req.getParameter("grp_no"));
+//				
+//				/***************************2.開始查詢資料****************************************/
+//				Group_followService group_followSvc = new Group_followService();
+//				Group_followVO group_followVO = group_followSvc.getOneGroupfollow(grp_no);
+//								
+//				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+//				req.setAttribute("group_followVO", group_followVO);         // 資料庫取出的grouperVO物件,存入req
+//				String url = "/front_end/group_follow/update_groupfollow_input.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_grouper_input.jsp
+//				successView.forward(req, res);
+//
+//				/***************************其他可能的錯誤處理**********************************/
+//			} catch (Exception e) {
+//				errorMsgs.add("無法取得資料:" + e.getMessage());
+//				RequestDispatcher failureView = req
+//						.getRequestDispatcher("/front_end/group_follow/listAllGroupfollow.jsp");
+//				failureView.forward(req, res);
+//			}
+//		}
 		
 		
 		if ("update".equals(action)) { // 來自update_group_input.jsp的請求
@@ -309,6 +310,66 @@ public class Group_followServlet extends HttpServlet {
 				errorMsgs.add("查詢不到該資料:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front_end/group_follow/totalFollowPeople.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		if ("getAll_For_Display".equals(action)) { // 來自select_page.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				String str = req.getParameter("mb_id");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入會員編號");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				String mb_id = null;
+				try {
+					 mb_id = new String(str);
+				} catch (Exception e) {
+					errorMsgs.add("會員編號格式不正確");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				/***************************2.開始查詢資料*****************************************/
+				Group_followService group_followSvc = new Group_followService();
+				List<Group_followVO> group_followVOList = group_followSvc.getAllGroup_followByMb_id(mb_id);
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("group_followVOList", group_followVOList); // 資料庫取出的empVO物件,存入req
+				String url = "/front_end/group_follow/listAllGroupfollowForSelect.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front_end/group_follow/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -8,6 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.group_detail.model.Grp_detailVO;
 
 public class Group_followDAO implements Group_followDAO_interface {
 
@@ -27,6 +28,8 @@ public class Group_followDAO implements Group_followDAO_interface {
 			"SELECT GRP_NO,MB_ID FROM grp_follow order by GRP_NO";
 		private static final String GET_ONE_STMT = 
 			"SELECT GRP_NO,MB_ID FROM grp_follow where GRP_NO = ?";
+		private static final String GET_ONE_STMTGRPNO = 
+				"SELECT mb_id,grp_no FROM grp_follow where grp_no = ?";
 		private static final String DELETE = 
 			"DELETE FROM grp_follow where GRP_NO = ?";
 		private static final String UPDATE = 
@@ -35,6 +38,8 @@ public class Group_followDAO implements Group_followDAO_interface {
 				"select count(1) as count from grp_follow where grp_no = ?";
 		private static final String GET_FOLLOWGROUP_COUNT = 
 				"select count(1) as count from grp_follow where mb_id = ?";
+		private static final String GET_ONE_STMT_MB_ID = 
+				"SELECT GRP_NO,MB_ID FROM grp_follow where MB_ID = ?";
 
 	@Override
 	public void insert(Group_followVO group_followVO) {
@@ -155,28 +160,29 @@ public class Group_followDAO implements Group_followDAO_interface {
 	}
 
 	@Override
-	public Group_followVO findByPrimaryKey(String grp_no) {
-
+	public List<Group_followVO> findByPrimaryKey(String mb_id) {
+		
 		Group_followVO group_followVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		List<Group_followVO> list = new ArrayList<Group_followVO>();
 
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_STMT);
+			pstmt = con.prepareStatement(GET_ONE_STMT_MB_ID);
 
-			pstmt.setString(1, grp_no);
+			pstmt.setString(1, mb_id);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// grouperVO �]�٬� Domain objects
+				// empVo �]�٬� Domain objects
 				group_followVO = new Group_followVO();
-				group_followVO.setGrp_no(rs.getString("Grp_no"));
-				group_followVO.setMb_id(rs.getString("Mb_id"));
-				
+				group_followVO.setMb_id(rs.getString("mb_id"));
+				group_followVO.setGrp_no(rs.getString("grp_no"));
+				list.add(group_followVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
@@ -207,7 +213,7 @@ public class Group_followDAO implements Group_followDAO_interface {
 				}
 			}
 		}
-		return group_followVO;
+		return list;
 	}
 
 	@Override
@@ -337,5 +343,58 @@ public class Group_followDAO implements Group_followDAO_interface {
 			}
 		}
 		return totalFollowGroup ;
+	}
+	@Override
+	public Group_followVO findByPrimaryKeyByMb_id(String mb_id) {
+		Group_followVO group_followVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMTGRPNO);
+
+			pstmt.setString(1, mb_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVo �]�٬� Domain objects
+				group_followVO = new Group_followVO();
+				group_followVO.setMb_id(rs.getString("mb_id"));
+				group_followVO.setGrp_no(rs.getString("grp_no"));
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return group_followVO;
 	}
 }

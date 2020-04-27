@@ -409,4 +409,10 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<GrouperVO> getAllByMb_id(String mb_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

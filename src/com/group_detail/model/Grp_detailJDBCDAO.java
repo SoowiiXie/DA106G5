@@ -167,67 +167,67 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 
 	}
 
-	@Override
-	public Grp_detailVO findByPrimaryKey(String mb_id) {
-
-		Grp_detailVO grp_detailVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ONE_STMT);
-
-			pstmt.setString(1, mb_id);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				// grp_detailVO �]�٬� Domain objects
-				grp_detailVO = new Grp_detailVO();
-				grp_detailVO.setMb_id(rs.getString("mb_id"));
-				grp_detailVO.setGrp_no(rs.getString("grp_no"));
-				grp_detailVO.setGrp_register(rs.getInt("grp_register"));
-				
-			}
-
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return grp_detailVO;
-	}
+//	@Override
+//	public List<Grp_detailVO> findByPrimaryKey(String mb_id) {
+//
+//		Grp_detailVO grp_detailVO = null;
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//
+//		try {
+//
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+//			pstmt = con.prepareStatement(GET_ONE_STMT);
+//
+//			pstmt.setString(1, mb_id);
+//
+//			rs = pstmt.executeQuery();
+//
+//			while (rs.next()) {
+//				// grp_detailVO �]�٬� Domain objects
+//				grp_detailVO = new Grp_detailVO();
+//				grp_detailVO.setMb_id(rs.getString("mb_id"));
+//				grp_detailVO.setGrp_no(rs.getString("grp_no"));
+//				grp_detailVO.setGrp_register(rs.getInt("grp_register"));
+//				
+//			}
+//
+//			// Handle any driver errors
+//		} catch (ClassNotFoundException e) {
+//			throw new RuntimeException("Couldn't load database driver. "
+//					+ e.getMessage());
+//			// Handle any SQL errors
+//		} catch (SQLException se) {
+//			throw new RuntimeException("A database error occured. "
+//					+ se.getMessage());
+//			// Clean up JDBC resources
+//		} finally {
+//			if (rs != null) {
+//				try {
+//					rs.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (pstmt != null) {
+//				try {
+//					pstmt.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (con != null) {
+//				try {
+//					con.close();
+//				} catch (Exception e) {
+//					e.printStackTrace(System.err);
+//				}
+//			}
+//		}
+//		return List<Grp_detailVO>;
+//	}
 
 	@Override
 	public List<Grp_detailVO> getAll() {
@@ -501,6 +501,12 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 		System.out.println(aEmp.getGrp_register() + ",");
 		}
 		System.out.println("---------------------");
+	}
+
+	@Override
+	public List<Grp_detailVO> findByPrimaryKey(String mb_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

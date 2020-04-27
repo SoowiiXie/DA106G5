@@ -2,6 +2,8 @@ package com.group_follow.model;
 
 import java.util.List;
 
+import com.group_detail.model.Grp_detailVO;
+
 public class Group_followService {
 
 	private Group_followDAO_interface dao;
@@ -38,8 +40,8 @@ public class Group_followService {
 		dao.delete(grp_no);
 	}
 
-	public Group_followVO getOneGroupfollow(String grp_no) {
-		return dao.findByPrimaryKey(grp_no);
+	public List<Group_followVO> getOneGroupfollow(String mb_id) {
+		return dao.findByPrimaryKey(mb_id);
 	}
 
 	public List<Group_followVO> getAll() {
@@ -50,5 +52,10 @@ public class Group_followService {
 	}
 	public int totalFollowGroup(String mb_id) {
 		return dao.totalFollowGroup(mb_id);		
+	}
+
+	public List<Group_followVO> getAllGroup_followByMb_id(String mb_id) {
+		// TODO Auto-generated method stub
+		return dao.findByPrimaryKey(mb_id);
 	}
 }

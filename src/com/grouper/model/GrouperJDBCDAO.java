@@ -411,4 +411,10 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 		}
 	}
 
+	@Override
+	public List<GrouperVO> getAllByMb_id(String mb_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

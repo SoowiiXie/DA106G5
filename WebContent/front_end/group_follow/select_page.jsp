@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>IBM Groupfollow: Home</title>
+<title>IBM GroupFollow: Home</title>
 
 <style>
   table#table-1 {
@@ -30,10 +30,10 @@
 <body bgcolor='white'>
 
 <table id="table-1">
-   <tr><td><h3>IBM Groupfollow: Home</h3><h4>( MVC )</h4></td></tr>
+   <tr><td><h3>IBM GroupFollow: Home</h3><h4>( MVC )</h4></td></tr>
 </table>
 
-<p>This is the Home page for IBM Groupfollow: Home</p>
+<p>This is the Home page for IBM GroupFollow: Home</p>
 
 <h3>資料查詢:</h3>
 	
@@ -48,34 +48,34 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllGroupfollow.jsp'>List</a> all Groups.  <br><br></li>
+  <li><a href='listAllGroupfollow.jsp'>關注清單</a>(後端)  <br><br></li>
   
   
   <li>
     <FORM METHOD="post" ACTION="group_follow.do" >
         <b>輸入揪團編號 (如grp00001):</b>
-        <input type="text" name="grp_no">
-        <input type="hidden" name="action" value="getOne_For_Display">
+        <input type="text" name="mb_id">
+        <input type="hidden" name="action" value="getAll_For_Display">
         <input type="submit" value="送出">
+    </FORM>
+  </li>
+
+  <jsp:useBean id="group_followSvc" scope="page" class="com.group_follow.model.Group_followService" />
+     
+  <li>
+     <FORM METHOD="post" ACTION="group_follow.do" >
+       <b>選擇揪團編號:</b>
+       <select size="1" name="mb_id">
+         <c:forEach var="group_followVO" items="${group_followSvc.all}" > 
+          <option value="${group_followVO.mb_id}">${group_followVO.mb_id}
+         </c:forEach>   
+       </select>
+       <input type="hidden" name="action" value="getAll_For_Display">
+       <input type="submit" value="送出">
     </FORM>
   </li>
   
   <h3>數量查詢:</h3>
-
-  <jsp:useBean id="group_followSvc" scope="page" class="com.group_follow.model.Group_followService" />
-   
-  <li>
-     <FORM METHOD="post" ACTION="group_follow.do" >
-       <b>選擇揪團編號:</b>
-       <select size="1" name="grp_no">
-         <c:forEach var="Group_followVO" items="${group_followSvc.all}" > 
-          <option value="${Group_followVO.grp_no}">${Group_followVO.grp_no}
-         </c:forEach>   
-       </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="送出">
-    </FORM>
-  </li>
   <li>
     <FORM METHOD="post" ACTION="group_follow.do" >
         <b>輸入揪團編號 (如grp00001):</b>

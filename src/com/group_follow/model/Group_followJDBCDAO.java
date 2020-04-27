@@ -161,7 +161,7 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 	}
 
 	@Override
-	public Group_followVO findByPrimaryKey(String grp_no) {
+	public List<Group_followVO> findByPrimaryKey(String grp_no) {
 
 		Group_followVO group_followVO = null;
 		Connection con = null;
@@ -217,7 +217,7 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 				}
 			}
 		}
-		return group_followVO;
+		return null;
 	}
 
 	@Override
@@ -409,5 +409,17 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 		// 查詢追蹤該揪團之人數
 		int peopleHowManyGroupFollow = dao.totalFollowGroup("soowii123");
 		System.out.println("peopleHowManyGroupFollow " + peopleHowManyGroupFollow);
+	}
+
+//	@Override
+//	public List<Group_followVO> findByPrimaryKey(String mb_id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	@Override
+	public Group_followVO findByPrimaryKeyByMb_id(String mb_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
