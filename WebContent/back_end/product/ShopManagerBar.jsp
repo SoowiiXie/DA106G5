@@ -204,7 +204,7 @@ margin:10px auto;
    <font style="font-size:1.0cm;" color="white">商城管理</font>
       </div></div>
       <div class="backhome" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;"><font color="white" >
+		href="<%=request.getContextPath()%>/back_end/product/addProduct.jsp" style="text-decoration:none;"><font color="white" >
 		增加商品</font></a></div>
       <div class="pd_follow" align="center"><a
 		href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=" style="text-decoration:none;"><font color="white">管理商品</font></a></div> 
