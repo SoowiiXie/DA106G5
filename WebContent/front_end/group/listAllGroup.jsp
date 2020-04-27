@@ -137,7 +137,7 @@
 			
 <%-- 		${status.get(Integer.parseInt(2))} --%>
 <%-- 		${status.get(Integer(2))} --%>
-<!-- 			他是基本型別的int -->
+<!-- 			他是基本型別的long -->
 			<%--${status.get("2")} --%>
 			<%--${status.get(String.valueOf(Integer.parseInt(2)))} --%>
 			<%--<%= (String)(grouperVO.getGrp_status()) %> --%>

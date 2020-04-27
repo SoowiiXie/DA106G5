@@ -22,7 +22,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 	}
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO grp_detail (mb_id,grp_no,grp_register) VALUES (?, ?, ?)";
+			"INSERT INTO grp_detail (mb_id,grp_no) VALUES (?, ?)";
 	private static final String GET_ALL_STMT = 
 			"SELECT mb_id,grp_no,grp_register FROM grp_detail order by mb_id";
 	private static final String GET_ONE_STMT = 
@@ -44,7 +44,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		System.out.println("dao");
 		try {
 
 			con = ds.getConnection();
@@ -52,7 +52,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 
 			pstmt.setString(1, grp_detailVO.getMb_id());
 			pstmt.setString(2, grp_detailVO.getGrp_no());
-			pstmt.setInt(3, grp_detailVO.getGrp_register());
+//			pstmt.setInt(3, grp_detailVO.getGrp_register());
 
 			pstmt.executeUpdate();
 

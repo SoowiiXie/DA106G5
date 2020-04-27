@@ -2,11 +2,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.group_detail.model.*"%>
 <%@ page import="com.grouper.model.*"%>
+<%@ page import="com.grouper.model.*"%>
+
 
 <%
-  Grp_detailVO grp_detailVO = (Grp_detailVO) request.getAttribute("grp_detailVO");
-  GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
+  Grp_detailService grp_detailSvc = new Grp_detailService();
+//   String mb_id = (String)request.getAttribute("mb_id");
+  String mb_id = (String)request.getParameter("mb_id");
+  String grp_no = (String)request.getParameter("grp_no");
+//   String grp_no = (String)request.getAttribute("grp_no");
+
+  
+  
+  Grp_detailVO group_detailVO = grp_detailSvc.addGrp_detail(mb_id, grp_no);
+//   GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
+  pageContext.setAttribute("group_detailVO", group_detailVO);
+
 %>
+JSP<%=mb_id %>
+EL${param.mb_id}
+<!--揪團Service -->
+<jsp:useBean id="grouperSvcEL" scope="page"	class="com.grouper.model.GrouperService" />
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -71,25 +87,25 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="/front_end/group_detail/grp_detail.do">
-"${grouperVO.grp_no}"
+"${group_detailVO.grp_no}"
 
 <table>
 	
 	<tr>
 		<td>會員編號:</td>
 		<td><input type="TEXT" name="mb_id" size="45"
-			 value="<%= (grp_detailVO==null)? " " : grp_detailVO.getMb_id()%>" /></td>
+			 value="<%= (group_detailVO==null)? " " : group_detailVO.getMb_id()%>" /></td>
 	</tr>
 	<tr>
-		<td>揪團名稱:</td>
+		<td>${grp_detailVO.grp_no}揪團名稱:</td>
 		<td><input type="TEXT" name="grp_no" size="45" 
 			 value="${grp_detailVO.grp_no}"/></td>
 	</tr>
-	<tr>
-		<td>揪團狀態:</td>
-		<td><input type="TEXT" name="grp_register" size="45"
-			 value="<%= (grp_detailVO==null)? "1" : grp_detailVO.getGrp_register()%>" /></td>
-	</tr>	
+<!-- 	<tr> -->
+<!-- 		<td>揪團狀態:</td> -->
+<!-- 		<td><input type="TEXT" name="grp_register" size="45" -->
+<%-- 			 value="<%= (grp_detailVO==null)? "1" : grp_detailVO.getGrp_register()%>" /></td> --%>
+<!-- 	</tr>	 -->
 	
 	
 

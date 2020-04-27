@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>IBM Group: Home</title>
+<title>IBM Groupfollow: Home</title>
 
 <style>
   table#table-1 {
@@ -59,6 +59,8 @@
         <input type="submit" value="送出">
     </FORM>
   </li>
+  
+  <h3>數量查詢:</h3>
 
   <jsp:useBean id="group_followSvc" scope="page" class="com.group_follow.model.Group_followService" />
    

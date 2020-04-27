@@ -70,7 +70,7 @@ public class Group_detailServlet extends HttpServlet {
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("grp_detailVO", grp_detailVO); // 資料庫取出的empVO物件,存入req
-				String url = "/front_end/group_detail/listOneGroupdetail.jsp";
+				String url = "/front_end/group_detail/listAllGroupdetailForSelect.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -173,7 +173,7 @@ public class Group_detailServlet extends HttpServlet {
 		}
 
         if ("insert".equals(action)) { // 來自addGroup.jsp的請求  
-			
+			System.out.println("insert");
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -191,12 +191,9 @@ public class Group_detailServlet extends HttpServlet {
 					errorMsgs.add("揪團編號:請勿空白");
 	            }
 				
-				Integer grp_register = new Integer(req.getParameter("grp_register").trim());
-				
 				Grp_detailVO grp_detailVO = new Grp_detailVO();
 				grp_detailVO.setMb_id(mb_id);
 				grp_detailVO.setGrp_no(grp_no);
-				grp_detailVO.setGrp_register(grp_register);
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -209,7 +206,7 @@ public class Group_detailServlet extends HttpServlet {
 				
 				/***************************2.開始修改資料***************************************/
 				Grp_detailService grpdetailSvc = new Grp_detailService();
-				grp_detailVO = grpdetailSvc.addGrp_detail(mb_id, grp_no, grp_register);
+				grp_detailVO = grpdetailSvc.addGrp_detail(mb_id, grp_no);
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
 				String url = "/front_end/group_detail/listAllGroupdetail.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
