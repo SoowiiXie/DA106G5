@@ -519,6 +519,15 @@
 			<url-pattern>/MemberTest</url-pattern>
 		</servlet-mapping>
 		
+		<servlet>
+			<servlet-name>MemberFollow</servlet-name>
+			<servlet-class>com.mb_follow.controller.Mb_followServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>MemberFollow</servlet-name>
+			<url-pattern>/front_end/member/mb_follow.do</url-pattern>
+		</servlet-mapping>
+		
 	<!-- 會員結束 -->
 	
 	<!-- 管理員開始 -->
