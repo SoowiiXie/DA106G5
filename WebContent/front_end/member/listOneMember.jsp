@@ -17,7 +17,7 @@
 <title>listOneMember</title>
 <style>
 	#follow_img{
-		 width:20px;
+		 width:40px;
 		 display:inline-block;
 		 vertical-align:middle;
 		 margin-left:80px;
