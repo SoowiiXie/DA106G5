@@ -55,7 +55,7 @@
     <FORM METHOD="post" ACTION="group_detail.do" >
         <b>輸入會員編號 :</b>
         <input type="text" name="mb_id">
-        <input type="hidden" name="action" value="getOne_For_Display">
+        <input type="hidden" name="action" value="getAll_For_Display">
         <input type="submit" value="送出">
     </FORM>
   </li>
@@ -70,7 +70,7 @@
           <option value="${grp_detailVO.mb_id}">${grp_detailVO.mb_id}
          </c:forEach>   
        </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
+       <input type="hidden" name="action" value="getAll_For_Display">
        <input type="submit" value="送出">
     </FORM>
   </li>

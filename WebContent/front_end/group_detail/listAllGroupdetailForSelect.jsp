@@ -1,28 +1,33 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="java.util.*"%>
 <%@ page import="com.group_detail.model.*"%>
-
-<%-- 此頁練習採用 EL 的寫法取值 --%>
-
-<jsp:useBean id="GrouperDAO"  scope="page" class="com.grouper.model.GrouperDAO" />
-<jsp:useBean id="Grp_detailDAO" scope="page" class="com.group_detail.model.Grp_detailDAO" />
+<%@ page import="com.grouper.model.*"%>
+<%@ page import="com.location.model.*"%>
+<%@ page import="java.util.*"%>
+<%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
-    Grp_detailService grpdetailSvc = new Grp_detailService();
-    List<Grp_detailVO> list = grpdetailSvc.getAll();
-    pageContext.setAttribute("list",list);
+	List<Grp_detailVO> grp_detailVOList = (List<Grp_detailVO>)request.getAttribute("grp_detailVOList"); //EmpServlet.java(Concroller), 存入req的empVO物件
+	pageContext.setAttribute("grp_detailVOList",grp_detailVOList);
+	GrouperService grouperSvc = new GrouperService();
+	List<GrouperVO> grouperVOList = grouperSvc.getAll();//5
+	
+// 	GrouperVO grouperVO = grouperSvc.getAll(map)
+	
+	LocationVO locationVO = (LocationVO) request.getAttribute("locationVO");
+	
+// 	List<Grp_detailVO> list = request.getAttribute();
+//     pageContext.setAttribute("list",list);
 %>
 
+<jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
+<jsp:useBean id="grpSvc" scope="page" class="com.grouper.model.GrouperService" />
+<jsp:useBean id="group_detailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
 
 <html>
 <head>
-<title>所有員工資料 - listAllGroupdetail.jsp</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>員工資料 - listOneGroup.jsp</title>
 
 <style>
   table#table-1 {
@@ -43,7 +48,7 @@
 
 <style>
   table {
-	width: 800px;
+	width: 600px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -60,98 +65,116 @@
 </head>
 <body bgcolor='white'>
 
-<h4>此頁練習採用 EL 的寫法取值:</h4>
+<h4>此頁暫練習採用 Script 的寫法取值:</h4>
 <table id="table-1">
-	<tr>
-		<td>
-		 	<h3>所有揪團資料 - listAllGroupdetail.jsp</h3>
-		 	<h4>
-			 <a href="<%= request.getContextPath() %>/front_end/group_detail/select_page.jsp">
-		 	<img src="<%= request.getContextPath() %>/front_end/group_detail/images/back1.gif" width="100" height="32" border="0">回首頁
-	   		</a>
-	   		</h4>
-		</td>
-	</tr>
+	<tr><td>
+		 <h3>揪團詳細資料</h3>
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+	</td></tr>
 </table>
-
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
+${list}123
 <table>
 	<tr>
 		<th>會員編號</th>
 		<th>揪團編號</th>
-		<th>報到狀態</th>
-		<th>修改</th>
-		<th>刪除</th>
-	</tr>
-	<%@ include file="page1.file" %> 
-	<c:forEach var="grp_detailVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
-		<tr>
-			<td>${grp_detailVO.mb_id}</td>
-			<td><A href="group_detail.do?grp_no=${grp_detailVO.grp_no}&action=getOne_From2">${grp_detailVO.grp_no}</a></td>			
-			<% 
-			Map<Integer,String>register = new HashMap<>();
-			register.put(1,"未到");
-			register.put(2,"已到");
-			request.setAttribute("register", new String[]{"","未到","已到"});
+		<th>發起人會員編號</th>
+		<th>地點</th>
+		<th>報名開始時間</th>
+		<th>報名結束時間</th>
+		<th>活動開始時間</th>
+		<th>活動結束時間</th>
+		<th>揪團標題</th>
+		<th>揪團內容</th>
+		
+		<th>報到狀態</th>
+		
+	</tr>
+<%-- 	${group_detailSvc.all} --%>
+<%-- 	<c:forEach var="grp_detailVO" items="${list}"> --%>
+<c:forEach var="grp_detailVO" items="${grp_detailVOList}">
+<%--     <c:if test="${grp_detailVO.grp_no==(grp_detailVOList.mb_id)}"><!-- 2 --> --%>
+	<tr>		
+		<td>${grp_detailVO.mb_id}</td>
+<%-- 		<td><%=grp_detailVO.getGrp_no()%></td> --%>
+		<td>${grp_detailVO.grp_no}</td>
+				
+<%-- 		<td>${grpSvc.getOneGroup(grp_detailVOList.grp_no).mb_id}</td> --%>
+		<td> ${grpSvc.getOneGroup(grp_detailVO.grp_no).mb_id}</td>
+		<td>
+<%-- 				<c:forEach var="locationVO" items="${locSvc.all}"> --%>
+<%-- 		        <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">  --%>
+<%-- 		        	<c:if test="${grouperVO.loc_no==locationVO.loc_no}">   		        				     --%>
+<%-- 		                 ${grouperVOlocationVO.loc_address}<br> --%>
+<%-- 					${grpSvc.getOneGroup(grp_detailVO.grp_no).loc_no} --%>
+<%-- 		       		 </c:if > --%>
+<%-- 		        </c:if >         --%>
+					${locSvc.getOneLocation(grpSvc.getOneGroup(grp_detailVO.grp_no).loc_no).loc_address}
+<%-- 		        </c:forEach> --%>
+		</td>
+		<td>
+<%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
+<%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
+<%--                     ${grouperVO.grp_applystart}                                            --%>
+<%--                    </c:if> --%>
+<%--         </c:forEach> --%>
+${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart}
+<%-- 					${grpSvc.getOneGroup(grp_detailVO.getGrp_no()).grp_applystart } --%>
+		</td>
+		<td>
+<%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
+<%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
+${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend}
+<%--                    </c:if> --%>
+<%--         </c:forEach> --%>
+		</td>
+		<td>
+<%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
+<%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
+${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}
+<%--                    </c:if> --%>
+<%--         </c:forEach> --%>
+<!-- 		</td> -->
+		<td>
+<%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
+<%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
+                    ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end}
+<%--                    </c:if> --%>
+<%--         </c:forEach> --%>
+		</td>
+		<td>
+<%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
+<%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
+                    ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_name}
+<%--                    </c:if> --%>
+<%--         </c:forEach> --%>
+		</td>
+		<td>
+<%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
+<%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
+                    ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_content}
+<%--                    </c:if> --%>
+<%--         </c:forEach> --%>
+		</td>
+		
+		<%
+			Map<Integer,String>status = new HashMap<>();
+				status.put(1, "未滿");
+				status.put(2, "已滿");
+				status.put(3, "成功");
+				status.put(4, "取消");
+				request.setAttribute("status", new String[]{"","未滿", "已滿", "成功", "取消"});
 			%>
 			
-			<td>${register[grp_detailVO.grp_register]}</td>
 			
-			<td>
-			  <FORM METHOD="post" ACTION="group_detail.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="mb_id"  value="${grp_detailVO.mb_id}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="group_detail.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="mb_id"  value="${grp_detailVO.mb_id}">
-			     <input type="hidden" name="action" value="delete"></FORM>
-			</td>
-		</tr>
-	</c:forEach>
+		<td>${status[grp_detailVO.grp_register]}</td>
+
+	</tr>
+<%-- 	</c:if> --%>
+   </c:forEach>
+
+<%-- </c:forEach> - --%>
 </table>
-<%@ include file="page2.file" %>
-<c:if test="${openModal!=null}">
 
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-				
-			<div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
-            </div>
-			
-			<div class="modal-body">
-<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
-               <jsp:include page="listOneGroupdetail2.jsp" />
-<!-- =========================================以上為原listOneEmp.jsp的內容========================================= -->
-			</div>
-			
-			<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-		
-		</div>
-	</div>
-</div>
-
-        <script>
-    		 $("#basicModal").modal({show: true});
-        </script>
- </c:if>
 </body>
 </html>

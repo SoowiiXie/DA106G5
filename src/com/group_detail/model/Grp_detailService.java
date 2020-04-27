@@ -37,7 +37,7 @@ public class Grp_detailService {
 		dao.delete(mb_id);
 	}
 
-	public Grp_detailVO getOneGrp_detail(String mb_id) {
+	public List<Grp_detailVO> getAllGrp_detailByMb_id(String mb_id) {
 		return dao.findByPrimaryKey(mb_id);
 	}
 

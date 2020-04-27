@@ -161,12 +161,13 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 	}
 
 	@Override
-	public Grp_detailVO findByPrimaryKey(String mb_id) {
+	public List<Grp_detailVO> findByPrimaryKey(String mb_id) {
 
 		Grp_detailVO grp_detailVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		List<Grp_detailVO> list = new ArrayList<Grp_detailVO>();
 
 		try {
 
@@ -183,6 +184,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 				grp_detailVO.setMb_id(rs.getString("mb_id"));
 				grp_detailVO.setGrp_no(rs.getString("grp_no"));
 				grp_detailVO.setGrp_register(rs.getInt("grp_register"));
+				list.add(grp_detailVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
@@ -213,7 +215,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 				}
 			}
 		}
-		return grp_detailVO;
+		return list;
 	}
 	
 	@Override

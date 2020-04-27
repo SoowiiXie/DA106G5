@@ -82,7 +82,7 @@ ${list}123
 		<th>報到狀態</th>
 		
 	</tr>
- 
+ ${grpSvc.all}
 <%-- 	<c:forEach var="grp_detailVO" items="${list}"> --%>
 <c:forEach var="grouperVO" items="${grpSvc.all}">
     <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}">
@@ -94,7 +94,7 @@ ${list}123
 		<td>
 <%-- 				<c:forEach var="locationVO" items="${locSvc.all}"> --%>
 <%-- 		        <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">  --%>
-<%-- 		        	<c:if test="${grouperVO.loc_no==locationVO.loc_no}">   		        				     --%>
+<%-- 		        <c:if test="${grouperVO.loc_no==locationVO.loc_no}">   		        				     --%>
 <%-- 		                 ${grouperVOlocationVO.loc_address}<br> --%>
 					${locSvc.getOneLocation(grouperVO.getLoc_no()).loc_address}
 <%-- 		       		 </c:if > --%>
@@ -160,7 +160,7 @@ ${list}123
 		<td>${status[grp_detailVO.grp_register]}</td>
 
 	</tr>
-</c:if>
+	</c:if>
    </c:forEach>
 
 <%-- </c:forEach> - --%>

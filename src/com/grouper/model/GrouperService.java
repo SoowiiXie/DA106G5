@@ -74,6 +74,10 @@ public class GrouperService {
 	public List<GrouperVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public List<GrouperVO> getAllByMb_id(String mb_id) {
+		return dao.getAllByMb_id(mb_id);
+	}
 	public List<GrouperVO> getAll(Map<String, String[]> map) {
 		return dao.getAll(map);
 	}
