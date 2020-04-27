@@ -114,9 +114,9 @@ class FakeBlob {
 			in = new FileInputStream("WebContent/fake_picture/weather00003.jpg");
 			bf = new BufferedInputStream(in);
 			ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
-			ps.setString(2, "abc");
+			ps.setString(2, "晴時多雲");
 			rowCount += ps.executeUpdate();
-
+			
 			System.out.println(rowCount + " row(s) inserted!!");
 			bf.close();
 			in.close();

@@ -332,6 +332,7 @@ public class LocationDAO implements Location_interface {
 						icon="rsz_location-icon-grey.png";
 					}
 					locationJsonVO.setIcon(icon);
+					locationJsonVO.setAdr(rs.getString("loc_address"));
 					list.add(locationJsonVO); // Store the row in the list
 				}
 			}

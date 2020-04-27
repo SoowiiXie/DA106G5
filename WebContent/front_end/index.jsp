@@ -605,7 +605,25 @@
 					 success: function (data){
 //						 $("#cmt_contentFB").val(data.cmt_content);
 // 						 $("#cmt_noFB").val(data);
-						 alert(data);
+						 console.log(data);
+						 
+						 $('#myTbody').empty();
+						 for(var i = 0; i < data.length; i++){
+							 $('#myTbody').append(`
+								 <tr>
+									<td class="align-middle">`+data[i].weather_time+`</td>
+									<td class="align-middle">`+data[i].weather_place+`</td>
+									<td class="align-middle"><img src="<%= request.getContextPath() %>/DBGifReader4Weather?wth_status=`+data[i].wth_status+`" alt="" style="height:4.3rem;"/></td>
+									<td class="align-middle">`+data[i].wth_status+`</td>
+									<td class="align-middle">`+data[i].wth_high+`</td>
+									<td class="align-middle">`+data[i].wth_low+`</td>
+									<td class="align-middle">`+data[i].wth_comfort+`</td>
+									<td class="align-middle">`+data[i].wth_rain_chance+`%</td>
+								</tr>
+							`);
+						 }
+						 
+						 
 						 $('.overlay').fadeIn();
 						 weatherBox.fadeIn();
 					 },					
