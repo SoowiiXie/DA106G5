@@ -86,7 +86,7 @@ th, td {
 				<th Style="width: 100px; align: center">優惠後金額</th>
 				<th Style="width: 200px; align: center">收貨地址</th>
 				<th Style="width: 150px; align: center"></th>
-				<th Style="width: 100px; align: center"></th>
+				
 
 			</tr>
 
@@ -114,13 +114,7 @@ th, td {
 								type="hidden" name="action" value="MemberSearchSelfOrders">
 							<input type="hidden" name="whichPage" value="<%=whichPage%>">
 						</FORM></td>
-					<td align="center" bgcolor="#C4E1FF"><FORM METHOD="post"
-							ACTION="OrdersServlet" style="margin-bottom: 0px;">
-							<input type="submit" value="刪除"> <input type="hidden"
-								name="pd_no" value="${productVO.pd_no}"> <input
-								type="hidden" name="action" value="delete">
-
-						</FORM></td>
+					
 				</tr>
 			</c:forEach>
 		</table>
