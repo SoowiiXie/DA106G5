@@ -1,5 +1,7 @@
 package com.coupon.model;
 
+import java.sql.Timestamp;
+
 public class CouponVO implements java.io.Serializable {
 	/**
 	 * 
@@ -9,14 +11,42 @@ public class CouponVO implements java.io.Serializable {
 	private String cp_name;
 	private Integer cp_price;
 	private byte[] cp_pic;
-
+	private String cp_detail;
+    private Timestamp cp_time;
+    private String cp_javaTime;
 	public CouponVO() {
 
 		cp_no = "";
 		cp_name = "";
 		cp_price = 0;
 		cp_pic = null;
+		cp_detail="";
+		cp_time=null;
+		cp_javaTime = null;
+	}
 
+	public String getCp_javaTime() {
+		return cp_javaTime;
+	}
+
+	public void setCp_javaTime(String cp_javaTime) {
+		this.cp_javaTime = cp_javaTime;
+	}
+
+	public String getCp_detail() {
+		return cp_detail;
+	}
+
+	public void setCp_detail(String cp_detail) {
+		this.cp_detail = cp_detail;
+	}
+
+	public Timestamp getCp_time() {
+		return cp_time;
+	}
+
+	public void setCp_time(Timestamp cp_time) {
+		this.cp_time = cp_time;
 	}
 
 	private static final long serialVersionUID = 1L;

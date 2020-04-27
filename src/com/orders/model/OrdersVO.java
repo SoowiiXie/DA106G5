@@ -34,6 +34,7 @@ public class OrdersVO implements java.io.Serializable {
 		cp_no = "";
 		od_discount = 0;
 		od_add = "";
+		od_javaTime = null;
 	}
 
 	public String getOd_no() {

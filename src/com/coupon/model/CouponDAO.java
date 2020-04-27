@@ -10,9 +10,9 @@ public class CouponDAO implements CouponDAO_interface {
 	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO coupon (cp_no,cp_name) VALUES ('CPN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),?)";
+		"INSERT INTO coupon (cp_no, cp_name, cp_price, cp_detail) VALUES ('CPN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),?,?,?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT cp_no, cp_name, cp_price FROM coupon order by cp_no";
+		"SELECT cp_no, cp_name, cp_price, cp_detail , cp_time FROM coupon order by cp_no";
 	private static final String GET_ONE_STMT = 
 		"SELECT cp_no,cp_name,cp_price FROM coupon where cp_no = ?";
 	private static final String DELETE = 
@@ -34,7 +34,8 @@ public class CouponDAO implements CouponDAO_interface {
 			pstmt = con.prepareStatement(INSERT_STMT,cols);
 			
 			pstmt.setString(1, couponVo.getCp_name());
-			
+			pstmt.setInt(2, couponVo.getCp_price());
+			pstmt.setString(3, couponVo.getCp_detail());
 			
 			
 
@@ -259,6 +260,11 @@ public class CouponDAO implements CouponDAO_interface {
 				couponVO.setCp_no(rs.getString("cp_no"));
 				couponVO.setCp_name(rs.getString("cp_name"));
 				couponVO.setCp_price(rs.getInt("cp_price"));
+				couponVO.setCp_detail(rs.getString("cp_detail"));
+				couponVO.setCp_time(rs.getTimestamp("cp_time"));
+				Timestamp sqlTime = couponVO.getCp_time();
+				String javaTime = sqlTime.toString();  //把用toString 把sqlTime改寫成字串
+				couponVO.setCp_javaTime(javaTime.substring(0, 16));//取字串裡面索引值0(第一個)到第16(第17個)的字元
 				list.add(couponVO); // Store the row in the vector
 			}
 
@@ -304,6 +310,8 @@ public class CouponDAO implements CouponDAO_interface {
 		 //新增，新增優惠卷種類
 //		CouponVO couponVO1 = new CouponVO();
 //		couponVO1.setCp_name("測試用優惠卷");
+//		couponVO1.setCp_price(77777);
+//		couponVO1.setCp_detail("測試用備註");
 //		 int updateCount_insert = dao.addCoupon(couponVO1);
 //		 System.out.println("新增"+updateCount_insert+"筆優惠卷種類");
 //		 	
@@ -327,13 +335,14 @@ public class CouponDAO implements CouponDAO_interface {
 //		System.out.print(couponVO3.getCp_price());
 		
 		// 查詢，列出所有優惠卷資料
-//		List<CouponVO> list = dao.getAll();
-//		for (CouponVO aCouponVO : list) {
-//			System.out.print(aCouponVO.getCp_no() + ",");
-//			System.out.print(aCouponVO.getCp_name() + ",");
-//			System.out.print(aCouponVO.getCp_price() + ",");
-//
-//			System.out.println();
-//		}
+		List<CouponVO> list = dao.getAll();
+		for (CouponVO aCouponVO : list) {
+			System.out.print(aCouponVO.getCp_no() + ",");
+			System.out.print(aCouponVO.getCp_name() + ",");
+			System.out.print(aCouponVO.getCp_price() + ",");
+            System.out.println(aCouponVO.getCp_detail() + ",");
+            System.out.println(aCouponVO.getCp_javaTime());
+			System.out.println();
+		}
 	}
 }

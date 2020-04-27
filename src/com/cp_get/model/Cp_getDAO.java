@@ -244,7 +244,7 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 //		// 會員使用優惠卷，更改優惠卷狀態
 		Cp_getVO cp_getVO2 = new Cp_getVO();
 		cp_getVO2.setMb_id("michael123");
-		cp_getVO2.setCp_no("CPN00006");
+		cp_getVO2.setCp_no("CPN00004");
 		cp_getVO2.setCp_status(1);
 		int updateCount = dao.aMemberUseCoupon(cp_getVO2);
 //

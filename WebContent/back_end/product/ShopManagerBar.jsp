@@ -213,7 +213,7 @@ margin:10px auto;
 </font></a>
       	</div> 
        <div class="memberLogin" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp" style="text-decoration:none;"><font color="white" >管理優惠券</font></a></div>
+		href="<%=request.getContextPath()%>/back_end/product/CouponManage.jsp" style="text-decoration:none;"><font color="white" >管理優惠券</font></a></div>
       <div class="member" align="center"><font color="white">分類管理</font></div>
     </div>
 
