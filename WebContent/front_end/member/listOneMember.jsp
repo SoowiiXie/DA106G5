@@ -26,62 +26,64 @@
 </head>
 <body>
 	<!--  改searchMbVO  -->
-	<table>
+	<table class="ml-4 table" style="background-color:rgb(229, 233, 236);">
 	<tr>
 		<td colspan="2" align="center">
-			<img src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${searchMbVO.mb_id}" width="100px">
+			<img src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${searchMbVO.mb_id}" width="150rem" class="rounded">
 		</td>
 	</tr>
 	<tr>
-		<td align="center">
+		<td style="text-align:left">
 			會員：
 		</td>
-		<td>
+		<td style="text-align:left">
 			${searchMbVO.mb_name}
 		</td>
 	</tr>
 	<tr>
-		<td align="center">
+		<td style="text-align:left">
 			性別：
 		</td>
-		<td>
+		<td style="text-align:left">
 			${searchMbVO.mb_gender}
 		</td>
 	</tr>
 	<tr>
-		<td align="center">
+		<td style="text-align:left">
 			生日：
 		</td>
-		<td>
+		<td style="text-align:left">
 			${searchMbVO.mb_birthday}
 		</td>
 	</tr>
 	<tr>
-		<td align="center">
+		<td colspan="2"  style="text-align:left">
 			E-mail：
 		</td>
-		<td>
+	</tr>
+	<tr>
+		<td colspan="2"  style="text-align:left">
 			${searchMbVO.mb_email}
 		</td>
 	</tr>
 	<tr>
-		<td align="center">
+		<td style="text-align:left">
 			會員等級：
 		</td>
-		<td>
+		<td style="text-align:left">
 			${searchMbVO.mb_lv}
 		</td>
 	</tr>
 	<tr>
-		<td align="center">
+		<td style="text-align:left">
 			被檢舉次數：
 		</td>
-		<td>
+		<td style="text-align:left">
 			${searchMbVO.mb_rpt_times}
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2">
+		<td colspan="2"  style="text-align:left">
 			<span id="follow">
 				<img id="follow_img" src="${hasFollow?'images/red_heart.png':'images/black_heart.png'}">
 				<label id="label">${hasFollow?"已關注":"關注"}</label>

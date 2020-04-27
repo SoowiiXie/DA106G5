@@ -13,7 +13,6 @@
 <%@ page import="com.live.model.*"%>
 <%@ page import="com.mb.model.*"%>
 <%@ page import="com.location.model.*"%>
-<%@ page import="com.mb_follow.model.*"%>
 <%
 	MemberService memberSvc = new MemberService();
 	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
@@ -28,16 +27,15 @@
 // 		//還沒登入的話
 // 		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
 // 	}else{
-	
 		//用memberVO先取得會常使用到的mb_id
 		pageContext.setAttribute("mb_id", memberVO.getMb_id());
 		
-		//用mb_id先取得所有追蹤對象
-		Mb_followService mb_followSvc = new Mb_followService();
-		String[] mbs_id = mb_followSvc.getByMb_id(memberVO.getMb_id());
+		//取得搜尋的會員id
+		MemberVO searchMbVO = (MemberVO)request.getAttribute("searchMbVO");
+		String mb_search = searchMbVO.getMb_id();
 		//拿出所有紀錄
 		RecordService recordSvc = new RecordService();
-		List<RecordVO> list = recordSvc.getByMbs_id(mbs_id);
+		List<RecordVO> list = recordSvc.getByMb_id(mb_search);
 		pageContext.setAttribute("list", list);
 		
 		//拿出四個直播
@@ -74,16 +72,27 @@
 <!--訂單Service -->
 <jsp:useBean id="ordersSvcEL" scope="page"	class="com.orders.model.OrdersService" />
 
+<nav aria-label="breadcrumb" class="col-12 my_breadcrumb">
+	<ol class="breadcrumb m-0">
+		<li class="breadcrumb-item"><a
+			href="<%=request.getContextPath()%>/front_end/member/login.jsp">登入畫面</a></li>
+		<li class="breadcrumb-item active" aria-current="page">查詢會員</li>
+	</ol>
+</nav>
+
+<div class="w-100"></div>
+<!-- 內容左邊-直播 -->
+<div id="contentLeft" class="col-3 navbar-nav">
+	<jsp:include page="../member/listOneMember.jsp"/>
+</div>
+
 <!-- 內容中間-紀錄 -->
 <div id="contentMiddle" class="btn-group row col-6">
 	<!-- 分頁按鈕 -->
 	<div class="btn-group col-12" id="contentTop">
-		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp&meOrFollow=me" class="btn bg-white"> 
-			<b>紀錄</b>
+		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp&meOrFollow=me" class="btn btn-primary"> 
+			<b>返回我的紀錄</b>
 		</a> 
-		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp&meOrFollow=follow" class="btn btn-primary"> 
-			<b>追蹤</b>
-		</a>
 	</div>
 	<c:forEach var="recordVO" items="${list}">
 		<!--一則紀錄 -->
@@ -128,41 +137,58 @@
 								src="<%=request.getContextPath()%>/img/thumb.png"
 								style="height: 2rem;">
 						</c:if>
-						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no"> 
-						<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id"> 
-						<input type="hidden" name="action" value="insert">
+						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"
+							class="rcd_no"> <input type="hidden" name="mb_id"
+							value="${mb_id}" class="mb_id"> <input type="hidden"
+							name="action" value="insert">
 					</div>
 					<span class="text-primary">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
 					<!-- meToo按鈕 -->
 					<div style="margin-bottom: 0px;">
 						<c:if
 							test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==1}">
-							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/yaColor.png" style="height: 2.2rem;">
+							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn"
+								src="<%=request.getContextPath()%>/img/yaColor.png"
+								style="height: 2.2rem;">
 						</c:if>
 						<c:if
 							test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==0}">
-							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/ya.png"	style="height: 2.2rem;">
+							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn"
+								src="<%=request.getContextPath()%>/img/ya.png"
+								style="height: 2.2rem;">
 						</c:if>
-						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no"> 
-						<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id"> 
-						<input type="hidden" name="action" value="insert">
+						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"
+							class="rcd_no"> <input type="hidden" name="mb_id"
+							value="${mb_id}" class="mb_id"> <input type="hidden"
+							name="action" value="insert">
 					</div>
 					<span class="mr-2 text-success">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
 					<!-- 留言按鈕-->
 					<div style="margin-bottom: 0px;">
-						<input class="my-2 mr-2 ml-1 cmtBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/comment.png" style="height: 2rem;">
+						<input class="my-2 mr-2 ml-1 cmtBtn" type="image"
+							name="submit_Btn"
+							src="<%=request.getContextPath()%>/img/comment.png"
+							style="height: 2rem;">
 					</div>
 					<span>${cmtSvcEL.countAllCmts(recordVO.rcd_no)}</span>
 				</div>
 				<!-- 新增留言 -->
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/cmt/cmt.do" class="col-11 mx-auto my-2 bg-gray-200 rounded-lg">
-					<img class="img-profile rounded-circle my-2 ml-1 mr-2" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
+				<FORM METHOD="post"
+					ACTION="<%=request.getContextPath()%>/cmt/cmt.do"
+					class="col-11 mx-auto my-2 bg-gray-200 rounded-lg">
+					<img class="img-profile rounded-circle my-2 ml-1 mr-2"
+						height=60rem; width=60rem;
+						src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
 					<span class='text-primary ml-1 mr-2' style="font-size: 1.2rem;">${memberSvcEL.getOneMember(mb_id).mb_name}</span>
-					<input type="text" class="bg-gray-100 w-50" placeholder=" 新留言..." name="cmt_content"> <input type="hidden" name="rcd_no"  value="${recordVO.rcd_no}" class="rcd_no"> 
-					<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
-					<input type="hidden" name="action" value="insert"> 
-					<input type="hidden" name="pageRun" value="<%=request.getQueryString()%>">
-					<input class="align-middle mx-2 sendBtn my-2" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/send.png" style="height: 2rem;">
+					<input type="text" class="bg-gray-100 w-50" placeholder=" 新留言..."
+						name="cmt_content"> <input type="hidden" name="rcd_no"
+						value="${recordVO.rcd_no}" class="rcd_no"> <input
+						type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
+					<input type="hidden" name="action" value="insert"> <input
+						class="align-middle mx-2 sendBtn my-2" type="image"
+						name="submit_Btn"
+						src="<%=request.getContextPath()%>/img/send.png"
+						style="height: 2rem;">
 				</FORM>
 				<!-- 所有留言內容 -->
 				<div class="cmtDiv" style="display: none">
@@ -218,4 +244,21 @@
 			</div>
 		</div>
 	</c:forEach>
+</div>
+
+<!-- 內容右邊-上傳紀錄 -->
+<div id="contentRight" class="col-3">
+	<a href="index.html" class="btn btn-primary col-11"> 
+		<b>上傳紀錄</b>
+	</a>
+	<br>
+	<br>
+	<div class="sidebar-statis card--5 shadow-z1 bg-white col-11 rounded p-1">
+		<h4 class="nake-title--sidebar medium d-inline-block mt-3 ml-4">Runn Able 官方Line</h4>
+		<div class="statis-chart">
+			<!-- <canvas id="week_chart" width="300" height="200"></canvas> -->
+			<img src="<%=request.getContextPath()%>/img/lineAddFriend.PNG"
+				alt="" class="col-12">
+		</div>
+	</div>
 </div>

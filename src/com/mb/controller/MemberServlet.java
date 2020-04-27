@@ -59,7 +59,8 @@ public class MemberServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+//					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page_other.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -73,7 +74,7 @@ public class MemberServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page_other.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -81,14 +82,14 @@ public class MemberServlet extends HttpServlet {
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("searchMbVO", searchMbVO); // 資料庫取出的VO物件,存入Session
 				
-				String url = "/front_end/member/listOneMember.jsp";
+				String url = "/front_end/index.jsp?pageRun=personal_page/personal_page_other.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page_other.jsp");
 				failureView.forward(req, res);
 			}
 		}
