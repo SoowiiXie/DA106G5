@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.mb.model.*"%>
+<%@ page import="com.mb_follow.model.*"%>
+<%@ page import="java.util.*"%>
+<%
+	MemberService memberSvc = new MemberService();
 
+    MemberVO memberVO = memberSvc.getOneMember("xuan123");
+    pageContext.setAttribute("memberVO",memberVO);
+    
+    MemberVO searchMbVO = memberSvc.getOneMember("vain123");
+    pageContext.setAttribute("searchMbVO",searchMbVO);
+    
+    Mb_followService mb_followService = new Mb_followService();
+    boolean hasFollow = mb_followService.hasFollow(memberVO.getMb_id(),searchMbVO.getMb_id());
+    pageContext.setAttribute("hasFollow",hasFollow);
+%>
 <html>
 <head>
 <meta charset="BIG5">
@@ -11,15 +25,16 @@
 		 width:20px;
 		 display:inline-block;
 		 vertical-align:middle;
+		 margin-left:80px;
 	}
 </style>
 </head>
 <body>
-	
+	<!--  改searchMbVO  -->
 	<table>
 	<tr>
 		<td colspan="2" align="center">
-			<img src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px">
+			<img src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${searchMbVO.mb_id}" width="100px">
 		</td>
 	</tr>
 	<tr>
@@ -27,7 +42,7 @@
 			會員：
 		</td>
 		<td>
-			${memberVO.mb_name}
+			${searchMbVO.mb_name}
 		</td>
 	</tr>
 	<tr>
@@ -35,7 +50,7 @@
 			性別：
 		</td>
 		<td>
-			${memberVO.mb_gender}
+			${searchMbVO.mb_gender}
 		</td>
 	</tr>
 	<tr>
@@ -43,7 +58,7 @@
 			生日：
 		</td>
 		<td>
-			${memberVO.mb_birthday}
+			${searchMbVO.mb_birthday}
 		</td>
 	</tr>
 	<tr>
@@ -51,7 +66,7 @@
 			E-mail：
 		</td>
 		<td>
-			${memberVO.mb_email}
+			${searchMbVO.mb_email}
 		</td>
 	</tr>
 	<tr>
@@ -59,7 +74,7 @@
 			會員等級：
 		</td>
 		<td>
-			${memberVO.mb_lv}
+			${searchMbVO.mb_lv}
 		</td>
 	</tr>
 	<tr>
@@ -67,17 +82,23 @@
 			被檢舉次數：
 		</td>
 		<td>
-			${memberVO.mb_rpt_times}
+			${searchMbVO.mb_rpt_times}
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="center">
-			<label id="follow">
-			<img id="follow_img" src="images/black_heart.png">
-			關注</label>
+		<td colspan="2">
+			
+			<img id="follow_img" src="${hasFollow?'images/red_heart.png':'images/black_heart.png'}">
+			<label id="follow" for="follow_img">${hasFollow?"已關注":"關注"}</label>
 		</td>
 	</tr>
 	</table>
+	
+	<script
+		  src="https://code.jquery.com/jquery-3.5.0.js"
+		  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+		  crossorigin="anonymous">
+	</script>
 	
 	<script>  
 
@@ -87,26 +108,21 @@
 		$("#follow").on("click",function(){
 			$.ajax({
 				type:"GET",
-				url: "member.do",
+				url: "mb_follow.do",
 				data:{
 					"action":"follow",
-					"mb_id":"${sessionScope.memberVO.mb_name}",
-					"mb_id_followed":"${memberVO.mb_name}"
+					"mb_id":"${memberVO.mb_id}",
+					"mb_id_followed":"${searchMbVO.mb_id}"
 				},
-				dataType: "json",
+				dataType: "text",
 				success: function(data){
-					$("#check").html(data.result);
-					$("#icon").css("height","32");
-					$("#icon").css("width","25");
 					
-					if(data.result != "此帳號可以使用"){
-						$("#check").css("color","red");
-						$("#icon").attr("src","images/no.png");
-						$("#submit").attr("disabled","disabled");
-					}else{
-						$("#check").css("color","black");
-						$("#icon").attr("src","images/ok.png");
-						$("#submit").removeAttr("disabled");
+					if(data == "addFollow"){
+						$("#follow_img").attr("src","images/red_heart.png");
+						$("#follow").text("已關注");
+					}else if(data == "deleteFollow"){
+						$("#follow_img").attr("src","images/black_heart.png");
+						$("#follow").text("關注");
 					}
 				},
 				error: function(){alert("AJAX-class發生錯誤囉!")}

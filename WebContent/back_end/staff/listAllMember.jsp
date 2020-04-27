@@ -7,8 +7,8 @@
 
 <%
 	// 會員帳號若是全數字，會有問題(權限列表打不開)
-	MemberService staffSvc = new MemberService();
-    List<MemberVO> list = staffSvc.getAll();
+	MemberService memberSvc = new MemberService();
+    List<MemberVO> list = memberSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
 

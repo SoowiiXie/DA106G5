@@ -22,4 +22,17 @@ public class Mb_followService {
 		}
 		return mbs_id;
 	}
+	
+	public void insertByString(String mb_id, String mb_id_followed) {
+		dao.insertByString(mb_id, mb_id_followed);
+	}
+	
+	public void deleteByString(String mb_id, String mb_id_followed) {
+		dao.deleteByString(mb_id, mb_id_followed);
+	}
+	
+	// 是否有追蹤
+	public boolean hasFollow(String mb_id, String mb_id_followed) {
+		return dao.hasFollow(mb_id, mb_id_followed);
+	}
 }

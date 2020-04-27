@@ -26,6 +26,7 @@ public class Mb_followDAO implements Mb_followDAO_interface{
 	private static final String DELETE = "DELETE FROM MB_FOLLOW WHERE MB_ID = ? AND MB_ID_FOLLOWED = ?";
 	private static final String GET_ALL_STMT = "SELECT * FROM MB_FOLLOW";
 	private static final String GET_STMT = "SELECT * FROM MB_FOLLOW WHERE MB_ID = ?";
+	private static final String HAS_FOLLOW = "SELECT * FROM MB_FOLLOW WHERE MB_ID = ? AND MB_ID_FOLLOWED = ?";
 	
 	
 	// 連線池
@@ -85,7 +86,7 @@ public class Mb_followDAO implements Mb_followDAO_interface{
 	
 
 	@Override
-	public void insertByString(String mb_id, String md_id_followed) {
+	public void insertByString(String mb_id, String mb_id_followed) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -96,7 +97,7 @@ public class Mb_followDAO implements Mb_followDAO_interface{
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, mb_id);
-			pstmt.setString(2, md_id_followed);
+			pstmt.setString(2, mb_id_followed);
 
 			pstmt.executeUpdate();
 
@@ -170,7 +171,7 @@ public class Mb_followDAO implements Mb_followDAO_interface{
 	
 
 	@Override
-	public void deleteByString(String mb_id, String md_id_followed) {
+	public void deleteByString(String mb_id, String mb_id_followed) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -181,7 +182,7 @@ public class Mb_followDAO implements Mb_followDAO_interface{
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, mb_id);
-			pstmt.setString(2, md_id_followed);
+			pstmt.setString(2, mb_id_followed);
 
 			pstmt.executeUpdate();
 
@@ -380,15 +381,64 @@ public class Mb_followDAO implements Mb_followDAO_interface{
 //			
 //		}
 		
-		
-		
-		
 	}
 
-	
-	
-	
-	
-	
+
+
+	@Override  // 是否有追蹤
+	public boolean hasFollow(String mb_id, String mb_id_followed) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean result = false;
+
+		try {
+
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(HAS_FOLLOW);
+			
+			pstmt.setString(1, mb_id);
+			pstmt.setString(2, mb_id_followed);
+			
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				result = true;
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return result;
+	}
+
 
 }

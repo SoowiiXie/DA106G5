@@ -1,6 +1,7 @@
 package com.mb_follow.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
+import com.mb_follow.model.Mb_followService;
 
 public class Mb_followServlet extends HttpServlet {
 	
@@ -28,30 +30,28 @@ public class Mb_followServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		String servletPath = req.getParameter("servletPath"); // 從哪裡來
 		
-		if ("follow".equals(action)) { // 顯示一筆會員資料For更新 
-
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
-			
+		if ("follow".equals(action)) { // 關注
+			PrintWriter out = res.getWriter();
 			try {
 				
 				/***************************查詢資料****************************************/
 				String mb_id = req.getParameter("mb_id");
-				MemberService memberSvc = new MemberService();
-				MemberVO memberVO = memberSvc.getOneMember(mb_id);
+				String mb_id_followed = req.getParameter("mb_id_followed");
+				
+				Mb_followService mb_followSvc = new Mb_followService();
+				if(mb_followSvc.hasFollow(mb_id, mb_id_followed)) {
+					mb_followSvc.deleteByString(mb_id, mb_id_followed);
+					out.write("deleteFollow");
+				}else {
+					mb_followSvc.insertByString(mb_id, mb_id_followed);
+					out.write("addFollow");
+				}
+				out.flush();
+				out.close();
+				return;
 								
-				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("memberVO", memberVO);         
-				String url = "/back_end/staff/update_member.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
-				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher(servletPath);
-				failureView.forward(req, res);
 			}
 		}
 	};
