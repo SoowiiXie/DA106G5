@@ -31,9 +31,7 @@
     color: blue;
     display: inline;
   }
-</style>
 
-<style>
   table {
 	width: 800px;
 	background-color: white;
@@ -133,7 +131,9 @@
 			<td>${grouperVO.grp_personmin}</td>
 			<td>${grouperVO.grp_personcount}</td>
 			<td>${grouperVO.grp_status}
-				${status[grouperVO.grp_status]}</td> 
+				${status[grouperVO.grp_status]}
+				${grp_statusInit[Integer.parseInt(3)]}
+				${grp_statusInit[grouperVO.grp_status]}</td> 
 			
 <%-- 		${status.get(Integer.parseInt(2))} --%>
 <%-- 		${status.get(Integer(2))} --%>

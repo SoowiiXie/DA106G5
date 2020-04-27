@@ -98,5 +98,14 @@ public class InitData extends HttpServlet {
     	path_status.put(1, "上架");
     	path_status.put(2, "下架");
     	/** 麥克區域結束**/
+    	
+    	/** 戍乂區域開始 **/
+    		//GROUP的EL練習
+	    	Map<Integer,String> grp_statusInit = new LinkedHashMap<Integer,String>();
+	    	grp_statusInit.put(1, "上架");
+	    	grp_statusInit.put(2, "下架");
+	    	grp_statusInit.put(3, "中架");
+	    	context.setAttribute("grp_statusInit", grp_statusInit);
+    	/** 戍乂區域結束 **/
     }
 }
