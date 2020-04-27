@@ -103,6 +103,7 @@ th, td {
 		</tr>
 <%-- 		<%@ include file="page1.file"%> --%>
 <%-- 		<c:forEach var="weather_detailVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+		<tbody id="myTbody">
 		<c:forEach var="weather_detailVO" items="${weather_detailVO_list}">
 <%-- 		<c:forEach var="weather_detailVO" items="${list}" > --%>
 			<!--// weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort,
@@ -134,6 +135,7 @@ th, td {
 <!-- 				</td> -->
 			</tr>
 		</c:forEach>
+		</tbody>
 	</table>
 <%-- 	<%@ include file="page2.file"%> --%>
 

@@ -404,6 +404,7 @@ Insert into weather (wth_status) values ('晴');
 Insert into weather (wth_status) values ('雨');
 Insert into weather (wth_status) values ('陰');
 Insert into weather (wth_status) values ('晴時多雲偶陣雨');
+Insert into weather (wth_status) values ('晴時多雲');
 Insert into weather (wth_status) values ('颱風');
 Insert into weather (wth_status) values ('多雲時陰');
 Insert into weather (wth_status) values ('多雲時晴');
@@ -491,7 +492,7 @@ DROP TABLE "DA106G5"."GROUPER";
   CREATE TABLE "DA106G5"."GRP_DETAIL" 
    (	"MB_ID" VARCHAR2(30 BYTE), 
 	"GRP_NO" VARCHAR2(30 BYTE), 
-	"GRP_REGISTER" NUMBER(1,0) DEFAULT 1
+	"GRP_REGISTER" NUMBER(1,0)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645

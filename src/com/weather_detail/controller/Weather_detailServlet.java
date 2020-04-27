@@ -483,8 +483,8 @@ public class Weather_detailServlet extends HttpServlet {
 
 				Weather_detailService weather_detailSvc = new Weather_detailService();
 				List<Weather_detailVO> weather_detailVO_list =weather_detailSvc.getByWeather_place(weather_place);
-				HttpSession session = req.getSession();
-				session.setAttribute("weather_detailVO_list", weather_detailVO_list);
+//				HttpSession session = req.getSession();
+//				session.setAttribute("weather_detailVO_list", weather_detailVO_list);
 				JSONArray jsArray = new JSONArray(weather_detailVO_list);
 			    
 				// 取出的empVO送給listOneEmp.jsp
@@ -494,6 +494,7 @@ public class Weather_detailServlet extends HttpServlet {
 				res.setContentType("text/plain");
 				res.setCharacterEncoding("UTF-8");
 				PrintWriter out = res.getWriter();
+				System.out.println(jsArray.toString());
 				out.write(jsArray.toString());
 				out.flush();
 				out.close();
