@@ -253,8 +253,10 @@
 				class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search"
 				id="searchBar">
 					<div class="input-group" id="memberSearch">
-						<input type="text" class="form-control bg-light border-0 small tagsess" name="mb_id" placeholder="查詢會員..." aria-label="Search" aria-describedby="basic-addon2" />
+						<input type="text" class="form-control bg-light border-0 small tagsess" name="mb_id"
+						 placeholder="查詢會員..." aria-label="Search" aria-describedby="basic-addon2" />
 						<input type="hidden" name="action" value="searchMb">
+						<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
 						<div class="input-group-append">
 							<button class="btn btn-primary" type="submit" name="submit_Btn">
 								<i class="fas fa-search fa-sm"></i>

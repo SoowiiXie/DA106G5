@@ -4,13 +4,8 @@
 <%@ page import="com.mb_follow.model.*"%>
 <%@ page import="java.util.*"%>
 <%
-	MemberService memberSvc = new MemberService();
-
-    MemberVO memberVO = memberSvc.getOneMember("xuan123");
-    pageContext.setAttribute("memberVO",memberVO);
-    
-    MemberVO searchMbVO = memberSvc.getOneMember("vain123");
-    pageContext.setAttribute("searchMbVO",searchMbVO);
+    MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+    MemberVO searchMbVO = (MemberVO)request.getAttribute("searchMbVO");
     
     Mb_followService mb_followService = new Mb_followService();
     boolean hasFollow = mb_followService.hasFollow(memberVO.getMb_id(),searchMbVO.getMb_id());
@@ -87,9 +82,10 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			
-			<img id="follow_img" src="${hasFollow?'images/red_heart.png':'images/black_heart.png'}">
-			<label id="follow" for="follow_img">${hasFollow?"已關注":"關注"}</label>
+			<span id="follow">
+				<img id="follow_img" src="${hasFollow?'images/red_heart.png':'images/black_heart.png'}">
+				<label id="label">${hasFollow?"已關注":"關注"}</label>
+			</span>
 		</td>
 	</tr>
 	</table>
@@ -119,10 +115,10 @@
 					
 					if(data == "addFollow"){
 						$("#follow_img").attr("src","images/red_heart.png");
-						$("#follow").text("已關注");
+						$("#label").text("已關注");
 					}else if(data == "deleteFollow"){
 						$("#follow_img").attr("src","images/black_heart.png");
-						$("#follow").text("關注");
+						$("#label").text("關注");
 					}
 				},
 				error: function(){alert("AJAX-class發生錯誤囉!")}

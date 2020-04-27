@@ -59,23 +59,28 @@ public class MemberServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 
 				/*************************** 2.開始查詢資料 *****************************************/
 				MemberService memberSvc = new MemberService();
-				MemberVO memberVO = memberSvc.getOneMember(mb_id);
+				MemberVO searchMbVO = memberSvc.getOneMember(mb_id);
+				
+				if (searchMbVO == null || (mb_id.trim()).length() == 0) {
+					errorMsgs.add("查無此帳號");
+				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
+				req.setAttribute("searchMbVO", searchMbVO); // 資料庫取出的VO物件,存入Session
+				
 				String url = "/front_end/member/listOneMember.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
@@ -83,7 +88,7 @@ public class MemberServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
 				failureView.forward(req, res);
 			}
 		}
@@ -133,12 +138,9 @@ public class MemberServlet extends HttpServlet {
 				}
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("memberVO", memberVO); // 資料庫取出的VO物件,存入Session
-				String url = req.getContextPath() + "/front_end/member/listOneMember.jsp";  // 測試
 				
-				memberVO = memberSvc.getOneMember("vain123");
-				req.setAttribute("memberVO", memberVO); // 關注測試
-				
-//				String url = req.getContextPath() + "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp";
+//				String url = req.getContextPath() + "/front_end/member/listOneMember.jsp";  // 測試
+				String url = req.getContextPath() + "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp";
 				
 				String originalJSP = (String)session.getAttribute("originalJSP");  // 
 				if(originalJSP != null) {
