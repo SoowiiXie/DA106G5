@@ -47,7 +47,7 @@ public class RecordJNDIDAO implements RecordDAO_interface {
 			pstmt.setString(4, recordVO.getMb_id());
 
 			pstmt.executeUpdate();
-			System.out.println("ok");
+//System.out.println("ok");
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());

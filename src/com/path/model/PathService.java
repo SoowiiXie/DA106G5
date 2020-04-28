@@ -9,7 +9,7 @@ public class PathService {
 	private PathDAO_interface dao;//為了框架所以使用介面多型宣告,可以做到0相依性
 
 	public PathService() {
-		dao = new PathJDBCDAO();
+		dao = new PathJNDIDAO();
 	}
 
 	public String addPath() {
