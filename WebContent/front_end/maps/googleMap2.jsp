@@ -1,4 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=BIG5" pageEncoding="BIG5"%>
+<%@ page import="java.util.*"%>
+<%@ page import="org.json.*"%>
+<%@ page import="com.location.model.*"%>
+<%
+//取出所有地標
+LocationService locationSvc = new LocationService();
+// List<LocationVO> locationList = locationSvc.getAll();
+// pageContext.setAttribute("locationList", locationList);
+// JSONArray locationJSON = locationSvc.getAllJSON();
+// pageContext.setAttribute("locationJSON", locationJSON);
+// JSONArray locationJSON = locationSvc.getAllJSON();
+// pageContext.setAttribute("locationJSON", locationJSON);
+JSONArray sportFieldJSON = locationSvc.getAllJsonByType(1);
+pageContext.setAttribute("sportFieldJSON", sportFieldJSON);
+JSONArray toiletJSON = locationSvc.getAllJsonByType(2);
+pageContext.setAttribute("toiletJSON", toiletJSON);
+JSONArray waterJSON = locationSvc.getAllJsonByType(3);
+pageContext.setAttribute("waterJSON", waterJSON);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,17 +68,17 @@ html, body {
     <div id="map" class="ml-4 mr-2"></div>
     <div id="tableOutput m-0">
     
-    				<div class="form-check form-check-inline ml-5 my-5" id="inlineCheckbox1_div">
+    				<div class="form-check form-check-inline ml-5 my-5 inlineCheckbox" id="inlineCheckbox1_div">
     					<label for="inlineCheckbox1"  class="form-check-label mr-2">補水點</label>
 					    <input id="inlineCheckbox1" class="form-check-input" data-size="lg" type="checkbox" data-toggle="toggle" data-style="mr-1" checked value=1>
 					</div></br>
     
-     				<div class="form-check form-check-inline ml-5 my-5">
+     				<div class="form-check form-check-inline ml-5 my-5 inlineCheckbox" class="inlineCheckbox" id="inlineCheckbox2_div">
     					<label for="inlineCheckbox2" class="form-check-label mr-2">運動場</label>
 					    <input id="inlineCheckbox2" class="form-check-input" data-size="lg" type="checkbox" data-toggle="toggle" data-onstyle="success" data-style="mr-1" checked value=2>
 					</div></br>
     	
-    				<div class="form-check form-check-inline ml-5 my-5">
+    				<div class="form-check form-check-inline ml-5 my-5 inlineCheckbox" class="inlineCheckbox" id="inlineCheckbox3_div">
     					<label for="inlineCheckbox3" class="form-check-label mr-2">御手洗</label>
 					    <input id="inlineCheckbox3" class="form-check-input" data-size="lg" type="checkbox" data-toggle="toggle" data-onstyle="secondary" data-style="mr-1" checked value=3>
 					</div>
@@ -85,80 +104,46 @@ html, body {
         title: 'Click to zoom'
       });
       
-      
-      map.addListener('click', function(event) {
-          console.log('lat: ' + event.latLng.lat() + ', ' +
-                  'lng: ' + event.latLng.lng());
-        });
-
-      // 擷取及時公車資訊
-      callback(null, ${locationJSON});
-    
-      map.addListener('center_changed', function() {
-	        	deleteMarkers();
-// 	        	getJSON(${locationJSON}, callback);
-	        	callback(null, ${locationJSON});
-      });
-      
-//       initGallPeters();
-//       map.mapTypes.set('gallPeters', gallPetersMapType);
-//       map.setMapTypeId('gallPeters');
-
-//       // Show the lat and lng under the mouse cursor.
-//       var coordsDiv = document.getElementById('coords');
-//       map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
-//       map.addListener('mousemove', function(event) {
-//         coordsDiv.textContent =
-//             'lat: ' + Math.round(event.latLng.lat()) + ', ' +
-//             'lng: ' + Math.round(event.latLng.lng());
+//       map.addListener('click', function(event) {
+//           console.log('lat: ' + event.latLng.lat() + ', ' +
+//                   'lng: ' + event.latLng.lng());
 //       });
       
-//       var gallPetersMapType;
-//       function initGallPeters() {
-//         var GALL_PETERS_RANGE_X = 800;
-//         var GALL_PETERS_RANGE_Y = 512;
+      var locInsertBox = $('.locInsertBox');
+      map.addListener('dblclick', function(event) {
+    	  $('#lng_input').val(event.latLng.lat());
+    	  $('#lat_input').val(event.latLng.lng());
+    	  $('.lng_td').text(event.latLng.lat());
+    	  $('.lat_td').text(event.latLng.lng());
+    	  
+    	  locInsertBox.fadeIn();
+    	  $('.overlay').fadeIn();
+      });
 
-//         // Fetch Gall-Peters tiles stored locally on our server.
-//         gallPetersMapType = new google.maps.ImageMapType({
-//           getTileUrl: function(coord, zoom) {
-//             var scale = 1 << zoom;
-
-//             // Wrap tiles horizontally.
-//             var x = ((coord.x % scale) + scale) % scale;
-
-//             // Don't wrap tiles vertically.
-//             var y = coord.y;
-//             if (y < 0 || y >= scale) return null;
-
-//             return 'https://developers.google.com/maps/documentation/' +
-//                    'javascript/examples/full/images/gall-peters_' + zoom +
-//                    '_' + x + '_' + y + '.png';
-//           },
-//           tileSize: new google.maps.Size(GALL_PETERS_RANGE_X, GALL_PETERS_RANGE_Y),
-//           minZoom: 0,
-//           maxZoom: 1,
-//           name: 'Gall-Peters'
-//         });
-
-//         // Describe the Gall-Peters projection used by these tiles.
-//         gallPetersMapType.projection = {
-//           fromLatLngToPoint: function(latLng) {
-//             var latRadians = latLng.lat() * Math.PI / 180;
-//             return new google.maps.Point(
-//                 GALL_PETERS_RANGE_X * (0.5 + latLng.lng() / 360),
-//                 GALL_PETERS_RANGE_Y * (0.5 - 0.5 * Math.sin(latRadians)));
-//           },
-//           fromPointToLatLng: function(point, noWrap) {
-//             var x = point.x / GALL_PETERS_RANGE_X;
-//             var y = Math.max(0, Math.min(1, point.y / GALL_PETERS_RANGE_Y));
-
-//             return new google.maps.LatLng(
-//                 Math.asin(1 - 2 * y) * 180 / Math.PI,
-//                 -180 + 360 * x,
-//                 noWrap);
-//           }
-//         };
-//       }
+      // 擷取及時公車資訊
+      callback(null, ${waterJSON}, ${sportFieldJSON}, ${toiletJSON});
+    
+      map.addListener('center_changed', function() {
+  		deleteMarkers();
+		var data1 = {};
+		var data2 = {};
+		var data3 = {};
+		
+		if($('#inlineCheckbox1').is(":checked")){
+			data1 = ${waterJSON};
+		}
+		if($('#inlineCheckbox2').is(":checked")){
+			data2 = ${sportFieldJSON};
+		}
+		if($('#inlineCheckbox3').is(":checked")){
+			data3 = ${toiletJSON};
+		}
+		
+		callback(null , data1, data2, data3);
+// 	        	getJSON(${locationJSON}, callback);
+// 	        	callback(null, ${sportFieldJSON});
+      });
+      
     }
         
     function getJSON(url, callback) {
@@ -176,28 +161,37 @@ html, body {
 //       xhr.send();
     }
 
-    function callback(err, data) {
+    function callback(err, data1, data2, data3) {
       if (err !== null) {
         alert('Something went wrong: ' + err);
       } else {
-		searchResult = data;
-		var position = ${locationJSON};
-        console.log(data[0]);
-        $("#place").empty();
-        var index = 1;
-        for(var i = 0; i < data.length; i++){
+// 		searchResult = data;
+// 		data = null;
+// 		var position1 = ${sportFieldJSON};
+//         console.log(data[0]);
+//         $("#place").empty();
+//         var index = 1;
+        for(var i = 0; i < data1.length; i++){
 //           var lat = data[i].lat;
-          var lat = position.lat;
+//           var lat = position1.lat;
 //           var lng = data[i].lng;
-          var lng = position.lng;
+//           var lng = position1.lng;
 //           var icon = data[i].icon
-          var icon = position.icon
-          var latLng = new google.maps.LatLng(data[i].lat, data[i].lng);
+//           var icon = position1.icon
+            var latLng = new google.maps.LatLng(data1[i].lat, data1[i].lng);
 //         	if(map.getBounds().contains(latLng)){
-        		addMarker(latLng, data[i]);
+            addMarker(latLng, data1[i]);
 //         		$("#place").append("<tr><td>"+lat+"</td><td>"+lng+"</td><td>"+icon+"</td></tr>");
 //         		index++;
 //         	}
+        }
+        for(var i = 0; i < data2.length; i++){
+	        var latLng = new google.maps.LatLng(data2[i].lat, data2[i].lng);
+	        addMarker(latLng, data2[i]);
+        }
+        for(var i = 0; i < data3.length; i++){
+	        var latLng = new google.maps.LatLng(data3[i].lat, data3[i].lng);
+	        addMarker(latLng, data3[i]);
         }
       }
     }
@@ -207,11 +201,18 @@ html, body {
       var marker = new google.maps.Marker({
         position: latLng,
         map: map,
-        icon: iconBase + result.icon
+        icon: iconBase + result.icon,
+        animation: google.maps.Animation.DROP
       });
       markers.push(marker);
       var infowindow = new google.maps.InfoWindow({
-          content: "<h2><b>地名: </b>"+result.adr+"</h2><p><h2><b>位置: </b>"+result.lng+","+result.lat+"</h2></p></div>"
+          content: "<h2>"+
+          result.adr+
+          "<input style='height: 1rem; opacity: 0.5;' class='flagBtn' type='image' name='submit_Btn' src='<%=request.getContextPath()%>/img/flag.png'>"+
+          "</h2><img src='data:image/jpg;base64,"+
+          result.pic+"' style='height:10rem;' class='rounded'><p><h2><b>經度: </b>"+
+          result.lng+"</br>緯度:&nbsp;&nbsp;&nbsp;&nbsp;"+
+          result.lat+"</h2></p></div>"
       });
       marker.addListener('click', function() {
           infowindow.open(map, marker);
@@ -234,9 +235,65 @@ html, body {
 //     $(function(){
     	
 //     });
-    console.log($('#inlineCheckbox1_div'));
-    $('#inlineCheckbox1_div').on('click', function(){
-		alert($('#inlineCheckbox1').is(":checked"))
+
+	$('#inlineCheckbox1_div').on('click', function(){
+		deleteMarkers();
+		var data1 = {};
+		var data2 = {};
+		var data3 = {};
+		
+		if(!$('#inlineCheckbox1').is(":checked")){
+			data1 = ${waterJSON};
+		}
+		if($('#inlineCheckbox2').is(":checked")){
+			data2 = ${sportFieldJSON};
+		}
+		if($('#inlineCheckbox3').is(":checked")){
+			data3 = ${toiletJSON};
+		}
+		
+		callback(null , data1, data2, data3);
+
+	});	
+
+	$('#inlineCheckbox2_div').on('click', function(){
+		deleteMarkers();
+		var data1 = {};
+		var data2 = {};
+		var data3 = {};
+		
+		if($('#inlineCheckbox1').is(":checked")){
+			data1 = ${waterJSON};
+		}
+		if(!$('#inlineCheckbox2').is(":checked")){
+			data2 = ${sportFieldJSON};
+		}
+		if($('#inlineCheckbox3').is(":checked")){
+			data3 = ${toiletJSON};
+		}
+		
+		callback(null , data1, data2, data3);
+
+	});	
+
+	$('#inlineCheckbox3_div').on('click', function(){
+		deleteMarkers();
+		var data1 = {};
+		var data2 = {};
+		var data3 = {};
+		
+		if($('#inlineCheckbox1').is(":checked")){
+			data1 = ${waterJSON};
+		}
+		if($('#inlineCheckbox2').is(":checked")){
+			data2 = ${sportFieldJSON};
+		}
+		if(!$('#inlineCheckbox3').is(":checked")){
+			data3 = ${toiletJSON};
+		}
+		
+		callback(null , data1, data2, data3);
+
 	});	
     
     window.onload = initMap;  //測試用

@@ -44,13 +44,6 @@
 		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("messageList", messageList);
 
-		//取出所有地標
-		LocationService locationSvc = new LocationService();
-		List<LocationVO> locationList = locationSvc.getAll();
-		request.setAttribute("locationList", locationList);
-		JSONArray locationJSON = locationSvc.getAllJSON();
-		request.setAttribute("locationJSON", locationJSON);
-		
 		//拿到本頁資訊設參數
 		String meOrFollow = request.getParameter("meOrFollow");
 		if (meOrFollow=="follow"){

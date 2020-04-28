@@ -43,13 +43,6 @@
 		MessageService messageSvc = new MessageService();
 		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("messageList", messageList);
-
-		//取出所有地標
-		LocationService locationSvc = new LocationService();
-		List<LocationVO> locationList = locationSvc.getAll();
-		request.setAttribute("locationList", locationList);
-		JSONArray locationJSON = locationSvc.getAllJSON();
-		request.setAttribute("locationJSON", locationJSON);
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
@@ -188,39 +181,28 @@
 									style="font-size: 1.2rem;">${memberSvcEL.getOneMember(cmtVO.mb_id).mb_name}</span>
 								<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">${cmtVO.cmt_content}</span>
 								<c:if test='${mb_id==cmtVO.mb_id}'>
-									<!-- 修改留言 -->
-									<div style="display: inline;">
-										<input style='display: none; height: 1rem; opacity: 0.5;'
-											class='flagBtn' type='image' name='submit_Btn'
-											src='<%=request.getContextPath()%>/img/pen.png'> <input
-											type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"
-											class="cmt_no"> <input type="hidden" name="action"
-											value="ajaxGetOne4Update">
-									</div>
+								<!-- 修改留言 -->
+								<div style="display: inline;">
+									<input style='display: none; height: 1rem; opacity: 0.5;' class='flagBtn' type='image' name='submit_Btn' src='<%=request.getContextPath()%>/img/pen.png'> 
+									<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no"> 
+									<input type="hidden" name="action" value="ajaxGetOne4Update">
+								</div>
 								</c:if>
 								<!-- 刪除留言 -->
 								<c:if test='${mb_id==cmtVO.mb_id}'>
-									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/cmt/cmt.do"
-										class="form-horizontal" style="display: inline;">
-										<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"
-											class="cmt_no"> <input type="hidden" name="action"
-											value="fakeDelete"> <input
-											style='display: none; height: 1rem; opacity: 0.5; float: right; margin: 1rem 0;'
-											class='garbageBtn' type='image' name='submit_Btn'
-											src='<%=request.getContextPath()%>/img/garbage.png'>
-									</FORM>
+								<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/cmt/cmt.do" class="form-horizontal" style="display: inline;">
+									<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no"> 
+									<input type="hidden" name="action" value="fakeDelete"> 
+									<input style='display: none; height: 1rem; opacity: 0.5; float: right; margin: 1rem 0;' class='garbageBtn' type='image' name='submit_Btn' src='<%=request.getContextPath()%>/img/garbage.png'>
+								</FORM>
 								</c:if>
 								<!-- 檢舉留言 -->
 								<c:if test='${mb_id!=cmtVO.mb_id}'>
-									<div style="display: inline;">
-										<input style='display: none; height: 1rem; opacity: 0.5;'
-											class='flagBtn' type='image' name='submit_Btn'
-											src='<%=request.getContextPath()%>/img/flag.png'> <input
-											type="hidden" name="cmt_no" value="${cmtVO.cmt_no}"
-											class="cmt_no"> <input type="hidden" name="action"
-											value="insert">
-									</div>
+								<div style="display: inline;">
+									<input style='display: none; height: 1rem; opacity: 0.5;' class='flagBtn' type='image' name='submit_Btn' src='<%=request.getContextPath()%>/img/flag.png'> 
+									<input type="hidden" name="cmt_no" value="${cmtVO.cmt_no}" class="cmt_no"> 
+									<input type="hidden" name="action" value="insert">
+								</div>
 								</c:if>
 							</div>
 						</c:if>
