@@ -1,6 +1,7 @@
 package com.path.model;
 
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.List;
 
 public class PathService {
@@ -20,7 +21,7 @@ public class PathService {
 		return pathVO.getPath_no();
 	}
 
-	public PathVO updatePath(String path_name, Integer path_difficulty, java.sql.Timestamp path_end, Double path_distance, String path_kml, Double path_lng, Double path_lat, String path_no) {
+	public PathVO updatePath(String path_name, Integer path_difficulty, java.sql.Timestamp path_end, Double path_distance, String path_kml, Double path_lng, Double path_lat, String path_no, String path_pic) {
 
 		PathVO pathVO = new PathVO();
 
@@ -32,7 +33,10 @@ public class PathService {
 		pathVO.setPath_lng(path_lng);
 		pathVO.setPath_lat(path_lat);
 		pathVO.setPath_no(path_no);
+		byte[] path_picByte = Base64.getMimeDecoder().decode(path_pic);
+		pathVO.setPath_pic(path_picByte);
 		dao.update(pathVO);
+		
 
 		return pathVO;
 	}
