@@ -2,6 +2,9 @@ package com.product.model;
 
 import java.util.*;
 import java.util.Map.Entry;
+
+import jdbc.util.ProductCompositeQuery.jdbcUtil_CompositeQuery_Product;
+
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -369,7 +372,6 @@ public class ProductDAO implements ProductDAO_interface {
 			pstmt = con.prepareStatement(TYPE_SEARCH);
 			pstmt.setString(1, pd_typeNo);
 			rs = pstmt.executeQuery();
-			System.out.println("搜尋的類別編號：" + pd_typeNo);
 			while (rs.next()) {
 				productVO = new ProductVO();
 				productVO.setPd_no(rs.getString("pd_no"));
@@ -424,49 +426,57 @@ public class ProductDAO implements ProductDAO_interface {
 	}
 
 	@Override
-	public List<ProductVO> getAll(Map<String, String[]> map) {
-		StringBuilder sb = new StringBuilder();
-
-		List<ProductVO> list_map = new ArrayList<ProductVO>();
+	public List<ProductVO> superGetAll(Map<String, String[]> map) {
+		List<ProductVO> list = new ArrayList<ProductVO>();
 		ProductVO productVO = null;
-
 		Connection con = null;
-		PreparedStatement pstmt_map = null;
-		ResultSet rs_map = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-		sb.append("SELECT * FROM product where ");
-		for (Entry<String, String[]> entry : map.entrySet()) {
-			sb.append("(");
-			for (int i = 0; i < entry.getValue().length; i++) {
-				if (i == 0) {
-					sb.append(entry.getKey() + " = " + entry.getValue()[i]);
-				} else {
-					sb.append(" OR " + entry.getKey() + " = " + entry.getValue()[i]);
-				}
-			}
-			sb.append(") and ");
-		}
-		sb.append(" 1=1 ");
 
 		try {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt_map = con.prepareStatement(sb.toString());
-			rs_map = pstmt_map.executeQuery();
-			while (rs_map.next()) {
+			String lowPrice = map.get("lowPrice")[0];
+			String highPrice = map.get("highPrice")[0];
+			map.remove("Submit");
+			System.out.println(lowPrice);
+			System.out.println(highPrice);
+			String finalSQL;
+			if(!lowPrice.equals("") && !highPrice.equals("")) {
+				System.out.println("有價錢,DAO");
+				finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) + 
+						"and" + " " + "pd_price between" + " " + lowPrice + " " + "and" + " " +highPrice + " "+ "order by pd_no";
+				System.out.println("●●finalSQL = " + finalSQL);
+			
+			}else {
+			
+			System.out.println("無價錢");
+			 finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map)
+					+ "order by pd_no";
+			System.out.println("●●finalSQL = " + finalSQL);
+			}
+			
+			
+			
+			pstmt = con.prepareStatement(finalSQL);
+			rs = pstmt.executeQuery();
+			System.out.println("●●finalSQL(by DAO) = "+finalSQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 				// empVO 也稱為 Domain objects
 				productVO = new ProductVO();
 				// WEATHER_TIME, WEATHER_PLACE, WTH_STATUS, WTH_HIGH, WTH_LOW, WTH_COMFORT,
 				// WTH_RAIN_CHANCE
-				productVO.setPd_no(rs_map.getString("pd_no"));
-				productVO.setPd_name(rs_map.getNString("pd_name"));
-				productVO.setPd_price(rs_map.getInt("pd_price"));
-				productVO.setPd_detail(rs_map.getString("pd_detail"));
-				productVO.setPd_status(rs_map.getInt("pd_status"));
-				productVO.setPd_typeNo(rs_map.getString("pd_typeNo"));
-
-				list_map.add(productVO); // Store the row in the list
+				productVO.setPd_no(rs.getString("pd_no"));
+				productVO.setPd_name(rs.getNString("pd_name"));
+				productVO.setPd_price(rs.getInt("pd_price"));
+				productVO.setPd_detail(rs.getString("pd_detail"));
+				productVO.setPd_status(rs.getInt("pd_status"));
+				productVO.setPd_typeNo(rs.getString("pd_typeNo"));
+				list.add(productVO); // Store the row in the list
+				System.out.println(productVO.getPd_name());
 			}
 
 			// Handle any driver errors
@@ -477,16 +487,16 @@ public class ProductDAO implements ProductDAO_interface {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
-			if (rs_map != null) {
+			if (rs != null) {
 				try {
-					rs_map.close();
+					rs.close();
 				} catch (SQLException se) {
 					se.printStackTrace(System.err);
 				}
 			}
-			if (pstmt_map != null) {
+			if (pstmt != null) {
 				try {
-					pstmt_map.close();
+					pstmt.close();
 				} catch (SQLException se) {
 					se.printStackTrace(System.err);
 				}
@@ -499,7 +509,7 @@ public class ProductDAO implements ProductDAO_interface {
 				}
 			}
 		}
-		return list_map;
+		return list;
 	}
 
 	public int updatePic(String pd_no, String pic_path) {
@@ -568,7 +578,6 @@ public class ProductDAO implements ProductDAO_interface {
 			pstmt = con.prepareStatement(LIST_ON_THE_MARKET);
 			pstmt.setInt(1, pd_status);
 			rs = pstmt.executeQuery();
-			System.out.println("搜尋的商品狀態：" + pd_status);
 			while (rs.next()) {
 				productVO = new ProductVO();
 				productVO.setPd_no(rs.getString("pd_no"));
@@ -627,7 +636,7 @@ public class ProductDAO implements ProductDAO_interface {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println("搜尋的商品狀態：" + pd_status + "商品種類:" + pd_typeNo);
+		
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
@@ -909,7 +918,7 @@ public class ProductDAO implements ProductDAO_interface {
 //			System.out.println();
 //		}
 
-		 System.out.println(dao.search_pd_pic("PDN00001"));
+		 
 		
 		
 		

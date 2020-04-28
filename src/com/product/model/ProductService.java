@@ -1,6 +1,7 @@
 package com.product.model;
 
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -79,9 +80,10 @@ public class ProductService {
 public int changeStatus(ProductVO productVO) {
 		 
 		 return dao.changeStatus(productVO);
-		 
-		 
-		 
-		 
+		  
 	 }
+public List<ProductVO> superGetAll(Map<String, String[]> map){
+	
+	 return dao.superGetAll(map);
+}
 }

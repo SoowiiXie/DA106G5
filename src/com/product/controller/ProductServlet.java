@@ -5,8 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -67,7 +69,7 @@ public class ProductServlet extends HttpServlet {
 				}
 
 				String pd_typeNo = req.getParameter("pd_typeNo").trim();
-				System.out.println(pd_typeNo);
+				
 				ProductVO productVO = new ProductVO();
 
 				/*--------------------------------------------------------------*/
@@ -321,7 +323,7 @@ public class ProductServlet extends HttpServlet {
 			return;
 		}
 		if (action.equals("changePd_status1")) {
-			System.out.println("hi");
+			
 			String pd_no = req.getParameter("pd_no");
 			String whichPage = req.getParameter("whichPage");
 			ProductVO productVO = new ProductVO();
@@ -340,7 +342,7 @@ public class ProductServlet extends HttpServlet {
 		}
 		
 		if (action.equals("changePd_status2")) {
-			System.out.println("hi");
+			
 			String pd_no = req.getParameter("pd_no");
 			String whichPage = req.getParameter("whichPage");
 			ProductVO productVO = new ProductVO();
@@ -357,6 +359,43 @@ public class ProductServlet extends HttpServlet {
 			successView.forward(req, res);
 			return;
 		}
+		
+		if(action.equals("CompositeQuery_Product")) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println("這裡是負荷查詢");
+            
+			
+			try {
+				HttpSession session = req.getSession();
+				String whichPage  = req.getParameter("whichPage");
+				System.out.println("hi"+whichPage);
+				Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
+				if (req.getParameter("whichPage") == null){
+					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());
+					session.setAttribute("map",map1);
+					map = map1;
+				} 
+				System.out.println(map);
+				/***************************2.開始複合查詢***************************************/
+				ProductService productService = new ProductService();
+				List<ProductVO> list  = productService.superGetAll(map);
+				
+				req.setAttribute("list", list);
+				String url = "/front_end/product/Pd_typeNoList.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 AllList2.jsp
+				successView.forward(req, res);
+				return;
+				
+				
+			}catch(Exception e) {
+				
+			}
+			
+			
+		}
+		
+		
 	}
 
 }

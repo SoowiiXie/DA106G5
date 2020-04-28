@@ -85,7 +85,7 @@ height:30px;
 				<tr>
 					<td>產品商品分類：</td>
 					<td><select size="1" name="pd_typeNo">
-							<c:forEach var="pd_typeVO" items="${typeList}">
+							<c:forEach var="pd_typeVO" items="${pd_typeService.all}">
 								<option value="${pd_typeVO.pd_typeNo}"
 									${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
 							</c:forEach>
@@ -109,7 +109,7 @@ height:30px;
 			</table>
 
 
-			<input type="hidden" name="action" value="superGetAll">
+			<input type="hidden" name="action" value="CompositeQuery_Product">
 		</form>
 	</div>
 	<%-- <%-- 				<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />	 --%>
