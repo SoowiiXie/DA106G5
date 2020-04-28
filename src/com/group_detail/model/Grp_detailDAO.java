@@ -468,4 +468,54 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean isGroupOver(String grp_no) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isFull(Integer grp_personmax,String grp_no) {
+		Integer count = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_PEOPLE_COUNT);
+
+			pstmt.setString(1, grp_no);
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		if (grp_personmax > count) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }
