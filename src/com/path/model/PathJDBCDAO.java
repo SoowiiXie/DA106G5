@@ -20,7 +20,7 @@ public class PathJDBCDAO implements PathDAO_interface {
 	private static final String GET_ALL_STMT = "SELECT path_no, path_name, path_difficulty, path_popular, path_start, path_end, path_distance, path_status, path_kml, path_lng, path_lat FROM path ORDER BY path_no";
 	private static final String GET_ONE_STMT = "SELECT path_no, path_name, path_difficulty, path_popular, path_start, path_end, path_distance, path_status, path_kml, path_lng, path_lat FROM path WHERE path_no = ?";
 	private static final String DELETE = "DELETE FROM path where path_no = ?";
-	private static final String UPDATE = "UPDATE path SET path_name = ?, path_difficulty = ?, path_end = ?, path_distance = ?, path_kml = ?, path_lng = ?, path_lat = ? where path_no = ?";
+	private static final String UPDATE = "UPDATE path SET path_name = ?, path_difficulty = ?, path_end = ?, path_distance = ?, path_kml = ?, path_lng = ?, path_lat = ? , path_pic = ? where path_no = ?";
 
 	@Override
 	public PathVO insert(PathVO pathVO) {
@@ -92,7 +92,8 @@ public class PathJDBCDAO implements PathDAO_interface {
 			pstmt.setString(5, pathVO.getPath_kml());
 			pstmt.setDouble(6, pathVO.getPath_lng());
 			pstmt.setDouble(7, pathVO.getPath_lat());
-			pstmt.setString(8, pathVO.getPath_no());
+			pstmt.setBytes(8, pathVO.getPath_pic());
+			pstmt.setString(9, pathVO.getPath_no());
 			pstmt.executeUpdate();
 
 			// Handle any driver errors

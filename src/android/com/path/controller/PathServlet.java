@@ -63,6 +63,9 @@ System.out.println("input: " + jsonIn);
 			PathVO pathVO = new PathVO();
 			String path_no = pathSvc.addPath();
 			req.setAttribute("path_no", path_no);
+			if(path_no != null) {
+				writeText(res,path_no);
+			}
 		}else if("getall".equals(action)) {
 			List<PathVO> pathList = new ArrayList<>();;
 			pathList = pathSvc.getAll();
@@ -74,18 +77,15 @@ System.out.println("input: " + jsonIn);
 		}else if("getOnePath".equals(action)) {
 			
 		}else if("update".equals(action)) {
-			String path_name = jsonObject.get("path_name").getAsString();
+			String path_name = jsonObject.get("path_name").getAsString().trim().equals("") ? "" : jsonObject.get("path_name").getAsString();
 //System.out.println(path_name);			
 			Integer path_difficulty = jsonObject.get("path_difficulty").getAsInt();
 			
 			String path_end = jsonObject.get("path_end").getAsString();
+//System.out.println(path_end);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			java.util.Date date = new java.util.Date();
-			try {
-				date = sdf.parse(path_end);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+//System.out.println(date);
 			java.sql.Timestamp path_end_db = new java.sql.Timestamp(date.getTime());
 //System.out.println(path_end_db);			
 			Double path_distance = jsonObject.get("path_distance").getAsDouble();
@@ -96,15 +96,17 @@ System.out.println("input: " + jsonIn);
 //System.out.println(path_lat);		
 			Double path_lng = jsonObject.get("path_lng").getAsDouble();
 //System.out.println(path_lng);			
-			String rcd_content = jsonObject.get("rcd_content").getAsString();
+			String rcd_content = jsonObject.get("rcd_content").getAsString().trim().equals("") ? "" : jsonObject.get("rcd_content").getAsString();
 //System.out.println(rcd_content);			
 			String mb_id = jsonObject.get("mb_id").getAsString();
 //System.out.println(mb_id);			
-			String path_no = req.getParameter("path_no");
+			String path_no = jsonObject.get("path_no").getAsString();
+			
+			String path_pic = jsonObject.get("path_pic").getAsString();
 			
 			PathVO pathVO = new PathVO();
-			pathVO = pathSvc.updatePath(path_name, path_difficulty, path_end_db, path_distance, path_kml, path_lat, path_lng, path_no);
-
+			pathVO = pathSvc.updatePath(path_name, path_difficulty, path_end_db, path_distance, path_kml, path_lat, path_lng, path_no, path_pic);
+			
 			java.sql.Date rcd_uploadtime = new java.sql.Date(date.getTime()); 
 //System.out.println(rcd_uploadtime);			
 				
