@@ -14,7 +14,7 @@ public class CouponDAO implements CouponDAO_interface {
 	private static final String GET_ALL_STMT = 
 		"SELECT cp_no, cp_name, cp_price, cp_detail , cp_time FROM coupon order by cp_no";
 	private static final String GET_ONE_STMT = 
-		"SELECT cp_no,cp_name,cp_price FROM coupon where cp_no = ?";
+		"SELECT * FROM coupon where cp_no = ?";
 	private static final String DELETE = 
 		"DELETE FROM coupon where cp_no = ?";
 	private static final String UPDATE = 
@@ -200,7 +200,7 @@ public class CouponDAO implements CouponDAO_interface {
 				couponVO.setCp_no(rs.getString("cp_no"));
 				couponVO.setCp_name(rs.getString("cp_name"));
 				couponVO.setCp_price(rs.getInt("cp_price"));
-				
+				couponVO.setCp_detail(rs.getString("cp_detail"));
 			}
 
 			// Handle any driver errors

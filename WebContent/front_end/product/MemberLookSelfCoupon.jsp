@@ -52,8 +52,8 @@
 <c:forEach var="cp_getVO" items="${list}">
 <tr bgcolor=#C4E1FF>
 <td align="center" >${couponService.searchCoupon(cp_getVO.cp_no).cp_name}</td>
-<td align="center" ></td>
-<td align="center" ></td>
+<td align="center" >${cp_getVO.cp_javaGetTime}</td>
+<td align="center" >${couponService.searchCoupon(cp_getVO.cp_no).cp_detail}</td>
 </tr>
 </c:forEach>
 

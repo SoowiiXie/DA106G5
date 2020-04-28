@@ -17,7 +17,7 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 	private static final String SEARCH_A_MEMBER_ALL_COUPON = "select cp_no, cp_status from cp_get where mb_id = ?";
 
 	// 列出某會員處於該狀態的優惠券
-	private static final String LIST_A_MEMBER_CP_GET_BY_STATUS = "select cp_no, cp_status from cp_get where mb_id = ? and cp_status = ?";
+	private static final String LIST_A_MEMBER_CP_GET_BY_STATUS = "select * from cp_get where mb_id = ? and cp_status = ?";
 
 	// 刪除會員優惠卷使用狀態，有刪除所有優惠卷問題 目前用不到
 	// private static final String DELETE = "DELETE FROM cp_get where mb_id = ?";
@@ -189,7 +189,15 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 				cp_getVO = new Cp_getVO();
 				cp_getVO.setCp_no(rs.getString("cp_no"));
 				cp_getVO.setCp_status(rs.getInt("cp_status"));
-				list.add(cp_getVO);
+				cp_getVO.setCp_getTime(rs.getTimestamp("cp_getTime"));
+				Timestamp sqlTime = cp_getVO.getCp_getTime();
+				
+				System.out.println(sqlTime);
+				
+				String javaTime = sqlTime.toString();  //把用toString 把sqlTime改寫成字串
+				cp_getVO.setCp_javaGetTime(javaTime.substring(0, 16));
+				list.add(cp_getVO); // Store the row in the vector
+				
 			}
 
 		} catch (ClassNotFoundException e) {
@@ -235,11 +243,11 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 		Cp_getDAO dao = new Cp_getDAO();
 
 		// 新增持有優惠卷，某會員得到該優惠卷。
-		Cp_getVO cp_getVO1 = new Cp_getVO();
-		cp_getVO1.setMb_id("michael123");
-		cp_getVO1.setCp_no("CPN00004");
-		int updateCount_insert = dao.aMemberGetCoupon(cp_getVO1);
-		System.out.println("會員" + cp_getVO1.getMb_id() + "新增" + updateCount_insert + "種優惠券");
+//		Cp_getVO cp_getVO1 = new Cp_getVO();
+//		cp_getVO1.setMb_id("michael123");
+//		cp_getVO1.setCp_no("CPN00006");
+//		int updateCount_insert = dao.aMemberGetCoupon(cp_getVO1);
+//		System.out.println("會員" + cp_getVO1.getMb_id() + "新增" + updateCount_insert + "種優惠券");
 
 //		// 會員使用優惠卷，更改優惠卷狀態
 //		Cp_getVO cp_getVO2 = new Cp_getVO();
@@ -253,23 +261,23 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 //		}
 
 		// 查詢開會員某狀態的優惠券，例如列出"可使用狀態"的優惠卷
-//		Cp_getVO cp_getVO = new Cp_getVO();
-//		cp_getVO.setMb_id("weijhih123");
-//		cp_getVO.setCp_status(1);
-//		List<Cp_getVO> list = dao.listAmemberCpGetStatus(cp_getVO);
-//		System.out.println("會員：" + cp_getVO.getMb_id());
-//
-//		if (cp_getVO.getCp_status() == 1) {
-//			for (Cp_getVO aCp_getVO : list) {
-//				System.out.println("可使用的優惠券編號:" + aCp_getVO.getCp_no());
-//
-//			}
-//		} else if (cp_getVO.getCp_status() == 2) {
-//			for (Cp_getVO aCp_getVO : list) {
-//				System.out.println("已使用的優惠券編號:" + aCp_getVO.getCp_no());
-//
-//			}
-//		}
+		Cp_getVO cp_getVO = new Cp_getVO();
+		cp_getVO.setMb_id("michael123");
+		cp_getVO.setCp_status(1);
+		List<Cp_getVO> list = dao.listAmemberCpGetStatus(cp_getVO);
+		System.out.println("會員：" + cp_getVO.getMb_id());
+
+		if (cp_getVO.getCp_status() == 1) {
+			for (Cp_getVO aCp_getVO : list) {
+				System.out.println("可使用的優惠券編號:" + aCp_getVO.getCp_no());
+				System.out.println("可使用的優惠券名稱:" + aCp_getVO.getCp_javaGetTime());
+			}
+		} else if (cp_getVO.getCp_status() == 2) {
+			for (Cp_getVO aCp_getVO : list) {
+				System.out.println("已使用的優惠券編號:" + aCp_getVO.getCp_no());
+
+			}
+		}
 
 		// 查詢該會員所有的優惠卷
 //		List<Cp_getVO> list = dao.searchMemberGetCoupon("weijhih123");

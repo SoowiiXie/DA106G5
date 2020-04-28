@@ -28,7 +28,7 @@ background-color:#3960D0;
 margin-left:100px;
 height:100px;
 width:200px; 
-background-color:#FDFFFF;
+background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
@@ -199,7 +199,7 @@ clear:both;
   <div id="page" >
     <div id="first">
      <div class="logo" align="center">
-      <img src="<%=request.getContextPath()%>/img/ProductLogo.png"></div>
+      <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
         <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:30px;border-radius:5px;">
