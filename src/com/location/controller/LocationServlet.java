@@ -260,13 +260,13 @@ public class LocationServlet extends HttpServlet {
 //					errorMsgs.add("請輸入日期!");
 //				}
 
-				Integer loc_status = null;
-				try {
-					loc_status = new Integer(req.getParameter("loc_status").trim());
-				} catch (NumberFormatException e) {
-					loc_status = 1;
-					errorMsgs.add("地點狀態請填數字.");
-				}
+//				Integer loc_status = null;
+//				try {
+//					loc_status = new Integer(req.getParameter("loc_status").trim());
+//				} catch (NumberFormatException e) {
+//					loc_status = 1;
+//					errorMsgs.add("地點狀態請填數字.");
+//				}
 
 				String loc_address = req.getParameter("loc_address").trim();
 				if (loc_address == null || loc_address.trim().length() == 0) {
@@ -278,7 +278,7 @@ public class LocationServlet extends HttpServlet {
 				locationVO.setLoc_typeno(loc_typeno);
 				locationVO.setLongitude(longitude);
 				locationVO.setLatitude(latitude);
-				locationVO.setLoc_status(loc_status);
+//				locationVO.setLoc_status(loc_status);
 				locationVO.setLoc_address(loc_address);
 				byte[] loc_pic = null;
 //				loc_pic = req.getParameter("loc_pic").getBytes();
@@ -309,24 +309,24 @@ public class LocationServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("locationVO", locationVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/location/addLocation.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=maps/googleMap2.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
 				/*************************** 2.開始新增資料 ***************************************/
 				LocationService locationSvc = new LocationService();
-				locationVO = locationSvc.addLocation(loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic);
+				locationVO = locationSvc.addLocation(loc_typeno, longitude, latitude, loc_address, loc_pic);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/front_end/location/listAllLocation.jsp";
+				String url = "/front_end/index.jsp?pageRun=maps/googleMap2.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/location/addLocation.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=maps/googleMap2.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -14,8 +14,7 @@ public class LocationService {
 		dao = new LocationDAO();
 	}
 
-	public LocationVO addLocation(String loc_typeno, String longitude, String latitude, Integer loc_status,
-			String loc_address, byte[] loc_pic) {
+	public LocationVO addLocation(String loc_typeno, String longitude, String latitude,	String loc_address, byte[] loc_pic) {
 
 		// 增 loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic
 		LocationVO locationVO_insert = new LocationVO();
@@ -23,7 +22,7 @@ public class LocationService {
 		locationVO_insert.setLoc_typeno(loc_typeno);
 		locationVO_insert.setLongitude(longitude);
 		locationVO_insert.setLatitude(latitude);
-		locationVO_insert.setLoc_status(loc_status);// 有給default
+//		locationVO_insert.setLoc_status(loc_status);// 有給default
 		locationVO_insert.setLoc_address(loc_address);
 //		InputStream in;
 //				FileInputStream in;
@@ -92,6 +91,10 @@ public class LocationService {
 	 
 	public JSONArray getAllJSON() {
 		return new JSONArray(dao.getAllJSON());
+	}
+	
+	public JSONArray getAllJsonByType(Integer loc_typeno) {
+		return new JSONArray(dao.getAllJsonByType(loc_typeno));
 	}
 	
 	public List<LocationVO> getByLoc_typeno(String[] loc_typeno, String orderBy) {

@@ -22,7 +22,7 @@ public class LocationDAO implements Location_interface {
 //	String userid = "DA106G5";
 //	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "INSERT INTO Location (loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic) VALUES ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),?,?,?,?,?,?)";
+	private static final String INSERT_STMT = "INSERT INTO Location (loc_no, loc_typeno, longitude, latitude, loc_address, loc_pic) VALUES ('loc'||LPAD(to_char(loc_no_seq.NEXTVAL), 5, '0'),?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE Location set loc_typeno=?, longitude=?, latitude=?, loc_status=?, loc_address=?, loc_pic=? where loc_no = ?";
 	private static final String DELETE = "DELETE from Location where loc_no = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM Location where loc_no = ?";
@@ -57,9 +57,8 @@ public class LocationDAO implements Location_interface {
 			pstmt.setString(1, locationVO.getLoc_typeno());
 			pstmt.setString(2, locationVO.getLongitude());
 			pstmt.setString(3, locationVO.getLatitude());
-			pstmt.setInt(4, locationVO.getLoc_status());
-			pstmt.setString(5, locationVO.getLoc_address());
-			pstmt.setBytes(6, locationVO.getLoc_pic());
+			pstmt.setString(4, locationVO.getLoc_address());
+			pstmt.setBytes(5, locationVO.getLoc_pic());
 
 			pstmt.executeUpdate();
 			// 取得對應的自增主鍵值
@@ -392,9 +391,9 @@ public class LocationDAO implements Location_interface {
 						if (rs.getInt("loc_typeno")==1) {
 							icon="rsz_location-icon-green.png";
 						}else if(rs.getInt("loc_typeno")==2) {
-							icon="rsz_location-icon-blue.png";
-						}else {
 							icon="rsz_location-icon-grey.png";
+						}else {
+							icon="rsz_location-icon-blue.png";
 						}
 						locationJsonVO.setIcon(icon);
 						locationJsonVO.setAdr(rs.getString("loc_address"));
