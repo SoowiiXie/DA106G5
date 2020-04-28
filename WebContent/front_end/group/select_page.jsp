@@ -4,6 +4,8 @@
 <%@ page import="com.grouper.model.*"%>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="webFront/show.css">
+  <style type="text/css">
 <title>IBM Group: Home</title>
 
 <%
@@ -11,34 +13,38 @@
 %>
 
 <style>
-  table#table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-    border: 3px ridge Gray;
-    height: 80px;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
 
+		#service{
+		width: 60px;
+		height: 60px;
+		border-radius: 30px;
+		border: 2px #fff solid;
+		background-color: #4E73DF;
+		line-height: 60px;
+		font-size: 14px;
+		color: #fff;
+		text-align: center;
+
+		position: fixed;
+		top:80%;
+		left:85%;
+
+		margin: 0px;
+		}
+
+    	#fieldset,input{
+            font-family:microsoft jhengHei;
+        }
+	
+	</style>
 </head>
 <body bgcolor='white'>
 
 <table id="table-1">
-   <tr><td><h3>IBM Group: Home</h3><h4>( MVC )</h4></td></tr>
+   <tr><td><h3>DA106G5</h3><h4>GROUP</h4></td></tr>
 </table>
 
-<p>This is the Home page for IBM Group: Home</p>
+
 
 <h3>資料查詢:</h3>
 	
@@ -81,11 +87,41 @@
 <!--   </li> -->
 </ul>
 
-<%-- 萬用複合查詢-以下欄位-可隨意增減 --%>
+
+
+<h3>揪團管理</h3>
+
+<ul>
+  <li><a href='addGroup.jsp'>成立揪團</a></li>
+</ul>
+</body>
+<header>
+		<h1>瀏覽揪團</h1>
+		<small></small>
+	</header>
+	<nav>
+		<a href="">個人頁面</a>
+		<a href="">準備出發</a>
+		<a href="">購物商城</a>
+		<a href="">運動直播</a>
+	</nav>
+	<video autoplay loop controls muted poster="webFront/v1.jpg">
+		<source src="webFront/run.mp4" type="video/mp4">
+		<source src="webFront/run.ogg" type="video/ogg">
+		<source src="webFront/run.webm" type="video/webm">
+	</video>
+<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
+<div id="right">
+		<img src="webFront/c1.jpg" alt="">
+		<img src="webFront/c4.jpg" alt="">
+		<img src="webFront/c3.jpg" alt="">
+<fieldset>
+		<legend>揪團</legend>
+			<%-- 萬用複合查詢-以下欄位-可隨意增減 --%>
 <ul>  
   <li>   
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" name="form1">
-        <b><font color=blue>萬用複合查詢:</font></b> <br>
+        <b><font color=blue>依條件查詢</font></b> <br>
         <b>輸入揪團編號:</b>
         <input type="text" name="grp_no" value="grp00001"><br>
            
@@ -103,14 +139,11 @@
        </select><br>
            
 <!--         <b>揪團報名開始時間:</b> -->
-<!-- 	    <input name="grp_applystart" id="a_date1" type="text"><br> -->
-	    
+<!-- 	    <input name="grp_applystart" id="a_date1" type="text"><br> -->	    
 <!-- 	    <b>揪團報名結束時間:</b> -->
-<!-- 	    <input name="grp_applyend" id="a_date2" type="text"><br> -->
-	    
+<!-- 	    <input name="grp_applyend" id="a_date2" type="text"><br> -->	    
 <!-- 	    <b>揪團開始時間:</b> -->
-<!-- 	    <input name="grp_start" id="s_date1" type="text"><br> -->
-	    
+<!-- 	    <input name="grp_start" id="s_date1" type="text"><br> -->	    
 <!-- 	    <b>揪團結束時間:</b> -->
 <!-- 	    <input name="grp_end" id="s_date2" type="text"><br> -->
 	    
@@ -118,11 +151,10 @@
         <input type="text" name="grp_name"><br>
        
         <b>輸入揪團內容:</b>
-        <input type="text" name="grp_content"><br>
+        <input type="text" name="grp_content" ><br>
 	   
 <!-- 	    <b>輸入揪團人數上限:</b> -->
-<!--         <input type="text" name="grp_personmax"><br> -->
-           
+<!--         <input type="text" name="grp_personmax"><br> -->          
 <!--         <b>輸入揪團人數下限:</b> -->
 <!--         <input type="text" name="grp_personmin"><br> -->
        
@@ -136,25 +168,42 @@
 <!-- 		<td><INPUT TYPE="checkbox" NAME="grp_status" VALUE="4">成功</td><br> -->
        
         <b>揪團關注人數:</b>
-        <input type="text" name="grp_follow"><br>
-                
+        <input type="text" name="grp_follow"><br>                
         <input type="submit" value="送出">
         <input type="hidden" name="action" value="listGrouper_ByCompositeQuery">
      </FORM>
   </li>
 </ul>
 
-<h3>揪團管理</h3>
+			<div id="service">線上客服</div>
+</fieldset>
+</div>
+<footer>
+RUNNABLE &copy;Copyright 2020 by Your LOGO - NYKD54@gmail.com
+</footer>			
+</html>
 
-<ul>
-  <li><a href='addGroup.jsp'>成立</a>揪團</li>
-</ul>
-<!-- <ul> -->
-<!--   <li><a href='goinGroup.jsp'>加入</a>揪團</li> -->
-<!-- </ul> -->
-</body>
 
-<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <% 
   java.sql.Timestamp grp_applystart = null;
@@ -260,4 +309,3 @@
 <!-- //         }); -->
          
 <!-- <!-- </script> --> 
-</html>
