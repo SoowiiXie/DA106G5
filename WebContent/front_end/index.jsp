@@ -464,7 +464,7 @@
 	<div class="overlay"></div>
 	
 	<!-- 天氣的燈箱 -->
-	<div id="fblightbox" class="weatherBox" style="width:40rem; font-size:2rem;">
+	<div id="fblightbox" class="weatherBox mb-5" style="width:40rem; font-size:2rem;">
 	  <div class="fblightbox-wrap">
 <!-- 	    <div class="fblightbox-header"> -->
 <!-- 	      	這是天氣資訊 -->
@@ -595,7 +595,7 @@
 			 
 			 //天氣的燈箱
 			 var weatherBox = $('.weatherBox');
-			 weatherBox.css({'margin-left':'-' + (weatherBox.width()/2) + 'px' , 'margin-top' : '-' + (weatherBox.height()/2)+'px'});
+			 weatherBox.css({'margin-left':'-' + (weatherBox.width()/2) + 'px' , 'margin-top' : '-' + (weatherBox.height()/2)*7+'px'});
 			 $('.wth_loc_btn').click(function(){
 				 $.ajax({
 					 type: "GET",

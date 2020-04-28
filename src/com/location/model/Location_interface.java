@@ -14,6 +14,8 @@ public interface Location_interface {
 	public List<LocationVO> getAll();
 	
 	public List<LocationJsonVO> getAllJSON();
+	
+	public List<LocationJsonVO> getAllJsonByType(Integer loc_typeno);
 
 	// 查詢某地點種類的地點(一對多)(回傳 Set)
 	public Set<LocationVO> getLocationByLoc_typeno(String loc_typeno);
