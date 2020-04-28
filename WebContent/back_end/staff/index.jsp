@@ -47,7 +47,7 @@
 		margin: 3% 7.5%;
 	}
 	
-	#left_bar div,#left_bar div botton{
+	#left_bar div{
 		text-align: center;
 		font-size: 3vh;
 		line-height:6vh;
@@ -128,19 +128,22 @@
 <body>
 	<div id="wrap">
 	    <div id="left_bar">
-		<form METHOD="POST" action="staff.do" id="form1">
 	    	<img id="logo" src="images/LogoText.png">
-	    	<div onclick="location.href='update_self.jsp';">個人資料管理</div>
 	    	
+	    	<div onclick="location.href='update_self.jsp';">個人資料管理</div>
 			<%-- 權限，用button是為了讓value可以使用 --%>
 			<c:forEach var="map" items="${abilityMap}">
-<%-- 			<div onclick="javascript:this.parentNode.submit();">${map.value}</div> --%>
-				<div><button type="submit" form="form1" name="management" value="${map.key}">${map.value}</button></div>	
+			<form METHOD="POST" action="staff.do" id="form1">
+				<div onclick="javascript:this.parentNode.submit();">${map.value}</div>
+<%-- 				<button type="submit" form="form1" name="management" value="${map.key}">${map.value}</button> --%>
+				<input type="hidden" name="management" value="${map.key}">
+				<input type="hidden" name="action" value="select_management">
+				<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">	
+			</form>	
 			</c:forEach>
 			
-			<input type="hidden" name="action" value="select_management">
-			<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
-		</form>	
+			
+		
 				
 	    	
 	    </div>
