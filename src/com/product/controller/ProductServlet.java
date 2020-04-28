@@ -69,7 +69,7 @@ public class ProductServlet extends HttpServlet {
 				}
 
 				String pd_typeNo = req.getParameter("pd_typeNo").trim();
-				
+
 				ProductVO productVO = new ProductVO();
 
 				/*--------------------------------------------------------------*/
@@ -323,7 +323,7 @@ public class ProductServlet extends HttpServlet {
 			return;
 		}
 		if (action.equals("changePd_status1")) {
-			
+
 			String pd_no = req.getParameter("pd_no");
 			String whichPage = req.getParameter("whichPage");
 			ProductVO productVO = new ProductVO();
@@ -333,16 +333,16 @@ public class ProductServlet extends HttpServlet {
 
 			ProductService productService = new ProductService();
 			productService.changeStatus(productVO);
-            
+
 			req.setAttribute("whichPage", whichPage);
 			String url = "/back_end/product/AllList2.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 			successView.forward(req, res);
 			return;
 		}
-		
+
 		if (action.equals("changePd_status2")) {
-			
+
 			String pd_no = req.getParameter("pd_no");
 			String whichPage = req.getParameter("whichPage");
 			ProductVO productVO = new ProductVO();
@@ -352,50 +352,60 @@ public class ProductServlet extends HttpServlet {
 
 			ProductService productService = new ProductService();
 			productService.changeStatus(productVO);
-            
+
 			req.setAttribute("whichPage", whichPage);
 			String url = "/back_end/product/AllList2.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 AllList2.jsp
 			successView.forward(req, res);
 			return;
 		}
-		
-		if(action.equals("CompositeQuery_Product")) {
+
+		if (action.equals("CompositeQuery_Product")) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			System.out.println("這裡是負荷查詢");
-            
-			
+
 			try {
 				HttpSession session = req.getSession();
-				String whichPage  = req.getParameter("whichPage");
-				System.out.println("hi"+whichPage);
-				Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
-				if (req.getParameter("whichPage") == null){
+				Map<String, String[]> map = (Map<String, String[]>) session.getAttribute("map");
+				if (req.getParameter("whichPage") == null) {
 					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());
-					session.setAttribute("map",map1);
+					session.setAttribute("map", map1);
 					map = map1;
-				} 
+				}
 				System.out.println(map);
-				/***************************2.開始複合查詢***************************************/
+
+				if ("".contentEquals(map.get("lowPrice")[0]) && !"".contentEquals(map.get("highPrice")[0])) {
+					errorMsgs.add("最低價格請勿空白");
+				}
+
+				if (!"".contentEquals(map.get("lowPrice")[0]) && "".contentEquals(map.get("highPrice")[0])) {
+					errorMsgs.add("最高價格請勿空白");
+				}
+
+				if (!errorMsgs.isEmpty()) {
+
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/Pd_typeNoList.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				/*************************** 2.開始複合查詢 ***************************************/
 				ProductService productService = new ProductService();
-				List<ProductVO> list  = productService.superGetAll(map);
-				
+				List<ProductVO> list = productService.superGetAll(map);
+
 				req.setAttribute("list", list);
 				String url = "/front_end/product/Pd_typeNoList.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 AllList2.jsp
 				successView.forward(req, res);
 				return;
-				
-				
-			}catch(Exception e) {
-				
+
+			} catch (Exception e) {
+				errorMsgs.add("搜尋資料失敗:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/Pd_typeNoList.jsp");
+				failureView.forward(req, res);
 			}
-			
-			
+
 		}
-		
-		
+
 	}
 
 }
