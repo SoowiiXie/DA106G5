@@ -122,9 +122,7 @@
 		margin-left: 15vw;
 		margin-top: 13vh;
 	}
-	form{
-		margin-block-end: 0em;
-	}
+	
 </style>
 </head>
 <body>
