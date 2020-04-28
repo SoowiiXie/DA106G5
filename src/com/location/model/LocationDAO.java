@@ -366,6 +366,73 @@ public class LocationDAO implements Location_interface {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<LocationJsonVO> getAllJsonByType(Integer loc_typeno) {
+		List<LocationJsonVO> list = new ArrayList<LocationJsonVO>();
+		LocationJsonVO locationJsonVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String icon = null;
+		try {
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				if(rs.getInt("loc_status")==1) {
+					if(rs.getInt("loc_typeno")==loc_typeno) {
+						locationJsonVO = new LocationJsonVO();
+						locationJsonVO.setLat(Double.parseDouble(rs.getString("latitude")));
+						locationJsonVO.setLng(Double.parseDouble(rs.getString("longitude")));
+						if (rs.getInt("loc_typeno")==1) {
+							icon="rsz_location-icon-green.png";
+						}else if(rs.getInt("loc_typeno")==2) {
+							icon="rsz_location-icon-blue.png";
+						}else {
+							icon="rsz_location-icon-grey.png";
+						}
+						locationJsonVO.setIcon(icon);
+						locationJsonVO.setAdr(rs.getString("loc_address"));
+						locationJsonVO.setPic(Base64.getEncoder().encodeToString(rs.getBytes("loc_pic")));
+						list.add(locationJsonVO); // Store the row in the list
+					}
+				}
+			}
+			
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 
 	@Override
 	public Set<LocationVO> getLocationByLoc_typeno(String loc_typeno) {

@@ -9,6 +9,7 @@ public class LocationJsonVO implements java.io.Serializable {
 	private Double lng;
 	private String icon;
 	private String adr;
+	private String pic;
 	
 	public Double getLat() {
 		return lat;
@@ -33,6 +34,12 @@ public class LocationJsonVO implements java.io.Serializable {
 	}
 	public void setAdr(String adr) {
 		this.adr = adr;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 	
 }
