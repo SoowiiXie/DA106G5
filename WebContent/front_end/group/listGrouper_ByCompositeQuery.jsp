@@ -8,7 +8,8 @@
 
 <jsp:useBean id="listGrouper_ByCompositeQuery" scope="request" type="java.util.List<GrouperVO>" /> <!-- 於EL此行可省略 -->
 <jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" /> 
-
+<jsp:useBean id="groupdetailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
+<jsp:useBean id="groupfollowSvc" scope="page" class="com.group_follow.model.Group_followService" />
 
 <html>
 <head><title>複合查詢 - listGrouper_ByCompositeQuery.jsp</title>
@@ -32,10 +33,11 @@
 
 <style>
   table {
-	width: 800px;
+	width: 1200px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	font-family:microsoft jhengHei;
   }
   table, th, td {
     border: 1px solid #CCCCFF;
@@ -78,7 +80,9 @@
 		<th>關注揪團數</th>
 		
 		<th>修改</th>
-		<th>刪除</th>
+<!-- 		<th>刪除</th> -->
+		<th>加入</th>
+
 	</tr>
 	<%@ include file="pages/page1_ByCompositeQuery.file" %>
 	<c:forEach var="grouperVO" items="${listGrouper_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -88,7 +92,8 @@
 <%-- 			<td>${grouperVO.loc_no}</td> --%>
 			<td><c:forEach var="LocationVO" items="${locationSvc.all}">
                     <c:if test="${grouperVO.loc_no==LocationVO.loc_no}">
-	                    ${LocationVO.loc_no}<br>【${LocationVO.loc_address}】
+<%-- 	                    ${LocationVO.loc_no}<br> --%>
+	                    ${LocationVO.loc_address}
                     </c:if>
                 </c:forEach>
 			</td>									
@@ -100,17 +105,19 @@
 			<td>${grouperVO.grp_content}</td>
 			<td>${grouperVO.grp_personmax}</td>
 			<td>${grouperVO.grp_personmin}</td>
-			<td>${grouperVO.grp_personcount}</td>
+<%-- 			<td>${grouperVO.grp_personcount}</td> --%>
+			<td>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td>
 			<%
 			request.setAttribute("grp_status", new String[]{"","未滿","已滿","取消","成功"});
 			%>
 			
 						
 			<td>
-			${grouperVO.grp_status}
+<%-- 			${grouperVO.grp_status} --%>
 			${grp_status[grouperVO.grp_status]}
 			</td>
-			<td>${grouperVO.grp_follow}</td>	
+<%-- 			<td>${grouperVO.grp_follow}</td>	 --%>
+			<td>${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改"> 
@@ -119,14 +126,14 @@
 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 			     <input type="hidden" name="action"	    value="getOne_For_Update"></FORM>
 			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="grp_no"      value="${grouperVO.grp_no}">
-			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
-			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
-			     <input type="hidden" name="action"     value="delete"></FORM>
-			</td>
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" style="margin-bottom: 0px;"> --%>
+<!-- 			     <input type="submit" value="刪除"> -->
+<%-- 			     <input type="hidden" name="grp_no"      value="${grouperVO.grp_no}"> --%>
+<%-- 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
+<%-- 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller--> --%>
+<!-- 			     <input type="hidden" name="action"     value="delete"></FORM> -->
+<!-- 			</td> -->
 			<td>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do" style="margin-bottom: 0px;">
 				<input type="submit" value="加入揪團">

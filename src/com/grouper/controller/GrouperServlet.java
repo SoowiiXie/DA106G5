@@ -369,7 +369,7 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/group/addGroup.jsp");
+						.getRequestDispatcher("/front_end/group/listGrouper_ByCompositeQuery.jsp");
 				failureView.forward(req, res);
 			}
 		}

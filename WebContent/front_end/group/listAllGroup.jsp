@@ -11,7 +11,8 @@
     pageContext.setAttribute("list",list);
 %>
 <jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
-
+<jsp:useBean id="groupdetailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
+<jsp:useBean id="groupfollowSvc" scope="page" class="com.group_follow.model.Group_followService" />
 <html>
 <head>
 <title>所有員工資料 - listAllGroup.jsp</title>
@@ -131,8 +132,11 @@
 			<td>${grouperVO.grp_content}</td>
 			<td>${grouperVO.grp_personmax}</td>
 			<td>${grouperVO.grp_personmin}</td>
-			<td>${grouperVO.grp_personcount}</td>
-			<td>${grouperVO.grp_status}
+<%-- 			<td>${grouperVO.grp_personcount}</td> --%>
+			<!-- 從揪團詳細表格算出揪團人數 -->
+			<td>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td>
+			<td>
+<%-- 				${grouperVO.grp_status} --%>
 				${status[grouperVO.grp_status]}</td> 
 			
 <%-- 		${status.get(Integer.parseInt(2))} --%>
@@ -142,8 +146,8 @@
 			<%--${status.get(String.valueOf(Integer.parseInt(2)))} --%>
 			<%--<%= (String)(grouperVO.getGrp_status()) %> --%>
 			<%--${status.get(grouperVO.grp_status)} --%>
- 			 
-			<td>${grouperVO.grp_follow}</td>
+ 			<!-- 從揪團關注表格算出關注揪團人數 --> 
+			<td>${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">

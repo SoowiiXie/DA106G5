@@ -41,11 +41,35 @@
 <body bgcolor='white'>
 
 <table id="table-1">
-   <tr><td><h3>DA106G5</h3><h4>GROUP</h4></td></tr>
+
 </table>
+<header>
+		<h1>rUnnable</h1>
+		<small>全球最大的約跑平台上線啦</small>
+</header>
 
 
 
+	<nav>
+		<a href="">個人頁面</a>
+		<a href="">準備出發</a>
+		<a href="">購物商城</a>
+		<a href="">運動直播</a>
+	</nav>
+	<video autoplay loop controls muted poster="webFront/v1.jpg">
+		<source src="webFront/run.mp4" type="video/mp4">
+		<source src="webFront/run.ogg" type="video/ogg">
+		<source src="webFront/run.webm" type="video/webm">
+	</video>
+<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
+<div id="right">
+		<img src="webFront/c1.jpg" alt="">
+		<img src="webFront/c4.jpg" alt="">
+		<img src="webFront/c3.jpg" alt="">
+<fieldset>
+		<legend>揪團</legend>
+			<%-- 萬用複合查詢-以下欄位-可隨意增減 --%>
+			
 <h3>資料查詢:</h3>
 	
 <%-- 錯誤表列 --%>
@@ -95,33 +119,12 @@
   <li><a href='addGroup.jsp'>成立揪團</a></li>
 </ul>
 </body>
-<header>
-		<h1>瀏覽揪團</h1>
-		<small></small>
-	</header>
-	<nav>
-		<a href="">個人頁面</a>
-		<a href="">準備出發</a>
-		<a href="">購物商城</a>
-		<a href="">運動直播</a>
-	</nav>
-	<video autoplay loop controls muted poster="webFront/v1.jpg">
-		<source src="webFront/run.mp4" type="video/mp4">
-		<source src="webFront/run.ogg" type="video/ogg">
-		<source src="webFront/run.webm" type="video/webm">
-	</video>
-<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
-<div id="right">
-		<img src="webFront/c1.jpg" alt="">
-		<img src="webFront/c4.jpg" alt="">
-		<img src="webFront/c3.jpg" alt="">
-<fieldset>
-		<legend>揪團</legend>
-			<%-- 萬用複合查詢-以下欄位-可隨意增減 --%>
+
+			
 <ul>  
   <li>   
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" name="form1">
-        <b><font color=blue>依條件查詢</font></b> <br>
+        <b><font color=blue >查詢揪團</font></b> <br>
         <b>輸入揪團編號:</b>
         <input type="text" name="grp_no" value="grp00001"><br>
            
@@ -130,7 +133,7 @@
         
 <jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />        
        
-        <b>輸入地標:</b>
+        <b>選擇揪團地點:</b>
        <select size="1" name="loc_no" >
           <option value="">
          <c:forEach var="LocationVO" items="${locationSvc.all}" > 
@@ -158,7 +161,7 @@
 <!--         <b>輸入揪團人數下限:</b> -->
 <!--         <input type="text" name="grp_personmin"><br> -->
        
-        <b>揪團人數:</b>
+        <b>參加揪團人數:</b>
         <input type="text" name="grp_personcount"><br>
    		
 <!--    		<b>揪團狀態:</b> -->
@@ -175,7 +178,7 @@
   </li>
 </ul>
 
-			<div id="service">線上客服</div>
+			
 </fieldset>
 </div>
 <footer>
