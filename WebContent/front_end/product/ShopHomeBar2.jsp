@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <style type="text/css" media="screen">
 #page {
@@ -20,7 +22,7 @@ margin-left:-8px;
 margin-top:-8px;  
 height:100px;
 width:100%;
-background-color:#1A356E;
+background-color:#3960D0;
 
 }
 .logo{
@@ -36,7 +38,7 @@ float:left;
 margin-left:20px;
 height:100px;
 width:350px; 
-background-color:#1A356E;
+background-color:#3960D0;
 float:left;
 position: relative;
 }
@@ -48,7 +50,7 @@ margin-top:54px;
 margin-left:130px;
 height:100px;
 width:100px; 
-background-color:#1A356E;
+background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
@@ -58,7 +60,7 @@ float:left;
 .transaction_record{
 height:100px;
 width:100px; 
-background-color:#1A356E;
+background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
@@ -68,7 +70,7 @@ float:left;
 .shopping_trolley{
 height:100px;
 width:100px; 
-background-color:#1A356E;
+background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
@@ -77,7 +79,7 @@ float:left;
 .pd_follow{
 height:100px;
 width:100px; 
-background-color:#1A356E;
+background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
@@ -86,7 +88,7 @@ float:left;
 .memberLogin{
 height:100px;
 width:100px; 
-background-color:#1A356E;
+background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
@@ -96,7 +98,7 @@ float:left;
 margin-left:1300px;
 height:100px;
 width:100px; 
-background-color:#1A356E;
+background-color:#3960D0;
 position: static; 
 line-height:100px;
 }
@@ -112,7 +114,7 @@ text-align:center;
 .Topmenu{
   width:12.5%;
   height:42px;
-  background-color:#1A356E;
+  background-color:#3960D0;
   color:#FFF6F6;
   font-size:22px;
   padding-top:7px;

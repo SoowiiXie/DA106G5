@@ -1,8 +1,4 @@
-/*
- *  1. �U�νƦX�d��-�i�ѫȤ���H�N�W�����Q�d�ߪ����
- *  2. ���F�קK�v�T�į�:
- *        �ҥH�ʺA���͸U��SQL������,���d�ҵL�N�ĥ�MetaData���覡,�]�u�w��ӧO��Table�ۦ���ݭn�ӭӧO�s�@��
- * */
+/* 1. 萬用複合查詢-可由客戶端隨意增減任何想查詢的欄位*/
 
 package jdbc.util.ProductCompositeQuery;
 
@@ -13,7 +9,7 @@ public class jdbcUtil_CompositeQuery_Product {
 
 		
 		String aCondition = null;
-	 if ("pd_name".equals(columnName) || "pd_typeNo".equals(columnName)) // 用於varchar
+	 if ("pd_name".equals(columnName) || "pd_typeNo".equals(columnName) || !"lowPrice".equal) // 用於varchar
 		 
 			aCondition = columnName + " like '%" + value + "%'";
 
@@ -27,15 +23,24 @@ public class jdbcUtil_CompositeQuery_Product {
 		int count = 0;
 		for (String key : keys) {
 			String value = map.get(key)[0];
-			if (value != null && value.trim().length() != 0 && !"action".equals(key) && !"lowPrice".equals(key) && !"highPrice".equals(key)) {
+			if (value != null && value.trim().length() != 0 && !"action".equals(key)) {
 				count++;
 				String aCondition = get_aCondition_For_Oracle(key, value.trim());
 
+				if(count == 1 && "pd_price".equals(aCondition)) {
+					
+					
+				}
+				
+				
+				
+				
+				
 				if (count == 1) {
 					whereCondition.append(" where " + aCondition);
 				}
 
-				else if (!"pd_price".equals(key) || !"lowPrice".equals(key) || !"highPrice".equals(key)){
+				else {
 					whereCondition.append(" and " + aCondition);
 				}
 				System.out.println("有送出查詢資料的欄位數count = " + count);
@@ -52,7 +57,22 @@ public class jdbcUtil_CompositeQuery_Product {
 		Map<String, String[]> map = new TreeMap<String, String[]>();
 		map.put("pd_name", new String[] { "美" });
 		map.put("pd_typeNo", new String[] { "PTN00003" });
+		map.put("lowPrice", new String[] { "a" });
+		map.put("highPrice", new String[] { "a" });
+		String lowPrice = map.get("lowPrice")[0];
+		String highPrice = map.get("highPrice")[0];
 		System.out.println(map.size());
+		System.out.println(lowPrice);
+        System.out.println(highPrice);
+		if(!lowPrice.equals("") && !highPrice.equals("")) {
+			System.out.println("hi");
+			String finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) +"pd_price between" + " " + lowPrice
+			+ "and" + " " +highPrice + "order by pd_no";
+			System.out.println("●●finalSQL = " + finalSQL);
+			return;
+		}
+		
+		
 		String finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map)
 				+ "order by pd_no";
 		System.out.println("●●finalSQL = " + finalSQL);

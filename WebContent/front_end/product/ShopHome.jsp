@@ -7,6 +7,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 <%@ page import="com.pd_type.model.*"%>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <%
 	ProductService productService = new ProductService();
 
