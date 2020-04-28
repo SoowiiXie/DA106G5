@@ -52,7 +52,8 @@ public class Pd_followServlet extends HttpServlet {
 				}
 
 				pd_followService.insertMemberOneProduct(pd_followVO);
-				String url = "/ShoppingServlet?action=findOneProduct&pd_no=" + pd_no;
+				String url = "/ShoppingServlet?action=findOneProduct&pd_no=" + pd_no +"&pd_follow=true";
+				System.out.println();
 				String addType_follow = "商品收藏成功";
 				req.setAttribute("addType_follow", addType_follow);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
@@ -74,7 +75,7 @@ public class Pd_followServlet extends HttpServlet {
 						pd_followService.deleteMemberOneProduct(pd_followVO);
 
 						/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-						String url = "/ShoppingServlet?action=findOneProduct&pd_no=" + pd_no;
+						String url = "/ShoppingServlet?action=findOneProduct&pd_no=" + pd_no +"&pd_follow=false";
 						String addType_follow = "取消商品收藏";
 						req.setAttribute("addType_follow", addType_follow);
 						RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁

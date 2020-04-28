@@ -149,6 +149,7 @@ public class ShoppingServlet extends HttpServlet {
 				int quantity = order.getPd_quantity();
 				total += (price * quantity);
 			}
+			String pd_no = req.getParameter("pd_no");
 			session.setAttribute("total", total);
 			String mb_id = (String) session.getAttribute("mb_id");
 			String buylistCount = String.valueOf(buylist.size());
@@ -160,7 +161,7 @@ public class ShoppingServlet extends HttpServlet {
 			cp_getVO.setCp_status(1);
 			List<Cp_getVO> couponList = cp_getService.listAmemberCpGetStatus(cp_getVO);
 			session.setAttribute("couponList", couponList);
-			String url = "/front_end/product/ProductCart.jsp";
+			String url = "/ShoppingServlet?action=findOneProduct&pd_no="+ pd_no +"&addToShopCar=true";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 			return;

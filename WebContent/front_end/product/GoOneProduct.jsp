@@ -14,6 +14,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <meta charset="UTF-8">
 <style type="text/css" media="screen"> 
 .third{
@@ -351,6 +352,37 @@ input.qtyminus {
 <a href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp">會員的商品收藏</a>
 <a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp?">回商城首頁</a>
 	
+<script>
+var pd_follow= ${param.pd_follow};
+if (pd_follow == true){
+ Swal.fire(
+   '',  
+   '商品收藏成功!',
+   'success'
+   )
+}
+</script>
+
+<script>
+var pd_follow= ${param.pd_follow};
+if (pd_follow == false){
+ Swal.fire(
+   '',  
+   '商品取消收藏!',
+   'success'
+   )
+}
+</script>
+<script>
+var addToShopCar= ${param.addToShopCar};
+if (addToShopCar == true){
+ Swal.fire(
+   '',  
+   '加入購物車!',
+   'success'
+   )
+}
+</script> 
 
 
 </body>
