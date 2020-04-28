@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%  int rowsPerPage = 6;  //每頁的筆數
+<%  int rowsPerPage = 6;  //�C��������    
     int rowNumber=0;      //�`����
     int pageNumber=0;     //�`����      
     int whichPage=1;      //�ĴX��
@@ -21,7 +21,7 @@
 <%  try {
        whichPage = Integer.parseInt(request.getParameter("whichPage"));
        pageIndex=pageIndexArray[whichPage-1];
-    } catch (NumberFormatException e) { //第一次執行的時候
+    } catch (NumberFormatException e) { //�Ĥ@�����檺�ɭ�
        whichPage=1;
        pageIndex=0;
     } catch (ArrayIndexOutOfBoundsException e) { //�`���Ƥ��~�����~����
@@ -36,4 +36,4 @@
   <b><font color=red>第<%=whichPage%>/<%=pageNumber%>頁</font></b>
 <%}%>
 
-<b>符合查詢條件如下所示：<font color=red><%=rowNumber%></font>筆</b>
+<b>符合查詢條件如下所示:<font color=red><%=rowNumber%></font>筆</b>

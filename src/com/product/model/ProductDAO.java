@@ -444,16 +444,22 @@ public class ProductDAO implements ProductDAO_interface {
 			System.out.println(lowPrice);
 			System.out.println(highPrice);
 			String finalSQL;
-			if(!lowPrice.equals("") && !highPrice.equals("")) {
-				System.out.println("有價錢,DAO");
-				finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) + 
+			
+	        if(!lowPrice.equals("") && !highPrice.equals("") && map.get("pd_name")[0].equals("") && map.get("pd_typeNo")[0].equals("")) {
+				System.out.println("純價錢");
+				finalSQL = "select * from product " + "where" + " " + "pd_price between" + " " + lowPrice + " " + "and" + " " +highPrice + " "+ "order by pd_no";
+				System.out.println("●●finalSQL = " + finalSQL);
+	        }else if(!lowPrice.equals("") && !highPrice.equals("") && (!map.get("pd_name")[0].equals("") ||!map.get("pd_typeNo")[0].equals(""))) {
+				System.out.println("有價錢");
+				 finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) + 
 						"and" + " " + "pd_price between" + " " + lowPrice + " " + "and" + " " +highPrice + " "+ "order by pd_no";
 				System.out.println("●●finalSQL = " + finalSQL);
 			
+			
 			}else {
 			
-			System.out.println("無價錢");
-			 finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map)
+			System.out.println("全無");
+			finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map)
 					+ "order by pd_no";
 			System.out.println("●●finalSQL = " + finalSQL);
 			}

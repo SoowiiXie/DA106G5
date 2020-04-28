@@ -50,30 +50,34 @@ public class jdbcUtil_CompositeQuery_Product {
 		// 配合 req.getParameterMap()方法 回傳
 		// java.util.Map<java.lang.String,java.lang.String[]> 之測試
 		Map<String, String[]> map = new TreeMap<String, String[]>();
-		map.put("pd_name", new String[] { "" });
-		map.put("pd_typeNo", new String[] { "PTN00003" });
-		map.put("lowPrice", new String[] { "" });
-		map.put("highPrice", new String[] { "" });
+		map.put("pd_name", new String[] { "鞋" });
+		map.put("pd_typeNo", new String[] { "" });
+		map.put("lowPrice", new String[] { "1" });
+		map.put("highPrice", new String[] { "3000" });
+		
 		String lowPrice = map.get("lowPrice")[0];
 		String highPrice = map.get("highPrice")[0];
 		System.out.println(map.size());
+		System.out.println(map.get("pd_name")[0]);
+		System.out.println(map.get("pd_typeNo")[0]);
 		System.out.println(lowPrice);
         System.out.println(highPrice);
         
         
-       
-        
-        
-        
-		if(!lowPrice.equals("") && !highPrice.equals("")) {
+        if(!lowPrice.equals("") && !highPrice.equals("") && map.get("pd_name")[0].equals("") && map.get("pd_typeNo")[0].equals("")) {
+			System.out.println("純價錢");
+			String finalSQL = "select * from product " + "where" + "pd_price between" + " " + lowPrice + " " + "and" + " " +highPrice + " "+ "order by pd_no";
+			System.out.println("●●finalSQL = " + finalSQL);
+        }else if(!lowPrice.equals("") && !highPrice.equals("") && (!map.get("pd_name")[0].equals("") ||!map.get("pd_typeNo")[0].equals(""))) {
 			System.out.println("有價錢");
 			String finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) + 
 					"and" + " " + "pd_price between" + " " + lowPrice + " " + "and" + " " +highPrice + " "+ "order by pd_no";
 			System.out.println("●●finalSQL = " + finalSQL);
 		
+		
 		}else {
 		
-		System.out.println("無價錢");
+		System.out.println("全無");
 		String finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map)
 				+ "order by pd_no";
 		System.out.println("●●finalSQL = " + finalSQL);

@@ -85,6 +85,7 @@ height:30px;
 				<tr>
 					<td>產品商品分類：</td>
 					<td><select size="1" name="pd_typeNo">
+					              <option value="">請選擇
 							<c:forEach var="pd_typeVO" items="${pd_typeService.all}">
 								<option value="${pd_typeVO.pd_typeNo}"
 									${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}

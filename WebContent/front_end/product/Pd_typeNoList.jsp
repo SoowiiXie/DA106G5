@@ -8,7 +8,7 @@
                 
 	List<ProductVO> list = (List<ProductVO>) request.getAttribute("list");
 
-Collections.reverse(list);
+
     if(list==null){
     list = (List<ProductVO>) session.getAttribute("list");
     }
@@ -58,11 +58,50 @@ height:30px;
 			</c:forEach>
 		</ul>
 	</c:if>
-	
+		<div class="a" align="right">
+		<form method="POST"
+			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
+
+			<table>
+				<tr>
+					<td>產品商品分類：</td>
+					
+					<td><select size="1" name="pd_typeNo">
+					<option value="">請選擇
+							<c:forEach var="pd_typeVO" items="${pd_typeService.all}">
+								<option value="${pd_typeVO.pd_typeNo}"
+									${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
+							</c:forEach>
+					</select></td>
+
+					<td>商品名稱：</td>
+					<td><input type="TEXT" name="pd_name" 
+						value="${productVO.pd_name}"></td>
+
+
+					<td>最低價格：</td>
+					<td><input type="TEXT" name="lowPrice" style="width:50px;"
+						value="${productVO.pd_price}"></td>
+
+
+					<td>最高價格：</td>
+					<td><input type="TEXT" name="highPrice" style="width:50px;"
+						value="${productVO.pd_price}"></td>
+					<td><input type="submit" name="Submit" value="搜尋商品"></td>
+				</tr>
+			</table>
+
+
+			<input type="hidden" name="action" value="CompositeQuery_Product">
+		</form>
+	</div>
 
 
 		<%@ include file="page5.file"%>
 		<%@ include file="page6.file"%>
+		
+		
+		
 	<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
 		end="<%=pageIndex+rowsPerPage-1%>">
 		<div class="context">
