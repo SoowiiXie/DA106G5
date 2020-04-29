@@ -52,31 +52,14 @@
         width:100%;/*寬度*/
         display: block;/*區塊顯示*/
     }
-    #left{/*id名稱為left的區塊*/
-    	width:200px;/*寬度*/
-    	height: auto;/*高度依內容自動判斷*/
-    	float: left;/*浮動靠左*/
-    }
-    #left h2{/*id名稱為left的區塊底下的標題2*/
-    	color:#963;/*文字色彩*/
-    	border-bottom:1px dashed #666;
-    	margin:0px;
-    	margin-top:30px;
-    }
-    #left p{/*id名稱為left的區塊底下的段落*/
-    	color:#663;/*文字色彩*/
-    	font-size: 14px;/*文字大小*/
-    	margin:0px;
-    	margin-left:10px;
-    }
     #right{/*id名稱為right的區塊*/
-    	width:600px;/*寬度*/
+    	width:850px;/*寬度*/
     	height: auto;/*高度依內容自動判斷*/
     	float: right;/*浮動靠右*/
     }
     #right img{/*id名稱為right的區塊底下的影像*/
-    	width:180px;/*寬度*/
-    	height:200px;/*高度依內容自動判斷*/
+    	width:263px;/*寬度*/
+    	height:240px;/*高度依內容自動判斷*/
     	float:left;/*浮動靠左*/
     	margin:10px;/*外距*/
     }

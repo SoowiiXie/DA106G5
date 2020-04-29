@@ -477,7 +477,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 
 	@Override
 	public boolean isFull(Integer grp_personmax,String grp_no) {
-		Integer count = null;
+		Integer grp_personcount = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -489,7 +489,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			pstmt.setString(1, grp_no);
 			rs = pstmt.executeQuery();
 			rs.next();
-			count = rs.getInt(1);
+			grp_personcount = rs.getInt(1);
 
 			// Handle any driver errors
 		} catch (SQLException se) {
@@ -511,7 +511,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 				}
 			}
 		}
-		if (grp_personmax > count) {
+		if (grp_personmax > grp_personcount) {
 			return false;
 		} else {
 			return true;

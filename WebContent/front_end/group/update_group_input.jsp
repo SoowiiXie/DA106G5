@@ -27,7 +27,7 @@
   h4 {
     color: blue;
     display: inline;
-  }
+  }  
 </style>
 
 <style>
@@ -42,6 +42,12 @@
   }
   th, td {
     padding: 1px;
+  }
+</style>
+
+<style type="text/css">
+   grp_content{
+	height:30px;
   }
 </style>
 
@@ -79,12 +85,16 @@
 		<td><input type="hidden" name="mb_id" size="45"
 			 value="<%= (grouperVO==null)? "Tommy" : grouperVO.getMb_id()%>" /></td>
 	</tr>
+	<jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
 	<tr>
-		<td>地標編號:</td>
-		<td><input type="TEXT" name="loc_no" size="45"
-			 value="<%= (grouperVO==null)? "loc00003" : grouperVO.getLoc_no()%>" /></td>
+		<td>地點:<font color=red><b></b></font></td>
+		<td><select size="1" name="loc_address">
+			<c:forEach var="locVO" items="${locSvc.all}">
+				<option value="${grouperVO.loc_no}" ${(grouperVO.loc_no==locVO.loc_no)? 'selected':'' } >${locVO.loc_address}
+			</c:forEach>
+		</select></td>
 	</tr>
-	
+
 	<tr>
 		<td>報名開始時間:</td>
 		<td><input name="grp_applystart" id="a_date1" type="text"></td>
@@ -113,7 +123,7 @@
 	
 	<tr>
 		<td>揪團內容:</td>
-		<td><input type="TEXTarea" name="grp_content" size="45 rows="5""
+		<td><input type="TEXT" name="grp_content" size="45" class="grp_content"
 			 value="<%= (grouperVO==null)? "別睡了，起床" : grouperVO.getGrp_content()%>" /></td>
 	</tr>
 	

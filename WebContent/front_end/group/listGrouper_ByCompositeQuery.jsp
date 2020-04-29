@@ -136,7 +136,9 @@
 <!-- 			</td> -->
 			<td>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do" style="margin-bottom: 0px;">
-				<input type="submit" value="加入揪團">
+				${grouperVO.grp_personmax}/${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}
+				<input type="submit" value="加入揪團"/>
+<%-- 				<%= ${grouperVO.grp_personmax}>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"加入揪團":"人數已滿"%> --%>
 				<input type="text" name="grp_no"      value="${grouperVO.grp_no}">
 				<input type="text" name="mb_id"      value="${grouperVO.mb_id}">
 				<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
