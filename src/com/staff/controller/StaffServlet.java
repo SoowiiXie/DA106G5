@@ -39,6 +39,17 @@ public class StaffServlet extends HttpServlet{
 		// *** listAllStaff 離職用紅字粗體顯示
 		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
+//			連結改動態  返回特別處理(include問題)
+//			addStaff 返回
+//			listAllMember 回首頁
+//			listAllStaff 回首頁
+//			update_member 返回
+//			update_self 返回
+//			update_staff 返回
+//			
+//			驗證信
+//			改session失效
+		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();

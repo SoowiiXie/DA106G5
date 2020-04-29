@@ -15,18 +15,20 @@
 <style type="text/css">
 	@font-face {
 	  font-family: 'Mamelon';
-	  src: url('font/Mamelon.otf') format("truetype")
+	  src: url('<%=request.getContextPath()%>/back_end/staff/font/Mamelon.otf') format("truetype")
 	}
 	@font-face {
 	  font-family: 'italics_hollow';
-	  src: url('font/italics_hollow.ttf') format("truetype"),
-	  url('font/italics_hollow.woff') format("woff")
+	  src: url('<%=request.getContextPath()%>/back_end/staff/font/italics_hollow.ttf') format("truetype"),
+	  url('<%=request.getContextPath()%>/back_end/staff/font/italics_hollow.woff') format("woff")
 	}	
 	@font-face {
 	  font-family: 'sleek_hollow';
-	  src: url('font/sleek_hollow.ttf') format("truetype"),
-	  url('font/sleek_hollow.woff') format("woff")
-	}		
+	  src: url('<%=request.getContextPath()%>/back_end/staff/font/sleek_hollow.ttf') format("truetype"),
+	  url('<%=request.getContextPath()%>/back_end/staff/font/sleek_hollow.woff') format("woff")
+	}
+</style>
+<style type="text/css">		
 	body{
 		margin: 0px;
 	}
@@ -128,32 +130,34 @@
 <body>
 	<div id="wrap">
 	    <div id="left_bar">
-	    	<img id="logo" src="images/LogoText.png">
+	    	<img id="logo" src="<%=request.getContextPath()%>/back_end/staff/images/LogoText.png">
 	    	
-	    	<div onclick="location.href='update_self.jsp';">個人資料管理</div>
+	    	<div onclick="location.href='<%=request.getContextPath()%>/back_end/staff/update_self.jsp';">個人資料管理</div>
 			<%-- 權限，用button是為了讓value可以使用 --%>
 			<c:forEach var="map" items="${abilityMap}">
-			<form METHOD="POST" action="staff.do" id="form1">
+			<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do" id="form1">
 				<div onclick="javascript:this.parentNode.submit();">${map.value}</div>
-<%-- 				<button type="submit" form="form1" name="management" value="${map.key}">${map.value}</button> --%>
 				<input type="hidden" name="management" value="${map.key}">
 				<input type="hidden" name="action" value="select_management">
 				<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">	
 			</form>	
 			</c:forEach>
-			
-			
-		
-				
 	    	
 	    </div>
 	    <div id="top_bar">
 	    	<span id="top_title">後台管理系統</span>
 	    	<span id="manager">管理員 ${staffVO.staff_name}</span>
-	    	<button id="logout">登出</button>
-	    	<img id="horizontalLine" src="images/HorizontalLine2.png">
+	    	
+			<!-- 登出 -->
+	    	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
+		        <input type="hidden" name="action" value="logout">
+		        <input type="submit" value="登出" id="logout">
+			</form>
+			
+	    	<img id="horizontalLine" src="<%=request.getContextPath()%>/back_end/staff/images/HorizontalLine2.png">
 	    </div>
 	    <div class="content">
+	    
 	    	<%-- 錯誤表列 --%>
 			<c:if test="${not empty errorMsgs}">
 				<font style="color:red">請修正以下錯誤:</font>
@@ -163,8 +167,8 @@
 					</c:forEach>
 				</ul>
 			</c:if>
+			
 	    </div>
-
     </div>
 </body>
 <script
