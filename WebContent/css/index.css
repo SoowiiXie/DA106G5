@@ -241,3 +241,18 @@ nav.my_breadcrumb ol.breadcrumb .breadcrumb-item+.breadcrumb-item::before
 .sendBtn {
 	float: right;
 }
+
+@font-face {
+  font-family: 'Mamelon';
+  src: url('<%=request.getContextPath()%>/back_end/staff/font/Mamelon.otf') format("truetype")
+}
+@font-face {
+  font-family: 'italics_hollow';
+  src: url('<%=request.getContextPath()%>/back_end/staff/font/italics_hollow.ttf') format("truetype"),
+  url('<%=request.getContextPath()%>/back_end/staff/font/italics_hollow.woff') format("woff")
+}	
+@font-face {
+  font-family: 'sleek_hollow';
+  src: url('<%=request.getContextPath()%>/back_end/staff/font/sleek_hollow.ttf') format("truetype"),
+  url('<%=request.getContextPath()%>/back_end/staff/font/sleek_hollow.woff') format("woff")
+}
