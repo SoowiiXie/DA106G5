@@ -74,7 +74,7 @@
 	</div>
 	<c:forEach var="recordVO" items="${list}">
 		<!--一則紀錄 -->
-		<div class="container bg-white m-3 rounded p-0 ">
+		<div class="container bg-white m-3 rounded p-0 " data-aos="zoom-in-up">
 			<div class="d-inline-block mt-3 ml-3">
 				<div>
 					<!--會員照片-->
@@ -97,8 +97,7 @@
 					class="rounded mx-auto d-block pathImg" alt="Responsive image">
 			</div>
 			<!-- 紀錄內容 -->
-			<span class="ml-3 d-none d-lg-inline text-gray-900"
-				style="font-size: 1.2rem;">${recordVO.rcd_content}</span>
+			<span class="ml-3 d-none d-lg-inline text-gray-900"	style="font-size: 1.2rem;">${recordVO.rcd_content}</span>
 			<div class="w-100">
 				<div class="col-5 form-inline">
 					<!-- 按讚按鈕 -->

@@ -85,6 +85,7 @@ html, body {
 <!--     		<tbody id="place"> -->
 <!--     		</tbody> -->
     </div>
+    
     <script>
     var map;
     var markers = [];

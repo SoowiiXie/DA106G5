@@ -79,7 +79,7 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="<%= request.getContextPath() %>/location/location.do" name="form1" enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="<%= request.getContextPath() %>/location/location.do" name="form1" enctype="multipart/form-data" id="loc_form">
 		<table>
 <!-- 			<tr> -->
 <!-- 				<td>類別編號:</td> -->
@@ -152,7 +152,7 @@ th, td {
 		<br> 
 		<div class="fblightbox-footer bg-white">
 			<input type="hidden" name="action" value="insert"> 
-		    <input type="submit" value="申請這地點" class="fbbutton">
+		    <input type="submit" value="申請這地點" class="fbbutton" id="loc_submit">
 			<a href="#" id="close" class="fbbutton fbclose">先不送了</a>
 		 </div>
 	</FORM>
@@ -168,4 +168,20 @@ th, td {
 <!-- 		} -->
 <!-- 	</script> -->
 </body>
+<!-- jquery -->
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$('#loc_submit').click(function(e){
+		e.preventDefault();
+		$('.locInsertBox').hide();
+		$('.overlay').hide();
+		Swal.fire({
+			  position: 'top: 50%; left: 50%;',
+			  icon: 'success',
+			  title: '你已成功提交，待審核中',
+			  showConfirmButton: true,
+			  timer: 3000
+		}).then((result) => {$('#loc_form').submit()});
+	})
+</script>
 </html>
