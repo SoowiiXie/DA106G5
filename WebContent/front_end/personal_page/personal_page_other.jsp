@@ -89,7 +89,7 @@
 	</div>
 	<c:forEach var="recordVO" items="${list}">
 		<!--一則紀錄 -->
-		<div class="container bg-white m-3 rounded p-0 ">
+		<div class="container bg-white m-3 rounded p-0 " data-aos="zoom-in-up">
 			<div class="d-inline-block mt-3 ml-3">
 				<div>
 					<!--會員照片-->

@@ -168,6 +168,8 @@ th, td {
 <!-- 		} -->
 <!-- 	</script> -->
 </body>
+<!-- jquery -->
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	$('#loc_submit').click(function(e){
 		e.preventDefault();
