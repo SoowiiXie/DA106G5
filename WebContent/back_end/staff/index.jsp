@@ -154,7 +154,7 @@
 	    </div>
 	    <div id="top_bar">
 	    	<span id="top_title">後台管理系統</span>
-	    	<span id="manager">管理員 ${staffVO.staff_name}</span>
+	    	<span id="manager">管理員 ${sessionScope.staffVO.staff_name}</span>
 	    	
 			<!-- 登出 -->
 	    	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">

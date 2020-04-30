@@ -39,7 +39,7 @@ public class StaffServlet extends HttpServlet{
 		// *** listAllStaff 離職用紅字粗體顯示
 		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
-		//  後台首頁預設畫面  Line 166
+		//  後台首頁預設畫面  Line 161
 		//  可以做一個沒有XX權限的畫面
 //			連結改動態  返回特別處理(include問題)
 //			addStaff 返回
@@ -139,10 +139,6 @@ public class StaffServlet extends HttpServlet{
 				staffVO.setStaff_join(staff_join);
 				staffVO.setStaff_status(staff_status);
 				
-				// 因include會吃掉servletPath，所以再用一個selfPath紀錄incluePath
-				 
-				
-				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("staffVO", staffVO); // 含有輸入格式錯誤的staffVO物件,也存入req
@@ -162,8 +158,11 @@ public class StaffServlet extends HttpServlet{
 				
 				if("/back_end/staff/update_self.jsp".equals(includePath)) {  // 管理員個人資料修改
 					session.setAttribute("staffVO", staffVO);
+//					includePath = "";  // 改預設首頁
+				}else if("/back_end/staff/update_staff.jsp".equals(includePath)){  //  更新管理員資料
+					includePath = "/back_end/staff/listAllStaff.jsp";
 				}
-				req.setAttribute("incluePath", includePath);  // 改預設首頁
+				req.setAttribute("incluePath", includePath);  
 				RequestDispatcher successView = req.getRequestDispatcher(servletPath); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
@@ -229,8 +228,9 @@ public class StaffServlet extends HttpServlet{
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("staffVO", staffVO);         
-				String url = "/back_end/staff/update_staff.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
+				req.setAttribute("incluePath", "/back_end/staff/update_staff.jsp");
+				
+				RequestDispatcher successView = req.getRequestDispatcher(servletPath);
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理**********************************/
