@@ -382,6 +382,15 @@
 			<url-pattern>/android/path.do</url-pattern>
 		</servlet-mapping>
 		
+		<servlet>
+			<servlet-name>AndroidLocationServlet</servlet-name>
+			<servlet-class>android.com.location.controller.LocationServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AndroidLocationServlet</servlet-name>
+			<url-pattern>/android/location.do</url-pattern>
+		</servlet-mapping>
+		
 <!-- 麥克責任區結束 -->
 
 <!-- 昱盛責任區開始 -->
