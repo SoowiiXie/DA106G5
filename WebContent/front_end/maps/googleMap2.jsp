@@ -85,7 +85,20 @@ html, body {
 <!--     		<tbody id="place"> -->
 <!--     		</tbody> -->
     </div>
-    
+    	
+	<!-- 地標檢舉新增的燈箱 -->
+	<div id="fblightbox" class="loc_rptInsertBox">
+	  <div class="fblightbox-wrap">
+	    <div class="fblightbox-header">
+	      	這個地標有問題
+	    </div>
+	    <div class="fblightbox-content p-0">
+	    	<jsp:include page="../../back_end/loc_rpt/addLoc_rpt.jsp" />
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
+	
     <script>
     var map;
     var markers = [];
@@ -209,13 +222,14 @@ html, body {
       var infowindow = new google.maps.InfoWindow({
           content: "<h2>"+
           result.adr+
-          "<input style='height: 1rem; opacity: 0.5;' class='flagBtn' type='image' name='submit_Btn' src='<%=request.getContextPath()%>/img/flag.png'>"+
+          "<input style='height: 1rem; opacity: 0.5;' class='infoFlagBtn' type='image' name='submit_Btn' src='<%=request.getContextPath()%>/img/flag.png'>"+
           "</h2><img src='data:image/jpg;base64,"+
           result.pic+"' style='height:10rem;' class='rounded'><p><h2><b>經度: </b>"+
           result.lng+"</br>緯度:&nbsp;&nbsp;&nbsp;&nbsp;"+
           result.lat+"</h2></p></div>"
       });
       marker.addListener('click', function() {
+    	  console.log(777);
           infowindow.open(map, marker);
       });
     }
@@ -296,7 +310,45 @@ html, body {
 		callback(null , data1, data2, data3);
 
 	});	
+	
+	 var loc_rptInsertBox = $('.loc_rptInsertBox');
+	 console.log(loc_rptInsertBox);
+	 loc_rptInsertBox.css({'margin-left':'-' + (loc_rptInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (loc_rptInsertBox.height()/2)+'px'});
+	 
+	 $("body").on('click', '.infoFlagBtn',function(event){
+		 $("#cmt_noFB").val(data.cmt_no);
+	     $("#cmt_statusFB").val(data.cmt_status);
+		 loc_rptInsertBox.fadeIn();
+		 $('.overlay').fadeIn();
+	 });
+	 
+	 //檢舉地標的燈箱
+// 	 $('.infoFlagBtn').click(function(){
+// 		 console.log(1);
+// 		 alert(2);
+// 		 loc_rptInsertBox.fadeIn();
+// 		 $('.overlay').fadeIn();
+// 	 });
     
+	 //讓燈箱共用關閉按鈕
+	 $("#close").click(function() {
+		  $('.overlay').fadeOut();
+		  fblightbox.fadeOut();
+		  loc_rptInsertBox.fadeOut();
+	 });
+	 
+	 $(".fbclose").click(function() {
+		  $('.overlay').fadeOut();
+		  fblightbox.fadeOut();
+		  loc_rptInsertBox.fadeOut();
+	 });
+	 
+	 $(".overlay").click(function() {
+		  $('.overlay').fadeOut();
+		  fblightbox.fadeOut();
+		  loc_rptInsertBox.fadeOut();
+	 });
+	 
     window.onload = initMap;  //測試用
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZv52MGeQchjobQgjXxUNTBzgUmY1qN7g&callback=initMap"></script>

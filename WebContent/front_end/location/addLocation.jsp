@@ -152,7 +152,7 @@ th, td {
 		<br> 
 		<div class="fblightbox-footer bg-white">
 			<input type="hidden" name="action" value="insert"> 
-		    <input type="submit" value="申請這地點" class="fbbutton" id="loc_submit">
+		    <input type="submit" value="申請這地標" class="fbbutton" id="loc_submit">
 			<a href="#" id="close" class="fbbutton fbclose">先不送了</a>
 		 </div>
 	</FORM>

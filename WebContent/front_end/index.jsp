@@ -531,13 +531,7 @@
 	<script>
 	  AOS.init();
 	</script>
-	
-	<script
-	  src="https://code.jquery.com/jquery-3.5.0.js"
-	  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
-	  crossorigin="anonymous">
-	</script>
-	
+
 	<!-- index.js -->
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -598,14 +592,14 @@
 						 $(this).find('.garbageBtn').css("display","none");
 				 });
 				 
-			 //燈箱共用參數
+			 //燈箱置中
 			 var fblightbox = $('#fblightbox');
 			 fblightbox.css({'margin-left':'-' + (fblightbox.width()/2) + 'px' , 'margin-top' : '-' + (fblightbox.height()/2)+'px'});
 			 var locInsertBox = $('.locInsertBox');
 			 locInsertBox.css({'margin-left':'-' + (locInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (locInsertBox.height()/2)+'px'});
+			 
 				 
 			 //檢舉和修改留言的燈箱
-			 
 			 var cmtNrpt = $('.cmtNrpt');
 			 $('.flagBtn').click(function(){
 				 $.ajax({

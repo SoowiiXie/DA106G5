@@ -6,7 +6,6 @@
 <%
 	Loc_rptVO loc_rptVO = (Loc_rptVO) request.getAttribute("loc_rptVO");
 %>
-<%=loc_rptVO == null%>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -51,24 +50,6 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>地標檢舉資料新增 - addLoc_rpt.jsp</h3>
-			</td>
-			<td>
-				<h4>
-					<a href="<%= request.getContextPath() %>/front_end/location/select_page.jsp">
-						<img src="<%= request.getContextPath() %>/front_end/location/images/back1.gif" width="100" height="32" border="0">
-						回首頁
-					</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
-
-	<h3>資料新增:</h3>
-
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -82,29 +63,19 @@ th, td {
 	<FORM METHOD="post" ACTION="loc_rpt.do" name="form1" enctype="multipart/form-data">
 		<table>
 <!-- 		//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
-			<tr>
-				<td>檢舉原因:</td>
-				<td>
-					<input type="TEXT" name="rpt_reason" size="45" value="<%=(loc_rptVO == null) ? "this is reason" : loc_rptVO.getRpt_reason()%>" />
-				</td>
-			</tr>
-			<tr>
-				<td>地標編號:</td>
-				<td>
-					<input type="TEXT" name="loc_no" size="45" value="<%=(loc_rptVO == null) ? "loc00001" : loc_rptVO.getLoc_no()%>" />
-				</td>
-			</tr>
-			<tr>
-				<td>檢舉會員(不是被檢舉的會員):</td>
-				<td>
-					<input type="TEXT" name="mb_id" size="45" value="<%=(loc_rptVO == null) ? "soowii123" : loc_rptVO.getMb_id()%>" />
-				</td>
-			</tr>
-
+			<div class="form-group ml-1 mb-1 mr-1">
+				<label style="font-size: 1.4rem">檢舉原因: </label>
+				<input type="TEXT" name="rpt_reason" size="45" value="" placeholder="詳細原因(eg:不存在、需要收費、停止營業...)"/>
+			</div>
 		</table>
 		<br> 
-		<input type="hidden" name="action" value="insert"> 
-		<input type="submit" value="送出新增">
+		<div class="fblightbox-footer bg-white">
+			<input type="hidden" name="loc_no" value=""> 
+			<input type="hidden" name="mb_id" value=""> 
+			<input type="hidden" name="action" value="insert"> 
+		    <input type="submit" value="檢舉這地標" class="fbbutton" id="loc_rpt_submit">
+			<a href="#" id="close" class="fbbutton fbclose">先不送了</a>
+		 </div>
 	</FORM>
 </body>
 </html>
