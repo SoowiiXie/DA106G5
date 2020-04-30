@@ -33,7 +33,7 @@ class FakeBlob {
 			FileInputStream in;
 			BufferedInputStream bf;
 			// 塞六張假圖
-			for (int i = 1; i <= 6; i++) {
+			for (int i = 1; i <= 12; i++) {
 				// 共五位數字，不足補0
 				in = new FileInputStream("WebContent/fake_picture/loc" + String.format("%05d", i) + ".jpg");
 				bf = new BufferedInputStream(in);

@@ -1,5 +1,7 @@
 package com.cp_get.model;
 
+import java.sql.Timestamp;
+
 public class Cp_getVO implements java.io.Serializable {
 
 	/**
@@ -9,11 +11,34 @@ public class Cp_getVO implements java.io.Serializable {
 	private String mb_id;
 	private String cp_no;
 	private Integer cp_status;
+	private Timestamp cp_getTime;
+	private String cp_javaGetTime;
 
+	
 	public Cp_getVO() {
 		mb_id = "";
 		cp_no = "";
 		cp_status = 0;
+		cp_getTime = null;
+		cp_javaGetTime="";
+	}
+	
+	public String getCp_javaGetTime() {
+		return cp_javaGetTime;
+	}
+
+	public void setCp_javaGetTime(String cp_javaGetTime) {
+		this.cp_javaGetTime = cp_javaGetTime;
+	}
+
+	
+
+	public Timestamp getCp_getTime() {
+		return cp_getTime;
+	}
+
+	public void setCp_getTime(Timestamp cp_getTime) {
+		this.cp_getTime = cp_getTime;
 	}
 
 	public String getMb_id() {

@@ -42,7 +42,7 @@
 </c:if>
 
 	<h2>新增管理員</h2>
-	<form METHOD="POST" action="staff.do">
+	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
 		<span id="star">*</span>為必填
 		<div>
 			<span id="star">*</span> 		
@@ -59,8 +59,8 @@
 		
         <input type="hidden" name="action" value="insert"><br>
         <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
-        
-        <a href="listAllStaff.jsp"><input type ="button" value="返回"></a>
+<!--         !!!!!!!!!!!!!!!! -->
+        <a href="<%=request.getContextPath()%>/back_end/staff/listAllStaff.jsp"><input type ="button" value="返回"></a>
         <input id="submit" type="submit" value="送出"><br>
         
 	</form>
@@ -86,11 +86,11 @@
 					
 					if(data.result != "此帳號可以使用"){
 						$("#check").css("color","red");
-						$("#icon").attr("src","images/no.png");
+						$("#icon").attr("src","<%=request.getContextPath()%>/back_end/staff/images/no.png");
 						$("#submit").attr("disabled","disabled");
 					}else{
 						$("#check").css("color","black");
-						$("#icon").attr("src","images/ok.png");
+						$("#icon").attr("src","<%=request.getContextPath()%>/back_end/staff/images/ok.png");
 						$("#submit").removeAttr("disabled");
 					}
 				},

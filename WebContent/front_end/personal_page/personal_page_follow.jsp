@@ -49,13 +49,6 @@
 		MessageService messageSvc = new MessageService();
 		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("messageList", messageList);
-
-		//取出所有地標
-		LocationService locationSvc = new LocationService();
-		List<LocationVO> locationList = locationSvc.getAll();
-		request.setAttribute("locationList", locationList);
-		JSONArray locationJSON = locationSvc.getAllJSON();
-		request.setAttribute("locationJSON", locationJSON);
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
@@ -87,7 +80,7 @@
 	</div>
 	<c:forEach var="recordVO" items="${list}">
 		<!--一則紀錄 -->
-		<div class="container bg-white m-3 rounded p-0 ">
+		<div class="container bg-white m-3 rounded p-0 " data-aos="zoom-in-up">
 			<div class="d-inline-block mt-3 ml-3">
 				<div>
 					<!--會員照片-->

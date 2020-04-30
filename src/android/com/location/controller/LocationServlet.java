@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package android.com.location.controller;
 
 import java.io.*;
@@ -46,7 +47,6 @@ System.out.println("input: "+jsonIn);
 		
 		if("getAll".equals(action)) {
 			LocationVO locationVO = new LocationVO();
-System.out.println("locationgetall");
 			List<LocationVO> locationList = locationSvc.getAll();
 			String jsonStr = gson.toJson(locationList);
 			if(locationList != null) {
@@ -402,3 +402,4 @@ System.out.println("locationgetall");
 		System.out.println("outText:　"+ outText);
 	}
 }
+

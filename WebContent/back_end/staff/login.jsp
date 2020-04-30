@@ -32,7 +32,7 @@
             margin: 20px auto -10px auto;
             height: 30px;
             border-radius: 5px;
-            background-image: url(../../front_end/member/login/Login/user5.png);
+            background-image: url(<%=request.getContextPath()%>/front_end/member/login/Login/user5.png);
             background-repeat: no-repeat;
             background-size: 20px;
             background-position: left 3px center;
@@ -40,7 +40,7 @@
         }
 
         input[type="password"] {
-            background-image: url(../../front_end/member/login/Login/pwd3.png);
+            background-image: url(<%=request.getContextPath()%>/front_end/member/login/Login/pwd3.png);
             background-size: 20px;
             margin: 20px auto -10px auto;
         }
@@ -88,11 +88,12 @@
 </style>
 </head>
 <body>
+
 	<p>後台管理員登入</p>
 	<div id="wrap">
-	<img src="../../front_end/member/login/Login/icon5.png">
+	<img src="<%=request.getContextPath()%>/front_end/member/login/Login/icon5.png">
 	
-	<form METHOD="POST" action="staff.do">
+	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
 		<input type="text" name="staff_id" placeholder="請輸入帳號" ><br>
         <input type="password" name="staff_pwd" placeholder="請輸入密碼"><br>
         

@@ -4,7 +4,7 @@
 <%@ page import="com.grouper.model.*"%>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="webFront/show.css">
+  <link rel="stylesheet" type="text/css" href="webFront/group.css">
   <style type="text/css">
 <title>IBM Group: Home</title>
 
@@ -45,7 +45,7 @@
 </table>
 <header>
 		<h1>rUnnable</h1>
-		<small>全球最大的約跑平台上線啦</small>
+		<small>從心靈出發，找肉體的伴</small>
 </header>
 
 

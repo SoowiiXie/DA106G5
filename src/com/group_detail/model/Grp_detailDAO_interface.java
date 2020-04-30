@@ -14,7 +14,13 @@ public interface Grp_detailDAO_interface {
           public int totalPeople(String grp_no);
           //查詢會員揪團總數
           public int totalGroup(String mb_id);
+          //確認人數有否到達上限
+          public boolean isGroupOver(String grp_no);
+          //確認揪團是否額滿
+          public boolean isFull(Integer grp_personmax,String grp_no);
         //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //        public List<EmpVO> getAll(Map<String, String[]> map);  
-          Grp_detailVO findByPrimaryKeyByGrp_no(String grp_no);
+          public Grp_detailVO findByPrimaryKeyByGrp_no(String grp_no);
+          
+          
 }

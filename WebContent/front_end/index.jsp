@@ -11,7 +11,6 @@
 <%@ page import="com.msg.model.*"%>
 <%@ page import="com.live.model.*"%>
 <%@ page import="com.mb.model.*"%>
-<%@ page import="com.location.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <% 
@@ -46,11 +45,11 @@
 		pageContext.setAttribute("messageList", messageList);
 		
 		//取出所有地標
-		LocationService locationSvc = new LocationService();
-		List<LocationVO> locationList = locationSvc.getAll();
-		request.setAttribute("locationList", locationList);
-		JSONArray locationJSON = locationSvc.getAllJSON();
-		request.setAttribute("locationJSON", locationJSON);
+// 		LocationService locationSvc = new LocationService();
+// 		List<LocationVO> locationList = locationSvc.getAll();
+// 		request.setAttribute("locationList", locationList);
+// 		JSONArray locationJSON = locationSvc.getAllJSON();
+// 		request.setAttribute("locationJSON", locationJSON);
 		
 		//拿到本頁資訊設參數
 		String pageRun = request.getParameter("pageRun");
@@ -108,6 +107,12 @@
 	
 	<!-- index.css -->
 	<link href="<%= request.getContextPath() %>/css/index.css" rel="stylesheet" />
+	
+	<!-- sweet alert -->
+	<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css" rel="stylesheet">
+	
+	<!-- 彈跳div -->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	
 </head>
 
@@ -476,6 +481,19 @@
 	</div>
 	<div class="overlay"></div>
 	
+	<!-- 地標新增的燈箱 -->
+	<div id="fblightbox" class="locInsertBox">
+	  <div class="fblightbox-wrap">
+	    <div class="fblightbox-header">
+	      	我來新增個地標
+	    </div>
+	    <div class="fblightbox-content p-0">
+	    	<jsp:include page="location/addLocation.jsp" />
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
+	
 	<!-- 訊息的燈箱 -->
 	<div id="fblightbox" class="msgLightBox">
 	  <div class="fblightbox-wrap">
@@ -502,8 +520,23 @@
 	<!-- switch button -->
 	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	
+	<!-- sweet alert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+	
 	<!-- jquery -->
 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+	
+	<!-- 彈跳div -->
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+	  AOS.init();
+	</script>
+	
+	<script
+	  src="https://code.jquery.com/jquery-3.5.0.js"
+	  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+	  crossorigin="anonymous">
+	</script>
 	
 	<!-- index.js -->
 	<script type="text/javascript">
@@ -555,7 +588,7 @@
 	//						    $(this).animate({height:10},200);
 						height: 'toggle'
 					  });
-				 });
+			});
 				 
 			 $('.oneCmtDiv').hover(function(){
 				 $(this).find('.flagBtn').css("display","");
@@ -568,8 +601,11 @@
 			 //燈箱共用參數
 			 var fblightbox = $('#fblightbox');
 			 fblightbox.css({'margin-left':'-' + (fblightbox.width()/2) + 'px' , 'margin-top' : '-' + (fblightbox.height()/2)+'px'});
+			 var locInsertBox = $('.locInsertBox');
+			 locInsertBox.css({'margin-left':'-' + (locInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (locInsertBox.height()/2)+'px'});
 				 
 			 //檢舉和修改留言的燈箱
+			 
 			 var cmtNrpt = $('.cmtNrpt');
 			 $('.flagBtn').click(function(){
 				 $.ajax({
@@ -595,7 +631,6 @@
 			 
 			 //天氣的燈箱
 			 var weatherBox = $('.weatherBox');
-			 weatherBox.css({'margin-left':'-' + (weatherBox.width()/2) + 'px' , 'margin-top' : '-' + (weatherBox.height()/2)*7+'px'});
 			 $('.wth_loc_btn').click(function(){
 				 $.ajax({
 					 type: "GET",
@@ -623,7 +658,7 @@
 							`);
 						 }
 						 
-						 
+						 weatherBox.css({'margin-left':'-' + (weatherBox.width()/2) + 'px' , 'margin-top' : '-' + (weatherBox.height()/2)+'px'});
 						 $('.overlay').fadeIn();
 						 weatherBox.fadeIn();
 					 },					
@@ -658,13 +693,23 @@
 				  $('.overlay').fadeOut();
 				  fblightbox.fadeOut();
 				  weatherBox.fadeOut();
+				  locInsertBox.fadeOut();
+			 });
+			 
+			 $(".fbclose").click(function() {
+				  $('.overlay').fadeOut();
+				  fblightbox.fadeOut();
+				  weatherBox.fadeOut();
+				  locInsertBox.fadeOut();
 			 });
 			 
 			 $(".overlay").click(function() {
 				  $('.overlay').fadeOut();
 				  fblightbox.fadeOut();
 				  weatherBox.fadeOut();
+				  locInsertBox.fadeOut();
 			 });
+
 		});
 	</script>
 	

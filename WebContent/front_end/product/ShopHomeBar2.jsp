@@ -28,7 +28,7 @@ background-color:#3960D0;
 margin-left:100px;
 height:100px;
 width:200px; 
-background-color:#FDFFFF;
+background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
@@ -206,7 +206,7 @@ margin:10px auto;
 <body>  
     <div id="first">
      <div class="logo" align="center">
-     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/img/ProductLogo.png" style="border-radius:5px;"></a></div>
+     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/img/LogoNoBack.png" style="border-radius:5px;"></a></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
         <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px;">

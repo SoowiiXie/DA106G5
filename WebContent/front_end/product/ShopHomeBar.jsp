@@ -1,10 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ page import="com.product.model.*"%>
+<%@ page import="com.pd_type.model.*"%>
+<%@ page import="java.util.*"%>
+     
+     <%
+	ProductService productService = new ProductService();
+
+	List<ProductVO> list = productService.listOnTheMarket(2);
+
+	Collections.reverse(list);
+
+	pageContext.setAttribute("list", list); //for EL
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<!-- Custom fonts for this template-->
+	<link href="<%= request.getContextPath() %>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
+	<!-- Custom styles for this template-->
+	<link href="<%= request.getContextPath() %>/css/sb-admin-2.min.css" rel="stylesheet" />
+	
+	<!-- modal -->
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	
+	<!-- 會員智慧搜尋 -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
+	<!-- switch button -->
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+	
+
+
+
 <meta charset="UTF-8">
 <style type="text/css" media="screen">
 #page {
@@ -28,7 +61,7 @@ background-color:#3960D0;
 margin-left:100px;
 height:100px;
 width:200px; 
-background-color:#FDFFFF;
+background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
@@ -206,7 +239,7 @@ margin:10px auto;
 <body>  
     <div id="first">
      <div class="logo" align="center">
-     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/img/ProductLogo.png" style="border-radius:5px;"></a></div>
+     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/img/LogoNoBack.png" style="border-radius:5px;"></a></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
         <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px;">
@@ -220,7 +253,7 @@ margin:10px auto;
       <div class="shopping_trolley" align="center">
       	<a href="<%=request.getContextPath()%>/front_end/product/ProductCart.jsp" style="text-decoration:none;"><font color="white">購物車
       	<c:if test="${buylistCount!=0}">
-	                   <font color="red">${buylistCount}</font>
+	                  
 	                  
 	                   <span class="badge badge-pill badge-info">${buylistCount}</span>
   </c:if></font></a>
@@ -288,23 +321,40 @@ margin:10px auto;
      
     </div>
  
-    <div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
-<%-- <a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00001">服飾-男上身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00002">服飾-男下身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00003">服飾-男鞋</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00004">服飾-女上身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00005">服飾-女下身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00006">服飾-女鞋</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00007">服飾-兒童上身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00008">服飾-兒童下身</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00009">服飾-兒童鞋類</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00010">配件-護具</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00011">配件-包款</a>
-<a href="<%=request.getContextPath()%>/FrontEndProductServlet?action=List_OnMarket_Pd_typeNo&&pd_typeNo=PTN00012">配件-3C</a> --%>
-<%--  <script src="<%=request.getContextPath()%>/plug-in/bootstrap/jquery/jquery-3.4.1.min.js"></script>
- <script src="<%=request.getContextPath()%>/plug-in/Semantic-UI/semantic.min.js"></script>
-    <script src="<%=request.getContextPath()%>/plug-in/popper/popper.min.js"></script>
-    <script src="<%=request.getContextPath()%>/plug-in/bootstrap/js/bootstrap.min.js"></script> --%>
+<div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div> 
+<%--     <div class="carouselExampleSlidesOnly col-10 mx-auto" id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="height:50rem;">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+           <img src="<%=request.getContextPath()%>/img/ProductAD.jpg" class="d-block w-100" alt="跑馬燈圖片1">
+        </div>
+        <div class="carousel-item">
+           <img src="<%=request.getContextPath()%>/img/ProductAd2.png" class="d-block w-100" alt="跑馬燈圖片2">
+        </div>
+         <div class="carousel-item">
+           <img src="<%=request.getContextPath()%>/img/ProductAd3.jpg" class="d-block w-100" alt="跑馬燈圖片3">
+        </div>
+      </div>
+    </div>
+  <script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+
+<script src="<%=request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    	<!-- Bootstrap core JavaScript-->
+	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="<%= request.getContextPath() %>/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
+	
+	<!-- switch button -->
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	
+	<!-- jquery -->
+	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+  --%>
 </body>
 
 </html>

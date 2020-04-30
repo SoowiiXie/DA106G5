@@ -50,4 +50,8 @@ public class Grp_detailService {
 	public int getTotalGroup(String mb_id) {
 		return dao.totalGroup(mb_id);		
 	}
+	public boolean isFull(Integer grp_personmax, String grp_no){
+		return dao.isFull(grp_personmax, grp_no);
+	}
+	
 }

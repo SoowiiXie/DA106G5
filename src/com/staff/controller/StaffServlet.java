@@ -39,6 +39,17 @@ public class StaffServlet extends HttpServlet{
 		// *** listAllStaff 離職用紅字粗體顯示
 		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
+//			連結改動態  返回特別處理(include問題)
+//			addStaff 返回
+//			listAllMember 回首頁
+//			listAllStaff 回首頁
+//			update_member 返回
+//			update_self 返回
+//			update_staff 返回
+//			
+//			驗證信
+//			改session失效
+		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
@@ -84,7 +95,8 @@ public class StaffServlet extends HttpServlet{
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("staffVO", staffVO); // 資料庫取出的VO物件,存入Session
-				String url = "/back_end/staff/select_page.jsp";  // 
+//				String url = "/back_end/staff/select_page.jsp";  // 測試
+				String url = "/back_end/staff/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
