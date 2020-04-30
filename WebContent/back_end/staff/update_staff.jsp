@@ -19,7 +19,7 @@
 		</ul>
 	</c:if>
 	
-	<form METHOD="POST" action="staff.do">
+	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
 	
 		帳號：${staffVO.staff_id}<br>
 		密碼：<input type="password" name="staff_pwd" value="${staffVO.staff_pwd}"><br>

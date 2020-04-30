@@ -7,6 +7,7 @@
 	AbilityService abilitySvc = new AbilityService();
 	Map<String, String> abilityMap = abilitySvc.getAllToMap();
 	pageContext.setAttribute("abilityMap",abilityMap);
+	
 %>
 <html>
 <head>
@@ -132,10 +133,17 @@
 	    <div id="left_bar">
 	    	<img id="logo" src="<%=request.getContextPath()%>/back_end/staff/images/LogoText.png">
 	    	
-	    	<div onclick="location.href='<%=request.getContextPath()%>/back_end/staff/update_self.jsp';">個人資料管理</div>
-			<%-- 權限，用button是為了讓value可以使用 --%>
+			<!-- 所有人都可以管理自己的資料，所以不在權限裡面 -->
+	    	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
+	    		<div onclick="javascript:this.parentNode.submit();">個人資料管理</div>
+	    		<input type="hidden" name="management" value="00">
+				<input type="hidden" name="action" value="select_management">
+				<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">	
+			</form>	
+			
+			<%-- 管理權限 --%>
 			<c:forEach var="map" items="${abilityMap}">
-			<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do" id="form1">
+			<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
 				<div onclick="javascript:this.parentNode.submit();">${map.value}</div>
 				<input type="hidden" name="management" value="${map.key}">
 				<input type="hidden" name="action" value="select_management">
@@ -157,7 +165,7 @@
 	    	<img id="horizontalLine" src="<%=request.getContextPath()%>/back_end/staff/images/HorizontalLine2.png">
 	    </div>
 	    <div class="content">
-	    
+	    	
 	    	<%-- 錯誤表列 --%>
 			<c:if test="${not empty errorMsgs}">
 				<font style="color:red">請修正以下錯誤:</font>
@@ -166,6 +174,10 @@
 						<li style="color:red">${message}</li>
 					</c:forEach>
 				</ul>
+			</c:if>
+			
+			<c:if test="${not empty incluePath}">
+				<jsp:include page="${incluePath}" flush="true"/>
 			</c:if>
 			
 	    </div>

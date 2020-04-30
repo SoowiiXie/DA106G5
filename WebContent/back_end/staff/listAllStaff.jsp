@@ -159,7 +159,7 @@
 			<td>${staffVO.staff_join}</td>
 			<td>${staffStatus[staffVO.staff_status]}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="staff.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/staff/staff.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="­×§ï">
 			     
 			     <input type="hidden" name="staff_id"  value="${staffVO.staff_id}">
@@ -172,7 +172,7 @@
 		<%-- Åv­­ --%>
 		<tr id="${staffVO.staff_id}" class="authorityRow" style="height: 0px;">
 			<td colspan="6">
-				<FORM METHOD="post" ACTION="authority.do">
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/staff/authority.do">
 				<c:set var="entrySet" value="${abilityMap.entrySet()}"/> 
 				<c:set var="authoritySet" value="${authoritySvc.getOneStaffAuthority(staffVO.staff_id)}"/> 
 					

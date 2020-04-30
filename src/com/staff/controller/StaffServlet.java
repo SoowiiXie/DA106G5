@@ -46,9 +46,8 @@ public class StaffServlet extends HttpServlet{
 //			update_member 返回
 //			update_self 返回
 //			update_staff 返回
-//			  
+//			新增/修改成功時，跳Sweet Alert  
 //			驗證信
-//			改session失效
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -189,17 +188,19 @@ public class StaffServlet extends HttpServlet{
 			Set<String> staffAuthority = authoritySvc.getOneStaffAuthority(staffVO.getStaff_id());
 			
 			// 用Map裝管理編號與相對應的路徑
-			Map<String,String> managementMapPath = new HashMap<String,String>();
-			managementMapPath.put("01", "/back_end/staff/listAllStaff.jsp");  // 導至管理員資料管理頁面
-			managementMapPath.put("02", "/back_end/staff/listAllMember.jsp");  // 導至會員管理頁面
-			managementMapPath.put("03", "/back_end/staff/listAllStaff.jsp");  // 導至留言管理頁面
-			managementMapPath.put("04", "/back_end/staff/listAllStaff.jsp");  // 導至檢舉管理頁面
-			managementMapPath.put("05", "/back_end/staff/listAllStaff.jsp");  // 導至商城管理頁面	
-			managementMapPath.put("06", "/back_end/staff/listAllStaff.jsp");  // 導至問題回報管理頁面
+			Map<String,String> incluePath = new HashMap<String,String>();
+			incluePath.put("00", "/back_end/staff/update_self.jsp");    // 個人資料管理  V
+			incluePath.put("01", "/back_end/staff/listAllStaff.jsp");   // 管理員資料管理  V
+			incluePath.put("02", "/back_end/staff/listAllMember.jsp");  // 會員管理  V
+			incluePath.put("03", "/back_end/staff/listAllStaff.jsp");  // 商城管理
+			incluePath.put("04", "/back_end/staff/listAllStaff.jsp");  // 地標管理
+			incluePath.put("05", "/back_end/staff/listAllStaff.jsp");  // 檢舉管理
+			incluePath.put("06", "/back_end/staff/listAllStaff.jsp");  // 問題回報管理
 			
 			// 判斷管理員是否有該權限
-			if(staffAuthority.contains(management)) {
-				RequestDispatcher successView = req.getRequestDispatcher(managementMapPath.get(management));
+			if(staffAuthority.contains(management) || "00".equals(management)) {
+				req.setAttribute("incluePath", incluePath.get(management));
+				RequestDispatcher successView = req.getRequestDispatcher(servletPath);
 				successView.forward(req, res);
 				return;
 				
@@ -339,7 +340,7 @@ public class StaffServlet extends HttpServlet{
 		}
 		
 		if ("logout".equals(action)) { // 登出  OK
-			session.removeAttribute("staffVO");
+			session.invalidate();
 			RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
 			failureView.forward(req, res);
 		}
