@@ -59,6 +59,7 @@
 		
         <input type="hidden" name="action" value="insert"><br>
         <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
+        <input type="hidden" name="includePath" value="/back_end/staff/addStaff.jsp">
 <!--         !!!!!!!!!!!!!!!! -->
         <a href="<%=request.getContextPath()%>/back_end/staff/listAllStaff.jsp"><input type ="button" value="返回"></a>
         <input id="submit" type="submit" value="送出"><br>

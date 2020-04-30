@@ -131,7 +131,13 @@
 	</tr>
 </table>
 
-<a href="addStaff.jsp"><button>新增管理員</button></a>
+	<!-- 新增管理員 -->
+	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
+		<input type="submit" value="新增管理員">
+		<input type="hidden" name="action" value="for_addStaff">
+		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
+	</form>	
+	
 <%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color:red">請修正以下錯誤:</font>

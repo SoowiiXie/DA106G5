@@ -34,7 +34,8 @@
 			</c:forEach>
 		</select>
 		
-		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
+		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
+		<input type="hidden" name="includePath" value="/back_end/staff/update_staff.jsp">
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 		<input type="hidden" name="staff_join" value="${staffVO.staff_join}">
 		

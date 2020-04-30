@@ -176,6 +176,7 @@
 				</ul>
 			</c:if>
 			
+			<!-- include 部分 ， 若有預設畫面則將IF搬去預設畫面那邊 -->
 			<c:if test="${not empty incluePath}">
 				<jsp:include page="${incluePath}" flush="true"/>
 			</c:if>
