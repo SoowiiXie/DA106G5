@@ -65,8 +65,8 @@ html, body {
 <!-- 	<div id="coords"></div> -->
 	<!-- 當頁內容 -->
 	
-    <div id="map" class="ml-4 mr-2"></div>
-    <div id="tableOutput m-0">
+    <div id="map" class="ml-4 mr-2" data-aos="fade-right" data-aos-duration="3000"></div>
+    <div id="tableOutput m-0"  data-aos="fade-right" data-aos-offset="600" data-aos-easing="ease-in-sine">
     
     				<div class="form-check form-check-inline ml-5 my-5 inlineCheckbox" id="inlineCheckbox1_div">
     					<label for="inlineCheckbox1"  class="form-check-label mr-2">補水點</label>
