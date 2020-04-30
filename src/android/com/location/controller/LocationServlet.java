@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package android.com.location.controller;
 
 import java.io.*;
