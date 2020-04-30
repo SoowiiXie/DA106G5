@@ -48,6 +48,7 @@
 		<input type="hidden" name="mb_status" value="${memberVO.mb_status}"><br>
 		
 		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
+		<input type="hidden" name="includePath" value="/front_end/member/update_member.jsp">
         <input type="hidden" name="action" value="update"><br>
         <input type="reset" value="清除">
         <input type="submit" value="送出"><br>

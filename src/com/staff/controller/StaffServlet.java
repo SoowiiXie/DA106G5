@@ -39,8 +39,9 @@ public class StaffServlet extends HttpServlet{
 		// *** listAllStaff 離職用紅字粗體顯示
 		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
-		//  後台首頁預設畫面  Line 161
-		//  可以做一個沒有XX權限的畫面
+		//  errorMsg 兩個問題
+		//  後台首頁預設畫面  Line 162
+		//  可以做一個沒有XX權限的畫面(未擁有該權限時跳出的畫面)
 //			連結改動態  返回特別處理(include問題)
 //			addStaff 返回
 //			listAllMember 回首頁
