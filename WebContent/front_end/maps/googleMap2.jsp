@@ -316,8 +316,8 @@ html, body {
 	 loc_rptInsertBox.css({'margin-left':'-' + (loc_rptInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (loc_rptInsertBox.height()/2)+'px'});
 	 
 	 $("body").on('click', '.infoFlagBtn',function(event){
-		 $("#cmt_noFB").val(data.cmt_no);
-	     $("#cmt_statusFB").val(data.cmt_status);
+// 		 $("#loc_no4rpt").val($('.infoFlagBtn'));
+// 	     $("#mb_id4rpt").val(data.cmt_status);
 		 loc_rptInsertBox.fadeIn();
 		 $('.overlay').fadeIn();
 	 });

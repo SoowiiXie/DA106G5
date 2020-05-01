@@ -70,8 +70,8 @@ th, td {
 		</table>
 		<br> 
 		<div class="fblightbox-footer bg-white">
-			<input type="hidden" name="loc_no" value=""> 
-			<input type="hidden" name="mb_id" value=""> 
+			<input type="hidden" name="loc_no" id="loc_no4rpt" value=""> 
+			<input type="hidden" name="mb_id" id="mb_id4rpt" value=""> 
 			<input type="hidden" name="action" value="insert"> 
 		    <input type="submit" value="檢舉這地標" class="fbbutton" id="loc_rpt_submit">
 			<a href="#" id="close" class="fbbutton fbclose">先不送了</a>
