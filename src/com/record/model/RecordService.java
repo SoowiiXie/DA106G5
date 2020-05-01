@@ -68,7 +68,8 @@ public class RecordService {
 	}
 	
 	public List<android.com.record.model.RecordVO> getAllByMb_id(String mb_id) {
-		List comment = null;
-		return comment;
+		String sql = "SELECT * FROM RECORD WHERE MB_ID = '"+mb_id+"' ORDER BY RCD_NO DESC";
+		List<android.com.record.model.RecordVO> recordlist = dao.getAllByMb_id(sql);
+		return recordlist;
 	}
 }

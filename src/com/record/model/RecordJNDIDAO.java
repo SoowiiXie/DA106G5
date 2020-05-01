@@ -14,13 +14,15 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.cmt.model.CmtService;
+import com.cmt.model.CmtVO;
+
 public class RecordJNDIDAO implements RecordDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO Record (rcd_no, rcd_uploadtime, rcd_content, path_no, mb_id) VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'),?,?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT rcd_no, rcd_uploadtime, rcd_content, rcd_thumb_amount, rcd_metoo_amount, rcd_status, path_no, mb_id FROM record ORDER BY rcd_no";
 	private static final String GET_ONE_STMT = "SELECT rcd_no, rcd_uploadtime, rcd_content, rcd_thumb_amount, rcd_metoo_amount, rcd_status, path_no, mb_id FROM record WHERE rcd_no = ?";
 	private static final String DELETE = "DELETE FROM record where rcd_no = ?";
 	private static final String UPDATE = "UPDATE record SET rcd_uploadtime = ?, rcd_content = ?, rcd_status=?, path_no=? where rcd_no = ?";
-	private static final String GET_ALL_BY_MB_ID = "SELECT * FROM RECORD WHERE MB_ID = ? ORDER BY RCD_NO DESC";
 	
 	
 	private static DataSource ds = null;
@@ -314,6 +316,77 @@ public class RecordJNDIDAO implements RecordDAO_interface {
 				recordVO_map.setRcd_status(rs_map.getInt("rcd_status"));
 				recordVO_map.setMb_id(rs_map.getString("mb_id"));
 				recordVO_map.setPath_no(rs_map.getString("path_no"));
+				
+				list_map.add(recordVO_map); // Store the row in the list
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs_map != null) {
+				try {
+					rs_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt_map != null) {
+				try {
+					pstmt_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_map;
+	}
+
+
+
+	@Override
+	public List<android.com.record.model.RecordVO> getAllByMb_id(String sql) {
+		StringBuilder sb = new StringBuilder();
+
+		List<android.com.record.model.RecordVO> list_map = new ArrayList<android.com.record.model.RecordVO>();
+		android.com.record.model.RecordVO recordVO_map = null;
+
+		Connection con = null;
+		PreparedStatement pstmt_map = null;
+		ResultSet rs_map = null;
+
+		try {
+			con = ds.getConnection();
+//			con.setAutoCommit(false);
+			String cols[] = {"rcd_no"};
+			pstmt_map = con.prepareStatement(sql, cols);
+			rs_map = pstmt_map.executeQuery();
+			while (rs_map.next()) {
+				// empVO 也稱為 Domain objects
+				recordVO_map = new android.com.record.model.RecordVO();
+				recordVO_map.setRcd_no(rs_map.getString("rcd_no"));
+				recordVO_map.setRcd_uploadtime(rs_map.getDate("rcd_uploadtime"));
+				recordVO_map.setRcd_content(rs_map.getString("rcd_content"));
+				recordVO_map.setRcd_thumb_amount(rs_map.getInt("rcd_thumb_amount"));
+				recordVO_map.setRcd_metoo_amount(rs_map.getInt("rcd_metoo_amount"));
+				recordVO_map.setRcd_status(rs_map.getInt("rcd_status"));
+				recordVO_map.setMb_id(rs_map.getString("mb_id"));
+				recordVO_map.setPath_no(rs_map.getString("path_no"));
+				
+				ResultSet rs = pstmt_map.getGeneratedKeys();
+				String next_rcd_no = rs.getString(1);
+				
+				CmtService cmtSvc = new CmtService();
+				List<CmtVO> cmtList = cmtSvc.getByRcd_no(next_rcd_no);
+				recordVO_map.setComment(cmtList);
 				
 				list_map.add(recordVO_map); // Store the row in the list
 			}

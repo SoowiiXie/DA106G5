@@ -2,6 +2,7 @@ package android.com.record.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,11 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.record.model.*;
+
+import com.record.model.RecordService;
+import android.com.record.model.*;
 
 
 public class RecordServlet extends HttpServlet{
 
+	private static final String CONTENT_TYPE = "text/html; charset=UTF-8";
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		doPost(req, res);
@@ -44,7 +49,12 @@ System.out.println("input: "+jsonIn);
 		if("getAllByMb_id".equals(action)) {
 			String mb_id = jsonObject.get("mb_id").getAsString();
 			List<RecordVO> recordList = new ArrayList<>();
-			recordList = recordSvc.getByMb_id(mb_id);
+			recordList = recordSvc.getAllByMb_id(mb_id);
+			String jsonStr = gson.toJson(recordList);
+			
+			if(recordList != null) {
+				writeText(res, jsonStr);
+			}
 		}
 
 		
@@ -338,5 +348,13 @@ System.out.println("input: "+jsonIn);
 //				failureView.forward(req, res);
 //			}
 //		}
+	}
+	
+	private void writeText(HttpServletResponse res, String outText) throws IOException{
+		res.setContentType(CONTENT_TYPE);
+		PrintWriter out = res.getWriter();
+		out.print(outText);
+		out.close();
+		System.out.println("outText: "+ outText);
 	}
 }
