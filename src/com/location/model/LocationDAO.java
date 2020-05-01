@@ -26,7 +26,7 @@ public class LocationDAO implements Location_interface {
 	private static final String UPDATE = "UPDATE Location set loc_typeno=?, longitude=?, latitude=?, loc_status=?, loc_address=?, loc_pic=? where loc_no = ?";
 	private static final String DELETE = "DELETE from Location where loc_no = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM Location where loc_no = ?";
-	private static final String GET_ALL_STMT = "SELECT * FROM Location order by loc_no";
+	private static final String GET_ALL_STMT = "SELECT * FROM Location order by loc_no desc";
 	private static final String GET_BY_LOC_TYPENO = "SELECT * FROM Location where loc_typeno = ? order by loc_no";
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
