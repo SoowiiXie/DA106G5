@@ -11,4 +11,5 @@ public interface RecordDAO_interface {
      public List<RecordVO> getAll();
      // 萬用型
      public List<RecordVO> getAllUWish(Map<String, String[]> map, String orderBy);
+//     public List<android.com.record.model.RecordVO>getAllByMb_id(String mb_id);
 }

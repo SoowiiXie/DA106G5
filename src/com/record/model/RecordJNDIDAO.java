@@ -20,7 +20,8 @@ public class RecordJNDIDAO implements RecordDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT rcd_no, rcd_uploadtime, rcd_content, rcd_thumb_amount, rcd_metoo_amount, rcd_status, path_no, mb_id FROM record WHERE rcd_no = ?";
 	private static final String DELETE = "DELETE FROM record where rcd_no = ?";
 	private static final String UPDATE = "UPDATE record SET rcd_uploadtime = ?, rcd_content = ?, rcd_status=?, path_no=? where rcd_no = ?";
-
+	private static final String GET_ALL_BY_MB_ID = "SELECT * FROM RECORD WHERE MB_ID = ? ORDER BY RCD_NO DESC";
+	
 	
 	private static DataSource ds = null;
 	static {
@@ -346,6 +347,9 @@ public class RecordJNDIDAO implements RecordDAO_interface {
 		}
 		return list_map;
 	}
+
+	
+	
 	
 	
 	

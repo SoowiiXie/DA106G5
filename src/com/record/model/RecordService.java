@@ -66,4 +66,9 @@ public class RecordService {
 		map.put("mb_id", mbs_id);
 		return dao.getAllUWish(map,"RCD_NO desc");
 	}
+	
+	public List<android.com.record.model.RecordVO> getAllByMb_id(String mb_id) {
+		List comment = null;
+		return comment;
+	}
 }
