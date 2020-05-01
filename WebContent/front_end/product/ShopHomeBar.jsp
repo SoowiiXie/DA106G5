@@ -41,106 +41,121 @@
 <meta charset="UTF-8">
 <style type="text/css" media="screen">
 #page {
-margin-right:8px;
-margin-left:-8px;
 margin-top:-8px;  
 height:2000px;
-width:1450px;
+width:100%;
 background-color:#FBFBFF;
+
 }
 #first {
-margin-right:8px;
-margin-left:-8px;
 margin-top:-8px;  
 height:100px;
 width:100%;
 background-color:#3960D0;
+border-style: solid;
+border-color:red;
 
 }
 .logo{
 height:100px;
-width:300px; 
+width:20%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 }
 .search_pd{
-margin-left:20px;
 height:100px;
-width:350px; 
+width:25%; 
 background-color:#3960D0;
 float:left;
 position: relative;
+border-style: solid;
+border-color:red;
 }
 .search_form{
 position: absolute;  
 margin-top:30px;
 }
 .backhome{
-margin-left:130px;
+margin-left:10%;
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 
 .transaction_record{
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 
 .shopping_trolley{
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 .pd_follow{
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 .memberLogin{
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 .member{
-margin-left:1300px;
+margin-left:90%;
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px;
+border-style: solid;
+border-color:red;
 }
 .second{
 margin-top: 10px;
 height:50px;
-width:1440px;  
+width:100%;  
 background-color:#D2E9FF;
 position:absolute; 
 text-align:center;
-
+border-style: solid;
+border-color:red;
 
 }
 .Topmenu{
@@ -179,15 +194,7 @@ text-align:center;
   text-shadow: 2px 2px 2px #000;*/
 }
 
-.bar_lift{
-margin-top: 10px;
-height:50px;
-width:25%;  
-background-color:#D3FF93;
-float:left;
 
-
-}
 .third{
 margin-top:70px; 
 height:400px;
@@ -199,6 +206,8 @@ div img{
     width: 100%;
     height:100%;
     object-fit:cover;
+    border-style: solid;
+border-color:red;
 }
 .Topmenuin{
   position: relative;

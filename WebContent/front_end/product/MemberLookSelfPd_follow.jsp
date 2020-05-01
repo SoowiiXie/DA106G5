@@ -70,14 +70,14 @@ margin-top:100;
 <body>
 	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 	  
-		<div style="width:100%; height:100px; border-style:solid;"></div>
+		<div style="width:100%; height:100px;"></div>
 		  <div align="center">
 		    <font size="+3">您的商品收藏內容如下：</font>
 		  </div>
 		<Hr>
-	<div  style=" border-style:solid; vertical-align:bottom;" >
+	<div  style="vertical-align:bottom;" >
 	<div>
-	<table style="margin-left:460px;" >
+	<table style="margin-left:29%;" >
 	<tr>
 	<td style="Vertical-align:bottom;"><%@ include file="pagePd_follow1.file"%><%@ include file="pagePd_follow2.file"%></td>
 	</tr></table>
@@ -87,11 +87,11 @@ margin-top:100;
 	
 	
 	
-	<div class="listFloow" style=" border-style:solid; height:600px">
+	<div class="listFloow" style="  height:600px" align="center">
 	
 		<form method="POST"
 			action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
-			<table class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; margin-left:460px;">
+			<table class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; width:600px;">
 
 				<tr bgcolor="#999999" align="center">
 					<th width="100" ><font color="black">商品圖片</font></th>

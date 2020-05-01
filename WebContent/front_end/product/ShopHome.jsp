@@ -67,6 +67,7 @@ color: #777;
 <title>列出所有商品</title>
 </head>
 <body>
+<div style="width:100%; border-style: solid; border-color:red;" >
 <div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
 
 	<%-- 
@@ -85,26 +86,24 @@ color: #777;
 			</c:forEach>
 		</ul>
 	</c:if>
-	
 
-
-	<div class="a" style="margin-left:30px;float:left;" >
-	  <table style="float:left;">
+	<div class="a" style="margin-left:5%;float:left;" >
+	  <table style="float:left; border-style: solid;
+border-color:red;">
 	    <tr>
 	      <td><%@ include file="ShopHomePage1.file"%></td>
-	      <td><%@ include file="ShopHomePage2.file"%></td>
-	    
+	      <td><%@ include file="ShopHomePage2.file"%></td>   
 	    </tr>
 	   </table>
 
 	</div>
 
 	
-	
 		<form method="POST"
 			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
-			<table style="margin-left:640px;">
+			<table style="margin-left:42%; border-style: solid;
+border-color:red;">
 				<tr>
 					<td>商品分類：</td>
 					<td><select size="1" name="pd_typeNo">
@@ -135,8 +134,9 @@ color: #777;
 			<input type="hidden" name="action" value="CompositeQuery_Product">
 			
 		</form>
-		<div class="a" style="margin-left:50px;float:left;" >
-	  <table  style="float:left;">
+		<div class="a" style="margin-left:5%;float:left;" >
+	  <table  style="float:left; border-style: solid;
+border-color:red;">
 	    <tr>
 	     
 	      <td><%@ include file="ShopHomePage3.file"%></td>
@@ -153,7 +153,7 @@ color: #777;
 	<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
 		end="<%=pageIndex+rowsPerPage-1%>">
 		<div class="context" style="margin-top:50px; background-color:#858796;">
-			<table border="1" class="Product">
+			<table border="1" class="Product" >
 
 				<tr>
 					<td class="aaa"><a
@@ -195,7 +195,7 @@ color: #777;
 	<br>
 	<a
 		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp">${mb_id}的商品收藏</a> --%>
-
+</div>
 
 
 </body>

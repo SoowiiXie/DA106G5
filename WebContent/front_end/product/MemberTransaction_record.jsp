@@ -37,6 +37,12 @@ th, td {
 	padding: 1px;
 	text-align: center;
 }
+ .buttonBar{
+width:100%;
+background-color:#3960D0;
+height:100px;
+margin-top:100;
+}
 </style>
 <title>管理所有訂單</title>
 </head>
@@ -51,21 +57,31 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-
-	<div 
-		style="float: left; margin-left: -140px; margin-top: 150px;">
+	<div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
+	<div align="center" style="border-style: solid; border-color:red;">
+		<font size="+3">目前您的交易紀錄如下：</font>
+		<hr>
+		<p></div>
+	<div style="float: left; margin-top: 50px;  width:100%; border-style: solid; border-color:red;" >
 		<form method="POST"
 			action="<%=request.getContextPath()%>/OrdersServlet" name="form1">
-			<table border="1">
-
+			<table style="float:left; margin-left:15%;">
 				<tr>
 					<td> <%@ include
 							file="MemberTransaction_record1.file"%></td>
 							<td><%@ include
 							file="MemberTransaction_record3.file"%></td>
-					<td style="margin-left:360px; float: left;"><%@ include
-							file="MemberTransaction_record2.file"%></td>
 				</tr>
+			</table>
+			
+			<table style="margin-left:67.5%;">
+				<tr>
+					<td> <%@ include
+							file="MemberTransaction_record2.file"%></td>
+						
+				</tr>
+			</table>
+			<table><tr></tr>
 			</table>
 			<input type="hidden" name="mb_id" value="${mb_id}">
 			<input type="hidden" name="action" value="searchSelfOrders">
@@ -74,7 +90,7 @@ th, td {
 	</div>
 
 
-	<div align="center" >
+	<div align="center" style="border-style: solid; border-color:red;">
 		<table border="1" Style="width: 1000px; align: center">
 
 			<tr bgcolor="#999999">
@@ -158,6 +174,6 @@ th, td {
 		</script>
 	</c:if>
 
-
+<div id="Footer" class="buttonBar" style="margin-top:100px;" ></div>
 </body>
 </html>

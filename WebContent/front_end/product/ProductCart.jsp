@@ -69,13 +69,13 @@ margin-top:100;
 	%>
 
 	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
-	<div style="width:100%; height:100px; border-style:solid; background-color:#FFD382;"></div>
-	<div align="center" style=" background-color:#FFD382;">
+	<div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
+	<div align="center" style="border-style: solid; border-color:red;">
 		<font size="+3">目前您購物車的內容如下：</font>
 		<hr>
 		<p></div>
-		<div style="border-style:solid; height:600px;" align="center" >
-		<div style="border-style:solid;" align="center">
+		<div style=" border-style: solid; border-color:red;" align="center" >
+		<div align="center">
 			<form name="deleteForm"
 				action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
 				<table style="width: 800px;">
@@ -133,7 +133,7 @@ margin-top:100;
 					%>
 					
 					<tr bgcolor=#C4E1FF>
-					<td></td>
+					<td rowspan="5"></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -146,30 +146,24 @@ margin-top:100;
 				</table>
 			</form>
 			</div>
-			
-			<div align="center">
-			<form name="checkoutForm"
-				action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
-				<table style="width: 800px;" >
-					<tr bgcolor=#C4E1FF>
-						<td width="155px">可使用的優惠券：</td>
-						<td width="100px" align="center"><select size="1" name="cp_get" >
+			<div style="background-color:#C4E1FF; width:793px;margin-top:-16.5px;" >
+			<div style="margin-left:-54%;"><form name="checkoutForm" action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
+				可使用的優惠券：<select size="1" name="cp_get" >
 								<option value="請選擇">請選擇
 									<c:forEach var="cp_getVO" items="${couponList}">
 										<option value="${cp_getVO.cp_no}">${couponService.searchCoupon(cp_getVO.cp_no).cp_name}
 									</c:forEach>
-						</select></td>
-						<td width="200px"> </td>
-					<td width="100px"></td>
-					<td width="100px"></td>
-					<td width="100px"></td>
-					<td width="100px"><input type="submit" value="填寫購買資訊"></td>
-				</table>
+						</select>
+						
+					<input type="submit" value="填寫購買資訊">
+				
 				<input type="hidden" name="action" value="GoToWriteShopInformation">
 				
-			</form>
+			</form></div>
 		</div>
+			
 		</div>
+		
 		<%
 			}
 		%>

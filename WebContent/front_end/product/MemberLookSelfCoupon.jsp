@@ -22,6 +22,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css" media="screen">
+table, th, td {
+	border: 2px solid #FFFFFF;
+}
+
+th, td {
+	padding: 1px;
+	text-align: center;
+}
+ .buttonBar{
+width:100%;
+background-color:#3960D0;
+height:100px;
+margin-top:100;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -36,24 +52,25 @@
 			</c:forEach>
 		</ul>
 	</c:if>
-	<div style="width:100%; height:100px; border-style:solid; background-color:#FFD382;"></div>
-
-<div align="center" style="margin-top: 100px;">
+	<div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
+<div align="center" style="border-style: solid; border-color:red;">
 		<font size="+3">目前您可使用的優惠券如下：</font>
 		<hr>
+		</div>
+		<div align="center" style="border-style: solid; border-color:red; height:400px;">
 <table style="margin-top: 50px;">
 <tr bgcolor="#999999">  
 
-<th style="width:150px;">可使用的優惠券</th>
-<th style="width:150px;">獲取時間</th>
-<th style="width:150px;">備註</th>
+<th style="width:150px;" ><font color="black">可使用的優惠券</font></th>
+<th style="width:150px;"><font color="black">獲取時間</font></th>
+<th style="width:150px;"><font color="black">備註</font></th>
 </tr>
 
 <c:forEach var="cp_getVO" items="${list}">
 <tr bgcolor=#C4E1FF>
-<td align="center" >${couponService.searchCoupon(cp_getVO.cp_no).cp_name}</td>
-<td align="center" >${cp_getVO.cp_javaGetTime}</td>
-<td align="center" >${couponService.searchCoupon(cp_getVO.cp_no).cp_detail}</td>
+<td align="center" ><font color="black">${couponService.searchCoupon(cp_getVO.cp_no).cp_name}</font></td>
+<td align="center" ><font color="black">${cp_getVO.cp_javaGetTime}</font></td>
+<td align="center" ><font color="black">${couponService.searchCoupon(cp_getVO.cp_no).cp_detail}</font></td>
 </tr>
 </c:forEach>
 
@@ -70,6 +87,6 @@
 </table> --%>
 
 
-
+ <div class="buttonBar" style="margin-top:100px"></div>
 </body>
 </html>
