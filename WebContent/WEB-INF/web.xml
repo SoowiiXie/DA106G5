@@ -116,6 +116,16 @@
 
 	
 		<servlet>
+			<servlet-name>Loc_rptServletDA106G5</servlet-name>
+			<servlet-class>com.loc_rpt.controller.Loc_rptServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Loc_rptServletDA106G5</servlet-name>
+			<url-pattern>/loc_rpt.do</url-pattern>
+		</servlet-mapping>
+
+	
+		<servlet>
 			<servlet-name>Loc_rptServletAll</servlet-name>
 			<servlet-class>com.loc_rpt.controller.Loc_rptServlet</servlet-class>
 		</servlet>
