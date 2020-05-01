@@ -188,7 +188,7 @@ public class Loc_rptServlet extends HttpServlet {
 				}
 				String loc_no = req.getParameter("loc_no").trim();
 				if (loc_no == null || loc_no.trim().length() == 0) {
-					errorMsgs.add("留言編號: 請勿空白");}
+					errorMsgs.add("地標編號: 請勿空白");}
 				String mb_id = req.getParameter("mb_id").trim();
 				if (mb_id == null || mb_id.trim().length() == 0) {
 					errorMsgs.add("檢舉的會員編號: 請勿空白");}
@@ -199,7 +199,7 @@ public class Loc_rptServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("loc_rptVO", loc_rptVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/loc_rpt/addLoc_rpt.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=maps/googleMap2.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -208,14 +208,14 @@ public class Loc_rptServlet extends HttpServlet {
 				Loc_rptService loc_rptSvc = new Loc_rptService();
 				loc_rptVO = loc_rptSvc.addLoc_rpt(rpt_reason, loc_no, mb_id);
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/front_end/location/listAllLocation.jsp";
+				String url = "/front_end/index.jsp?pageRun=maps/googleMap2.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/loc_rpt/addLoc_rpt.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=maps/googleMap2.jsp");
 				failureView.forward(req, res);
 			}
 		}
