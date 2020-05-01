@@ -363,7 +363,9 @@
 			<servlet-name>DBGifReader4Path</servlet-name>
 			<url-pattern>/DBGifReader4Path</url-pattern>
 		</servlet-mapping>
-			
+		
+<!-- android -->
+
 		<servlet>
 			<servlet-name>MemberServlet</servlet-name>
 			<servlet-class>android.com.mb.controller.MemberServlet</servlet-class>
@@ -390,6 +392,16 @@
 			<servlet-name>AndroidLocationServlet</servlet-name>
 			<url-pattern>/android/location.do</url-pattern>
 		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>AndroidRecordServlet</servlet-name>
+			<servlet-class>android.com.record.controller.ReocrdServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AndroidRecordServlet</servlet-name>
+			<url-pattern>/android/record.do</url-pattern>
+		</servlet-mapping>
+		
 		
 <!-- 麥克責任區結束 -->
 
