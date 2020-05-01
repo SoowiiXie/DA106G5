@@ -39,7 +39,7 @@
 	</style>
 </head>
 
-
+<div id="divAll">
 <table id="table-1">
 
 </table>
@@ -142,7 +142,7 @@
 		</div> 
   </div>
 			
-
+</div>
 			
 </html>
 
