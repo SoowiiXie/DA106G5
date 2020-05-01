@@ -14,8 +14,11 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <% 
-	MemberService memberSvc = new MemberService();
-	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+		MemberService memberSvc = new MemberService();
+		MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+		//用memberVO先取得會常使用到的mb_id
+		pageContext.setAttribute("mb_id", memberVO.getMb_id());
+		
 	//登入畫面壞掉時用，其餘時候註解起來
 // 	String mb_id=(String)session.getAttribute("mb_id");
 // 	if(mb_id==null || "".equals(mb_id) || memberVO==null){
@@ -27,8 +30,7 @@
 // 		//還沒登入的話
 // 		response.sendRedirect(request.getContextPath()+"/front_end/member/login.jsp");
 // 	}else{
-		//用memberVO先取得會常使用到的mb_id
-		pageContext.setAttribute("mb_id", memberVO.getMb_id());
+		
 		//拿出所有紀錄
 		RecordService recordSvc = new RecordService();
 		List<RecordVO> list = recordSvc.getByMb_id((String)pageContext.getAttribute("mb_id"));
@@ -202,11 +204,11 @@
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"> 
 						<i class="fas fa-fw fa-handshake"></i> 
 						<span>揪團</span>
-					</a>
+					</a>group_detail/listAllGroupdetailForSelect.jsp
 					<div id="collapseUtilities" class="collapse collapseTwo"
 						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-0 m-0 collapse-inner rounded">
-							<a class="collapse-item py-1" href="../ZacharyGrp/webFront/group.html">瀏覽揪團</a> 
+							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp">瀏覽揪團</a> 
 							<a class="collapse-item py-1" href="utilities-animation.html">我的揪團</a>
 							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_detail/webFront/group.jsp">開團</a>
 						</div>

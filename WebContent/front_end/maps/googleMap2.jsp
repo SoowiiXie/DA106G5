@@ -2,7 +2,13 @@
 <%@ page import="java.util.*"%>
 <%@ page import="org.json.*"%>
 <%@ page import="com.location.model.*"%>
+<%@ page import="com.mb.model.*"%>
 <%
+MemberService memberSvc = new MemberService();
+MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+//用memberVO先取得會常使用到的mb_id
+pageContext.setAttribute("mb_id", memberVO.getMb_id());
+
 //取出所有地標
 LocationService locationSvc = new LocationService();
 // List<LocationVO> locationList = locationSvc.getAll();
@@ -220,13 +226,12 @@ html, body {
       });
       markers.push(marker);
       var infowindow = new google.maps.InfoWindow({
-          content: "<h2>"+
-          result.adr+
+          content: "<h2>"+result.adr+"</h2>"+
+          "<img src='data:image/jpg;base64,"+result.pic+"' style='height:10rem;' class='rounded'>"+
           "<input style='height: 1rem; opacity: 0.5;' class='infoFlagBtn' type='image' name='submit_Btn' src='<%=request.getContextPath()%>/img/flag.png'>"+
-          "</h2><img src='data:image/jpg;base64,"+
-          result.pic+"' style='height:10rem;' class='rounded'><p><h2><b>經度: </b>"+
-          result.lng+"</br>緯度:&nbsp;&nbsp;&nbsp;&nbsp;"+
-          result.lat+"</h2></p></div>"
+          "<input type='hidden' name='loc_no4rpt' class='loc_no4rpt' value='"+result.loc_no4json+"'>"+
+          "<p><h2><b>經度: </b>"+result.lng+
+          "</br>緯度:&nbsp;&nbsp;&nbsp;&nbsp;"+result.lat+"</h2></p></div>"
       });
       marker.addListener('click', function() {
     	  console.log(777);
@@ -315,9 +320,9 @@ html, body {
 	 console.log(loc_rptInsertBox);
 	 loc_rptInsertBox.css({'margin-left':'-' + (loc_rptInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (loc_rptInsertBox.height()/2)+'px'});
 	 
-	 $("body").on('click', '.infoFlagBtn',function(event){
-// 		 $("#loc_no4rpt").val($('.infoFlagBtn'));
-// 	     $("#mb_id4rpt").val(data.cmt_status);
+	 $("body").on('click', '.infoFlagBtn',function(){
+		 $("#loc_no4rptInsert").val($(this).next().val());
+	     $("#mb_id4rpt").val("${mb_id}");
 		 loc_rptInsertBox.fadeIn();
 		 $('.overlay').fadeIn();
 	 });

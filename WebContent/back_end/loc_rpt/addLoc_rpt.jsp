@@ -60,7 +60,7 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="loc_rpt.do" name="form1" enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/loc_rpt.do" name="form1" enctype="multipart/form-data">
 		<table>
 <!-- 		//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
 			<div class="form-group ml-1 mb-1 mr-1">
@@ -70,7 +70,7 @@ th, td {
 		</table>
 		<br> 
 		<div class="fblightbox-footer bg-white">
-			<input type="hidden" name="loc_no" id="loc_no4rpt" value=""> 
+			<input type="hidden" name="loc_no" id="loc_no4rptInsert" value=""> 
 			<input type="hidden" name="mb_id" id="mb_id4rpt" value=""> 
 			<input type="hidden" name="action" value="insert"> 
 		    <input type="submit" value="檢舉這地標" class="fbbutton" id="loc_rpt_submit">
