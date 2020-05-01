@@ -332,6 +332,8 @@ public class LocationDAO implements Location_interface {
 					}
 					locationJsonVO.setIcon(icon);
 					locationJsonVO.setAdr(rs.getString("loc_address"));
+					locationJsonVO.setPic(Base64.getEncoder().encodeToString(rs.getBytes("loc_pic")));
+					locationJsonVO.setLoc_no4json(rs.getString("loc_no"));
 					list.add(locationJsonVO); // Store the row in the list
 				}
 			}
@@ -398,6 +400,7 @@ public class LocationDAO implements Location_interface {
 						locationJsonVO.setIcon(icon);
 						locationJsonVO.setAdr(rs.getString("loc_address"));
 						locationJsonVO.setPic(Base64.getEncoder().encodeToString(rs.getBytes("loc_pic")));
+						locationJsonVO.setLoc_no4json(rs.getString("loc_no"));
 						list.add(locationJsonVO); // Store the row in the list
 					}
 				}
