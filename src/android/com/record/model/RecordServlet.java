@@ -1,4 +1,4 @@
-package android.com.record.controller;
+package android.com.record.model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
