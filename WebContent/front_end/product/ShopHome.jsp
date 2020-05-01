@@ -7,8 +7,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 <%@ page import="com.pd_type.model.*"%>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <%
 	ProductService productService = new ProductService();
 
@@ -59,7 +59,9 @@ background-color:#3960D0;
 height:100px;
 margin-top:100;
 }
-
+.breadcrumb > .active {
+color: #777;
+}
 </style>
 <meta charset="UTF-8">
 <title>列出所有商品</title>
@@ -83,13 +85,28 @@ margin-top:100;
 			</c:forEach>
 		</ul>
 	</c:if>
-	<div class="a" align="right" style="float:right; margin-top:10px; margin-right:20px;">
+	
+
+
+	<div class="a" style="margin-left:30px;float:left;" >
+	  <table style="float:left;">
+	    <tr>
+	      <td><%@ include file="ShopHomePage1.file"%></td>
+	      <td><%@ include file="ShopHomePage2.file"%></td>
+	    
+	    </tr>
+	   </table>
+
+	</div>
+
+	
+	
 		<form method="POST"
 			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
-			<table>
+			<table style="margin-left:640px;">
 				<tr>
-					<td>產品商品分類：</td>
+					<td>商品分類：</td>
 					<td><select size="1" name="pd_typeNo">
 					              <option value="">請選擇
 							<c:forEach var="pd_typeVO" items="${pd_typeService.all}">
@@ -99,8 +116,7 @@ margin-top:100;
 					</select></td>
 
 					<td>商品名稱：</td>
-					<td><input type="TEXT" name="pd_name" 
-						value="${productVO.pd_name}"></td>
+					<td><input type="TEXT" name="pd_name" value="${productVO.pd_name}" style="width:100px;"></td>
 
 
 					<td>最低價格：</td>
@@ -117,21 +133,26 @@ margin-top:100;
 
 
 			<input type="hidden" name="action" value="CompositeQuery_Product">
+			
 		</form>
+		<div class="a" style="margin-left:50px;float:left;" >
+	  <table  style="float:left;">
+	    <tr>
+	     
+	      <td><%@ include file="ShopHomePage3.file"%></td>
+	    
+	    </tr>
+	   </table>
+
 	</div>
+
+
+
 	<%-- <%-- 				<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />	 --%>
 
-
-
-
-	<div class="a" style="margin-left:30px; margin-top:10px;"><table border="1"><tr>
-	<td><%@ include file="ShopHomePage1.file"%></td><td><%@ include file="ShopHomePage2.file"%></td></tr></table>
-	<%@ include file="ShopHomePage3.file"%></div>
-	
-	
 	<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
 		end="<%=pageIndex+rowsPerPage-1%>">
-		<div class="context" style="margin-top:100px">
+		<div class="context" style="margin-top:50px; background-color:#858796;">
 			<table border="1" class="Product">
 
 				<tr>
@@ -155,7 +176,7 @@ margin-top:100;
 		</div>
 	</c:forEach>
 	<div class="foot"></div>
-  <div class="buttonBar"></div>
+  <div class="buttonBar" style="margin-top:100px"></div>
 
 	<%--    <jsp:include page="/front_end/product/ProductCart.jsp" flush="true" /> --%>
 	<%-- 	<br>

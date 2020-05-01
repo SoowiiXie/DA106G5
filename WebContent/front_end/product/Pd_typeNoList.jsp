@@ -43,6 +43,7 @@ height:30px;
 <title></title>
 </head>
 <body>
+<div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
 <%--   <%=request.getRequestURI()%>
  
 <a
@@ -58,13 +59,24 @@ height:30px;
 			</c:forEach>
 		</ul>
 	</c:if>
-		<div class="a" align="right">
+	
+	<div class="a" style="margin-left:30px; float:left;" >
+	  <table border="1" style="float:left;">
+	    <tr>
+	      <td><%@ include file="Pd_typeNoList1.file"%></td>
+		  <td><%@ include file="Pd_typeNoList2.file"%></td>
+		   <td><%@ include file="Pd_typeNoList3.file"%></td>
+		</tr>
+	  </table>
+	  </div>
+		
+		
 		<form method="POST"
 			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
 			<table>
 				<tr>
-					<td>產品商品分類：</td>
+					<td>商品分類：</td>
 					
 					<td><select size="1" name="pd_typeNo">
 					<option value="">請選擇
@@ -94,11 +106,10 @@ height:30px;
 
 			<input type="hidden" name="action" value="CompositeQuery_Product">
 		</form>
-	</div>
+	
 
 
-		<%@ include file="page5.file"%>
-		<%@ include file="page6.file"%>
+		
 		
 		
 		
@@ -127,6 +138,6 @@ height:30px;
 		</div>
 	</c:forEach>
 	<div class="foot"></div>
-	<%@ include file="page6.file"%>
+
 </body>
 </html>

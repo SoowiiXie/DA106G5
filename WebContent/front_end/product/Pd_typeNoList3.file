@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div align="right">
   <%if (pageNumber>1) {%>
     <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>">   
        <select size="1" name="whichPage">
@@ -9,5 +8,4 @@
        </select>
        <input type="submit" value="確定" >  
     </FORM>
-  <%}%>  
-</div>  
+  <%}%>

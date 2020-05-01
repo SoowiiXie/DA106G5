@@ -36,7 +36,7 @@
 			</c:forEach>
 		</ul>
 	</c:if>
-
+	<div style="width:100%; height:100px; border-style:solid; background-color:#FFD382;"></div>
 
 <div align="center" style="margin-top: 100px;">
 		<font size="+3">目前您可使用的優惠券如下：</font>

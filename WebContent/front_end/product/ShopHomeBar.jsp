@@ -58,9 +58,8 @@ background-color:#3960D0;
 
 }
 .logo{
-margin-left:100px;
 height:100px;
-width:200px; 
+width:300px; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
@@ -141,6 +140,7 @@ width:1440px;
 background-color:#D2E9FF;
 position:absolute; 
 text-align:center;
+
 
 }
 .Topmenu{
@@ -238,11 +238,18 @@ margin:10px auto;
 
 <body>  
     <div id="first">
-     <div class="logo" align="center">
-     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a></div>
-     <div class="search_pd" style=" border-style:solid; ">
+      <div class="logo">
+        <div style="width:150px;  float:left;">
+           <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> 
+           <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a>
+        </div>
+        <div>
+        <font size="5px" color="white">RUNNABLE</font>
+        </div>
+      </div>
+     <div class="search_pd">
       <form class="search_form" action="XXX">
-        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px; margin-top:-40px; font-size:12px" >
+        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px; margin-top:-30px; font-size:12px" >
         <input type="submit" value="搜尋"style="width:50px;height:40px; border-radius:5px; font-size:12px">  
       </form></div>
       <div class="backhome" align="center"><a
@@ -361,21 +368,20 @@ margin:10px auto;
  <script src="<%=request.getContextPath()%>/plug-in/Semantic-UI/semantic.min.js"></script>
     <script src="<%=request.getContextPath()%>/plug-in/popper/popper.min.js"></script>
     <script src="<%=request.getContextPath()%>/plug-in/bootstrap/js/bootstrap.min.js"></script>  --%>
-    	<!-- Bootstrap core JavaScript-->
-	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
-	<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+     	<!-- Bootstrap core JavaScript-->
+<%-- 	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --%>
 
 	<!-- Core plugin JavaScript-->
-	<script src="<%= request.getContextPath() %>/vendor/jquery-easing/jquery.easing.min.js"></script>
+<%-- 	<script src="<%= request.getContextPath() %>/vendor/jquery-easing/jquery.easing.min.js"></script> --%>
 
 	<!-- Custom scripts for all pages-->
-	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
+<%-- 	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script> --%>
 	
 	<!-- switch button -->
 	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	
 	<!-- jquery -->
-	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
-</body>
+<%-- 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>   --%>
 
 </html>

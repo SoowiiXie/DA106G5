@@ -26,6 +26,23 @@
     padding: 1px;
     text-align: center;
   }
+  #Footer {
+　height: 100px;
+　position: relative;
+　margin-top: -100px;
+}
+ .buttonBar{
+width:100%;
+background-color:#3960D0;
+height:100px;
+margin-top:100;
+}
+.followlist {
+	cellpadding: "10";
+	cellspacing: "5";
+	padding-bottom: 100px;
+	
+}
 
 </style>
 <title>Mode II 範例程式 - Cart.jsp</title>
@@ -52,21 +69,23 @@
 	%>
 
 	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
-	<div align="center" style="margin-top: 100px;">
+	<div style="width:100%; height:100px; border-style:solid; background-color:#FFD382;"></div>
+	<div align="center" style=" background-color:#FFD382;">
 		<font size="+3">目前您購物車的內容如下：</font>
 		<hr>
-		<p>
-		<div>
+		<p></div>
+		<div style="border-style:solid; height:600px;" align="center" >
+		<div style="border-style:solid;" align="center">
 			<form name="deleteForm"
 				action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
 				<table style="width: 800px;">
-					<tr bgcolor="#999999">
-						<th width="100px">產品圖片</th>
-						<th width="100px">產品分類</th>
-						<th width="200px">產品名稱</th>
-						<th width="100px">單價</th>
-						<th width="100px">尺寸</th>
-						<th width="100px">數量</th>
+					<tr bgcolor="#999999" align="center">
+						<th width="100px"><font color="black">產品圖片</font></th>
+						<th width="100px"><font color="black">產品分類</font></th>
+						<th width="200px"><font color="black">產品名稱</font></th>
+						<th width="100px"><font color="black">單價</font></th>
+						<th width="100px"><font color="black">尺寸</font></th>
+						<th width="100px"><font color="black">數量</font></th>
 						<th width="100px"></th>
 					</tr>
 
@@ -80,7 +99,7 @@
 
 
 					<tr bgcolor=#C4E1FF>
-						<td align="center" style="height: 100px; width: 150px;"><a
+						<td align="center" style="width: 50px; height: 125px;"><a
 							href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${order.pd_no}'><img 
 								src="<%=request.getContextPath()%>/ProductPicReader?pd_no=<%=order.getPd_no()%>" style="width:auto;"></a></td>
 						<td height="100px"><div align="center">
@@ -103,8 +122,8 @@
 						<td width="100"><div align="center">
 
 								<input type="hidden" name="action" value="DELETE"> <input
-									type="hidden" name="del" value="<%=index%>"> <input class="btn btn-secondary btn-sm" type="submit" name="Submit" 
-							value="刪除" style="background: #FF2F00">
+									type="hidden" name="del" value="<%=index%>"> <input class="btn btn-primary btn-sm" type="submit" name="Submit" 
+							value="刪除">
 							</div></td>
 
 					</tr>
@@ -127,7 +146,7 @@
 				</table>
 			</form>
 			</div>
-			</div>
+			
 			<div align="center">
 			<form name="checkoutForm"
 				action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
@@ -150,12 +169,11 @@
 				
 			</form>
 		</div>
+		</div>
 		<%
 			}
 		%>
 
-	<br>
-	<br>
-	<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">回到首頁增加商品</a>
+<div id="Footer" class="buttonBar" style="margin-top:100px;" ></div>
 </body>
 </html>
