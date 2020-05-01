@@ -6,7 +6,7 @@
 <%
   GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
 %>
-<link rel="stylesheet" type="text/css" href="webFront/groupAdd.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/front_end/group/webFront/groupAdd.css">
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
