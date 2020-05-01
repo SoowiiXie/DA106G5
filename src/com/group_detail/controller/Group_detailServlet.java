@@ -199,7 +199,7 @@ public class Group_detailServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("grp_detailVO", grp_detailVO); // 含有輸入格式錯誤的grp_detailVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/group_detail/addGroupRpt.jsp");
+							.getRequestDispatcher("/front_end/group_detail/addGroupdetail.jsp");
 					failureView.forward(req, res);
 					return;
 				}

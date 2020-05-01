@@ -4,7 +4,7 @@
 <%@ page import="com.grouper.model.*"%>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="webFront/groupIndex.css">
+  <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/front_end/group/webFront/groupIndex.css">
   <style type="text/css">
 <title>IBM Group: Home</title>
 

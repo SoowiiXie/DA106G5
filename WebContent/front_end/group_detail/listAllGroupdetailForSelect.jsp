@@ -5,9 +5,14 @@
 <%@ page import="com.grouper.model.*"%>
 <%@ page import="com.location.model.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.mb.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
-<%
+<%	
+	MemberService memberSvc = new MemberService();
+	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	pageContext.setAttribute("mb_id", memberVO.getMb_id());
+	
 	List<Grp_detailVO> grp_detailVOList = (List<Grp_detailVO>)request.getAttribute("grp_detailVOList"); //EmpServlet.java(Concroller), 存入req的empVO物件
 	pageContext.setAttribute("grp_detailVOList",grp_detailVOList);
 	GrouperService grouperSvc = new GrouperService();
@@ -72,7 +77,6 @@
 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
-${list}123
 <table>
 	<tr>
 		<th>會員編號</th>
@@ -92,7 +96,8 @@ ${list}123
 	</tr>
 <%-- 	${group_detailSvc.all} --%>
 <%-- 	<c:forEach var="grp_detailVO" items="${list}"> --%>
-<c:forEach var="grp_detailVO" items="${grp_detailVOList}">
+<%-- <c:forEach var="grp_detailVO" items="${grp_detailVOList}"> --%>
+<c:forEach var="grp_detailVO" items="${group_detailSvc.getAllGrp_detailByMb_id(mb_id)}">
 <%--     <c:if test="${grp_detailVO.grp_no==(grp_detailVOList.mb_id)}"><!-- 2 --> --%>
 	<tr>		
 		<td>${grp_detailVO.mb_id}</td>
