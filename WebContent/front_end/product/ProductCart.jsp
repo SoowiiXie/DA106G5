@@ -13,6 +13,19 @@
 	
 }
 
+  table {
+
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  table, th, td {
+    border: 3px solid 	#FFFFFF;
+  }
+  th, td {
+    padding: 1px;
+    text-align: center;
+  }
 
 </style>
 <title>Mode II 範例程式 - Cart.jsp</title>
@@ -38,7 +51,7 @@
 		if (buylist != null && (buylist.size() > 0)) {
 	%>
 
-	<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
+	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 	<div align="center" style="margin-top: 100px;">
 		<font size="+3">目前您購物車的內容如下：</font>
 		<hr>
@@ -90,8 +103,8 @@
 						<td width="100"><div align="center">
 
 								<input type="hidden" name="action" value="DELETE"> <input
-									type="hidden" name="del" value="<%=index%>"> <input
-									type="submit" value="刪除">
+									type="hidden" name="del" value="<%=index%>"> <input class="btn btn-secondary btn-sm" type="submit" name="Submit" 
+							value="刪除" style="background: #FF2F00">
 							</div></td>
 
 					</tr>

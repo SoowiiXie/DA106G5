@@ -43,7 +43,7 @@ position: relative;
 }
 .search_form{
 position: absolute;  
-margin-top:54px;
+margin-top:30px;
 }
 .backhome{
 margin-left:130px;
@@ -112,7 +112,7 @@ text-align:center;
 }
 .Topmenu{
   width:12.5%;
-  height:42px;
+  height:50px;
   background-color:#3960D0;
   color:#FFF6F6;
   font-size:22px;
@@ -128,7 +128,7 @@ text-align:center;
  
 }
 .Topmenu:hover{
-  height:178px;
+  height:186px;
   cursor:pointer;
  /*   background-color: green;*/
 /*    color:cyan;*/
@@ -197,7 +197,6 @@ text-align:center;
 margin:10px auto;
 }
 
-
 </style>
 
 <title>ShopHomeBar</title>
@@ -206,28 +205,28 @@ margin:10px auto;
 <body>  
     <div id="first">
      <div class="logo" align="center">
-     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/img/LogoNoBack.png" style="border-radius:5px;"></a></div>
+     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/img/LogoNoBack.png" ></a></div>
      <div class="search_pd" >
       <form class="search_form" action="XXX">
         <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px;">
         <input type="submit" value="搜尋"style="width:50px;height:40px; border-radius:5px;">  
       </form></div>
       <div class="backhome" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;"><font color="white" >
+		href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;"><font color="white" size="3">
 		回到首頁</font></a></div>
       <div class="pd_follow" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp" style="text-decoration:none;"><font color="white">我的收藏</font></a></div> 
+		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp" style="text-decoration:none;"><font color="white" size="3">我的收藏</font></a></div> 
       <div class="shopping_trolley" align="center">
-      	<a href="<%=request.getContextPath()%>/front_end/product/ProductCart.jsp" style="text-decoration:none;"><font color="white">購物車
+      	<a href="<%=request.getContextPath()%>/front_end/product/ProductCart.jsp" style="text-decoration:none;"><font color="white" size="3">購物車
       	<c:if test="${buylistCount!=0}">
-	                   <font color="red">${buylistCount}</font>
+	                   <font color="red" >${buylistCount}</font>
   </c:if></font></a>
       	</div> 
       	<div class="transaction_record" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/MemberTransaction_record.jsp" style="text-decoration:none;"><font color="white" >交易紀錄</font></a></div>
+		href="<%=request.getContextPath()%>/front_end/product/MemberTransaction_record.jsp" style="text-decoration:none;"><font color="white" size="3">交易紀錄</font></a></div>
        <div class="memberLogin" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp" style="text-decoration:none;"><font color="white" >會員登入</font></a></div>
-      <div class="member" align="center"><font color="white">${mb_id}</font></div>
+		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp" style="text-decoration:none;"><font color="white" size="3">會員登入</font></a></div>
+      <div class="member" align="center"><font color="white" size="3">${mb_id}</font></div>
     </div>
     <div class="bar_lift"></div>
     <div class="second">
@@ -287,11 +286,21 @@ margin:10px auto;
     </div>
  
    
+    	<!-- Bootstrap core JavaScript-->
+	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
- <script src="<%=request.getContextPath()%>/plug-in/bootstrap/jquery/jquery-3.4.1.min.js"></script>
- <script src="<%=request.getContextPath()%>/plug-in/Semantic-UI/semantic.min.js"></script>
-    <script src="<%=request.getContextPath()%>/plug-in/popper/popper.min.js"></script>
-    <script src="<%=request.getContextPath()%>/plug-in/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script src="<%= request.getContextPath() %>/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
+	
+	<!-- switch button -->
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	
+	<!-- jquery -->
+	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 </body>
 
 </html>

@@ -16,7 +16,7 @@
 
 <jsp:useBean id="couponService" scope="page"
 	class="com.coupon.model.CouponService" />
-<jsp:include page="ShopHomeBar2.jsp" />
+<jsp:include page="ShopHomeBar.jsp" />
 <!DOCTYPE html>
 <html>
 <head>

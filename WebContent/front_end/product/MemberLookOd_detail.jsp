@@ -35,7 +35,7 @@
 </style>
 </head>
 <body bgcolor="#FFFFFF">
-	<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
+	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 	<div align="center" style="margin-top: 100px;">
 	<font size="+3">訂單明細 </font>
 	<hr>

@@ -38,7 +38,7 @@
 </head>
 <jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
 <body bgcolor="#FFFFFF">
-<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
+<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 
 
 

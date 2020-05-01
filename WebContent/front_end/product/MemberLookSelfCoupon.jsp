@@ -18,7 +18,7 @@
 	
 %>
 <jsp:useBean id="couponService" scope="page" class="com.coupon.model.CouponService" />
-<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
+<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 <!DOCTYPE html>
 <html>
 <head>

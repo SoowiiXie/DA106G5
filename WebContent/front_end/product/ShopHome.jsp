@@ -53,13 +53,19 @@ height:50px;
 background-color:#context;
 height:30px;
 }
+.buttonBar{
+width:100%;
+background-color:#3960D0;
+height:100px;
+margin-top:100;
+}
 
 </style>
 <meta charset="UTF-8">
 <title>列出所有商品</title>
 </head>
 <body>
-
+<div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
 
 	<%-- 
 	
@@ -77,7 +83,7 @@ height:30px;
 			</c:forEach>
 		</ul>
 	</c:if>
-	<div class="a" align="right">
+	<div class="a" align="right" style="float:right; margin-top:10px; margin-right:20px;">
 		<form method="POST"
 			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
@@ -118,11 +124,14 @@ height:30px;
 
 
 
-	<%@ include file="page3.file"%>
-	<%@ include file="page4.file"%>
+	<div class="a" style="margin-left:30px; margin-top:10px;"><table border="1"><tr>
+	<td><%@ include file="ShopHomePage1.file"%></td><td><%@ include file="ShopHomePage2.file"%></td></tr></table>
+	<%@ include file="ShopHomePage3.file"%></div>
+	
+	
 	<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
 		end="<%=pageIndex+rowsPerPage-1%>">
-		<div class="context">
+		<div class="context" style="margin-top:100px">
 			<table border="1" class="Product">
 
 				<tr>
@@ -146,9 +155,9 @@ height:30px;
 		</div>
 	</c:forEach>
 	<div class="foot"></div>
+  <div class="buttonBar"></div>
 
-
-	<%--    <jsp:include page="/front_end/product//ProductCart.jsp" flush="true" /> --%>
+	<%--    <jsp:include page="/front_end/product/ProductCart.jsp" flush="true" /> --%>
 	<%-- 	<br>
 	<br>
 	<a

@@ -24,9 +24,21 @@
 	cellspacing: "5";
 	
 }
-.table{
-bgcolor: #D2E9FF;
-}
+
+  table {
+
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	
+  }
+  table, th, td {
+    border: 3px solid 	#FFFFFF;
+  }
+  th, td {
+    padding: 1px;
+    text-align: center;
+  }
 </style>
 <%
 	String mb_id = (String) session.getAttribute("mb_id");
@@ -44,24 +56,24 @@ bgcolor: #D2E9FF;
 <title>商品收藏</title>
 </head>
 <body>
-	<jsp:include page="/front_end/product/ShopHomeBar2.jsp" flush="ture" />
+	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 		<div align="center" style="margin-top:100px;"><font size="+3">您的商品收藏內容如下：</font></div>
 		<Hr>
 	<div align="center">
-	<table>
+	<table >
 	<tr>
 	<td><%@ include file="pagePd_follow1.file"%><%@ include file="pagePd_follow2.file"%></td>
 	</tr></table></div>
 	<div class="listFloow" align="center">
 		<form method="POST"
 			action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
-			<table class="followlist" >
+			<table class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF;" >
 
-				<tr bgcolor="#999999" >
-					<th width="100">商品圖片</th>
+				<tr bgcolor="#999999" align="center">
+					<th width="100" ><font color="black">商品圖片</font></th>
 
-					<th width="100">商品名稱</th>
-					<th width="100">商品價格</th>
+					<th width="100" align="center" ><font color="black">商品名稱</font></th>
+					<th width="100" align="center"><font color="black">商品價格</font></th>
 					<th width="100"></th>
 
 
@@ -77,9 +89,9 @@ bgcolor: #D2E9FF;
 								></a></td>
 						<td><a
 							href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${pd_followVO.pd_no}'>${productService.findOneProduct(pd_followVO.pd_no).pd_name}</a></td>
-						<td align="center">${productService.findOneProduct(pd_followVO.pd_no).pd_price}元</td>
-						<td align="center"><input type="submit" name="Submit"
-							value="刪除商品收藏"> <input type="hidden" name="pd_no"
+						<td align="center"><font color="black">${productService.findOneProduct(pd_followVO.pd_no).pd_price}元</font></td>
+						<td align="center"><input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
+							value="刪除商品收藏" style="background: #3960D0"> <input type="hidden" name="pd_no"
 							value="${pd_followVO.pd_no}"> <input type="hidden"
 							name="action" value="DeleteOnePd_follow"></td>
 

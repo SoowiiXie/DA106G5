@@ -51,7 +51,7 @@ background-color:#FFDAC8;
 width: 650px;
 height: 50px;
 background-color:#FFF4C1;
-
+overflow: hidden;
 } 
 .pd_name_title{
 width: 100px;
@@ -64,23 +64,28 @@ width: 550px;
 height: 50px;
 background-color:#FFDAC8;
 margin-left:100px; 
+
 }
 .pd_information_price{
 width: 650px;
 height: 50px;
 background-color:#EBD6D6;
+
+
 }
 .pd_price_title{
 width: 100px;
 height: 50px;
 background-color:#B3D9D9;
 float: left;
+
 }
 .pd_price{
 width: 550px;
 height: 50px;
 background-color:#FF77FF;
 margin-left:100px; 
+vertical-align: middle;
 }
 .pd_information_color{
 width: 650px;
@@ -198,76 +203,103 @@ input.qtyminus {
 <title>${productVO.pd_name}</title>
 </head>
 <body>
-<jsp:include page="/front_end/product/ShopHomeBar3.jsp" flush="ture" />
+<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 <br>
 <br>
 
-   <div class="third">
-    <div class="pd_mainPhoto"><img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}">
+
+   
+<div style="float:left">
+  <table border="1" style="margin-top:200px;">
+    <tr>
+      <td width="500" height="500">
+        <div align="center" style="float:left" >
+          <img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}" style="width:100% ;height:100% align:center;">
+        </div>
+      </td>
+    </tr>
+  </table>
 </div>
-    <div class="pd_information">
-      <div class="pd_name"><div class="pd_name_title" align="right"><p style="margin-top:15px;">商品名稱：</p></div><div class="pd_name_Imformation"><font size="+3">${productVO.pd_name}</font></div></div>
-      <div class="pd_information_price">
-        <div  class="pd_price_title" align="right" ><p style="margin-top:15px;">售價：</p></div>
-        <div class="pd_price"> ${productVO.pd_price}元</div>
-    
-      <div class="pd_information_color">
-        <div class="pd_color_title" align="right" >
-          <p style="margin-top:15px;">收藏商品：</p>
-        </div>
-        <div class="pd_colorChoose">
-       <div style="float:left;"> 
-	<form method="POST" action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
-	<input type="hidden" name="pd_no" value="${productVO.pd_no}"> 
-	<input type="hidden" name="pd_name" value="${productVO.pd_name}"> 
-	<input type="hidden" name="action" value="AddPd_follow">
-	<input type="submit" name="Submit" value="加入商品收藏">
-	
-	</form>
-	</div>
-	 ${addType_follow}
-         </div>
-        </div>
-      <div class="pd_information_size">
-        <div class="pd_size_title" align="right">
-          <p style="margin-top:15px;">商品尺寸：</p>	
-         </div>
-        <div class="pd_sizeChoose">  
-        <form>
-           <select size="1" name="pd_typeSize">
+<div style="margin-top:200px;">
+<form method="POST" action="<%=request.getContextPath()%>/ShoppingServlet" name="form1">
+  <table  border="1">
+    <tr>
+      <td width="100" height="40" align="right">商品名稱：</td>
+      <td width="300" height="40" align="left">籃球</td>
+    </tr>
+    <tr>
+      <td width="100" height="40" align="right">商品價格：</td>
+      <td width="300" height="40" align="left"><font size="7">8888元</font></td>
+   </tr>
+   <tr>
+   
+      <td width="100" height="40" align="right">商品數量：</td>
+      
+      <td width="300" height="40" align="left"><select name="pd_quantity">
+						<option value="1">1
+						<option value="2">2
+						<option value="3">3
+						<option value="4">4
+						<option value="5">5
+						<option value="6">6
+						<option value="7">7
+						<option value="8">8
+						<option value="9">9
+						<option value="10">10
+				</select></td>
+   </tr>
+
+   <tr>
+     <td width="100" height="40" align="right">商品尺寸：</td>
+     <td width="300" height="40" align="left"><select size="1" name="pd_typeSize">
          <c:forEach var="pd_typeSize" items="${sizeList}" > 
-          <option value="${pd_typeSize}">${pd_typeSize}
+          <option value="${pd_typeSize}">${pd_typeSize} Size
          </c:forEach>   
-       </select>
-         </form>
-        </div>
-        </div>
-        
-              <div class="pd_information_detail">
-        <div class="pd_detail_title" align="right">
-          <p style="margin-top:15px;">商品詳述：</p>
-         </div>
-        <div class="pd_detailChoose">  
-       ${productVO.pd_detail}
-       
-        </div>
-        </div>
-        
-        
-      <div class="pd_information_count"><div class="pd_count_title" align="right"><p style="margin-top:25px;">商品數量：</p></div><div class="pd_count_qty"><form id='myform' method='POST' action='#'>
-    <label for=""></label><input type='button' value='-' class='qtyminus' field='quantity'><!--
-    --><input type='text' name='quantity' value='0' class='qty'><!--
---><input type='button' value='+' class='qtyplus' field='quantity'>件
-</form></div></div>
-      <div class="shopping_information_trolleyOrBuy">
-        <div class="shopping_trolleyOrBuy_trolley"><form action="XXX"><button style="margin-top:30px;">加入購物</button></form></div>
-        <div class="shopping_trolleyOrBuy_buy"><form action="XXX"><button style="margin-top:30px;">直接購買</button></form></div>
-        
-        </div>  
-    </div>
-    </div>
-    </div>
-<div class="sixth">商品內容 </div>
+       </select></td>
+   </tr>
+   <tr>
+     <td width="100" height="40" style="vertical-align:text-top;" align="right">商品詳述：</td>
+     <td width="300" height="192" style="vertical-align:text-top;align:" align="left">每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。</td>
+   </tr>
+   <tr>
+     <td width="100" height="40" align="right">商品收藏：</td>
+     <td width="300" height="40" align="left">收藏連結</td>
+   </tr>
+   </table>
+       <table style="width:400px; height:80px;" border="1">
+         <tr>
+           <td>
+            
+                 <input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
+							value="加入購物車" style="background: #3960D0"> 
+                 <input type="hidden" name="pd_no" value="${productVO.pd_no}"> 
+                 <input type="hidden" name="pd_name" value="${productVO.pd_name}"> 
+                 <input type="hidden" name="pd_price" value="${productVO.pd_price}">
+		         <input type="hidden" name="pd_typeNo" value="${productVO.pd_typeNo}">
+		         <input type="hidden" name="pd_typeSize" value="${pd_typeSize}">
+		         <input type="hidden" name="action" value="AddProductToCar">
+		    
+		  </td>
+</form>
+		  <td>
+		  
+		  
+<form method="POST" action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
+	             <input type="hidden" name="pd_no" value="${productVO.pd_no}"> 
+	             <input type="hidden" name="pd_name" value="${productVO.pd_name}"> 
+	             <input type="hidden" name="action" value="AddPd_follow">
+	             <input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
+							value="加入商品收藏" style="background: #3960D0">
+</form>
+	      </td>
+       </tr>
+    </table>
+</div>
+ 
+<br> 
+
+<br>
+<br>
 <br>
  ${addType_follow}
 	<%-- 錯誤表列 --%>
@@ -333,7 +365,8 @@ input.qtyminus {
 			</tr>
 
 		</table>
-		<input type="submit" name="Submit" value="加入購物車"> <input
+		<input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
+							value="加入購物車" style="background: #3960D0"> <input
 			type="hidden" name="pd_no" value="${productVO.pd_no}"> <input
 			type="hidden" name="pd_name" value="${productVO.pd_name}"> <input
 			type="hidden" name="pd_price" value="${productVO.pd_price}">
@@ -346,7 +379,8 @@ input.qtyminus {
 	<input type="hidden" name="pd_no" value="${productVO.pd_no}"> 
 	<input type="hidden" name="pd_name" value="${productVO.pd_name}"> 
 	<input type="hidden" name="action" value="AddPd_follow">
-	<input type="submit" name="Submit" value="加入商品收藏">
+	<input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
+							value="加入商品收藏" style="background: #3960D0">
 	
 	</form>
 <a href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp">會員的商品收藏</a>
