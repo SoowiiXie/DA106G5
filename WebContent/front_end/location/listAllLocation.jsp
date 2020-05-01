@@ -92,8 +92,7 @@ th, td {
 			<th>地標狀態</th>
 			<th>地址</th>
 			<th>圖片</th>
-			<th>修改</th>
-			<th>刪除</th>
+			<th>上架/下架</th>
 		</tr>
 <%-- 		<%@ include file="page1.file"%> --%>
 <%-- 		<c:forEach var="locationVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
@@ -109,7 +108,7 @@ th, td {
 				<td><img src="<%= request.getContextPath() %>/DBGifReader4Location?loc_no=${locationVO.loc_no}" width="100px"></td>
 				<td>
 					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/location/location.do" style="margin-bottom: 0px;">
-						<input type="submit" value="修改"> 
+						<input type="submit" value="上架/下架"> 
 						<input type="hidden" name="loc_no" value="${locationVO.loc_no}"> 
 						<input type="hidden" name="loc_status" value="${locationVO.loc_status}"> 
 						<input type="hidden" name="action" value="fakeDelete">
