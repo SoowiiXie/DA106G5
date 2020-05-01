@@ -53,7 +53,10 @@
 		<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}"><br>
 		
 		<input type="hidden" name="includePath" value="${incluePath}">
-        <a href="listAllMember.jsp"><input type ="button" value="返回"></a>
+		
+        <input type="hidden" name="backPath" value="/back_end/staff/listAllMember.jsp?mb_id=">
+        <button type="submit" name="action" value="back">返回</button>
+        
         <button type="submit" name="action" value="back_end_update">修改</button>
         
         

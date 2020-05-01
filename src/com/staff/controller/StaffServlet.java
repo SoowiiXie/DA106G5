@@ -39,15 +39,16 @@ public class StaffServlet extends HttpServlet{
 		// *** listAllStaff 離職用紅字粗體顯示
 		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
+		//  會員分頁掛了!!!!!
 		//  errorMsg 兩個問題
 		//  後台首頁預設畫面  Line 162
 		//  可以做一個沒有XX權限的畫面(未擁有該權限時跳出的畫面)
 //			連結改動態  返回特別處理(include問題)
 		
-//			addStaff 返回
+//			addStaff 返回  V
 //			update_member 返回
 //			update_self 返回
-//			update_staff 返回
+//			update_staff 返回  V
 //			新增/修改成功時，跳Sweet Alert  
 //			驗證信
 		
@@ -355,7 +356,8 @@ public class StaffServlet extends HttpServlet{
 		
 		if ("back".equals(action)) { // 返回
 			String backPath = req.getParameter("backPath");
-			RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
+			req.setAttribute("incluePath", backPath);
+			RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 			failureView.forward(req, res);
 		}
 		

@@ -198,7 +198,6 @@
 				</c:forEach>&emsp;
 				
 				<input type="hidden" name="staff_id"  value="${staffVO.staff_id}">
-				<input type="hidden" name="includePath" value="${incluePath}">
 				<button type="submit" name="action" value="update_authority">°e¥X­×§ï</button>
 				</FORM>
 			</td>

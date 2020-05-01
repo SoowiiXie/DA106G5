@@ -61,7 +61,7 @@
 <!--         !!!!!!!!!!!!!!!! -->
 
 <!-- 返回上一個include的路徑 -->
-        <input type="hidden" name="backPath" value="/back_end/staff/addStaff.jsp">
+        <input type="hidden" name="backPath" value="/back_end/staff/listAllStaff.jsp">
         <button type="submit" name="action" value="back">返回</button>
         
         <button id="submit" type="submit" name="action" value="insert">送出</button><br>

@@ -37,7 +37,6 @@ public class AuthorityServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 		
 		String indexPath = "/back_end/staff/index.jsp";
-		String includePath = req.getParameter("includePath");
 		
 		if ("update_authority".equals(action)) {   // 權限修改
 			List<String> errorMsgs = new LinkedList<String>();
@@ -63,7 +62,7 @@ public class AuthorityServlet extends HttpServlet{
 				
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("incluePath", includePath);  
+				req.setAttribute("incluePath", "/back_end/staff/listAllStaff.jsp");  
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
 				successView.forward(req, res);
 	

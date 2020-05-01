@@ -519,5 +519,13 @@ public class MemberServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("back".equals(action)) { // 返回
+			String indexPath = "/back_end/staff/index.jsp";
+			String backPath = req.getParameter("backPath");
+			req.setAttribute("incluePath", backPath);
+			RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
+			failureView.forward(req, res);
+		}
 	}
 }

@@ -31,13 +31,16 @@
 			<c:forEach var="map" items="${staffStatus}">
 				<option value="${map.key}" ${staffVO.staff_status==map.key?'selected':''}>${map.value}</option>
 			</c:forEach>
-		</select>
+		</select><br>
 		
 		<input type="hidden" name="includePath" value="${incluePath}">
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 		<input type="hidden" name="staff_join" value="${staffVO.staff_join}">
 		
-        <a href="listAllStaff.jsp"><input type ="button" value="返回"></a>
+<!-- 		backPath 後面的 ?staff_id= 是為了讓回去時不讓該管理員顯示顏色(因為forward會自動傳參數，所以要讓參數傳不回去) -->
+        <input type="hidden" name="backPath" value="/back_end/staff/listAllStaff.jsp?staff_id=">
+        <button type="submit" name="action" value="back">返回</button>
+        
         <button type="submit" name="action" value="update">送出</button><br>
         
 	</form>
