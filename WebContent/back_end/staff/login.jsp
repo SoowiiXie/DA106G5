@@ -18,7 +18,7 @@
             border-radius: 30px;
             text-align:center;
         }
-        img {
+        #icon {
             padding-top: 20px;
             display: block;
             margin: auto;
@@ -26,8 +26,7 @@
             width: 100px;
         }
         
-		input[type="text"],
-        input[type="password"] {
+		#staff_id,#staff_pwd {
             display: block;
             margin: 20px auto -10px auto;
             height: 30px;
@@ -39,7 +38,7 @@
             padding-left: 30px;
         }
 
-        input[type="password"] {
+        #staff_pwd {
             background-image: url(<%=request.getContextPath()%>/front_end/member/login/Login/pwd3.png);
             background-size: 20px;
             margin: 20px auto -10px auto;
@@ -65,7 +64,7 @@
             background-color: rgba(100, 185, 209, 1);
             text-shadow: 3px 3px 3px #333;
         }
-        p{
+        #p_title{
         	display:block;
         	margin-top:60px;
         	text-align:center;
@@ -79,7 +78,7 @@
         	height:40px;
         	margin-left:60px;
         }
-        ul{
+        #ul{
         	font-size: 15px;
         	font-weight: bold;
         	margin:0px;
@@ -89,17 +88,17 @@
 </head>
 <body>
 
-	<p>後台管理員登入</p>
+	<p id="p_title">後台管理員登入</p>
 	<div id="wrap">
-	<img src="<%=request.getContextPath()%>/front_end/member/login/Login/icon5.png">
+	<img id="icon" src="<%=request.getContextPath()%>/front_end/member/login/Login/icon5.png">
 	
 	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
-		<input type="text" name="staff_id" placeholder="請輸入帳號" ><br>
-        <input type="password" name="staff_pwd" placeholder="請輸入密碼"><br>
+		<input id="staff_id" type="text" name="staff_id" placeholder="請輸入帳號" ><br>
+        <input id="staff_pwd" type="password" name="staff_pwd" placeholder="請輸入密碼"><br>
         
         <div id="errorMsgs">
             <c:if test="${not empty errorMsgs}">
-				<ul>
+				<ul id="ul">
 				    <c:forEach var="message" items="${errorMsgs}">
 						<li style="color:red">${message}</li>
 					</c:forEach>
