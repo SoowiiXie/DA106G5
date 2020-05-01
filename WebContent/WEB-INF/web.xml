@@ -395,7 +395,7 @@
 		
 		<servlet>
 			<servlet-name>AndroidRecordServlet</servlet-name>
-			<servlet-class>android.com.record.controller.ReocrdServlet</servlet-class>
+			<servlet-class>android.com.record.controller.RecordServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>AndroidRecordServlet</servlet-name>

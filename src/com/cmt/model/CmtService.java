@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.sql.Connection;
 
 public class CmtService {
 
@@ -70,4 +71,11 @@ public class CmtService {
     	return dao.countAllCmts(rcd_no);
     }
 
+	public List<CmtVO> getByRcd_no(String rcd_no, Connection con) {
+		Map<String, String[]> map = new HashMap<>();
+		String str = "'" + rcd_no + "'";
+		map.put("rcd_no", new String[] { str });
+		return dao.getAllUWish(map, con);
+	}
+	
 }

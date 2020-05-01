@@ -399,4 +399,70 @@ public class CmtDAO implements Cmt_interface {
 		return cmts;
 	}
 
+	@Override
+	public List<CmtVO> getAllUWish(Map<String, String[]> map, Connection con) {
+		StringBuilder sb = new StringBuilder();
+
+		List<CmtVO> list_map = new ArrayList<CmtVO>();
+		CmtVO cmtVO_map = null;
+
+		PreparedStatement pstmt_map = null;
+		ResultSet rs_map = null;
+
+		sb.append("SELECT * FROM commentt where ");
+		for (Entry<String, String[]> entry : map.entrySet()) {
+			sb.append("(");
+			for (int i = 0; i < entry.getValue().length; i++) {
+				if (i == 0) {
+					sb.append(entry.getKey() + " = " + entry.getValue()[i]);
+				} else {
+					sb.append(" OR " + entry.getKey() + " = " + entry.getValue()[i]);
+				}
+			}
+			sb.append(") and ");
+		}
+		sb.append(" 1=1 ");
+
+		try {
+
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+//			con = ds.getConnection();
+			pstmt_map = con.prepareStatement(sb.toString(), ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs_map = pstmt_map.executeQuery();
+			while (rs_map.next()) {
+				// empVO 也稱為 Domain objects
+				cmtVO_map = new CmtVO();
+				cmtVO_map.setCmt_no(rs_map.getString("cmt_no"));
+				cmtVO_map.setCmt_content(rs_map.getString("cmt_content"));
+				cmtVO_map.setCmt_time(rs_map.getDate("cmt_time"));
+				cmtVO_map.setCmt_status(rs_map.getInt("cmt_status"));
+				cmtVO_map.setRcd_no(rs_map.getString("rcd_no"));
+				cmtVO_map.setMb_id(rs_map.getString("mb_id"));
+				list_map.add(cmtVO_map); // Store the row in the list
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs_map != null) {
+				try {
+					rs_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt_map != null) {
+				try {
+					pstmt_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_map;
+	}
+
 }
