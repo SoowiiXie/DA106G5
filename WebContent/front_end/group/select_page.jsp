@@ -4,7 +4,7 @@
 <%@ page import="com.grouper.model.*"%>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="webFront/group.css">
+  <link rel="stylesheet" type="text/css" href="webFront/groupIndex.css">
   <style type="text/css">
 <title>IBM Group: Home</title>
 
@@ -38,39 +38,20 @@
 	
 	</style>
 </head>
-<body bgcolor='white'>
+
 
 <table id="table-1">
 
 </table>
-<header>
-		<h1>rUnnable</h1>
-		<small>從心靈出發，找肉體的伴</small>
-</header>
 
 
 
-	<nav>
-		<a href="">個人頁面</a>
-		<a href="">準備出發</a>
-		<a href="">購物商城</a>
-		<a href="">運動直播</a>
-	</nav>
-	<video autoplay loop controls muted poster="webFront/v1.jpg">
-		<source src="webFront/run.mp4" type="video/mp4">
-		<source src="webFront/run.ogg" type="video/ogg">
-		<source src="webFront/run.webm" type="video/webm">
-	</video>
-<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
-<div id="right">
-		<img src="webFront/c1.jpg" alt="">
-		<img src="webFront/c4.jpg" alt="">
-		<img src="webFront/c3.jpg" alt="">
-<fieldset>
-		<legend>揪團</legend>
-			<%-- 萬用複合查詢-以下欄位-可隨意增減 --%>
+
+
+
+<div id="form-main">
+  <div id="form-div">
 			
-<h3>資料查詢:</h3>
 	
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -82,43 +63,14 @@
 	</ul>
 </c:if>
 
-<ul>
+
   <li><a href='listAllGroup.jsp'>揪團列表</a><br><br></li>
-  
-  
-<!--   <li> -->
-<!--     <FORM METHOD="post" ACTION="group.do" > -->
-<!--         <b>輸入揪團編號 (如grp00001):</b> -->
-<!--         <input type="text" name="grp_no"> -->
-<!--         <input type="hidden" name="action" value="getOne_For_Display"> -->
-<!--         <input type="submit" value="送出"> -->
-<!--     </FORM> -->
-<!--   </li> -->
 
-<%--   <jsp:useBean id="grpSvc" scope="page" class="com.grouper.model.GrouperService" /> --%>
-   
-<!--   <li> -->
-<!--      <FORM METHOD="post" ACTION="group.do" > -->
-<!--        <b>選擇揪團編號:</b> -->
-<!--        <select size="1" name="grp_no"> -->
-<%--          <c:forEach var="GrouperVO" items="${grpSvc.all}" >  --%>
-<%--           <option value="${GrouperVO.grp_no}">${GrouperVO.grp_no} --%>
-<%--          </c:forEach>    --%>
-<!--        </select> -->
-<!--        <input type="hidden" name="action" value="getOne_For_Display"> -->
-<!--        <input type="submit" value="送出"> -->
-<!--     </FORM> -->
-<!--   </li> -->
-</ul>
-
-
-
-<h3>揪團管理</h3>
-
-<ul>
   <li><a href='addGroup.jsp'>成立揪團</a></li>
-</ul>
-</body>
+
+
+
+
 
 			
 <ul>  
@@ -126,15 +78,15 @@
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" name="form1">
         <b><font color=blue >查詢揪團</font></b> <br>
         <b>輸入揪團編號:</b>
-        <input type="text" name="grp_no" value="grp00001"><br>
+        <input type="text" name="grp_no" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團編號" id="name" /><br>
            
         <b>輸入會員編號:</b>
-        <input type="text" name="mb_id"><br>
+        <input type="text" name="mb_id" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的會員編號" id="name" /><br>
         
 <jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />        
        
         <b>選擇揪團地點:</b>
-       <select size="1" name="loc_no" >
+       <select size="1" name="loc_no" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團地點" id="name" />
           <option value="">
          <c:forEach var="LocationVO" items="${locationSvc.all}" > 
           <option value="${LocationVO.loc_no}">${LocationVO.loc_address}
@@ -151,10 +103,12 @@
 <!-- 	    <input name="grp_end" id="s_date2" type="text"><br> -->
 	    
 	    <b>輸入揪團標題:</b>
-        <input type="text" name="grp_name"><br>
+        <input type="text" name="grp_name" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團標題" id="name" /><br>
        
         <b>輸入揪團內容:</b>
-        <input type="text" name="grp_content" ><br>
+        <input type="text" name="grp_content" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團內容" id="name" /><br>
+       
+
 	   
 <!-- 	    <b>輸入揪團人數上限:</b> -->
 <!--         <input type="text" name="grp_personmax"><br> -->          
@@ -162,7 +116,7 @@
 <!--         <input type="text" name="grp_personmin"><br> -->
        
         <b>參加揪團人數:</b>
-        <input type="text" name="grp_personcount"><br>
+        <input type="text" name="grp_personcount" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團人數" id="name" /><br>
    		
 <!--    		<b>揪團狀態:</b> -->
 <!-- 		<td><INPUT TYPE="checkbox" NAME="grp_status" VALUE="1">未滿</td><br> -->
@@ -171,19 +125,25 @@
 <!-- 		<td><INPUT TYPE="checkbox" NAME="grp_status" VALUE="4">成功</td><br> -->
        
         <b>揪團關注人數:</b>
-        <input type="text" name="grp_follow"><br>                
-        <input type="submit" value="送出">
+        <input type="text" name="grp_follow" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的關注人數" id="name" /><br>                
+        
+        
+        
+		
+		<div class="submit">
+        <input type="submit" value="SEND" id="button-blue"/>
         <input type="hidden" name="action" value="listGrouper_ByCompositeQuery">
+     	<div class="ease"></div>
+
+
      </FORM>
   </li>
 </ul>
+		</div> 
+  </div>
+			
 
 			
-</fieldset>
-</div>
-<footer>
-RUNNABLE &copy;Copyright 2020 by Your LOGO - NYKD54@gmail.com
-</footer>			
 </html>
 
 
