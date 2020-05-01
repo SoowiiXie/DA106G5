@@ -30,8 +30,7 @@
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 		<input type="hidden" name="staff_status" value="${staffVO.staff_status}">
 		
-		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
-		<input type="hidden" name="includePath" value="/back_end/staff/update_self.jsp">
+		<input type="hidden" name="includePath" value="${incluePath}">
         <input type="hidden" name="action" value="update">
         
         <a href="select_page.jsp"><input type ="button" value="返回"></a>

@@ -25,7 +25,7 @@
 <html>
 <head>
 <title>所有管理員資料 - listAllStaff.jsp</title>
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 <style>
   #table-1 {
 	width: 450px;
@@ -68,13 +68,26 @@
   }
 </style>
 
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
+		//  改EL
 	$(document).ready(function(){
 		$(".authorityRow").find("*").addClass("authorityRow");
 		<%if("update_authority".equals(action) || "update".equals(action)){%>
-			alert("修改成功!");
+			Swal.fire({
+				  icon: 'success',
+				  title: '修改成功',
+				  showConfirmButton: false,
+				  timer: 1500
+				})
 		<%}else if("insert".equals(action)){%>
-			alert("新增成功!");
+			Swal.fire({
+			  icon: 'success',
+			  title: '新增成功',
+			  showConfirmButton: false,
+			  timer: 1500
+			})
 		<%};%>
 	});
 	
@@ -133,9 +146,7 @@
 
 	<!-- 新增管理員 -->
 	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
-		<input type="submit" value="新增管理員">
-		<input type="hidden" name="action" value="for_addStaff">
-		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
+		<button type="submit" name="action" value="for_addStaff">新增管理員</button>
 	</form>	
 	
 <%-- 錯誤表列 --%>
@@ -170,7 +181,6 @@
 			     
 			     <input type="hidden" name="staff_id"  value="${staffVO.staff_id}">
 			     <input type="hidden" name="action"	value="getOne_For_Update">
-			     <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
 			  </FORM>
 			</td>
 			<td><button onclick="show(${staffVO.staff_id})">修改</button></td>
@@ -179,19 +189,17 @@
 		<tr id="${staffVO.staff_id}" class="authorityRow" style="height: 0px;">
 			<td colspan="6">
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/staff/authority.do">
-				<c:set var="entrySet" value="${abilityMap.entrySet()}"/> 
 				<c:set var="authoritySet" value="${authoritySvc.getOneStaffAuthority(staffVO.staff_id)}"/> 
-					
-				<c:forEach var="map" items="${entrySet}">
+				<c:forEach var="map" items="${abilityMap}">
 					<label>
 					<input type="checkbox" name="ability_no" value="${map.key}" ${authoritySet.contains(map.key)?'checked':''}>
 					${map.value}
 					</label>&emsp;
 				</c:forEach>&emsp;
-				<input type="submit" value="送出修改">
-				<input type="hidden" name="action"	value="update_authority">
+				
 				<input type="hidden" name="staff_id"  value="${staffVO.staff_id}">
-				<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
+				<input type="hidden" name="includePath" value="${incluePath}">
+				<button type="submit" name="action" value="update_authority">送出修改</button>
 				</FORM>
 			</td>
 		</tr>

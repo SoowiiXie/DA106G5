@@ -52,11 +52,9 @@
 		<input type="hidden" name="mb_rpt_times" value="${memberVO.mb_rpt_times}"><br>
 		<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}"><br>
 		
-		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
-		<input type="hidden" name="includePath" value="/back_end/staff/update_member.jsp">
-        <input type="hidden" name="action" value="update"><br>
+		<input type="hidden" name="includePath" value="${incluePath}">
         <a href="listAllMember.jsp"><input type ="button" value="返回"></a>
-        <input type="submit" value="修改"><br>
+        <button type="submit" name="action" value="back_end_update">修改</button>
         
         
 	</form>

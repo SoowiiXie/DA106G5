@@ -43,9 +43,8 @@ public class StaffServlet extends HttpServlet{
 		//  後台首頁預設畫面  Line 162
 		//  可以做一個沒有XX權限的畫面(未擁有該權限時跳出的畫面)
 //			連結改動態  返回特別處理(include問題)
+		
 //			addStaff 返回
-//			listAllMember 回首頁
-//			listAllStaff 回首頁
 //			update_member 返回
 //			update_self 返回
 //			update_staff 返回
@@ -55,7 +54,10 @@ public class StaffServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
-		String servletPath = req.getParameter("servletPath");  // 從哪裡來
+//		String servletPath = req.getParameter("servletPath");  // 從哪裡來
+		String loginPath = "/back_end/staff/login.jsp";
+		String indexPath = "/back_end/staff/index.jsp";
+		String includePath = req.getParameter("includePath"); 
 
 		if ("login".equals(action)) { // 登入   OK
 			List<String> errorMsgs = new LinkedList<String>();
@@ -77,7 +79,7 @@ public class StaffServlet extends HttpServlet{
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+					RequestDispatcher failureView = req.getRequestDispatcher(loginPath);
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -90,22 +92,21 @@ public class StaffServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+					RequestDispatcher failureView = req.getRequestDispatcher(loginPath);
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("staffVO", staffVO); // 資料庫取出的VO物件,存入Session
-//				String url = "/back_end/staff/select_page.jsp";  // 測試
-				String url = "/back_end/staff/index.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
+				
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+				RequestDispatcher failureView = req.getRequestDispatcher(loginPath);
 				failureView.forward(req, res);
 			}
 		}
@@ -114,8 +115,7 @@ public class StaffServlet extends HttpServlet{
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-			String includePath = req.getParameter("includePath"); 
-			req.setAttribute("incluePath", includePath);
+			req.setAttribute("incluePath", includePath);  // 放入來源路徑，用以錯誤回去include用
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String staff_id = req.getParameter("staff_id");
@@ -144,7 +144,7 @@ public class StaffServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("staffVO", staffVO); // 含有輸入格式錯誤的staffVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher(servletPath);
+							.getRequestDispatcher(indexPath);
 					failureView.forward(req, res);
 					return;
 				}
@@ -156,7 +156,6 @@ public class StaffServlet extends HttpServlet{
 				staffVO.setStaff_join(staff_join);
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				
 				if("/back_end/staff/update_self.jsp".equals(includePath)) {  // 管理員個人資料修改
 					session.setAttribute("staffVO", staffVO);
 //					includePath = "";  // 改預設首頁
@@ -164,13 +163,13 @@ public class StaffServlet extends HttpServlet{
 					includePath = "/back_end/staff/listAllStaff.jsp";
 				}
 				req.setAttribute("incluePath", includePath);  
-				RequestDispatcher successView = req.getRequestDispatcher(servletPath); // 成功轉交 onePage.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+				RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 				failureView.forward(req, res);
 			}
 		}
@@ -203,7 +202,7 @@ public class StaffServlet extends HttpServlet{
 			// 判斷管理員是否有該權限
 			if(staffAuthority.contains(management) || "00".equals(management)) {
 				req.setAttribute("incluePath", incluePathMap.get(management));  // 將被點選的管理，傳回路徑(用以include)
-				RequestDispatcher successView = req.getRequestDispatcher(servletPath);
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath);
 				successView.forward(req, res);
 				return;
 				
@@ -211,7 +210,7 @@ public class StaffServlet extends HttpServlet{
 				AbilityService abilitySvc = new AbilityService();
 				Map<String,String> allAbility = abilitySvc.getAllToMap();
 				errorMsgs.add("您尚未擁有"+ allAbility.get(management) +"的權限");   // 用MAP取出XXX權限
-				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+				RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 				failureView.forward(req, res);
 			}
 		}
@@ -230,15 +229,14 @@ public class StaffServlet extends HttpServlet{
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("staffVO", staffVO);         
 				req.setAttribute("incluePath", "/back_end/staff/update_staff.jsp");
-				
-				RequestDispatcher successView = req.getRequestDispatcher(servletPath);
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath);
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher(servletPath);
+						.getRequestDispatcher(indexPath);
 				failureView.forward(req, res);
 			}
 		}
@@ -293,15 +291,14 @@ public class StaffServlet extends HttpServlet{
 		
 		if ("for_addStaff".equals(action)) {
 			req.setAttribute("incluePath", "/back_end/staff/addStaff.jsp");
-			RequestDispatcher successView = req.getRequestDispatcher(servletPath); 
+			RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
 			successView.forward(req, res);
 		}
 		if ("insert".equals(action)) { // 新增  OK
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
-			String includePath = req.getParameter("includePath"); 
-			req.setAttribute("incluePath", includePath);
+			req.setAttribute("incluePath", includePath);  // 放入來源路徑，用以錯誤回去include用
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String staff_id = req.getParameter("staff_id");
@@ -328,7 +325,7 @@ public class StaffServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("staffVO", staffVO); // 含有輸入格式錯誤的staffVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher(servletPath);
+							.getRequestDispatcher(indexPath);
 					failureView.forward(req, res);
 					return;
 				}
@@ -338,20 +335,26 @@ public class StaffServlet extends HttpServlet{
 				staffVO = StaffSvc.addStaff(staff_id, staff_pwd, staff_name);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("incluePath", "/back_end/staff/listAllStaff.jsp");  // 成功後include導回畫面
-				RequestDispatcher successView = req.getRequestDispatcher(servletPath); 
+				req.setAttribute("incluePath", "/back_end/staff/listAllStaff.jsp");  // 成功後include的畫面
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 導回後台首頁
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+				RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 				failureView.forward(req, res);
 			}
 		}
 		
 		if ("logout".equals(action)) { // 登出  OK
 			session.invalidate();
+			RequestDispatcher failureView = req.getRequestDispatcher(loginPath);
+			failureView.forward(req, res);
+		}
+		
+		if ("back".equals(action)) { // 返回
+			String backPath = req.getParameter("backPath");
 			RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/login.jsp");
 			failureView.forward(req, res);
 		}

@@ -138,7 +138,6 @@
 	    		<div onclick="javascript:this.parentNode.submit();">個人資料管理</div>
 	    		<input type="hidden" name="management" value="00">
 				<input type="hidden" name="action" value="select_management">
-				<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">	
 			</form>	
 			
 			<%-- 管理權限 --%>
@@ -147,7 +146,6 @@
 				<div onclick="javascript:this.parentNode.submit();">${map.value}</div>
 				<input type="hidden" name="management" value="${map.key}">
 				<input type="hidden" name="action" value="select_management">
-				<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">	
 			</form>	
 			</c:forEach>
 	    	

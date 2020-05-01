@@ -57,12 +57,14 @@
 		<span id="star">*</span>
 		名字：<input type="text" name="staff_name" value="${requestScope.staffVO.staff_name}"><br>
 		
-        <input type="hidden" name="action" value="insert"><br>
-        <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
-        <input type="hidden" name="includePath" value="/back_end/staff/addStaff.jsp">
+        <input type="hidden" name="includePath" value="${incluePath}">
 <!--         !!!!!!!!!!!!!!!! -->
-        <a href="<%=request.getContextPath()%>/back_end/staff/listAllStaff.jsp"><input type ="button" value="返回"></a>
-        <input id="submit" type="submit" value="送出"><br>
+
+<!-- 返回上一個include的路徑 -->
+        <input type="hidden" name="backPath" value="/back_end/staff/addStaff.jsp">
+        <button type="submit" name="action" value="back">返回</button>
+        
+        <button id="submit" type="submit" name="action" value="insert">送出</button><br>
         
 	</form>
 

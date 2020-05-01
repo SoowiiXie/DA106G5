@@ -108,8 +108,6 @@
 		</div>
         
         <input id="login" type="submit" value="LOGIN"><br>
-        
-        <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>"><br>
         <input type="hidden" name="action" value="login">
 	</form>
 	</div>

@@ -35,8 +35,10 @@ public class AuthorityServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
-		String servletPath = req.getParameter("servletPath");  // 從哪裡來
-	
+		
+		String indexPath = "/back_end/staff/index.jsp";
+		String includePath = req.getParameter("includePath");
+		
 		if ("update_authority".equals(action)) {   // 權限修改
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -61,15 +63,14 @@ public class AuthorityServlet extends HttpServlet{
 				
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("incluePath", "/back_end/staff/listAllStaff.jsp");  
-				String url = "/back_end/staff/listAllStaff.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(servletPath); 
+				req.setAttribute("incluePath", includePath);  
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
 				successView.forward(req, res);
 	
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+				RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 				failureView.forward(req, res);
 			}
 		}

@@ -28,21 +28,17 @@
 		
 		狀態：
 		<select name="staff_status">
-			<c:set var="entrySet" value="${staffStatus.entrySet()}"/> 
-			<c:forEach var="map" items="${entrySet}">
+			<c:forEach var="map" items="${staffStatus}">
 				<option value="${map.key}" ${staffVO.staff_status==map.key?'selected':''}>${map.value}</option>
 			</c:forEach>
 		</select>
 		
-		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
-		<input type="hidden" name="includePath" value="/back_end/staff/update_staff.jsp">
+		<input type="hidden" name="includePath" value="${incluePath}">
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 		<input type="hidden" name="staff_join" value="${staffVO.staff_join}">
 		
-        <input type="hidden" name="action" value="update"><br>
         <a href="listAllStaff.jsp"><input type ="button" value="返回"></a>
-        <input type="submit" value="送出"><br>
-        
+        <button type="submit" name="action" value="update">送出</button><br>
         
 	</form>
 	
