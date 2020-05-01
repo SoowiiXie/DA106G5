@@ -13,7 +13,7 @@
 		background-color: rgba(156, 199, 246, 0.6);
         margin: 10vh auto 0px auto;
         width: 30vw;
-        height: 50vh;
+        height: 60vh;
         border-radius: 5vw;
         text-align:center;
 	}
@@ -30,6 +30,9 @@
 		font-size: 3vh;
 		color:#333;
 	}
+	tr{
+		height:6vh;
+	}
 	#staff_pwd,#staff_name{
 		height: 3.5vh;
 		width: 10vw;
@@ -41,35 +44,35 @@
 	}
 	#btnSubmit{
 		font-size: 2.8vh;
-		line-height:1vh;
 		color: #fff;
 		font-family: 'Mamelon';
+		
 		background-color: #60A5F3;
 		border-radius: 2vh;
-		
+		margin-top:2.5vh;
  		height: 6vh; 
  		width: 8vw; 
 	}
+	#errorMsgs{
+       	display:block;
+       	height:40px;
+       	margin-left:3vw;
+    }
+    #ul{
+       	margin:0px;
+       	text-align:left;
+    }
 	#tdSubmit{
-/* 		border:1px solid #000; */
 		height: 12vh; 
+		font-size: 2.5vh;
 	}
+	
+	
 </style>
 </head>
 <body>
 	<div id="wrap">
 	<span id="self_title">個人資料修改</span>
-	
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color:red">請修正以下錯誤:</font>
-		<ul>
-		    <c:forEach var="message" items="${errorMsgs}">
-				<li style="color:red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
-	
 	
 	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
 	<table id="self_table">
@@ -85,7 +88,19 @@
 	<tr>
 		<td align="right">加入時間：</td><td><fmt:formatDate value="${staffVO.staff_join}" pattern="yyyy-MM-dd"/></td>
 	</tr>
-	<tr><td colspan="2" align="center" id="tdSubmit">	
+	<tr><td colspan="2" align="center" id="tdSubmit">
+		
+		<%-- 錯誤表列 --%>
+		<div id="errorMsgs">
+		<c:if test="${not empty errorMsgs}">
+			<ul id="ul">
+			    <c:forEach var="message" items="${errorMsgs}">
+					<li style="color:red">${message}</li>
+				</c:forEach>
+			</ul>
+		</c:if>
+		</div>
+		
 		<input type="hidden" name="staff_join" value="${staffVO.staff_join}">
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 		<input type="hidden" name="staff_status" value="${staffVO.staff_status}">
