@@ -8,6 +8,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.group_detail.model.Grp_detailVO;
+
 public class GrouperDAO implements GrouperDAO_interface {
 
 	//一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
@@ -26,7 +28,7 @@ public class GrouperDAO implements GrouperDAO_interface {
 	private static final String GET_ALL_STMT = 
 		"SELECT * FROM Grouper order by GRP_NO";
 	private static final String GET_ALL_BY_MB_ID = 
-			"SELECT * FROM Grouper WHERE MB_ID = ? order by GRP_NO";
+		"SELECT * FROM Grouper WHERE MB_ID = ? order by GRP_NO";
 	private static final String GET_ONE_STMT = 
 		"SELECT * FROM Grouper where GRP_NO = ?";
 	private static final String DELETE = 
@@ -444,6 +446,73 @@ public class GrouperDAO implements GrouperDAO_interface {
 			}
 		}
 		return list;
+	}
+	
+	public GrouperVO findByPrimaryKeyByGrp_no(String grp_no) {
+
+		GrouperVO grouperVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT);
+
+			pstmt.setString(1, grp_no);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVo �]�٬� Domain objects
+				grouperVO = new GrouperVO();
+				grouperVO.setGrp_no(rs.getString("grp_no"));
+				grouperVO.setMb_id(rs.getString("mb_id"));
+				grouperVO.setLoc_no(rs.getString("loc_no"));
+				grouperVO.setGrp_applystart(rs.getTimestamp("grp_applystart"));
+				grouperVO.setGrp_applyend(rs.getTimestamp("grp_applyend"));
+				grouperVO.setGrp_start(rs.getTimestamp("grp_start"));
+				grouperVO.setGrp_end(rs.getTimestamp("grp_end"));
+				grouperVO.setGrp_name(rs.getString("grp_name"));
+				grouperVO.setGrp_content(rs.getString("grp_content"));
+				grouperVO.setGrp_personmax(rs.getInt("grp_personmax"));
+				grouperVO.setGrp_personmin(rs.getInt("grp_personmin"));
+				grouperVO.setGrp_personcount(rs.getInt("grp_personcount"));
+				grouperVO.setGrp_status(rs.getInt("grp_status"));
+				grouperVO.setGrp_follow(rs.getInt("grp_follow"));
+				
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return grouperVO;
 	}
 	
 }

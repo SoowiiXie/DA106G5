@@ -3,16 +3,24 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.grouper.model.*"%>
+<%@ page import="com.location.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
-
+getOne_Time
 <%
     GrouperService grpSvc = new GrouperService();
     List<GrouperVO> list = grpSvc.getAll();
     pageContext.setAttribute("list",list);
+    
+    GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
+    LocationVO locationVO = (LocationVO) request.getAttribute("locationVO");
 %>
 <jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
 <jsp:useBean id="groupdetailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
 <jsp:useBean id="groupfollowSvc" scope="page" class="com.group_follow.model.Group_followService" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <html>
 <head>
 <title>所有員工資料 - listAllGroup.jsp</title>
@@ -82,10 +90,10 @@
 		<th>揪團編號</th>
 		<th>發起人會員編號</th>
 		<th>地標編號</th>
-		<th>報名開始時間</th>
-		<th>報名結束時間</th>
-		<th>活動開始時間</th>
-		<th>活動結束時間</th>
+<!-- 		<th>報名開始時間</th> -->
+<!-- 		<th>報名結束時間</th> -->
+<!-- 		<th>活動開始時間</th> -->
+<!-- 		<th>活動結束時間</th> -->
 		<th>揪團標題</th>
 		<th>揪團內容</th>
 		<th>人數上限</th>
@@ -95,12 +103,13 @@
 		<th>關注揪團數量</th>
 		<th>修改</th>
 		<th>刪除</th>
+		<th>矮油</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="grouperVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td>${grouperVO.grp_no}</td>
+			<td><A href="group.do?grp_no=${grouperVO.grp_no}&action=getOne_Time">${grouperVO.grp_no}</td>
 			<td>${grouperVO.mb_id}</td>
 <%-- 			<td>${grouperVO.loc_no}</td> --%>
 <!-- 			改寫join -->
@@ -124,10 +133,10 @@
 // 				request.setAttribute("status", status);
 			%>
 		
-			<td>${grouperVO.grp_applystart}</td>
-			<td>${grouperVO.grp_applyend}</td>
-			<td>${grouperVO.grp_start}</td> 
-			<td>${grouperVO.grp_end}</td>
+<%-- 			<td>${grouperVO.grp_applystart}</td> --%>
+<%-- 			<td>${grouperVO.grp_applyend}</td> --%>
+<%-- 			<td>${grouperVO.grp_start}</td>  --%>
+<%-- 			<td>${grouperVO.grp_end}</td> --%>
 			<td>${grouperVO.grp_name}</td>
 			<td>${grouperVO.grp_content}</td>
 			<td>${grouperVO.grp_personmax}</td>
@@ -172,5 +181,36 @@
 </table>
 <%@ include file="page2.file" %>
 
+<c:if test="${openModal!=null}">
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+				
+			<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
+            </div>
+			
+			<div class="modal-body">
+<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+               <jsp:include page="listOneGroup.jsp" />
+<!-- =========================================以上為原listOneEmp.jsp的內容========================================= -->
+			</div>
+			
+			<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+		
+		</div>
+	</div>
+</div>
+
+        <script>
+    		 $("#basicModal").modal({show: true});
+        </script>
+ </c:if>
+ 
 </body>
 </html>

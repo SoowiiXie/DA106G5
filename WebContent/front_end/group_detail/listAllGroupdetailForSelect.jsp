@@ -172,7 +172,6 @@ ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}
 	</tr>
 <%-- 	</c:if> --%>
    </c:forEach>
-
 <%-- </c:forEach> - --%>
 </table>
 

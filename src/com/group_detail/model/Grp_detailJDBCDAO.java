@@ -509,5 +509,23 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 		return null;
 	}
 
+	@Override
+	public Grp_detailVO findByPrimaryKeyByMb_id(String mb_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isGroupOver(String grp_no) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isFull(Integer grp_personmax, String grp_no) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }

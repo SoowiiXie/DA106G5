@@ -8,12 +8,16 @@
 
 <%
 	GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+	LocationService locSvcJSP = new LocationService();
+	LocationVO locVO = locSvcJSP.getOneLocation(grouperVO.getLoc_no());
+	pageContext.setAttribute("locVO", locVO);
 %>
+
+<jsp:useBean id="grp_detailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
+<jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
+<jsp:useBean id="grpSvc" scope="page" class="com.grouper.model.GrouperService" />
 <!-- 取出對應的LocationVO物件 -->
-<%
-	LocationService locSvc = new LocationService();
-	LocationVO locationVO = locSvc.getOneLocation(grouperVO.getLoc_no());	
-%>
+
 
 <html>
 <head>
@@ -65,36 +69,36 @@
 
 <table>
 	<tr>
-		<th>揪團編號</th>
-		<th>發起人會員編號</th>
-		<th>地標編號</th>
+<!-- 		<th>揪團編號</th> -->
+<!-- 		<th>發起人會員編號</th> -->
+<!-- 		<th>地標編號</th> -->
 		<th>報名開始時間</th>
 		<th>報名結束時間</th>
 		<th>活動開始時間</th>
 		<th>活動結束時間</th>
-		<th>揪團標題</th>
-		<th>揪團內容</th>
-		<th>人數上限</th>
-		<th>人數下限</th>
-		<th>目前人數</th>
-		<th>揪團狀態</th>
-		<th>關注揪團數量</th>
+<!-- 		<th>揪團標題</th> -->
+<!-- 		<th>揪團內容</th> -->
+<!-- 		<th>人數上限</th> -->
+<!-- 		<th>人數下限</th> -->
+<!-- 		<th>目前人數</th> -->
+<!-- 		<th>揪團狀態</th> -->
+<!-- 		<th>關注揪團數量</th> -->
 	</tr>
 	<tr>
-		<td><%=grouperVO.getGrp_no()%></td>
-		<td><%=grouperVO.getMb_id()%></td>
-		<td><%=grouperVO.getLoc_no()%>【<%=locationVO.getLoc_address() %>】</td>
+<%-- 		<td><%=grouperVO.getGrp_no()%></td> --%>
+<%-- 		<td><%=grouperVO.getMb_id()%></td> --%>
+<%-- 		<td><%=grouperVO.getLoc_no()%>【<%=locVO.getLoc_address() %>】</td> --%>
 		<td><%=grouperVO.getGrp_applystart()%></td>
 		<td><%=grouperVO.getGrp_applyend()%></td>
 		<td><%=grouperVO.getGrp_start()%></td>
 		<td><%=grouperVO.getGrp_end()%></td>
-		<td><%=grouperVO.getGrp_name()%></td>
-		<td><%=grouperVO.getGrp_content()%></td>
-		<td><%=grouperVO.getGrp_personmax()%></td>
-		<td><%=grouperVO.getGrp_personmin()%></td>
-		<td><%=grouperVO.getGrp_personcount()%></td>
-		<td><%=grouperVO.getGrp_status()%></td>
-		<td><%=grouperVO.getGrp_follow()%></td>
+<%-- 		<td><%=grouperVO.getGrp_name()%></td> --%>
+<%-- 		<td><%=grouperVO.getGrp_content()%></td> --%>
+<%-- 		<td><%=grouperVO.getGrp_personmax()%></td> --%>
+<%-- 		<td><%=grouperVO.getGrp_personmin()%></td> --%>
+<%-- 		<td><%=grouperVO.getGrp_personcount()%></td> --%>
+<%-- 		<td><%=grouperVO.getGrp_status()%></td> --%>
+<%-- 		<td><%=grouperVO.getGrp_follow()%></td> --%>
 	</tr>
 	
 </table>

@@ -101,4 +101,14 @@ public class GrouperVO implements java.io.Serializable{
 	public void setGrp_follow(Integer grp_follow) {
 		this.grp_follow = grp_follow;
 	}
+	@Override
+	public String toString() {
+		return "GrouperVO [grp_no=" + grp_no + ", mb_id=" + mb_id + ", loc_no=" + loc_no + ", grp_applystart="
+				+ grp_applystart + ", grp_applyend=" + grp_applyend + ", grp_start=" + grp_start + ", grp_end="
+				+ grp_end + ", grp_name=" + grp_name + ", grp_content=" + grp_content + ", grp_personmax="
+				+ grp_personmax + ", grp_personmin=" + grp_personmin + ", grp_personcount=" + grp_personcount
+				+ ", grp_status=" + grp_status + ", grp_follow=" + grp_follow + "]";
+	}
+	
+	
 }

@@ -6,6 +6,7 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.group_detail.model.*;
 import com.grouper.model.*;
 
 public class GrouperServlet extends HttpServlet {
@@ -471,6 +472,34 @@ public class GrouperServlet extends HttpServlet {
 //						.getRequestDispatcher("/select_page.jsp");
 //				failureView.forward(req, res);
 //			}
+		}
+		
+		if ("getOne_Time".equals(action)) {
+
+			try {
+				// Retrieve form parameters.
+				String grp_no = new String(req.getParameter("grp_no"));
+				System.out.println(grp_no);
+				GrouperDAO dao = new GrouperDAO();
+				GrouperVO grouperVO = dao.findByPrimaryKey(grp_no);
+
+				req.setAttribute("grouperVO", grouperVO); // 資料庫取出的empVO物件,存入req
+				System.out.println("C:"+grouperVO);
+				
+				//Bootstrap_modal
+				boolean openModal=true;
+				req.setAttribute("openModal",openModal );
+				
+				// 取出的empVO送給listOneEmp.jsp
+				RequestDispatcher successView = req
+						.getRequestDispatcher("/front_end/group/listAllGroup.jsp");
+				successView.forward(req, res);
+				return;
+
+				// Handle any unusual exceptions
+			} catch (Exception e) {
+				throw new ServletException(e);
+			}
 		}
 	}
 }

@@ -95,25 +95,25 @@
 	
 	<tr>
 		<td>報名開始時間:</td>
-		<td><input name="grp_applystart" id="a_date1" type="text"
+		<td><input name="grp_applystart" id="a_date1" type="text" 
 		class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇報名開始時間" id="name" /> </td>
 	</tr>
 	
 	<tr>
 		<td>報名結束時間:</td>
-		<td><input name="grp_applyend" id="a_date2" type="text"
+		<td><input name="grp_applyend" id="a_date2" type="text" 
 		class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇報名結束時間" id="name" /> </td>
 	</tr>
 	
 	<tr>
 		<td>活動開始時間:</td>
-		<td><input name="grp_start" id="s_date1" type="text"
+		<td><input name="grp_start" id="s_date1" type="text" 
 		class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇揪團開始時間" id="name" /> </td>
 	</tr>
 	
 	<tr>
 		<td>活動結束時間:</td>
-		<td><input name="grp_end" id="s_date2" type="text"
+		<td><input name="grp_end" id="s_date2" type="text" 
 		class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇揪團報名結束時間" id="name" /> </td>
 	</tr>
 	
@@ -127,36 +127,36 @@
 	<tr>
 		<td>揪團內容:</td>
 		<td><input type="TEXT" name="grp_content" size="45"
-			 value="<%= (grouperVO==null)? "好好玩" : grouperVO.getGrp_content()%>"  
+			 value="<%= (grouperVO==null)? "好好玩喔喔喔" : grouperVO.getGrp_content()%>"  
 			 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團內容" id="name" /> </td>
 	</tr>
 	
 	<tr>
 		<td>揪團人數上限:</td>
 		<td><input type="TEXT" name="grp_personmax" size="45"
-			 value="<%= (grouperVO==null)? "99" : grouperVO.getGrp_personmax()%>" 
+			 value="<%= (grouperVO==null)? " " : grouperVO.getGrp_personmax()%>" 
 			 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團人數上限" id="name" /> </td>
 	</tr>
 	
 	<tr>
 		<td>揪團人數下限:</td>
 		<td><input type="TEXT" name="grp_personmin" size="45"
-			 value="<%= (grouperVO==null)? "3" : grouperVO.getGrp_personmin()%>" 
+			 value="<%= (grouperVO==null)? " " : grouperVO.getGrp_personmin()%>" 
 			 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團人數下限" id="name" /> </td>
 	</tr>
 	
 	<tr>
-		<td>揪團人數:</td>
-		<td><input type="TEXT" name="grp_personcount" size="45"
-			 value="<%= (grouperVO==null)? "50" : grouperVO.getGrp_personcount()%>" 
-			 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的關注人數" id="name" /> </td>
+<!-- 		<td>揪團人數:</td> -->
+		<td><input type="hidden" name="grp_personcount" size="45"
+			 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_personcount()%>" 
+			 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團注人數" id="name" /> </td>
 	</tr>
 	
 	
 	<tr>
-		<td>揪團追蹤人數:</td>
-		<td><input type="TEXT" name="grp_follow" size="45"
-			 value="<%= (grouperVO==null)? "" : grouperVO.getGrp_follow()%>"
+<!-- 		<td>揪團追蹤人數:</td> -->
+		<td><input type="hidden" name="grp_follow" size="45"
+			 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_follow()%>"
 			 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的關注人數" id="name" /> </td>
 	</tr>
 
