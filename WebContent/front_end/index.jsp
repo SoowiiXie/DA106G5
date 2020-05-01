@@ -204,7 +204,7 @@
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"> 
 						<i class="fas fa-fw fa-handshake"></i> 
 						<span>揪團</span>
-					</a>group_detail/listAllGroupdetailForSelect.jsp
+					</a>
 					<div id="collapseUtilities" class="collapse collapseTwo"
 						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-0 m-0 collapse-inner rounded">
