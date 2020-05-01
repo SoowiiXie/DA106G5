@@ -164,16 +164,6 @@
 	    </div>
 	    <div class="content">
 	    	
-	    	<%-- 錯誤表列 --%>
-			<c:if test="${not empty errorMsgs}">
-				<font style="color:red">請修正以下錯誤:</font>
-				<ul>
-				    <c:forEach var="message" items="${errorMsgs}">
-						<li style="color:red">${message}</li>
-					</c:forEach>
-				</ul>
-			</c:if>
-			
 			<!-- include 部分 ， 若有預設畫面則將IF搬去預設畫面那邊 -->
 			<c:if test="${not empty incluePath}">
 				<jsp:include page="${incluePath}" flush="true"/>
@@ -182,13 +172,22 @@
 	    </div>
     </div>
 </body>
-<script
-  src="https://code.jquery.com/jquery-3.5.0.js"
-  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
-  crossorigin="anonymous">
-</script>
-
-<script type="text/javascript">
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<%
+	String no_authority = (String)request.getAttribute("no_authority");  // 用來判斷是怎麼回來此頁面，決定alert什麼訊息
+%>
+<script>
+		//  改EL
+	$(document).ready(function(){
+		<%if(no_authority!= null){%>
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: '<%=no_authority%>',
+			})
+		<%}%>
+	});
 	
 </script>
 </html>

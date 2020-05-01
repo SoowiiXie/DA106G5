@@ -33,7 +33,6 @@
 		<input type="hidden" name="includePath" value="${incluePath}">
         <input type="hidden" name="action" value="update">
         
-        <a href="select_page.jsp"><input type ="button" value="返回"></a>
         <input type="submit" value="送出"><br>
         
 	</form>

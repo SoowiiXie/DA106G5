@@ -43,13 +43,7 @@ public class StaffServlet extends HttpServlet{
 		//  errorMsg 兩個問題
 		//  後台首頁預設畫面  Line 162
 		//  可以做一個沒有XX權限的畫面(未擁有該權限時跳出的畫面)
-//			連結改動態  返回特別處理(include問題)
-		
-//			addStaff 返回  V
-//			update_member 返回
-//			update_self 返回
-//			update_staff 返回  V
-//			新增/修改成功時，跳Sweet Alert  
+//			新增/修改成功時，跳Sweet Alert  V  修改自己還沒有成功Alert
 //			驗證信
 		
 		req.setCharacterEncoding("UTF-8");
@@ -177,9 +171,6 @@ public class StaffServlet extends HttpServlet{
 		
 		if ("select_management".equals(action)) { // 選擇管理項目  OK ***一半  ***判斷是否登入
 			
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
-			
 			// 取得管理員
 			StaffVO staffVO = (StaffVO) session.getAttribute("staffVO");
 			
@@ -210,7 +201,7 @@ public class StaffServlet extends HttpServlet{
 			}else {  // 沒有權限   可以做一個沒有XX權限的畫面
 				AbilityService abilitySvc = new AbilityService();
 				Map<String,String> allAbility = abilitySvc.getAllToMap();
-				errorMsgs.add("您尚未擁有"+ allAbility.get(management) +"的權限");   // 用MAP取出XXX權限
+				req.setAttribute("no_authority", "您尚未擁有 "+ allAbility.get(management) +" 的權限");
 				RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 				failureView.forward(req, res);
 			}
