@@ -22,7 +22,8 @@ public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.Me
 	private static final String FIND_BY_ID_PASWD = "SELECT * FROM member WHERE MB_ID = ? AND MB_PWD = ?";
 	private static final String CHECK_ID_EXIST = "SELECT MB_ID FROM member WHERE MB_ID = ?";
 	private static final String FIND_BY_ID = "SELECT * FROM member WHERE MB_ID = ?";
-
+	private static final String GET_IMAGE = "SELECT mb_pic FROM member WHERE mb_id = ?";
+	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -177,5 +178,54 @@ public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.Me
 		}
 		return member;
 	}
+	
+	
+	public byte[] getImage(String mb_id) {
+		byte[] picture = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con .prepareStatement(GET_IMAGE);
+			
+			pstmt.setString(1, mb_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				picture = rs.getBytes(1);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("A database error occured."+ e.getMessage());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return picture;
+	}
+	
 
 }

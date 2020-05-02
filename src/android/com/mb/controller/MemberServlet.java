@@ -4,6 +4,7 @@ package android.com.mb.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.AndroidImageUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import android.com.mb.model.MemberDAO;
@@ -57,7 +59,19 @@ public class MemberServlet extends HttpServlet {
 		else if ("getAll".equals(action)) {
 			List<MemberVO> memberList = memberDAO.getAll();
 			writeText(res, gson.toJson(memberList));
-		} 
+		} else if("getImage".equals(action)) {
+			OutputStream os = res.getOutputStream();
+			String path_no = jsonObject.get("mb_id").getAsString();
+			int imageSize = jsonObject.get("imageSize").getAsInt();
+			byte[] image = memberDao.getImage(path_no);
+			
+			if(image != null) {
+				image = AndroidImageUtil.shrink(image, imageSize);
+				res.setContentType("image/jpeg");
+				res.setContentLength(image.length);
+				os.write(image);
+			}
+		}
 		
 		
 		
