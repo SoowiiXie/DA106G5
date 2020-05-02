@@ -458,10 +458,9 @@ public class GrouperServlet extends HttpServlet {
 				/***************************2.開始查詢資料****************************************/
 				GrouperService grpSvc = new GrouperService();
 				List<GrouperVO> list = grpSvc.getAll(map);
-								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("listGrouper_ByCompositeQuery", list);         // 資料庫取出的grouperVO物件,存入req
-				String url = "/front_end/group/listGrouper_ByCompositeQuery.jsp";
+				String url = "/front_end/index.jsp?pageRun=group/listGrouper_ByCompositeQuery.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_grouper_input.jsp
 				successView.forward(req, res);
 

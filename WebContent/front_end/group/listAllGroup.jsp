@@ -45,9 +45,10 @@ getOne_Time
 <style>
   table {
 	width: 800px;
-	background-color: white;
+/* 	background-color: white; */
 	margin-top: 5px;
 	margin-bottom: 5px;
+	background-color: rgba(256,256,256,0);
   }
   table, th, td {
     border: 1px solid #CCCCFF;
@@ -62,7 +63,7 @@ getOne_Time
 <body bgcolor='white'>
 
 <h4>此頁練習採用 EL 的寫法取值:</h4>
-<table id="table-1">
+<table id="table-1" >
 	<tr>
 		<td>
 		 	<h3>所有揪團資料 - listAllGroup.jsp</h3>

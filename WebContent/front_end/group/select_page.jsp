@@ -69,9 +69,7 @@
 
 				<ul>
 					<li>
-						<FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/front_end/group/group.do"
-							name="form1">
+						<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/front_end/group/group.do"	name="form1">
 							<b><font color=blue>查詢揪團</font></b> <br> <b>輸入揪團編號:</b> <input
 								type="text" name="grp_no"
 								class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
@@ -108,7 +106,7 @@
 									placeholder="請輸入查詢的揪團標題" id="name" /><br> <b>輸入揪團內容:</b>
 								<input type="text" name="grp_content"
 									class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
-									placeholder="請輸入查詢的揪團內容" id="name" /><br>
+									placeholder="請輸入查詢的揪團內容123" id="name" /><br>
 
 								<!-- 	    <b>輸入揪團人數上限:</b> -->
 								<!--         <input type="text" name="grp_personmax"><br> -->
@@ -130,11 +128,11 @@
 <!-- 									placeholder="請輸入查詢的關注人數" id="name" /><br> -->
        
 
-								<div class="submit">
-									<input type="submit" value="SEND" id="button-blue" /> <input
-										type="hidden" name="action"
-										value="listGrouper_ByCompositeQuery">
+<!-- 								<div class="submit"> -->
+									<input type="submit" value="SEND" id="button-blue"/> 
+									<input type="hidden" name="action" value="listGrouper_ByCompositeQuery">
 									<div class="ease"></div>
+<!-- 								</div> -->
 						</FORM>
 					</li>
 				</ul>
