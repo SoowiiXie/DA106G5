@@ -186,7 +186,7 @@ public class StaffServlet extends HttpServlet{
 			incluePathMap.put("00", "/back_end/staff/update_self.jsp");    // 個人資料管理  V
 			incluePathMap.put("01", "/back_end/staff/listAllStaff.jsp");   // 管理員資料管理  V
 			incluePathMap.put("02", "/back_end/staff/listAllMember.jsp");  // 會員管理  V
-			incluePathMap.put("03", "/back_end/staff/listAllStaff.jsp");  // 商城管理
+			incluePathMap.put("03", "/back_end/product/AllList2.jsp");  // 商城管理
 			incluePathMap.put("04", "/front_end/location/listAllLocation.jsp");  // 地標管理
 			incluePathMap.put("05", "/back_end/staff/listAllStaff.jsp");  // 檢舉管理
 			incluePathMap.put("06", "/back_end/staff/listAllStaff.jsp");  // 問題回報管理

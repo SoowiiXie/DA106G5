@@ -47,6 +47,7 @@
 	}
 	#index_logo{
 		width:85%;
+		height:auto;
 		margin: 3% 7.5%;
 	}
 	
