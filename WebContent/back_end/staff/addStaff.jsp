@@ -13,7 +13,7 @@
 		background-color: rgba(156, 199, 246, 0.6);
         margin: 10vh auto 0px auto;
         width: 30vw;
-        height: 60vh;
+        height: 55vh;
         border-radius: 5vw;
         text-align:center;
 	}
@@ -39,7 +39,7 @@
 	}
 	
 	
-	#staff_id,#staff_pwd,#staff_name{
+	.inputBox{
 		height: 3.5vh;
 		width: 10vw;
         border-radius: 1vh;
@@ -70,6 +70,7 @@
 	}
 	#errorMsgs{
        	margin-left:3vw;
+       	font-size: 2.5vh;
     }
     #ul{
        	margin:0px;
@@ -90,18 +91,18 @@
 		<%-- 用requestScope是因為sessionScope存著登入管理員資訊，第一次進來時會抓到登入管理員的資料 --%>
 		<tr>
 			<td colspan="2">
-				帳號：<input id="staff_id" type="text" name="staff_id" value="${requestScope.staffVO.staff_id}"><br>
+				帳號：<input class="inputBox" id="staff_id" type="text" name="staff_id" value="${requestScope.staffVO.staff_id}"><br>
 				<img id="icon"/><span id="check"></span>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				密碼：<input id="staff_pwd" type="password" name="staff_pwd" value="${requestScope.staffVO.staff_pwd}">
+				密碼：<input class="inputBox" type="password" name="staff_pwd" value="${requestScope.staffVO.staff_pwd}">
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				名字：<input id="staff_name" type="text" name="staff_name" value="${requestScope.staffVO.staff_name}"><br>
+				名字：<input class="inputBox" type="text" name="staff_name" value="${requestScope.staffVO.staff_name}"><br>
 				<%-- 錯誤表列 --%>
 				<div id="errorMsgs">
 				<c:if test="${not empty errorMsgs}">

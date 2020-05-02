@@ -36,9 +36,9 @@
         font-family: 'Mamelon';	
 	}
 	#allStaff_title{
-		
+		font-family: 'italics_hollow';
 		line-height:10vh;
-		font-size: 5vh;
+		font-size: 5.5vh;
 		font-weight:bold;
 		letter-spacing: 0.3vw;
 		color:#0373f0;
