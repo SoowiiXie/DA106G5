@@ -168,9 +168,8 @@
 					<div id="collapseUtilities" class="collapse collapseTwo"
 						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-0 m-0 collapse-inner rounded">
-							<a class="collapse-item py-1"
-								href="../ZacharyGrp/webFront/group.html">瀏覽揪團</a> <a
-								class="collapse-item py-1" href="utilities-animation.html">我的揪團</a>
+							<a class="collapse-item py-1" href="../ZacharyGrp/webFront/group.html">瀏覽揪團</a> 
+							<a class="collapse-item py-1" href="utilities-animation.html">我的揪團</a>
 							<a class="collapse-item py-1" href="utilities-color.html">開團</a>
 						</div>
 					</div></li>

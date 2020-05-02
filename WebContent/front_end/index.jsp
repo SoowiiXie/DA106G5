@@ -179,8 +179,7 @@
 						<i class="fas fa-fw fa-cloud-sun-rain"></i> 
 						<span>準備</span>
 					</a>
-					<div id="collapseTwo" class="collapse collapseTwo"
-						aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+					<div id="collapseTwo" class="collapse collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 						<div class="bg-white py-0 m-0 collapse-inner rounded">
 							<!-- <h6 class="collapse-header">
                                 Custom Components:
@@ -193,7 +192,7 @@
 
 				<!-- Nav Item - Utilities Collapse Menu -->
 				<c:choose>
-				<c:when test="${ pageRun == 'group_detail/webFront/group.jsp'}">
+				<c:when test="${ pageRun == 'group_detail/webFront/group.jsp' || pageRun == 'group_detail/listAllGroupdetailForSelect.jsp' || pageRun == 'group_detail/webFront/group.jsp'}">
 				<li class="nav-item active">
 				</c:when>
 				
@@ -209,7 +208,7 @@
 						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-0 m-0 collapse-inner rounded">
 							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp">瀏覽揪團</a> 
-							<a class="collapse-item py-1" href="utilities-animation.html">我的揪團</a>
+							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_detail/listAllGroupdetailForSelect.jsp">我的揪團</a>
 							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_detail/webFront/group.jsp">開團</a>
 						</div>
 					</div>

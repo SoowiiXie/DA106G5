@@ -2,6 +2,7 @@ package com.cmt.model;
 
 import java.util.List;
 import java.util.Map;
+import java.sql.Connection;
 
 public interface Cmt_interface {
 	public void insert(CmtVO cmtVO);
@@ -18,4 +19,6 @@ public interface Cmt_interface {
 
 	// 萬用型
 	public List<CmtVO> getAllUWish(Map<String, String[]> map);
+	
+	public List<CmtVO> getAllUWish(Map<String, String[]> map, Connection con);
 }

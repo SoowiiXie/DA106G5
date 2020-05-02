@@ -358,5 +358,45 @@ public class LocationServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+//		fakeDelete=上/下架，因為不會刪除也等於only update cmt_status
+		if ("fakeDelete".equals(action)) { // 來自listAllEmp.jsp
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			String includePath = req.getParameter("includePath");   // 後台首頁顯示用(include取代)
+			req.setAttribute("incluePath", includePath);
+			String indexPath = "/back_end/staff/index.jsp";  // 後台首頁(include取代)
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				// cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id
+//				String loc_no = new String(req.getParameter("loc_no").trim());
+				String loc_no = req.getParameter("loc_no").trim();
+				Integer loc_status = new Integer(req.getParameter("loc_status").trim());
+				if (loc_status==1) {//如果是上架(1)，就改成下架(2)
+					loc_status=2;
+				}else {//剩下的情況就是下架(2)，改成上架(1)
+					loc_status=1;
+				}
+				/*************************** 2.開始修改資料 *****************************************/
+				LocationService locationSvc = new LocationService();
+				LocationVO locationVO = locationSvc.getOneLocation(loc_no);
+				locationSvc.updateLocation(loc_no, locationVO.getLoc_typeno(), locationVO.getLongitude(), locationVO.getLatitude(), loc_status, locationVO.getLoc_address(), locationVO.getLoc_pic());
+				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+				
+				String url ="/front_end/location/listAllLocation.jsp";  // 阿水原本路徑
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 修改成功後,轉交listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:" + e.getMessage());
+//				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/location/listAllLocation.jsp");  // 阿水原本路徑
+				RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
+				failureView.forward(req, res);
+			}
+		}
 	}
 }

@@ -365,14 +365,15 @@ public class RecordJNDIDAO implements RecordDAO_interface {
 
 		try {
 			con = ds.getConnection();
-//			con.setAutoCommit(false);
+
 			String cols[] = {"rcd_no"};
 			pstmt_map = con.prepareStatement(sql, cols);
 			rs_map = pstmt_map.executeQuery();
 			while (rs_map.next()) {
-				// empVO 也稱為 Domain objects
+
 				recordVO_map = new android.com.record.model.RecordVO();
-				recordVO_map.setRcd_no(rs_map.getString("rcd_no"));
+				String rcd_no = rs_map.getString("rcd_no");
+				recordVO_map.setRcd_no(rcd_no);
 				recordVO_map.setRcd_uploadtime(rs_map.getDate("rcd_uploadtime"));
 				recordVO_map.setRcd_content(rs_map.getString("rcd_content"));
 				recordVO_map.setRcd_thumb_amount(rs_map.getInt("rcd_thumb_amount"));
@@ -381,11 +382,8 @@ public class RecordJNDIDAO implements RecordDAO_interface {
 				recordVO_map.setMb_id(rs_map.getString("mb_id"));
 				recordVO_map.setPath_no(rs_map.getString("path_no"));
 				
-				ResultSet rs = pstmt_map.getGeneratedKeys();
-				String next_rcd_no = rs.getString(1);
-				
 				CmtService cmtSvc = new CmtService();
-				List<CmtVO> cmtList = cmtSvc.getByRcd_no(next_rcd_no);
+				List<CmtVO> cmtList = cmtSvc.getByRcd_no(rcd_no, con);
 				recordVO_map.setComment(cmtList);
 				
 				list_map.add(recordVO_map); // Store the row in the list

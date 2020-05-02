@@ -41,106 +41,121 @@
 <meta charset="UTF-8">
 <style type="text/css" media="screen">
 #page {
-margin-right:8px;
-margin-left:-8px;
 margin-top:-8px;  
 height:2000px;
-width:1450px;
+width:100%;
 background-color:#FBFBFF;
+
 }
 #first {
-margin-right:8px;
-margin-left:-8px;
 margin-top:-8px;  
 height:100px;
 width:100%;
 background-color:#3960D0;
+border-style: solid;
+border-color:red;
 
 }
 .logo{
-margin-left:100px;
 height:100px;
-width:200px; 
+width:20%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 }
 .search_pd{
-margin-left:20px;
 height:100px;
-width:350px; 
+width:25%; 
 background-color:#3960D0;
 float:left;
 position: relative;
+border-style: solid;
+border-color:red;
 }
 .search_form{
 position: absolute;  
 margin-top:30px;
 }
 .backhome{
-margin-left:130px;
+margin-left:10%;
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 
 .transaction_record{
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 
 .shopping_trolley{
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 .pd_follow{
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 .memberLogin{
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
+border-style: solid;
+border-color:red;
 
 }
 .member{
-margin-left:1300px;
+margin-left:90%;
 height:100px;
-width:100px; 
+width:7%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px;
+border-style: solid;
+border-color:red;
 }
 .second{
 margin-top: 10px;
 height:50px;
-width:1440px;  
+width:100%;  
 background-color:#D2E9FF;
 position:absolute; 
 text-align:center;
+border-style: solid;
+border-color:red;
 
 }
 .Topmenu{
@@ -179,15 +194,7 @@ text-align:center;
   text-shadow: 2px 2px 2px #000;*/
 }
 
-.bar_lift{
-margin-top: 10px;
-height:50px;
-width:25%;  
-background-color:#D3FF93;
-float:left;
 
-
-}
 .third{
 margin-top:70px; 
 height:400px;
@@ -199,6 +206,8 @@ div img{
     width: 100%;
     height:100%;
     object-fit:cover;
+    border-style: solid;
+border-color:red;
 }
 .Topmenuin{
   position: relative;
@@ -238,11 +247,18 @@ margin:10px auto;
 
 <body>  
     <div id="first">
-     <div class="logo" align="center">
-     <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a></div>
-     <div class="search_pd" style=" border-style:solid; ">
+      <div class="logo">
+        <div style="width:150px;  float:left;">
+           <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> 
+           <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a>
+        </div>
+        <div>
+        <font size="5px" color="white">RUNNABLE</font>
+        </div>
+      </div>
+     <div class="search_pd">
       <form class="search_form" action="XXX">
-        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px; margin-top:-40px; font-size:12px" >
+        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px; margin-top:-30px; font-size:12px" >
         <input type="submit" value="搜尋"style="width:50px;height:40px; border-radius:5px; font-size:12px">  
       </form></div>
       <div class="backhome" align="center"><a
@@ -361,21 +377,20 @@ margin:10px auto;
  <script src="<%=request.getContextPath()%>/plug-in/Semantic-UI/semantic.min.js"></script>
     <script src="<%=request.getContextPath()%>/plug-in/popper/popper.min.js"></script>
     <script src="<%=request.getContextPath()%>/plug-in/bootstrap/js/bootstrap.min.js"></script>  --%>
-    	<!-- Bootstrap core JavaScript-->
-	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
-	<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+     	<!-- Bootstrap core JavaScript-->
+<%-- 	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
+	<script src="<%= request.getContextPath() %>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --%>
 
 	<!-- Core plugin JavaScript-->
-	<script src="<%= request.getContextPath() %>/vendor/jquery-easing/jquery.easing.min.js"></script>
+<%-- 	<script src="<%= request.getContextPath() %>/vendor/jquery-easing/jquery.easing.min.js"></script> --%>
 
 	<!-- Custom scripts for all pages-->
-	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script>
+<%-- 	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script> --%>
 	
 	<!-- switch button -->
 	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	
 	<!-- jquery -->
-	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
-</body>
+<%-- 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>   --%>
 
 </html>

@@ -38,11 +38,18 @@ background-color:#context;
 height:30px;
 }
 
+.buttonBar{
+width:100%;
+background-color:#3960D0;
+height:100px;
+margin-top:100;
+}
 </style>
 <meta charset="UTF-8">
 <title></title>
 </head>
 <body>
+<div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
 <%--   <%=request.getRequestURI()%>
  
 <a
@@ -58,13 +65,24 @@ height:30px;
 			</c:forEach>
 		</ul>
 	</c:if>
-		<div class="a" align="right">
+	
+	<div class="a" style="margin-left:5%; float:left;" >
+	  <table style="float:left;">
+	    <tr>
+	      <td><%@ include file="Pd_typeNoList1.file"%></td>
+		  <td><%@ include file="Pd_typeNoList2.file"%></td>
+		</tr>
+	  </table>
+	  
+	  </div>
+		
+		
 		<form method="POST"
 			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
-			<table>
+			<table style="margin-left:38%;">
 				<tr>
-					<td>產品商品分類：</td>
+					<td>商品分類：</td>
 					
 					<td><select size="1" name="pd_typeNo">
 					<option value="">請選擇
@@ -94,17 +112,26 @@ height:30px;
 
 			<input type="hidden" name="action" value="CompositeQuery_Product">
 		</form>
+			<div class="a" style="margin-left:5%;float:left;" >
+	  <table  style="float:left;">
+	    <tr>
+	     
+	      <td><%@ include file="ShopHomePage3.file"%></td>
+	    
+	    </tr>
+	   </table>
+
 	</div>
+	
 
 
-		<%@ include file="page5.file"%>
-		<%@ include file="page6.file"%>
+		
 		
 		
 		
 	<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
 		end="<%=pageIndex+rowsPerPage-1%>">
-		<div class="context">
+		<div class="context" style="margin-top:50px; background-color:#858796;">
 			<table border="1" class="Product">
 
 				<tr>
@@ -127,6 +154,6 @@ height:30px;
 		</div>
 	</c:forEach>
 	<div class="foot"></div>
-	<%@ include file="page6.file"%>
+<div class="buttonBar" style="margin-top:100px"></div>
 </body>
 </html>

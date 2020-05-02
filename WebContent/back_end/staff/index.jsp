@@ -33,7 +33,7 @@
 	body{
 		margin: 0px;
 	}
-	#left_bar{
+	#index_left_bar{
 		
 		position: fixed;
 		top: 0;
@@ -45,12 +45,12 @@
 		z-index: 50;
 		/*border-radius: 50px;*/
 	}
-	#logo{
+	#index_logo{
 		width:85%;
 		margin: 3% 7.5%;
 	}
 	
-	#left_bar div{
+	#index_left_bar div{
 		text-align: center;
 		font-size: 3vh;
 		line-height:6vh;
@@ -65,12 +65,12 @@
 		height: 6vh;
 	}
 	
-	#left_bar div:hover{
+	#index_left_bar div:hover{
 		color: #f3f8fe;
 		border: 4px solid #f3f8fe;
 		background-color: #0373F0;
 	}
-	#top_bar{
+	#index_top_bar{
 		position: fixed;
 		top:0;
 		right: 0;
@@ -80,7 +80,7 @@
 		background-color: #f3f8fe;
 		/*border-radius: 50px;*/
 	}
-	#top_title{
+	#index_top_title{
 		line-height: 10vh;
 		color: #0373f0;
 		font-size: 5vh;
@@ -88,7 +88,7 @@
         font-family: 'italics_hollow';
         margin-left: 50px;
 	}
-	#manager{
+	#index_manager{
 		font-size: 3vh;
 		font-family: 'Mamelon';
 		
@@ -97,7 +97,7 @@
 		right: 15vw;
 
 	}
-	#logout{
+	#index_logout{
 		font-size: 2.5vh;
 		line-height:1vh;
 		color: #fff;
@@ -112,26 +112,30 @@
 		right: 8vw;
 	}
 
-	#horizontalLine{
+	#index_horizontalLine{
 		width: 80vw;
 		height: 2vh;
 	}
 
-	.content{
+	#index_content{
+		position: fixed;
+		top: 13vh;
+		left: 15vw;
 		background-color: #f3f8fe;
 		
 		width: 85vw;
-		height: 90vh;
-		margin-left: 15vw;
-		margin-top: 13vh;
+		height: 87vh;
+		overflow-y:scroll;
+    	overflow-x:hidden;
 	}
-	
+	form{
+  		margin:0px;
+  	}
 </style>
 </head>
 <body>
-	<div id="wrap">
-	    <div id="left_bar">
-	    	<img id="logo" src="<%=request.getContextPath()%>/back_end/staff/images/LogoText.png">
+	    <div id="index_left_bar">
+	    	<img id="index_logo" src="<%=request.getContextPath()%>/back_end/staff/images/LogoText.png">
 	    	
 			<!-- 所有人都可以管理自己的資料，所以不在權限裡面 -->
 	    	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
@@ -150,19 +154,19 @@
 			</c:forEach>
 	    	
 	    </div>
-	    <div id="top_bar">
-	    	<span id="top_title">後台管理系統</span>
-	    	<span id="manager">管理員 ${sessionScope.staffVO.staff_name}</span>
+	    <div id="index_top_bar">
+	    	<span id="index_top_title">後台管理系統</span>
+	    	<span id="index_manager">管理員 ${sessionScope.staffVO.staff_name}</span>
 	    	
 			<!-- 登出 -->
 	    	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
 		        <input type="hidden" name="action" value="logout">
-		        <input type="submit" value="登出" id="logout">
+		        <input type="submit" value="登出" id="index_logout">
 			</form>
 			
-	    	<img id="horizontalLine" src="<%=request.getContextPath()%>/back_end/staff/images/HorizontalLine2.png">
+	    	<img id="index_horizontalLine" src="<%=request.getContextPath()%>/back_end/staff/images/HorizontalLine2.png">
 	    </div>
-	    <div class="content">
+	    <div id="index_content">
 	    	
 			<!-- include 部分 ， 若有預設畫面則將IF搬去預設畫面那邊 -->
 			<c:if test="${not empty incluePath}">
@@ -170,7 +174,6 @@
 			</c:if>
 			
 	    </div>
-    </div>
 </body>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -178,7 +181,6 @@
 	String no_authority = (String)request.getAttribute("no_authority");  // 用來判斷是怎麼回來此頁面，決定alert什麼訊息
 %>
 <script>
-		//  改EL
 	$(document).ready(function(){
 		<%if(no_authority!= null){%>
 			Swal.fire({

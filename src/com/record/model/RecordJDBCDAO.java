@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import com.cmt.model.CmtService;
+import com.cmt.model.CmtVO;
 
 public class RecordJDBCDAO implements RecordDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -345,8 +349,154 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 
 	@Override
 	public List<RecordVO> getAllUWish(Map<String, String[]> map, String orderBy) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder sb = new StringBuilder();
+
+		List<RecordVO> list_map = new ArrayList<RecordVO>();
+		RecordVO recordVO_map = null;
+
+		Connection con = null;
+		PreparedStatement pstmt_map = null;
+		ResultSet rs_map = null;
+
+		sb.append("SELECT * FROM record where ");
+		for (Entry<String, String[]> entry : map.entrySet()) {
+			sb.append("(");
+			for (int i = 0; i < entry.getValue().length; i++) {
+				if (i == 0) {
+					sb.append(entry.getKey() + " like '%" + entry.getValue()[i] + "%'");
+				} else {
+					sb.append(" OR " + entry.getKey() + " like '%" + entry.getValue()[i] + "%'");
+				}
+			}
+			sb.append(") and ");
+		}
+		sb.append("1=1");
+		if(orderBy!="" && orderBy!=null) {
+			sb.append(" order by " + orderBy);
+		}
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			
+			pstmt_map = con.prepareStatement(sb.toString(), ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			rs_map = pstmt_map.executeQuery();
+			while (rs_map.next()) {
+				// empVO 也稱為 Domain objects
+				recordVO_map = new RecordVO();
+				recordVO_map.setRcd_no(rs_map.getString("rcd_no"));
+				recordVO_map.setRcd_uploadtime(rs_map.getDate("rcd_uploadtime"));
+				recordVO_map.setRcd_content(rs_map.getString("rcd_content"));
+				recordVO_map.setRcd_thumb_amount(rs_map.getInt("rcd_thumb_amount"));
+				recordVO_map.setRcd_metoo_amount(rs_map.getInt("rcd_metoo_amount"));
+				recordVO_map.setRcd_status(rs_map.getInt("rcd_status"));
+				recordVO_map.setMb_id(rs_map.getString("mb_id"));
+				recordVO_map.setPath_no(rs_map.getString("path_no"));
+				
+				list_map.add(recordVO_map); // Store the row in the list
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException | ClassNotFoundException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs_map != null) {
+				try {
+					rs_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt_map != null) {
+				try {
+					pstmt_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_map;
+	}
+
+
+
+	@Override
+	public List<android.com.record.model.RecordVO> getAllByMb_id(String sql) {
+		StringBuilder sb = new StringBuilder();
+
+		List<android.com.record.model.RecordVO> list_map = new ArrayList<android.com.record.model.RecordVO>();
+		android.com.record.model.RecordVO recordVO_map = null;
+
+		Connection con = null;
+		PreparedStatement pstmt_map = null;
+		ResultSet rs_map = null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url,userid, passwd);
+
+			String cols[] = {"rcd_no"};
+			pstmt_map = con.prepareStatement(sql, cols);
+			rs_map = pstmt_map.executeQuery();
+			while (rs_map.next()) {
+
+				recordVO_map = new android.com.record.model.RecordVO();
+				String rcd_no = rs_map.getString("rcd_no");
+				recordVO_map.setRcd_no(rcd_no);
+				recordVO_map.setRcd_uploadtime(rs_map.getDate("rcd_uploadtime"));
+				recordVO_map.setRcd_content(rs_map.getString("rcd_content"));
+				recordVO_map.setRcd_thumb_amount(rs_map.getInt("rcd_thumb_amount"));
+				recordVO_map.setRcd_metoo_amount(rs_map.getInt("rcd_metoo_amount"));
+				recordVO_map.setRcd_status(rs_map.getInt("rcd_status"));
+				recordVO_map.setMb_id(rs_map.getString("mb_id"));
+				recordVO_map.setPath_no(rs_map.getString("path_no"));
+				
+				CmtService cmtSvc = new CmtService();
+				List<CmtVO> cmtList = cmtSvc.getByRcd_no(rcd_no, con);
+				recordVO_map.setComment(cmtList);
+				
+				list_map.add(recordVO_map); // Store the row in the list
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs_map != null) {
+				try {
+					rs_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt_map != null) {
+				try {
+					pstmt_map.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_map;
 	}
 
 }

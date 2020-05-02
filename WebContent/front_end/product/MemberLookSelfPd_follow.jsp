@@ -22,6 +22,7 @@
 .followlist {
 	cellpadding: "10";
 	cellspacing: "5";
+	padding-bottom: 100px;
 	
 }
 
@@ -39,6 +40,17 @@
     padding: 1px;
     text-align: center;
   }
+  .buttonBar{
+width:100%;
+background-color:#3960D0;
+height:100px;
+margin-top:100;
+}
+#Footer {
+　height: 100px;
+　position: relative;
+　margin-top: -100px;
+}
 </style>
 <%
 	String mb_id = (String) session.getAttribute("mb_id");
@@ -57,17 +69,29 @@
 </head>
 <body>
 	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
-		<div align="center" style="margin-top:100px;"><font size="+3">您的商品收藏內容如下：</font></div>
+	  
+		<div style="width:100%; height:100px;"></div>
+		  <div align="center">
+		    <font size="+3">您的商品收藏內容如下：</font>
+		  </div>
 		<Hr>
-	<div align="center">
-	<table >
+	<div  style="vertical-align:bottom;" >
+	<div>
+	<table style="margin-left:29%;" >
 	<tr>
-	<td><%@ include file="pagePd_follow1.file"%><%@ include file="pagePd_follow2.file"%></td>
-	</tr></table></div>
-	<div class="listFloow" align="center">
+	<td style="Vertical-align:bottom;"><%@ include file="pagePd_follow1.file"%><%@ include file="pagePd_follow2.file"%></td>
+	</tr></table>
+	</div>
+	</div>
+		
+	
+	
+	
+	<div class="listFloow" style="  height:600px" align="center">
+	
 		<form method="POST"
 			action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
-			<table class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF;" >
+			<table class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; width:600px;">
 
 				<tr bgcolor="#999999" align="center">
 					<th width="100" ><font color="black">商品圖片</font></th>
@@ -90,8 +114,8 @@
 						<td><a
 							href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${pd_followVO.pd_no}'>${productService.findOneProduct(pd_followVO.pd_no).pd_name}</a></td>
 						<td align="center"><font color="black">${productService.findOneProduct(pd_followVO.pd_no).pd_price}元</font></td>
-						<td align="center"><input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
-							value="刪除商品收藏" style="background: #3960D0"> <input type="hidden" name="pd_no"
+						<td align="center"><input class="btn btn-primary btn-sm" type="submit" name="Submit" 
+							value="刪除" style="background: #3960D0"> <input type="hidden" name="pd_no"
 							value="${pd_followVO.pd_no}"> <input type="hidden"
 							name="action" value="DeleteOnePd_follow"></td>
 
@@ -99,9 +123,9 @@
 
 				</c:forEach>
 			</table>
-			<%@ include file="pagePd_follow3.file"%>
+		
 		</form>
 	</div>
-	
+	 <div id="Footer" class="buttonBar" style="margin-top:100px;" ></div>
 </body>
 </html>

@@ -58,20 +58,20 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<h4>此頁練習採用 EL 的寫法取值:</h4>
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>所有員工資料 - listAllLocation.jsp</h3>
-				<h4>
-					<a href="<%= request.getContextPath() %>/front_end/location/select_page.jsp">
-						<img src="<%= request.getContextPath() %>/front_end/location/images/back1.gif" width="100" height="32" border="0">
-						回首頁
-					</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
+<!-- 	<h4>此頁練習採用 EL 的寫法取值:</h4> -->
+<!-- 	<table id="table-1"> -->
+<!-- 		<tr> -->
+<!-- 			<td> -->
+<!-- 				<h3>所有員工資料 - listAllLocation.jsp</h3> -->
+<!-- 				<h4> -->
+<%-- 					<a href="<%= request.getContextPath() %>/front_end/location/select_page.jsp"> --%>
+<%-- 						<img src="<%= request.getContextPath() %>/front_end/location/images/back1.gif" width="100" height="32" border="0"> --%>
+<!-- 						回首頁 -->
+<!-- 					</a> -->
+<!-- 				</h4> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<!-- 	</table> -->
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -92,12 +92,11 @@ th, td {
 			<th>地標狀態</th>
 			<th>地址</th>
 			<th>圖片</th>
-			<th>修改</th>
-			<th>刪除</th>
+			<th>上架/下架</th>
 		</tr>
-		<%@ include file="page1.file"%>
-		<c:forEach var="locationVO" items="${list}" begin="<%=pageIndex%>"
-			end="<%=pageIndex+rowsPerPage-1%>">
+<%-- 		<%@ include file="page1.file"%> --%>
+<%-- 		<c:forEach var="locationVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+		<c:forEach var="locationVO" items="${list}">
 	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
 			<tr>
 				<td>${locationVO.loc_no}</td>
@@ -108,27 +107,27 @@ th, td {
 				<td>${locationVO.loc_address}</td>
 				<td><img src="<%= request.getContextPath() %>/DBGifReader4Location?loc_no=${locationVO.loc_no}" width="100px"></td>
 				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/location/location.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="修改"> 
+					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/location/location.do" style="margin-bottom: 0px;">
+						<input type="submit" value="上架/下架"> 
 						<input type="hidden" name="loc_no" value="${locationVO.loc_no}"> 
-						<input type="hidden" name="action" value="getOne_For_Update">
+						<input type="hidden" name="loc_status" value="${locationVO.loc_status}"> 
+						<input type="hidden" name="includePath" value="${incluePath}">
+						<input type="hidden" name="action" value="fakeDelete">
 					</FORM>
 				</td>
-				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/location/location.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="刪除"> 
-						<input type="hidden" name="loc_no" value="${locationVO.loc_no}"> 
-						<input type="hidden" name="action" value="delete">
-					</FORM>
-				</td>
+<!-- 				<td> -->
+<!-- 					<FORM METHOD="post" -->
+<%-- 						ACTION="<%=request.getContextPath()%>/location/location.do" --%>
+<!-- 						style="margin-bottom: 0px;"> -->
+<!-- 						<input type="submit" value="刪除">  -->
+<%-- 						<input type="hidden" name="loc_no" value="${locationVO.loc_no}">  --%>
+<!-- 						<input type="hidden" name="action" value="delete"> -->
+<!-- 					</FORM> -->
+<!-- 				</td> -->
 			</tr>
 		</c:forEach>
 	</table>
-	<%@ include file="page2.file"%>
+<%-- 	<%@ include file="page2.file"%> --%>
 
 </body>
 </html>

@@ -25,7 +25,7 @@ background-color:#FBFBFF;
 
 }
 .pd_mainPhoto{
-margin-left: 150px;
+margin-left: 20%;
 width: 500px;
 height: 500px;
 background-color:#FFD9EC;  
@@ -198,31 +198,35 @@ input.qtyminus {
   border: 1px solid #aaa;
   background: #f8f8f8;
 }
-
+.buttonBar{
+width:100%;
+background-color:#3960D0;
+height:100px;
+margin-top:100;
+}
 </style>
 <title>${productVO.pd_name}</title>
 </head>
 <body>
 <jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
-<br>
-<br>
+<div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
+<div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
 
-
-   
-<div style="float:left">
-  <table border="1" style="margin-top:200px;">
+ <div>  
+<div style=" margin-left:18%; float:left; border-style: solid; border-color:red;">
+  <table border="1">
     <tr>
       <td width="500" height="500">
-        <div align="center" style="float:left" >
-          <img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}" style="width:100% ;height:100% align:center;">
+        <div align="center">
+          <img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}">
         </div>
       </td>
     </tr>
   </table>
 </div>
-<div style="margin-top:200px;">
+<div style="border-style: solid; border-color:red;">
 <form method="POST" action="<%=request.getContextPath()%>/ShoppingServlet" name="form1">
-  <table  border="1">
+  <table  style=" margin-left:-15%;" border="1">
     <tr>
       <td width="100" height="40" align="right">商品名稱：</td>
       <td width="300" height="40" align="left">籃球</td>
@@ -284,24 +288,21 @@ input.qtyminus {
 		  <td>
 		  
 		  
-<form method="POST" action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
-	             <input type="hidden" name="pd_no" value="${productVO.pd_no}"> 
-	             <input type="hidden" name="pd_name" value="${productVO.pd_name}"> 
-	             <input type="hidden" name="action" value="AddPd_follow">
-	             <input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
+	<form method="POST" action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
+	<input type="hidden" name="pd_no" value="${productVO.pd_no}"> 
+	<input type="hidden" name="pd_name" value="${productVO.pd_name}"> 
+	<input type="hidden" name="action" value="AddPd_follow">
+	<input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
 							value="加入商品收藏" style="background: #3960D0">
-</form>
+	
+	</form>
 	      </td>
        </tr>
     </table>
 </div>
  
-<br> 
+ </div>  
 
-<br>
-<br>
-<br>
- ${addType_follow}
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -311,81 +312,8 @@ input.qtyminus {
 			</c:forEach>
 		</ul>
 	</c:if>
+  <div class="buttonBar" style="margin-top:100px"></div>
 
-	<form method="POST" action="<%=request.getContextPath()%>/ShoppingServlet" name="form1">
-		<table>
-            <tr>
-            <td width="100px">商品圖片：</td>
-             <td width="100px"><img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}" width="300px"></td>
-			</tr>
-			<tr>
-				<td width="100">商品類別：</td>
-				<td width="100">${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
-			</tr>
-
-
-			<tr>
-				<td width="100">商品名稱：</td>
-				<td width="100">${productVO.pd_name}</td>
-			</tr>
-			<tr>
-				<td width="100">商品價格：</td>
-				<td width="100">${productVO.pd_price}</td>
-			</tr>
-			<tr>
-				<td width="100">商品詳述：</td>
-				<td width="400">${productVO.pd_detail}</td>
-			</tr>
-			
-			<tr>
-			<td width="100">商品尺寸：</td>
-			<td>      <select size="1" name="pd_typeSize">
-         <c:forEach var="pd_typeSize" items="${sizeList}" > 
-          <option value="${pd_typeSize}">${pd_typeSize}
-         </c:forEach>   
-       </select></td>
-			
-			</tr>
-			
-			
-			<tr>
-				<td width="100">數量：</td>
-				<td><select name="pd_quantity">
-						<option value="1">1
-						<option value="2">2
-						<option value="3">3
-						<option value="4">4
-						<option value="5">5
-						<option value="6">6
-						<option value="7">7
-						<option value="8">8
-						<option value="9">9
-						<option value="10">10
-				</select>
-			</tr>
-
-		</table>
-		<input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
-							value="加入購物車" style="background: #3960D0"> <input
-			type="hidden" name="pd_no" value="${productVO.pd_no}"> <input
-			type="hidden" name="pd_name" value="${productVO.pd_name}"> <input
-			type="hidden" name="pd_price" value="${productVO.pd_price}">
-		<input type="hidden" name="pd_typeNo" value="${productVO.pd_typeNo}">
-		<input type="hidden" name="pd_typeSize" value="${pd_typeSize}">
-		<input type="hidden" name="action" value="AddProductToCar">
-	</form>
-	
-	<form method="POST" action="<%=request.getContextPath()%>/Pd_followServlet" name="form1">
-	<input type="hidden" name="pd_no" value="${productVO.pd_no}"> 
-	<input type="hidden" name="pd_name" value="${productVO.pd_name}"> 
-	<input type="hidden" name="action" value="AddPd_follow">
-	<input class="btn btn-secondary btn-lg" type="submit" name="Submit" 
-							value="加入商品收藏" style="background: #3960D0">
-	
-	</form>
-<a href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp">會員的商品收藏</a>
-<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp?">回商城首頁</a>
-	
 <script>
 var pd_follow= ${param.pd_follow};
 if (pd_follow == true){

@@ -131,10 +131,10 @@ html, body {
       
       var locInsertBox = $('.locInsertBox');
       map.addListener('dblclick', function(event) {
-    	  $('#lng_input').val(event.latLng.lat());
-    	  $('#lat_input').val(event.latLng.lng());
-    	  $('.lng_td').text(event.latLng.lat());
-    	  $('.lat_td').text(event.latLng.lng());
+    	  $('#lng_input').val(event.latLng.lng());
+    	  $('#lat_input').val(event.latLng.lat());
+    	  $('.lng_td').text(event.latLng.lng());
+    	  $('.lat_td').text(event.latLng.lat());
     	  
     	  locInsertBox.fadeIn();
     	  $('.overlay').fadeIn();

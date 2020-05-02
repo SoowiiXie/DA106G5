@@ -93,29 +93,6 @@
 	
 	function show(data){
 		
-		
-// 		if($(".tag").has("span").length == $(data).has("span").length){
-// 			var tag = $(".tag").has("span").length;
-// 			var data = $(data).has("span").length;
-//  			alert("tag = " + tag);
-// 			alert("data = " + data);
-// 		}
-		
-// 		if($(".tag").length && !($(".tag") === $(data))){
-// 			$(".tag").find("*").toggleClass("authorityRow");
-// 			$(".tag").animate({height:'0px'},"slow",function(){
-// 				$(".tag").toggleClass("authorityRow");
-// 				$(".tag").removeClass("tag");
-// 			})
-// 		}
-		
-// 		$(data).toggleClass("authorityRow");
-// 		$(data).animate({height:'50px'},"slow",function(){
-// 			$(data).find("*").toggleClass("authorityRow");
-// 			$(data).addClass("tag");
-// 			$(data).append($("<span id='node'>"));
-// 		})
-		
 		$(data).stop(false,true);
 		if($(data).attr("style") == "height: 0px;"){
 			$(data).toggleClass("authorityRow");
