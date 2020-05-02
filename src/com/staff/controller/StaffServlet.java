@@ -305,7 +305,7 @@ public class StaffServlet extends HttpServlet{
 				
 				String staff_name = req.getParameter("staff_name");
 				if (staff_name == null || staff_name.trim().length() == 0) {
-					errorMsgs.add("姓名不得為空白");
+					errorMsgs.add("名字不得為空白");
 				}
 				
 				StaffVO staffVO = new StaffVO();
