@@ -24,6 +24,9 @@ import android.com.record.model.RecordVO;
 
 public class RecordServlet extends HttpServlet{
 
+	private static final String CONTENT_TYPE = "text/html; charset=UTF-8";
+
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		doPost(req, res);
@@ -47,8 +50,12 @@ System.out.println("input: "+jsonIn);
 		
 		if("getAllByMb_id".equals(action)) {
 			String mb_id = jsonObject.get("mb_id").getAsString();
-			List<RecordVO> recordList = new ArrayList<>();
+			List<android.com.record.model.RecordVO> recordList = new ArrayList<>();
 			recordList = recordSvc.getAllByMb_id(mb_id);
+			String jsonStr = gson.toJson(recordList);
+			if(recordList != null) {
+				writeText(res, jsonStr);
+			}
 		}
 
 		
@@ -343,4 +350,15 @@ System.out.println("input: "+jsonIn);
 //			}
 //		}
 	}
+	
+	
+	private void writeText(HttpServletResponse res,String outText) throws IOException{
+		res.setContentType(CONTENT_TYPE);
+		PrintWriter out = res.getWriter();
+		out.print(outText);
+		out.close();
+		System.out.println("outText: "+ outText);
+	}
+	
+	
 }

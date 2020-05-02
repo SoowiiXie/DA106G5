@@ -22,7 +22,8 @@ public class PathJNDIDAO implements PathDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT path_no, path_name, path_difficulty, path_popular, path_start, path_end, path_distance, path_status, path_kml, path_lng, path_lat FROM path WHERE path_no = ?";
 	private static final String DELETE = "DELETE FROM path where path_no = ?";
 	private static final String UPDATE = "UPDATE path SET path_name = ?, path_difficulty = ?, path_end = ?, path_distance = ?, path_kml = ?, path_lng = ?, path_lat = ? , path_pic = ? where path_no = ?";
-
+	private static final String GET_IMAGE = "SELECT path_pic FROM path WHERE path_no = ?";
+	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -279,6 +280,56 @@ System.out.println("path_no = "+path_no);
 		}
 		return list;
 	}
+	
+	
+	@Override
+	public byte[] getImage(String path_no) {
+		byte[] picture = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con .prepareStatement(GET_IMAGE);
+			
+			pstmt.setString(1, path_no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				picture = rs.getBytes(1);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("A database error occured."+ e.getMessage());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return picture;
+	}
+	
 
 	public static void main(String[] args) {
 
@@ -337,5 +388,7 @@ System.out.println("path_no = "+path_no);
 		
 		
 	}
+
+	
 
 }

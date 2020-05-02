@@ -352,4 +352,10 @@ public class PathJDBCDAO implements PathDAO_interface {
 		
 	}
 
+	@Override
+	public byte[] getImage(String path_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

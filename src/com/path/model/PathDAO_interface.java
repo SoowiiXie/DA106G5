@@ -8,4 +8,5 @@ public interface PathDAO_interface {
      public void delete(String path_no);
      public PathVO findByPrimaryKey(String path_no);
      public List<PathVO> getAll();
+     public byte[] getImage(String path_no);
 }

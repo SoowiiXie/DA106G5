@@ -2,6 +2,7 @@ package android.com.path.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.sql.Date;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.AndroidImageUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -116,6 +118,18 @@ System.out.println("input: " + jsonIn);
 				writeText(res, "修改成功&新增記錄成功");
 			}else {
 				writeText(res, "失敗");
+			}
+		}else if("getImage".equals(action)) {
+			OutputStream os = res.getOutputStream();
+			String path_no = jsonObject.get("path_no").getAsString();
+			int imageSize = jsonObject.get("imageSize").getAsInt();
+			byte[] image = pathSvc.getImage(path_no);
+			
+			if(image != null) {
+				image = AndroidImageUtil.shrink(image, imageSize);
+				res.setContentType("image/jpeg");
+				res.setContentLength(image.length);
+				os.write(image);
 			}
 		}
 

@@ -52,4 +52,10 @@ public class PathService {
 	public List<PathVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public byte[] getImage(String path_no) {
+		return dao.getImage(path_no);
+	}
+	
+	
 }
