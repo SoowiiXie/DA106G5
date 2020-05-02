@@ -367,7 +367,7 @@ public class LocationServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			String includePath = req.getParameter("includePath");   // 後台首頁顯示用(include取代)
-			req.setAttribute("incluePath", includePath);
+			req.setAttribute("includePath", includePath);
 			String indexPath = "/back_end/staff/index.jsp";  // 後台首頁(include取代)
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/

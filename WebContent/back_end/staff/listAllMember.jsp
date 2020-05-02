@@ -21,12 +21,19 @@
         text-align:center;
         font-family: 'Mamelon';	
 	}
+	b{
+		text-align:left;
+	}
+	#wrap_title{
+		text-align:center;
+	}
 	#title{
 		font-family: 'italics_hollow';
 		line-height:10vh;
 		font-size: 5.5vh;
 		font-weight:bold;
 		letter-spacing: 0.3vw;
+		
 		color:#0373f0;
 		border-bottom:3px solid #0373f0;
 	}
@@ -47,9 +54,17 @@
     text-align: center;
   }
   
-  .authorityRow{
-  	display:none;
-  }
+  .btn{
+		font-size: 2.5vh;
+		line-height:1vh;
+		color: #fff;
+		font-family: 'Mamelon';
+		background-color: #60A5F3;
+		border-radius: 50px;
+		
+		height: 5vh;
+		width: 4vw;
+	}
   form{
   	margin:0px;
   }
@@ -57,9 +72,11 @@
 
 </head>
 <body>
+<div id="wrap_title">
+	<span id="title">所有會員資料</span><br>
+</div>
 <div id="wrap">
-<span id="title">所有會員資料</span><br>
-
+<%@ include file="pages/page1.file" %>
 <table>
 	<tr>
 		<th>會員ID</th>
@@ -87,7 +104,7 @@
 		<th>修改<br>資料</th>
 	</tr>
 	
-	<%@ include file="pages/page1.file" %> 
+	
 	<c:forEach var="memberVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr ${param.mb_id.equals(memberVO.mb_id)?"bgcolor='#d4e7fa'":""}>
@@ -108,8 +125,8 @@
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/staff/member.do" style="margin-bottom: 0px;">
 			     <input type="hidden" name="mb_id"  value="${memberVO.mb_id}">
-			     <input type="hidden" name="includePath" value="${incluePath}">
-			     <button type="submit" name="action" value="getOne_Member_For_Update">修改</button>
+			     <input type="hidden" name="includePath" value="${includePath}">
+			     <button class="btn" type="submit" name="action" value="getOne_Member_For_Update">修改</button>
 			  </FORM>
 			</td>
 		</tr>

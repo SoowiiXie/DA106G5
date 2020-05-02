@@ -109,7 +109,7 @@ public class StaffServlet extends HttpServlet{
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-			req.setAttribute("incluePath", includePath);  // 放入來源路徑，用以錯誤回去include用
+			req.setAttribute("includePath", includePath);  // 放入來源路徑，用以錯誤回去include用
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String staff_id = req.getParameter("staff_id");
@@ -156,7 +156,7 @@ public class StaffServlet extends HttpServlet{
 				}else if("/back_end/staff/update_staff.jsp".equals(includePath)){  //  更新管理員資料
 					includePath = "/back_end/staff/listAllStaff.jsp";
 				}
-				req.setAttribute("incluePath", includePath);  
+				req.setAttribute("includePath", includePath);  
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
@@ -181,18 +181,18 @@ public class StaffServlet extends HttpServlet{
 			Set<String> staffAuthority = authoritySvc.getOneStaffAuthority(staffVO.getStaff_id());
 			
 			// 用Map裝管理編號與相對應的路徑
-			Map<String,String> incluePathMap = new HashMap<String,String>();
-			incluePathMap.put("00", "/back_end/staff/update_self.jsp");    // 個人資料管理  V
-			incluePathMap.put("01", "/back_end/staff/listAllStaff.jsp");   // 管理員資料管理  V
-			incluePathMap.put("02", "/back_end/staff/listAllMember.jsp");  // 會員管理  V
-			incluePathMap.put("03", "/back_end/product/AllList2.jsp");  // 商城管理
-			incluePathMap.put("04", "/front_end/location/listAllLocation.jsp");  // 地標管理
-			incluePathMap.put("05", "/back_end/staff/listAllStaff.jsp");  // 檢舉管理
-			incluePathMap.put("06", "/back_end/staff/listAllStaff.jsp");  // 問題回報管理
+			Map<String,String> includePathMap = new HashMap<String,String>();
+			includePathMap.put("00", "/back_end/staff/update_self.jsp");    // 個人資料管理  V
+			includePathMap.put("01", "/back_end/staff/listAllStaff.jsp");   // 管理員資料管理  V
+			includePathMap.put("02", "/back_end/staff/listAllMember.jsp");  // 會員管理  V
+			includePathMap.put("03", "/back_end/product/AllList2.jsp");  // 商城管理
+			includePathMap.put("04", "/front_end/location/listAllLocation.jsp");  // 地標管理
+			includePathMap.put("05", "/back_end/staff/listAllStaff.jsp");  // 檢舉管理
+			includePathMap.put("06", "/back_end/staff/listAllStaff.jsp");  // 問題回報管理
 			
 			// 判斷管理員是否有該權限
 			if(staffAuthority.contains(management) || "00".equals(management)) {
-				req.setAttribute("incluePath", incluePathMap.get(management));  // 將被點選的管理，傳回路徑(用以include)
+				req.setAttribute("includePath", includePathMap.get(management));  // 將被點選的管理，傳回路徑(用以include)
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath);
 				successView.forward(req, res);
 				return;
@@ -219,7 +219,7 @@ public class StaffServlet extends HttpServlet{
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("staffVO", staffVO);         
-				req.setAttribute("incluePath", "/back_end/staff/update_staff.jsp");
+				req.setAttribute("includePath", "/back_end/staff/update_staff.jsp");
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath);
 				successView.forward(req, res);
 
@@ -281,7 +281,7 @@ public class StaffServlet extends HttpServlet{
 		}
 		
 		if ("for_addStaff".equals(action)) {
-			req.setAttribute("incluePath", "/back_end/staff/addStaff.jsp");
+			req.setAttribute("includePath", "/back_end/staff/addStaff.jsp");
 			RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
 			successView.forward(req, res);
 		}
@@ -289,7 +289,7 @@ public class StaffServlet extends HttpServlet{
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
-			req.setAttribute("incluePath", includePath);  // 放入來源路徑，用以錯誤回去include用
+			req.setAttribute("includePath", includePath);  // 放入來源路徑，用以錯誤回去include用
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String staff_id = req.getParameter("staff_id");
@@ -326,7 +326,7 @@ public class StaffServlet extends HttpServlet{
 				staffVO = StaffSvc.addStaff(staff_id, staff_pwd, staff_name);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("incluePath", "/back_end/staff/listAllStaff.jsp");  // 成功後include的畫面
+				req.setAttribute("includePath", "/back_end/staff/listAllStaff.jsp");  // 成功後include的畫面
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 導回後台首頁
 				successView.forward(req, res);
 
@@ -346,10 +346,16 @@ public class StaffServlet extends HttpServlet{
 		
 		if ("back".equals(action)) { // 返回
 			String backPath = req.getParameter("backPath");
-			req.setAttribute("incluePath", backPath);
+			req.setAttribute("includePath", backPath);
 			RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 			failureView.forward(req, res);
 		}
 		
+		if ("select_page".equals(action)) { // 分頁
+			
+			req.setAttribute("includePath", includePath);
+			RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
+			failureView.forward(req, res);
+		}
 	}
 }

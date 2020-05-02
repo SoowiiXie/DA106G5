@@ -105,7 +105,7 @@
 		<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 		<input type="hidden" name="staff_status" value="${staffVO.staff_status}">
 		
-		<input type="hidden" name="includePath" value="${incluePath}">
+		<input type="hidden" name="includePath" value="${includePath}">
         <button id="btnSubmit" type="submit" name="action" value="update">送出修改</button>
     </td></tr>
     </table>    

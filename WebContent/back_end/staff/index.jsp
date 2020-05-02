@@ -170,8 +170,8 @@
 	    <div id="index_content">
 	    	
 			<!-- include 部分 ， 若有預設畫面則將IF搬去預設畫面那邊 -->
-			<c:if test="${not empty incluePath}">
-				<jsp:include page="${incluePath}" flush="true"/>
+			<c:if test="${not empty includePath}">
+				<jsp:include page="${includePath}" flush="true"/>
 			</c:if>
 			
 	    </div>

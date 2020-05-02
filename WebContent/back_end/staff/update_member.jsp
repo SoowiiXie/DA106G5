@@ -140,7 +140,7 @@
 				<input type="hidden" name="mb_rpt_times" value="${memberVO.mb_rpt_times}">
 				<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}">
 				
-				<input type="hidden" name="includePath" value="${incluePath}">
+				<input type="hidden" name="includePath" value="${includePath}">
 				
 		        <input type="hidden" name="backPath" value="/back_end/staff/listAllMember.jsp?mb_id=">
 		        <button class="btn" type="submit" name="action" value="back">返回</button>

@@ -103,7 +103,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="hidden" name="includePath" value="${incluePath}">
+				<input type="hidden" name="includePath" value="${includePath}">
 				<input type="hidden" name="staff_id" value="${staffVO.staff_id}">
 				<input type="hidden" name="staff_join" value="${staffVO.staff_join}">
 				

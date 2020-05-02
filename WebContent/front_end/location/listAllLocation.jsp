@@ -111,7 +111,7 @@ th, td {
 						<input type="submit" value="上架/下架"> 
 						<input type="hidden" name="loc_no" value="${locationVO.loc_no}"> 
 						<input type="hidden" name="loc_status" value="${locationVO.loc_status}"> 
-						<input type="hidden" name="includePath" value="${incluePath}">
+						<input type="hidden" name="includePath" value="${includePath}">
 						<input type="hidden" name="action" value="fakeDelete">
 					</FORM>
 				</td>

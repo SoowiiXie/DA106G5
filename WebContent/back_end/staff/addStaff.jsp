@@ -117,7 +117,7 @@
 		</tr>
 		<tr>
 			<td class="tdBtn">  <!-- 返回上一個include的路徑 -->
-				<input type="hidden" name="includePath" value="${incluePath}">
+				<input type="hidden" name="includePath" value="${includePath}">
 				<input type="hidden" name="backPath" value="/back_end/staff/listAllStaff.jsp">
         		<button class="btn" type="submit" name="action" value="back">返回</button>
 			</td>
