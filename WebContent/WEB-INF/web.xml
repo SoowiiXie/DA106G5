@@ -609,6 +609,15 @@
 			<servlet-name>GrouperServlet</servlet-name>
 			<url-pattern>/front_end/group/group.do</url-pattern>
 		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>GrouperServlet2</servlet-name>
+			<servlet-class>com.grouper.controller.GrouperServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>GrouperServlet2</servlet-name>
+			<url-pattern>/front_end/group.do</url-pattern>
+		</servlet-mapping>
 	
 	
 		
