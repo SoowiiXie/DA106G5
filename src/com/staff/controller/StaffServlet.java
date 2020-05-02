@@ -40,7 +40,7 @@ public class StaffServlet extends HttpServlet{
 		
 		//  後台首頁預設畫面  Line 162
 //			新增/修改成功時，跳Sweet Alert 修改自己還沒有成功Alert
-		
+		//  會員管理修改沒有Alert
 //			下拉式選單篩選在職、離職
 //			驗證信
 		
@@ -211,7 +211,7 @@ public class StaffServlet extends HttpServlet{
 			
 			// 用Map裝檢舉種類與相對應的路徑
 			Map<String,String> rpt_typeMap = new HashMap<String,String>();
-			rpt_typeMap.put("cmt_rpt", "");    // 留言檢舉
+			rpt_typeMap.put("cmt_rpt", "/back_end/staff/listAllMember.jsp");    // 留言檢舉
 			rpt_typeMap.put("rcd_rpt", "");   // 紀錄檢舉
 			rpt_typeMap.put("live_rpt", "");  // 直播檢舉
 			rpt_typeMap.put("group_rpt", "");  // 揪團檢舉

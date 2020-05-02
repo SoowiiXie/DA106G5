@@ -36,8 +36,8 @@
 		height:76.8vh;
 		width: 84vw;
 		
-/* 		overflow-y:scroll; */
-/*     	overflow-x:hidden; */
+ 		overflow-y:scroll; 
+     	overflow-x:hidden; 
 	}
 
 </style>

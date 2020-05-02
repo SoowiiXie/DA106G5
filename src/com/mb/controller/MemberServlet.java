@@ -245,7 +245,7 @@ public class MemberServlet extends HttpServlet {
 					session.setAttribute("memberVO", memberVO);
 					url = "/front_end/member/listOneMember.jsp"; 
 //				}else {  // 從後端修改
-//					req.setAttribute("incluePath", "/back_end/staff/listAllMember.jsp");
+//					req.setAttribute("includePath", "/back_end/staff/listAllMember.jsp");
 //					url = servletPath; 
 //				}
 				
@@ -402,7 +402,7 @@ public class MemberServlet extends HttpServlet {
 			String indexPath = "/back_end/staff/index.jsp";
 			
 			String includePath = req.getParameter("includePath");
-			req.setAttribute("incluePath", includePath);  // 放入來源路徑，用以錯誤回去include用
+			req.setAttribute("includePath", includePath);  // 放入來源路徑，用以錯誤回去include用
 			try {
 				
 				/***************************查詢資料****************************************/
@@ -412,7 +412,7 @@ public class MemberServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("memberVO", memberVO);         
-				req.setAttribute("incluePath", "/back_end/staff/update_member.jsp");  // 成功include畫面
+				req.setAttribute("includePath", "/back_end/staff/update_member.jsp");  // 成功include畫面
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath);
 				successView.forward(req, res);
 
@@ -434,7 +434,7 @@ public class MemberServlet extends HttpServlet {
 			String indexPath = "/back_end/staff/index.jsp";
 			
 			String includePath = req.getParameter("includePath"); 
-			req.setAttribute("incluePath", includePath);
+			req.setAttribute("includePath", includePath);
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String mb_id = req.getParameter("mb_id");
@@ -507,7 +507,7 @@ public class MemberServlet extends HttpServlet {
 						mb_lv, mb_rpt_times, mb_status);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("incluePath", "/back_end/staff/listAllMember.jsp");
+				req.setAttribute("includePath", "/back_end/staff/listAllMember.jsp");
 				
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
@@ -523,7 +523,7 @@ public class MemberServlet extends HttpServlet {
 		if ("back".equals(action)) { // 返回
 			String indexPath = "/back_end/staff/index.jsp";
 			String backPath = req.getParameter("backPath");
-			req.setAttribute("incluePath", backPath);
+			req.setAttribute("includePath", backPath);
 			RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 			failureView.forward(req, res);
 		}
