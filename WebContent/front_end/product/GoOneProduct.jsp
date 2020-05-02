@@ -229,11 +229,11 @@ margin-top:100;
   <table  style=" margin-left:-15%;" border="1">
     <tr>
       <td width="100" height="40" align="right">商品名稱：</td>
-      <td width="300" height="40" align="left">籃球</td>
+      <td width="300" height="40" align="left">${productVO.pd_no}</td>
     </tr>
     <tr>
       <td width="100" height="40" align="right">商品價格：</td>
-      <td width="300" height="40" align="left"><font size="7">8888元</font></td>
+      <td width="300" height="40" align="left"><font size="7">${productVO.pd_price}</font></td>
    </tr>
    <tr>
    
@@ -263,7 +263,7 @@ margin-top:100;
    </tr>
    <tr>
      <td width="100" height="40" style="vertical-align:text-top;" align="right">商品詳述：</td>
-     <td width="300" height="192" style="vertical-align:text-top;align:" align="left">每位跑者的實力不一、狀態各異，Garmin 最懂你心，發展全系列運動穿戴。從使用方便的 GPS 訓練到高階的鐵人三項強力培訓，Garmin 有如陪訓員般貼心守護。您只需設定目標，便可勇往直前。</td>
+     <td width="300" height="192" style="vertical-align:text-top;align:" align="left">${productVO.pd_detail}</td>
    </tr>
    <tr>
      <td width="100" height="40" align="right">商品收藏：</td>

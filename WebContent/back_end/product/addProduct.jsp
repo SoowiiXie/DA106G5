@@ -95,8 +95,8 @@ th, td {
 			</tr>
 			<tr>
 				<td>商品詳述：</td>
-				<td><input type="TEXT" name="pd_detail"
-					value="${productVO.pd_detail}"></td>
+				<td><textarea name="pd_detail">${productVO.pd_detail}</textarea></td>					
+					
 			</tr>
 
 			<%-- 			<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />	 --%>

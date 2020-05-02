@@ -70,12 +70,10 @@
 
 
 
-<div  style=" margin-left:235px; margin-top:50px; " >
+<div style=" margin-left:9.2%; margin-top:50px; width:83%; border:2px #FFD382 groove;">
 <form name="checkoutForm" action="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList" method="POST">
-<table>
-           <tr>
-				<td> <select size="1" name="pd_typeNo">
-				 <option value="">全部商品類別
+<div style="border:2px #FFD382 groove; width:43%; float:left;"> <select size="1" name="pd_typeNo">
+		 <option value="">全部商品類別
          <c:forEach var="pd_typeVO" items="${pd_typeService.all}" > 
           <option value="${pd_typeVO.pd_typeNo}">${pd_typeVO.pd_typeName}
          </c:forEach>   
@@ -83,13 +81,15 @@
 				<input type="submit" value="選取類別">
 				
 				<input type="hidden" name="pd_typeNo" value="${pd_typeVO.pd_typeNo}">
-				</td><td ><%@ include file="AllList2File1.file"%></td>
-				<td style="margin-left:290px; float:left;"><%@ include file="AllList2File2.file"%></td>
-				<td><%@ include file="AllList2File3.file"%></td>
-				<tr>	
-				</table>
+				<%@ include file="AllList2File1.file"%>
+				</div>
+				<div style="border:2px #FFD382 groove; width:40%; float:left; margin-left:17%;">
+				<%@ include file="AllList2File2.file"%>
+				
+				<%@ include file="AllList2File3.file"%>
+				</div>
 			</form>
-	</div>		
+</div>		
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
@@ -104,18 +104,18 @@
 		
 <div align="center">
                 
-	<table  class ="tableList" style="width: 1000px;">
+	<table  class ="tableList" style="width:80%;">
 
 		<tr bgcolor="#999999">
-			<th width="100px">商品圖片</th>
-			<th width="100px">商品編號</th>
-			<th width="100px">商品名稱</th>
-			<th width="100px">商品價格</th>
-			<th width="100px">商品詳述</th>
-			<th width="100px">商品狀態</th>
-			<th width="100px">商品類別</th>
-			<th width="100px"></th>
-			<th width="100px"></th>
+			<th width="10%">商品圖片</th>
+			<th width="10%">商品編號</th>
+			<th width="20%">商品名稱</th>
+			<th width="10%">商品價格</th>
+			<th width="10%">商品詳述</th>
+			<th width="15%">商品狀態</th>
+			<th width="10%">商品類別</th>
+			<th width="10%"></th>
+			<th width="10%"></th>
 
 		</tr>
 		
@@ -129,15 +129,20 @@
 				<td bgcolor=#FFD2D2>${productVO.pd_name}</td>
 				<td bgcolor=#FFD2D2>${productVO.pd_price}元</td>
 				<td bgcolor=#FFD2D2>${productVO.pd_status==1?'下架':'上架'}</td>
-				<td bgcolor=#FFD2D2><FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">
-				<div style="align:center; float:left">
-				<input type="submit" value="下架">
-				<input type="hidden" name="pd_no" value="${productVO.pd_no}">
-				<input type="hidden" name="action" value="changePd_status1">
-				<input type="hidden" name="whichPage" value="<%=whichPage%>">
-				</div>
+				<td bgcolor=#FFD2D2 align="center" >
+				<div style="margin-left:17%;">
+				<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">
+				
+				 <div style="float:left; border:2px #FFD382 groove;">
+				    <input type="submit" value="下架">
+				    <input type="hidden" name="pd_no" value="${productVO.pd_no}">
+				    <input type="hidden" name="action" value="changePd_status1">
+				    <input type="hidden" name="whichPage" value="<%=whichPage%>">
+				  </div>
 				</FORM>
-				<div>	
+				
+		   
+				<div style="float:left; border:2px #FFD382 groove; margin-left:10%;">	
 				    <FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">	
 				    		
 				<input type="submit" value="上架">
@@ -145,7 +150,9 @@
 				<input type="hidden" name="action" value="changePd_status2">
 				<input type="hidden" name="whichPage" value="<%=whichPage%>"></FORM>
 				</div>
-					</td>
+		   
+				
+					</div></td>
 				<td bgcolor=#FFD2D2>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
 
 

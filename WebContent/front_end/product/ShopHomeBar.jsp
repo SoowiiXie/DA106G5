@@ -156,7 +156,6 @@ position:absolute;
 text-align:center;
 border-style: solid;
 border-color:red;
-
 }
 .Topmenu{
   width:12.5%;
@@ -253,7 +252,7 @@ margin:10px auto;
            <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a>
         </div>
         <div>
-        <font size="5px" color="white">RUNNABLE</font>
+        <font size="5px" color="white" style="font-style:italic;">RUNNABLE</font>
         </div>
       </div>
      <div class="search_pd">
