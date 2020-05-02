@@ -217,7 +217,7 @@
 	function connect() {
 		// create a websocket
 // 	var userName = document.getElementById("userName").value;
-	var watchingMb_ids = ${mb_id};
+	var watchingMb_ids = "${mb_id}";
 // 	var MyPoint = "/TogetherWS/" + userName;
 	var MyPoint = "/TogetherWS/" + watchingMb_ids;
 	var host = window.location.host;

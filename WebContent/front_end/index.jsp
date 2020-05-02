@@ -226,10 +226,9 @@
 					<div id="collapsePages" class="collapse collapseTwo"
 						aria-labelledby="headingPages" data-parent="#accordionSidebar">
 						<div class="bg-white py-0 m-0 collapse-inner rounded">
-							<a class="collapse-item py-1"
-								href="../VainPd/forestage_html/eShopHome.html">瀏覽商城</a> <a
-								class="collapse-item py-1" href="register.html">購物車</a> <a
-								class="collapse-item py-1" href="forgot-password.html">我的訂單</a>
+							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/product/ShopHome.jsp">瀏覽商城</a> 
+							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/product/ProductCart.jsp">購物車</a> 
+							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/product/MemberTransaction_record.jsp">我的訂單</a>
 						</div>
 					</div>
 				</li>
