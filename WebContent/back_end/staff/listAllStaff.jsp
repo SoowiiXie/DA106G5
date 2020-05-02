@@ -45,7 +45,7 @@
 		border-bottom:3px solid #0373f0;
 	}
   table {
-	width: 60vw;
+	width: 65vw;
 	background-color: white;
 	margin:2vh auto 0px auto;
 	

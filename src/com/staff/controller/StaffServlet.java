@@ -40,10 +40,8 @@ public class StaffServlet extends HttpServlet{
 		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
 		//  會員分頁掛了!!!!!
-		//  errorMsg 兩個問題
 		//  後台首頁預設畫面  Line 162
-		//  可以做一個沒有XX權限的畫面(未擁有該權限時跳出的畫面)
-//			新增/修改成功時，跳Sweet Alert  V  修改自己還沒有成功Alert
+//			新增/修改成功時，跳Sweet Alert 修改自己還沒有成功Alert
 //			驗證信
 		
 		req.setCharacterEncoding("UTF-8");
