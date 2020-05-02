@@ -17,29 +17,27 @@
 <title>所有會員資料 - listAllMember.jsp</title>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style>
-  #table-1 {
-  	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-    border: 3px ridge Gray;
-    height: 80px;
-    text-align: center;
-  }
-  #table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
+  	#wrap{
+        text-align:center;
+        font-family: 'Mamelon';	
+	}
+	#title{
+		font-family: 'italics_hollow';
+		line-height:10vh;
+		font-size: 5.5vh;
+		font-weight:bold;
+		letter-spacing: 0.3vw;
+		color:#0373f0;
+		border-bottom:3px solid #0373f0;
+	}
   
   table {
+	width: 80vw;
 	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin:2vh auto 0px auto;
+	
+	letter-spacing: 0.1vw;
+	font-size: 2.5vh;
   }
   table, th, td {
     border: 1px solid #CCCCFF;
@@ -59,52 +57,34 @@
 
 </head>
 <body>
-
-<table id="table-1">
-	<tr>
-		<td>
-			<h3>管理員${staffVO.staff_name}</h3>
-			<h3>所有會員資料 - listAllStaff.jsp</h3>
-			<h4><a href="select_page.jsp">回首頁</a></h4>
-		</td>
-	</tr>
-</table>
-
-<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color:red">請修正以下錯誤:</font>
-		<ul>
-		    <c:forEach var="message" items="${errorMsgs}">
-				<li style="color:red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+<div id="wrap">
+<span id="title">所有會員資料</span><br>
 
 <table>
 	<tr>
 		<th>會員ID</th>
 <!-- 		<th>會員密碼</th> -->
-		<th>會員姓名</th>
-		<th>會員性別</th>
-		<th>會員生日</th>
-		<th>會員信箱</th>
-		<th>會員照片</th>
-<!-- 		<th>會員等級</th> -->
-<!-- 		<th>會員被檢舉次數</th> -->
+		<th>姓名</th>
+		<th>性別</th>
+		<th>生日</th>
+		<th>信箱</th>
+		<th>照片</th>
+		<th>會員<br>等級</th>
+		<th>被檢舉<br>次數</th>
 		<th>
-			會員狀態<br>
-			<select>
-				<option value="0">全部</option>
-				<c:forEach var="map" items="${memberStatus}">
-					<option value="${map.key}">${map.value}</option>
-				</c:forEach>
-			</select>
+			Status<br>
+<!-- 			<select> -->
+<!-- 				<option value="0">全部</option> -->
+<%-- 				<c:forEach var="map" items="${memberStatus}"> --%>
+<%-- 					<option value="${map.key}">${map.value}</option> --%>
+<%-- 				</c:forEach> --%>
+<!-- 			</select> -->
 		</th>
 <!-- 		<th>會員Line ID</th> -->
 <!-- 		<th>會員Line頭貼</th> -->
 <!-- 		<th>會員Line名稱</th> -->
 <!-- 		<th>會員Line狀態</th> -->
-		<th>詳細資料</th>
+		<th>修改<br>資料</th>
 	</tr>
 	
 	<%@ include file="pages/page1.file" %> 
@@ -118,8 +98,8 @@
 			<td>${memberVO.mb_birthday}</td>
 			<td>${memberVO.mb_email}</td>
 			<td><img src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px"></td>
-<%-- 			<td>${memberVO.mb_lv}</td> --%>
-<%-- 			<td>${memberVO.mb_rpt_times}</td> --%>
+			<td>${memberVO.mb_lv}</td>
+			<td>${memberVO.mb_rpt_times}</td>
 			<td>${memberStatus[memberVO.mb_status]}</td>
 <%-- 			<td>${memberVO.mb_line_id}</td> --%>
 <%-- 			<td>${memberVO.mb_line_pic}</td> --%>
@@ -129,13 +109,14 @@
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/staff/member.do" style="margin-bottom: 0px;">
 			     <input type="hidden" name="mb_id"  value="${memberVO.mb_id}">
 			     <input type="hidden" name="includePath" value="${incluePath}">
-			     <button type="submit" name="action" value="getOne_Member_For_Update">查看</button>
+			     <button type="submit" name="action" value="getOne_Member_For_Update">修改</button>
 			  </FORM>
 			</td>
 		</tr>
 	</c:forEach>
 </table>
 <%@ include file="pages/page2.file" %>
+</div>
 
 </body>
 </html>

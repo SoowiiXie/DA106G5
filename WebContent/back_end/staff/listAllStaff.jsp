@@ -135,8 +135,6 @@
 </head>
 <body>
 <div id="wrap">
-	
-
 	<!-- 新增管理員 -->
 	<form METHOD="POST" action="<%=request.getContextPath()%>/back_end/staff/staff.do">
 		<span id="allStaff_title">所有管理員資料</span>
