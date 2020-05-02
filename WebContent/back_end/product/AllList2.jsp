@@ -70,7 +70,7 @@
 
 
 
-<div style=" margin-left:9.2%; margin-top:50px; width:83%; border:2px #FFD382 groove;">
+<div style=" margin-left:5%; margin-top:50px; width:91%; border:2px #FFD382 groove;">
 <form name="checkoutForm" action="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList" method="POST">
 <div style="border:2px #FFD382 groove; width:43%; float:left;"> <select size="1" name="pd_typeNo">
 		 <option value="">全部商品類別
@@ -83,7 +83,7 @@
 				<input type="hidden" name="pd_typeNo" value="${pd_typeVO.pd_typeNo}">
 				<%@ include file="AllList2File1.file"%>
 				</div>
-				<div style="border:2px #FFD382 groove; width:40%; float:left; margin-left:17%;">
+				<div style="border:2px #FFD382 groove; width:36%; float:left; margin-left:20%;">
 				<%@ include file="AllList2File2.file"%>
 				
 				<%@ include file="AllList2File3.file"%>
@@ -104,16 +104,16 @@
 		
 <div align="center">
                 
-	<table  class ="tableList" style="width:80%;">
+	<table  class ="tableList" style="width:90%;">
 
 		<tr bgcolor="#999999">
 			<th width="10%">商品圖片</th>
 			<th width="10%">商品編號</th>
 			<th width="20%">商品名稱</th>
 			<th width="10%">商品價格</th>
-			<th width="10%">商品詳述</th>
-			<th width="15%">商品狀態</th>
 			<th width="10%">商品類別</th>
+			<th width="10%">商品狀態</th>
+			<th width="10%"></th>
 			<th width="10%"></th>
 			<th width="10%"></th>
 
@@ -128,12 +128,13 @@
 				<td bgcolor=#FFD2D2>${productVO.pd_no}</td>
 				<td bgcolor=#FFD2D2>${productVO.pd_name}</td>
 				<td bgcolor=#FFD2D2>${productVO.pd_price}元</td>
+				<td bgcolor=#FFD2D2>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
 				<td bgcolor=#FFD2D2>${productVO.pd_status==1?'下架':'上架'}</td>
 				<td bgcolor=#FFD2D2 align="center" >
-				<div style="margin-left:17%;">
+			
 				<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">
 				
-				 <div style="float:left; border:2px #FFD382 groove;">
+				 <div style="border:2px #FFD382 groove;">
 				    <input type="submit" value="下架">
 				    <input type="hidden" name="pd_no" value="${productVO.pd_no}">
 				    <input type="hidden" name="action" value="changePd_status1">
@@ -142,7 +143,7 @@
 				</FORM>
 				
 		   
-				<div style="float:left; border:2px #FFD382 groove; margin-left:10%;">	
+				<div style=" border:2px #FFD382 groove; align:center;">	
 				    <FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">	
 				    		
 				<input type="submit" value="上架">
@@ -152,8 +153,8 @@
 				</div>
 		   
 				
-					</div></td>
-				<td bgcolor=#FFD2D2>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
+					</td>
+				
 
 
 				<td bgcolor=#FFD2D2><FORM METHOD="POST"
