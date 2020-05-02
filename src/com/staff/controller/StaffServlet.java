@@ -167,7 +167,7 @@ public class StaffServlet extends HttpServlet{
 			}
 		}
 		
-		if ("select_management".equals(action)) { // 選擇管理項目  OK ***一半  ***判斷是否登入
+		if ("select_management".equals(action)) { // 選擇管理項目  
 			
 			// 取得管理員
 			StaffVO staffVO = (StaffVO) session.getAttribute("staffVO");
@@ -186,7 +186,7 @@ public class StaffServlet extends HttpServlet{
 			includePathMap.put("02", "/back_end/staff/listAllMember.jsp");  // 會員管理  V
 			includePathMap.put("03", "/back_end/product/AllList2.jsp");  // 商城管理
 			includePathMap.put("04", "/front_end/location/listAllLocation.jsp");  // 地標管理
-			includePathMap.put("05", "/back_end/staff/listAllStaff.jsp");  // 檢舉管理
+			includePathMap.put("05", "/back_end/staff/report_page.jsp");  // 檢舉管理
 			includePathMap.put("06", "/back_end/staff/listAllStaff.jsp");  // 問題回報管理
 			
 			// 判斷管理員是否有該權限
@@ -203,6 +203,26 @@ public class StaffServlet extends HttpServlet{
 				RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 				failureView.forward(req, res);
 			}
+		}
+		
+		if ("select_rpt".equals(action)) { // 選擇檢舉種類
+			
+			String rpt_type = req.getParameter("rpt_type");
+			
+			// 用Map裝檢舉種類與相對應的路徑
+			Map<String,String> rpt_typeMap = new HashMap<String,String>();
+			rpt_typeMap.put("cmt_rpt", "");    // 留言檢舉
+			rpt_typeMap.put("rcd_rpt", "");   // 紀錄檢舉
+			rpt_typeMap.put("live_rpt", "");  // 直播檢舉
+			rpt_typeMap.put("group_rpt", "");  // 揪團檢舉
+			rpt_typeMap.put("loc_rpt", "/back_end/loc_rpt/listAllLoc_rpt.jsp");  // 地標檢舉  V
+			rpt_typeMap.put("mb_rpt", "");  // 會員檢舉
+			
+			req.setAttribute("includePath", includePath);
+			req.setAttribute("rpt_includePath", rpt_typeMap.get(rpt_type));
+			RequestDispatcher successView = req.getRequestDispatcher(indexPath);
+			successView.forward(req, res);
+			return;
 		}
 
 		if ("getOne_For_Update".equals(action)) { // 顯示一筆管理員資料For更新 OK

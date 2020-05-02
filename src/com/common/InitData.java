@@ -68,6 +68,16 @@ public class InitData extends HttpServlet {
     	mbRptStatus.put(3, "檢舉失敗");
     	context.setAttribute("mbRptStatus", mbRptStatus);
     	
+    	// 檢舉管理種類
+    	Map<String,String> rptType = new LinkedHashMap<String,String>();
+    	rptType.put("cmt_rpt", "留言檢舉");
+    	rptType.put("rcd_rpt", "紀錄檢舉");
+    	rptType.put("live_rpt", "直播檢舉");
+    	rptType.put("group_rpt", "揪團檢舉");
+    	rptType.put("loc_rpt", "地標檢舉");
+    	rptType.put("mb_rpt", "會員檢舉");
+    	context.setAttribute("rptType", rptType);
+    	
     	/** 名軒區域結束 **/
     	
     	/** 麥克區域開始**/

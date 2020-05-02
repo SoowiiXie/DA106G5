@@ -226,6 +226,9 @@ public class Loc_rptServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
+			String indexPath = "/back_end/staff/index.jsp";
+			req.setAttribute("includePath", req.getParameter("includePath"));
+			req.setAttribute("rpt_includePath", req.getParameter("rpt_includePath"));
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				// cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id
@@ -264,14 +267,14 @@ public class Loc_rptServlet extends HttpServlet {
 				Loc_rptService loc_rptSvc = new Loc_rptService();
 				loc_rptVO = loc_rptSvc.updateLoc_rptByLocNo(loc_rpt_no, rpt_reason, rpt_status, loc_no, mb_id);
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				String url ="/back_end/loc_rpt/listAllLoc_rpt.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+				String url ="/back_end/loc_rpt/listAllLoc_rpt.jsp";  // 阿水原路徑
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/loc_rpt/listAllLoc_rpt.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 				failureView.forward(req, res);
 			}
 		}
