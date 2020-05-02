@@ -62,7 +62,7 @@
 </table>
 
 
-<table style="background-color: rgba(33,33,33,0);">
+<table>
 	<tr>
 		<th>揪團編號</th>
 		<th>會員編號</th>
@@ -86,7 +86,7 @@
 	</tr>
 	<%@ include file="pages/page1_ByCompositeQuery.file" %>
 	<c:forEach var="grouperVO" items="${listGrouper_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		<tr align='center' valign='middle' ${(groupVO.grp_no==param.grp_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
+		<tr align='center' valign='middle' ${(grouperVO.grp_no==param.grp_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
 			<td>${grouperVO.grp_no}</td>
 			<td>${grouperVO.mb_id}</td>			
 <%-- 			<td>${grouperVO.loc_no}</td> --%>
@@ -138,7 +138,7 @@
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do" style="margin-bottom: 0px;">
 				${grouperVO.grp_personmax}/${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}
 				<input type="submit" value="加入揪團"/>
-<%-- 				<%= ${grouperVO.grp_personmax}>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"加入揪團":"人數已滿"%> --%>
+				<%= ${grouperVO.grp_personmax}>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"加入揪團":"人數已滿"%>
 				<input type="text" name="grp_no"      value="${grouperVO.grp_no}">
 				<input type="text" name="mb_id"      value="${grouperVO.mb_id}">
 <%-- 				<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>

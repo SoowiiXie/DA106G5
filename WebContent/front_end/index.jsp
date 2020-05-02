@@ -532,6 +532,10 @@
 	<script>
 	  AOS.init();
 	</script>
+	
+	<!-- datetimpicker -->
+	<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
+	<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 	<!-- index.js -->
 	<script type="text/javascript">
