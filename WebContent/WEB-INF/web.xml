@@ -670,9 +670,16 @@
 			<servlet-name>Group_detailServlet</servlet-name>
 			<url-pattern>/front_end/group_detail/group_detail.do</url-pattern>
 		</servlet-mapping>
-	
-	
 		
+		<servlet>
+			<servlet-name>Group_detailServletAll</servlet-name>
+			<servlet-class>com.group_detail.controller.Group_detailServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Group_detailServletAll</servlet-name>
+			<url-pattern> /front_end/group_detail/grp_detail.do</url-pattern>
+		</servlet-mapping>
+			
 		<servlet>
 			<servlet-name>DBGifReader4Group_detail</servlet-name>
 			<servlet-class>com.group_detail.model.DBGifReader4Group_detail</servlet-class>

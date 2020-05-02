@@ -45,7 +45,7 @@ getOne_Time
 <style>
   table {
 	width: 800px;
-/* 	background-color: white; */
+ 	background-color: white; 
 	margin-top: 5px;
 	margin-bottom: 5px;
 	background-color: rgba(256,256,256,0);
@@ -86,7 +86,7 @@ getOne_Time
 	</ul>
 </c:if>
 
-<table>
+<table style="background-color: rgba(33,33,33,0);">
 	<tr>
 		<th>揪團編號</th>
 		<th>發起人會員編號</th>
@@ -165,7 +165,7 @@ getOne_Time
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="/front_end/grouper/group.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
 			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>

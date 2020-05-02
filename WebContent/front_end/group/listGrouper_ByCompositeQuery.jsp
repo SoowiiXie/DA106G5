@@ -62,7 +62,7 @@
 </table>
 
 
-<table>
+<table style="background-color: rgba(33,33,33,0);">
 	<tr>
 		<th>揪團編號</th>
 		<th>會員編號</th>

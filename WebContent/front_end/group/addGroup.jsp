@@ -167,7 +167,7 @@
 
 </table>
 <br>
-<div class="submit">
+
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增" id="button-blue"/></FORM>
 <div class="ease"></div>
