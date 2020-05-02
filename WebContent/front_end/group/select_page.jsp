@@ -64,28 +64,28 @@
 </c:if>
 
 
-  <li><a href='listAllGroup.jsp'>揪團列表</a><br><br></li>
+	<li><a href='listAllGroup.jsp'>揪團列表</a><br><br></li>
 
-  <li><a href='addGroup.jsp'>成立揪團</a></li>
-
-
+<!--   <li><a href='addGroup.jsp'>成立揪團</a></li> -->
 
 
 
-			
+
+
+	<b><font color=blue >查詢揪團</font></b> <br>		
 <ul>  
   <li>   
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" name="form1">
-        <b><font color=blue >查詢揪團</font></b> <br>
-        <b>輸入揪團編號:</b>
+       
+        <b><font color=white>輸入揪團編號:</font></b>
         <input type="text" name="grp_no" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團編號" id="name" /><br>
            
-        <b>輸入會員編號:</b>
+        <b><font color=white>輸入會員編號:</font></b>
         <input type="text" name="mb_id" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的會員編號" id="name" /><br>
         
 <jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />        
        
-        <b>選擇揪團地點:</b>
+        <b><font color=white>選擇揪團地點:</font></b>
        <select size="1" name="loc_no" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團地點" id="name" />
           <option value="">
          <c:forEach var="LocationVO" items="${locationSvc.all}" > 
@@ -102,30 +102,30 @@
 <!-- 	    <b>揪團結束時間:</b> -->
 <!-- 	    <input name="grp_end" id="s_date2" type="text"><br> -->
 	    
-	    <b>輸入揪團標題:</b>
+	    <b><font color=white>輸入揪團標題:</font></b>
         <input type="text" name="grp_name" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團標題" id="name" /><br>
        
-        <b>輸入揪團內容:</b>
+        <b><font color=white>輸入揪團內容:</font></b>
         <input type="text" name="grp_content" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團內容" id="name" /><br>
        
 
 	   
 <!-- 	    <b>輸入揪團人數上限:</b> -->
 <!--         <input type="text" name="grp_personmax"><br> -->          
-<!--         <b>輸入揪團人數下限:</b> -->
+<!--        <b>輸入揪團人數下限:</b> -->
 <!--         <input type="text" name="grp_personmin"><br> -->
        
-        <b>參加揪團人數:</b>
-        <input type="text" name="grp_personcount" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團人數" id="name" /><br>
+<!--        <b>參加揪團人數:</b> -->
+<!--         <input type="text" name="grp_personcount" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的揪團人數" id="name" /><br> -->
    		
-<!--    		<b>揪團狀態:</b> -->
+<!--    	<b>揪團狀態:</b> -->
 <!-- 		<td><INPUT TYPE="checkbox" NAME="grp_status" VALUE="1">未滿</td><br> -->
 <!-- 		<td><INPUT TYPE="checkbox" NAME="grp_status" VALUE="2">已滿</td><br> -->
 <!-- 		<td><INPUT TYPE="checkbox" NAME="grp_status" VALUE="3">取消</td><br> -->
 <!-- 		<td><INPUT TYPE="checkbox" NAME="grp_status" VALUE="4">成功</td><br> -->
        
-        <b>揪團關注人數:</b>
-        <input type="text" name="grp_follow" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的關注人數" id="name" /><br>                
+<!--         <b>揪團關注人數:</b> -->
+<!--         <input type="text" name="grp_follow" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的關注人數" id="name" /><br>                 -->
         
         
         

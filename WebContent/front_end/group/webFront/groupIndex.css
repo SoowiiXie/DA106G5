@@ -5,6 +5,7 @@
 background-image: url("c5.jpg");
   background-size: cover;
   height:100%;
+  font-family:Microsoft JhengHei;
 }
 
 #feedback-page{
@@ -21,13 +22,13 @@ background-image: url("c5.jpg");
   background-color:rgba(72,72,72,0.4);
   padding-left:35px;
   padding-right:35px;
-  padding-top:35px;
-  padding-bottom:50px;
+  padding-top:10px;
+  padding-bottom:10px;
   width: 450px;
   float: left;
   left: 50%;
   position: absolute;
-  margin-top:30px;
+  margin-top:20px;
   margin-left: -260px;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -35,11 +36,11 @@ background-image: url("c5.jpg");
 
 .feedback-input {
   color:#3c3c3c;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Microsoft JhengHei, Helvetica, Arial, sans-serif;
   font-weight:500;
-  font-size: 18px;
+  font-size: 10px;
   border-radius: 0;
-  line-height: 22px;
+  line-height: 10px;
   background-color: #fbfbfb;
   padding: 13px 13px 13px 54px;
   margin-bottom: 10px;
@@ -122,9 +123,9 @@ input:focus, textarea:focus {
   cursor:pointer;
   background-color: #3498db;
   color:white;
-  font-size:24px;
-  padding-top:22px;
-  padding-bottom:22px;
+  font-size:18px;
+  padding-top:3px;
+  padding-bottom:5px;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
@@ -143,7 +144,7 @@ input:focus, textarea:focus {
   
 .ease {
   width: 0px;
-  height: 74px;
+  height: 35px;
   background-color: #fbfbfb;
   -webkit-transition: .3s ease;
   -moz-transition: .3s ease;
