@@ -44,7 +44,7 @@
 
 	List<ProductVO> list = (List<ProductVO>) session.getAttribute("list");
 
-	if (pd_typeNo == null || pd_typeNo.equals("")) {
+	if (pd_typeNo == null || ("").equals(pd_typeNo)) {
 
 		list = productService.getAll();
 
