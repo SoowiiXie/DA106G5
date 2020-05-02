@@ -41,7 +41,6 @@ public class StaffServlet extends HttpServlet{
 		//  後台首頁預設畫面  Line 162
 //			新增/修改成功時，跳Sweet Alert 修改自己還沒有成功Alert
 		
-//			會員分頁!!!!!
 //			下拉式選單篩選在職、離職
 //			驗證信
 		
@@ -352,7 +351,6 @@ public class StaffServlet extends HttpServlet{
 		}
 		
 		if ("select_page".equals(action)) { // 分頁
-			
 			req.setAttribute("includePath", includePath);
 			RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 			failureView.forward(req, res);

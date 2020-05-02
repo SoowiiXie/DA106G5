@@ -22,7 +22,7 @@
         font-family: 'Mamelon';	
 	}
 	b{
-		text-align:left;
+		font-size: 2.5vh;
 	}
 	#wrap_title{
 		text-align:center;
@@ -67,6 +67,10 @@
 	}
   form{
   	margin:0px;
+  }
+  #mb_pic{
+  	height: 13vh;
+	width: 6.5vw;
   }
 </style>
 
@@ -114,7 +118,7 @@
 			<td>${memberGender[memberVO.mb_gender]}</td>
 			<td>${memberVO.mb_birthday}</td>
 			<td>${memberVO.mb_email}</td>
-			<td><img src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px"></td>
+			<td><img id="mb_pic" src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}"></td>
 			<td>${memberVO.mb_lv}</td>
 			<td>${memberVO.mb_rpt_times}</td>
 			<td>${memberStatus[memberVO.mb_status]}</td>
