@@ -2,6 +2,10 @@ package com.pd_follow.model;
 
 import java.util.*;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import java.sql.*;
 
@@ -19,6 +23,17 @@ public class Pd_followDAO implements Pd_followDAO_interface {
 		"SELECT mb_id, pd_no FROM pd_follow where mb_id = ?";
 	private static final String DELETE_MEMBER_A_PRODUCTS = 
 	    "delete FROM pd_follow where mb_id = ? and pd_no = ?";
+	
+	// 連線池
+		private static DataSource ds = null;
+		static {
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
 
 	@Override
 	    public int insertMemberOneProduct(Pd_followVO pd_followVO) {
@@ -28,8 +43,9 @@ public class Pd_followDAO implements Pd_followDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setString(1,pd_followVO.getMb_id());
@@ -38,10 +54,6 @@ public class Pd_followDAO implements Pd_followDAO_interface {
 			updateCount = pstmt.executeUpdate();
            System.out.println("經過DAO，會員"+pd_followVO.getMb_id()+"已經收藏"+pd_followVO.getPd_no());
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -75,8 +87,9 @@ public class Pd_followDAO implements Pd_followDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE_MEMBER_A_PRODUCTS);
 			
 			pstmt.setString(1, pd_followVO.getMb_id());
@@ -84,10 +97,6 @@ public class Pd_followDAO implements Pd_followDAO_interface {
 			updateCount = pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -123,8 +132,9 @@ public class Pd_followDAO implements Pd_followDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_A＿MEMBER_ALL_PD_FOLLOW);
 			pstmt.setString(1, mb_id);
 			rs = pstmt.executeQuery();
@@ -140,10 +150,6 @@ public class Pd_followDAO implements Pd_followDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -185,8 +191,9 @@ public class Pd_followDAO implements Pd_followDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -199,10 +206,6 @@ public class Pd_followDAO implements Pd_followDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());

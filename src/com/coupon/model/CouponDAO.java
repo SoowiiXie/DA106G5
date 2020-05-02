@@ -1,6 +1,12 @@
 package com.coupon.model;
 
 import java.util.*;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import java.sql.*;
 
 public class CouponDAO implements CouponDAO_interface {
@@ -19,6 +25,19 @@ public class CouponDAO implements CouponDAO_interface {
 		"DELETE FROM coupon where cp_no = ?";
 	private static final String UPDATE = 
 		"UPDATE coupon set cp_name = ?  where cp_no = ?";
+	
+	// 連線池
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 	@Override
 	public int addCoupon(CouponVO couponVo) {
@@ -28,8 +47,7 @@ public class CouponDAO implements CouponDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);			
+			con = ds.getConnection();		
 			String cols[] = {"cp_no"};
 			pstmt = con.prepareStatement(INSERT_STMT,cols);
 			
@@ -58,10 +76,6 @@ public class CouponDAO implements CouponDAO_interface {
 			rs.close();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -93,8 +107,7 @@ public class CouponDAO implements CouponDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 
@@ -105,10 +118,6 @@ public class CouponDAO implements CouponDAO_interface {
 			updateCount = pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -140,8 +149,7 @@ public class CouponDAO implements CouponDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setString(1, cp_no);
@@ -149,10 +157,6 @@ public class CouponDAO implements CouponDAO_interface {
 			updateCount = pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -186,8 +190,7 @@ public class CouponDAO implements CouponDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			
 			pstmt.setString(1, cp_no);
@@ -204,10 +207,6 @@ public class CouponDAO implements CouponDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -249,8 +248,7 @@ public class CouponDAO implements CouponDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -269,10 +267,6 @@ public class CouponDAO implements CouponDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());

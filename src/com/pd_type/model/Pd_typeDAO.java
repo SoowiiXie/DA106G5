@@ -1,6 +1,12 @@
 package com.pd_type.model;
 
 import java.util.*;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import java.sql.*;
 
 public class Pd_typeDAO implements Pd_typeDAO_interface {
@@ -20,6 +26,17 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 		"DELETE FROM PD_TYPE where PD_TYPENO = ?";
 	private static final String UPDATE = 
 		"UPDATE PD_TYPE set PD_TYPENAME = ? where PD_TYPENO = ?";
+	
+	// 連線池
+		private static DataSource ds = null;
+		static {
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
 
 	@Override
 	public int addProductType(Pd_typeVO pd_typeVO) {
@@ -29,8 +46,9 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);			
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);	
+			con = ds.getConnection();
 			String cols[] = {"PD_TYPENO"};
 			pstmt = con.prepareStatement(INSERT_STMT,cols);
 			
@@ -57,10 +75,6 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 			rs.close();
            
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -92,8 +106,7 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
             
 			pstmt.setString(1, pd_typeVO.getPd_typeName());
@@ -104,10 +117,6 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 			updateCount = pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -139,8 +148,9 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setString(1, pd_typeNo);
@@ -150,10 +160,6 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 			System.out.println("已刪除"+pd_typeNo);
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -187,8 +193,9 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			
 			pstmt.setString(1, pd_typeNo);
@@ -204,10 +211,6 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -249,8 +252,9 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -264,10 +268,6 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());

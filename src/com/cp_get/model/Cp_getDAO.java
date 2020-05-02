@@ -1,6 +1,12 @@
 package com.cp_get.model;
 
 import java.util.*;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import java.sql.*;
 
 public class Cp_getDAO implements Cp_getDAO_interface {
@@ -22,6 +28,18 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 	// 刪除會員優惠卷使用狀態，有刪除所有優惠卷問題 目前用不到
 	// private static final String DELETE = "DELETE FROM cp_get where mb_id = ?";
 
+	// 連線池
+		private static DataSource ds = null;
+		static {
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	
 	@Override
 	public int aMemberGetCoupon(Cp_getVO cp_getVO) {
 		int updateCount = 0;
@@ -30,8 +48,9 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(ADD_COUPON);
 
 			pstmt.setString(1, cp_getVO.getMb_id());
@@ -40,9 +59,6 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 			updateCount = pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -71,8 +87,9 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 		int updateCount = 0;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(CHANGE_COUPON_STATUS);
 			pstmt.setInt(1, cp_getVO.getCp_status());
 			pstmt.setString(2, cp_getVO.getMb_id());
@@ -80,9 +97,6 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 			updateCount = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -119,8 +133,9 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(SEARCH_A_MEMBER_ALL_COUPON);
 			pstmt.setString(1, mb_id);
 			rs = pstmt.executeQuery();
@@ -136,9 +151,6 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 				cp_getVO.setCp_status(rs.getInt("cp_status"));
 				list.add(cp_getVO);
 			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -179,8 +191,9 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 		ResultSet rs = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(LIST_A_MEMBER_CP_GET_BY_STATUS);
 			pstmt.setString(1, cp_getVO.getMb_id());
 			pstmt.setInt(2, cp_getVO.getCp_status());
@@ -200,9 +213,6 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 				
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -2,6 +2,11 @@ package com.od_detail.model;
 
 import java.util.*;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import java.sql.*;
 
 public class Od_detailDAO implements Od_detailDAO_interface {
@@ -16,6 +21,18 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 	private static final String GET_ALL_STMT_FOR_OD_DETAIL = "SELECT * FROM od_detail ";
 	private static final String DELETE_OD_DETAIL = "DELETE FROM od_detail where od_no = ?";
 
+	// 連線池
+		private static DataSource ds = null;
+		static {
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	
 	@Override
 	public Od_detailVO addOneOdDetail(Od_detailVO od_detailVO) {
 
@@ -24,8 +41,9 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, od_detailVO.getOd_no());
@@ -36,9 +54,6 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -69,8 +84,9 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE_OD_DETAIL);
 
 			pstmt.setString(1, od_no);
@@ -78,9 +94,6 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 			updateCount = pstmt.executeUpdate();
 			System.out.println("訂單明細：" + od_no);
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -113,8 +126,9 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_OEDER_DETAIL_ALL_STMT);
 
 			pstmt.setString(1, od_no);
@@ -135,9 +149,6 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -178,8 +189,9 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT_FOR_OD_DETAIL);
 			rs = pstmt.executeQuery();
 
@@ -194,9 +206,6 @@ public class Od_detailDAO implements Od_detailDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources

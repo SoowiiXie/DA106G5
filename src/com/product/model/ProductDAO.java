@@ -3,6 +3,11 @@ package com.product.model;
 import java.util.*;
 import java.util.Map.Entry;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import jdbc.util.ProductCompositeQuery.jdbcUtil_CompositeQuery_Product;
 
 import java.io.BufferedInputStream;
@@ -30,6 +35,17 @@ public class ProductDAO implements ProductDAO_interface {
 	private static final String ON_MARKET_WITH_PD_TYPENO = "select pd_no, pd_name ,pd_typeNo, pd_price ,pd_detail, pd_status from product where pd_status = ? and pd_typeNo = ?";
 	private static final String SEARCH_PD_PIC = "SELECT pd_pic FROM PRODUCT WHERE pd_no = ?";
 
+	// 連線池
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public int addProduct(ProductVO productVO) {
 		int updateCount = 0;
@@ -38,8 +54,9 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			String cols[] = { "pd_no" };
 
 			pstmt = con.prepareStatement(INSERT_STMT, cols);
@@ -68,9 +85,6 @@ public class ProductDAO implements ProductDAO_interface {
 			rs.close();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -101,8 +115,9 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, productVO.getPd_name());
@@ -116,9 +131,6 @@ public class ProductDAO implements ProductDAO_interface {
 			updateCount = pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -149,8 +161,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, pd_no);
@@ -160,9 +171,6 @@ public class ProductDAO implements ProductDAO_interface {
 			System.out.println("刪除編號" + pd_no + "商品");
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -195,8 +203,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, pd_no);
@@ -215,9 +222,6 @@ public class ProductDAO implements ProductDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -258,8 +262,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -276,9 +279,6 @@ public class ProductDAO implements ProductDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -315,8 +315,7 @@ public class ProductDAO implements ProductDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(CHANGE_STATUS);
 
 			pstmt.setInt(1, productVO.getPd_status());
@@ -329,9 +328,6 @@ public class ProductDAO implements ProductDAO_interface {
 				System.out.println("商品編號：" + productVO.getPd_no() + "已經'下架'。");
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -367,8 +363,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(TYPE_SEARCH);
 			pstmt.setString(1, pd_typeNo);
 			rs = pstmt.executeQuery();
@@ -384,9 +379,6 @@ public class ProductDAO implements ProductDAO_interface {
 
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -436,8 +428,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			String lowPrice = map.get("lowPrice")[0];
 			String highPrice = map.get("highPrice")[0];
 			map.remove("Submit");
@@ -486,9 +477,6 @@ public class ProductDAO implements ProductDAO_interface {
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
@@ -524,8 +512,7 @@ public class ProductDAO implements ProductDAO_interface {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE_PIC);
 
 			FileInputStream in = new FileInputStream(pic_path);
@@ -537,9 +524,6 @@ public class ProductDAO implements ProductDAO_interface {
 			pstmt.setBytes(1, image);
 			updateCount = pstmt.executeUpdate();
 			bf.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -579,8 +563,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(LIST_ON_THE_MARKET);
 			pstmt.setInt(1, pd_status);
 			rs = pstmt.executeQuery();
@@ -596,9 +579,6 @@ public class ProductDAO implements ProductDAO_interface {
 
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -644,8 +624,7 @@ public class ProductDAO implements ProductDAO_interface {
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(ON_MARKET_WITH_PD_TYPENO);
 			pstmt.setInt(1, pd_status);
 			pstmt.setString(2, pd_typeNo);
@@ -662,9 +641,6 @@ public class ProductDAO implements ProductDAO_interface {
 				list.add(productVO);
 
 			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -708,7 +684,7 @@ public class ProductDAO implements ProductDAO_interface {
 		byte[] pd_pic = null;
 
 		try {
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(SEARCH_PD_PIC);
 			pstmt.setString(1, pd_no);
 			rs = pstmt.executeQuery();
