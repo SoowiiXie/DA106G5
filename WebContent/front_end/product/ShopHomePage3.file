@@ -6,6 +6,6 @@
             <option value="<%=i%>">跳至第<%=i%>頁
          <%}%> 
        </select>
-       <input type="submit" value="確定" size="5">  
+       <input type="submit" value="確定" size="7">  
     </FORM>
   <%}%>

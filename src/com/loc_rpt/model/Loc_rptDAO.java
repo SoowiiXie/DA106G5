@@ -21,7 +21,7 @@ public class Loc_rptDAO implements Loc_rpt_interface {
 //	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = "INSERT INTO loc_rpt (loc_rpt_no,rpt_reason,loc_no,mb_id) values ('locr'||LPAD(to_char(LOC_RPT_SEQ.nextval), 5, '0'),?,?,?)";
-	private static final String GET_ALL_STMT = "SELECT loc_rpt_no, rpt_reason, rpt_status, loc_no, mb_id FROM loc_rpt ORDER BY loc_rpt_no";
+	private static final String GET_ALL_STMT = "SELECT loc_rpt_no, rpt_reason, rpt_status, loc_no, mb_id FROM loc_rpt ORDER BY loc_rpt_no desc";
 	private static final String GET_ONE_STMT = "SELECT loc_rpt_no, rpt_reason, rpt_status, loc_no, mb_id FROM loc_rpt WHERE loc_rpt_no = ?";
 	private static final String DELETE = "DELETE FROM loc_rpt where loc_rpt_no = ?";
 	private static final String UPDATE = "UPDATE loc_rpt SET rpt_reason = ?, rpt_status = ? where loc_rpt_no = ?";

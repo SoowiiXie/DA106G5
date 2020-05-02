@@ -60,20 +60,20 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<h4>此頁練習採用 EL 的寫法取值:</h4>
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>所有地標檢舉資料 - listAllLoc_rpt.jsp</h3>
-				<h4>
-					<a href="<%= request.getContextPath() %>/back_end/loc_rpt/select_page.jsp">
-						<img src="<%= request.getContextPath() %>/back_end/loc_rpt/images/back1.gif" width="100" height="32" border="0">
-						回首頁
-					</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
+<!-- 	<h4>此頁練習採用 EL 的寫法取值:</h4> -->
+<!-- 	<table id="table-1"> -->
+<!-- 		<tr> -->
+<!-- 			<td> -->
+<!-- 				<h3>所有地標檢舉資料 - listAllLoc_rpt.jsp</h3> -->
+<!-- 				<h4> -->
+<%-- 					<a href="<%= request.getContextPath() %>/back_end/loc_rpt/select_page.jsp"> --%>
+<%-- 						<img src="<%= request.getContextPath() %>/back_end/loc_rpt/images/back1.gif" width="100" height="32" border="0"> --%>
+<!-- 						回首頁 -->
+<!-- 					</a> -->
+<!-- 				</h4> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<!-- 	</table> -->
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -93,13 +93,14 @@ th, td {
 			<th>地標編號</th>
 			<th>檢舉會員</th>
 			<th>檢舉會員等級</th>
-			<th>修改</th>
+<!-- 			<th>修改</th> -->
 			<th>審核</th>
 		</tr>
 		<jsp:useBean id="loc_rptSvcEL" scope="page" class="com.loc_rpt.model.Loc_rptService" />
 		<jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
-		<%@ include file="page1.file"%>
-		<c:forEach var="loc_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<%-- 		<%@ include file="page1.file"%> --%>
+		<c:forEach var="loc_rptVO" items="${list}">
+<%-- 		<c:forEach var="loc_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
 			<tr>
 				<td>${loc_rptVO.loc_rpt_no}</td>
 				<td>${loc_rptVO.rpt_reason}</td>
@@ -107,13 +108,13 @@ th, td {
 				<td>${loc_rptVO.loc_no}</td>
 				<td>${loc_rptVO.mb_id}</td>
 				<td>${memberSvcEL.getOneMember(loc_rptVO.mb_id).mb_lv}</td>
-				<td>
-					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/loc_rpt/loc_rpt.do" style="margin-bottom: 0px;">
-						<input type="submit" value="修改"> 
-						<input type="hidden" name="loc_rpt_no" value="${loc_rptVO.loc_rpt_no}"> 
-						<input type="hidden" name="action" value="getOne_For_Update">
-					</FORM>
-				</td>
+<!-- 				<td> -->
+<%-- 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/loc_rpt/loc_rpt.do" style="margin-bottom: 0px;"> --%>
+<!-- 						<input type="submit" value="修改">  -->
+<%-- 						<input type="hidden" name="loc_rpt_no" value="${loc_rptVO.loc_rpt_no}">  --%>
+<!-- 						<input type="hidden" name="action" value="getOne_For_Update"> -->
+<!-- 					</FORM> -->
+<!-- 				</td> -->
 				<td>
 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/loc_rpt/loc_rpt.do" style="margin-bottom: 0px;">
 						<input type="submit" value="失敗/成功"> 
@@ -129,7 +130,7 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-	<%@ include file="page2.file"%>
+<%-- 	<%@ include file="page2.file"%> --%>
 
 </body>
 </html>

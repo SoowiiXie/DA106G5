@@ -1,5 +1,7 @@
 package com.location.model;
 
+import java.util.Arrays;
+
 public class LocationVO implements java.io.Serializable {
 	/**
 	 * 
@@ -67,6 +69,13 @@ public class LocationVO implements java.io.Serializable {
 
 	public void setLoc_pic(byte[] loc_pic) {
 		this.loc_pic = loc_pic;
+	}
+
+	@Override
+	public String toString() {
+		return "LocationVO [loc_no=" + loc_no + ", loc_typeno=" + loc_typeno + ", longitude=" + longitude
+				+ ", latitude=" + latitude + ", loc_status=" + loc_status + ", loc_address=" + loc_address
+				+ ", loc_pic=" + Arrays.toString(loc_pic) + "]";
 	}
 
 }

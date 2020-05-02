@@ -93,7 +93,7 @@ public class ShoppingServlet extends HttpServlet {
 					return;
 
 				} catch (Exception e) {
-					errorMsgs.add("無法取得商品的資料:" + e.getMessage());
+					errorMsgs.add("無法取得商品的資料1:" + e.getMessage());
 					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/ShopHome.jsp");
 					failureView.forward(req, res);
 					return;

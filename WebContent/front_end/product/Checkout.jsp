@@ -34,6 +34,33 @@
 .f19{float:left;margin-left:5px;margin-right:5px;width:calc(95% - 10px)}
 .f20{float:left;margin-left:5px;margin-right:5px;width:calc(100% - 10px)}
 
+..followlist {
+	cellpadding: "10";
+	cellspacing: "5";
+	padding-bottom: 100px;
+	
+}
+  table {
+
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	
+  }
+  table, th, td {
+    border: 3px solid 	#FFFFFF;
+  }
+  th, td {
+    padding: 1px;
+    text-align: center;
+  }
+  
+  .buttonBar{
+width:100%;
+background-color:#3960D0;
+height:100px;
+margin-top:100;
+}
 </style>
 </head>
 <jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
@@ -57,15 +84,15 @@
 	<hr>
 	<p>
 	<div align="center">
-	<table  style="width:1000px;">
-		<tr bgcolor="#999999">
-		    <th style ="width:150px;">產品圖片</th>
-			<th style ="width:200px;">產品分類</th>
-			<th style ="width:100px;">產品名稱</th>
-			<th style ="width:100px;">產品編號</th>
-			<th style ="width:100px;">單價</th>
-			<th style ="width:100px;">尺寸</th>
-			<th style ="width:100px;">數量</th>
+	<table  class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; ">
+		<tr bgcolor="#999999"  align="center">
+		    <th style ="width:150px;"><font color="black">產品圖片</font></th>
+			<th style ="width:200px;"><font color="black">產品分類</font></th>
+			<th style ="width:100px;"><font color="black">產品名稱</font></th>
+			<th style ="width:100px;"><font color="black">產品編號</font></th>
+			<th style ="width:100px;"><font color="black">單價</font></th>
+			<th style ="width:100px;"><font color="black">尺寸</font></th>
+			<th style ="width:100px;"><font color="black">數量</font></th>
 		</tr>
 		<%
 
@@ -88,27 +115,27 @@
 
 		
 			<tr bgcolor=#C4E1FF>
-				<td style ="height:100px;"><div align="center">
+				<td style ="height:100px;"><div align="center" >
 				<a href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=<%=order.getPd_no()%>'></a><img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=<%=order.getPd_no()%>" style="width:auto;">
 						
 					</div></td>
-					<td width="100"><div align="center">
-						<b>${pd_typeService.searchType(order.pd_typeNo).pd_typeName}</b>
+					<td width="100" ><div align="center">
+						<b><font color="black">${pd_typeService.searchType(order.pd_typeNo).pd_typeName}</font></b>
 					</div></td>
 				<td><div align="center">
-						<b><%=pd_name%></b>
+						<b><font color="black"><%=pd_name%></font></b>
 					</div></td>
 				<td><div align="center">
-						<b><%=pd_no%></b>
+						<b><font color="black"><%=pd_no%></font></b>
 					</div></td>
 				<td><div align="center">
-						<b><%=pd_price%></b>
+						<b><font color="black"><%=pd_price%></font></b>
 					</div></td>
 					<td><div align="center">
-						<b><%=pd_typeSize%></b>
+						<b><font color="black"><%=pd_typeSize%></font></b>
 					</div></td>
 				<td><div align="center">
-						<b><%=pd_quantity%></b>
+						<b><font color="black"><%=pd_quantity%></font></b>
 					</div></td>
 			</tr>
 			
@@ -148,17 +175,38 @@
 	</table>
 	
 </div>
-	<form method="POST"
-		action="<%=request.getContextPath()%>/CheckOutServlet">
-		<table>
-		<tr>
-				<td>	   </td>
+    <div style="margin-left:260px; border-style:solid; width:900px;" >
+	   <form method="POST" action="<%=request.getContextPath()%>/CheckOutServlet">
+		
+		  
+		  
+			<div style="float:left;">填寫收費地址</div>
+			
+				   <div id="twzipcode" style="float:left;"></div>
 				
-			</tr>
-			<tr>
-				<td>填寫收費地址</td>
-				<td>	<div id="twzipcode"></div>
+                <div><input type="TEXT" name="od_add" id="address"></div>
+                
+                
+		
 
+		
+				 <div style="float:left;">選擇收費方式</div>
+				 <div><input type="radio" name="payMethod" value="貨到付款">貨到付款
+					<input type="radio" name="payMethod" value="信用卡付費">信用卡付費 <input
+					type="radio" name="payMethod" value="ibon繳費">ibon繳費</div>
+			
+
+	
+	   
+
+		<input class="btn btn-primary btn-sm" type="hidden" name="action" value="getOd_detail_Information"> <input
+			type="submit" name="Submit" value="結帳">
+		
+	</form>
+
+</div>
+
+ <div class="buttonBar"></div>
 <script type="text/javascript">
 	$("#twzipcode").twzipcode({
 	 /* zipcodeName: "number", */ // 自訂郵遞區號input標籤的name值,方便送後端
@@ -174,27 +222,7 @@ $("#twzipcode").on('change', function () {
  var result = county+district;
  $("#address").val(result);
  });
-</script><td></td><td style="width:100px;"><input type="TEXT" name="od_add" id="address"></td>
-			</tr>
+</script>
 
-			<tr>
-				<td>選擇收費方式</td>
-				<td><input type="radio" name="payMethod" value="貨到付款">貨到付款
-					<input type="radio" name="payMethod" value="信用卡付費">信用卡付費 <input
-					type="radio" name="payMethod" value="ibon繳費">ibon繳費</td>
-			</tr>
-
-		</table>
-	   
-
-		<input type="hidden" name="action" value="getOd_detail_Information"> <input
-			type="submit" name="Submit" value="結帳">
-		
-	</form>
-
-
-
-	<p>
-		<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">是否繼續購物</a>
 </body>
 </html>

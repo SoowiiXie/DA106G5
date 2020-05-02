@@ -1,9 +1,12 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+/* @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700); */
 
-body{    background:url(https://i.imgur.com/V6rEnI7.jpg) no-repeat;
-  background-size: cover;
-  height:100%;
-}
+/* #divAll {     */
+/* /* 	background:url(https://i.imgur.com/V6rEnI7.jpg) no-repeat; */ */
+/* background-image: url("c5.jpg"); */
+/*   background-size: cover; */
+  
+/*   height:100%; */
+/* } */
 
 #feedback-page{
   text-align:center;
