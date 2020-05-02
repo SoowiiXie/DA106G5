@@ -152,7 +152,7 @@
 	</tr>
 	<c:forEach var="staffVO" items="${list}">
 		
-		<tr ${param.staff_id.equals(staffVO.staff_id)?"bgcolor='#CCCCFF'":""}>
+		<tr ${param.staff_id.equals(staffVO.staff_id)?"bgcolor='#d4e7fa'":""}>
 			<td>${staffVO.staff_id}</td>
 			<td>${staffVO.staff_name}</td>
 			<td><fmt:formatDate value="${staffVO.staff_join}" pattern="yyyy-MM-dd"/></td>

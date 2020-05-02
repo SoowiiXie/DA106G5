@@ -90,7 +90,7 @@
 	<%@ include file="pages/page1.file" %> 
 	<c:forEach var="memberVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
-		<tr ${param.mb_id.equals(memberVO.mb_id)?"bgcolor='#CCCCFF'":""}>
+		<tr ${param.mb_id.equals(memberVO.mb_id)?"bgcolor='#d4e7fa'":""}>
 			<td>${memberVO.mb_id}</td>
 <%-- 			<td>${memberVO.mb_pwd}</td> --%>
 			<td>${memberVO.mb_name}</td>

@@ -68,6 +68,7 @@
 		background-color: #60A5F3;
 		border-radius: 2vh;
 		margin-top:2.5vh;
+		margin-left:3vw;
  		height: 6vh; 
  		width: 8vw; 
 	}
@@ -134,7 +135,7 @@
 			<td align="right">預覽圖片：</td><td><img id="mb_pic" src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px"></td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<input type="hidden" name="mb_id" value="${memberVO.mb_id}">
 				<input type="hidden" name="mb_rpt_times" value="${memberVO.mb_rpt_times}">
 				<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}">
@@ -143,8 +144,7 @@
 				
 		        <input type="hidden" name="backPath" value="/back_end/staff/listAllMember.jsp?mb_id=">
 		        <button class="btn" type="submit" name="action" value="back">返回</button>
-			</td>
-			<td>
+			
 				<button class="btn" type="submit" name="action" value="back_end_update">修改</button>
 			</td>
 		</tr>

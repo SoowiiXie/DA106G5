@@ -35,13 +35,14 @@ public class StaffServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		// *** listAllStaff中移除自己或Boss
-		// ** listAllStaff  下拉式選單篩選在職、離職
 		// *** listAllStaff 離職用紅字粗體顯示
 		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
-		//  會員分頁掛了!!!!!
 		//  後台首頁預設畫面  Line 162
 //			新增/修改成功時，跳Sweet Alert 修改自己還沒有成功Alert
+		
+//			會員分頁!!!!!
+//			下拉式選單篩選在職、離職
 //			驗證信
 		
 		req.setCharacterEncoding("UTF-8");
