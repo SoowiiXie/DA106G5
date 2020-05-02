@@ -125,6 +125,8 @@
 		
 		width: 85vw;
 		height: 87vh;
+		overflow-y:scroll;
+    	overflow-x:hidden;
 	}
 	form{
   		margin:0px;
