@@ -65,7 +65,7 @@
 				<li><a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/listAllGroup.jsp'>揪團列表</a><br>
 				<br></li>
 
-				<li><a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/addGroup.jsp'>成立揪團</a></li>
+<%-- 				<li><a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/addGroup.jsp'>成立揪團</a></li> --%>
 
 				<ul>
 					<li>

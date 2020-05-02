@@ -102,9 +102,9 @@ getOne_Time
 		<th>目前人數</th>
 		<th>揪團狀態</th>
 		<th>關注揪團數量</th>
-		<th>修改</th>
-		<th>刪除</th>
-		<th>矮油</th>
+<!-- 		<th>修改</th> -->
+<!-- 		<th>刪除</th> -->
+<!-- 		<th>矮油</th> -->
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="grouperVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -158,24 +158,24 @@ getOne_Time
 			<%--${status.get(grouperVO.grp_status)} --%>
  			<!-- 從揪團關注表格算出關注揪團人數 --> 
 			<td>${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
-			<td>
-			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="/front_end/grouper/group.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}">
-			     <input type="hidden" name="action" value="delete"></FORM>
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="/front_end/group_detail/grp_detail.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="加入揪團">
-			     <input type="text" name="grp_no"  value="${grouperVO.grp_no}">
-			     <input type="text" name="mb_id"  value="${grouperVO.mb_id}">
-			     <input type="hidden" name="action" value="update"></FORM>
+<!-- 			<td> -->
+<!-- 			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;"> -->
+<!-- 			     <input type="submit" value="修改"> -->
+<%-- 			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}"> --%>
+<!-- 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 			  <FORM METHOD="post" ACTION="/front_end/grouper/group.do" style="margin-bottom: 0px;"> -->
+<!-- 			     <input type="submit" value="刪除"> -->
+<%-- 			     <input type="hidden" name="grp_no"  value="${grouperVO.grp_no}"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"></FORM> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 			  <FORM METHOD="post" ACTION="/front_end/group_detail/grp_detail.do" style="margin-bottom: 0px;"> -->
+<!-- 			     <input type="submit" value="加入揪團"> -->
+<%-- 			     <input type="text" name="grp_no"  value="${grouperVO.grp_no}"> --%>
+<%-- 			     <input type="text" name="mb_id"  value="${grouperVO.mb_id}"> --%>
+<!-- 			     <input type="hidden" name="action" value="update"></FORM> -->
 			</td>
 		</tr>
 	</c:forEach>

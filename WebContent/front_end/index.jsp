@@ -209,7 +209,7 @@
 						<div class="bg-white py-0 m-0 collapse-inner rounded">
 							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp">瀏覽揪團</a> 
 							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_detail/listAllGroupdetailForSelect.jsp">我的揪團</a>
-							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_detail/webFront/group.jsp">開團</a>
+							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/addGroup.jsp">開團</a>
 						</div>
 					</div>
 				</li>

@@ -491,7 +491,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				// 取出的empVO送給listOneEmp.jsp
 				RequestDispatcher successView = req
-						.getRequestDispatcher("/front_end/group/listAllGroup.jsp");
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/listAllGroup.jsp");
 				successView.forward(req, res);
 				return;
 
