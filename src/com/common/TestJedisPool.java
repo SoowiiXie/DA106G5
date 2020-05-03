@@ -1,5 +1,6 @@
-package connectionpool;
+package com.common;
 
+import com.common.JedisPoolUtil;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -7,7 +8,7 @@ public class TestJedisPool {
 	private static JedisPool pool = null;
 
 	public static void main(String[] args) {
-		pool = JedisUtil.getJedisPool();
+		pool = JedisPoolUtil.getJedisPool();
 		Jedis jedis = pool.getResource();
 		jedis.auth("DA106G5");
 		System.out.println(jedis.ping());
@@ -22,7 +23,7 @@ public class TestJedisPool {
 		System.out.println(jedis.hget("whe01","howtem"));
 		System.out.println(jedis.hget("whe01","lowtem"));
 		jedis.close();
-		JedisUtil.shutdownJedisPool();
+		JedisPoolUtil.shutdownJedisPool();
 	}
 
 }

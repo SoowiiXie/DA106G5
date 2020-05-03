@@ -303,13 +303,10 @@ public class CmtServlet extends HttpServlet {
 			    byte[] mb_pic =mbSvc.getOneMember(mb_id).getMb_pic();
 			    byte[] mb_line_pic =mbSvc.getOneMember(mb_id).getMb_line_pic();
 			    if(mb_pic!=null) {
-			    	System.out.println(1);
 			    	mb_base64 = Base64.getEncoder().encodeToString(mbSvc.getOneMember(mb_id).getMb_pic());
 			    }else if(mb_line_pic!=null){
-			    	System.out.println(2);
 			    	mb_base64 = Base64.getEncoder().encodeToString(mbSvc.getOneMember(mb_id).getMb_line_pic());
 			    }
-			    System.out.println(mb_base64);
 			    obj.put("mb_base64", mb_base64);
 			    
 				// 取出的empVO送給listOneEmp.jsp

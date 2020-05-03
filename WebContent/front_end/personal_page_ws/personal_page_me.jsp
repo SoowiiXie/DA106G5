@@ -150,12 +150,14 @@
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/cmt/cmt.do" class="col-11 mx-auto my-2 bg-gray-200 rounded-lg formCmt">
 					<img class="img-profile rounded-circle my-2 ml-1 mr-2 mySelfPic" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
 					<span class='text-primary ml-1 mr-2' style="font-size: 1.2rem;">${memberSvcEL.getOneMember(mb_id).mb_name}</span>
-					<input type="text" class="bg-gray-100 w-50 cmt_content" placeholder=" 新留言..." name="cmt_content"> 
+<!-- 					<input type="text" class="bg-gray-100 w-50 cmt_content" placeholder=" 新留言..." name="cmt_content">  -->
+					<input type="text" class="bg-gray-100 w-50 cmt_content" placeholder=" 新留言..." name="cmt_content" onkeydown="if (event.keyCode == 13) sendMessage();"> 
 					<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no"> 
 					<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
 <!-- 					<input type="hidden" name="action" value="insert">  -->
 <%-- 					<input class="align-middle mx-2 sendBtn my-2" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/send.png" style="height: 2rem;"> --%>
-					<img class="align-middle mx-2 sendBtn my-2" name="submit_Btn" src="<%=request.getContextPath()%>/img/send.png" style="height: 2rem;">
+<%-- 					<img class="align-middle mx-2 sendBtn my-2" name="submit_Btn" src="<%=request.getContextPath()%>/img/send.png" style="height: 2rem;"> --%>
+					<img class="align-middle mx-2 sendBtn my-2" name="submit_Btn" src="<%=request.getContextPath()%>/img/send.png" style="height: 2rem;" onclick="sendMessage();">
 				</FORM>
 				<!-- 所有留言內容 -->
 				<div class="cmtDiv" style="display: none">
@@ -197,8 +199,37 @@
 		</div>
 	</c:forEach>
 </div>
+	
+<!-- jquery -->
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 
 <script>
+//送出留言改ajax
+$('.sendBtn').click(function(){
+	 var sendBtnImg = $(this);
+	 $.ajax({
+		 type: "GET",
+		 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+		 data: {"action":"ajaxInsert", "cmt_content":$(this).prevAll('.cmt_content').val(), "rcd_no":$(this).prevAll('.rcd_no').val(), "mb_id":$(this).prev('.mb_id').val()},
+		 dataType: "json",
+		 success: function (data){
+			 sendBtnImg.prevAll('.cmt_content').val("");
+			 sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt(sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
+			 sendBtnImg.parents(".formCmt").next(".cmtDiv").append(`
+					<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+<%-- 									<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%>
+						<%--`+sendBtnImg.prevAll(".mySelfPic").html()+`--%>
+						<img src='data:image/jpg;base64,`+data.mb_base64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
+						<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+data.mb_name+`</span>
+						<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+data.cmt_content+`</span>
+					</div>
+				`)
+			sendMessage(data.mb_id, data.mb_name, data.cmt_content);
+	 	 },					
+	 error: function(){alert("AJAX-sendBtn發生錯誤囉!")}
+	 });
+});
+
 	var webSocket;
 	function connect() {
 		// create a websocket
@@ -238,8 +269,10 @@
 // 	var inputUserName = document.getElementById("userName");
 // 	inputUserName.focus();
 
-	function sendMessage() {
+	function sendMessage(watchedId, watchedName, watchedContent) {		
 // 		var userName = inputUserName.value.trim();
+		var watchedId = watchedId.trim();
+		var watchedName = watchedName.trim();
 // 		if (userName === "") {
 // 			alert("Input a user name");
 // 			inputUserName.focus();
@@ -248,7 +281,7 @@
 
 // 		var inputMessage = document.getElementById("message");
 // 		var message = inputMessage.value.trim();
-
+		var watchedContent = watchedContent.trim();
 // 		if (message === "") {
 // 			alert("Input a message");
 // 			inputMessage.focus();
@@ -257,7 +290,12 @@
 // 				"userName" : userName,
 // 				"message" : message
 // 			};
-// 			webSocket.send(JSON.stringify(jsonObj));
+		var jsonObj = {
+				"watchedId" : watchedId,
+				"watchedName" : watchedName,
+				"watchedContent" : watchedContent				
+			};
+		webSocket.send(JSON.stringify(jsonObj));
 // 			inputMessage.value = "";
 // 			inputMessage.focus();
 // 		}

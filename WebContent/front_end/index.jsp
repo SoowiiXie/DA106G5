@@ -579,31 +579,108 @@
 			         });
 			});
 			 
-			 //送出留言改ajax
-			 $('.sendBtn').click(function(){
-				 var sendBtnImg = $(this);
-				 $.ajax({
-					 type: "GET",
-					 url: "<%=request.getContextPath()%>/cmt/cmt.do",
-					 data: {"action":"ajaxInsert", "cmt_content":$(this).prevAll('.cmt_content').val(), "rcd_no":$(this).prevAll('.rcd_no').val(), "mb_id":$(this).prev('.mb_id').val()},
-					 dataType: "json",
-					 success: function (data){
-						 sendBtnImg.prevAll('.cmt_content').val("");
-						 sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt(sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
-						 sendBtnImg.parents(".formCmt").next(".cmtDiv").append(`
-								<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
-<%-- 									<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%>
-									<%--`+sendBtnImg.prevAll(".mySelfPic").html()+`--%>
-									<img src='data:image/jpg;base64,`+data.mb_base64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
-									<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+data.mb_name+`</span>
-									<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+data.cmt_content+`</span>
-								</div>
-							`) 
-				 	 },					
-				 error: function(){alert("AJAX-sendBtn發生錯誤囉!")}
-		 		 });
-			 });
-				 
+// 			 //送出留言改ajax
+// 			 $('.sendBtn').click(function(){
+// 				 var sendBtnImg = $(this);
+// 				 $.ajax({
+// 					 type: "GET",
+<%-- 					 url: "<%=request.getContextPath()%>/cmt/cmt.do", --%>
+// 					 data: {"action":"ajaxInsert", "cmt_content":$(this).prevAll('.cmt_content').val(), "rcd_no":$(this).prevAll('.rcd_no').val(), "mb_id":$(this).prev('.mb_id').val()},
+// 					 dataType: "json",
+// 					 success: function (data){
+// 						 sendBtnImg.prevAll('.cmt_content').val("");
+// 						 sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt(sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
+// 						 sendBtnImg.parents(".formCmt").next(".cmtDiv").append(`
+// 								<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+<%-- <%-- 									<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%> --%>
+<%-- 									`+sendBtnImg.prevAll(".mySelfPic").html()+` --%>
+// 									<img src='data:image/jpg;base64,`+data.mb_base64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
+// 									<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+data.mb_name+`</span>
+// 									<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+data.cmt_content+`</span>
+// 								</div>
+// 							`) 
+// 				 	 },					
+// 				 error: function(){alert("AJAX-sendBtn發生錯誤囉!")}
+// 		 		 });
+// 			 });
+			 
+			 //webSocket
+// 				var webSocket;
+// 				function connect() {
+// 					// create a websocket
+// //			 	var userName = document.getElementById("userName").value;
+// 				var watchingMb_ids = "${mb_id}";
+// //			 	var MyPoint = "/TogetherWS/" + userName;
+// 				var MyPoint = "/TogetherWS/" + watchingMb_ids;
+// 				var host = window.location.host;
+// 				var path = window.location.pathname;
+// 				var webCtx = path.substring(0, path.indexOf('/', 1));
+// 				var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+
+// //			 	var statusOutput = document.getElementById("statusOutput");
+
+// 					webSocket = new WebSocket(endPointURL);
+
+// 					webSocket.onopen = function(event) {
+// //			 			updateStatus("WebSocket Connected");
+// //			 			document.getElementById('sendMessage').disabled = false;
+// //			 			document.getElementById('connect').disabled = true;
+// //			 			document.getElementById('disconnect').disabled = false;
+// 					};
+
+// 					webSocket.onmessage = function(event) {
+// //			 			var messagesArea = document.getElementById("messagesArea");
+// //			 			var jsonObj = JSON.parse(event.data);
+// //			 			var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
+// //			 			messagesArea.value = messagesArea.value + message;
+// //			 			messagesArea.scrollTop = messagesArea.scrollHeight;
+// 					};
+
+// 					webSocket.onclose = function(event) {
+// //			 			updateStatus("WebSocket Disconnected");
+// 					};
+// 				}
+
+// //			 	var inputUserName = document.getElementById("userName");
+// //			 	inputUserName.focus();
+
+// 				function sendMessage() {
+// //			 		var userName = inputUserName.value.trim();
+// //			 		if (userName === "") {
+// //			 			alert("Input a user name");
+// //			 			inputUserName.focus();
+// //			 			return;
+// //			 		}
+
+// //			 		var inputMessage = document.getElementById("message");
+// //			 		var message = inputMessage.value.trim();
+
+// //			 		if (message === "") {
+// //			 			alert("Input a message");
+// //			 			inputMessage.focus();
+// //			 		} else {
+// //			 			var jsonObj = {
+// //			 				"userName" : userName,
+// //			 				"message" : message
+// //			 			};
+// //			 			webSocket.send(JSON.stringify(jsonObj));
+// //			 			inputMessage.value = "";
+// //			 			inputMessage.focus();
+// //			 		}
+// 				}
+
+// 				function disconnect() {
+// 					webSocket.close();
+// 					document.getElementById('sendMessage').disabled = true;
+// 					document.getElementById('connect').disabled = false;
+// 					document.getElementById('disconnect').disabled = true;
+// 				}
+
+// 				function updateStatus(newStatus) {
+// //			 		statusOutput.innerHTML = newStatus;
+// 				}
+			
+			//留言區開關
 			$('.cmtBtn').click(function(){
 				 $(this).parents().siblings('.cmtDiv').toggle(function(){
 	//						    $(this).animate({height:400},200);
@@ -612,44 +689,45 @@
 						height: 'toggle'
 					  });
 			});
+			
+			//每則留言出現檢舉或修改的圖示
+			$('.oneCmtDiv').hover(function(){
+			 $(this).find('.flagBtn').css("display","");
+			 $(this).find('.garbageBtn').css("display","");
+			 },function(){
+			 $(this).find('.flagBtn').css("display","none");
+			 $(this).find('.garbageBtn').css("display","none");
+			});
 				 
-			 $('.oneCmtDiv').hover(function(){
-				 $(this).find('.flagBtn').css("display","");
-				 $(this).find('.garbageBtn').css("display","");
-				},function(){
-				 $(this).find('.flagBtn').css("display","none");
-				 $(this).find('.garbageBtn').css("display","none");
-			 });
-				 
-			 //燈箱置中
-			 var fblightbox = $('#fblightbox');
-			 fblightbox.css({'margin-left':'-' + (fblightbox.width()/2) + 'px' , 'margin-top' : '-' + (fblightbox.height()/2)+'px'});
-			 var locInsertBox = $('.locInsertBox');
-			 locInsertBox.css({'margin-left':'-' + (locInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (locInsertBox.height()/2)+'px'});
-				 
-			 //檢舉和修改留言的燈箱
-			 var cmtNrpt = $('.cmtNrpt');
-			 $('.flagBtn').click(function(){
-				 $.ajax({
-					 type: "GET",
-					 url: "<%=request.getContextPath()%>/cmt/cmt.do",
-					 data: {"action":"ajaxGetOne4Update", "cmt_no":$(this).siblings('.cmt_no').val()},
-					 dataType: "json",
-					 success: function (data){
-	//						 $("#cmt_contentFB").val(data.cmt_content);
-						 $("#cmt_noFB").val(data.cmt_no);
-					     $("#cmt_statusFB").val(data.cmt_status);
-						 $("#cmt_timeFB").val(data.cmt_time);
-						 $("#mb_idFB").val(data.mb_id);
-						 $("#rcd_noFB").val(data.rcd_no);
-						 $("#mbDoThisID").val("${mb_id}");
-						 $("#pageRun").val("<%=request.getQueryString()%>");
-						 $('.overlay').fadeIn();
-						 cmtNrpt.fadeIn();
-				 	 },					
-				 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
-		 		 });
-			 });
+			//燈箱置中
+			var fblightbox = $('#fblightbox');
+			fblightbox.css({'margin-left':'-' + (fblightbox.width()/2) + 'px' , 'margin-top' : '-' + (fblightbox.height()/2)+'px'});
+			var locInsertBox = $('.locInsertBox');
+			locInsertBox.css({'margin-left':'-' + (locInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (locInsertBox.height()/2)+'px'});
+			 
+			//檢舉和修改留言的燈箱
+			var cmtNrpt = $('.cmtNrpt');
+			$('.flagBtn').click(function(){
+			 $.ajax({
+				 type: "GET",
+				 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+							 data: {"action":"ajaxGetOne4Update", "cmt_no":$(this).siblings('.cmt_no').val()},
+							 dataType: "json",
+							 success: function (data){
+			//						 $("#cmt_contentFB").val(data.cmt_content);
+								 $("#cmt_noFB").val(data.cmt_no);
+							     $("#cmt_statusFB").val(data.cmt_status);
+								 $("#cmt_timeFB").val(data.cmt_time);
+								 $("#mb_idFB").val(data.mb_id);
+								 $("#rcd_noFB").val(data.rcd_no);
+								 $("#mbDoThisID").val("${mb_id}");
+								 $("#pageRun").val("<%=request.getQueryString()%>");
+					 $('.overlay').fadeIn();
+					 cmtNrpt.fadeIn();
+			 	 },					
+			 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+				 });
+			});
 			 
 			 //天氣的燈箱
 			 var weatherBox = $('.weatherBox');
