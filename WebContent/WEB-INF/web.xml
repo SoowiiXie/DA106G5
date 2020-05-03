@@ -784,9 +784,10 @@
 	</filter-mapping>
 <!-- 過濾器Filter結束 -->
 
-<context-param>
-  <param-name>org.apache.tomcat.websocket.textBufferSize</param-name>
-  <param-value>1024000</param-value>
-</context-param>
+<!-- webSocket 為了傳 base64，把緩衝區加大 -->
+	<context-param>
+		 <param-name>org.apache.tomcat.websocket.textBufferSize</param-name>
+		 <param-value>1024000</param-value>
+	</context-param>
 
 </web-app>

@@ -132,7 +132,8 @@
 			<td>${grouperVO.grp_personcount}</td>
 			<td>${grouperVO.grp_status}
 				${status[grouperVO.grp_status]}
-				${grp_statusInit[Integer.parseInt(3)]}
+				<!-- 下面這段是可以正常執行的，但Eclipse會跳錯，所以註解起來 -->
+				<!-- ${grp_statusInit[Integer.parseInt(3)]} -->
 				${grp_statusInit[grouperVO.grp_status]}</td> 
 			
 <%-- 		${status.get(Integer.parseInt(2))} --%>
