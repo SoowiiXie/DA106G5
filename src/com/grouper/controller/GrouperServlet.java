@@ -130,6 +130,8 @@ public class GrouperServlet extends HttpServlet {
 //				String grp_no = new String(req.getParameter("grp_no").trim());
 				
 				String grp_no = req.getParameter("grp_no");
+				//test
+				System.out.println(grp_no);
 //				String enameReg = "^grp$";
 //				if (grp_no == null || grp_no.trim().length() == 0) {
 //					errorMsgs.add("揪團編號:請勿空白");
@@ -141,14 +143,20 @@ public class GrouperServlet extends HttpServlet {
 				if (mb_id == null || mb_id.trim().length() == 0) {
 					errorMsgs.add("請輸入會員名稱");
 				}
-				//test
+				//test				
+				System.out.println("我有到這邊1");
 				System.out.println(mb_id);
+				System.out.println(mb_id);
+				System.out.println(mb_id);
+								
 				
 				String loc_no = req.getParameter("loc_no").trim();
 				if (loc_no == null || loc_no.trim().length() == 0) {
 					errorMsgs.add("請輸入地標名稱");
 				}
-				
+				//test
+				System.out.println("我有到這邊2");
+				System.out.println("loc_no");
 				java.sql.Timestamp grp_applystart = null;
 				try {
 					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim());
@@ -221,7 +229,7 @@ public class GrouperServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("grouperVO", grouperVO); // 含有輸入格式錯誤的grouperVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/group/update_group_input.jsp");
+							.getRequestDispatcher("/front_end/index.jsp?pageRun=group/update_group_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -234,7 +242,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("grouperVO", grouperVO); // 資料庫update成功後,正確的的grouperVO物件,存入req
-				String url = "/front_end/group/listAllGroup.jsp";
+				String url = "/front_end/index.jsp?pageRun=group/listAllGroup.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -244,7 +252,7 @@ public class GrouperServlet extends HttpServlet {
 				System.out.println(e.getMessage());
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/group/update_group_input.jsp");
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/update_group_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -422,10 +430,10 @@ public class GrouperServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("grouperVO", grouperVO);         // 資料庫取出的grouperVO物件,存入req
-				String url = "/front_end/group/update_group_input.jsp";
+				String url = "/front_end/index.jsp?pageRun=group/update_group_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_grouper_input.jsp
 				successView.forward(req, res);
-
+				
 				/***************************其他可能的錯誤處理**********************************/
 //			} catch (Exception e) {
 //				errorMsgs.add("無法取得資料:" + e.getMessage());

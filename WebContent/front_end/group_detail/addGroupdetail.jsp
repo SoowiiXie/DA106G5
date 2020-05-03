@@ -101,11 +101,11 @@ EL${param.mb_id}
 		<td><input type="TEXT" name="grp_no" size="45" 
 			 value="${grp_detailVO.grp_no}"/></td>
 	</tr>
-<!-- 	<tr> -->
-<!-- 		<td>揪團狀態:</td> -->
-<!-- 		<td><input type="TEXT" name="grp_register" size="45" -->
-<%-- 			 value="<%= (grp_detailVO==null)? "1" : grp_detailVO.getGrp_register()%>" /></td> --%>
-<!-- 	</tr>	 -->
+	<tr>
+		<td>揪團狀態:</td>
+		<td><input type="TEXT" name="grp_register" size="45"
+			 value=1 /></td>
+	</tr>	
 	
 	
 

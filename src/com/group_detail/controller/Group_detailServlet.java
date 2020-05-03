@@ -190,23 +190,25 @@ public class Group_detailServlet extends HttpServlet {
 				if (grp_no == null || grp_no.trim().length() == 0) {
 					errorMsgs.add("揪團編號:請勿空白");
 	            }
+				Integer grp_register = new Integer(req.getParameter("grp_register").trim());
 				
 				Grp_detailVO grp_detailVO = new Grp_detailVO();
 				grp_detailVO.setMb_id(mb_id);
 				grp_detailVO.setGrp_no(grp_no);
+				grp_detailVO.setGrp_register(grp_register);
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("grp_detailVO", grp_detailVO); // 含有輸入格式錯誤的grp_detailVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/group_detail/addGroupdetail.jsp");
+							.getRequestDispatcher("/front_end/index.jsp?pageRun=group_detail/addGroupdetail.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 				
 				/***************************2.開始修改資料***************************************/
 				Grp_detailService grpdetailSvc = new Grp_detailService();
-				grp_detailVO = grpdetailSvc.addGrp_detail(mb_id, grp_no);
+				grp_detailVO = grpdetailSvc.addGrp_detail(mb_id, grp_no, grp_register);
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
 				String url = "/front_end/index.jsp?pageRun=group_detail/listAllGroupdetail.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
@@ -216,7 +218,7 @@ public class Group_detailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/group_detail/addGroupdetail.jsp");
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group_detail/addGroupdetail.jsp");
 				failureView.forward(req, res);
 			}
 		}
