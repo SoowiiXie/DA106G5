@@ -11,12 +11,13 @@ public class Grp_detailService {
 		dao = new Grp_detailDAO();
 	}
 
-	public Grp_detailVO addGrp_detail(String mb_id, String grp_no) {
+	public Grp_detailVO addGrp_detail(String mb_id, String grp_no, Integer grp_register) {
 		
 		Grp_detailVO grp_detailVO = new Grp_detailVO();
 		System.out.println("svc");
 		grp_detailVO.setMb_id(mb_id);
 		grp_detailVO.setGrp_no(grp_no);
+		grp_detailVO.setGrp_register(grp_register);
 		dao.insert(grp_detailVO);
 		return grp_detailVO;
 	}
