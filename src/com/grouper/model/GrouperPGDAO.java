@@ -34,7 +34,7 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 	}
 	
 	@Override
-	public void insert(GrouperVO grouperVO) {
+	public String insert(GrouperVO grouperVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -63,6 +63,7 @@ public class GrouperPGDAO implements GrouperDAO_interface {
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
+			return "";
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
