@@ -592,7 +592,7 @@
 // 						 sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt(sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
 // 						 sendBtnImg.parents(".formCmt").next(".cmtDiv").append(`
 // 								<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
-<%-- <%-- 									<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%> --%>
+<%--  									<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%>
 <%-- 									`+sendBtnImg.prevAll(".mySelfPic").html()+` --%>
 // 									<img src='data:image/jpg;base64,`+data.mb_base64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
 // 									<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+data.mb_name+`</span>
