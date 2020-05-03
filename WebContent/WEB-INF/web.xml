@@ -412,6 +412,14 @@
 			<url-pattern>/android/record.do</url-pattern>
 		</servlet-mapping>
 		
+		<servlet>
+			<servlet-name>AndroidCmtServlet</servlet-name>
+			<servlet-class>android.com.cmt.controller.CmtServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AndroidCmtServlet</servlet-name>
+			<url-pattern>/android/cmt.do</url-pattern>
+		</servlet-mapping>
 		
 <!-- 麥克責任區結束 -->
 
