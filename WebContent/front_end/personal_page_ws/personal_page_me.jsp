@@ -206,8 +206,7 @@
 <script>
 $(document).ready(function(){
 	connect();
-	
-	});
+});
 //送出留言改ajax
 $('.sendBtn').click(function(){
 	 var sendBtnImg = $(this);
@@ -228,8 +227,7 @@ $('.sendBtn').click(function(){
 // 						<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+data.cmt_content+`</span>
 // 					</div>
 // 				`)
-			console.log(data.mb_id);
-			sendMessage(data.mb_id, data.mb_name, data.cmt_content, data.rcd_no, data.mb_base64);
+			sendMessage(data.mb_id_watched, data.mb_name, data.cmt_content, data.rcd_no, data.mb_base64);
 	 	 },					
 	 error: function(){alert("AJAX-sendBtn發生錯誤囉!")}
 	 });
@@ -322,7 +320,6 @@ $('.sendBtn').click(function(){
 				"watchedRcd_no" : watchedRcd_no,
 				"watchedBase64" : watchedBase64
 			};
-		console.log(JSON.stringify(jsonObj));
 		webSocket.send(JSON.stringify(jsonObj));
 // 			inputMessage.value = "";
 // 			inputMessage.focus();

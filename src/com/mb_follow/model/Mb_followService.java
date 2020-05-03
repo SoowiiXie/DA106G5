@@ -23,6 +23,15 @@ public class Mb_followService {
 		return mbs_id;
 	}
 	
+	public String getByMb_idPlus(String mb_id) {
+		List<Mb_followVO> list = dao.findByMbId(mb_id);
+		StringBuffer sb= new StringBuffer();
+		for(Mb_followVO follow:list) {
+			sb.append(follow.getMb_id_followed()+"+");
+		}
+		return sb.toString();
+	}
+	
 	public void insertByString(String mb_id, String mb_id_followed) {
 		dao.insertByString(mb_id, mb_id_followed);
 	}

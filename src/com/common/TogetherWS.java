@@ -34,6 +34,11 @@ public class TogetherWS {
 		System.out.println("onOpen");
 //		connectedSessions.put(userName,userSession);
 		connectedSessions.put(userSession,watchingMb_ids);
+		System.out.println(watchingMb_ids);
+		String[] parts =watchingMb_ids.split("\\+");
+		for (String string : parts) {
+			System.out.println(string);
+		}
 //		String text = String.format("Session ID = %s, connected; userName = %s", userSession.getId(), userName);
 		String text = String.format("Session ID = %s, connected; watchingMb_ids = %s", userSession.getId(), watchingMb_ids);
 		System.out.println(text);
