@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import jdbc.util.ProductCompositeQuery.jdbcUtil_CompositeQuery_Product;
+import com.product.model.*;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -441,9 +441,9 @@ public class ProductDAO implements ProductDAO_interface {
 				finalSQL = "select * from product " + "where" + " " + "pd_price between" + " " + lowPrice + " " + "and" + " " +highPrice + " "+ "order by pd_no";
 				System.out.println("●●finalSQL = " + finalSQL);
 	        }else if(!lowPrice.equals("") && !highPrice.equals("") && (!map.get("pd_name")[0].equals("") ||!map.get("pd_typeNo")[0].equals(""))) {
-				System.out.println("有價錢");
+				System.out.println("分類與模糊比對");
 				 finalSQL = "select * from product " + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) + 
-						"and" + " " + "pd_price between" + " " + lowPrice + " " + "and" + " " +highPrice + " "+ "order by pd_no";
+						"and" + " " + "pd_price between" + " " + lowPrice + " " + "and" + " " +highPrice + " "+"order by pd_no";
 				System.out.println("●●finalSQL = " + finalSQL);
 			
 			

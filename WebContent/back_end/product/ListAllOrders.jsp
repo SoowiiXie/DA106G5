@@ -26,13 +26,26 @@ List<OrdersVO>	list = (List<OrdersVO>)session.getAttribute("list");
 <style type="text/css" media="screen">
 
 
-table, th, td {
-	border: 2px solid #FFFFFF;
-}
 
-th, td {
-	padding: 1px;
-	text-align: center;
+  table {
+
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  table, th, td {
+    border: 3px solid 	#FFFFFF;
+  }
+  th, td {
+    padding: 1px;
+    text-align: center;
+  }
+  
+  .buttonBar{
+width:100%;
+background-color:#FF004C;
+height:100px;
+margin-top:100;
 }
 </style>
 <title>管理所有訂單</title>
@@ -48,38 +61,36 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-
-<div align="center" style="float:left; margin-left:235px; margin-top:50px; " >
-	<form method="POST"
-		action="<%=request.getContextPath()%>/OrdersServlet" name="form1">
-		<table border="1">
-
-			<tr>
-				<td>會員名稱：<input type="TEXT" name="mb_id"> <input
+<div style="border:2px #FFD382 groove; width:80%;margin-left:10%;margin-top:50px;">
+<div style=" border:2px #FFD382 groove; width:100%; float:left;">
+	<form method="POST" action="<%=request.getContextPath()%>/OrdersServlet" name="form1">
+		
+	
+			<div style="border:2px #FFD382 groove;float:left;">會員名稱：<input type="TEXT" name="mb_id"> <input
 					type="hidden" name="action" value="searchMemberOrders"> <input
 					type="submit" name="Submit" value="搜尋該會員訂單">
-					<%@ include file="page1ForListAllOrders.file"%></td><td style="margin-left:150px; float:left;"><%@ include file="page2ForListAllOrders.file"%></td>
-			</tr>
-		</table>
+					<%@ include file="page1ForListAllOrders.file"%></div>
+					<div style="margin-left:17%; margin-top:2px; border:2px #FFD382 groove; float:right;"><%@ include file="page2ForListAllOrders.file"%></div>
+		
 	</form>
 		
 	</div>
 
 
 	<div align="center">
-		<table border="1" Style="width: 1000px; align: center">
+		<table border="1" Style="width: 100%; align: center">
 
 			<tr bgcolor="#999999">
-				<th Style="width: 100px; align: center">訂單編號</th>
-				<th Style="width: 100px; align: center">會員名稱</th>
-				<th Style="width: 150px; align: center">訂單時間</th>
-				<th Style="width: 100px; align: center">訂單狀態</th>
-				<th Style="width: 100px; align: center">訂單總金額</th>
-				<th Style="width: 100px; align: center">優惠券號碼</th>
-				<th Style="width: 100px; align: center">優惠後金額</th>
-				<th Style="width: 200px; align: center">收貨地址</th>
-				<th Style="width: 150px; align: center"></th>
-				<th Style="width: 100px; align: center"></th>
+				<th Style="width: 7%; align: center">訂單編號</th>
+				<th Style="width: 7%; align: center">會員名稱</th>
+				<th Style="width: 10%; align: center">訂單時間</th>
+				<th Style="width: 7%; align: center">訂單狀態</th>
+				<th Style="width: 7%; align: center">訂單總金額</th>
+				<th Style="width: 7%; align: center">優惠券號碼</th>
+				<th Style="width: 7%; align: center">優惠後金額</th>
+				<th Style="width: 15%; align: center">收貨地址</th>
+				<th Style="width: 10%; align: center"></th>
+				<th Style="width: 7%; align: center"></th>
 
 			</tr>
 
@@ -158,6 +169,7 @@ th, td {
 		</script>
 	</c:if>
 
-
+</div>
+ <div class="buttonBar" style="margin-top:100px"></div>
 </body>
 </html>

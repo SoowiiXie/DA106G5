@@ -24,6 +24,14 @@
 %>
 
 <style type="text/css" media="screen">
+
+.followlist {
+	cellpadding: "10";
+	cellspacing: "5";
+	padding-bottom: 100px;
+	
+}
+
 table {
 	background-color: white;
 	margin-top: 5px;
@@ -36,7 +44,7 @@ table, th, td {
 
 th, td {
 	padding: 1px;
-	text-align: center;
+	text-align:"left";
 }
 </style>
 <meta charset="UTF-8">
@@ -58,8 +66,8 @@ th, td {
 	<jsp:useBean id="productService" scope="page"
 		class="com.product.model.ProductService" />
 		
-	<table border="1">
-		<tr bgcolor="#999999">
+	<table border="1" class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; ">
+		<tr bgcolor="#999999"  align="center">
 			<th Style="width: 100px; align: center">商品圖片</th>
 			<th Style="width: 100px; align: center">商品編號</th>
 			<th Style="width: 150px; align: center">商品名稱</th>
@@ -68,7 +76,7 @@ th, td {
 
 		</tr>
 		<c:forEach var="od_detailVO" items="${list}">
-			<tr>
+			<tr bgcolor=#C4E1FF>
 				<td style="height: 100px; width: 100px;" ><img
 					src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${od_detailVO.pd_no}"
 					width="100px"></td>
@@ -86,8 +94,6 @@ th, td {
 
 	</table>
 </div>
-	<a
-		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
 
 </body>
 

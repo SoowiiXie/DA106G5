@@ -14,7 +14,7 @@
 
 
 <%
-	request.getAttribute("ordersVO");
+	session.getAttribute("ordersVO");
 %>
 <jsp:useBean id="pd_typeService" scope="page"
 	class="com.pd_type.model.Pd_typeService" />
@@ -32,6 +32,28 @@
 	background-color: #context;
 	height: 30px;
 }
+
+.followlist {
+	cellpadding: "10";
+	cellspacing: "5";
+	padding-bottom: 100px;
+	
+}
+
+  table {
+
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	
+  }
+  table, th, td {
+    border: 3px solid 	#FFFFFF;
+  }
+  th, td {
+    padding: 1px;
+    text-align: center;
+  }
 </style>
 </head>
 <body bgcolor="#FFFFFF">
@@ -43,14 +65,14 @@
 	<div align="center">
 		訂單編號${ordersVO.od_no}
 
-		<table style="width: 1000px;">
-			<tr bgcolor="#999999">
-				<th style="width: 150px;">商品圖片</th>
-				<th style="width: 200px;">商品名稱</th>
-				<th style="width: 150px;">商品編號</th>
-				<th style="width: 150px;">產品分類</th>
-				<th style="width: 150px;">單價</th>
-				<th style="width: 150px;">產品數量</th>
+		<table style="width: 70%;">
+			<tr bgcolor="#999999" align="center">
+				<th style="width: 150px;"><font color="black">商品圖片</font></th>
+				<th style="width: 200px;"><font color="black">商品名稱</font></th>
+				<th style="width: 150px;"><font color="black">商品編號</font></th>
+				<th style="width: 150px;"><font color="black">產品分類</font></th>
+				<th style="width: 150px;"><font color="black">單價</font></th>
+				<th style="width: 150px;"><font color="black">產品數量</font></th>
 
 			</tr>
 
@@ -59,7 +81,7 @@
 
 			<%
 				Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");
-				String amount = (String) request.getAttribute("amount");
+				String amount = (String) session.getAttribute("amount");
 			%>
 			<%
 				for (int i = 0; i < buylist.size(); i++) {

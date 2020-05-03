@@ -131,8 +131,9 @@ th, td {
 
 		</table>
 
-		<input type="hidden" name="action" value="addProduct"> <input
-			type="submit" name="Submit" value="增加商品">
+		<input type="hidden" name="action" value="addProduct"> 
+		<input type="hidden" name="includePath" value="${incluePath}">
+		<input type="submit" name="Submit" value="增加商品">
 	</form>
 
 	<script>

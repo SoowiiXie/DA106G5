@@ -73,21 +73,19 @@ th, td {
 					src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${od_detailVO.pd_no}"
 					width="100px"></td>
 			
-				<td width="100">${od_detailVO.pd_no}</td>
+				<td width="100" bgcolor="#FFB5B5">${od_detailVO.pd_no}</td>
 				
-				<td width="100">${productService.findOneProduct(od_detailVO.pd_no).pd_name}</td>
+				<td width="100" bgcolor="#FFB5B5">${productService.findOneProduct(od_detailVO.pd_no).pd_name}</td>
 			
-				<td width="100">${od_detailVO.od_amount}</td>
+				<td width="100" bgcolor="#FFB5B5">${od_detailVO.od_amount}</td>
 			
-				<td width="100">${od_detailVO.od_price}</td>
+				<td width="100" bgcolor="#FFB5B5">${od_detailVO.od_price}</td>
 			</tr>
 		</c:forEach>
 
 
 	</table>
 </div>
-	<a
-		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
-
+	
 </body>
 </html>

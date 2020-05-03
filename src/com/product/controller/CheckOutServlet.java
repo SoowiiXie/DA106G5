@@ -89,8 +89,10 @@ public class CheckOutServlet extends HttpServlet {
 			OrdersService ordersService = new OrdersService();
 			String od_no = ordersService.addOrdersWithPd_detail(ordersVO, testList);
 			ordersVO.setOd_no(od_no);
-			req.setAttribute("ordersVO", ordersVO);
-			req.setAttribute("payMethod", payMethod);
+			session.setAttribute("ordersVO", ordersVO);
+			session.setAttribute("payMethod", payMethod);
+//			req.setAttribute("ordersVO", ordersVO);
+//			req.setAttribute("payMethod", payMethod);
 			session.setAttribute("buylistCount", 0);
 
 			String url = "/front_end/product/MemberLookOd_detail.jsp";
