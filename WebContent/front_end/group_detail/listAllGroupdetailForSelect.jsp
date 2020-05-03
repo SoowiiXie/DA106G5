@@ -55,14 +55,14 @@
   table {
 	width: 600px;
 	background-color: white;
-	margin-top: 5px;
+	margin-top: 50px;
 	margin-bottom: 5px;
   }
   table, th, td {
     border: 1px solid #CCCCFF;
   }
   th, td {
-    padding: 5px;
+    padding: 20px;
     text-align: center;
   }
 </style>
@@ -70,14 +70,14 @@
 </head>
 <body bgcolor='white'>
 
-<h4>此頁暫練習採用 Script 的寫法取值:</h4>
+<h4>此頁暫練習採用 Script 的寫法取值13:</h4>
 <table id="table-1">
 	<tr><td>
 		 <h3>揪團詳細資料</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
-<table>
+<table style="background-color: rgba(256,256,256,0);">
 	<tr>
 		<th>會員編號</th>
 		<th>揪團編號</th>

@@ -2,9 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.grouper.model.GrouperVO"%>
 <%@ page import="com.grouper.model.*"%>
+<%@ page import="com.mb.model.*"%>
 
 <%
-  GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
+ 	 GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
+
+	MemberService memberSvc = new MemberService();
+	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	pageContext.setAttribute("mb_id", memberVO.getMb_id());
 %>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/front_end/group/webFront/groupIndex.css">
@@ -53,7 +58,7 @@
 <div id="divAll">
 	<table id="table-1">
 		<tr><td>
-			 <h3>揪團資料新增1234566 - addGroup.jsp</h3></td><td>
+			 <h3>揪團資料新增 - addGroup.jsp</h3></td><td>
 			 <h4>
 				<a href="<%= request.getContextPath() %>/front_end/group/select_page.jsp">
 				<img src="<%= request.getContextPath() %>/front_end/group/images/back1.gif" width="100" height="32" border="0">
@@ -77,7 +82,7 @@
 	<FORM METHOD="post" ACTION="group.do" name="form1">
 	<table>
 		<tr>
-			<td>揪團名稱:</td> <td>自動產生</td>
+			<td>揪團名稱:</td><td>編號自動產生</td>
 			<td><input type="hidden" name="grp_no" size="45" 
 				 value="<%= (grouperVO==null)? "自動產生" : grouperVO.getGrp_no()%>" /></td>
 		</tr>
@@ -87,10 +92,9 @@
 				 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" /></td>
 		</tr>
 		<tr>
-			<td>發起人會員編號:</td>
-			<td><input type="TEXT" name="mb_id" size="45"
-				 value="<%= (grouperVO==null)? "yiwen123" : grouperVO.getMb_id()%>" 
-				 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入發起人會員編號" id="name" /> </td>
+			<td>發起人會員編號:</td><td><%= memberVO.getMb_id()%></td>
+			<td><input type="hidden" name="mb_id" size="45"
+				 value="<%= memberVO.getMb_id()%>" /> </td>
 		</tr>
 			<jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />
 		<tr>

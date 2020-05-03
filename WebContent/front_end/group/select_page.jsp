@@ -70,10 +70,10 @@
 				<ul>
 					<li>
 						<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/front_end/group/group.do"	name="form1">
-							<b><font color=blue>查詢揪團</font></b> <br> <b>輸入揪團編號:</b> <input
+							<b><font color=blue>查詢揪團</font></b> <br> <b style="color: white">輸入揪團編號:</b> <input
 								type="text" name="grp_no"
 								class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
-								placeholder="請輸入查詢的揪團編號" id="name" /><br> <b>輸入會員編號:</b> <input
+								placeholder="請輸入查詢的揪團編號" id="name" /><br> <b style="color: white">輸入會員編號:</b> <input
 								type="text" name="mb_id"
 								class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
 								placeholder="請輸入查詢的會員編號" id="name" /><br>
@@ -81,7 +81,7 @@
 							<jsp:useBean id="locationSvc" scope="page"
 								class="com.location.model.LocationService" />
 
-							<b>選擇揪團地點:</b> <select size="1" name="loc_no"
+							<b style="color: white">選擇揪團地點:</b> <select size="1" name="loc_no"
 								class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
 								placeholder="請輸入查詢的揪團地點" id="name" />
 							<option value="">
@@ -101,9 +101,9 @@
 								<!-- 	    <input name="grp_end" id="s_date2" type="text"><br> -->
 
 
-								<b>輸入揪團標題:</b> <input type="text" name="grp_name"
+								<b style="color: white">輸入揪團標題:</b> <input type="text" name="grp_name"
 									class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
-									placeholder="請輸入查詢的揪團標題" id="name" /><br> <b>輸入揪團內容:</b>
+									placeholder="請輸入查詢的揪團標題" id="name" /><br> <b style="color: white">輸入揪團內容:</b>
 								<input type="text" name="grp_content"
 									class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
 									placeholder="請輸入查詢的揪團內容123" id="name" /><br>

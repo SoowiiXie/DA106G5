@@ -267,8 +267,8 @@ public class GrouperServlet extends HttpServlet {
 //				} else if(!grp_no.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
 //					errorMsgs.add("揪團編號: 請輸入正確格式");
 	            }
-				
-				String mb_id = req.getParameter("mb_id").trim();
+				String mb_id = new String(req.getParameter("mb_id").trim());
+
 				if (mb_id == null || mb_id.trim().length() == 0) {
 					errorMsgs.add("請輸入會員名稱");
 				}

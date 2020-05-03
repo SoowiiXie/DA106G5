@@ -208,7 +208,7 @@ public class Group_detailServlet extends HttpServlet {
 				Grp_detailService grpdetailSvc = new Grp_detailService();
 				grp_detailVO = grpdetailSvc.addGrp_detail(mb_id, grp_no);
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
-				String url = "/front_end/group_detail/listAllGroupdetail.jsp";
+				String url = "/front_end/index.jsp?pageRun=group_detail/listAllGroupdetail.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);				
 				
