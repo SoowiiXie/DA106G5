@@ -2,6 +2,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.grouper.model.*"%>
+<%@ page import="com.mb.model.*"%>
+<%
+MemberService memberSvc = new MemberService();
+MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+pageContext.setAttribute("mb_id", memberVO.getMb_id());
+%>
 
 <%-- 萬用複合查詢-可由客戶端select_page.jsp隨意增減任何想查詢的欄位 --%>
 <%-- 此頁只作為複合查詢時之結果練習，可視需要再增加分頁、送出修改、刪除之功能--%>
@@ -140,7 +146,7 @@
 				<input type="submit" value="加入揪團"/>
 <%-- 				<%= ${grouperVO.grp_personmax}>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"加入揪團":"人數已滿"%> --%>
 				<input type="text" name="grp_no"      value="${grouperVO.grp_no}">
-				<input type="text" name="mb_id"      value="${grouperVO.mb_id}">
+				<input type="text" name="mb_id"      value="<%= memberVO.getMb_id() %>">
 				<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 				<input type="hidden" name="action"     value="insert"></FORM>
