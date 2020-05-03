@@ -81,11 +81,11 @@
 <!-- 內容左邊-直播 -->
 <div id="contentLeft" class="col-3 navbar-nav">
 	<c:forEach var="liveVO" items="${liveList}">
-		<div class="live btn btn-secondary">
-			${liveVO.live_no} <img
-				src="<%= request.getContextPath() %>/DBGifReader4Live?live_no=${liveVO.live_no}"
-				class="liveImg" alt="live image">
-		</div>
+	<div class="live btn btn-secondary">
+		${liveVO.live_no} <img
+			src="<%= request.getContextPath() %>/DBGifReader4Live?live_no=${liveVO.live_no}"
+			class="liveImg" alt="live image">
+	</div>
 	</c:forEach>
 	<div class="live btn btn-secondary">
 		<div class="liveImg">查看全部</div>
@@ -95,11 +95,11 @@
 <!-- 內容中間-紀錄 -->
 <c:choose>
 <c:when test="${ meOrFollow == 'follow'}">
-<jsp:include page="personal_page_follow.jsp" />
+<jsp:include page="../personal_page_ws/personal_page_follow.jsp" />
 </c:when>
 
 <c:otherwise>
-<jsp:include page="personal_page_me.jsp" />
+<jsp:include page="../personal_page_ws/personal_page_me.jsp" />
 </c:otherwise>
 </c:choose>
 

@@ -237,8 +237,6 @@ $('.sendBtn').click(function(){
 
 	var webSocket;
 	function connect() {
-		alert('123');
-	
 		// create a websocket
 // 	var userName = document.getElementById("userName").value;
 	var watchingMb_ids = "${mb_id}";

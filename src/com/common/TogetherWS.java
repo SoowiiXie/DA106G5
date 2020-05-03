@@ -61,6 +61,8 @@ public class TogetherWS {
 		}
 //		for (Entry<String, Session> entry : connectedSessions.entrySet()) {
 		for (Entry<Session, String> entry : connectedSessions.entrySet()) {
+			System.out.println("entry.getValue():"+entry.getValue());
+			System.out.println("watchedId:"+watchedId);
 //				    1.if(entry.getValue().getId().equals(userSession.getId())) {
 //					2.if(entry.getKey().getId().equals(userSession.getId())) {
 				    if(entry.getValue().equals(watchedId)) {
