@@ -14,7 +14,7 @@
 
   
   
-  Grp_detailVO group_detailVO = grp_detailSvc.addGrp_detail(mb_id, grp_no);
+  Grp_detailVO group_detailVO = grp_detailSvc.addGrp_detail(mb_id, grp_no, 1);
 //   GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
   pageContext.setAttribute("group_detailVO", group_detailVO);
 
@@ -66,7 +66,7 @@ EL${param.mb_id}
 <table id="table-1">
 	<tr><td>
 		 <h3>加入揪團 - addGroup.jsp</h3></td><td>
-		 <h4>
+		 <h4><p>
 			<a href="<%= request.getContextPath() %>/front_end/group_detail/select_page.jsp">
 			<img src="<%= request.getContextPath() %>/front_end/group_detail/images/back1.gif" width="100" height="32" border="0">
 			回首頁</a>

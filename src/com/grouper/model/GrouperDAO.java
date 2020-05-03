@@ -46,7 +46,7 @@ public class GrouperDAO implements GrouperDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
+//			pstmt = con.prepareStatement(INSERT_STMT);
 			String cols[] = { "grp_no" };
 			pstmt = con.prepareStatement(INSERT_STMT, cols);
 

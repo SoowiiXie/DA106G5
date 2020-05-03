@@ -23,7 +23,7 @@ getOne_Time
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <html>
 <head>
-<title>所有員工資料 - listAllGroup.jsp</title>
+<title>所有揪團資料 - listAllGroup.jsp</title>
 
 <style>
   table#table-1 {

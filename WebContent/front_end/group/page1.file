@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
-<%  int rowsPerPage = 15;  //�C��������    
+<%  int rowsPerPage = 10;  //�C��������    
     int rowNumber=0;      //�`����
     int pageNumber=0;     //�`����      
     int whichPage=1;      //�ĴX��
