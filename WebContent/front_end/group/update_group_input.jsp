@@ -75,6 +75,7 @@
 
 <FORM METHOD="post" ACTION="group.do" name="form1">
 <table>
+
 	<tr>
 		<td>揪團名稱:</td><td><%=grouperVO.getGrp_no()%></td>
 		<td><input type="hidden" name="grp_no" size="45" 
@@ -88,7 +89,7 @@
 	<jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
 	<tr>
 		<td>地點:<font color=red><b></b></font></td>
-		<td><select size="1" name="loc_address">
+		<td><select size="1" name="loc_no">
 			<c:forEach var="locVO" items="${locSvc.all}">
 				<option value="${grouperVO.loc_no}" ${(grouperVO.loc_no==locVO.loc_no)? 'selected':'' } >${locVO.loc_address}
 			</c:forEach>
