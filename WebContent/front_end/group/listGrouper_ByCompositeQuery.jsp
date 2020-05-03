@@ -52,6 +52,20 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
     padding: 5px;
     text-align: center;
   }
+  
+/* button:hover { */
+/*   border: 1px solid #0099cc; */
+/*   background-color: #00aacc; */
+/*   color: #ffffff; */
+/*   padding: 5px 10px; */
+/* } */
+
+input:disabled,
+input[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
 </style>
 
 </head>
@@ -143,9 +157,9 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 <!-- 			</td> -->
 			<td>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do" style="margin-bottom: 0px;">
-				${grouperVO.grp_personmax}/${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}
-				<input type="submit" value="加入揪團"/>
-<%-- 				<%= ${grouperVO.grp_personmax}>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"加入揪團":"人數已滿"%> --%>
+				${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}/${grouperVO.grp_personmax}
+				<input type="submit" value="加入揪團" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/>
+				
 				<input type="text"   name="grp_no"       value="${grouperVO.grp_no}">
 				<input type="text"   name="mb_id"     	 value="<%= memberVO.getMb_id() %>">
 				<input type="text"   name="grp_register" value="1">
