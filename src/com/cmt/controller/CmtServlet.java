@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import com.cmt.model.*;
 import com.cmt_rpt.model.Cmt_rptService;
 import com.cmt_rpt.model.Cmt_rptVO;
+import com.mb.model.*;;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
 		* 1024 * 1024)
@@ -267,6 +268,62 @@ public class CmtServlet extends HttpServlet {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?"+pageRun);
 				failureView.forward(req, res);
+			}
+		}
+		
+		if ("ajaxInsert".equals(action)) { // 來自addEmp.jsp的請求
+
+			try {
+				// Retrieve form parameters.
+				String cmt_content = req.getParameter("cmt_content");
+				java.sql.Date cmt_time = null;
+				cmt_time=new java.sql.Date(System.currentTimeMillis());
+				String rcd_no = req.getParameter("rcd_no").trim();
+				String mb_id = req.getParameter("mb_id").trim();
+				CmtVO cmtVO = new CmtVO();
+				// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
+//				cmtVO.setCmt_no(cmt_no);
+				cmtVO.setCmt_content(cmt_content);
+				cmtVO.setCmt_time(cmt_time);
+//				cmtVO.setCmt_status(cmt_status);
+				cmtVO.setRcd_no(rcd_no);
+				cmtVO.setMb_id(mb_id);
+				
+				CmtService cmtSvc = new CmtService();
+				cmtSvc.addCmt(cmt_content, cmt_time, rcd_no, mb_id);
+				JSONObject obj = new JSONObject();
+			    obj.put("cmt_content", cmtVO.getCmt_content());
+			    obj.put("cmt_time", cmtVO.getCmt_time());
+			    obj.put("mb_id", cmtVO.getMb_id());
+			    obj.put("rcd_no", cmtVO.getRcd_no());
+			    MemberService mbSvc = new MemberService();
+			    String mb_name = mbSvc.getOneMember(mb_id).getMb_name();
+			    obj.put("mb_name", mb_name);
+			    String mb_base64 = "";
+			    byte[] mb_pic =mbSvc.getOneMember(mb_id).getMb_pic();
+			    byte[] mb_line_pic =mbSvc.getOneMember(mb_id).getMb_line_pic();
+			    if(mb_pic!=null) {
+			    	System.out.println(1);
+			    	mb_base64 = Base64.getEncoder().encodeToString(mbSvc.getOneMember(mb_id).getMb_pic());
+			    }else if(mb_line_pic!=null){
+			    	System.out.println(2);
+			    	mb_base64 = Base64.getEncoder().encodeToString(mbSvc.getOneMember(mb_id).getMb_line_pic());
+			    }
+			    System.out.println(mb_base64);
+			    obj.put("mb_base64", mb_base64);
+			    
+				// 取出的empVO送給listOneEmp.jsp
+//				RequestDispatcher successView = req.getRequestDispatcher("/front_end/index.jsp");
+//				successView.forward(req, res);
+//				return;
+				res.setContentType("text/plain");
+				res.setCharacterEncoding("UTF-8");
+				PrintWriter out = res.getWriter();
+				out.write(obj.toString());
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				throw new ServletException(e);
 			}
 		}
 		

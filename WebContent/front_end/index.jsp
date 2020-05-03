@@ -135,7 +135,8 @@
 		<ul	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<div id="stikyDiv">
 				<!-- Sidebar - Brand -->
-				<a	class="sidebar-brand d-flex align-items-center justify-content-center" id="topPicA" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp">
+<%-- 				<a	class="sidebar-brand d-flex align-items-center justify-content-center" id="topPicA" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp"> --%>
+				<a	class="sidebar-brand d-flex align-items-center justify-content-center" id="topPicA" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page_ws/personal_page_me.jsp">
 					<div class="sidebar-brand-icon">
 						<img src="<%= request.getContextPath() %>/img/LogoNoBack.png" class="topPic" />
 						<!-- <img src="../images/LogoText2.png" class="topPic"> -->
@@ -258,8 +259,7 @@
 				class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search"
 				id="searchBar">
 					<div class="input-group" id="memberSearch">
-						<input type="text" class="form-control bg-light border-0 small tagsess" name="mb_id"
-						 placeholder="查詢會員..." aria-label="Search" aria-describedby="basic-addon2" />
+						<input type="text" class="form-control bg-light border-0 small tagsess" name="mb_id" placeholder="查詢會員..." aria-label="Search" aria-describedby="basic-addon2" />
 						<input type="hidden" name="action" value="searchMb">
 						<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
 						<div class="input-group-append">
@@ -578,6 +578,31 @@
 			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 			         });
 			});
+			 
+			 //送出留言改ajax
+			 $('.sendBtn').click(function(){
+				 var sendBtnImg = $(this);
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+					 data: {"action":"ajaxInsert", "cmt_content":$(this).prevAll('.cmt_content').val(), "rcd_no":$(this).prevAll('.rcd_no').val(), "mb_id":$(this).prev('.mb_id').val()},
+					 dataType: "json",
+					 success: function (data){
+						 sendBtnImg.prevAll('.cmt_content').val("");
+						 sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt(sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
+						 sendBtnImg.parents(".formCmt").next(".cmtDiv").append(`
+								<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+<%-- 									<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%>
+									<%--`+sendBtnImg.prevAll(".mySelfPic").html()+`--%>
+									<img src='data:image/jpg;base64,`+data.mb_base64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
+									<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+data.mb_name+`</span>
+									<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+data.cmt_content+`</span>
+								</div>
+							`) 
+				 	 },					
+				 error: function(){alert("AJAX-sendBtn發生錯誤囉!")}
+		 		 });
+			 });
 				 
 			$('.cmtBtn').click(function(){
 				 $(this).parents().siblings('.cmtDiv').toggle(function(){
@@ -591,17 +616,16 @@
 			 $('.oneCmtDiv').hover(function(){
 				 $(this).find('.flagBtn').css("display","");
 				 $(this).find('.garbageBtn').css("display","");
-					 },function(){
-						 $(this).find('.flagBtn').css("display","none");
-						 $(this).find('.garbageBtn').css("display","none");
-				 });
+				},function(){
+				 $(this).find('.flagBtn').css("display","none");
+				 $(this).find('.garbageBtn').css("display","none");
+			 });
 				 
 			 //燈箱置中
 			 var fblightbox = $('#fblightbox');
 			 fblightbox.css({'margin-left':'-' + (fblightbox.width()/2) + 'px' , 'margin-top' : '-' + (fblightbox.height()/2)+'px'});
 			 var locInsertBox = $('.locInsertBox');
 			 locInsertBox.css({'margin-left':'-' + (locInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (locInsertBox.height()/2)+'px'});
-			 
 				 
 			 //檢舉和修改留言的燈箱
 			 var cmtNrpt = $('.cmtNrpt');

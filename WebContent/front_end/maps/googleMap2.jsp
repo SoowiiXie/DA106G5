@@ -34,7 +34,7 @@ pageContext.setAttribute("waterJSON", waterJSON);
  * element that contains the map. */
 #map {
   height: 30rem;
-  width: 70%;
+  width: 75%;
   float: left;
 }
 #tableOutput{
