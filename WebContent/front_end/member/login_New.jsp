@@ -12,7 +12,7 @@
             background-image: url(login/Login/running.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            background-color: rgba(0, 0, 0, 1);
+            
 
             margin: 100px auto;
             width: 850px;
