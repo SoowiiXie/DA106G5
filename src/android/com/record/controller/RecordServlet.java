@@ -56,6 +56,8 @@ System.out.println("input: "+jsonIn);
 			if(recordList != null) {
 				writeText(res, jsonStr);
 			}
+		}else if("updateThumbMetoo".contentEquals(action)){
+			
 		}
 
 		
