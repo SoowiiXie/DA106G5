@@ -30,6 +30,16 @@ public class CpGetServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 
 		String action = req.getParameter("action");
+		
+		if("getCouponManagerIncludePath".equals(action)) {
+			String includePath = "/back_end/product/CouponManage.jsp"; //讓include增加商品頁面的bar得到網址
+			System.out.println(includePath);
+			req.setAttribute("includePath", includePath);
+			
+			RequestDispatcher goToStaff = req.getRequestDispatcher("/back_end/staff/index.jsp"); //include商品的bar
+			goToStaff.forward(req, res);
+			return;
+		}
 
 		if (action.equals("searchMemberCpGet")) {
 
@@ -92,8 +102,12 @@ public class CpGetServlet extends HttpServlet {
 				couponService.addCoupon(couponVO);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/back_end/product/CouponManage.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交couponManage.jsp
+//				String url = "/back_end/product/CouponManage.jsp";
+				String includePath = "/back_end/product/CouponManage.jsp"; //讓include增加商品頁面的bar得到網址
+				System.out.println(includePath);
+				req.setAttribute("includePath", includePath);
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交couponManage.jsp
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); //include商品的bar
 				successView.forward(req, res);
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
@@ -113,9 +127,13 @@ public class CpGetServlet extends HttpServlet {
             cp_getVO.setCp_no(cp_no);
             Cp_getService cp_getService = new Cp_getService();
             cp_getService .aMemberGetCoupon(cp_getVO);
-			String url = "/back_end/product/CouponManage.jsp";
+//			String url = "/back_end/product/CouponManage.jsp";
+        	String includePath = "/back_end/product/CouponManage.jsp"; //讓include增加商品頁面的bar得到網址
+			System.out.println(includePath);
+			req.setAttribute("includePath", includePath);
 
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+//			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); //include商品的bar
 			successView.forward(req, res);
 			return;
 

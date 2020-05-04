@@ -230,7 +230,7 @@ margin:10px auto;
       <div class="backhome" align="center"><a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;">
         <font color="white" size="3">商城頁面</font></a>
       </div>
-    <div class="addProduct" align="center"><a href="<%=request.getContextPath()%>/back_end/product/addProduct.jsp" style="text-decoration:none;">
+    <div class="addProduct" align="center"><a href="<%=request.getContextPath()%>/ProductServlet?action=getIncludePath" style="text-decoration:none;">
       <font color="white" size="3">增加商品</font></a></div> 
     <div class="managerProduct" align="center">
       	<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=" style="text-decoration:none;" style="text-decoration:none;">
@@ -243,7 +243,7 @@ margin:10px auto;
     </div> 
     
     <div class="managerCoupon" align="center">
-      	<a href="<%=request.getContextPath()%>/back_end/product/CouponManage.jsp" style="text-decoration:none;">
+      	<a href="<%=request.getContextPath()%>/CpGetServlet?action=getCouponManagerIncludePath" style="text-decoration:none;">
       	  <font color="white" size="3">管理優惠券</font></a>
     </div> 
       	

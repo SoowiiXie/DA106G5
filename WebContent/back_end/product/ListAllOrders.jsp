@@ -70,7 +70,7 @@ margin-top:100;
 					type="hidden" name="action" value="searchMemberOrders"> <input
 					type="submit" name="Submit" value="搜尋該會員訂單">
 					<%@ include file="page1ForListAllOrders.file"%></div>
-					<div style="margin-left:17%; margin-top:2px; border:2px #FFD382 groove; float:right;"><%@ include file="page2ForListAllOrders.file"%></div>
+					<div style=" margin-top:2px; border:2px #FFD382 groove; float:right;"><%@ include file="page2ForListAllOrders.file"%></div>
 		
 	</form>
 		
