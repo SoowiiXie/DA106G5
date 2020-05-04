@@ -65,7 +65,60 @@ margin-top:100;
 		<hr>
 		
 <div class="2" style="border:2px #FFD382 groove; width:80%;">		
-	<div align="center" style="margin-top: 100px;">
+	<div align="center" style="margin-top: 50px; border:2px #FFD382 groove;">
+	
+<form method="POST"
+		action="<%=request.getContextPath()%>/CpGetServlet" name="form1"
+		method="POST">
+		<table style="width:100%;">
+          
+          <tr bgcolor="#999999">
+
+				<th colspan="7">發放優惠券</th>
+				
+			</tr>
+          
+          
+			<tr bgcolor=#C4E1FF>
+			    <td style="width:12%;" bgcolor="#FFB5B5">會員等級</td>
+			    <td style="width:8%;" bgcolor="#FFB5B5">
+			      <select size="1" name="pd_typeNo">
+					    <option value="">請選擇
+						<option value="">等級1
+						<option value="">等級2
+						<option value="">等級3
+						<option value="">等級4
+						<option value="">等級5	
+				  </select>
+			    </td>
+			    
+				<td style="width:8%;" bgcolor="#FFB5B5">優惠券種類：</td>
+				<td style="width:8%;" bgcolor="#FFB5B5">
+				    <select size="1" name="cp_no">
+					    <option value="">請選擇
+							<c:forEach var="couponVO" items="${list}">
+								<option value="${couponVO.cp_no}"
+									>${couponVO.cp_name}
+							</c:forEach>
+					</select></td>
+				
+			    <td style="width:12%;" bgcolor="#FFB5B5">
+			    <input type="hidden" name="action" value="giveCoupon"> 
+			    <input type="hidden" name="soowii123" value="soowii123">
+			    
+			    <input type="submit" name="Submit" value="發送優惠券"></td>
+
+			</tr>
+
+		</table>
+
+</form>	
+	</div>
+	
+	
+	
+	<div align="center" style="margin-top: 50px; border:2px #FFD382 groove;">
+	
 <form method="POST"
 		action="<%=request.getContextPath()%>/CpGetServlet" name="form1"
 		method="POST">
@@ -90,21 +143,30 @@ margin-top:100;
 					value="${couponVO.cp_detail}"style="width: 100%; height: 100%"></td>
 					<td style="width:12%;" bgcolor="#FFB5B5"><input type="hidden" name="action" value="addCouponTypeNo"> <input
 			type="submit" name="Submit" value="增加優惠券"></td>
-
+                
 			</tr>
 
 		</table>
 
 </form>
-
-		<table style="margin-top: 50px; width:100%;">
+</div>
+<div style="margin-top: 50px; border:2px #FFD382 groove;">
+<div style=" border:2px #FFD382 groove; float:left;">
+<%@ include file="page1ForListAllCoupon1.file"%>
+</div>
+<div style=" border:2px #FFD382 groove;  float:right;">
+<%@ include file="page2ForListAllCoupon2.file"%>
+</div>
+		<table style=" width:100%;">
 			<tr bgcolor="#999999">
 
-				<th style="width: 150px;">優惠券編號</th>
-				<th style="width: 150px;">優惠券種類</th>
-				<th style="width: 150px;">優惠券價格</th>
-				<th style="width: 150px;">優惠券備註</th>
-				<th style="width: 150px;">產生日期</th>
+				<th style="width: 14%;">優惠券編號</th>
+				<th style="width: 14%;">優惠券種類</th>
+				<th style="width: 14%;">優惠券價格</th>
+				<th style="width: 14%;">優惠券備註</th>
+				<th style="width: 14%;">產生日期</th>
+				<th style="width: 14%;"></th>
+				<th style="width: 14%;"></th>
 			</tr>
 
 			<c:forEach var="couponVO" items="${list}">
@@ -114,6 +176,8 @@ margin-top:100;
 					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_price}元</td>
 					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_detail}</td>
 					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_javaTime}</td>
+					<td style="width:10%;" bgcolor="#FFB5B5"><input type="submit" name="Submit" value="修改"></td>
+                <td style="width:10%;" bgcolor="#FFB5B5"><input type="submit" name="Submit" value="刪除"></td>
 				</tr>
 			</c:forEach>
 

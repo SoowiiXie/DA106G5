@@ -28,45 +28,38 @@
 <head>
 <meta charset="UTF-8">
 <title>商家商品</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css" media="screen">
 
-<style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
 
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
-
-<style>
 table {
-	width: 450px;
+
 	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-}
-
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
 table, th, td {
-	border: 0px solid #CCCCFF;
-}
-
+    border: 3px solid 	#FFFFFF;
+  }
 th, td {
-	padding: 1px;
+    padding: 1px;
+  
+  }
+  
+  .buttonBar{
+width:100%;
+background-color:#FF004C;
+height:100px;
+margin-top:100;
 }
-</style>
 
+</style>
+<jsp:include page="ShopManagerBar.jsp" />
 </head>
 <body>
+
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -77,46 +70,95 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
+<div style="width:100%; height:1000px;border-style: solid; border-color:red;" align="center">
+  <div class="zxc" style=" border-style: solid; border-color:#3960D0;">
+  <form method="POST"
+		action="<%=request.getContextPath()%>/ProductServlet" name="form1"
+		enctype="multipart/form-data">
+    <table border="1">
+      <tr bgcolor="#999999">
+        <th width="20%">項目名稱</th>
+          <th width="80%">輸入欄位</th>
+      </tr>
+      <tr>
+        <td bgcolor=#FFD2D2>商品名稱：</td>
+        <td bgcolor=#FFD2D2><input type="TEXT" name="pd_name" value="${productVO.pd_name}"></td>
+      </tr>
+      <tr>
+        <td bgcolor=#FFD2D2>商品價格：</td>
+        <td bgcolor=#FFD2D2><input type="TEXT" name="pd_price" value="${productVO.pd_price}"></td>
+      </tr>
+      <tr>
+	    <td bgcolor=#FFD2D2>商品詳述：</td>
+	    <td bgcolor=#FFD2D2><textarea name="pd_detail">${productVO.pd_detail}</textarea></td>					
+      </tr>
+      <tr>
+		<td bgcolor=#FFD2D2>產品商品分類：</td>
+		  <td bgcolor=#FFD2D2>
+		    <select size="1" name="pd_typeNo">
+			  <c:forEach var="pd_typeVO" items="${list}">
+			    <option value="${pd_typeVO.pd_typeNo}" ${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
+			  </c:forEach>
+		    </select>
+		  </td>
+	   <tr>
+	     <td bgcolor=#FFD2D2 rowspan="2">商品圖片</td>
+		 <td bgcolor=#FFD2D2><input type="file" name="pd_pic" onchange="setImg(this)"></td>
+	</tr>
+		 <tr>
+						<td><img style="max-width:100%;" id="pd_pic" src="<%=imgStr%>">
+						<!-- 第一次有送出照片，錯誤回來後沒有再選擇照片時，用picBase64送出 -->
+						<%if(productVO != null && productVO.getPd_pic() != null){ %>
+			<input type="hidden" name="picBase64" value="<%=Base64.getEncoder().encodeToString(productVO.getPd_pic())%>">
+		<%}; %>
+						
+			</td>
+	</tr>				
+					
+					
+    </table>
+    	<input type="hidden" name="action" value="addProduct"> 
+		<input type="hidden" name="includePath" value="${incluePath}">
+		<input type="submit" name="Submit" value="增加商品">
+	</form>
+  </div>
+</div>
 
+<%-- 
 	<form method="POST"
 		action="<%=request.getContextPath()%>/ProductServlet" name="form1"
 		enctype="multipart/form-data">
-		<table>
+		<table style="width:50%; flaot:left;">
 
 			<tr>
-				<td>商品名稱：</td>
-				<td><input type="TEXT" name="pd_name"
+				<td bgcolor=#FFD2D2>商品名稱：</td>
+				<td bgcolor=#FFD2D2><input type="TEXT" name="pd_name"
 					value="${productVO.pd_name}"></td>
 			</tr>
 			<tr>
-				<td>商品價格：</td>
-				<td><input type="TEXT" name="pd_price"
+				<td bgcolor=#FFD2D2>商品價格：</td>
+				<td bgcolor=#FFD2D2><input type="TEXT" name="pd_price"
 					value="${productVO.pd_price}"></td>
 			</tr>
 			<tr>
-				<td>商品詳述：</td>
-				<td><textarea name="pd_detail">${productVO.pd_detail}</textarea></td>					
+				<td bgcolor=#FFD2D2>商品詳述：</td>
+				<td bgcolor=#FFD2D2><textarea name="pd_detail">${productVO.pd_detail}</textarea></td>					
 					
 			</tr>
 
-			<%-- 			<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />	 --%>
+		
 			<tr>
-					<td>產品商品分類：</td>
-					<td><select size="1" name="pd_typeNo">
+					<td bgcolor=#FFD2D2>產品商品分類：</td>
+					<td bgcolor=#FFD2D2><select size="1" name="pd_typeNo">
 							<c:forEach var="pd_typeVO" items="${list}">
 								<option value="${pd_typeVO.pd_typeNo}" ${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
 							</c:forEach>
 					</select></td>
 
-				<%-- 			<td>產品商品分類:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="pd_typeNo">
-			<c:forEach var="pd_typeVO" items="${pd_typeService.getAll}">
-				<option value="${pd_typeVO.pd_typeNo}" ${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':'' } >${pd_typeVO.pd_typeName}
-			</c:forEach>
-		</select></td>	 --%>
+
 			</tr>
 			<tr>
-				<td>商品圖片</td>
+				<td bgcolor=#FFD2D2>商品圖片</td>
 				<td><input type="file" name="pd_pic" onchange="setImg(this)">
 						<img width = "200px" id="pd_pic" src="<%=imgStr%>">
 						<!-- 第一次有送出照片，錯誤回來後沒有再選擇照片時，用picBase64送出 -->
@@ -135,6 +177,8 @@ th, td {
 		<input type="hidden" name="includePath" value="${incluePath}">
 		<input type="submit" name="Submit" value="增加商品">
 	</form>
+ --%>
+
 
 	<script>
 	function setImg(input){
@@ -152,10 +196,7 @@ th, td {
 
 
 
-	<br>
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
+
 
 
 </body>

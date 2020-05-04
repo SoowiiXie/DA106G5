@@ -103,7 +103,23 @@ public class CpGetServlet extends HttpServlet {
 			}
 
 		}
+		if (action.equals("giveCoupon")) {
 
+			String mb_id = req.getParameter("soowii123");
+			String cp_no = req.getParameter("cp_no");
+			System.out.println(cp_no);
+            Cp_getVO cp_getVO = new Cp_getVO();
+            cp_getVO.setMb_id(mb_id);           
+            cp_getVO.setCp_no(cp_no);
+            Cp_getService cp_getService = new Cp_getService();
+            cp_getService .aMemberGetCoupon(cp_getVO);
+			String url = "/back_end/product/CouponManage.jsp";
+
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			return;
+
+		}
 	}
 
 }

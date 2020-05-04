@@ -143,7 +143,7 @@ public class ProductServlet extends HttpServlet {
              
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				req.setAttribute("incluePath", includePath);
-				String url = "/back_end/staff/index.jsp";
+				String url = "/back_end/product/addProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 				return;
