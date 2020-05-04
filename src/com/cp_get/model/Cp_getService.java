@@ -28,4 +28,9 @@ public class Cp_getService {
 		
 		return dao.aMemberUseCoupon(cp_getVO);
 	}
+	
+	public int aMemberGetCoupon(Cp_getVO cp_getVO) {
+		
+		return dao.aMemberGetCoupon(cp_getVO);
+	}
 }

@@ -310,7 +310,7 @@ public class CouponDAO implements CouponDAO_interface {
 //		 System.out.println("新增"+updateCount_insert+"筆優惠卷種類");
 //		 	
 //
-////		 修改，修改優惠卷名稱
+//		 修改，修改優惠卷名稱
 //		 CouponVO couponVO2 = new CouponVO();	
 //		 couponVO2.setCp_no("CPN00007");
 //		 couponVO2.setCp_name("優惠卷1000元"); //注意VARACHA2(20)
@@ -319,7 +319,7 @@ public class CouponDAO implements CouponDAO_interface {
 //				
 //
 //		 //刪除優惠卷資料
-//		 int updateCount_delete = dao.deleteCoupon("CPN00009");
+//		 int updateCount_delete = dao.deleteCoupon("CPN00075");
 //		 System.out.println("刪除"+updateCount_delete+"筆優惠卷資料");
 //
 //		// 查詢，用優惠卷編號查詢優惠卷資料		

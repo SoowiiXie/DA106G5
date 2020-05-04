@@ -463,7 +463,7 @@ public class OrdersDAO implements OrdersDAO_interface {
 
 	public static void main(String[] args) {
 
-		OrdersDAO dao = new OrdersDAO();
+//		OrdersDAO dao = new OrdersDAO();
 
 		// 新增，新增商品訂單
 //		OrdersVO ordersVO1 = new OrdersVO();
