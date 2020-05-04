@@ -39,8 +39,7 @@ public class StaffServlet extends HttpServlet{
 		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
 		//  後台首頁預設畫面  Line 162
-//			新增/修改成功時，跳Sweet Alert 修改自己還沒有成功Alert
-		//  會員管理修改沒有Alert
+//			新增/修改成功時，跳Sweet Alert 修改自己 、 會員 還沒有成功Alert
 //			下拉式選單篩選在職、離職
 //			驗證信
 		
