@@ -2,6 +2,7 @@ package com.product.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -244,18 +245,21 @@ public class CheckOutServlet extends HttpServlet {
 				buylist = null;
 				session.setAttribute("shoppingCart", buylist);
 			}
-			
-			String jsonStr = new JSONObject(od_detailLineVO).toString();
-			PrintWriter out = res.getWriter();
-			out.write(jsonStr);
-			out.flush();
-			out.close();
-			
 			res.setHeader("Content-Type", "application/json");
 			res.setHeader("X-LINE-ChannelId", "1653839045");
 			res.setHeader("X-LINE-ChannelSecret", "7df947ce3ae22422b7319419a1e4d8a5");
 			
+			
+			String str = HttpURLConnection.getDefaultRequestProperty("info");
+			System.out.println(str);
+//			String jsonStr = new JSONObject(od_detailLineVO).toString();
+//			PrintWriter out = res.getWriter();
+//			out.write(jsonStr);
+//			out.flush();
+//			out.close();
 			res.sendRedirect("https://sandbox-api-pay.line.me/v2/payments/request");
+			
+			
 			return;
 		}
 	}
