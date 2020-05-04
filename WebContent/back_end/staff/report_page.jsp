@@ -14,7 +14,7 @@
 		line-height:6vh;
 		height: 6vh;
 		width: 10vw;
-		margin:0px auto 0px 3.3vw;
+		margin:0px auto 0px 2.5vw;
 		
 		font-family:'JhengHei';
 		font-size: 2.5vh;

@@ -74,6 +74,22 @@
   }
 </style>
 
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+		//  改EL
+	$(document).ready(function(){
+		<c:if test="${'back_end_update'.equals(param.action)}">
+			Swal.fire({
+			  icon: 'success',
+			  title: '修改成功',
+			  showConfirmButton: false,
+			  timer: 1500
+			})
+		</c:if>
+	});
+	
+</script>
 </head>
 <body>
 <div id="wrap_title">

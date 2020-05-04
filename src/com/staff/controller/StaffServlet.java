@@ -39,22 +39,18 @@ public class StaffServlet extends HttpServlet{
 		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
 		//  後台首頁預設畫面  Line 162
-//			新增/修改成功時，跳Sweet Alert 修改自己 、 會員 還沒有成功Alert
 //			下拉式選單篩選在職、離職
 //			驗證信
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
-//		String servletPath = req.getParameter("servletPath");  // 從哪裡來
 		String loginPath = "/back_end/staff/login.jsp";
 		String indexPath = "/back_end/staff/index.jsp";
 		String includePath = req.getParameter("includePath"); 
 
 		if ("login".equals(action)) { // 登入   OK
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
@@ -86,13 +82,13 @@ public class StaffServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher(loginPath);
 					failureView.forward(req, res);
-					return;// 程式中斷
+					return;
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("staffVO", staffVO); // 資料庫取出的VO物件,存入Session
 				
-				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 成功轉交 onePage.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
@@ -155,7 +151,7 @@ public class StaffServlet extends HttpServlet{
 					includePath = "/back_end/staff/listAllStaff.jsp";
 				}
 				req.setAttribute("includePath", includePath);  
-				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 成功轉交 onePage.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
