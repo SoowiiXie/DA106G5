@@ -211,7 +211,7 @@ public class StaffServlet extends HttpServlet{
 			
 			// 用Map裝檢舉種類與相對應的路徑
 			Map<String,String> rpt_typeMap = new HashMap<String,String>();
-			rpt_typeMap.put("cmt_rpt", "/back_end/staff/listAllMember.jsp");    // 留言檢舉
+			rpt_typeMap.put("cmt_rpt", "");    // 留言檢舉
 			rpt_typeMap.put("rcd_rpt", "");   // 紀錄檢舉
 			rpt_typeMap.put("live_rpt", "");  // 直播檢舉
 			rpt_typeMap.put("group_rpt", "");  // 揪團檢舉

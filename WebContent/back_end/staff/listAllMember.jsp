@@ -80,7 +80,7 @@
 	<span id="title">所有會員資料</span><br>
 </div>
 <div id="wrap">
-<%@ include file="pages/page1.file" %>
+
 <table>
 	<tr>
 		<th>會員ID</th>
@@ -108,7 +108,7 @@
 		<th>修改<br>資料</th>
 	</tr>
 	
-	
+	<%@ include file="pages/page1.file" %>
 	<c:forEach var="memberVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr ${param.mb_id.equals(memberVO.mb_id)?"bgcolor='#d4e7fa'":""}>

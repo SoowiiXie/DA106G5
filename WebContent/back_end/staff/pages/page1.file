@@ -25,9 +25,12 @@
        whichPage=1;
        pageIndex=0;
     } catch (ArrayIndexOutOfBoundsException e) { //總頁數之外的錯誤頁數
-         if (pageNumber>0){
-              whichPage=pageNumber;
-              pageIndex=pageIndexArray[pageNumber-1];
+         if (whichPage > pageNumber){
+            whichPage=pageNumber;
+            pageIndex=pageIndexArray[pageNumber-1];
+         }else{
+         	whichPage=1;
+      		pageIndex=0;
          }
     } 
 %>

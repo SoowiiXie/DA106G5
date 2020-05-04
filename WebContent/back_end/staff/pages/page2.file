@@ -1,15 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
   <%if (rowsPerPage<rowNumber) {%>
-    <%if(pageIndex>=rowsPerPage){%>
-        <b><A href="<%=request.getContextPath()%>/back_end/staff/staff.do?whichPage=1&action=select_page&includePath=${includePath}">第一頁</A></b>&nbsp;
+        <b><A href="<%=request.getContextPath()%>/back_end/staff/staff.do?whichPage=1&action=select_page&includePath=${includePath}">第一頁</A></b>&emsp;
         <b><A href="<%=request.getContextPath()%>/back_end/staff/staff.do?whichPage=<%=whichPage-1%>&action=select_page&includePath=${includePath}">上一頁 </A></b>&emsp;
-    <%}%>
-  
-    <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
-        <b><A href="<%=request.getContextPath()%>/back_end/staff/staff.do?whichPage=<%=whichPage+1%>&action=select_page&includePath=${includePath}">下一頁 </A></b>&nbsp;
+ 	&emsp;&emsp;
+        <b><A href="<%=request.getContextPath()%>/back_end/staff/staff.do?whichPage=<%=whichPage+1%>&action=select_page&includePath=${includePath}">下一頁 </A></b>&emsp;
         <b><A href="<%=request.getContextPath()%>/back_end/staff/staff.do?whichPage=<%=pageNumber%>&action=select_page&includePath=${includePath}">最後一頁</A></b>&emsp;
-    <%}%>
   <%}%>  
   
 	<%if (pageNumber>0){%>
