@@ -8,18 +8,15 @@ import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cp_get.model.Cp_getService;
 import com.cp_get.model.Cp_getVO;
 import com.od_detail.model.Od_detailVO;
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
-import com.pd_type.model.Pd_typeVO;
 import com.product.model.ProductVO;
 
 public class CheckOutServlet extends HttpServlet {
@@ -45,9 +42,10 @@ public class CheckOutServlet extends HttpServlet {
 			String payMethod = req.getParameter("payMethod");
 
 			Integer totalPrice = (Integer) session.getAttribute("totalPrice");
+			@SuppressWarnings("unchecked")
 			Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");
 			List<String> errorMsgs = new LinkedList<String>();
-			Pd_typeVO pd_typeVO = new Pd_typeVO();
+//			Pd_typeVO pd_typeVO = new Pd_typeVO();
 			String od_add = req.getParameter("od_add");
 			if (od_add == null || od_add.trim().length() == 0) {
 				errorMsgs.add("地址: 地址請勿空白");
@@ -88,6 +86,9 @@ public class CheckOutServlet extends HttpServlet {
 			}
 			OrdersService ordersService = new OrdersService();
 			String od_no = ordersService.addOrdersWithPd_detail(ordersVO, testList);
+			//同時也給Linebot的資料庫新增一筆訂單，只存必要資訊
+			ordersService.addOrdersPG(od_no, mb_id, 1);
+			
 			ordersVO.setOd_no(od_no);
 			session.setAttribute("ordersVO", ordersVO);
 			session.setAttribute("payMethod", payMethod);
