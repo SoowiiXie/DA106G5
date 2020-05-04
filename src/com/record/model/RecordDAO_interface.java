@@ -14,4 +14,5 @@ public interface RecordDAO_interface {
      
      //Android用
      public List<android.com.record.model.RecordVO> getAllByMb_id(String sql);
+     public String updateThumbMetoo(String sql);
 }

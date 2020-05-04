@@ -499,4 +499,12 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 		return list_map;
 	}
 
+
+
+	@Override
+	public String updateThumbMetoo(String sql) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

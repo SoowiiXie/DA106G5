@@ -72,4 +72,11 @@ public class RecordService {
 		List<android.com.record.model.RecordVO> recordlist = dao.getAllByMb_id(sql);
 		return recordlist;
 	}
+	
+	public String updateThumbMetoo(int rcd_thumb_amount, int rcd_metoo_amount, String rcd_no) {
+		String sql = "UPDATE record SET rcd_thumb_amount = '"+rcd_thumb_amount+"', rcd_metoo_amount = '"+rcd_metoo_amount+"' where rcd_no = '"+rcd_no+"'";
+		String result = dao.updateThumbMetoo(sql);
+		return result;
+	}
+	
 }

@@ -56,8 +56,16 @@ System.out.println("input: "+jsonIn);
 			if(recordList != null) {
 				writeText(res, jsonStr);
 			}
-		}else if("updateThumbMetoo".contentEquals(action)){
-			
+		}else if("updateThumbMetoo".equals(action)){
+			int rcd_thumb_amount = jsonObject.get("rcd_thumb_amount").getAsInt();
+			int rcd_metoo_amount = jsonObject.get("rcd_metoo_amount").getAsInt();
+			String rcd_no = jsonObject.get("rcd_no").getAsString();
+			String result = recordSvc.updateThumbMetoo(rcd_thumb_amount, rcd_metoo_amount, rcd_no);
+			if(result.length()!=0) {
+				writeText(res,result);
+			}else {
+				writeText(res,"updateThumbMetoo fail update");
+			}
 		}
 
 		
