@@ -48,6 +48,7 @@ public class LiveDAO implements LiveDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
+			
 //			Class.forName(driver);
 //			con = DriverManager.getConnection(url, userid, passwd);
 			con = ds.getConnection();
@@ -300,8 +301,8 @@ public class LiveDAO implements LiveDAO_interface {
 //		InputStream fin = new FileInputStream(new File("C:\\pic\\LIV00001.jpg"));
 //		byte[] pic = new byte[fin.available()];
 //		fin.read(pic);
-//		
-//		InputStream fin1 = new FileInputStream(new File("C:\\pic\\LIV00001.mp4"));
+		
+//		InputStream fin1 = new FileInputStream(new File("C:\\pic\\LLL.mp4"));
 //		byte[] vid = new byte[fin1.available()];
 //		fin1.read(vid);
 //		
@@ -309,7 +310,7 @@ public class LiveDAO implements LiveDAO_interface {
 //		System.out.println(vid.length);
 //		
 //		LiveVO liveVO = new LiveVO();
-//		liveVO.setLive_no("LIV00007");
+//		liveVO.setLive_no("LIV00008");
 //		liveVO.setLive_content("TEST_LIVE");
 //		liveVO.setLive_status(5);
 //		liveVO.setLive_startteaser(new Date(89,05,25));
