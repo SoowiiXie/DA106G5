@@ -96,7 +96,7 @@ public class MemberServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
-//			try {
+			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String mb_id = req.getParameter("mb_id");
 				if (mb_id == null || (mb_id.trim()).length() == 0) {
@@ -153,11 +153,11 @@ public class MemberServlet extends HttpServlet {
 				return;
 
 				/*************************** 其他可能的錯誤處理 *************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("無法取得資料:" + e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+				failureView.forward(req, res);
+			}
 		}
 
 		if ("update".equals(action)) { // 修改
