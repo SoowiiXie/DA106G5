@@ -419,6 +419,41 @@ public class RecordJNDIDAO implements RecordDAO_interface {
 		return list_map;
 	}
 
+
+
+	@Override
+	public String updateThumbMetoo(String sql) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String result = "";
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+			result = "updateThumbMetoo success";
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return result;
+	}
+
 	
 	
 	
