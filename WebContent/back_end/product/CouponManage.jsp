@@ -9,7 +9,12 @@
 <head>
 <meta charset="UTF-8">
 <title>優惠券管理</title>
-
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <%
 	CouponService couponService = new CouponService();
@@ -20,7 +25,29 @@
 %>
 
 
+<style type="text/css" media="screen">
+table {
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 
+table, th, td {
+	border: 3px solid #FFFFFF;
+}
+
+th, td {
+	padding: 1px;
+	text-align: center;
+}
+
+ .buttonBar{
+width:100%;
+background-color:#FF004C;
+height:100px;
+margin-top:100;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="ShopManagerBar.jsp" />
@@ -33,24 +60,35 @@
 			</c:forEach>
 		</ul>
 	</c:if>
-
+<div align="center" style="margin-top:50px;">
+		<font size="+3">優惠券列表：</font>
+		<hr>
+		
+<div class="2" style="border:2px #FFD382 groove; width:80%;">		
 	<div align="center" style="margin-top: 100px;">
 <form method="POST"
 		action="<%=request.getContextPath()%>/CpGetServlet" name="form1"
 		method="POST">
-		<table>
+		<table style="width:100%;">
+          
+          <tr bgcolor="#999999">
+
+				<th colspan="7">新增優惠券</th>
+				
+			</tr>
+          
           
 			<tr bgcolor=#C4E1FF>
-				<td style="width: 100px;">優惠券種類：</td>
-				<td align="center"><input type="TEXT" name="cp_name"
-					value="${couponVO.cp_name}"></td>
-				<td style="width: 100px;">優惠券金額：</td>
-				<td align="center"><input type="TEXT" name="cp_price"
-					value="${couponVO.cp_price}"></td>
-				<td style="width: 100px;">優惠券備註：</td>
-				<td align="center"><input type="TEXT" name="cp_detail"
-					value="${couponVO.cp_detail}"></td>
-					<td><input type="hidden" name="action" value="addCouponTypeNo"> <input
+				<td style="width:8%;" bgcolor="#FFB5B5">優惠券種類：</td>
+				<td style="width:12%;" bgcolor="#FFB5B5"><input type="TEXT" name="cp_name"
+					value="${couponVO.cp_name}" style="width: 100%; height: 100%"></td>
+				<td style="width:8%;" bgcolor="#FFB5B5">優惠券金額：</td>
+				<td style="width:12%;" bgcolor="#FFB5B5"><input type="TEXT" name="cp_price"
+					value="${couponVO.cp_price}"style="width: 100%; height: 100%"></td>
+				<td style="width:8%;" bgcolor="#FFB5B5">優惠券備註：</td>
+				<td style="width:12%;" bgcolor="#FFB5B5"><input type="TEXT" name="cp_detail"
+					value="${couponVO.cp_detail}"style="width: 100%; height: 100%"></td>
+					<td style="width:12%;" bgcolor="#FFB5B5"><input type="hidden" name="action" value="addCouponTypeNo"> <input
 			type="submit" name="Submit" value="增加優惠券"></td>
 
 			</tr>
@@ -59,9 +97,7 @@
 
 </form>
 
-		<font size="+3">優惠券列表：</font>
-		<hr>
-		<table style="margin-top: 50px;">
+		<table style="margin-top: 50px; width:100%;">
 			<tr bgcolor="#999999">
 
 				<th style="width: 150px;">優惠券編號</th>
@@ -73,32 +109,22 @@
 
 			<c:forEach var="couponVO" items="${list}">
 				<tr bgcolor=#C4E1FF>
-					<td align="center">${couponVO.cp_no}</td>
-					<td align="center">${couponVO.cp_name}</td>
-					<td align="center">${couponVO.cp_price}元</td>
-					<td align="center">${couponVO.cp_detail}</td>
-					<td align="center">${couponVO.cp_javaTime}</td>
+					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_no}</td>
+					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_name}</td>
+					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_price}元</td>
+					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_detail}</td>
+					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_javaTime}</td>
 				</tr>
 			</c:forEach>
 
 		</table>
 
 	</div>
+</div>
 
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+ <div class="buttonBar" style="margin-top:100px"></div>
 
 
 

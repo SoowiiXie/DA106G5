@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import org.json.JSONObject;
 
 import com.cmt.model.*;
+import com.record.model.*;
 import com.cmt_rpt.model.Cmt_rptService;
 import com.cmt_rpt.model.Cmt_rptVO;
 import com.mb.model.*;;
@@ -295,7 +296,12 @@ public class CmtServlet extends HttpServlet {
 			    obj.put("cmt_content", cmtVO.getCmt_content());
 			    obj.put("cmt_time", cmtVO.getCmt_time());
 			    obj.put("mb_id", cmtVO.getMb_id());
+			    
 			    obj.put("rcd_no", cmtVO.getRcd_no());
+			    RecordService recordSvc = new RecordService();
+			    String mb_id_watched = recordSvc.getOneRecord(rcd_no).getMb_id();
+			    obj.put("mb_id_watched", mb_id_watched);
+			    
 			    MemberService mbSvc = new MemberService();
 			    String mb_name = mbSvc.getOneMember(mb_id).getMb_name();
 			    obj.put("mb_name", mb_name);

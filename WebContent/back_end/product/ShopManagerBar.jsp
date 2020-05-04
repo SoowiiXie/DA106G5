@@ -17,7 +17,7 @@ background-color:#FBFBFF;
 #first { 
 height:100px;
 width:100%;
-background-color:#9cc7f6;
+background-color:#FF004C;
 border-style: solid;
 border-color:red;
 
@@ -25,7 +25,7 @@ border-color:red;
 .logo{
 height:100px;
 width:30%; 
-background-color:#9cc7f6;
+background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
@@ -35,7 +35,7 @@ border-color:red;
 .goToShopHome{
 height:100px;
 width:15%; 
-background-color:#9cc7f6;
+background-color:#FF004C;
 float:left;
 position: relative;
 border-style: solid;
@@ -51,7 +51,7 @@ border-color:red;
 margin-left:10%;
 height:100px;
 width:8%; 
-background-color:#9cc7f6;
+background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
@@ -63,7 +63,7 @@ border-color:red;
 .managerProduct{
 height:100px;
 width:8%; 
-background-color:#9cc7f6;
+background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
@@ -73,7 +73,7 @@ border-color:red;
 .addProduct{
 height:100px;
 width:8%; 
-background-color:#9cc7f6;
+background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
@@ -83,7 +83,7 @@ border-color:red;
 .managerOrders{
 height:100px;
 width:8%; 
-background-color:#9cc7f6;
+background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
@@ -93,7 +93,7 @@ border-color:red;
 .managerCoupon{
 height:100px;
 width:8%; 
-background-color:#9cc7f6;
+background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
@@ -104,7 +104,7 @@ border-color:red;
 margin-left:1300px;
 height:100px;
 width:7%; 
-background-color:#9cc7f6;
+background-color:#FF004C;
 position: static; 
 line-height:100px;
 border-style: solid;
@@ -114,7 +114,7 @@ border-color:red;
 margin-top: 10px;
 height:50px;
 width:100%;  
-background-color:#9cc7f6;
+background-color:#FF004C;
 position:absolute; 
 text-align:center;
 border-style: solid;
@@ -123,7 +123,7 @@ border-color:red;
 .Topmenu{
   width:12.5%;
   height:42px;
-  background-color:#9cc7f6;
+  background-color:#FF004C;
   color:#FFF6F6;
   font-size:22px;
   padding-top:7px;
@@ -218,11 +218,11 @@ margin:10px auto;
 <div id="first">
       <div class="logo">
         <div style="width:150px; float:left;">
-           <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> 
-           <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a>
+         
+       
         </div>
         <div>
-          <font size="5px" color="white" style="font-style:italic;">RUNNABLE</font>
+          <font size="5px" color="white" style="font-style:italic;"></font>
         </div>
       </div>
     

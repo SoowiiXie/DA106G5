@@ -37,15 +37,18 @@ public class GrouperDAO implements GrouperDAO_interface {
 		"UPDATE Grouper set MB_ID=?, LOC_NO=?, GRP_APPLYSTART=?, GRP_APPLYEND=?, GRP_START=?, GRP_END=?, GRP_NAME=?, GRP_CONTENT=?, GRP_PERSONMAX=?, GRP_PERSONMIN=?, GRP_PERSONCOUNT=?, GRP_STATUS=?, GRP_FOLLOW=? where GRP_NO = ?";
 
 	@Override
-	public void insert(GrouperVO grouperVO) {
+	public String insert(GrouperVO grouperVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		String next_grp_no = null;
 
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
+//			pstmt = con.prepareStatement(INSERT_STMT);
+			String cols[] = { "grp_no" };
+			pstmt = con.prepareStatement(INSERT_STMT, cols);
 
 //			pstmt.setString(1, grouperVO.getGrp_no());
 			pstmt.setString(1, grouperVO.getMb_id());
@@ -63,7 +66,15 @@ public class GrouperDAO implements GrouperDAO_interface {
 			pstmt.setInt(13, grouperVO.getGrp_follow());
 
 			pstmt.executeUpdate();
-
+			// 取得對應的自增主鍵值
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				next_grp_no = rs.getString(1);
+				System.out.println("自增主鍵值= " + next_grp_no + "(剛新增成功的編號)");
+			} else {
+				System.out.println("未取得自增主鍵值");
+			}
+			return next_grp_no;
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "

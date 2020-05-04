@@ -35,6 +35,7 @@
 		//用mb_id先取得所有追蹤對象
 		Mb_followService mb_followSvc = new Mb_followService();
 		String[] mbs_id = mb_followSvc.getByMb_id(memberVO.getMb_id());
+		pageContext.setAttribute("mbs_id", mbs_id);
 		//拿出所有紀錄
 		RecordService recordSvc = new RecordService();
 		List<RecordVO> list = recordSvc.getByMbs_id(mbs_id);

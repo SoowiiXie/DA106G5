@@ -70,10 +70,10 @@
 </head>
 <body bgcolor='white'>
 
-<h4>此頁暫練習採用 Script 的寫法取值13:</h4>
+<h4>listAllGroupdetailForSelect.jsp</h4><br>
 <table id="table-1">
 	<tr><td>
-		 <h3>揪團詳細資料</h3>
+		 <h3>所參加的揪團詳細資料</h3>
 		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>

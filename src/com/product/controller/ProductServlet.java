@@ -39,6 +39,17 @@ public class ProductServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		
+		if("getIncludePath".equals(action)) {
+			String includePath = req.getParameter("includePath");
+			
+			
+			System.out.println(includePath);
+			
+		}
+		
+		
+		
 
 		if ("addProduct".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -47,6 +58,8 @@ public class ProductServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
+				String includePath = req.getParameter("includePath");
+				System.out.println(includePath+"AAAAAAA");
 				String pd_name = req.getParameter("pd_name");
 				String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
 				if (pd_name == null || pd_name.trim().length() == 0) {
@@ -127,9 +140,10 @@ public class ProductServlet extends HttpServlet {
 				/*************************** 2.開始新增資料 ***************************************/
 				ProductService productService = new ProductService();
 				productVO = productService.addProduct(pd_name, pd_price, pd_detail, pd_typeNo, pd_pic);
-
+             
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/back_end/product/addProduct.jsp";
+				req.setAttribute("incluePath", includePath);
+				String url = "/back_end/staff/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 				return;

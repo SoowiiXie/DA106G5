@@ -136,7 +136,7 @@
 			<div id="stikyDiv">
 				<!-- Sidebar - Brand -->
 <%-- 				<a	class="sidebar-brand d-flex align-items-center justify-content-center" id="topPicA" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp"> --%>
-				<a	class="sidebar-brand d-flex align-items-center justify-content-center" id="topPicA" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page_ws/personal_page_me.jsp">
+				<a	class="sidebar-brand d-flex align-items-center justify-content-center" id="topPicA" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp">
 					<div class="sidebar-brand-icon">
 						<img src="<%= request.getContextPath() %>/img/LogoNoBack.png" class="topPic" />
 						<!-- <img src="../images/LogoText2.png" class="topPic"> -->
@@ -148,15 +148,15 @@
 				</a>
 
 				<!-- Nav Item - Dashboard -->
-					<c:choose>
-					<c:when test="${ pageRun == 'personal_page/personal_page.jsp'}">
-					<li class="nav-item active">
-					</c:when>
+				<c:choose>
+				<c:when test="${ pageRun == 'personal_page/personal_page.jsp' || pageRun == 'personal_page_ws/personal_page.jsp'}">
+				<li class="nav-item active">
+				</c:when>
 					
-					<c:otherwise>
-					<li class="nav-item">
-					</c:otherwise>
-					</c:choose>
+				<c:otherwise>
+				<li class="nav-item">
+				</c:otherwise>
+				</c:choose>
 					<!-- <li class="nav-item"> --> 
 					<a class="nav-link"	href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp">
 						<i class="fas fa-fw fa-thumbs-up"></i> 
@@ -205,8 +205,7 @@
 						<i class="fas fa-fw fa-handshake"></i> 
 						<span>揪團</span>
 					</a>
-					<div id="collapseUtilities" class="collapse collapseTwo"
-						aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div id="collapseUtilities" class="collapse collapseTwo" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 						<div class="bg-white py-0 m-0 collapse-inner rounded">
 							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp">瀏覽揪團</a> 
 							<a class="collapse-item py-1" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_detail/listAllGroupdetailForSelect.jsp">我的揪團</a>
@@ -217,10 +216,7 @@
 
 				<!-- Nav Item - Pages Collapse Menu -->
 				<li class="nav-item">
-					<a class="nav-link collapsed"
-						href="../VainPd/eShopHome.html" data-toggle="collapse"
-						data-target="#collapsePages" aria-expanded="true"
-						aria-controls="collapsePages"> 
+					<a class="nav-link collapsed" href="../VainPd/eShopHome.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> 
 						<i class="fas fa-fw fa-store"></i>
 						<span>商城</span>
 					</a>
@@ -255,9 +251,7 @@
 
 				<!-- <div id="navbarRight"> -->
 				<!-- Topbar Search -->
-				<form METHOD="post"	ACTION="<%=request.getContextPath()%>/front_end/member/member.do" 
-				class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-				id="searchBar">
+				<form METHOD="post"	ACTION="<%=request.getContextPath()%>/front_end/member/member.do" class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="searchBar">
 					<div class="input-group" id="memberSearch">
 						<input type="text" class="form-control bg-light border-0 small tagsess" name="mb_id" placeholder="查詢會員..." aria-label="Search" aria-describedby="basic-addon2" />
 						<input type="hidden" name="action" value="searchMb">
@@ -578,107 +572,6 @@
 			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 			         });
 			});
-			 
-// 			 //送出留言改ajax
-// 			 $('.sendBtn').click(function(){
-// 				 var sendBtnImg = $(this);
-// 				 $.ajax({
-// 					 type: "GET",
-<%-- 					 url: "<%=request.getContextPath()%>/cmt/cmt.do", --%>
-// 					 data: {"action":"ajaxInsert", "cmt_content":$(this).prevAll('.cmt_content').val(), "rcd_no":$(this).prevAll('.rcd_no').val(), "mb_id":$(this).prev('.mb_id').val()},
-// 					 dataType: "json",
-// 					 success: function (data){
-// 						 sendBtnImg.prevAll('.cmt_content').val("");
-// 						 sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt(sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
-// 						 sendBtnImg.parents(".formCmt").next(".cmtDiv").append(`
-// 								<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
-<%-- <%-- 									<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%> --%>
-<%-- 									`+sendBtnImg.prevAll(".mySelfPic").html()+` --%>
-// 									<img src='data:image/jpg;base64,`+data.mb_base64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
-// 									<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+data.mb_name+`</span>
-// 									<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+data.cmt_content+`</span>
-// 								</div>
-// 							`) 
-// 				 	 },					
-// 				 error: function(){alert("AJAX-sendBtn發生錯誤囉!")}
-// 		 		 });
-// 			 });
-			 
-			 //webSocket
-// 				var webSocket;
-// 				function connect() {
-// 					// create a websocket
-// //			 	var userName = document.getElementById("userName").value;
-// 				var watchingMb_ids = "${mb_id}";
-// //			 	var MyPoint = "/TogetherWS/" + userName;
-// 				var MyPoint = "/TogetherWS/" + watchingMb_ids;
-// 				var host = window.location.host;
-// 				var path = window.location.pathname;
-// 				var webCtx = path.substring(0, path.indexOf('/', 1));
-// 				var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
-
-// //			 	var statusOutput = document.getElementById("statusOutput");
-
-// 					webSocket = new WebSocket(endPointURL);
-
-// 					webSocket.onopen = function(event) {
-// //			 			updateStatus("WebSocket Connected");
-// //			 			document.getElementById('sendMessage').disabled = false;
-// //			 			document.getElementById('connect').disabled = true;
-// //			 			document.getElementById('disconnect').disabled = false;
-// 					};
-
-// 					webSocket.onmessage = function(event) {
-// //			 			var messagesArea = document.getElementById("messagesArea");
-// //			 			var jsonObj = JSON.parse(event.data);
-// //			 			var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
-// //			 			messagesArea.value = messagesArea.value + message;
-// //			 			messagesArea.scrollTop = messagesArea.scrollHeight;
-// 					};
-
-// 					webSocket.onclose = function(event) {
-// //			 			updateStatus("WebSocket Disconnected");
-// 					};
-// 				}
-
-// //			 	var inputUserName = document.getElementById("userName");
-// //			 	inputUserName.focus();
-
-// 				function sendMessage() {
-// //			 		var userName = inputUserName.value.trim();
-// //			 		if (userName === "") {
-// //			 			alert("Input a user name");
-// //			 			inputUserName.focus();
-// //			 			return;
-// //			 		}
-
-// //			 		var inputMessage = document.getElementById("message");
-// //			 		var message = inputMessage.value.trim();
-
-// //			 		if (message === "") {
-// //			 			alert("Input a message");
-// //			 			inputMessage.focus();
-// //			 		} else {
-// //			 			var jsonObj = {
-// //			 				"userName" : userName,
-// //			 				"message" : message
-// //			 			};
-// //			 			webSocket.send(JSON.stringify(jsonObj));
-// //			 			inputMessage.value = "";
-// //			 			inputMessage.focus();
-// //			 		}
-// 				}
-
-// 				function disconnect() {
-// 					webSocket.close();
-// 					document.getElementById('sendMessage').disabled = true;
-// 					document.getElementById('connect').disabled = false;
-// 					document.getElementById('disconnect').disabled = true;
-// 				}
-
-// 				function updateStatus(newStatus) {
-// //			 		statusOutput.innerHTML = newStatus;
-// 				}
 			
 			//留言區開關
 			$('.cmtBtn').click(function(){

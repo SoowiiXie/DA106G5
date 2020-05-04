@@ -22,7 +22,7 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 		"UPDATE Grouper set MB_ID=?, LOC_NO=?, GRP_APPLYSTART=?, GRP_APPLYEND=?, GRP_START=?, GRP_END=?, GRP_NAME=?, GRP_CONTENT=?, GRP_PERSONMAX=?, GRP_PERSONMIN=?, GRP_PERSONCOUNT=?, GRP_STATUS=?, GRP_FOLLOW=? where GRP_NO = ?";
 
 	@Override
-	public void insert(GrouperVO grouperVO) {
+	public String insert(GrouperVO grouperVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -49,8 +49,9 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 			pstmt.setInt(13, grouperVO.getGrp_follow());
 
 			pstmt.executeUpdate();
-
+			
 			// Handle any driver errors
+			return null;
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
@@ -75,7 +76,7 @@ public class GrouperJDBCDAO implements GrouperDAO_interface {
 				}
 			}
 		}
-
+		
 	}
 
 	@Override

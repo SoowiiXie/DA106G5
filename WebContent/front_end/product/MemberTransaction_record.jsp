@@ -57,15 +57,16 @@ margin-top:100;
 			</c:forEach>
 		</ul>
 	</c:if>
+	<div align="center">
 	<div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
-	<div align="center" style="border-style: solid; border-color:red;">
+	<div align="center" style="border-style: solid; border-color:red;width:100%; ">
 		<font size="+3">目前您的交易紀錄如下：</font>
 		<hr>
 		<p></div>
-	<div style="float: left; margin-top: 50px;  width:100%; border-style: solid; border-color:red;" >
+	<div style="float: left; margin-top: 50px;  margin-left:10%; width:80%; border-style: solid; border-color:red;" >
 		<form method="POST"
 			action="<%=request.getContextPath()%>/OrdersServlet" name="form1">
-			<table style="float:left; margin-left:15%;">
+			<table style="float:left;">
 				<tr>
 					<td> <%@ include
 							file="MemberTransaction_record1.file"%></td>
@@ -74,7 +75,7 @@ margin-top:100;
 				</tr>
 			</table>
 			
-			<table style="margin-left:67.5%;">
+			<table style="float:right;">
 				<tr>
 					<td> <%@ include
 							file="MemberTransaction_record2.file"%></td>
@@ -90,8 +91,8 @@ margin-top:100;
 	</div>
 
 
-	<div align="center" style="border-style: solid; border-color:red;">
-		<table border="1" Style="width: 1000px; align: center">
+	<div align="center" style="border-style: solid; border-color:red; width:80%;">
+		<table border="1" Style="width:100%; align: center">
 
 			<tr bgcolor="#999999">
 				<th Style="width: 100px; align: center">訂單編號</th>
@@ -145,13 +146,14 @@ margin-top:100;
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 
-					<div class="modal-header">
+					<div class="modal-header" align="center">
 						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h3 class="modal-title" id="myModalLabel">訂單明細</h3>
+							aria-hidden="true" style="float:left;">&times;</button>
+						
 					</div>
 
 					<div class="modal-body">
+					
 						<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
 						<jsp:include page="MemberLookSelfOd_detail.jsp" /> 
 						<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
@@ -173,7 +175,7 @@ margin-top:100;
 			});
 		</script>
 	</c:if>
-
+</div>
 <div id="Footer" class="buttonBar" style="margin-top:100px;" ></div>
 </body>
 </html>

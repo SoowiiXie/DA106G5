@@ -32,6 +32,13 @@
     padding: 1px;
     text-align: center;
   }
+  
+  .buttonBar{
+width:100%;
+background-color:#FF004C;
+height:100px;
+margin-top:100;
+}
 
 </style>
 <meta charset="UTF-8">
@@ -69,10 +76,10 @@
 
 
 
+<div class="1"style="margin-top:50px; border:2px #FFD382 groove;width:80%;margin-left:10%;" >
 
-<div style=" margin-left:5%; margin-top:50px; width:91%; border:2px #FFD382 groove;">
 <form name="checkoutForm" action="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList" method="POST">
-<div style="border:2px #FFD382 groove; width:43%; float:left;"> <select size="1" name="pd_typeNo">
+<div style="border:2px #FFD382 groove; float:left;"> <select size="1" name="pd_typeNo">
 		 <option value="">全部商品類別
          <c:forEach var="pd_typeVO" items="${pd_typeService.all}" > 
           <option value="${pd_typeVO.pd_typeNo}">${pd_typeVO.pd_typeName}
@@ -83,13 +90,13 @@
 				<input type="hidden" name="pd_typeNo" value="${pd_typeVO.pd_typeNo}">
 				<%@ include file="AllList2File1.file"%>
 				</div>
-				<div style="border:2px #FFD382 groove; width:36%; float:left; margin-left:20%;">
+				<div style="border:2px #FFD382 groove;  float:right;">
 				<%@ include file="AllList2File2.file"%>
 				
 				<%@ include file="AllList2File3.file"%>
 				</div>
 			</form>
-</div>		
+	
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
@@ -104,7 +111,7 @@
 		
 <div align="center">
                 
-	<table  class ="tableList" style="width:90%;">
+	<table  class ="tableList" style="width:100%;">
 
 		<tr bgcolor="#999999">
 			<th width="10%">商品圖片</th>
@@ -181,12 +188,8 @@
 		</c:forEach>
 	</table>
 	</div>
-	<%@ include file="AllList2File2.file"%>
-
-	<br>
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
+</div>	
+  <div class="buttonBar" style="margin-top:100px"></div>
 
 </body>
 </html>

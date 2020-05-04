@@ -2,6 +2,7 @@ package com.grouper.model;
 
 import java.util.List;
 import java.util.Map;
+import com.group_detail.model.*;
 
 public class GrouperService {
 
@@ -32,7 +33,9 @@ public class GrouperService {
 		grouperVO.setGrp_personcount(grp_personcount);
 		grouperVO.setGrp_status(grp_status);
 		grouperVO.setGrp_follow(grp_follow);
-		dao.insert(grouperVO);
+		String next_grp_no = dao.insert(grouperVO);
+		Grp_detailService grp_detailSvc = new Grp_detailService();
+		grp_detailSvc.addGrp_detail(mb_id, next_grp_no, 1);
 
 		return grouperVO;
 	}

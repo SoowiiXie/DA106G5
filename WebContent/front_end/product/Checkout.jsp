@@ -34,7 +34,7 @@
 .f19{float:left;margin-left:5px;margin-right:5px;width:calc(95% - 10px)}
 .f20{float:left;margin-left:5px;margin-right:5px;width:calc(100% - 10px)}
 
-..followlist {
+.followlist {
 	cellpadding: "10";
 	cellspacing: "5";
 	padding-bottom: 100px;

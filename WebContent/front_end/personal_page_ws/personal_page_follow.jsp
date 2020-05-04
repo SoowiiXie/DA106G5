@@ -35,6 +35,9 @@
 		//用mb_id先取得所有追蹤對象
 		Mb_followService mb_followSvc = new Mb_followService();
 		String[] mbs_id = mb_followSvc.getByMb_id(memberVO.getMb_id());
+		String mbs_idPlus = mb_followSvc.getByMb_idPlus(memberVO.getMb_id());
+		pageContext.setAttribute("mbs_idPlus", mbs_idPlus);
+
 		//拿出所有紀錄
 		RecordService recordSvc = new RecordService();
 		List<RecordVO> list = recordSvc.getByMbs_id(mbs_id);
@@ -68,7 +71,7 @@
 <jsp:useBean id="ordersSvcEL" scope="page"	class="com.orders.model.OrdersService" />
 
 <!-- 內容中間-紀錄 -->
-<div id="contentMiddle" class="btn-group row col-6">
+<div id="contentMiddle" class="btn-group row col-6" onload="connect()" onunload ="disconnect()">
 	<!-- 分頁按鈕 -->
 	<div class="btn-group col-12" id="contentTop">
 		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp&meOrFollow=me" class="btn bg-white"> 
@@ -212,3 +215,140 @@
 		</div>
 	</c:forEach>
 </div>
+	
+<!-- jquery -->
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	connect();
+});
+//送出留言改ajax
+$('.sendBtn').click(function(){
+	 var sendBtnImg = $(this);
+	 $.ajax({
+		 type: "POST",
+		 url: "<%=request.getContextPath()%>/cmt/cmt.do",
+		 data: {"action":"ajaxInsert", "cmt_content":$(this).prevAll('.cmt_content').val(), "rcd_no":$(this).prevAll('.rcd_no').val(), "mb_id":$(this).prev('.mb_id').val()},
+		 dataType: "json",
+		 success: function (data){
+// 			 sendBtnImg.prevAll('.cmt_content').val("");
+// 			 sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt(sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
+// 			 sendBtnImg.parents(".formCmt").next(".cmtDiv").append(`
+// 					<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+<%-- 									<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%>
+						<%--`+sendBtnImg.prevAll(".mySelfPic").html()+`--%>
+// 						<img src='data:image/jpg;base64,`+data.mb_base64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
+// 						<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+data.mb_name+`</span>
+// 						<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+data.cmt_content+`</span>
+// 					</div>
+// 				`)
+			sendMessage(data.mb_id_watched, data.mb_name, data.cmt_content, data.rcd_no, data.mb_base64);
+	 	 },					
+// 	 error: function(){alert("AJAX-sendBtn發生錯誤囉!")}
+	 });
+});
+
+	var webSocket;
+	function connect() {
+		// create a websocket
+// 	var userName = document.getElementById("userName").value;
+	var watchingMb_ids = "${mbs_idPlus}";
+// 	var MyPoint = "/TogetherWS/" + userName;
+	var MyPoint = "/TogetherWS/" + watchingMb_ids;
+	var host = window.location.host;
+	var path = window.location.pathname;
+	var webCtx = path.substring(0, path.indexOf('/', 1));
+	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+
+// 	var statusOutput = document.getElementById("statusOutput");
+
+		webSocket = new WebSocket(endPointURL);
+
+		webSocket.onopen = function(event) {
+// 			updateStatus("WebSocket Connected");
+// 			document.getElementById('sendMessage').disabled = false;
+// 			document.getElementById('connect').disabled = true;
+// 			document.getElementById('disconnect').disabled = false;
+		};
+
+		webSocket.onmessage = function(event) {
+// 			var messagesArea = document.getElementById("messagesArea");
+			var jsonObj = JSON.parse(event.data);
+// 			var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
+			var watchedName = jsonObj.watchedName;
+			var watchedContent = jsonObj.watchedContent;
+			var watchedBase64 = jsonObj.watchedBase64;
+			var watchedRcd_no = jsonObj.watchedRcd_no;
+			
+// 			messagesArea.value = messagesArea.value + message;
+// 			messagesArea.scrollTop = messagesArea.scrollHeight;
+			
+			$('#'+watchedRcd_no).prevAll('.cmt_content').val("");
+			$('#'+watchedRcd_no).parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt($('#'+watchedRcd_no).parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
+			$('#'+watchedRcd_no).parents(".formCmt").next(".cmtDiv").append(`
+				<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+					<%--<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%>
+					<%--`+sendBtnImg.prevAll(".mySelfPic").html()+`--%>
+					<img src='data:image/jpg;base64,`+watchedBase64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
+					<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+watchedName+`</span>
+					<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+watchedContent+`</span>
+				</div>
+			`)
+		};
+
+		webSocket.onclose = function(event) {
+// 			updateStatus("WebSocket Disconnected");
+		};
+	}
+
+// 	var inputUserName = document.getElementById("userName");
+// 	inputUserName.focus();
+
+	function sendMessage(watchedId, watchedName, watchedContent, watchedRcd_no, watchedBase64) {		
+// 		var userName = inputUserName.value.trim();
+// 		var watchedIdVar = watchedId.trim();
+// 		var watchedNameVar = watchedName.trim();
+// 		if (userName === "") {
+// 			alert("Input a user name");
+// 			inputUserName.focus();
+// 			return;
+// 		}
+
+// 		var inputMessage = document.getElementById("message");
+// 		var message = inputMessage.value.trim();
+// 		var watchedContentVar = watchedContent.trim();
+// 		var watchedRcd_noVar = watchedRcd_no.trim();
+// 		var watchedBase64Var = watchedBase64.trim();
+// 		if (message === "") {
+// 			alert("Input a message");
+// 			inputMessage.focus();
+// 		} else {
+// 			var jsonObj = {
+// 				"userName" : userName,
+// 				"message" : message
+// 			};
+		var jsonObj = {
+				"watchedId" : watchedId,
+				"watchedName" : watchedName,
+				"watchedContent" : watchedContent,
+				"watchedRcd_no" : watchedRcd_no,
+				"watchedBase64" : watchedBase64
+			};
+		webSocket.send(JSON.stringify(jsonObj));
+// 			inputMessage.value = "";
+// 			inputMessage.focus();
+// 		}
+	}
+
+	function disconnect() {
+		webSocket.close();
+// 		document.getElementById('sendMessage').disabled = true;
+// 		document.getElementById('connect').disabled = false;
+// 		document.getElementById('disconnect').disabled = true;
+	}
+
+	function updateStatus(newStatus) {
+// 		statusOutput.innerHTML = newStatus;
+	}
+</script>

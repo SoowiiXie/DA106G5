@@ -151,13 +151,13 @@
 					<img class="img-profile rounded-circle my-2 ml-1 mr-2 mySelfPic" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${mb_id}" />
 					<span class='text-primary ml-1 mr-2' style="font-size: 1.2rem;">${memberSvcEL.getOneMember(mb_id).mb_name}</span>
 <!-- 					<input type="text" class="bg-gray-100 w-50 cmt_content" placeholder=" 新留言..." name="cmt_content">  -->
-					<input type="text" class="bg-gray-100 w-50 cmt_content" placeholder=" 新留言..." name="cmt_content" onkeydown="if (event.keyCode == 13) sendMessage();"> 
+					<input type="text" class="bg-gray-100 w-50 cmt_content" placeholder=" 新留言..." name="cmt_content"> 
 					<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no"> 
 					<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id">
 <!-- 					<input type="hidden" name="action" value="insert">  -->
 <%-- 					<input class="align-middle mx-2 sendBtn my-2" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/send.png" style="height: 2rem;"> --%>
 <%-- 					<img class="align-middle mx-2 sendBtn my-2" name="submit_Btn" src="<%=request.getContextPath()%>/img/send.png" style="height: 2rem;"> --%>
-					<img class="align-middle mx-2 sendBtn my-2" name="submit_Btn" src="<%=request.getContextPath()%>/img/send.png" style="height: 2rem;" onclick="sendMessage();">
+					<img class="align-middle mx-2 sendBtn my-2" name="submit_Btn" src="<%=request.getContextPath()%>/img/send.png" style="height: 2rem;" id="${recordVO.rcd_no}">
 				</FORM>
 				<!-- 所有留言內容 -->
 				<div class="cmtDiv" style="display: none">
@@ -204,27 +204,30 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
 
 <script>
+$(document).ready(function(){
+	connect();
+});
 //送出留言改ajax
 $('.sendBtn').click(function(){
 	 var sendBtnImg = $(this);
 	 $.ajax({
-		 type: "GET",
+		 type: "POST",
 		 url: "<%=request.getContextPath()%>/cmt/cmt.do",
 		 data: {"action":"ajaxInsert", "cmt_content":$(this).prevAll('.cmt_content').val(), "rcd_no":$(this).prevAll('.rcd_no').val(), "mb_id":$(this).prev('.mb_id').val()},
 		 dataType: "json",
 		 success: function (data){
-			 sendBtnImg.prevAll('.cmt_content').val("");
-			 sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt(sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
-			 sendBtnImg.parents(".formCmt").next(".cmtDiv").append(`
-					<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+// 			 sendBtnImg.prevAll('.cmt_content').val("");
+// 			 sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt(sendBtnImg.parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
+// 			 sendBtnImg.parents(".formCmt").next(".cmtDiv").append(`
+// 					<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
 <%-- 									<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%>
 						<%--`+sendBtnImg.prevAll(".mySelfPic").html()+`--%>
-						<img src='data:image/jpg;base64,`+data.mb_base64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
-						<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+data.mb_name+`</span>
-						<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+data.cmt_content+`</span>
-					</div>
-				`)
-			sendMessage(data.mb_id, data.mb_name, data.cmt_content);
+// 						<img src='data:image/jpg;base64,`+data.mb_base64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
+// 						<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+data.mb_name+`</span>
+// 						<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+data.cmt_content+`</span>
+// 					</div>
+// 				`)
+			sendMessage(data.mb_id_watched, data.mb_name, data.cmt_content, data.rcd_no, data.mb_base64);
 	 	 },					
 	 error: function(){alert("AJAX-sendBtn發生錯誤囉!")}
 	 });
@@ -255,10 +258,28 @@ $('.sendBtn').click(function(){
 
 		webSocket.onmessage = function(event) {
 // 			var messagesArea = document.getElementById("messagesArea");
-// 			var jsonObj = JSON.parse(event.data);
+			var jsonObj = JSON.parse(event.data);
 // 			var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
+			var watchedId = jsonObj.watchedId;
+			var watchedName = jsonObj.watchedName;
+			var watchedContent = jsonObj.watchedContent;
+			var watchedBase64 = jsonObj.watchedBase64;
+			var watchedRcd_no = jsonObj.watchedRcd_no;
+			
 // 			messagesArea.value = messagesArea.value + message;
 // 			messagesArea.scrollTop = messagesArea.scrollHeight;
+			
+			$('#'+watchedRcd_no).prevAll('.cmt_content').val("");
+			$('#'+watchedRcd_no).parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text(parseInt($('#'+watchedRcd_no).parents(".formCmt").prevAll('.likeYaCmtDiv').children(".allCmtSpan").text())+1);
+			$('#'+watchedRcd_no).parents(".formCmt").next(".cmtDiv").append(`
+				<div class='col-11 mx-auto my-2 bg-gray-200 rounded-lg oneCmtDiv'>
+					<%--<img class='img-profile rounded-circle my-2 mx-1' height=60rem; width=60rem; src='<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id+`"> --%>
+					<%--`+sendBtnImg.prevAll(".mySelfPic").html()+`--%>
+					<img src='data:image/jpg;base64,`+watchedBase64+`' style='height:60px;  width:60px;' class='img-profile rounded-circle my-2 mx-1'>
+					<span class='text-primary col-2 mx-auto' style="font-size: 1.2rem;">`+watchedName+`</span>
+					<span class='text-dark col-2 mx-auto' style="font-size: 1.2rem;">`+watchedContent+`</span>
+				</div>
+			`)
 		};
 
 		webSocket.onclose = function(event) {
@@ -269,10 +290,10 @@ $('.sendBtn').click(function(){
 // 	var inputUserName = document.getElementById("userName");
 // 	inputUserName.focus();
 
-	function sendMessage(watchedId, watchedName, watchedContent) {		
+	function sendMessage(watchedId, watchedName, watchedContent, watchedRcd_no, watchedBase64) {		
 // 		var userName = inputUserName.value.trim();
-		var watchedId = watchedId.trim();
-		var watchedName = watchedName.trim();
+// 		var watchedIdVar = watchedId.trim();
+// 		var watchedNameVar = watchedName.trim();
 // 		if (userName === "") {
 // 			alert("Input a user name");
 // 			inputUserName.focus();
@@ -281,7 +302,9 @@ $('.sendBtn').click(function(){
 
 // 		var inputMessage = document.getElementById("message");
 // 		var message = inputMessage.value.trim();
-		var watchedContent = watchedContent.trim();
+// 		var watchedContentVar = watchedContent.trim();
+// 		var watchedRcd_noVar = watchedRcd_no.trim();
+// 		var watchedBase64Var = watchedBase64.trim();
 // 		if (message === "") {
 // 			alert("Input a message");
 // 			inputMessage.focus();
@@ -293,7 +316,9 @@ $('.sendBtn').click(function(){
 		var jsonObj = {
 				"watchedId" : watchedId,
 				"watchedName" : watchedName,
-				"watchedContent" : watchedContent				
+				"watchedContent" : watchedContent,
+				"watchedRcd_no" : watchedRcd_no,
+				"watchedBase64" : watchedBase64
 			};
 		webSocket.send(JSON.stringify(jsonObj));
 // 			inputMessage.value = "";
@@ -303,9 +328,9 @@ $('.sendBtn').click(function(){
 
 	function disconnect() {
 		webSocket.close();
-		document.getElementById('sendMessage').disabled = true;
-		document.getElementById('connect').disabled = false;
-		document.getElementById('disconnect').disabled = true;
+// 		document.getElementById('sendMessage').disabled = true;
+// 		document.getElementById('connect').disabled = false;
+// 		document.getElementById('disconnect').disabled = true;
 	}
 
 	function updateStatus(newStatus) {
