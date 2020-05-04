@@ -53,7 +53,7 @@
 	
 	#index_left_bar div{
 		text-align: center;
-		font-size: 3.5vh;
+		font-size: 3vh;
 		line-height:6vh;
 		color: #FEFF99;
 		font-family: 'Mamelon';

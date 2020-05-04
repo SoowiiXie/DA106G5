@@ -62,7 +62,7 @@ public class AuthorityServlet extends HttpServlet{
 				
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("incluePath", "/back_end/staff/listAllStaff.jsp");  
+				req.setAttribute("includePath", "/back_end/staff/listAllStaff.jsp");  
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
 				successView.forward(req, res);
 	

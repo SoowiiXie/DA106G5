@@ -387,7 +387,7 @@ public class MemberServlet extends HttpServlet {
 
 		if ("logout".equals(action)) { // 登出
 			session.invalidate();
-			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login_New.jsp");
 			failureView.forward(req, res);
 		}
 		

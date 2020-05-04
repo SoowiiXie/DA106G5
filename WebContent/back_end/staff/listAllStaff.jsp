@@ -45,7 +45,7 @@
 		border-bottom:3px solid #0373f0;
 	}
   table {
-	width: 65vw;
+	width: 75vw;
 	background-color: white;
 	margin:2vh auto 0px auto;
 	
@@ -89,6 +89,10 @@
   	
   	height: 6vh;
   	width: 8vw;
+  }
+  #checkBox{
+  	width:1vw;
+  	height:2vh;
   }
 </style>
 
@@ -172,7 +176,7 @@
 				<c:set var="authoritySet" value="${authoritySvc.getOneStaffAuthority(staffVO.staff_id)}"/> 
 				<c:forEach var="map" items="${abilityMap}">
 					<label>
-					<input type="checkbox" name="ability_no" value="${map.key}" ${authoritySet.contains(map.key)?'checked':''}>
+					<input id="checkBox" type="checkbox" name="ability_no" value="${map.key}" ${authoritySet.contains(map.key)?'checked':''}>
 					${map.value}
 					</label>&emsp;
 				</c:forEach>
