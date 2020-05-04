@@ -55,29 +55,39 @@
   table {
 	width: 600px;
 	background-color: white;
-	margin-top: 50px;
-	margin-bottom: 5px;
+	margin: 50px auto 5px auto;
   }
   table, th, td {
-    border: 1px solid #CCCCFF;
+    border: 1px solid #000;
   }
   th, td {
     padding: 20px;
     text-align: center;
   }
+  #group_table, #group_table tr,#group_table td,#group_table th{
+  	width: 1600px;
+  	border: 1px solid #000;
+  	margin: 50px auto 5px auto;
+  }
+  body{
+  	font-family:Microsoft JhengHei;"
+  }
+  #group_table th{
+  background: #D5E0CC;
+  }
 </style>
 
 </head>
-<body bgcolor='white'>
+<body>
 
-<h4>listAllGroupdetailForSelect.jsp</h4><br>
-<table id="table-1">
-	<tr><td>
-		 <h3>所參加的揪團詳細資料</h3>
-		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
-<table style="background-color: rgba(256,256,256,0);">
+
+<!-- <table id="table-1"> -->
+<!-- 	<tr><td> -->
+		 <h4><%=memberVO.getMb_id()%>，摳泥吉娃娃，以下是你參加的揪團</h4><br>
+<!-- 		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
+<!-- 	</td></tr> -->
+<!-- </table><p> -->
+<table id="group_table" style="background-color: rgba(256,256,256,0);">
 	<tr>
 		<th>會員編號</th>
 		<th>揪團編號</th>
