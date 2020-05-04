@@ -53,21 +53,21 @@
 		<span id="star">*</span>為必填
 		<div>
 			<span id="star">*</span>
-			帳號：<input id="mb_id" type="text" name="mb_id" value="${memberVO.mb_id}">
+			帳號：<input id="mb_id" type="text" name="mb_id" value="${requestScope.memberVO.mb_id}">
 			<img id="icon"/><span id="check"></span>
 		</div>
 		
 		<span id="star">*</span>
-		密碼：<input type="password" name="mb_pwd" value="${memberVO.mb_pwd}"><br>
+		密碼：<input type="password" name="mb_pwd" value="${requestScope.memberVO.mb_pwd}"><br>
 		
 		<span id="star">*</span>
-		名字：<input type="text" name="mb_name" value="${memberVO.mb_name}"><br>
+		名字：<input type="text" name="mb_name" value="${requestScope.memberVO.mb_name}"><br>
 		
 		<span id="star">*</span>
 		性別：
 		<c:forEach var="genderMapEntry" items="${memberGender}">
 			<label>
-			<input type="radio" name="mb_gender" value="${genderMapEntry.key}" ${memberVO.mb_gender==genderMapEntry.key?"checked":""}>
+			<input type="radio" name="mb_gender" value="${genderMapEntry.key}" ${requestScope.memberVO.mb_gender==genderMapEntry.key?"checked":""}>
 	    	${genderMapEntry.value}
 	    	</label>
 		</c:forEach>
@@ -76,10 +76,10 @@
 <!--     	Line部分 -->
 <%-- 		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br> --%>
 		
-		生日：<input type="text" name="mb_birthday" id="f_date" value="${memberVO.mb_birthday}"><br>
+		生日：<input type="text" name="mb_birthday" id="f_date" value="${requestScope.memberVO.mb_birthday}"><br>
 		
 		<span id="star">*</span>
-		e-mail：<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
+		e-mail：<input type="text" name="mb_email" value="${requestScope.memberVO.mb_email}"><br>
 		
 		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)" accept="image/*"><br>  <!-- 改版限定圖片種類 -->
 		<img id="mb_pic" src="<%=imgStr%>" width="100px"><br>

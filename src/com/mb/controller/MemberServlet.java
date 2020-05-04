@@ -559,10 +559,16 @@ public class MemberServlet extends HttpServlet {
 			String captcha = req.getParameter("captcha");
 			String mb_id = new String(Base64.getDecoder().decode(captcha), "UTF-8");
 			MemberService memberSvc = new MemberService();
-			memberSvc.getOneMember(mb_id);
+			MemberVO memberVO = memberSvc.getOneMember(mb_id);
+			if(memberVO.getMb_status() == 1) {
+				memberVO.setMb_status(2);
+				memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), 
+						memberVO.getMb_gender(), memberVO.getMb_birthday(), memberVO.getMb_email(), 
+						memberVO.getMb_pic(), memberVO.getMb_lv(), memberVO.getMb_rpt_times(), memberVO.getMb_status());
+			}
+			session.setAttribute("memberVO", memberVO);
 			
-			
-			RequestDispatcher successView = req.getRequestDispatcher("/front_end/member/login_New.jsp");
+			RequestDispatcher successView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
 			successView.forward(req, res);
 		}
 	}
