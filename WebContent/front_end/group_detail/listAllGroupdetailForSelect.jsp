@@ -133,27 +133,31 @@
 <%--                     ${grouperVO.grp_applystart}                                            --%>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
-${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart}
+<%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart} --%>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart}" pattern="yyyy-MM-dd hh:mm"/>
 <%-- 					${grpSvc.getOneGroup(grp_detailVO.getGrp_no()).grp_applystart } --%>
 		</td>
 		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
-${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend}
+<%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend} --%>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend}" pattern="yyyy-MM-dd hh:mm"/>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 		</td>
 		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
-${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}
+<%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start} --%>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}" pattern="yyyy-MM-dd hh:mm"/>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 <!-- 		</td> -->
 		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
-                    ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end}
+<%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end} --%>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end}" pattern="yyyy-MM-dd hh:mm"/>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 		</td>

@@ -53,7 +53,7 @@
   
   <li>
     <FORM METHOD="post" ACTION="group_follow.do" >
-        <b>輸入揪團編號 (如grp00001):</b>
+        <b>輸入會員編號:</b>
         <input type="text" name="mb_id">
         <input type="hidden" name="action" value="getAll_For_Display">
         <input type="submit" value="送出">
@@ -64,7 +64,7 @@
      
   <li>
      <FORM METHOD="post" ACTION="group_follow.do" >
-       <b>選擇揪團編號:</b>
+       <b>選擇會員編號:</b>
        <select size="1" name="mb_id">
          <c:forEach var="group_followVO" items="${group_followSvc.all}" > 
           <option value="${group_followVO.mb_id}">${group_followVO.mb_id}
