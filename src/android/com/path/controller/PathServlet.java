@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -71,7 +72,12 @@ System.out.println("input: " + jsonIn);
 		}else if("getall".equals(action)) {
 			List<PathVO> pathList = new ArrayList<>();;
 			pathList = pathSvc.getAll();
-			String jsonStr = gson.toJson(pathList);
+			
+			List<PathVO> pathListFilter = pathList.stream()
+					.filter(p -> p.getPath_status() == 1)
+					.collect(Collectors.toList());
+			
+			String jsonStr = gson.toJson(pathListFilter);
 //System.out.println(jsonStr);
 			if(pathList!=null) {
 				writeText(res, jsonStr);

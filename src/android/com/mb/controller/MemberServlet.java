@@ -49,8 +49,8 @@ public class MemberServlet extends HttpServlet {
 		
 		if (action.equals("isMember")) {
 			String mb_id = jsonObject.get("mb_id").getAsString();
-			//String mb_pwd = jsonObject.get("mb_pwd").getAsString();
-			writeText(res,	gson.toJson(memberDao.findById(mb_id)));
+			String mb_pwd = jsonObject.get("mb_pwd").getAsString();
+			writeText(res, String.valueOf(memberDao.isMember(mb_id, mb_pwd)));
 		} 
 		else if (action.equals("isUserIdExist")) {
 			String mb_id = jsonObject.get("mb_id").getAsString();
