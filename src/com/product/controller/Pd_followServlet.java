@@ -53,7 +53,7 @@ public class Pd_followServlet extends HttpServlet {
 
 				pd_followService.insertMemberOneProduct(pd_followVO);
 				String url = "/ShoppingServlet?action=findOneProduct&pd_no=" + pd_no +"&pd_follow=true";
-				System.out.println();
+//				System.out.println();
 				String addType_follow = "商品收藏成功";
 				req.setAttribute("addType_follow", addType_follow);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
@@ -104,7 +104,7 @@ public class Pd_followServlet extends HttpServlet {
 		}
 		if (action.equals("DeleteOnePd_follow")) {
 			String whichPage = req.getParameter("whichPage");
-			System.out.println("測試頁數"+whichPage);
+//			System.out.println("測試頁數"+whichPage);
 			String pd_no = req.getParameter("pd_no");
 			String mb_id = (String) session.getAttribute("mb_id");
 			Pd_followVO pd_followVO = new Pd_followVO();

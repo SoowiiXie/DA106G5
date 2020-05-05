@@ -26,7 +26,7 @@ public class FrontEndProductServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println("hi");
+//		System.out.println("hi");
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");

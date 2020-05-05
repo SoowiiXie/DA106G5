@@ -216,7 +216,7 @@
 
 				<!-- Nav Item - Pages Collapse Menu -->
 				<li class="nav-item">
-					<a class="nav-link collapsed" href="../VainPd/eShopHome.html" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> 
+					<a class="nav-link collapsed" href="<%= request.getContextPath() %>/front_end/product/ShopHome.jsp" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> 
 						<i class="fas fa-fw fa-store"></i>
 						<span>商城</span>
 					</a>

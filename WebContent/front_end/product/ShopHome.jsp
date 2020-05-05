@@ -99,7 +99,7 @@ border-color:red;">
 	</div>
 
 	
-		<form method="POST"
+		<%-- <form method="POST"
 			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
 			<table style="float:right; border-style: solid; border-color:red;">
@@ -132,7 +132,7 @@ border-color:red;">
 
 			<input type="hidden" name="action" value="CompositeQuery_Product">
 			
-		</form>
+		</form> --%>
 		<div class="a" style="float:left;" >
 	  <table  style="float:left; border-style: solid;
 border-color:red;">

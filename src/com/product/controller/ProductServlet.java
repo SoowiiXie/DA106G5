@@ -42,7 +42,7 @@ public class ProductServlet extends HttpServlet {
 		
 		if("getIncludePath".equals(action)) {
 			String includePath = "/back_end/product/addProduct.jsp"; //讓include增加商品頁面的bar得到網址
-			System.out.println(includePath);
+//			System.out.println(includePath);
 			req.setAttribute("includePath", includePath);
 			
 			RequestDispatcher goToStaff = req.getRequestDispatcher("/back_end/staff/index.jsp"); //include商品的bar
@@ -133,7 +133,7 @@ public class ProductServlet extends HttpServlet {
 
 					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					String includePath = "/back_end/product/AllList2.jsp";
-					System.out.println(includePath);
+//					System.out.println(includePath);
 					req.setAttribute("includePath", includePath);
 					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 					failureView.forward(req, res);
@@ -147,7 +147,7 @@ public class ProductServlet extends HttpServlet {
              
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String includePath = "/back_end/product/AllList2.jsp";
-				System.out.println(includePath);
+//				System.out.println(includePath);
 				req.setAttribute("includePath", includePath);
 //				String url = "/back_end/product/addProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
@@ -173,7 +173,7 @@ public class ProductServlet extends HttpServlet {
 				/*************************** 1.接收請求參數 ****************************************/
 				String pd_no = req.getParameter("pd_no");
 				String whichPage = req.getParameter("whichPage");
-				System.out.println("開頁頁數是" + whichPage);
+//				System.out.println("開頁頁數是" + whichPage);
 
 				/*************************** 2.開始查詢資料 ****************************************/
 				ProductService productService = new ProductService();
@@ -184,7 +184,7 @@ public class ProductServlet extends HttpServlet {
 //				String url = "/back_end/product/UpdateProduct.jsp";
 				req.setAttribute("whichPage", whichPage);
 				String includePath = "/back_end/product/UpdateProduct.jsp";
-				System.out.println(includePath);
+//				System.out.println(includePath);
 				req.setAttribute("includePath", includePath);
 //				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
@@ -204,8 +204,8 @@ public class ProductServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			String whichPage = (String) req.getAttribute("whichPage");
-			System.out.println("修改的該頁頁數是" + whichPage);
-//			try {
+//			System.out.println("修改的該頁頁數是" + whichPage);
+
 			String pd_no = req.getParameter("pd_no").trim();
 
 			String pd_name = req.getParameter("pd_name");
@@ -296,7 +296,7 @@ public class ProductServlet extends HttpServlet {
 				req.getSession().setAttribute("pd_typeNo", pd_typeNo);
 //				String url = "/back_end/product/AllList2.jsp";
 				String includePath = "/back_end/product/AllList2.jsp";
-				System.out.println(includePath);
+				
 				req.setAttribute("includePath", includePath);
 //				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
@@ -305,7 +305,7 @@ public class ProductServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				String includePath = "/back_end/product/AllList2.jsp";
-				System.out.println(includePath);
+//				System.out.println(includePath);
 				req.setAttribute("includePath", includePath);
 //				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/UpdateProduct.jsp");
 				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
@@ -321,7 +321,7 @@ public class ProductServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			String whichPage = req.getParameter("whichPage");
-			System.out.println("刪除的該頁頁數字" + whichPage);
+//			System.out.println("刪除的該頁頁數字" + whichPage);
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
 				String pd_no = req.getParameter("pd_no");
@@ -333,7 +333,7 @@ public class ProductServlet extends HttpServlet {
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
 //				String url = "/back_end/product/AllList2.jsp";
 				String includePath = "/back_end/product/AllList2.jsp";
-				System.out.println(includePath);
+//				System.out.println(includePath);
 				req.setAttribute("includePath", includePath);
 //				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
@@ -352,7 +352,7 @@ public class ProductServlet extends HttpServlet {
 
 			req.getSession().setAttribute("pd_typeNo", pd_typeNo);
 			String includePath = "/back_end/product/AllList2.jsp"; //讓include增加商品頁面的bar得到網址
-			System.out.println(includePath);
+//			System.out.println(includePath);
 			req.setAttribute("includePath", includePath);
 //			String url = "/back_end/product/AllList2.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
@@ -374,7 +374,7 @@ public class ProductServlet extends HttpServlet {
 			req.setAttribute("whichPage", whichPage);
 //			String url = "/back_end/product/AllList2.jsp";
 			String includePath = "/back_end/product/AllList2.jsp";
-			System.out.println(includePath);
+//			System.out.println(includePath);
 			req.setAttribute("includePath", includePath);
 //			RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
@@ -397,7 +397,7 @@ public class ProductServlet extends HttpServlet {
 			req.setAttribute("whichPage", whichPage);
 //			String url = "/back_end/product/AllList2.jsp";
 			String includePath = "/back_end/product/AllList2.jsp";
-			System.out.println(includePath);
+//			System.out.println(includePath);
 			req.setAttribute("includePath", includePath);
 //			RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 AllList2.jsp
 			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
@@ -417,7 +417,7 @@ public class ProductServlet extends HttpServlet {
 					session.setAttribute("map", map1);
 					map = map1;
 				}
-				System.out.println(map);
+//				System.out.println(map);
 
 				if ("".contentEquals(map.get("lowPrice")[0]) && !"".contentEquals(map.get("highPrice")[0])) {
 					errorMsgs.add("最低價格請勿空白");

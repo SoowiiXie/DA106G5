@@ -258,7 +258,8 @@ margin:10px auto;
            <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a>
         </div>
         <div>
-        <font size="5px" color="white">RU<i>NN</i>ABLE</font>
+        <a
+		href="<%=request.getContextPath()%>/front_end/index.jsp"><font size="5px" color="white">RU<i>NN</i>ABLE</font></a>
         </div>
       </div>
      <div class="search_pd">

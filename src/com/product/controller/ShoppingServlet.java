@@ -50,7 +50,7 @@ public class ShoppingServlet extends HttpServlet {
 				try {
 					/*************************** 1.接收請求參數 ****************************************/
 					String pd_no = req.getParameter("pd_no");
-					System.out.println(pd_no);
+//					System.out.println(pd_no);
 					/*************************** 2.開始查詢資料 ****************************************/
 					ProductService productService = new ProductService();
 					ProductVO productVO = productService.findOneProduct(pd_no);
@@ -58,7 +58,7 @@ public class ShoppingServlet extends HttpServlet {
 					if (productVO.getPd_typeNo().equals("PTN00010") || productVO.getPd_typeNo().equals("PTN00011")
 							|| productVO.getPd_typeNo().equals("PTN00012")) {
 						sizeList.add("無");
-						System.out.print("配件尺寸:" + sizeList);
+//						System.out.print("配件尺寸:" + sizeList);
 
 					} else if (productVO.getPd_typeNo().equals("PTN00003")
 							|| productVO.getPd_typeNo().equals("PTN00006")
@@ -69,7 +69,7 @@ public class ShoppingServlet extends HttpServlet {
 						sizeList.add("US9.0");
 						sizeList.add("US9.5");
 						sizeList.add("US10.0");
-						System.out.print("鞋類尺寸:" + sizeList);
+//						System.out.print("鞋類尺寸:" + sizeList);
 
 					} else {
 						sizeList.add("XS");
@@ -78,7 +78,7 @@ public class ShoppingServlet extends HttpServlet {
 						sizeList.add("L");
 						sizeList.add("XL");
 						sizeList.add("XXL");
-						System.out.print("服飾尺寸:" + sizeList);
+//						System.out.print("服飾尺寸:" + sizeList);
 
 					}
 
@@ -113,11 +113,11 @@ public class ShoppingServlet extends HttpServlet {
 
 				// 取得後來新增的商品
 				ProductVO aProduct = getProduct(req);
-				System.out.println("新增的商品，商品編號：" + aProduct.getPd_no());
-				System.out.println("新增的商品，商品尺寸：" + aProduct.getPd_name());
-				System.out.println("新增的商品，商品尺寸：" + aProduct.getPd_typeNo());
-				System.out.println(aProduct);
-				
+//				System.out.println("新增的商品，商品編號：" + aProduct.getPd_no());
+//				System.out.println("新增的商品，商品尺寸：" + aProduct.getPd_name());
+//				System.out.println("新增的商品，商品尺寸：" + aProduct.getPd_typeNo());
+//				System.out.println(aProduct);
+//				
 
 				// 新增第一個商品籍至購物車時
 				if (buylist == null) {

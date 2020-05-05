@@ -94,7 +94,7 @@ public class CheckOutServlet extends HttpServlet {
 			OrdersService ordersService = new OrdersService();
 			String od_no = ordersService.addOrdersWithPd_detail(ordersVO, testList);
 			//同時也給Linebot的資料庫新增一筆訂單，只存必要資訊
-			System.out.println("mb_id: " + mb_id);
+//			System.out.println("mb_id: " + mb_id);
 			ordersService.addOrdersPG(od_no, mb_id, 1);
 			
 			ordersVO.setOd_no(od_no);
@@ -128,7 +128,7 @@ public class CheckOutServlet extends HttpServlet {
 			
 //			String mb_id = (String) session.getAttribute("mb_id");
 			String mb_id = (String) req.getParameter("mb_id");
-			System.out.println("req: "+mb_id);
+//			System.out.println("req: "+mb_id);
 			
 			Integer discount = (Integer) session.getAttribute("discount");
 			
@@ -152,7 +152,7 @@ public class CheckOutServlet extends HttpServlet {
 			
 			//原本的ordersVO
 			OrdersVO ordersVO = new OrdersVO();
-			System.out.println("VO: "+mb_id);
+//			System.out.println("VO: "+mb_id);
 			ordersVO.setMb_id(mb_id);
 			ordersVO.setOd_totalPrice(od_totalPrice);
 			ordersVO.setOd_add(od_add);
