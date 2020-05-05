@@ -792,6 +792,23 @@
 	    <dispatcher>ERROR</dispatcher>
 	    <dispatcher>ASYNC</dispatcher>
 	</filter-mapping>
+	
+	<filter>
+		<filter-name>Back_End_LoginFilter</filter-name>
+		<filter-class>com.common.Back_End_LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Back_End_LoginFilter</filter-name>
+		<!-- 測試 -->
+		<url-pattern>/back_end/staff/index.jsp</url-pattern>
+		<!-- 測試 -->
+		
+		<dispatcher>REQUEST</dispatcher>
+	    <dispatcher>FORWARD</dispatcher>
+	    <dispatcher>INCLUDE</dispatcher>
+	    <dispatcher>ERROR</dispatcher>
+	    <dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
 <!-- 過濾器Filter結束 -->
 
 <!-- webSocket 為了傳 base64，把緩衝區加大 -->

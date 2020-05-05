@@ -88,8 +88,16 @@ public class StaffServlet extends HttpServlet{
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				session.setAttribute("staffVO", staffVO); // 資料庫取出的VO物件,存入Session
 				
-				RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
-				successView.forward(req, res);
+				String originalJSP = (String)session.getAttribute("originalJSP");  // 
+				if(originalJSP != null) {
+					indexPath = originalJSP;
+					session.removeAttribute("originalJSP");
+				}
+				res.sendRedirect(indexPath);
+				return;
+				
+//				RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
+//				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
