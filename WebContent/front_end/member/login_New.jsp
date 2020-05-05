@@ -12,80 +12,83 @@
             background-image: url(login/Login/running.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            
-
-            margin: 100px auto;
-            width: 850px;
-            height: auto;
         }
 
+		#wrapAll{
+			margin: 20vh auto;
+			width:fit-content;
+		}
+		
         #wrap,
         #wrap2 {
             float: left;
             background-color: rgba(255, 255, 255, 0.6);
-            margin: 0px 30px;
-            width: 350px;
-            height: 550px;
+            
+            width: 18vw;
+            height: 55vh;
             border-radius: 30px;
+        }
+        #wrap{
+        	margin-left: 5vw;
         }
 
         img {
-            padding-top: 20px;
+            padding-top: 2vh;
             display: block;
             margin: auto;
-            height: 100px;
-            width: 100px;
+            height: 10vh;
+            width: 5vw;
         }
 
         img+p {
             margin: 0px;
             text-align: center;
             font-family: calibri;
-            font-size: 5vh;
+            font-size: 4vh;
             color: #666;
         }
 
         input[type="text"],
         input[type="password"] {
             display: block;
-            margin: 20px auto -10px auto;
-            height: 30px;
-            border-radius: 5px;
+            margin: 2.2vh auto -1.1vh auto;
+            height: 2.8vh;
+            border-radius: 0.8vh;
             background-image: url(login/Login/user5.png);
             background-repeat: no-repeat;
-            background-size: 20px;
+            background-size: 2.1vh;
             background-position: left 3px center;
-            padding-left: 30px;
+            padding-left: 3vh;
         }
 
         input[type="password"] {
             background-image: url(login/Login/pwd3.png);
-            background-size: 20px;
         }
 
         #login {
             cursor: pointer;
             background: #6EC4DB;
-            width: 150px;
-            height: 50px;
+            width: 8vw;
+            height: 5vh;
             color: #fff;
             font-family: calibri;
-            font-size: 3.2vh;
+            font-size: 2.8vh;
             display: block;
-            margin: 5px auto 0px auto;
-            border-radius: 10px;
+            margin: 1vh auto 0px auto;
+            border-radius: 1vh;
             box-shadow: 5px 5px 3px #333;
-            letter-spacing: 2px;
+            letter-spacing: 0.2vw;
             text-shadow: 1px 1px 3px #333;
         }
-
+		#wrap_bottom{
+			width:fit-content;
+			margin: 2.8vh auto 0px auto;
+		}
         #div1,
         #div2 {
             float: left;
-            margin-top: 30px;
-            margin-left: 75px;
-            width: 90px;
-            height: 30px;
+            width: 6vw;
+            height: 3.3vh;
             background-color: rgba(110, 195, 219, 0.7);
             border-radius: 5px;
             box-shadow: 2px 3px 3px #333;
@@ -93,15 +96,15 @@
 
             color: #fff;
             font-weight: bold;
-            font-size: 2.2vh;
+            font-size: 2vh;
             font-family: ZhengHei;
             text-align: center;
-            line-height: 30px;
+            line-height: 3.3vh;
             text-shadow: 1px 1px 3px #333;
         }
 
         #div2 {
-            margin-left: 20px;
+             margin-left: 1vw; 
         }
 
         #div1:hover,
@@ -114,9 +117,9 @@
         #shopping_cart,
         #group_img {
             display: block;
-            margin: 30px auto;
-            height: 120px;
-            width: 120px;
+            margin: 3vh auto;
+            height: 11.2vh;
+            width: 7vw;
         }
 
         #group_img {
@@ -126,11 +129,11 @@
         #shop,
         #group {
             display: block;
-            margin: 30px auto 0px auto;
-            width: 200px;
-            height: 40px;
+            margin: 1vh auto 0px auto;
+            width: 10vw;
+            height: 3.8vh;
             background-color: rgba(250, 124, 146, 0.7);
-            border-radius: 10px;
+            border-radius: 1vh;
             box-shadow: 5px 5px 3px #333;
             cursor: pointer;
 
@@ -139,7 +142,7 @@
             font-weight: bold;
             font-size: 2.3vh;
             font-family: ZhengHei;
-            letter-spacing: 5px;
+            letter-spacing: 0.3vw;
             text-shadow: 2px 2px 3px #333;
         }
 
@@ -150,13 +153,16 @@
         
         #errorMsgs{
         	display:block;
-        	height:40px;
-        	margin-left:60px;
+        	height:3.5vh;
+        	margin-left:3vw;
         }
         ul{
-        	font-size: 2vh;
-        	font-weight: bold;
         	margin:0px;
+        }
+        li{
+        	font-size: 1.5vh;
+        	font-weight: bold;
+        	margin-top: 0.5vh;
         }
     </style>
     <script>
@@ -179,13 +185,16 @@
         </div>
 
         <div id="wrap">
-        	<form METHOD="POST" action="member.do">
+        <form METHOD="POST" action="member.do">
             <img src="login/Login/icon5.png">
             <p>Sign In</p>
             <input name="mb_id" type="text" placeholder="請輸入帳號"><br>
             <input name="mb_pwd" type="password" placeholder="請輸入密碼"><br>
+            <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
+       		<input type="hidden" name="action" value="getOne_For_Display">
+        
             
-            <div id="errorMsgs">
+        	<div id="errorMsgs">
 	            <c:if test="${not empty errorMsgs}">
 					<ul>
 					    <c:forEach var="message" items="${errorMsgs}">
@@ -196,12 +205,12 @@
 			</div>
 			
             <input id="login" type="submit" value="LOGIN"><br>
-            <a href="addMember.jsp"><div id="div1">會員註冊</div></a>
-            <div id="div2">忘記密碼</div><br>
+        </form>
+            <div id="wrap_bottom">
+	            <a href="addMember.jsp"><div id="div1">會員註冊</div></a>
+	            <div id="div2">忘記密碼</div><br>
+            </div>
             
-            <input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
-       		<input type="hidden" name="action" value="getOne_For_Display">
-            </form>
         </div>
     </div>
 
