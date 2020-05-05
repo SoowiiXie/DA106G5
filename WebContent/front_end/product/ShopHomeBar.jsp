@@ -15,10 +15,10 @@
 
 	pageContext.setAttribute("list", list); //for EL
 	
-	MemberService memberSvc = new MemberService();
+	/* MemberService memberSvc = new MemberService();
 	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
 	//用memberVO先取得會常使用到的mb_id
-	session.setAttribute("mb_id", memberVO.getMb_id());
+	session.setAttribute("mb_id", memberVO.getMb_id()); */
 %>
 <!DOCTYPE html>
 <html>
