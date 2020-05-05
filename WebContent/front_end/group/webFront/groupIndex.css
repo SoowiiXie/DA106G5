@@ -38,7 +38,7 @@
   color:#3c3c3c;
   font-family: Microsoft JhengHei, Helvetica, Arial, sans-serif;
   font-weight:500;
-  font-size: 10px;
+  font-size: 14px;
   border-radius: 0;
   line-height: 10px;
   background-color: #fbfbfb;
@@ -123,7 +123,7 @@ input:focus, textarea:focus {
   cursor:pointer;
   background-color: #3498db;
   color:white;
-  font-size:18px;
+  font-size:12px;
   padding-top:3px;
   padding-bottom:5px;
   -webkit-transition: all 0.3s;

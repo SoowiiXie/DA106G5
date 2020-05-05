@@ -71,11 +71,11 @@
 <div id="divAll">
 		<table id="tableAdd">
 			<tr><td>
-				 <h3>揪團資料新增 - addGroup.jsp</h3></td><td>
+				 <h3>發布揪團</h3></td><td>
 				 <h4>
-					<a href="<%= request.getContextPath() %>/front_end/group/select_page.jsp">
+					<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp">
 					<img src="<%= request.getContextPath() %>/front_end/group/images/homeIcon.png" width="75" height="75" border="0">
-					回首頁</a>
+					回到瀏覽揪團</a>
 				 </h4>
 			</td></tr>
 		</table>
@@ -151,9 +151,9 @@
 			
 			<tr>
 				<td>揪團內容:</td>
-				<td><input type="TEXT" name="grp_content" size="45"
+				<td><textarea type="textarea" name="grp_content" size="45" rows="2"
 					 value="<%= (grouperVO==null)? "好好玩喔喔喔" : grouperVO.getGrp_content()%>"  
-					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團內容" id="name" /> </td>
+					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團內容" id="name" /></textarea></td>
 			</tr>
 			
 			<tr>
