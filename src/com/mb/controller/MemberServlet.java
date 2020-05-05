@@ -45,6 +45,9 @@ public class MemberServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
+		// 通知
+		// 忘記密碼
+		// 修改 / 新增會員畫面
 		// 寄出驗證信後跳Alert
 		// 登入過再進入登入頁面會導到首頁(用濾器)
 
