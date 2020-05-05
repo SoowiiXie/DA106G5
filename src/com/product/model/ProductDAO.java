@@ -1,19 +1,14 @@
 package com.product.model;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.product.model.*;
-
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.*;
 
 public class ProductDAO implements ProductDAO_interface {
@@ -729,7 +724,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 	public static void main(String[] args) {
 
-		ProductDAO dao = new ProductDAO();
+//		ProductDAO dao = new ProductDAO();
 //		try {
 //			FileInputStream in;
 //			in = new FileInputStream("/Users/cenaliou/Desktop/1.jpg");
