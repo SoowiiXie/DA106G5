@@ -31,7 +31,7 @@
     }
     
 	#wrapAll{
-		margin: 10vh auto 0px auto;
+		margin: 10vh auto 0px auto; 
 		background-color: rgba(255, 255, 255, 0.6);
             
         width: 25vw;
