@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      <%@ page import="com.product.model.*"%>
+     <%@ page import="com.mb.model.*"%>
 <%@ page import="com.pd_type.model.*"%>
 <%@ page import="java.util.*"%>
      
@@ -13,6 +14,11 @@
 	Collections.reverse(list);
 
 	pageContext.setAttribute("list", list); //for EL
+	
+	MemberService memberSvc = new MemberService();
+	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	//用memberVO先取得會常使用到的mb_id
+	session.setAttribute("mb_id", memberVO.getMb_id());
 %>
 <!DOCTYPE html>
 <html>

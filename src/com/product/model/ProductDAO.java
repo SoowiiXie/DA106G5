@@ -18,7 +18,7 @@ public class ProductDAO implements ProductDAO_interface {
 	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = "INSERT INTO product (pd_no, pd_name, pd_price, pd_detail, pd_typeno, pd_pic) VALUES ('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status FROM product order by pd_no";
+	private static final String GET_ALL_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status ,pd_pic FROM product order by pd_no";
 	private static final String GET_ONE_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status, pd_pic FROM product where pd_no = ?";
 	private static final String DELETE = "DELETE FROM product where pd_no = ?";
 	private static final String UPDATE = "UPDATE product set pd_name=?, pd_price=?, pd_detail=? , pd_typeno=? , pd_status=? ,pd_pic=? where pd_no = ?";
