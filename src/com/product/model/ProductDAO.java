@@ -726,7 +726,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 	public static void main(String[] args) {
 
-//		ProductDAO dao = new ProductDAO();
+		ProductDAO dao = new ProductDAO();
 //		try {
 //			FileInputStream in;
 //			in = new FileInputStream("/Users/cenaliou/Desktop/1.jpg");
@@ -786,43 +786,43 @@ public class ProductDAO implements ProductDAO_interface {
 //		  }
 
 		// 查詢單一商品
-//		System.out.println("-----查詢單一商品-----");
-//		System.out.println("");
-//		ProductVO productVO3 = dao.findOneProduct("PDN00043");
-//		System.out.println("商品名稱：" + productVO3.getPd_name());
-//		System.out.println("商品價格：" + productVO3.getPd_price());
-//		System.out.print("商品詳述：" + productVO3.getPd_detail());
-//		System.out.println("商品類型：" + productVO3.getPd_typeNo());
-//		System.out.println("商品狀態：" + productVO3.getPd_status());
-//
-//		ArrayList<String> sizeList = new ArrayList<String>();
-//
-//		if (productVO3.getPd_typeNo().equals("PTN00010") || productVO3.getPd_typeNo().equals("PTN00011")
-//				|| productVO3.getPd_typeNo().equals("PTN00012")) {
-//			sizeList.add("無");
-//			System.out.print("配件尺寸:"+sizeList);
-//
-//		} else if (productVO3.getPd_typeNo().equals("PTN00003") || productVO3.getPd_typeNo().equals("PTN00006")
-//				|| productVO3.getPd_typeNo().equals("PTN00009")) {
-//			sizeList.add("US7.5");
-//			sizeList.add("US8.0");
-//			sizeList.add("US8.5");
-//			sizeList.add("US9.0");
-//			sizeList.add("US9.5");
-//			sizeList.add("US10.0");
-//			System.out.print("鞋類尺寸:"+sizeList);
-//			
-//		} else {
-//			sizeList.add("XS");
-//			sizeList.add("S");
-//			sizeList.add("M");
-//			sizeList.add("L");
-//			sizeList.add("XL");
-//			sizeList.add("XXL");
-//			System.out.print("服飾尺寸:"+sizeList);
-//	
-//
-//		}
+		System.out.println("-----查詢單一商品-----");
+		System.out.println("");
+		ProductVO productVO3 = dao.findOneProduct("PDN00002");
+		System.out.println("商品名稱：" + productVO3.getPd_name());
+		System.out.println("商品價格：" + productVO3.getPd_price());
+		System.out.print("商品詳述：" + productVO3.getPd_detail());
+		System.out.println("商品類型：" + productVO3.getPd_typeNo());
+		System.out.println("商品狀態：" + productVO3.getPd_status());
+
+		ArrayList<String> sizeList = new ArrayList<String>();
+
+		if (productVO3.getPd_typeNo().equals("PTN00010") || productVO3.getPd_typeNo().equals("PTN00011")
+				|| productVO3.getPd_typeNo().equals("PTN00012")) {
+			sizeList.add("無");
+			System.out.print("配件尺寸:"+sizeList);
+
+		} else if (productVO3.getPd_typeNo().equals("PTN00003") || productVO3.getPd_typeNo().equals("PTN00006")
+				|| productVO3.getPd_typeNo().equals("PTN00009")) {
+			sizeList.add("US7.5");
+			sizeList.add("US8.0");
+			sizeList.add("US8.5");
+			sizeList.add("US9.0");
+			sizeList.add("US9.5");
+			sizeList.add("US10.0");
+			System.out.print("鞋類尺寸:"+sizeList);
+			
+		} else {
+			sizeList.add("XS");
+			sizeList.add("S");
+			sizeList.add("M");
+			sizeList.add("L");
+			sizeList.add("XL");
+			sizeList.add("XXL");
+			System.out.print("服飾尺寸:"+sizeList);
+	
+
+		}
 
 		// 修改物品狀態
 //		ProductVO productVO4 = new ProductVO();

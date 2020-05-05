@@ -1,5 +1,9 @@
 package com.common;
 
+import static com.common.Common.DRIVER_CLASS;
+import static com.common.Common.PASSWORD;
+import static com.common.Common.URL;
+import static com.common.Common.USER;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -12,34 +16,18 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
 class FakeBlob {
-	private static DataSource ds = null; //連線池
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
 	public static void main(String[] args) {
-//		try {
-//			Class.forName(DRIVER_CLASS);
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//			return;
-//		}
-		
-		
+		try {
+			Class.forName(DRIVER_CLASS);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
 
 		// 存圖片到地標資料庫
 		String sql_updateLoc = "UPDATE LOCATION SET LOC_PIC = ? WHERE LOC_NO = ?";
-		try (Connection connection = ds.getConnection();
+		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql_updateLoc);) {
 			int rowCount = 0;
 			FileInputStream in;
@@ -69,7 +57,7 @@ class FakeBlob {
 		
 		// 存圖片到商品資料庫
 		String sql_updatePd = "UPDATE PRODUCT SET PD_PIC = ? WHERE PD_NO = ?";
-		try (Connection connection = ds.getConnection();
+		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql_updatePd);) {
 			int rowCount = 0;
 			FileInputStream in;
@@ -99,7 +87,7 @@ class FakeBlob {
 
 		// 存圖片到資料庫
 		String sql_updateWth = "UPDATE Weather SET weather_pic = ? WHERE wth_status = ?";
-		try (Connection connection = ds.getConnection();
+		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql_updateWth);) {
 			int rowCount = 0;
 			FileInputStream in;
@@ -235,7 +223,7 @@ class FakeBlob {
 		
 		// 存圖片到資料庫
 		String sql_updatePath = "UPDATE PATH SET PATH_PIC = ? WHERE PATH_NO = ?";
-		try (Connection connection = ds.getConnection();
+		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql_updatePath);) {
 			int rowCount = 0;
 			FileInputStream in;
@@ -265,7 +253,7 @@ class FakeBlob {
 		
 		// 存圖片到資料庫
 		String sql_updateLive = "UPDATE LIVE SET LIVE_PIC = ? WHERE LIVE_NO = ?";
-		try (Connection connection = ds.getConnection();
+		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql_updateLive);) {
 			int rowCount = 0;
 			FileInputStream in;
