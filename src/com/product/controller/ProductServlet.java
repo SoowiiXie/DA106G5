@@ -87,6 +87,38 @@ public class ProductServlet extends HttpServlet {
 				ProductVO productVO = new ProductVO();
 
 				/*--------------------------------------------------------------*/
+				//＝＝＝＝＝＝＝＝＝＝＝＝＝＝多張圖片尚未完成=======================//
+//				List<byte[]> pd_pics = new ArrayList<byte[]>();
+//				byte[] pd_pic = null;
+//				InputStream in;
+//				BufferedInputStream bf;
+//
+//				try {
+//
+//					Collection<Part> parts = req.getParts();
+//					int piclen = 0;
+//					for(Part part: parts) {
+//						in = part.getInputStream();
+//						bf = new BufferedInputStream(in);
+//						if (part.getSize() != 0) {
+//							pd_pic = new byte[bf.available()]; // 暫存記憶體
+//							piclen++;
+//						}
+//						bf.read(pd_pic);
+//						bf.close();
+//						in.close();
+//						
+//						pd_pics.add(pd_pic);
+//						if(piclen == 0) {
+//							errorMsgs.add("請上傳產品圖片");
+//						}
+//
+////						if (picBase64 != null && picBase64.trim().length() != 0) {
+////							pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+////						}
+//					}
+				//＝＝＝＝＝＝＝＝＝＝＝＝＝＝多張圖片尚未完成=======================//
+					
 				byte[] pd_pic = null;
 				InputStream in;
 				BufferedInputStream bf;

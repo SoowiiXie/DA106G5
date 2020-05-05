@@ -104,7 +104,7 @@ margin-top:100;
 	   <tr>
 	     <td bgcolor=#FFD2D2 rowspan="2">商品圖片</td>
 		 <td bgcolor=#FFD2D2><input type="file" name="pd_pic" onchange="setImg(this)"> 
-		 <input type="file" name="pd_pic2" onchange="setImg(this)">
+		 
 		 </td>
 	</tr>
 		 <tr>
