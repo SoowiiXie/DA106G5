@@ -277,7 +277,7 @@ public class MemberServlet extends HttpServlet {
 
 		if ("insert".equals(action)) { // 新增
 			
-			long time_start = System.currentTimeMillis();
+			
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -360,11 +360,8 @@ public class MemberServlet extends HttpServlet {
 						+ Base64.getEncoder().encodeToString(mb_id.getBytes("utf-8"));
 				
 				// 寄驗證信
-				MailService mailService = new MailService();
-				mailService.sendMail(mb_email, subject, content);
-				
-				long time_end = System.currentTimeMillis();
-				System.out.println("花了：" + (time_end-time_start)/1000 + "秒");
+				MailService mailService = new MailService(mb_email, subject, content);
+				mailService.start();
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				String url = "/front_end/member/login_New.jsp"; //
