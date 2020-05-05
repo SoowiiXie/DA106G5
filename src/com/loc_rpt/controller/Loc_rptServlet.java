@@ -11,6 +11,8 @@ import com.location.model.*;
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
 import com.loc_rpt.model.*;
+import com.cp_get.model.*;
+import com.msg.model.*;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
 		* 1024 * 1024)
@@ -256,6 +258,15 @@ public class Loc_rptServlet extends HttpServlet {
 					LocationService locationSvc = new LocationService();
 					LocationVO locationVO = locationSvc.getOneLocation(loc_no);
 					locationSvc.updateLocation(locationVO.getLoc_no(), locationVO.getLoc_typeno(), locationVO.getLongitude(), locationVO.getLatitude(), 2, locationVO.getLoc_address(), locationVO.getLoc_pic());
+					/*************************** 升等後會員拿到優惠卷 ****************************************/
+					Cp_getService cp_getSvc = new Cp_getService();
+					Cp_getVO cp_getVO = new Cp_getVO();
+					cp_getVO.setMb_id(mb_id);
+					cp_getVO.setCp_no("CPN"+String.format("%05d", memberVO.getMb_lv()));
+					cp_getSvc.aMemberGetCoupon(cp_getVO);
+					/*************************** 會員拿到優惠卷後寄訊息給對方 ****************************************/
+					MessageService messageSvc = new MessageService();
+					messageSvc.addMessage("androidlababy520" , mb_id, memberVO.getMb_name()+"恭喜你升上"+(memberVO.getMb_lv()+1)+"等/n請至商城收取您的優惠券");
 				}
 				Loc_rptVO loc_rptVO = new Loc_rptVO();
 				loc_rptVO.setLoc_rpt_no(loc_rpt_no);
@@ -267,7 +278,7 @@ public class Loc_rptServlet extends HttpServlet {
 				Loc_rptService loc_rptSvc = new Loc_rptService();
 				loc_rptVO = loc_rptSvc.updateLoc_rptByLocNo(loc_rpt_no, rpt_reason, rpt_status, loc_no, mb_id);
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-				String url ="/back_end/loc_rpt/listAllLoc_rpt.jsp";  // 阿水原路徑
+//				String url ="/back_end/loc_rpt/listAllLoc_rpt.jsp";  // 阿水原路徑
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 

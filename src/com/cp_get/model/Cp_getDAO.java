@@ -10,10 +10,10 @@ import javax.sql.DataSource;
 import java.sql.*;
 
 public class Cp_getDAO implements Cp_getDAO_interface {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:49161:xe";
-	String userid = "DA106G5";
-	String passwd = "DA106G5";
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@localhost:49161:xe";
+//	String userid = "DA106G5";
+//	String passwd = "DA106G5";
 
 	// 新增某會員的優惠卷。
 	private static final String ADD_COUPON = "INSERT INTO cp_get (mb_id, cp_no) VALUES (?,?)";
