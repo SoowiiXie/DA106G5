@@ -50,6 +50,16 @@
 		<url-pattern>/InitData</url-pattern>
 	</servlet-mapping>
 	
+<!-- 假圖片 -->
+		<servlet>
+			<servlet-name>FakeBlobTest</servlet-name>
+			<servlet-class>com.common.FakeBlobTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>FakeBlobTest</servlet-name>
+			<url-pattern>/FakeBlobTest</url-pattern>
+		</servlet-mapping>
+
 
 <!-- 戍乂責任區 開始-->
 
