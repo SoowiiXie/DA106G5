@@ -139,11 +139,6 @@ public class Cp_getDAO implements Cp_getDAO_interface {
 			pstmt = con.prepareStatement(SEARCH_A_MEMBER_ALL_COUPON);
 			pstmt.setString(1, mb_id);
 			rs = pstmt.executeQuery();
-			System.out.println("===============DAO顯示開始===============");
-			System.out.println("");
-			System.out.println("會員帳號：" + mb_id);
-			System.out.println("");
-			System.out.println("===============DAO顯示結束===============");
 			while (rs.next()) {
 
 				cp_getVO = new Cp_getVO();

@@ -223,7 +223,7 @@ text-align: center;
 width:200px;
 height:300px;
 }
-.bbb{
+.PdName{
 text-align: center;
 width:200px;
 height:200x;

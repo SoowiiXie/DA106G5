@@ -110,7 +110,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-//			Class.forName(driver);
+//		Class.forName(driver);
 //			con = DriverManager.getConnection(url, userid, passwd);
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);

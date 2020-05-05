@@ -45,11 +45,11 @@ position: relative;
 
 
 }
-.bbb{
+.PdName{
 background-color:#context;
 height:50px;
 }
-.ccc{
+.PdPrice{
 background-color:#context;
 height:30px;
 }
@@ -68,14 +68,14 @@ color: #777;
 </head>
 <body>
 <div style="width:100%; border-style: solid; border-color:red;" >
-<div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div>
+ <div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div> 
 
 	<%-- 
 	
 	<a
 		href="<%=request.getContextPath()%>/front_end/product/MemberSingIn.jsp">會員登錄</a>
 	<br>
-	<br> --%>
+	<br> 
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -88,8 +88,7 @@ color: #777;
 	</c:if>
 <div style="border-style: solid; border-color:red;">
 	<div class="a" style="float:left;" >
-	  <table style="float:left; border-style: solid;
-border-color:red;">
+	  <table style="float:left; border-style: solid; border-color:red;">
 	    <tr>
 	      <td><%@ include file="ShopHomePage1.file"%></td>
 	      <td><%@ include file="ShopHomePage2.file"%></td>   
@@ -99,8 +98,7 @@ border-color:red;">
 	</div>
 
 	
-		<%-- <form method="POST"
-			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
+		 <form method="POST" action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
 			<table style="float:right; border-style: solid; border-color:red;">
 				<tr>
@@ -118,13 +116,11 @@ border-color:red;">
 
 
 					<td>最低價格：</td>
-					<td><input type="TEXT" name="lowPrice" style="width:50px;"
-						value="${productVO.pd_price}"></td>
+					<td><input type="TEXT" name="lowPrice" style="width:50px;" value="${productVO.pd_price}"></td>
 
 
 					<td>最高價格：</td>
-					<td><input type="TEXT" name="highPrice" style="width:50px;"
-						value="${productVO.pd_price}"></td>
+					<td><input type="TEXT" name="highPrice" style="width:50px;" value="${productVO.pd_price}"></td>
 					<td><input type="submit" name="Submit" value="搜尋商品"></td>
 				</tr>
 			</table>
@@ -132,14 +128,11 @@ border-color:red;">
 
 			<input type="hidden" name="action" value="CompositeQuery_Product">
 			
-		</form> --%>
+		</form> 
 		<div class="a" style="float:left;" >
-	  <table  style="float:left; border-style: solid;
-border-color:red;">
+	  <table  style="float:left; border-style: solid; border-color:red;">
 	    <tr>
-	     
 	      <td><%@ include file="ShopHomePage3.file"%></td>
-	    
 	    </tr>
 	   </table>
 
@@ -161,14 +154,14 @@ border-color:red;">
 							></a></td>
 				</tr>
 				<tr>
-					<td class="bbb"><a
+					<td class="PdName"><a
 						href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}&&whichPage=<%=whichPage%>'>${productVO.pd_name}</a></td>
 				<tr>
-					<td class="ccc"><font color="red"><b>${productVO.pd_price} 元</b></font></td>
+					<td class="PdPrice"><font color="red"><b>${productVO.pd_price} 元</b></font></td>
 
 				</tr>
 				<tr>
-					<td class="ccc">${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
+					<td class="PdPrice">${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
 				</tr>
 
 			</table>
@@ -177,23 +170,7 @@ border-color:red;">
 	<div class="foot"></div>
   <div class="buttonBar" style="margin-top:100px"></div>
 
-	<%--    <jsp:include page="/front_end/product/ProductCart.jsp" flush="true" /> --%>
-	<%-- 	<br>
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
-	<br>	
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/front_end/product/ProductCart.jsp">${mb_id}的購物車</a>
-	<br>
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp">會員${mb_id}的優惠卷</a>
-	<br>
-	<br>
-	<a
-		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp">${mb_id}的商品收藏</a> --%>
+
 </div>
 
 
