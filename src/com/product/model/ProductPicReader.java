@@ -9,12 +9,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 /**
  * Servlet implementation class ProductPicReader
@@ -26,6 +30,16 @@ public class ProductPicReader extends HttpServlet {
 	String url = "jdbc:oracle:thin:@localhost:49161:xe";
 	String userid = "DA106G5";
 	String passwd = "DA106G5";
+	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G5_DB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8"); // 接收相對應的編碼請求(有中文時)
@@ -35,8 +49,9 @@ public class ProductPicReader extends HttpServlet {
 		ServletOutputStream out = res.getOutputStream(); // 瀏覽器的輸出
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			Statement stmt = con.createStatement();
 			String pd_no = req.getParameter("pd_no").trim();
 			System.out.println(pd_no);
