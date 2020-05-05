@@ -106,7 +106,7 @@
 									placeholder="請輸入查詢的揪團標題" id="name" /><br> <b style="color: white">輸入揪團內容:</b>
 								<input type="text" name="grp_content"
 									class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
-									placeholder="請輸入查詢的揪團內容123" id="name" /><br>
+									placeholder="請輸入查詢的揪團內容" id="name" /><br>
 
 								<!-- 	    <b>輸入揪團人數上限:</b> -->
 								<!--         <input type="text" name="grp_personmax"><br> -->
