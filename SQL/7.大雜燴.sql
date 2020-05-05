@@ -774,6 +774,9 @@ CREATE TABLE product (
  pd_name VARCHAR2(100) NOT NULL,
  pd_price NUMBER(10) NOT NULL,
  pd_pic BLOB,
+ pd_pic2 BLOB,
+ pd_pic3 BLOB,
+ pd_pic4 BLOB,
  pd_detail CLOB,
  pd_status NUMBER(1) DEFAULT '1' NOT NULL,
  pd_typeno VARCHAR2(30)
@@ -1005,7 +1008,7 @@ values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子EASYWALK緩震�
 Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL, pd_status)  
 values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子KIRIN系列減震耐磨運動跑鞋_艷桃紅','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。','2');
 Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL, pd_status)  
-values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子MissQ多功能休閒鞋_馬卡龍粉','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。');
+values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'女子MissQ多功能休閒鞋_馬卡龍粉','1750','PTN00006','極輕量的REACT中底，加上輕鬆跑步就能感受到的回饋感，對所有跑者來說都是新的體驗，加上耐用性很高，應付3～4場馬拉松比賽都可以說是輕鬆寫意，包覆性和腳踝的固定性也都是這款鞋子的最大特色，不管是新手到進階都是可以使用的全方位鞋款。','2');
 
 Insert into PRODUCT(PD_NO, PD_NAME, PD_PRICE, PD_TYPENO, PD_DETAIL, pd_status)  
 values('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),'兒童經典百搭休閒外套_珊瑚粉','1100','PTN00007','此系列織物具備濕氣調節、吸臭、抗UV、速乾、涼感等材質技術。一般應用於運動服、戶外休閒服、家居服、一般服飾、內睡衣與寢具及配件等。國際專利的SC環保科技咖啡紗，具環保且永久的高機能性。SC環保科技咖啡紗同時有紫外線防護和絕佳的異味控制效果。','2');
