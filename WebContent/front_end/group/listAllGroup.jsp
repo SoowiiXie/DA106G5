@@ -5,7 +5,7 @@
 <%@ page import="com.grouper.model.*"%>
 <%@ page import="com.location.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
-所以揪團資料
+所有揪團資料
 <%
     GrouperService grpSvc = new GrouperService();
     List<GrouperVO> list = grpSvc.getAll();
@@ -69,7 +69,7 @@
   background: #D5E0CC;
   }
   #allGroup, #allGroup tr,#allGroup td,#allGroup th{
-  	width: 1800px;
+  	width: 1600px;
   	border: 1px solid #000;
   	margin: 50px auto 5px auto;
   }
@@ -106,13 +106,13 @@
 	<tr>
 		<th>揪團編號</th>
 		<th>發起人會員編號</th>
-		<th>地標編號</th>
+<!-- 		<th>地標編號</th> -->
 <!-- 		<th>報名開始時間</th> -->
 <!-- 		<th>報名結束時間</th> -->
 <!-- 		<th>活動開始時間</th> -->
 <!-- 		<th>活動結束時間</th> -->
 		<th>揪團標題</th>
-		<th>揪團內容</th>
+<!-- 		<th>揪團內容</th> -->
 		<th>人數上限</th>
 		<th>人數下限</th>
 		<th>目前人數</th>
@@ -131,7 +131,7 @@
 <%-- 			<td>${grouperVO.loc_no}</td> --%>
 <!-- 			改寫join -->
 
-			<td>${locSvc.getOneLocation(grouperVO.getLoc_no()).loc_address} </td>
+<%-- 			<td>${locSvc.getOneLocation(grouperVO.getLoc_no()).loc_address} </td> --%>
 			
 <%-- 			<td><c:forEach var="LocationVO" items="${locSvc.all}"> --%>
 <%--                     <c:if test="${grouperVO.loc_no==LocationVO.loc_no}"> --%>
@@ -155,7 +155,7 @@
 <%-- 			<td>${grouperVO.grp_start}</td>  --%>
 <%-- 			<td>${grouperVO.grp_end}</td> --%>
 			<td>${grouperVO.grp_name}</td>
-			<td>${grouperVO.grp_content}</td>
+<%-- 			<td>${grouperVO.grp_content}</td> --%>
 			<td>${grouperVO.grp_personmax}</td>
 			<td>${grouperVO.grp_personmin}</td>
 <%-- 			<td>${grouperVO.grp_personcount}</td> --%>
@@ -196,6 +196,7 @@
 		</tr>
 	</c:forEach>
 </table>
+
 <%@ include file="page2.file" %>
 
 <c:if test="${openModal!=null}">
@@ -208,7 +209,7 @@
 			<div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
-            <h3 class="modal-title" id="myModalLabel">揪團時間</h3>
+            <h3 class="modal-title" id="myModalLabel">揪團細節</h3>
 			
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
