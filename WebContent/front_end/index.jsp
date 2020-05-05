@@ -395,7 +395,7 @@
 					<!--<img class="img-profile rounded-circle" src="https://profile.line-scdn.net/0hkW0Z-fy1NHgNIxwum5dLLzFmOhV6DTIwdUQuSiEqaxslEnN7NxcoHHx3PRtwQSN5Y0xzF3wqOUgi" /> -->
 					</a> <!-- Dropdown - User Information -->
 						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="<%= request.getContextPath() %>/front_end/member/listOneMember.jsp"> 
+							<a class="dropdown-item" href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=member/update_member.jsp"> 
 								<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 個人資訊
 							</a> 
 							<a class="dropdown-item" href="#"> 
