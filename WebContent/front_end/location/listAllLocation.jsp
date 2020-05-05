@@ -18,6 +18,33 @@
 <head>
 <title>所有地標資料 - listAllLocation.jsp</title>
 
+	<!-- Custom fonts for this template-->
+	<link href="<%= request.getContextPath() %>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
+	<!-- Custom styles for this template-->
+	<link href="<%= request.getContextPath() %>/css/sb-admin-2.min.css" rel="stylesheet" />
+	
+	<!-- modal -->
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	
+	<!-- 會員智慧搜尋 -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
+	<!-- switch button -->
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+	
+	<!-- index.css -->
+	<link href="<%= request.getContextPath() %>/css/index.css" rel="stylesheet" />
+	
+	<!-- sweet alert -->
+	<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css" rel="stylesheet">
+	
+	<!-- 彈跳div -->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 <style>
 table#table-1 {
 	background-color: #CCCCFF;
@@ -53,6 +80,16 @@ th, td {
 	padding: 5px;
 	text-align: center;
 }
+
+	#allStaff_title{
+		font-family: 'italics_hollow';
+		line-height:10vh;
+		font-size: 5.5vh;
+		font-weight:bold;
+		letter-spacing: 0.3vw;
+		color:#0373f0;
+		border-bottom:3px solid #0373f0;
+	}
 </style>
 
 </head>
@@ -82,8 +119,10 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
+	<div></div>
+	<span id="allStaff_title" class="d-block mx-auto">所有管理員資料</span>
 	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
-	<table>
+	<table class="table table-hover table-striped col-10 mx-5">
 		<tr>
 			<th>地標編號</th>
 			<th>地標類別編號</th>
@@ -94,9 +133,9 @@ th, td {
 			<th>圖片</th>
 			<th>上架/下架</th>
 		</tr>
-<%-- 		<%@ include file="page1.file"%> --%>
-<%-- 		<c:forEach var="locationVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
-		<c:forEach var="locationVO" items="${list}">
+		<%@ include file="pages/page1.file"%>
+		<c:forEach var="locationVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<%-- 		<c:forEach var="locationVO" items="${list}"> --%>
 	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
 			<tr>
 				<td>${locationVO.loc_no}</td>
@@ -127,7 +166,8 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-<%-- 	<%@ include file="page2.file"%> --%>
-
+	<div class="mx-auto" style="width: 30rem;">
+		<%@ include file="pages/page2.file"%>
+	</div>
 </body>
 </html>

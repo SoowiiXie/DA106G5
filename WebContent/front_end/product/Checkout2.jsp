@@ -121,7 +121,8 @@ margin-top:100;
 		
 			<tr bgcolor=#C4E1FF>
 				<td style ="height:100px;"><div align="center" >
-				<a href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=<%=order.getPd_no()%>'></a><img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=<%=order.getPd_no()%>" style="width:auto;">
+				<a href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=<%=order.getPd_no()%>'></a>
+				<img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=<%=order.getPd_no()%>" style="width:auto;">
 						
 					</div></td>
 					<td width="100" ><div align="center">
