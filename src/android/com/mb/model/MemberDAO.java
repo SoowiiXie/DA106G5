@@ -48,8 +48,59 @@ public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.Me
 
 	@Override
 	public MemberVO findByPrimaryKey(String mb_id) {
-		// TODO Auto-generated method stub
-		return super.findByPrimaryKey(mb_id);
+		MemberVO memberVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT);
+
+			pstmt.setString(1, mb_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVo 也稱為 Domain objects
+				memberVO = new MemberVO();
+				memberVO.setMb_id(rs.getString("mb_id"));
+				memberVO.setMb_pwd(rs.getString("mb_pwd"));
+				memberVO.setMb_name(rs.getString("mb_name"));
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return memberVO;
 	}
 
 	@Override

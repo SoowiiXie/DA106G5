@@ -70,7 +70,11 @@ public class MemberServlet extends HttpServlet {
 				res.setContentType("image/jpeg");
 				res.setContentLength(image.length);
 				os.write(image);
-			}
+			} 
+		} else if (action.equals("findById")) {
+			String userId = jsonObject.get("userId").getAsString();
+			MemberVO member = memberDao.findByPrimaryKey(userId);
+			writeText(res, member == null ? "" : gson.toJson(member));
 		}
 		
 		
