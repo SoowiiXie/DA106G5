@@ -197,8 +197,9 @@ margin-top:100;
 			<input type="radio" name="payMethod" value="貨到付款">貨到付款
 			<input type="radio" name="payMethod" value="信用卡付費">信用卡付費 
 			<input type="radio" name="payMethod" value="ibon繳費">ibon繳費
+			<input type="radio" name="payMethod" value="LinePay">LinePay
 		</div>
-		<input type="hidden" name="action" value="getOd_detail_Information_Line"> 
+		<input type="hidden" name="action" value="getOd_detail_Information"> 
 		<input type="hidden" name="mb_id" value="${mb_id}"> 
 		<input type="submit" name="Submit" value="結帳">
 	</form>
