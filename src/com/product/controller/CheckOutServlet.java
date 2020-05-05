@@ -1,7 +1,6 @@
 package com.product.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -123,7 +122,7 @@ public class CheckOutServlet extends HttpServlet {
 			
 			Od_detailLineVO od_detailLineVO = new Od_detailLineVO();
 //			od_detailLineVO.setProductName(productName);
-			od_detailLineVO.setProductName("abcMart");
+			od_detailLineVO.setProductName("trytrykan");
 			od_detailLineVO.setAmount(amount);
 			od_detailLineVO.setCurrency(currency);
 			
@@ -150,7 +149,7 @@ public class CheckOutServlet extends HttpServlet {
 //			String productImageUrl = Base64.encodeBytes(buyOne.getPd_pic());
 //			locationJsonVO.setPic(Base64.getEncoder().encodeToString(rs.getBytes("loc_pic")));
 			String productImageUrl = Base64.getEncoder().encodeToString(buyOne.getPd_pic());
-//			od_detailLineVO.setProductImageUrl(productImageUrl);
+			od_detailLineVO.setProductImageUrl("https://tshop.r10s.jp/afrobeat/cabinet/cl_kd/1346525.jpg?fitin=84:84");
 //			od_detailLineVO.setProductImageUrl("https://f.ecimg.tw/items/DIBF2RA9008PMTH/000001_1542332754.jpg");
 			
 			session.setAttribute("ordersVO", ordersVO);
@@ -160,9 +159,9 @@ public class CheckOutServlet extends HttpServlet {
 			session.setAttribute("buylistCount", 0);
 			
 			//跳轉網址(4,5)
-			String url = "/front_end/product/MemberLookOd_detail.jsp";
+			String url = "http://localhost:8081/DA106_G5/front_end/product/MemberTransaction_record.jsp";
 //			od_detailLineVO.setConfirmUrl(url);
-			od_detailLineVO.setConfirmUrl("https://javababy.herokuapp.com/tool/magnifyNextPic.html");
+			od_detailLineVO.setConfirmUrl(url);
 			
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			
@@ -184,6 +183,7 @@ public class CheckOutServlet extends HttpServlet {
 //			out.close();
 //			res.sendRedirect("https://sandbox-api-pay.line.me/v2/payments/request");
 			
+			req.setCharacterEncoding("UTF-8");
 			
 			//複製網路開始
 			boolean doSuccess = false; 
@@ -197,7 +197,7 @@ public class CheckOutServlet extends HttpServlet {
 		      
 		      //LineApi要求
 		      ((HttpURLConnection) URLConn).setRequestMethod("POST"); 
-			  URLConn.setRequestProperty("Content-Type", "application/json");
+			  URLConn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 			  URLConn.setRequestProperty("X-LINE-ChannelId", "1653839045");
 			  URLConn.setRequestProperty("X-LINE-ChannelSecret", "7df947ce3ae22422b7319419a1e4d8a5");
 		      
@@ -208,7 +208,7 @@ public class CheckOutServlet extends HttpServlet {
 		      URLConn.setRequestProperty("User-agent","Mozilla/5.0 (Windows; U; Windows NT 6.0; zh-TW; rv:1.9.1.2) "+ "Gecko/20090729 Firefox/3.5.2 GTB5 (.NET CLR 3.5.30729)"); 
 		      URLConn.setRequestProperty("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"); 
 		      URLConn.setRequestProperty("Accept-Language","zh-tw,en-us;q=0.7,en;q=0.3"); 
-		      URLConn.setRequestProperty("Accept-Charse","Big5,utf-8;q=0.7,*;q=0.7"); 
+		      URLConn.setRequestProperty("Accept-Charse","utf-8,Big5;q=0.7,*;q=0.7"); 
 		    
 //		      if (cookie != null) 
 //		        URLConn.setRequestProperty("Cookie", cookie); 
@@ -216,7 +216,7 @@ public class CheckOutServlet extends HttpServlet {
 //		        URLConn.setRequestProperty("Referer", referer); 
 //		      URLConn.setRequestProperty("Content-Type","application/x-www-form-urlencoded"); 
 //		      URLConn.setRequestProperty("Content-Length", String.valueOf(data.getBytes().length)); 
-		      URLConn.setRequestProperty("Content-Length", String.valueOf(jsonStr.getBytes().length)); 
+//		      URLConn.setRequestProperty("Content-Length", String.valueOf(jsonStr.getBytes().length)); 
 		      java.io.DataOutputStream dos = new java.io.DataOutputStream(URLConn.getOutputStream()); 
 		      dos.writeBytes(jsonStr); 
 //		      java.io.BufferedReader rd = new java.io.BufferedReader(new java.io.InputStreamReader(URLConn.getInputStream(),charset)); 
