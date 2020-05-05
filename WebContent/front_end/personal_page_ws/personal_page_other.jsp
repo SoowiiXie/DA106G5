@@ -139,17 +139,17 @@
 					<span class="text-primary">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
 					<!-- meToo按鈕 -->
 					<div style="margin-bottom: 0px;">
-						<c:if
-							test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==1}">
-							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn"
-								src="<%=request.getContextPath()%>/img/yaColor.png"
-								style="height: 2.2rem;">
+						<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==1 && (meTooSvcEL.canIMeToo(recordVO.rcd_no))}">
+							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/yaColor.png" style="height: 2.2rem;">
 						</c:if>
-						<c:if
-							test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==0}">
-							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn"
-								src="<%=request.getContextPath()%>/img/ya.png"
-								style="height: 2.2rem;">
+						<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==0 && (meTooSvcEL.canIMeToo(recordVO.rcd_no))}">
+							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/ya.png"	style="height: 2.2rem;">
+						</c:if>
+						<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==1 && !(meTooSvcEL.canIMeToo(recordVO.rcd_no))}">
+							<input class="my-2 mr-1"  type="image" src="<%=request.getContextPath()%>/img/yaColor.png"	style="height: 2.2rem;">
+						</c:if>
+						<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==0 && !(meTooSvcEL.canIMeToo(recordVO.rcd_no))}">
+							<input class="my-2 mr-1"  type="image" src="<%=request.getContextPath()%>/img/ya.png"	style="height: 2.2rem;">
 						</c:if>
 						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"
 							class="rcd_no"> <input type="hidden" name="mb_id"

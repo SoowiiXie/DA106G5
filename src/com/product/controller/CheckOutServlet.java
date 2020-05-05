@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
-import java.util.Base64;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -121,8 +120,8 @@ public class CheckOutServlet extends HttpServlet {
 			testList.add(od_detailVO);
 			
 			Od_detailLineVO od_detailLineVO = new Od_detailLineVO();
-//			od_detailLineVO.setProductName(productName);
-			od_detailLineVO.setProductName("trytrykan");
+			od_detailLineVO.setProductName(productName);
+//			od_detailLineVO.setProductName("trytrykan");
 			od_detailLineVO.setAmount(amount);
 			od_detailLineVO.setCurrency(currency);
 			
@@ -148,7 +147,7 @@ public class CheckOutServlet extends HttpServlet {
 			//這是別的套件的
 //			String productImageUrl = Base64.encodeBytes(buyOne.getPd_pic());
 //			locationJsonVO.setPic(Base64.getEncoder().encodeToString(rs.getBytes("loc_pic")));
-			String productImageUrl = Base64.getEncoder().encodeToString(buyOne.getPd_pic());
+//			String productImageUrl = Base64.getEncoder().encodeToString(buyOne.getPd_pic());
 			od_detailLineVO.setProductImageUrl("https://tshop.r10s.jp/afrobeat/cabinet/cl_kd/1346525.jpg?fitin=84:84");
 //			od_detailLineVO.setProductImageUrl("https://f.ecimg.tw/items/DIBF2RA9008PMTH/000001_1542332754.jpg");
 			
