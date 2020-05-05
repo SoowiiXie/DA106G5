@@ -782,6 +782,10 @@
 		<url-pattern>/front_end/member/listOneMember.jsp</url-pattern>
 		<url-pattern>/front_end/member/update_member.jsp</url-pattern>
 		<url-pattern>/front_end/index2.jsp</url-pattern>
+		
+		<!--商城測試-->
+		<url-pattern>/front_end/product/*</url-pattern>
+
 		<!-- 測試 -->
 		<url-pattern>/front_end/index.jsp</url-pattern>
 		<url-pattern>/front_end/group_index.jsp</url-pattern>
