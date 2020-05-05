@@ -45,7 +45,7 @@ public class MemberServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		// 註冊慢，開一執行緒跑寄信?
+		// 寄出驗證信後跳Alert
 		// 登入過再進入登入頁面會導到首頁(用濾器)
 
 		req.setCharacterEncoding("UTF-8");

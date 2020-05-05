@@ -49,7 +49,7 @@
 		</c:forEach>
 	</ul>
 </c:if>
-	<form METHOD="POST" action="member.do" enctype="multipart/form-data">
+	<form METHOD="POST" action="<%=request.getContextPath()%>/front_end/member/member.do" enctype="multipart/form-data">
 		<span id="star">*</span>為必填
 		<div>
 			<span id="star">*</span>

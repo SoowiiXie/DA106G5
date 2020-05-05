@@ -18,7 +18,7 @@
 	</ul>
 </c:if>
 
-	<form METHOD="POST" action="member.do" enctype="multipart/form-data">
+	<form METHOD="POST" action="<%=request.getContextPath()%>/front_end/member/member.do" enctype="multipart/form-data">
 	
 		帳號：${memberVO.mb_id}<br>
 		密碼：<input type="password" name="mb_pwd" value="${memberVO.mb_pwd}"><br>

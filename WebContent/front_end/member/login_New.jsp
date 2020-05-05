@@ -9,7 +9,7 @@
     <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     <style type="text/css">
         body {
-            background-image: url(login/Login/running.jpg);
+            background-image: url(<%=request.getContextPath()%>/front_end/member/login/Login/running.jpg);
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -54,7 +54,7 @@
             margin: 2.2vh auto -1.1vh auto;
             height: 2.8vh;
             border-radius: 0.8vh;
-            background-image: url(login/Login/user5.png);
+            background-image: url(<%=request.getContextPath()%>/front_end/member/login/Login/user5.png);
             background-repeat: no-repeat;
             background-size: 2.1vh;
             background-position: left 3px center;
@@ -62,7 +62,7 @@
         }
 
         input[type="password"] {
-            background-image: url(login/Login/pwd3.png);
+            background-image: url(<%=request.getContextPath()%>/front_end/member/login/Login/pwd3.png);
         }
 
         #login {
@@ -174,19 +174,19 @@
     <div id="wrapAll">
         <div id="wrap2">
             <div>
-                <img src="login/Login/shopping_cart3.png" id="shopping_cart">
+                <img src="<%=request.getContextPath()%>/front_end/member/login/Login/shopping_cart3.png" id="shopping_cart">
                 <input id="shop" type="button" value="商城"><br>
             </div>
 
             <div>
-                <img src="login/Login/group5.png" id="group_img">
+                <img src="<%=request.getContextPath()%>/front_end/member/login/Login/group5.png" id="group_img">
                 <input id="group" type="button" value="揪團"><br>
             </div>
         </div>
 
         <div id="wrap">
-        <form METHOD="POST" action="member.do">
-            <img src="login/Login/icon5.png">
+        <form METHOD="POST" action="<%=request.getContextPath()%>/front_end/member/member.do">
+            <img src="<%=request.getContextPath()%>/front_end/member/login/Login/icon5.png">
             <p>Sign In</p>
             <input name="mb_id" type="text" placeholder="請輸入帳號"><br>
             <input name="mb_pwd" type="password" placeholder="請輸入密碼"><br>
@@ -207,7 +207,7 @@
             <input id="login" type="submit" value="LOGIN"><br>
         </form>
             <div id="wrap_bottom">
-	            <a href="addMember.jsp"><div id="div1">會員註冊</div></a>
+	            <a href="<%=request.getContextPath()%>/front_end/member/addMember.jsp"><div id="div1">會員註冊</div></a>
 	            <div id="div2">忘記密碼</div><br>
             </div>
             
