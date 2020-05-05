@@ -116,7 +116,7 @@ input:focus, textarea:focus {
 }
 
 #button-blue{
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-family: microsoft jhengHei, 'Montserrat', Arial, Helvetica, sans-serif;
   float:left;
   width: 100%;
   border: #fbfbfb solid 4px;
@@ -145,7 +145,7 @@ input:focus, textarea:focus {
 .ease {
   width: 0px;
   height: 35px;
-  background-color: #fbfbfb;
+  background-color: #87CEEB;
   -webkit-transition: .3s ease;
   -moz-transition: .3s ease;
   -o-transition: .3s ease;

@@ -122,22 +122,15 @@
 					<span class="text-primary">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
 					<!-- meToo按鈕 -->
 					<div style="margin-bottom: 0px;">
-						<c:if
-							test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==1}">
-							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn"
-								src="<%=request.getContextPath()%>/img/yaColor.png"
-								style="height: 2.2rem;">
+						<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==1}">
+							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/yaColor.png" style="height: 2.2rem;">
 						</c:if>
-						<c:if
-							test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==0}">
-							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn"
-								src="<%=request.getContextPath()%>/img/ya.png"
-								style="height: 2.2rem;">
+						<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==0}">
+							<input class="my-2 mr-1 meTooBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/ya.png" style="height: 2.2rem;">
 						</c:if>
-						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"
-							class="rcd_no"> <input type="hidden" name="mb_id"
-							value="${mb_id}" class="mb_id"> <input type="hidden"
-							name="action" value="insert">
+						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" Class="rcd_no"> 
+						<input type="hidden" name="mb_id" value="${mb_id}" class="mb_id"> 
+						<input type="hidden" name="action" value="insert">
 					</div>
 					<span class="mr-2 text-success">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
 					<!-- 留言按鈕-->
@@ -243,7 +236,7 @@ $('.sendBtn').click(function(){
 	var host = window.location.host;
 	var path = window.location.pathname;
 	var webCtx = path.substring(0, path.indexOf('/', 1));
-	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+	var endPointURL = "wss://" + window.location.host + webCtx + MyPoint;
 
 // 	var statusOutput = document.getElementById("statusOutput");
 
