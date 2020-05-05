@@ -124,6 +124,7 @@
 </head>
 <body>
 
+<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_follow/listAllGroupfollowForSelect.jsp">我關注的揪團</a>
 
 <!-- <table id="table-1"> -->
 <!-- 	<tr><td> -->
@@ -158,7 +159,7 @@ listAllGroupdetailForSelect.jsp<br>
 	<tr>		
 		<td>${grp_detailVO.mb_id}</td>
 <%-- 		<td><%=grp_detailVO.getGrp_no()%></td> --%>
-		<td><A href="group_detail.do?grp_no=${grp_detailVO.grp_no}&action=getOne_From2">${grp_detailVO.grp_no}</A></td>
+		<td><A href="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do?grp_no=${grp_detailVO.grp_no}&action=getOne_From2">${grp_detailVO.grp_no}</A></td>
 				
 <%-- 		<td>${grpSvc.getOneGroup(grp_detailVOList.grp_no).mb_id}</td> --%>
 		<td> ${grpSvc.getOneGroup(grp_detailVO.grp_no).mb_id}</td>
