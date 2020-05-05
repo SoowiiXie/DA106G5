@@ -6,7 +6,16 @@ import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,6 +27,7 @@ import javax.servlet.http.Part;
 
 import org.json.JSONObject;
 
+import com.common.MailService;
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
 
@@ -34,7 +44,9 @@ public class MemberServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		
+		// 註冊慢，開一執行緒跑寄信?
+		// 登入過再進入登入頁面會導到首頁(用濾器)
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -120,6 +132,11 @@ public class MemberServlet extends HttpServlet {
 				MemberVO memberVO = memberSvc.getOneMember(mb_id);
 				if (memberVO == null || !memberVO.getMb_pwd().equals(mb_pwd)) {
 					errorMsgs.add("帳號或密碼有誤");
+				}else if(memberVO.getMb_status() == 1) {  // 未驗證
+					errorMsgs.add("此帳號信箱尚未驗證");
+					errorMsgs.add("請至信箱點選驗證連結");
+				}else if(memberVO.getMb_status() == 3) {  // 停權
+					errorMsgs.add("此帳號已被停權");
 				}
 				// 把Line資訊塞進去
 				if (memberVO != null && memberVO.getMb_pic() == null && memberVO.getMb_line_pic() == null) {
@@ -328,13 +345,25 @@ public class MemberServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;
 				}
+				
+				
+				
+				String subject = "Runnable 可以跑 - 會員註冊驗證信";
+				String content = mb_name + "您好，請點選以下網址，進行信箱驗證\r\n"
+				   		+ "http://localhost:8081/DA106_G5/front_end/member/member.do?action=verification&"
+						+ "captcha="
+						+ Base64.getEncoder().encodeToString(mb_id.getBytes("utf-8"));
+				
+				// 寄驗證信
+				MailService mailService = new MailService();
+				mailService.sendMail(mb_email, subject, content);
 
 				/*************************** 2.開始查詢資料 *****************************************/
 				MemberService memberSvc = new MemberService();
 				memberVO = memberSvc.addMember(mb_id, mb_pwd, mb_name, mb_gender, mb_birthday, mb_email, mb_pic);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				String url = "/front_end/member/login.jsp"; //
+				String url = "/front_end/member/login_New.jsp"; //
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
@@ -524,6 +553,23 @@ public class MemberServlet extends HttpServlet {
 			req.setAttribute("includePath", backPath);
 			RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 			failureView.forward(req, res);
+		}
+		
+		if ("verification".equals(action)) { // 驗證
+			String captcha = req.getParameter("captcha");
+			String mb_id = new String(Base64.getDecoder().decode(captcha), "UTF-8");
+			MemberService memberSvc = new MemberService();
+			MemberVO memberVO = memberSvc.getOneMember(mb_id);
+			if(memberVO.getMb_status() == 1) {
+				memberVO.setMb_status(2);
+				memberSvc.updateMember(memberVO.getMb_id(), memberVO.getMb_pwd(), memberVO.getMb_name(), 
+						memberVO.getMb_gender(), memberVO.getMb_birthday(), memberVO.getMb_email(), 
+						memberVO.getMb_pic(), memberVO.getMb_lv(), memberVO.getMb_rpt_times(), memberVO.getMb_status());
+			}
+			session.setAttribute("memberVO", memberVO);
+			
+			RequestDispatcher successView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
+			successView.forward(req, res);
 		}
 	}
 }

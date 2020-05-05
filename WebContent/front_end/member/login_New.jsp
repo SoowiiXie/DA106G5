@@ -12,7 +12,7 @@
             background-image: url(login/Login/running.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            background-color: rgba(0, 0, 0, 1);
+            
 
             margin: 100px auto;
             width: 850px;
@@ -41,7 +41,7 @@
             margin: 0px;
             text-align: center;
             font-family: calibri;
-            font-size: 36px;
+            font-size: 5vh;
             color: #666;
         }
 
@@ -70,7 +70,7 @@
             height: 50px;
             color: #fff;
             font-family: calibri;
-            font-size: 24px;
+            font-size: 3.2vh;
             display: block;
             margin: 5px auto 0px auto;
             border-radius: 10px;
@@ -93,6 +93,7 @@
 
             color: #fff;
             font-weight: bold;
+            font-size: 2.2vh;
             font-family: ZhengHei;
             text-align: center;
             line-height: 30px;
@@ -103,30 +104,9 @@
             margin-left: 20px;
         }
 
-        #visitor {
-            clear: left;
-            display: block;
-            margin: 60px auto 0px auto;
-            width: 200px;
-            height: 40px;
-            background-color: rgba(110, 195, 219, 0.7);
-            border-radius: 10px;
-            box-shadow: 5px 5px 3px #333;
-            cursor: pointer;
-
-
-            color: #fff;
-            font-weight: bold;
-            font-size: 16px;
-            font-family: ZhengHei;
-            letter-spacing: 5px;
-            text-shadow: 1px 1px 3px #333;
-        }
-
         #div1:hover,
         #div2:hover,
-        #login:hover,
-        #visitor:hover {
+        #login:hover {
             background-color: rgba(100, 185, 209, 1);
             text-shadow: 3px 3px 3px #333;
         }
@@ -157,7 +137,7 @@
 
             color: #fff;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 2.3vh;
             font-family: ZhengHei;
             letter-spacing: 5px;
             text-shadow: 2px 2px 3px #333;
@@ -174,7 +154,7 @@
         	margin-left:60px;
         }
         ul{
-        	font-size: 15px;
+        	font-size: 2vh;
         	font-weight: bold;
         	margin:0px;
         }
