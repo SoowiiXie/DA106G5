@@ -276,6 +276,9 @@ public class MemberServlet extends HttpServlet {
 		}
 
 		if ("insert".equals(action)) { // 新增
+			
+			
+			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
@@ -345,8 +348,10 @@ public class MemberServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;
 				}
-				
-				
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				MemberService memberSvc = new MemberService();
+				memberVO = memberSvc.addMember(mb_id, mb_pwd, mb_name, mb_gender, mb_birthday, mb_email, mb_pic);
 				
 				String subject = "Runnable 可以跑 - 會員註冊驗證信";
 				String content = mb_name + "您好，請點選以下網址，進行信箱驗證\r\n"
@@ -355,12 +360,8 @@ public class MemberServlet extends HttpServlet {
 						+ Base64.getEncoder().encodeToString(mb_id.getBytes("utf-8"));
 				
 				// 寄驗證信
-				MailService mailService = new MailService();
-				mailService.sendMail(mb_email, subject, content);
-
-				/*************************** 2.開始查詢資料 *****************************************/
-				MemberService memberSvc = new MemberService();
-				memberVO = memberSvc.addMember(mb_id, mb_pwd, mb_name, mb_gender, mb_birthday, mb_email, mb_pic);
+				MailService mailService = new MailService(mb_email, subject, content);
+				mailService.start();
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				String url = "/front_end/member/login_New.jsp"; //

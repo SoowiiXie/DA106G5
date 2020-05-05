@@ -11,10 +11,10 @@ import java.sql.*;
 
 public class Pd_typeDAO implements Pd_typeDAO_interface {
 	
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:49161:xe";
-	String userid = "DA106G5";
-	String passwd = "DA106G5";
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@localhost:49161:xe";
+//	String userid = "DA106G5";
+//	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO PD_TYPE (PD_TYPENO, PD_TYPENAME) VALUES ('PTN'||LPAD(to_char(PD_TYPE_seq.NEXTVAL), 5, '0'), ?)";
@@ -300,7 +300,7 @@ public class Pd_typeDAO implements Pd_typeDAO_interface {
 
 	public static void main(String[] args) {
 
-		Pd_typeDAO dao = new Pd_typeDAO();
+//		Pd_typeDAO dao = new Pd_typeDAO();
 
 		 //新增
 //		Pd_typeVO pd_typeVO1 = new Pd_typeVO();

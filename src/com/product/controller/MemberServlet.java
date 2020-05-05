@@ -40,7 +40,7 @@ public class MemberServlet extends HttpServlet {
 
 			String url = "/front_end/product/ShopHome.jsp";
 			
-			System.out.println(session.getAttribute(mb_id));
+//			System.out.println(session.getAttribute(mb_id));
 			
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);

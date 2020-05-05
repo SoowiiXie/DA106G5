@@ -21,20 +21,27 @@
 <title>揪團資料新增 - addGroup.jsp</title>
 
 <style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
+
+	body{
+	font-family: microsoft jhengHei;
+	}
+	table#tableAdd{
+		width: 50%;
+		margin:0px auto;
+		background-color: #87CEEB;
+	    border: 2px solid black;
+	    text-align: center;
+	}
+	table#tableAdd h4 {
+	    color: red;
+	    display: block;
+	    margin-bottom: 1px;
+	}
+	#groupJoin{
+	margin:0px auto;
+	background-color:#FFAB40;
+	width: 50%;
+	}
 </style>
 
 <style>
@@ -54,21 +61,21 @@
 </style>
 
 </head>
+
+
 <body>
 <div id="divAll">
-	<table id="table-1">
+	<table id="tableAdd">
 		<tr><td>
 			 <h3>揪團資料新增 - addGroup.jsp</h3></td><td>
 			 <h4>
 				<a href="<%= request.getContextPath() %>/front_end/group/select_page.jsp">
-				<img src="<%= request.getContextPath() %>/front_end/group/images/back1.gif" width="100" height="32" border="0">
+				<img src="<%= request.getContextPath() %>/front_end/group/images/homeIcon.png" width="120" height="120" border="0">
 				回首頁</a>
 			 </h4>
 		</td></tr>
 	</table>
-	
-	<h3>資料新增:</h3>
-	
+		
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color:red">請修正以下錯誤:</font>
@@ -80,7 +87,7 @@
 	</c:if>
 	
 	<FORM METHOD="post" ACTION="group.do" name="form1">
-	<table>
+	<table id="groupJoin">
 		<tr>
 			<td>揪團名稱:</td><td>編號自動產生</td>
 			<td><input type="hidden" name="grp_no" size="45" 

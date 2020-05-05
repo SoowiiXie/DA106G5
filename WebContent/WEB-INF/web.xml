@@ -50,6 +50,16 @@
 		<url-pattern>/InitData</url-pattern>
 	</servlet-mapping>
 	
+<!-- 假圖片 -->
+		<servlet>
+			<servlet-name>FakeBlobTest</servlet-name>
+			<servlet-class>com.common.FakeBlobTest</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>FakeBlobTest</servlet-name>
+			<url-pattern>/FakeBlobTest</url-pattern>
+		</servlet-mapping>
+
 
 <!-- 戍乂責任區 開始-->
 
@@ -775,6 +785,23 @@
 		<!-- 測試 -->
 		<url-pattern>/front_end/index.jsp</url-pattern>
 		<url-pattern>/front_end/group_index.jsp</url-pattern>
+		
+		<dispatcher>REQUEST</dispatcher>
+	    <dispatcher>FORWARD</dispatcher>
+	    <dispatcher>INCLUDE</dispatcher>
+	    <dispatcher>ERROR</dispatcher>
+	    <dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>Back_End_LoginFilter</filter-name>
+		<filter-class>com.common.Back_End_LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Back_End_LoginFilter</filter-name>
+		<!-- 測試 -->
+		<url-pattern>/back_end/staff/index.jsp</url-pattern>
+		<!-- 測試 -->
 		
 		<dispatcher>REQUEST</dispatcher>
 	    <dispatcher>FORWARD</dispatcher>

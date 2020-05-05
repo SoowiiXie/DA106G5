@@ -4,6 +4,7 @@
 <%@ page import="com.grouper.model.*"%>
 <%@ page import="com.location.model.*"%>
 <%@ page import="java.util.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
@@ -59,15 +60,15 @@
 </head>
 <body bgcolor='white'>
 
-<h4>此頁暫練習採用 Script 的寫法取值:</h4>
+<!-- <h4>此頁暫練習採用 Script 的寫法取值:</h4> -->
 <table id="table-1">
 	<tr><td>
-		 <h3>揪團資料 - ListOneGroup.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+<!-- 		 <h3>揪團資料 - ListOneGroup.jsp</h3> -->
+<!-- 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 	</td></tr>
 </table>
 
-<table>
+<table id="oneGroup_table">
 	<tr>
 <!-- 		<th>揪團編號</th> -->
 <!-- 		<th>發起人會員編號</th> -->
@@ -88,10 +89,14 @@
 <%-- 		<td><%=grouperVO.getGrp_no()%></td> --%>
 <%-- 		<td><%=grouperVO.getMb_id()%></td> --%>
 <%-- 		<td><%=grouperVO.getLoc_no()%>【<%=locVO.getLoc_address() %>】</td> --%>
-		<td><%=grouperVO.getGrp_applystart()%></td>
-		<td><%=grouperVO.getGrp_applyend()%></td>
-		<td><%=grouperVO.getGrp_start()%></td>
-		<td><%=grouperVO.getGrp_end()%></td>
+<%-- 		<td><%=grouperVO.getGrp_applystart()%></td> --%>
+<td><fmt:formatDate value="<%=grouperVO.getGrp_applystart()%>" pattern="yyyy-MM-dd H:mm"/></td>
+<%-- 		<td><%=grouperVO.getGrp_applyend()%></td> --%>
+<td><fmt:formatDate value="<%=grouperVO.getGrp_applyend()%>" pattern="yyyy-MM-dd H:mm"/></td>
+<%-- 		<td><%=grouperVO.getGrp_start()%></td> --%>
+<td><fmt:formatDate value="<%=grouperVO.getGrp_start()%>" pattern="yyyy-MM-dd H:mm"/></td>		
+<%-- 		<td><%=grouperVO.getGrp_end()%></td> --%>
+<td><fmt:formatDate value="<%=grouperVO.getGrp_end()%>" pattern="yyyy-MM-dd H:mm"/></td>		
 <%-- 		<td><%=grouperVO.getGrp_name()%></td> --%>
 <%-- 		<td><%=grouperVO.getGrp_content()%></td> --%>
 <%-- 		<td><%=grouperVO.getGrp_personmax()%></td> --%>

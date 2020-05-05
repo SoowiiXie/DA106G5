@@ -70,8 +70,8 @@ margin-top:100;
 			</c:forEach>
 		</ul>
 	</c:if>
-<div style="width:100%; height:1000px;border-style: solid; border-color:red;" align="center">
-  <div class="zxc" style=" border-style: solid; border-color:#3960D0;">
+<div style="width:100%;border-style: solid; border-color:red;" align="center">
+  <div class="zxc" style=" border-style: solid; border-color:#3960D0; width:100%;">
   <form method="POST"
 		action="<%=request.getContextPath()%>/ProductServlet" name="form1"
 		enctype="multipart/form-data">
@@ -106,7 +106,7 @@ margin-top:100;
 		 <td bgcolor=#FFD2D2><input type="file" name="pd_pic" onchange="setImg(this)"></td>
 	</tr>
 		 <tr>
-						<td><img style="max-width:100%;" id="pd_pic" src="<%=imgStr%>">
+						<td style="width:450px; height:450;"><img style="max-width:100%;" id="pd_pic" src="<%=imgStr%>">
 						<!-- 第一次有送出照片，錯誤回來後沒有再選擇照片時，用picBase64送出 -->
 						<%if(productVO != null && productVO.getPd_pic() != null){ %>
 			<input type="hidden" name="picBase64" value="<%=Base64.getEncoder().encodeToString(productVO.getPd_pic())%>">

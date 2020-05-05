@@ -18,8 +18,8 @@ public class ProductDAO implements ProductDAO_interface {
 	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = "INSERT INTO product (pd_no, pd_name, pd_price, pd_detail, pd_typeno, pd_pic) VALUES ('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status FROM product order by pd_no";
-	private static final String GET_ONE_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status FROM product where pd_no = ?";
+	private static final String GET_ALL_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status ,pd_pic FROM product order by pd_no";
+	private static final String GET_ONE_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status, pd_pic FROM product where pd_no = ?";
 	private static final String DELETE = "DELETE FROM product where pd_no = ?";
 	private static final String UPDATE = "UPDATE product set pd_name=?, pd_price=?, pd_detail=? , pd_typeno=? , pd_status=? ,pd_pic=? where pd_no = ?";
 	private static final String CHANGE_STATUS = "update product set pd_status = ? where pd_no = ?";
@@ -110,7 +110,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
 
-//			Class.forName(driver);
+//		Class.forName(driver);
 //			con = DriverManager.getConnection(url, userid, passwd);
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
@@ -214,6 +214,7 @@ public class ProductDAO implements ProductDAO_interface {
 				productVO.setPd_detail(rs.getString("pd_detail"));
 				productVO.setPd_typeNo(rs.getString("pd_typeNo"));
 				productVO.setPd_status(rs.getInt("pd_status"));
+				productVO.setPd_pic(rs.getBytes("pd_pic"));
 			}
 
 			// Handle any driver errors
@@ -270,6 +271,7 @@ public class ProductDAO implements ProductDAO_interface {
 				productVO.setPd_detail(rs.getString("pd_detail"));
 				productVO.setPd_typeNo(rs.getString("pd_typeno"));
 				productVO.setPd_status(rs.getInt("pd_status"));
+				productVO.setPd_pic(rs.getBytes("pd_pic"));
 				list.add(productVO); // Store the row in the vector
 			}
 
@@ -724,7 +726,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 	public static void main(String[] args) {
 
-//		ProductDAO dao = new ProductDAO();
+		ProductDAO dao = new ProductDAO();
 //		try {
 //			FileInputStream in;
 //			in = new FileInputStream("/Users/cenaliou/Desktop/1.jpg");
@@ -784,43 +786,43 @@ public class ProductDAO implements ProductDAO_interface {
 //		  }
 
 		// 查詢單一商品
-//		System.out.println("-----查詢單一商品-----");
-//		System.out.println("");
-//		ProductVO productVO3 = dao.findOneProduct("PDN00043");
-//		System.out.println("商品名稱：" + productVO3.getPd_name());
-//		System.out.println("商品價格：" + productVO3.getPd_price());
-//		System.out.print("商品詳述：" + productVO3.getPd_detail());
-//		System.out.println("商品類型：" + productVO3.getPd_typeNo());
-//		System.out.println("商品狀態：" + productVO3.getPd_status());
-//
-//		ArrayList<String> sizeList = new ArrayList<String>();
-//
-//		if (productVO3.getPd_typeNo().equals("PTN00010") || productVO3.getPd_typeNo().equals("PTN00011")
-//				|| productVO3.getPd_typeNo().equals("PTN00012")) {
-//			sizeList.add("無");
-//			System.out.print("配件尺寸:"+sizeList);
-//
-//		} else if (productVO3.getPd_typeNo().equals("PTN00003") || productVO3.getPd_typeNo().equals("PTN00006")
-//				|| productVO3.getPd_typeNo().equals("PTN00009")) {
-//			sizeList.add("US7.5");
-//			sizeList.add("US8.0");
-//			sizeList.add("US8.5");
-//			sizeList.add("US9.0");
-//			sizeList.add("US9.5");
-//			sizeList.add("US10.0");
-//			System.out.print("鞋類尺寸:"+sizeList);
-//			
-//		} else {
-//			sizeList.add("XS");
-//			sizeList.add("S");
-//			sizeList.add("M");
-//			sizeList.add("L");
-//			sizeList.add("XL");
-//			sizeList.add("XXL");
-//			System.out.print("服飾尺寸:"+sizeList);
-//	
-//
-//		}
+		System.out.println("-----查詢單一商品-----");
+		System.out.println("");
+		ProductVO productVO3 = dao.findOneProduct("PDN00002");
+		System.out.println("商品名稱：" + productVO3.getPd_name());
+		System.out.println("商品價格：" + productVO3.getPd_price());
+		System.out.print("商品詳述：" + productVO3.getPd_detail());
+		System.out.println("商品類型：" + productVO3.getPd_typeNo());
+		System.out.println("商品狀態：" + productVO3.getPd_status());
+
+		ArrayList<String> sizeList = new ArrayList<String>();
+
+		if (productVO3.getPd_typeNo().equals("PTN00010") || productVO3.getPd_typeNo().equals("PTN00011")
+				|| productVO3.getPd_typeNo().equals("PTN00012")) {
+			sizeList.add("無");
+			System.out.print("配件尺寸:"+sizeList);
+
+		} else if (productVO3.getPd_typeNo().equals("PTN00003") || productVO3.getPd_typeNo().equals("PTN00006")
+				|| productVO3.getPd_typeNo().equals("PTN00009")) {
+			sizeList.add("US7.5");
+			sizeList.add("US8.0");
+			sizeList.add("US8.5");
+			sizeList.add("US9.0");
+			sizeList.add("US9.5");
+			sizeList.add("US10.0");
+			System.out.print("鞋類尺寸:"+sizeList);
+			
+		} else {
+			sizeList.add("XS");
+			sizeList.add("S");
+			sizeList.add("M");
+			sizeList.add("L");
+			sizeList.add("XL");
+			sizeList.add("XXL");
+			System.out.print("服飾尺寸:"+sizeList);
+	
+
+		}
 
 		// 修改物品狀態
 //		ProductVO productVO4 = new ProductVO();

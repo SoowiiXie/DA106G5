@@ -5,7 +5,7 @@
 <%@ page import="com.grouper.model.*"%>
 <%@ page import="com.location.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
-getOne_Time
+所以揪團資料
 <%
     GrouperService grpSvc = new GrouperService();
     List<GrouperVO> list = grpSvc.getAll();
@@ -27,7 +27,7 @@ getOne_Time
 
 <style>
   table#table-1 {
-	background-color: #CCCCFF;
+	background-color: #008080;
     border: 2px solid black;
     text-align: center;
   }
@@ -57,6 +57,22 @@ getOne_Time
     padding: 5px;
     text-align: center;
   }
+  #oneGroup_table, #oneGroup_table tr,#oneGroup_table td,#oneGroup_table th{
+  	width: 600px;
+  	border: 1px solid #000;
+  	margin: 50px auto 5px auto;
+  }
+  body{
+  	font-family:Microsoft JhengHei;"
+  }
+  #oneGroup_table th{
+  background: #D5E0CC;
+  }
+  #allGroup, #allGroup tr,#allGroup td,#allGroup th{
+  	width: 1800px;
+  	border: 1px solid #000;
+  	margin: 50px auto 5px auto;
+  }
 </style>
 
 </head>
@@ -74,7 +90,7 @@ getOne_Time
 	   		</h4>
 		</td>
 	</tr>
-</table>
+</table><br>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -85,8 +101,8 @@ getOne_Time
 		</c:forEach>
 	</ul>
 </c:if>
-
-<table style="background-color: rgba(33,33,33,0);">
+<br>
+<table id=allGroup style="background-color: rgba(33,33,33,0);">
 	<tr>
 		<th>揪團編號</th>
 		<th>發起人會員編號</th>
@@ -188,10 +204,11 @@ getOne_Time
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 				
+				
 			<div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
+            <h3 class="modal-title" id="myModalLabel">揪團時間</h3>
 			
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
@@ -201,7 +218,7 @@ getOne_Time
 			
 			<div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+<!--                 <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
 		
 		</div>

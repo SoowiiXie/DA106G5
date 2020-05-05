@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      <%@ page import="com.product.model.*"%>
+     <%@ page import="com.mb.model.*"%>
 <%@ page import="com.pd_type.model.*"%>
 <%@ page import="java.util.*"%>
      
@@ -13,6 +14,11 @@
 	Collections.reverse(list);
 
 	pageContext.setAttribute("list", list); //for EL
+	
+	 MemberService memberSvc = new MemberService();
+	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	//用memberVO先取得會常使用到的mb_id
+	session.setAttribute("mb_id", memberVO.getMb_id()); 
 %>
 <!DOCTYPE html>
 <html>
@@ -217,7 +223,7 @@ text-align: center;
 width:200px;
 height:300px;
 }
-.bbb{
+.PdName{
 text-align: center;
 width:200px;
 height:200x;
@@ -252,7 +258,8 @@ margin:10px auto;
            <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a>
         </div>
         <div>
-        <font size="5px" color="white" style="font-style:italic;">RUNNABLE</font>
+        <a
+		href="<%=request.getContextPath()%>/front_end/index.jsp"><font size="5px" color="white">RU<i>NN</i>ABLE</font></a>
         </div>
       </div>
      <div class="search_pd">
@@ -385,10 +392,10 @@ margin:10px auto;
 
 	<!-- Custom scripts for all pages-->
 <%-- 	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script> --%>
-	
+<%-- 	<script src="<%=request.getContextPath()%>/plug-in/bootstrap/jquery/jquery-3.4.1.min.js"></script>
 	<!-- switch button -->
 	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-	
+	 --%>
 	<!-- jquery -->
 <%-- 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>   --%>
 

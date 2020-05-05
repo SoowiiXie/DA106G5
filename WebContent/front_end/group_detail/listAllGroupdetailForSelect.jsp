@@ -53,7 +53,7 @@
 
 <style>
   table {
-	width: 600px;
+/*  	width: 600px;  */
 	background-color: white;
 	margin: 50px auto 5px auto;
   }
@@ -65,15 +65,29 @@
     text-align: center;
   }
   #group_table, #group_table tr,#group_table td,#group_table th{
-  	width: 1600px;
+/*     width: 1600px;   */
   	border: 1px solid #000;
   	margin: 50px auto 5px auto;
   }
   body{
   	font-family:Microsoft JhengHei;"
   }
-  #group_table th{
+  #group_table th {
   background: #D5E0CC;
+  }
+   #number{ 
+   width:500px; 
+   } 
+   #title th{ 
+   } 
+   #location{ 
+   width:1000px; 
+   } 
+  #time{
+  }
+  #content{
+  }
+  #status{
   }
 </style>
 
@@ -83,25 +97,26 @@
 
 <!-- <table id="table-1"> -->
 <!-- 	<tr><td> -->
+<%-- 		 <h4><%=req.getRequestURI()%></h4><br> --%>
 		 <h4><%=memberVO.getMb_id()%>，摳泥吉娃娃，以下是你參加的揪團</h4><br>
 <!-- 		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 <!-- 	</td></tr> -->
 <!-- </table><p> -->
 <table id="group_table" style="background-color: rgba(256,256,256,0);">
 	<tr>
-		<th>會員編號</th>
-		<th>揪團編號</th>
+		<th id=number>會員編號</th>
+		<th id=number>揪團編號</th>
 		
-		<th>發起人會員編號</th>
-		<th>地點</th>
-		<th>報名開始時間</th>
-		<th>報名結束時間</th>
-		<th>活動開始時間</th>
-		<th>活動結束時間</th>
-		<th>揪團標題</th>
-		<th>揪團內容</th>
+		<th id=number>發起人會員編號</th>
+		<th id=location>地點</th>
+		<th id=time>報名開始時間</th>
+		<th id=time>報名結束時間</th>
+		<th id=time>活動開始時間</th>
+		<th id=time>活動結束時間</th>
+		<th id=title>揪團標題</th>
+		<th id=comten>揪團內容</th>
 		
-		<th>報到狀態</th>
+		<th id=status>報到狀態</th>
 		
 	</tr>
 <%-- 	${group_detailSvc.all} --%>
@@ -134,14 +149,14 @@
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart} --%>
-<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart}" pattern="yyyy-MM-dd hh:mm"/>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart}" pattern="yyyy-MM-dd H:mm"/>
 <%-- 					${grpSvc.getOneGroup(grp_detailVO.getGrp_no()).grp_applystart } --%>
 		</td>
 		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend} --%>
-<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend}" pattern="yyyy-MM-dd hh:mm"/>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend}" pattern="yyyy-MM-dd H:mm"/>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 		</td>
@@ -149,7 +164,7 @@
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start} --%>
-<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}" pattern="yyyy-MM-dd hh:mm"/>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}" pattern="yyyy-MM-dd H:mm"/>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 <!-- 		</td> -->
@@ -157,7 +172,7 @@
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end} --%>
-<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end}" pattern="yyyy-MM-dd hh:mm"/>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end}" pattern="yyyy-MM-dd H:mm"/>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 		</td>

@@ -73,7 +73,14 @@ margin-top:100;
 	<jsp:include page="ShopManagerBar.jsp" />
 </head>
 <body>
-
+	<div style="border:2px #FFD382 groove; float:left;"><c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if></div>
 
 
 <div class="1"style="margin-top:50px; border:2px #FFD382 groove;width:80%;margin-left:10%;" >
@@ -97,14 +104,7 @@ margin-top:100;
 				</div>
 			</form>
 	
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+
 
 
 

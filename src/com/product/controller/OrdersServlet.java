@@ -40,13 +40,12 @@ public class OrdersServlet extends HttpServlet {
 
 //			String url = "/back_end/product/ListAllOrders.jsp";
 			String includePath = "/back_end/product/ListAllOrders.jsp";
-			System.out.println(includePath);
+//			System.out.println(includePath);
 			req.setAttribute("includePath", includePath);
 //			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交ListAllOrders.jsp
 			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 			successView.forward(req, res);
 			return;
-
 		}
 
 		if (action.equals("getAllList")) {
@@ -56,7 +55,8 @@ public class OrdersServlet extends HttpServlet {
 
 //			String url = "/back_end/product/ListAllOrders.jsp";
 			String includePath = "/back_end/product/ListAllOrders.jsp";
-			System.out.println(includePath);
+		
+//			System.out.println(includePath);
 			req.setAttribute("includePath", includePath);
 //			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交ListAllOrders.jsp
 			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
@@ -74,7 +74,7 @@ public class OrdersServlet extends HttpServlet {
 			req.getSession().setAttribute("list", list);
 //			String url = "/back_end/product/ListAllOrders.jsp";
 			String includePath = "/back_end/product/ListAllOrders.jsp";
-			System.out.println(includePath);
+//			System.out.println(includePath);
 			req.setAttribute("includePath", includePath);
 //			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交ListAllOrders.jsp
 			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");

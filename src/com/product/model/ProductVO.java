@@ -1,5 +1,7 @@
 package com.product.model;
 
+import java.util.Arrays;
+
 public class ProductVO implements java.io.Serializable {
 	/**
 	 * 
@@ -16,6 +18,7 @@ public class ProductVO implements java.io.Serializable {
 	private String pd_statusName;
 	private Integer pd_quantity; //方便儲存數量用，表格沒有
 	private String pd_typeSize; //方便訂單明細數量儲存用，表格沒有
+	
 
 	public ProductVO() {
 		pd_no = "";
@@ -141,4 +144,15 @@ public class ProductVO implements java.io.Serializable {
 		this.pd_typeNo = pd_typeNo;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "ProductVO [pd_no=" + pd_no + ", pd_name=" + pd_name + ", pd_price=" + pd_price + ", pd_pic="
+				+ Arrays.toString(pd_pic) + ", pd_detail=" + pd_detail + ", pd_status=" + pd_status + ", pd_typeNo="
+				+ pd_typeNo + ", pd_statusName=" + pd_statusName + ", pd_quantity=" + pd_quantity + ", pd_typeSize="
+				+ pd_typeSize + ", pd_typeNoName=" + pd_typeNoName + ", pd_pic_path=" + pd_pic_path + "]";
+	}
+
+	
 }
