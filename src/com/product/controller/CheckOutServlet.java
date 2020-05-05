@@ -122,7 +122,8 @@ public class CheckOutServlet extends HttpServlet {
 			testList.add(od_detailVO);
 			
 			Od_detailLineVO od_detailLineVO = new Od_detailLineVO();
-			od_detailLineVO.setProductName(productName);
+//			od_detailLineVO.setProductName(productName);
+			od_detailLineVO.setProductName("abcMart");
 			od_detailLineVO.setAmount(amount);
 			od_detailLineVO.setCurrency(currency);
 			
@@ -149,7 +150,8 @@ public class CheckOutServlet extends HttpServlet {
 //			String productImageUrl = Base64.encodeBytes(buyOne.getPd_pic());
 //			locationJsonVO.setPic(Base64.getEncoder().encodeToString(rs.getBytes("loc_pic")));
 			String productImageUrl = Base64.getEncoder().encodeToString(buyOne.getPd_pic());
-			od_detailLineVO.setProductImageUrl(productImageUrl);
+//			od_detailLineVO.setProductImageUrl(productImageUrl);
+//			od_detailLineVO.setProductImageUrl("https://f.ecimg.tw/items/DIBF2RA9008PMTH/000001_1542332754.jpg");
 			
 			session.setAttribute("ordersVO", ordersVO);
 			session.setAttribute("payMethod", payMethod);
@@ -159,7 +161,8 @@ public class CheckOutServlet extends HttpServlet {
 			
 			//跳轉網址(4,5)
 			String url = "/front_end/product/MemberLookOd_detail.jsp";
-			od_detailLineVO.setConfirmUrl(url);
+//			od_detailLineVO.setConfirmUrl(url);
+			od_detailLineVO.setConfirmUrl("https://javababy.herokuapp.com/tool/magnifyNextPic.html");
 			
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			
@@ -169,11 +172,12 @@ public class CheckOutServlet extends HttpServlet {
 				buylist = null;
 				session.setAttribute("shoppingCart", buylist);
 			}
-			res.setHeader("Content-Type", "application/json");
-			res.setHeader("X-LINE-ChannelId", "1653839045");
-			res.setHeader("X-LINE-ChannelSecret", "7df947ce3ae22422b7319419a1e4d8a5");
+//			res.setHeader("Content-Type", "application/json");
+//			res.setHeader("X-LINE-ChannelId", "1653839045");
+//			res.setHeader("X-LINE-ChannelSecret", "7df947ce3ae22422b7319419a1e4d8a5");
 			
 			String jsonStr = new JSONObject(od_detailLineVO).toString();
+			System.out.println(jsonStr);
 //			PrintWriter out = res.getWriter();
 //			out.write(jsonStr);
 //			out.flush();
@@ -186,11 +190,18 @@ public class CheckOutServlet extends HttpServlet {
 		    java.io.BufferedWriter wr = null; 
 		    try { 
 		      URL urlLinePay = new URL("https://sandbox-api-pay.line.me/v2/payments/request"); 
+		      
 		      HttpURLConnection URLConn = (HttpURLConnection) urlLinePay.openConnection(); 
 		      URLConn.setDoOutput(true); 
-		      URLConn.setDoInput(true); 
+		      URLConn.setDoInput(true);
+		      
+		      //LineApi要求
 		      ((HttpURLConnection) URLConn).setRequestMethod("POST"); 
-		      URLConn.setUseCaches(false); 
+			  URLConn.setRequestProperty("Content-Type", "application/json");
+			  URLConn.setRequestProperty("X-LINE-ChannelId", "1653839045");
+			  URLConn.setRequestProperty("X-LINE-ChannelSecret", "7df947ce3ae22422b7319419a1e4d8a5");
+		      
+			  URLConn.setUseCaches(false); 
 		      URLConn.setAllowUserInteraction(true); 
 		      HttpURLConnection.setFollowRedirects(true); 
 		      URLConn.setInstanceFollowRedirects(true); 
@@ -203,22 +214,36 @@ public class CheckOutServlet extends HttpServlet {
 //		        URLConn.setRequestProperty("Cookie", cookie); 
 //		      if (referer != null) 
 //		        URLConn.setRequestProperty("Referer", referer); 
-		      URLConn.setRequestProperty("Content-Type","application/x-www-form-urlencoded"); 
+//		      URLConn.setRequestProperty("Content-Type","application/x-www-form-urlencoded"); 
 //		      URLConn.setRequestProperty("Content-Length", String.valueOf(data.getBytes().length)); 
 		      URLConn.setRequestProperty("Content-Length", String.valueOf(jsonStr.getBytes().length)); 
 		      java.io.DataOutputStream dos = new java.io.DataOutputStream(URLConn.getOutputStream()); 
 		      dos.writeBytes(jsonStr); 
 //		      java.io.BufferedReader rd = new java.io.BufferedReader(new java.io.InputStreamReader(URLConn.getInputStream(),charset)); 
 		      java.io.BufferedReader rd = new java.io.BufferedReader(new java.io.InputStreamReader(URLConn.getInputStream(),"UTF-8")); 
-		      String lines; 
-		      while ((lines = rd.readLine()) != null) { 
-		        System.out.println(lines); 
-		      } 
+//		      String lines; 
+//		      while ((lines = rd.readLine()) != null) { 
+//		        System.out.println(lines); 
+//		      } 
+		      String lines = rd.readLine();
+		      System.out.println(lines); 
+		      JSONObject jsonObj = new JSONObject(lines);
+		      JSONObject jsonObjInfo = new JSONObject(jsonObj.get("info").toString());
+		      JSONObject jsonObjPaymentUrl = new JSONObject(jsonObjInfo.get("paymentUrl").toString());
+		      String jsonWeb = jsonObjPaymentUrl.get("web").toString();
+		      System.out.println(jsonWeb);
 		      rd.close(); 
+//		      RequestDispatcher successView = req.getRequestDispatcher(jsonWeb);
+//		      successView.forward(req, res);
+		      res.sendRedirect(jsonWeb);  // 登入換地址，此處也要換
+		      
 		    } catch (java.io.IOException e) { 
 		      doSuccess = false; 
 		      System.out.println(e);
-		    } finally { 
+		    } catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally { 
 		      if (wr != null) { 
 		        try { 
 		          wr.close(); 
