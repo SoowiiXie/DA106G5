@@ -86,8 +86,8 @@ color: #777;
 			</c:forEach>
 		</ul>
 	</c:if>
-
-	<div class="a" style="margin-left:5%;float:left;" >
+<div style="border-style: solid; border-color:red;">
+	<div class="a" style="float:left;" >
 	  <table style="float:left; border-style: solid;
 border-color:red;">
 	    <tr>
@@ -102,8 +102,7 @@ border-color:red;">
 		<form method="POST"
 			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
-			<table style="margin-left:42%; border-style: solid;
-border-color:red;">
+			<table style="float:right; border-style: solid; border-color:red;">
 				<tr>
 					<td>商品分類：</td>
 					<td><select size="1" name="pd_typeNo">
@@ -134,7 +133,7 @@ border-color:red;">
 			<input type="hidden" name="action" value="CompositeQuery_Product">
 			
 		</form>
-		<div class="a" style="margin-left:5%;float:left;" >
+		<div class="a" style="float:left;" >
 	  <table  style="float:left; border-style: solid;
 border-color:red;">
 	    <tr>
@@ -145,14 +144,14 @@ border-color:red;">
 	   </table>
 
 	</div>
-
+</div>
 
 
 	<%-- <%-- 				<jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />	 --%>
 
 	<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
 		end="<%=pageIndex+rowsPerPage-1%>">
-		<div class="context" style="margin-top:50px; background-color:#858796;">
+		<div class="context" style="margin-top:100px; background-color:#858796;">
 			<table border="1" class="Product" >
 
 				<tr>

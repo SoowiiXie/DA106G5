@@ -132,6 +132,9 @@ public class ProductServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 
 					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					String includePath = "/back_end/product/AllList2.jsp";
+					System.out.println(includePath);
+					req.setAttribute("includePath", includePath);
 					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 					failureView.forward(req, res);
 					System.out.println("3");
@@ -301,7 +304,11 @@ public class ProductServlet extends HttpServlet {
 
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/UpdateProduct.jsp");
+				String includePath = "/back_end/product/AllList2.jsp";
+				System.out.println(includePath);
+				req.setAttribute("includePath", includePath);
+//				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/UpdateProduct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 				failureView.forward(req, res);
 			}
 

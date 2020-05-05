@@ -169,7 +169,8 @@ margin-top:100;
 				<th style="width: 14%;"></th>
 			</tr>
 
-			<c:forEach var="couponVO" items="${list}">
+			<c:forEach var="couponVO" items="${list}" begin="<%=pageIndex%>"
+			end="<%=pageIndex+rowsPerPage-1%>">
 				<tr bgcolor=#C4E1FF>
 					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_no}</td>
 					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_name}</td>

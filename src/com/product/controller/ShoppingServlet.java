@@ -116,6 +116,8 @@ public class ShoppingServlet extends HttpServlet {
 				System.out.println("新增的商品，商品編號：" + aProduct.getPd_no());
 				System.out.println("新增的商品，商品尺寸：" + aProduct.getPd_name());
 				System.out.println("新增的商品，商品尺寸：" + aProduct.getPd_typeNo());
+				System.out.println(aProduct);
+				
 
 				// 新增第一個商品籍至購物車時
 				if (buylist == null) {
@@ -220,16 +222,16 @@ public class ShoppingServlet extends HttpServlet {
 		String pd_price = req.getParameter("pd_price");
 		String pd_typeNo = req.getParameter("pd_typeNo");
 		String pd_typeSize = req.getParameter("pd_typeSize");
-
+        
 		ProductVO bdc = new ProductVO();
 
-		bdc.setPd_no(pd_no);
-		bdc.setPd_name(pd_name);
-		bdc.setPd_price(new Integer(pd_price));
-		bdc.setPd_quantity(new Integer(pd_quantity));
-		bdc.setPd_typeNo(pd_typeNo);
-		bdc.setPd_typeSize(pd_typeSize);
-
+		
+	
+		
+	
+        ProductService productSvc = new ProductService();
+        bdc = productSvc.findOneProduct(pd_no);
+        bdc.setPd_quantity(new Integer(pd_quantity));
 		return bdc;
 	}
 }

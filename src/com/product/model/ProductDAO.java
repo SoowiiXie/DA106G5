@@ -24,7 +24,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO product (pd_no, pd_name, pd_price, pd_detail, pd_typeno, pd_pic) VALUES ('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status FROM product order by pd_no";
-	private static final String GET_ONE_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status FROM product where pd_no = ?";
+	private static final String GET_ONE_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status, pd_pic FROM product where pd_no = ?";
 	private static final String DELETE = "DELETE FROM product where pd_no = ?";
 	private static final String UPDATE = "UPDATE product set pd_name=?, pd_price=?, pd_detail=? , pd_typeno=? , pd_status=? ,pd_pic=? where pd_no = ?";
 	private static final String CHANGE_STATUS = "update product set pd_status = ? where pd_no = ?";
@@ -219,6 +219,7 @@ public class ProductDAO implements ProductDAO_interface {
 				productVO.setPd_detail(rs.getString("pd_detail"));
 				productVO.setPd_typeNo(rs.getString("pd_typeNo"));
 				productVO.setPd_status(rs.getInt("pd_status"));
+				productVO.setPd_pic(rs.getBytes("pd_pic"));
 			}
 
 			// Handle any driver errors
@@ -275,6 +276,7 @@ public class ProductDAO implements ProductDAO_interface {
 				productVO.setPd_detail(rs.getString("pd_detail"));
 				productVO.setPd_typeNo(rs.getString("pd_typeno"));
 				productVO.setPd_status(rs.getInt("pd_status"));
+				productVO.setPd_pic(rs.getBytes("pd_pic"));
 				list.add(productVO); // Store the row in the vector
 			}
 

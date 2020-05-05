@@ -252,7 +252,7 @@ margin:10px auto;
            <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a>
         </div>
         <div>
-        <font size="5px" color="white" style="font-style:italic;">RUNNABLE</font>
+        <font size="5px" color="white">RU<i>NN</i>ABLE</font>
         </div>
       </div>
      <div class="search_pd">
@@ -385,10 +385,10 @@ margin:10px auto;
 
 	<!-- Custom scripts for all pages-->
 <%-- 	<script src="<%= request.getContextPath() %>/js/sb-admin-2.min.js"></script> --%>
-	
+<%-- 	<script src="<%=request.getContextPath()%>/plug-in/bootstrap/jquery/jquery-3.4.1.min.js"></script>
 	<!-- switch button -->
 	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-	
+	 --%>
 	<!-- jquery -->
 <%-- 	<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>   --%>
 
