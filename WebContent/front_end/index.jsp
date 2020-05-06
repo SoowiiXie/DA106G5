@@ -462,6 +462,19 @@
 	</div>
 	<div class="overlay"></div>
 	
+	<!-- 記錄新增的燈箱 -->
+	<div id="fblightbox" class="recordInsertBox">
+	  <div class="fblightbox-wrap">
+	    <div class="fblightbox-header">
+	      	來篇新紀錄吧
+	    </div>
+	    <div class="fblightbox-content">
+	    	<jsp:include page="record/addRecord.jsp" />
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
+	
 	<!-- 天氣的燈箱 -->
 	<div id="fblightbox" class="weatherBox mb-5" style="width:40rem; font-size:2rem;">
 	  <div class="fblightbox-wrap">
@@ -533,6 +546,23 @@
 	<!-- index.js -->
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			 //記錄新增的燈箱開始
+			 var recordInsertBox = $('.recordInsertBox');
+			 recordInsertBox.css({'margin-left':'-' + (recordInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (recordInsertBox.height()/2)+'px'});
+			 
+// 			 $("body").on('click', '.infoFlagBtn',function(){
+// 			 });
+			 
+		 	 $('.btnAddRecord').click(function(e){
+		 		 e.preventDefault();
+			     $("#mb_id4rcd").val("${mb_id}");
+			     recordInsertBox.fadeIn();
+		 		 $('.overlay').fadeIn();
+		 	 });
+		 	 //記錄新增的燈箱結束
+			
+			 //按讚
 			$('.thumbBtn').click(function(){
 				 var thumbImg = $(this);
 				 $.ajax({
@@ -687,6 +717,7 @@
 				  fblightbox.fadeOut();
 				  weatherBox.fadeOut();
 				  locInsertBox.fadeOut();
+				  recordInsertBox.fadeOut();
 			 });
 			 
 			 $(".fbclose").click(function() {
@@ -694,6 +725,7 @@
 				  fblightbox.fadeOut();
 				  weatherBox.fadeOut();
 				  locInsertBox.fadeOut();
+				  recordInsertBox.fadeOut();
 			 });
 			 
 			 $(".overlay").click(function() {
@@ -701,6 +733,7 @@
 				  fblightbox.fadeOut();
 				  weatherBox.fadeOut();
 				  locInsertBox.fadeOut();
+				  recordInsertBox.fadeOut();
 			 });
 
 		});
