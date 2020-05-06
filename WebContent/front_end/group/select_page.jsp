@@ -39,7 +39,7 @@
 }
 
 #divAll {
-	background-image: url('/DA106_G5/front_end/group/webFront/c5.jpg');
+	background-image: url('/DA106_G5/front_end/group/webFront/c8.jpg');
 	width: 100%;
 	height: 100%;
 	background-size: cover;
@@ -71,7 +71,7 @@
 	
 				<a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/listAllGroup.jsp' id="listAll" >
 				目前揪團列表
-				<img src="<%= request.getContextPath() %>/front_end/group/images/listIcon.png" width="32px" height="32px" >
+				<img src="<%= request.getContextPath() %>/front_end/group/images/searchIcon.png" width="32px" height="32px" >
 				</a><br>	
 	
 		<table id="table-1">

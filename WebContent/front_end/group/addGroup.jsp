@@ -59,7 +59,7 @@
     text-align: left;
   }
   #divAll {
-	background-image: url('/DA106_G5/front_end/group/webFront/c5.jpg');
+	background-image: url('/DA106_G5/front_end/group/webFront/c8.jpg');
 	width: 100%;
 	height: 100%;
 	background-size: cover;
