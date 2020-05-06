@@ -176,7 +176,7 @@ listAllGroupdetailForSelect.jsp<br>
 		<th id=title>揪團標題</th>
 		<th id=comten>揪團內容</th>
 		
-		<th id=status>報到狀態</th>
+<!-- 		<th id=status>報到狀態</th> -->
 		
 	</tr>
 <%-- 	${group_detailSvc.all} --%>
@@ -261,7 +261,8 @@ listAllGroupdetailForSelect.jsp<br>
 			%>
 			
 			
-		<td>${status[grp_detailVO.grp_register]}</td>
+<%-- 		<td>${status[grp_detailVO.grp_register]}</td> --%>
+<%-- 		<td>${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"未滿":"人數已滿"}</td> --%>
 
 	</tr>
 <%-- 	</c:if> --%>

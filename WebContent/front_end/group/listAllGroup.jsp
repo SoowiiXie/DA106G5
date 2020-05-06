@@ -177,7 +177,7 @@
 			<td id="w10">${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td>
 			<td id="w15">
 <%-- 				${grouperVO.grp_status} --%>
-				${status[grouperVO.grp_status]}</td> 
+				${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"未滿":"人數已滿"}</td> 
 			
 <%-- 		${status.get(Integer.parseInt(2))} --%>
 <%-- 		${status.get(Integer(2))} --%>
