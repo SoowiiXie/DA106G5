@@ -282,7 +282,7 @@ public class ProductServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 
 					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					String includePath = "/back_end/product/AllList2.jsp";
+					String includePath = "/back_end/product/addProduct.jsp";
 //					System.out.println(includePath);
 					req.setAttribute("includePath", includePath);
 					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
@@ -322,39 +322,46 @@ public class ProductServlet extends HttpServlet {
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
 				String pd_no = req.getParameter("pd_no");
-				String whichPage = req.getParameter("whichPage");
+				String pd_name = req.getParameter("pd_name");
+				System.out.println(pd_no);
+				System.out.println(pd_name);
+//				String whichPage = req.getParameter("whichPage");
+			
 //				System.out.println("開頁頁數是" + whichPage);
 
 				/*************************** 2.開始查詢資料 ****************************************/
 				ProductService productService = new ProductService();
 				ProductVO productVO = productService.findOneProduct(pd_no);
-
+                 System.out.println(productVO);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("productVO", productVO); // 資料庫取出的empVO物件,存入req
-//				String url = "/back_end/product/UpdateProduct.jsp";
-				req.setAttribute("whichPage", whichPage);
+				String url = "/back_end/product/UpdateProduct.jsp";
+//				req.setAttribute("whichPage", whichPage);
 //				String includePath = "/back_end/product/UpdateProduct.jsp";
 //				System.out.println(includePath);
 //				req.setAttribute("includePath", includePath);
-//				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
-				RequestDispatcher successView = req.getRequestDispatcher("/back_end/product/UpdateProduct.jsp");
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+//				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 				successView.forward(req, res);
                   return;
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/addProduct.jsp");
+				String includePath = "/back_end/product/UpdateProduct.jsp";
+				req.setAttribute("includePath", includePath);
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/AllList2.jsp");
 				failureView.forward(req, res);
 				return;
 			}
 		}
 
 		if ("updateProduct".equals(action)) { // 來自addProducr.jsp的請求
+			System.out.println("也有進來喔");
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-			String whichPage = (String) req.getAttribute("whichPage");
+//			String whichPage = (String) req.getAttribute("whichPage");
 //			System.out.println("修改的該頁頁數是" + whichPage);
 
 			String pd_no = req.getParameter("pd_no").trim();
@@ -432,7 +439,7 @@ public class ProductServlet extends HttpServlet {
 			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/UpdateProduct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/AllList2.jsp");
 				failureView.forward(req, res);
 				return;
 			}
@@ -445,12 +452,12 @@ public class ProductServlet extends HttpServlet {
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) ***********/
 				req.getSession().setAttribute("pd_typeNo", pd_typeNo);
-//				String url = "/back_end/product/AllList2.jsp";
-				String includePath = "/back_end/product/AllList2.jsp";
+				String url = "/back_end/product/AllList2.jsp";
+//				String includePath = "/back_end/product/AllList2.jsp";
 				
-				req.setAttribute("includePath", includePath);
-//				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+//				req.setAttribute("includePath", includePath);
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+//				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 				successView.forward(req, res);
                 return;
 			} catch (Exception e) {
@@ -473,6 +480,7 @@ public class ProductServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			String whichPage = req.getParameter("whichPage");
+			System.out.println("字串"+whichPage);
 //			System.out.println("刪除的該頁頁數字" + whichPage);
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
