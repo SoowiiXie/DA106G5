@@ -48,8 +48,8 @@ public class MemberServlet extends HttpServlet {
 		// 通知
 		// 忘記密碼
 		// 修改 / 新增會員畫面
-		// 寄出驗證信後跳Alert
 		// 登入過再進入登入頁面會導到首頁(用濾器)
+		// **** 從驗證信點網址進Controller再進首頁會發生IllegalArgumentException ****
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -420,10 +420,12 @@ public class MemberServlet extends HttpServlet {
 
 		if ("logout".equals(action)) { // 登出
 			session.invalidate();
-			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/login_New.jsp");
-			failureView.forward(req, res);
+			res.sendRedirect(req.getContextPath() + "/front_end/member/login_New.jsp");
+			return;
 		}
 		
+		
+		// **************************後台部分*****************************
 		// 後台 - 會員管理
 		if ("getOne_Member_For_Update".equals(action)) { // 顯示一筆會員資料For更新 
 
@@ -574,6 +576,7 @@ public class MemberServlet extends HttpServlet {
 			
 			RequestDispatcher successView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=personal_page/personal_page.jsp");
 			successView.forward(req, res);
+			return;
 		}
 	}
 }

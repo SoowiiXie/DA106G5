@@ -193,7 +193,7 @@
 			Swal.fire({
 			  icon: 'error',
 			  title: 'Oops...',
-			  text: '<%=no_authority%>',
+			  text: '<%=no_authority%>'
 			})
 		<%}%>
 	});
