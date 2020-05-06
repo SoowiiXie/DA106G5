@@ -57,5 +57,18 @@ public class PathService {
 		return dao.getImage(path_no);
 	}
 	
+	public String insertPathFromWeb(byte[] path_pic) {
+		PathVO pathVO = new PathVO();
+		pathVO.setPath_name("我就爛");
+		pathVO.setPath_kml("");
+		pathVO.setPath_distance(Double.valueOf(3000));
+		pathVO.setPath_lat(Double.valueOf(121));
+		pathVO.setPath_lng(Double.valueOf(24.11));
+		pathVO.setPath_pic(path_pic);
+		String path_no = dao.insertPathFromWeb(pathVO);
+		
+		return path_no;
+	}
+	
 	
 }

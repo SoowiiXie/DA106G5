@@ -405,4 +405,10 @@ public class PathJDBCDAO implements PathDAO_interface {
 		return picture;
 	}
 
+	@Override
+	public String insertPathFromWeb(PathVO pathVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
