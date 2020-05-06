@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
 
 
 public class MeTooDAO implements MeToo_interface {
@@ -20,7 +21,7 @@ public class MeTooDAO implements MeToo_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO metoo (rcd_no,mb_id) values (?,?)";
 //	private static final String GET_ALL_STMT = "SELECT rcd_no,mb_id FROM metoo ORDER BY rcd_no";
-//	private static final String GET_ONE_STMT = "SELECT rcd_no,mb_id FROM metoo WHERE rcd_no=? and mb_id = ?";
+	private static final String GET_ONE_STMT = "SELECT * FROM metoo WHERE rcd_no=?";
 	private static final String COUNT_ALL = "SELECT COUNT ('a meToo') AS COUNTMETOOS FROM METOO WHERE rcd_no = ?";
 	private static final String COUNT_ONE = "SELECT COUNT ('a meToo') AS COUNTMETOO FROM METOO WHERE rcd_no = ? AND mb_id = ?";
 	private static final String DELETE = "DELETE FROM metoo where mb_id = ? and rcd_no=?";
@@ -115,6 +116,64 @@ public class MeTooDAO implements MeToo_interface {
 //			}
 //		}
 //	}
+	
+
+	@Override
+	public List<MeTooVO> getAllByRcd_no(String rcd_no) {
+		List<MeTooVO> list = new ArrayList<MeTooVO>();
+		MeTooVO meTooVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+//			Class.forName(DRIVER_CLASS);
+//			con = DriverManager.getConnection(URL, USER, PASSWORD);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+
+			pstmt.setString(1, rcd_no);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				meTooVO = new MeTooVO();
+				meTooVO.setRcd_no(rs.getString("Rcd_no"));
+				meTooVO.setMb_id(rs.getString("mb_id"));
+				list.add(meTooVO); // Store the row in the list
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 
 	@Override
 	public void delete(String mb_id, String rcd_no) {

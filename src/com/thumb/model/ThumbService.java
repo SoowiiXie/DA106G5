@@ -1,5 +1,7 @@
 package com.thumb.model;
 
+import java.util.List;
+
 public class ThumbService {
 
 	private Thumb_interface dao;
@@ -43,6 +45,10 @@ public class ThumbService {
     
     public Integer countOneThumb(String rcd_no, String mb_id) {
     	return dao.countOneThumb(rcd_no, mb_id);
+    }
+    
+    public List<ThumbVO> whoThumb(String rcd_no) {
+    	return dao.getAllByRcd_no(rcd_no);
     }
 	
 }

@@ -1,5 +1,7 @@
 package com.metoo.model;
 
+import java.util.List;
+
 public interface MeToo_interface {
 	 public void insert(MeTooVO meTooVO);
 //     public void update(MeTooVO meTooVO);
@@ -8,4 +10,5 @@ public interface MeToo_interface {
 //     public List<MeTooVO> getAll();
   	 public Integer countAllMeToos(String rcd_no);
   	 public Integer countOneMeToo(String rcd_no, String mb_id);
+  	 public List<MeTooVO> getAllByRcd_no(String rcd_no);
 }
