@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import com.common.MailService;
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
+import com.msg.model.MessageService;
 
 @MultipartConfig
 public class MemberServlet extends HttpServlet {
@@ -149,6 +150,7 @@ public class MemberServlet extends HttpServlet {
 											 memberLineVO.getMb_line_display(), memberLineVO.getMb_line_status(), mb_id);
 					}
 				}
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);

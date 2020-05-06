@@ -22,7 +22,7 @@ public class MessageDAO implements MessageDAO_interface{
 //	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO MESSAGE (MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) VALUES ('MSN'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'), ?, ?, ?)";
+		"INSERT INTO MESSAGE (MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) VALUES ('MSN'||LPAD(to_char(msg_no_seq.NEXTVAL), 5, '0'), ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT * FROM MESSAGE order by MSG_NO";
 	private static final String GET_ALL_BY_MB_ID_2_STMT = 
