@@ -6,7 +6,6 @@
 
 <head>
     <title>Login</title>
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     <style type="text/css">
         body {
             background-image: url(<%=request.getContextPath()%>/front_end/member/login/Login/running.jpg);
@@ -165,9 +164,21 @@
         	margin-top: 0.5vh;
         }
     </style>
-    <script>
-
-    </script>
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script>
+			//  改EL
+		$(document).ready(function(){
+			<c:if test="${empty errorMsgs && 'insert'.equals(param.action)}">
+				Swal.fire({
+				  icon: 'success',
+				  title: '驗證信已寄出',
+				  text: '請至註冊信箱收信'
+				})
+			</c:if>
+		});
+		
+	</script>
 </head>
 
 <body>

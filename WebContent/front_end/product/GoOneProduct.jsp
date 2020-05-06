@@ -8,6 +8,8 @@
 
 <%
 	 ProductVO productVO = (ProductVO) request.getAttribute("productVO");  
+
+      request.setAttribute("productVO", productVO);
 %>
  
 <jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
@@ -302,6 +304,14 @@ margin-top:100;
 </div>
  
  </div>  
+ 
+<div>
+
+
+</div>
+
+  
+  <div class="buttonBar" style="margin-top:100px"></div>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -312,7 +322,10 @@ margin-top:100;
 			</c:forEach>
 		</ul>
 	</c:if>
-  <div class="buttonBar" style="margin-top:100px"></div>
+	
+
+	 
+
 
 <script>
 var pd_follow= ${param.pd_follow};
@@ -345,7 +358,6 @@ if (addToShopCar == true){
    )
 }
 </script> 
-
 
 </body>
 </html>

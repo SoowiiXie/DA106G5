@@ -81,10 +81,43 @@ public class ShoppingServlet extends HttpServlet {
 //						System.out.print("服飾尺寸:" + sizeList);
 
 					}
-
+					
+					
+//					//----------------------------推薦其他商品--------------------------//
+//					ProductVO  getProductInformation =  productService.findOneProduct(pd_no);
+//					List<ProductVO> thisProductTypelist = productService.useTypeSearchProducts(getProductInformation.getPd_typeNo());
+//
+//					List<String> otherProductNo = null;
+//					otherProductNo = new ArrayList<String>();
+//					
+//					for (int i = 0; i < 3; i++) {
+//
+//						int randonProduct = (int) (Math.random() * thisProductTypelist.size());
+//
+//						String oederPd_no = thisProductTypelist.get(randonProduct).getPd_no();
+//
+//						if (oederPd_no.equals("PDN00001")) {
+//
+//							thisProductTypelist.remove(randonProduct);
+//							System.out.println("刪掉重複!!");
+//							
+//							i--;
+//						} else if (!oederPd_no.equals("PDN00001")) {
+//
+//							otherProductNo.add(oederPd_no);
+//
+//							thisProductTypelist.remove(randonProduct);
+//
+//						}
+//						  System.out.println(otherProductNo.get(i));
+//					}
+//					
+//					System.out.println(otherProductNo.size());
+//					//----------------------------推薦其他商品--------------------------//
 					/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 					req.setAttribute("productVO", productVO);
 					req.setAttribute("sizeList", sizeList);
+					
 					String url = "/front_end/product/GoOneProduct.jsp";
 
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 OneProductInformation.jsp

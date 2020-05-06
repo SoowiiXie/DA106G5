@@ -104,7 +104,7 @@ margin-top:100;
 				
 			    <td style="width:12%;" bgcolor="#FFB5B5">
 			    <input type="hidden" name="action" value="giveCoupon"> 
-			    <input type="hidden" name="soowii123" value="soowii123">
+			    
 			    
 			    <input type="submit" name="Submit" value="發送優惠券"></td>
 
