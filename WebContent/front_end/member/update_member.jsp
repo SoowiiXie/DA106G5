@@ -6,6 +6,60 @@
 <meta charset="BIG5">
 <title>update_member</title>
 </head>
+<style>
+	#wrapAll{
+		margin: 10vh auto 0px auto; 
+		background-color: rgba(49, 88, 202, 0.3);
+            
+        width: 35vw;
+        height: 75vh;
+        border-radius: 30px;
+	}
+	#update_table{
+		margin:5vh auto 0px auto;
+		
+		border:1px solid #000;
+		color: #333;
+		width:fit-content;
+		background-color:rgba(49, 88, 202, 0);
+		
+		font-size: 2.5vh;
+		font-weight:bold;
+		font-family:ZhengHei;
+		line-height:3vh;
+		text-align:right;
+	}
+	#update_table td{
+		border:1px solid #000;
+		padding:1vh;
+	}
+	#update_btn{
+		width:6vw;
+		height:5vh;
+		border-radius: 1.5vh;
+		box-shadow: 2px 3px 3px #333;
+		background-color: rgba(110, 195, 219, 0.7);
+		cursor: pointer;
+		
+		color: #fff;
+		font-weight: bold;
+        font-size: 2vh;
+        font-family: ZhengHei;
+        text-align: center;
+        line-height: 3.3vh;
+        text-shadow: 1px 1px 3px #333;
+	}
+	
+	.update_first_td{
+		text-align: right;
+	}
+	.update_second_td{
+		text-align:left;
+	}
+	#td_btn{
+		height:7vh;
+	}
+</style>
 <body>
 
 <%-- 錯誤表列 --%>
@@ -26,43 +80,63 @@
 		</ol>
 	</nav>
 
+	<div id="wrapAll">
 	<form METHOD="POST" action="<%=request.getContextPath()%>/front_end/member/member.do" enctype="multipart/form-data">
-	
-		帳號：${memberVO.mb_id}<br>
-		密碼：<input type="password" name="mb_pwd" value="${memberVO.mb_pwd}"><br>
-		名字：<input type="text" name="mb_name" value="${memberVO.mb_name}"><br>
-		
-		性別：
-		<c:forEach var="genderMapEntry" items="${memberGender}">
-			<label>
-			<input type="radio" name="mb_gender" value="${genderMapEntry.key}" ${memberVO.mb_gender==genderMapEntry.key?"checked":""}>
-	    	${genderMapEntry.value}
-	    	</label>
-		</c:forEach>
-    	<br>
-    	
-<!--     	Line -->
-<%-- 		Line：<input type="text" name="mb_line" value="${memberVO.mb_line}"><br> --%>
-		
-		生日：<input type="text" id="f_date" name="mb_birthday" value="${memberVO.mb_birthday}"><br>
-		e-mail：<input type="text" name="mb_email" value="${memberVO.mb_email}"><br>
-		
-		大頭照：<input type="file" name="mb_pic" onchange="setImg(this)"><br>
-		<img id="mb_pic" src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px">
-		
-		<input type="hidden" name="mb_id" value="${memberVO.mb_id}"><br>
-		<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}"><br>
-		<input type="hidden" name="mb_rpt_times" value="${memberVO.mb_rpt_times}"><br>
-		<input type="hidden" name="mb_status" value="${memberVO.mb_status}"><br>
-		
-		<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
-		<input type="hidden" name="includePath" value="/front_end/member/update_member.jsp">
-        <input type="hidden" name="action" value="update"><br>
-        <input type="reset" value="清除">
-        <input type="submit" value="送出"><br>
-        
-        
+		<table id="update_table">
+		<tr>
+			<td class="update_first_td">帳號：</td>
+			<td class="update_second_td">${memberVO.mb_id}</td>
+		</tr>
+		<tr>
+			<td class="update_first_td">密碼：</td>
+			<td class="update_second_td"><input type="password" name="mb_pwd" value="${memberVO.mb_pwd}"></td>
+		</tr>
+		<tr>
+			<td class="update_first_td">名字：</td>
+			<td class="update_second_td"><input type="text" name="mb_name" value="${memberVO.mb_name}"></td>
+		</tr>
+		<tr>
+			<td class="update_first_td">性別：</td>
+			<td class="update_second_td">
+				<c:forEach var="genderMapEntry" items="${memberGender}">
+					<label>
+					<input type="radio" name="mb_gender" value="${genderMapEntry.key}" ${memberVO.mb_gender==genderMapEntry.key?"checked":""}>
+			    	${genderMapEntry.value}
+			    	</label>
+				</c:forEach>
+			</td>
+		</tr>
+		<tr>
+			<td class="update_first_td">生日：</td>
+			<td class="update_second_td"><input type="text" id="f_date" name="mb_birthday" value="${memberVO.mb_birthday}"></td>
+		</tr>
+		<tr>
+			<td class="update_first_td">e-mail：</td>
+			<td class="update_second_td"><input type="text" name="mb_email" value="${memberVO.mb_email}"></td>
+		</tr>
+		<tr>
+			<td class="update_first_td">大頭照：</td>
+			<td class="update_second_td"><input type="file" name="mb_pic" onchange="setImg(this)"></td>
+		</tr>
+		<tr>
+			<td class="update_first_td">預覽圖片：</td>
+			<td class="update_second_td"><img id="mb_pic" src="<%= request.getContextPath()%>/MemberPicReader?mb_id=${memberVO.mb_id}" width="100px"></td>
+		</tr>
+		<tr>
+			<td colspan="2" id="td_btn">
+				<input type="hidden" name="mb_id" value="${memberVO.mb_id}"><br>
+				<input type="hidden" name="mb_lv" value="${memberVO.mb_lv}"><br>
+				<input type="hidden" name="mb_rpt_times" value="${memberVO.mb_rpt_times}"><br>
+				<input type="hidden" name="mb_status" value="${memberVO.mb_status}"><br>
+				
+				<input type="hidden" name="servletPath" value="<%=request.getServletPath()%>">
+				<input type="hidden" name="includePath" value="/front_end/member/update_member.jsp">
+		        <button id="update_btn" type="submit" name="action" value="update">修改</button>
+			</td>
+		</tr>
+        </table>
 	</form>
+	</div>
 	
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 	<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>

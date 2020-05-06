@@ -50,7 +50,7 @@ public class MemberServlet extends HttpServlet {
 		// 忘記密碼
 		// 修改 / 新增會員畫面
 		// 登入過再進入登入頁面會導到首頁(用濾器)
-		// **** 從驗證信點網址進Controller再進首頁會發生IllegalArgumentException ****
+		// **** 登入就會IllegalArgumentException ****
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
