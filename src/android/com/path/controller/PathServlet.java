@@ -73,14 +73,14 @@ System.out.println("input: " + jsonIn);
 			List<PathVO> pathList = new ArrayList<>();;
 			pathList = pathSvc.getAll();
 			
-//			List<PathVO> pathListFilter = pathList.stream()
-//					.filter(p -> p.getPath_status() == 1)
-//					.filter(p -> p.getPath_kml() != null)
-//					.collect(Collectors.toList());
+			List<PathVO> pathListFilter = pathList.stream()
+					.filter(p -> p.getPath_status() == 1)
+					.filter(p -> p.getPath_kml() != null)
+					.collect(Collectors.toList());
 			
-			String jsonStr = gson.toJson(pathList);
+			String jsonStr = gson.toJson(pathListFilter);
 //System.out.println(jsonStr);
-			if(pathList!=null) {
+			if(pathListFilter!=null) {
 				writeText(res, jsonStr);
 			}
 		}else if("getOnePath".equals(action)) {
