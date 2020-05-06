@@ -102,14 +102,37 @@ public class ShoppingServlet extends HttpServlet {
 		}
 		
 		
+		if (action.equals("DELETE")) {
+			String del = req.getParameter("del");
+			int d = Integer.parseInt(del);
+			buylist.removeElementAt(d);
+			
+			int total = 0;
+			for (int i = 0; i < buylist.size(); i++) {
+				ProductVO order = buylist.get(i);
+				int price = order.getPd_price();
+				int quantity = order.getPd_quantity();
+				total += (price * quantity);
+			}
+			session.setAttribute("total", total);
+			String buylistCount = String.valueOf(buylist.size());
+			session.setAttribute("buylistCount", buylistCount);
+			session.setAttribute("shoppingCart", buylist);
+			String url = "/front_end/product/ProductCart.jsp";
+			RequestDispatcher rd = req.getRequestDispatcher(url);
+			rd.forward(req, res);
+			return;
+		}
+		
+		
 
 		if (!action.equals("GoToWriteShopInformation")) {
 			// 刪除購物車中的
-			if (action.equals("DELETE")) {
-				String del = req.getParameter("del");
-				int d = Integer.parseInt(del);
-				buylist.removeElementAt(d);
-			}
+//			if (action.equals("DELETE")) {
+//				String del = req.getParameter("del");
+//				int d = Integer.parseInt(del);
+//				buylist.removeElementAt(d);
+//			}
 			// 新增商品至購物車中
 			 if (action.equals("AddProductToCar")) {
 				boolean match = false;
