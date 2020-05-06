@@ -41,9 +41,9 @@
 #divAll {
 	background-image: url('/DA106_G5/front_end/group/webFront/c8.jpg');
 	width: 100%;
-	height: 100%;
+/* 	height: 100%; */
 	background-size: cover;
-	overflow: hidden;
+ 	overflow: hidden; 
 	font-family: microsoft jhengHei;
 	font-size:18px;	
 }
@@ -106,14 +106,17 @@
 							<jsp:useBean id="locationSvc" scope="page"
 								class="com.location.model.LocationService" />
 
-							<b style="color: white">選擇揪團地點:</b> <select size="1" name="loc_no"
-								class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
-								placeholder="請輸入查詢的揪團地點" id="name" />
-							<option value="">
+							<b style="color: white">選擇揪團地點:</b> 
+							<select size="1" name="loc_no"	class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"	placeholder="請輸入查詢的揪團地點" id="selectLoc" />
+								<option value="">
 								<c:forEach var="LocationVO" items="${locationSvc.all}">
-									<option value="${LocationVO.loc_no}">${LocationVO.loc_address}
+								<c:if test="${LocationVO.loc_typeno==1 && LocationVO.loc_status==1}">
+								<option value="${LocationVO.loc_no}">${LocationVO.loc_address}
+								</c:if>
 								</c:forEach> </select><br>
-
+							<div>
+								<img alt="" src="<%= request.getContextPath() %>/img/LogoNoBack.png" id="loc_choose_pic" style="display:block; margin:auto; height:5rem;" >
+							</div>
 <!--   <li><a href='addGroup.jsp'>成立揪團</a></li> -->
 
 								<!--         <b>揪團報名開始時間:</b> -->
@@ -125,7 +128,7 @@
 								<!-- 	    <b>揪團結束時間:</b> -->
 								<!-- 	    <input name="grp_end" id="s_date2" type="text"><br> -->
 
-
+								<br>
 								<b style="color: white">輸入揪團標題:</b> <input type="text" name="grp_name"
 									class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
 									placeholder="請輸入查詢的揪團標題" id="name" /><br> <b style="color: white">輸入揪團內容:</b>
@@ -159,6 +162,7 @@
 									<div class="ease"></div>
 <!-- 								</div> -->
 						</FORM>
+						
 <!-- 					</li> -->
 				</ul>
 			</div>
@@ -166,29 +170,11 @@
 	</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script>
+		document.getElementById('selectLoc').onchange = function() {
+			document.getElementById('loc_choose_pic').src = "<%= request.getContextPath() %>/DBGifReader4Location?loc_no="+this.value;
+		}
+</script>
 <%
 	java.sql.Timestamp grp_applystart = null;
 	try {

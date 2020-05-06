@@ -61,7 +61,7 @@
   #divAll {
 	background-image: url('/DA106_G5/front_end/group/webFront/c8.jpg');
 	width: 100%;
-	height: 100%;
+/* 	height: 100%; */
 	background-size: cover;
 }
 </style>
@@ -113,11 +113,13 @@
 				<jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />
 			<tr>
 				<td>地點:<font color=red><b>*</b></font></td>
-				<td><select size="1" name="loc_no" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團地點" id="name" /> >
-					<c:forEach var="group4locVO" items="${locationSvc.all}">
+				<td>
+					<select size="1" name="loc_no" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團地點" id="name" /> >
+						<c:forEach var="group4locVO" items="${locationSvc.all}">
 						<option value="${group4locVO.loc_no}" ${(grouperVO.loc_no==group4locVO.loc_no)? 'selected':'' } >${group4locVO.loc_address}
-					</c:forEach>
-				</select></td>
+						</c:forEach>
+					</select>
+				</td>
 			</tr>
 			
 			<tr>
