@@ -38,6 +38,8 @@ public class ShoppingServlet extends HttpServlet {
 		Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");
 		String action = req.getParameter("action");
 		
+		System.out.println(action);
+		
 		if (action.equals("findOneProduct")) { // ShopHome商城首頁進入該上架之商品
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -164,7 +166,7 @@ public class ShoppingServlet extends HttpServlet {
 			cp_getVO.setCp_status(1);
 			List<Cp_getVO> couponList = cp_getService.listAmemberCpGetStatus(cp_getVO);
 			session.setAttribute("couponList", couponList);
-			String url = "/ShoppingServlet?action=findOneProduct&pd_no="+ pd_no +"&addToShopCar=true";
+			String url = "/front_end/product/ProductCart.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 			return;

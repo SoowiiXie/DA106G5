@@ -119,10 +119,9 @@ margin-top:100;
 
 
 						<td width="100"><div align="center">
-<form name="deleteForm"
-				action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
-								<input type="hidden" name="action" value="DELETE"> <input
-									type="hidden" name="del" value="<%=index%>"> <input class="btn btn-primary btn-sm" type="submit" name="Submit" 
+<form name="deleteForm" action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
+								<input type="hidden" name="action" value="DELETE"> 
+								<input type="hidden" name="del" value="<%=index%>"> <input class="btn btn-primary btn-sm" type="submit" name="Submit" 
 							value="刪除">
 							</form></div></td>
 
