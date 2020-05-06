@@ -84,7 +84,7 @@
 <div id="contentMiddle" class="btn-group row col-6" onload="connect()" onunload ="disconnect()">
 	<!-- 分頁按鈕 -->
 	<div class="btn-group col-12" id="contentTop">
-		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp&meOrFollow=me" class="btn btn-primary"> 
+		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page_ws/personal_page.jsp&meOrFollow=me" class="btn btn-primary"> 
 			<b>返回我的紀錄</b>
 		</a> 
 	</div>
@@ -106,8 +106,7 @@
 				</div>
 			</div>
 			<!-- 路徑圖片 -->
-			<div style="overflow: hidden; height: 15rem;"
-				class="mx-auto my-2 col-12">
+			<div style="overflow: hidden; height: 15rem;" class="mx-auto my-2 col-12">
 				<img
 					src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}"
 					class="rounded mx-auto d-block pathImg" alt="Responsive image">
@@ -234,7 +233,7 @@
 
 <!-- 內容右邊-上傳紀錄 -->
 <div id="contentRight" class="col-3">
-	<a href="index.html" class="btn btn-primary col-11"> 
+	<a href="" class="btn btn-primary col-11 btnAddRecord"> 
 		<b>上傳紀錄</b>
 	</a>
 	<br>
