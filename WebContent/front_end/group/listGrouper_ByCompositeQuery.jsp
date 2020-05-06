@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -110,7 +109,7 @@ listGrouper_ByCompositeQuery.jsp<br>
 	<%@ include file="pages/page1_ByCompositeQuery.file" %>
 	<c:forEach var="grouperVO" items="${listGrouper_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		<tr align='center' valign='middle' ${(grouperVO.grp_no==param.grp_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
-			<td><A href="group.do?grp_no=${grouperVO.grp_no}&action=getOne_Time">${grouperVO.grp_no}</A></td>
+			<td><A href="group.do?grp_no=${grouperVO.grp_no}&action=getOne_Time2">${grouperVO.grp_no}</A></td>
 			<td>${grouperVO.mb_id}</td>			
 <%-- 			<td>${grouperVO.loc_no}</td> --%>
 			<td><c:forEach var="LocationVO" items="${locationSvc.all}">
@@ -132,13 +131,14 @@ listGrouper_ByCompositeQuery.jsp<br>
 <!-- 			總人數 -->
 <%-- 			<td>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td> --%>
 			<%
-			request.setAttribute("grp_status", new String[]{"","未滿","已滿","取消","成功"});
+			request.setAttribute("grp_status", new String[]{"","未滿","已滿","取消","成功"} );			
 			%>
 			
 						
 			<td>
 <%-- 			${grouperVO.grp_status} --%>
-			${grp_status[grouperVO.grp_status]}
+<%-- 			${grp_status[grouperVO.grp_status]} --%>
+			${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"未滿":"人數已滿"}
 			</td>
 <%-- 			<td>${grouperVO.grp_follow}</td>	 --%>
 			<td>${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
@@ -205,7 +205,7 @@ listGrouper_ByCompositeQuery.jsp<br>
 			
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
-               <jsp:include page="listOneGroup.jsp" />
+               <jsp:include page="listOneGroup2.jsp" />
 <!-- =========================================以上為原listOneEmp.jsp的內容========================================= -->
 			</div>
 			

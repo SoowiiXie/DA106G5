@@ -370,7 +370,7 @@ public class GrouperServlet extends HttpServlet {
 						grp_follow);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
-				String url = "/front_end/group/listAllGroup.jsp";
+				String url = "/front_end/index.jsp?pageRun=group/listAllGroup.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);				
 				
@@ -482,6 +482,34 @@ public class GrouperServlet extends HttpServlet {
 		}
 		
 		if ("getOne_Time".equals(action)) {
+
+			try {
+				// Retrieve form parameters.
+				String grp_no = new String(req.getParameter("grp_no"));
+				System.out.println(grp_no);
+				GrouperDAO dao = new GrouperDAO();
+				GrouperVO grouperVO = dao.findByPrimaryKey(grp_no);
+
+				req.setAttribute("grouperVO", grouperVO); // 資料庫取出的empVO物件,存入req
+				System.out.println("C:"+grouperVO);
+				
+				//Bootstrap_modal
+				boolean openModal=true;
+				req.setAttribute("openModal",openModal );
+				
+				// 取出的empVO送給listOneEmp.jsp
+				RequestDispatcher successView = req
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/listAllGroup.jsp");
+				successView.forward(req, res);
+				return;
+
+				// Handle any unusual exceptions
+			} catch (Exception e) {
+				throw new ServletException(e);
+			}
+		}
+		
+		if ("getOne_Time2".equals(action)) {
 
 			try {
 				// Retrieve form parameters.

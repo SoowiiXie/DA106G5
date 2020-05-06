@@ -17,6 +17,10 @@
 <jsp:useBean id="grp_detailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
 <jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
 <jsp:useBean id="grpSvc" scope="page" class="com.grouper.model.GrouperService" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- 取出對應的LocationVO物件 -->
 
 
