@@ -97,6 +97,7 @@
 			<label style="font-size: 1.2rem;">運動剪影： </label>
 			<input type="file" name="path_pic" id="upfile1" style="font-size: 1.2rem;"/>
 	</div>
+	<img alt="" src="" id="rcd_insert_pic" style="height:5rem;">
 </table>
 <br>
 	<div class="fblightbox-footer bg-white">
@@ -107,7 +108,38 @@
 	</div>
 </FORM>
 </body>
-
+	
+<script>
+// 		var x = new FileReader;
+		var y = new FileReader;
+// 		document.forms[0].elements[0].onchange = function() {
+// 			x.readAsDataURL(this.files[0]);
+// 		}
+// 		$("#upfile1").onchange = function() {
+// 			x.readAsDataURL(this.files[0]);
+// 		}
+// 		x.onloadend = function() {
+// 			$("#rcd_insert_pic").src = this.result;
+// 			console.log(x.herf);
+// 		}
+		
+		document.getElementById('upfile1').onchange = function() {
+			y.readAsDataURL(this.files[0]);
+		}
+		y.onloadend = function() {
+			document.getElementById('rcd_insert_pic').src = this.result;
+		}
+		
+		
+		
+// 		document.forms[0].elements[1].onchange = function() {
+// 			y.readAsDataURL(this.files[0]);
+// 		}
+// 		y.onloadend = function() {
+// 			document.images[0].src = this.result;
+// 		}
+		
+</script>
 
 
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->

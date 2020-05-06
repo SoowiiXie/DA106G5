@@ -9,8 +9,7 @@ import javax.servlet.http.*;
 
 import com.location.model.*;
 
-@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
-		* 1024 * 1024)
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100	* 1024 * 1024)
 public class LocationServlet extends HttpServlet {
 
 	/**

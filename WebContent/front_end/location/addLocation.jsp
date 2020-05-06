@@ -138,8 +138,9 @@ th, td {
 <!-- 			</tr> -->
 			<div class="form-group m-1">
 				<label style="font-size: 1.4rem;">照片: </label>
-				<input type="file" name="loc_pic" id="upfile1" style="font-size: 1.4rem;"/>
+				<input type="file" name="loc_pic" id="upfileLoc" style="font-size: 1.4rem;"/>
 			</div>
+			<img alt="" src="" id="loc_insert_pic" style="height:5rem;">
 <!-- 			<tr> -->
 <!-- 				<td>預覽:</td> -->
 <!-- 				<td><img src="/DA106_G5/NoData/none2.jpg" width="100px"></td> -->
@@ -170,6 +171,37 @@ th, td {
 </body>
 <!-- jquery -->
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+<script>
+// 		var x = new FileReader;
+		var y = new FileReader;
+// 		document.forms[0].elements[0].onchange = function() {
+// 			x.readAsDataURL(this.files[0]);
+// 		}
+// 		$("#upfile1").onchange = function() {
+// 			x.readAsDataURL(this.files[0]);
+// 		}
+// 		x.onloadend = function() {
+// 			$("#rcd_insert_pic").src = this.result;
+// 			console.log(x.herf);
+// 		}
+		
+		document.getElementById('upfileLoc').onchange = function() {
+			y.readAsDataURL(this.files[0]);
+		}
+		y.onloadend = function() {
+			document.getElementById('loc_insert_pic').src = this.result;
+		}
+		
+		
+		
+// 		document.forms[0].elements[1].onchange = function() {
+// 			y.readAsDataURL(this.files[0]);
+// 		}
+// 		y.onloadend = function() {
+// 			document.images[0].src = this.result;
+// 		}
+		
+</script>
 <script type="text/javascript">
 	$('#loc_submit').click(function(e){
 		e.preventDefault();
