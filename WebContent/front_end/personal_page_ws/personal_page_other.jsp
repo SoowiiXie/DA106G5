@@ -84,7 +84,7 @@
 <div id="contentMiddle" class="btn-group row col-6" onload="connect()" onunload ="disconnect()">
 	<!-- 分頁按鈕 -->
 	<div class="btn-group col-12" id="contentTop">
-		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page_ws/personal_page.jsp&meOrFollow=me" class="btn btn-primary"> 
+		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=personal_page/personal_page.jsp&meOrFollow=me" class="btn btn-primary"> 
 			<b>返回我的紀錄</b>
 		</a> 
 	</div>
@@ -242,8 +242,7 @@
 		<h4 class="nake-title--sidebar medium d-inline-block mt-3 ml-4">Runn Able 官方Line</h4>
 		<div class="statis-chart">
 			<!-- <canvas id="week_chart" width="300" height="200"></canvas> -->
-			<img src="<%=request.getContextPath()%>/img/lineAddFriend.PNG"
-				alt="" class="col-12">
+			<img src="<%=request.getContextPath()%>/img/lineAddFriend.PNG" alt="" class="col-12">
 		</div>
 	</div>
 </div>
