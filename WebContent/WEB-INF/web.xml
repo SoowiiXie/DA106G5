@@ -405,7 +405,7 @@
 		
 		<servlet>
 			<servlet-name>PathServletIndex</servlet-name>
-			<servlet-class>com.record.controller.RecordServlet</servlet-class>
+			<servlet-class>com.path.controller.PathServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>PathServletIndex</servlet-name>

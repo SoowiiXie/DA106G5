@@ -16,12 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.path.model.PathService;
-import com.path.model.PathVO;
 import com.record.model.*;
 
-@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
-		* 1024 * 1024)
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100	* 1024 * 1024)
 public class PathServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
@@ -46,6 +49,7 @@ public class PathServlet extends HttpServlet {
 				byte[] path_pic = null;
 				String picBase64 = req.getParameter("picBase64");
 				if (part.getSize() != 0) {
+					System.out.println(1);
 					in = part.getInputStream();
 					bf = new BufferedInputStream(in);
 					path_pic = new byte[in.available()];
@@ -53,18 +57,20 @@ public class PathServlet extends HttpServlet {
 					bf.close();
 					in.close();
 				} else if (picBase64 != null && picBase64.trim().length() != 0) {
+					System.out.println(2);
 					path_pic = Base64.getDecoder().decode(picBase64.getBytes());
 				}
 
 				java.sql.Date rcd_uploadtime = new java.sql.Date(System.currentTimeMillis());
+				System.out.println(rcd_uploadtime);
 
 				String rcd_content = req.getParameter("rcd_content");
 				if (rcd_content == null || rcd_content.trim().length() == 0) {
 					errorMsgs.add("上傳內容: 請勿空白");
 				}
-
+				System.out.println(rcd_content);
 				String mb_id = req.getParameter("mb_id");
-
+				System.out.println(mb_id);
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("rcd_content", rcd_content); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/record/addRecord.jsp");
@@ -74,12 +80,14 @@ public class PathServlet extends HttpServlet {
 				/*************************** 2.開始新增資料 ***************************************/
 				PathService pathSvc = new PathService();
 				String path_no = pathSvc.insertPathFromWeb(path_pic);
+				System.out.println("path_no："+path_no);
 
 				RecordVO recordVO = new RecordVO();
 				recordVO.setRcd_uploadtime(rcd_uploadtime);
 				recordVO.setRcd_content(rcd_content);
 				recordVO.setPath_no(path_no);
 				recordVO.setMb_id(mb_id);
+				System.out.println("recordVO："+recordVO);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -91,6 +99,7 @@ public class PathServlet extends HttpServlet {
 				}
 				RecordService recordSvc = new RecordService();
 				recordVO = recordSvc.addRecord(rcd_uploadtime, rcd_content, path_no, mb_id);
+				System.out.println("recordVO from SVC："+recordVO);
 				// 為什麼不用256行empVO進行新增,因為可以在service中有必要還可以加工(框架)
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String url = "/front_end/index.jsp?pageRun=personal_page/personal_page.jsp&meOrFollow=me";
