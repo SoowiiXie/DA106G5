@@ -51,12 +51,12 @@
   table, th, td {
     border: 3px solid 	#FFFFFF;
   }
-  th, td {
+th, td {
     padding: 1px;
     text-align: center;
   }
   
-  .buttonBar{
+.buttonBar{
 width:100%;
 background-color:#3960D0;
 height:100px;
@@ -80,20 +80,20 @@ margin-top:100;
 		</ul>
 	</c:if>
 	
-<div align="center" style="margin-top:100px;">
+<div align="center" style="margin-top:100px; ">
 	<font size="+3">商城 - 填寫收費與取貨資訊 </font></div>
 	<hr>
 	<p>
-	<div align="center">
-	<table  class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; ">
+	<div align="center" style="border-style: solid; border-color:red; width:70%; margin-left:15%;">
+	<table  class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; width:100%;">
 		<tr bgcolor="#999999"  align="center">
-		    <th style ="width:150px;"><font color="black">產品圖片</font></th>
-			<th style ="width:200px;"><font color="black">產品分類</font></th>
-			<th style ="width:100px;"><font color="black">產品名稱</font></th>
-			<th style ="width:100px;"><font color="black">產品編號</font></th>
-			<th style ="width:100px;"><font color="black">單價</font></th>
-			<th style ="width:100px;"><font color="black">尺寸</font></th>
-			<th style ="width:100px;"><font color="black">數量</font></th>
+		    <th style ="width:10%;"><font color="black">產品圖片</font></th>
+			<th style ="width:10%;"><font color="black">產品分類</font></th>
+			<th style ="width:10%;"><font color="black">產品名稱</font></th>
+			<th style ="width:10%;"><font color="black">產品編號</font></th>
+			<th style ="width:10%;"><font color="black">單價</font></th>
+			<th style ="width:10%;"><font color="black">尺寸</font></th>
+			<th style ="width:10%;"><font color="black">數量</font></th>
 		</tr>
 		<%
 			MemberService memberSvc = new MemberService();
@@ -181,7 +181,7 @@ margin-top:100;
 	</table>
 	
 </div>
-<div style="margin-left:260px; border-style:solid; width:900px;" >
+<div style="margin-left:15%; border-style:solid; width:70%;" >
 	<form method="POST" action="<%=request.getContextPath()%>/CheckOutServlet">
 		<div style="float:left;">
 			填寫收費地址

@@ -79,11 +79,11 @@ margin-top:100;
 		</ul>
 	</c:if>
 	
-<div align="center" style="margin-top:100px;">
+<div align="center" style="margin-top:100px; border: 3px solid red;">
 	<font size="+3">商城 - 填寫收費與取貨資訊 </font></div>
 	<hr>
 	<p>
-	<div align="center">
+	<div class="try" align="center">
 	<table  class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; ">
 		<tr bgcolor="#999999"  align="center">
 		    <th style ="width:150px;"><font color="black">產品圖片</font></th>
@@ -175,7 +175,7 @@ margin-top:100;
 	</table>
 	
 </div>
-    <div style="margin-left:260px; border-style:solid; width:900px;" >
+    <div style="border-style:solid;width:100%;" >
 	   <form method="POST" action="<%=request.getContextPath()%>/CheckOutServlet">
 		
 		  

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import com.coupon.model.CouponService;
 import com.coupon.model.CouponVO;
+import com.mb.model.MemberService;
+import com.mb.model.MemberVO;
 import com.cp_get.model.Cp_getService;
 import com.cp_get.model.Cp_getVO;
 
@@ -119,14 +121,22 @@ public class CpGetServlet extends HttpServlet {
 		}
 		if (action.equals("giveCoupon")) {
 
-			String mb_id = req.getParameter("soowii123");
-			String cp_no = req.getParameter("cp_no");
-//			System.out.println(cp_no);
-            Cp_getVO cp_getVO = new Cp_getVO();
-            cp_getVO.setMb_id(mb_id);           
-            cp_getVO.setCp_no(cp_no);
-            Cp_getService cp_getService = new Cp_getService();
-            cp_getService .aMemberGetCoupon(cp_getVO);
+			MemberService memberService = new MemberService();
+			
+			List<MemberVO> memberlist  = memberService.getAll();
+			
+			for(MemberVO aMember:memberlist) {
+				
+				String cp_no = req.getParameter("cp_no");
+//				System.out.println(cp_no);
+	            Cp_getVO cp_getVO = new Cp_getVO();
+	            cp_getVO.setMb_id(aMember.getMb_id());           
+	            cp_getVO.setCp_no(cp_no);
+	            Cp_getService cp_getService = new Cp_getService();
+	            cp_getService.aMemberGetCoupon(cp_getVO);		
+			}
+			
+
 //			String url = "/back_end/product/CouponManage.jsp";
         	String includePath = "/back_end/product/CouponManage.jsp"; //讓include增加商品頁面的bar得到網址
 			System.out.println(includePath);

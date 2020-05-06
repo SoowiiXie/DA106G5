@@ -4,7 +4,9 @@ import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,10 +52,7 @@ public class ProductServlet extends HttpServlet {
 			return;
 		}
 		
-		
-		
-
-		if ("addProduct".equals(action)) {
+		if ("addProduct2".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -118,7 +117,126 @@ public class ProductServlet extends HttpServlet {
 ////						}
 //					}
 				//＝＝＝＝＝＝＝＝＝＝＝＝＝＝多張圖片尚未完成=======================//
-					
+				List<byte[]> pd_pics = new ArrayList<byte[]>();				
+				byte[] pd_pic = null;
+				InputStream in;
+				BufferedInputStream bf;
+
+				try {
+
+					Collection<Part> parts = req.getParts();
+					String picBase64 = req.getParameter("picBase64");
+					int piclen = 0;
+					for(Part part: parts) {
+						in = part.getInputStream();
+						bf = new BufferedInputStream(in);
+						if (part.getSize() != 0) {
+							pd_pic = new byte[bf.available()]; // 暫存記憶體
+							System.out.println("有東西");
+							piclen++;
+						}
+						
+						bf.read(pd_pic);
+						bf.close();
+						in.close();
+
+						pd_pics.add(pd_pic);
+						if(piclen == 0) {
+							errorMsgs.add("請上傳產品圖片");
+						}
+
+						if (picBase64 != null && picBase64.trim().length() != 0) {
+							pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+						}
+					}
+						
+						
+					if (picBase64 != null && picBase64.trim().length() != 0) {
+						pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+					} // 若都沒有，mb_pic 以 null 送出
+					productVO.setPd_name(pd_name);
+					productVO.setPd_price(pd_price);
+					productVO.setPd_detail(pd_detail);
+					productVO.setPd_typeNo(pd_typeNo);
+					productVO.setPd_pic(pd_pic);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+					System.out.println("a");
+
+				} catch (IOException e) {
+					e.printStackTrace();
+
+				}
+				/*--------------------------------------------------------------*/
+
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+
+					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					String includePath = "/back_end/product/AllList2.jsp";
+//					System.out.println(includePath);
+					req.setAttribute("includePath", includePath);
+					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+					failureView.forward(req, res);
+					System.out.println("3");
+					return;
+				}
+
+				/*************************** 2.開始新增資料 ***************************************/
+				ProductService productService = new ProductService();
+				productVO = productService.addProduct(pd_name, pd_price, pd_detail, pd_typeNo, pd_pic);
+		     
+				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+				String includePath = "/back_end/product/AllList2.jsp";
+//				System.out.println(includePath);
+				req.setAttribute("includePath", includePath);
+//				String url = "/back_end/product/addProduct.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
+				successView.forward(req, res);
+				return;
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/addProduct.jsp");
+				failureView.forward(req, res);
+				return;
+			}
+
+		}
+		
+
+		if ("addProduct".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+			
+				String pd_name = req.getParameter("pd_name");
+				String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
+				if (pd_name == null || pd_name.trim().length() == 0) {
+					errorMsgs.add("商品名稱: 請勿空白");
+				} else if (!pd_name.trim().matches(pd_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
+				}
+
+				Integer pd_price = null;
+				try {
+					pd_price = new Integer(req.getParameter("pd_price").trim());
+				} catch (NumberFormatException e) {
+					pd_price = 0;
+					errorMsgs.add("金額請填數字.");
+				}
+
+				String pd_detail = req.getParameter("pd_detail");
+				if (pd_detail == null || pd_detail.trim().length() == 0) {
+					errorMsgs.add("商品詳述: 請勿空白");
+				}
+
+				String pd_typeNo = req.getParameter("pd_typeNo").trim();
+
+				ProductVO productVO = new ProductVO();
+
 				byte[] pd_pic = null;
 				InputStream in;
 				BufferedInputStream bf;
@@ -176,7 +294,7 @@ public class ProductServlet extends HttpServlet {
 				/*************************** 2.開始新增資料 ***************************************/
 				ProductService productService = new ProductService();
 				productVO = productService.addProduct(pd_name, pd_price, pd_detail, pd_typeNo, pd_pic);
-             
+		     
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String includePath = "/back_end/product/AllList2.jsp";
 //				System.out.println(includePath);
@@ -195,7 +313,7 @@ public class ProductServlet extends HttpServlet {
 		}
 
 		if (action.equals("getOne_For_update")) { // 來自listAllEmp.jsp的請求
-
+         System.out.println("有進來喔");
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -215,18 +333,19 @@ public class ProductServlet extends HttpServlet {
 				req.setAttribute("productVO", productVO); // 資料庫取出的empVO物件,存入req
 //				String url = "/back_end/product/UpdateProduct.jsp";
 				req.setAttribute("whichPage", whichPage);
-				String includePath = "/back_end/product/UpdateProduct.jsp";
+//				String includePath = "/back_end/product/UpdateProduct.jsp";
 //				System.out.println(includePath);
-				req.setAttribute("includePath", includePath);
+//				req.setAttribute("includePath", includePath);
 //				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
-				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/product/UpdateProduct.jsp");
 				successView.forward(req, res);
-
+                  return;
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/ListAll.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/addProduct.jsp");
 				failureView.forward(req, res);
+				return;
 			}
 		}
 
@@ -333,7 +452,7 @@ public class ProductServlet extends HttpServlet {
 //				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 				successView.forward(req, res);
-
+                return;
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				String includePath = "/back_end/product/AllList2.jsp";
@@ -342,6 +461,7 @@ public class ProductServlet extends HttpServlet {
 //				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/UpdateProduct.jsp");
 				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 				failureView.forward(req, res);
+				return;
 			}
 
 		}
@@ -370,12 +490,13 @@ public class ProductServlet extends HttpServlet {
 //				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 				successView.forward(req, res);
-
+				return;
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/AllList2.jsp");
 				failureView.forward(req, res);
+				return;
 			}
 		}
 
@@ -479,6 +600,7 @@ public class ProductServlet extends HttpServlet {
 				errorMsgs.add("搜尋資料失敗:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/Pd_typeNoList.jsp");
 				failureView.forward(req, res);
+				return;
 			}
 
 		}
