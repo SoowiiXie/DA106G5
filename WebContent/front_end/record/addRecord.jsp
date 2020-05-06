@@ -97,7 +97,7 @@
 			<label style="font-size: 1.2rem;">¹B°Ê°Å¼v¡G </label>
 			<input type="file" name="path_pic" id="upfile1" style="font-size: 1.2rem;"/>
 	</div>
-	<img alt="" src="" id="rcd_insert_pic" style="height:5rem;">
+	<img alt="" src="" id="rcd_insert_pic" style=" height:5rem;">
 </table>
 <br>
 	<div class="fblightbox-footer bg-white">
@@ -111,7 +111,7 @@
 	
 <script>
 // 		var x = new FileReader;
-		var y = new FileReader;
+		var z = new FileReader;
 // 		document.forms[0].elements[0].onchange = function() {
 // 			x.readAsDataURL(this.files[0]);
 // 		}
@@ -124,9 +124,9 @@
 // 		}
 		
 		document.getElementById('upfile1').onchange = function() {
-			y.readAsDataURL(this.files[0]);
+			z.readAsDataURL(this.files[0]);
 		}
-		y.onloadend = function() {
+		z.onloadend = function() {
 			document.getElementById('rcd_insert_pic').src = this.result;
 		}
 		
