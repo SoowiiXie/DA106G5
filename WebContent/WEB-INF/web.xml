@@ -433,13 +433,14 @@
 		
 		<servlet>
 			<servlet-name>AndroidGrouperServlet</servlet-name>
-			<servlet-class>android.com.grouper.controller</servlet-class>
+			<servlet-class>android.com.grouper.controller.GrouperServlet</servlet-class>
 		</servlet>
 		<servlet-mapping>
 			<servlet-name>AndroidGrouperServlet</servlet-name>
 			<url-pattern>/android/grouper.do</url-pattern>
 		</servlet-mapping>
 		
+
 <!-- 麥克責任區結束 -->
 
 <!-- 昱盛責任區開始 -->
