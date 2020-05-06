@@ -393,6 +393,7 @@
 			<url-pattern>/back_end/rcd_rpt/rcd_rpt.do</url-pattern>
 		</servlet-mapping>
 		
+	<!-- 路徑開始 -->
 		<servlet>
 			<servlet-name>DBGifReader4Path</servlet-name>
 			<servlet-class>com.path.model.DBGifReader4Path</servlet-class>
@@ -401,6 +402,16 @@
 			<servlet-name>DBGifReader4Path</servlet-name>
 			<url-pattern>/DBGifReader4Path</url-pattern>
 		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>PathServletIndex</servlet-name>
+			<servlet-class>com.record.controller.RecordServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>PathServletIndex</servlet-name>
+			<url-pattern>/front_end/path.do</url-pattern>
+		</servlet-mapping>
+	<!-- 路徑結束 -->
 		
 <!-- android -->
 
