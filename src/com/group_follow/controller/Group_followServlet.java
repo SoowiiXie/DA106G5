@@ -202,7 +202,7 @@ public class Group_followServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("group_followVO", group_followVO); // 含有輸入格式錯誤的grouperVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/group_follow/addGroupfollow.jsp");
+							.getRequestDispatcher("/front_end/index.jsp?pageRun=group_follow/addGroupfollow.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -212,7 +212,7 @@ public class Group_followServlet extends HttpServlet {
 				group_followVO = group_followSvc.addGroupfollow(grp_no, mb_id);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
-				String url = "/front_end/group_follow/listAllGroupfollow.jsp";
+				String url = "/front_end/index.jsp?pageRun=group_follow/listAllGroupfollow.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);				
 				
@@ -220,7 +220,7 @@ public class Group_followServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/group_follow/addGroupfollow.jsp");
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group_follow/addGroupfollow.jsp");
 				failureView.forward(req, res);
 			}
 		}

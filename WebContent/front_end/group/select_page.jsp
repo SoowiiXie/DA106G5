@@ -17,7 +17,7 @@
 	width: 60px;
 	height: 60px;
 	border-radius: 30px;
-	border: 2px #fff solid;
+	border: 1px #fff solid;
 	background-color: #4E73DF;
 	line-height: 60px;
 	font-size: 14px;
@@ -27,6 +27,11 @@
 	top: 80%;
 	left: 85%;
 	margin: 0px;
+}
+#list{
+	font-size:20px;
+	color:#000080;
+	
 }
 
 #fieldset, input {
@@ -39,6 +44,8 @@
 	height: 100%;
 	background-size: cover;
 	overflow: hidden;
+	font-family: microsoft jhengHei;
+	font-size:18px;	
 }
 </style>
 </head>
@@ -62,15 +69,17 @@
 				</c:if>
 
 
-				<li><a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/listAllGroup.jsp'>揪團列表</a><br>
-				<br></li>
+				<a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/listAllGroup.jsp' style="color: #000080" id=list>
+				<img src="<%= request.getContextPath() %>/front_end/group/images/listIcon.png" width="27" height="27" border="0">
+				目前揪團列表</a><br>
+				
 
 <%-- 				<li><a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/addGroup.jsp'>成立揪團</a></li> --%>
 
 				<ul>
-					<li>
+<!-- 					<li> -->
 						<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/front_end/group/group.do"	name="form1">
-							<b><font color=blue>查詢揪團</font></b> <br> <b style="color: white">輸入揪團編號:</b> <input
+							<b><font color=#000080>查詢揪團</font></b> <br> <b style="color: white">輸入揪團編號:</b> <input
 								type="text" name="grp_no"
 								class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
 								placeholder="請輸入查詢的揪團編號" id="name" /><br> <b style="color: white">輸入會員編號:</b> <input
@@ -134,7 +143,7 @@
 									<div class="ease"></div>
 <!-- 								</div> -->
 						</FORM>
-					</li>
+<!-- 					</li> -->
 				</ul>
 			</div>
 		</div>

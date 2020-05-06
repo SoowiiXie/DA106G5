@@ -187,7 +187,7 @@ public class ShoppingServlet extends HttpServlet {
 				Integer discount = totalPrice;
 				session.setAttribute("totalPrice", totalPrice);
 				session.setAttribute("discount", discount);
-				String url = "/front_end/product/Checkout.jsp";
+				String url = "/front_end/product/Checkout2.jsp";
 				RequestDispatcher rd = req.getRequestDispatcher(url);
 				rd.forward(req, res);
 				return;
@@ -207,7 +207,7 @@ public class ShoppingServlet extends HttpServlet {
 			session.setAttribute("discount", discount);
 			session.setAttribute("totalPrice", totalPrice);
 
-			String url = "/front_end/product/Checkout.jsp";
+			String url = "/front_end/product/Checkout2.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 			return;

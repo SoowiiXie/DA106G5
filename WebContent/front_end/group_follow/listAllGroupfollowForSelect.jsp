@@ -5,9 +5,14 @@
 <%@ page import="com.grouper.model.*"%>
 <%@ page import="com.location.model.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.mb.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
+	MemberService memberSvc = new MemberService();
+	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	pageContext.setAttribute("mb_id", memberVO.getMb_id());
+	
 	List<Group_followVO> group_followVOList = (List<Group_followVO>)request.getAttribute("group_followVOList"); //EmpServlet.java(Concroller), 存入req的empVO物件
 	pageContext.setAttribute("group_followVOList",group_followVOList);
 	GrouperService grouperSvc = new GrouperService();
@@ -68,7 +73,7 @@
 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
-${list}123
+<%-- ${list}123 --%>
 <table>
 	<tr>
 		<th>會員編號</th>
@@ -84,8 +89,8 @@ ${list}123
 		<th>揪團內容</th>
 		
 	</tr>
-${group_followSvc.all}
-<c:forEach var="group_followVO" items="${group_followVOList}">
+<%-- ${group_followSvc.all} --%>
+<c:forEach var="group_followVO" items="${group_followSvc.getAllGroup_followByMb_id(mb_id)}">
 	<tr>		
 		<td>${group_followVO.mb_id}</td>
 

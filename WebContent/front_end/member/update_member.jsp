@@ -17,6 +17,14 @@
 		</c:forEach>
 	</ul>
 </c:if>
+		<!-- <div class="col-3">&nbsp&nbsp個人頁面</div> -->
+	<nav aria-label="breadcrumb" class="col-12 my_breadcrumb">
+		<ol class="breadcrumb m-0">
+			<li class="breadcrumb-item"><a href="<%= request.getContextPath() %>/front_end/member/login.jsp">登入畫面</a></li>
+			<li class="breadcrumb-item"><a href="<%= request.getContextPath() %>/front_end/member/login.jsp">個人頁面</a></li>
+			<li class="breadcrumb-item active" aria-current="page">修改個人資料</li>
+		</ol>
+	</nav>
 
 	<form METHOD="POST" action="<%=request.getContextPath()%>/front_end/member/member.do" enctype="multipart/form-data">
 	

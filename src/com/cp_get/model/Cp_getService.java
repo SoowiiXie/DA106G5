@@ -33,4 +33,5 @@ public class Cp_getService {
 		
 		return dao.aMemberGetCoupon(cp_getVO);
 	}
+
 }

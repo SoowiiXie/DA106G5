@@ -278,5 +278,60 @@ public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.Me
 		return picture;
 	}
 	
+	
+	public boolean insertFromAndroid(MemberVO memberVO) {
+		boolean succeedOrNot = false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(INSERT_STMT);
+
+			
+			pstmt.setString(1, memberVO.getMb_id());
+			pstmt.setString(2, memberVO.getMb_pwd());
+			pstmt.setString(3, memberVO.getMb_line_id());
+			pstmt.setString(4, memberVO.getMb_name());
+			pstmt.setInt(5, memberVO.getMb_gender());
+			pstmt.setDate(6, memberVO.getMb_birthday());
+			pstmt.setBytes(7, memberVO.getMb_pic());
+			pstmt.setString(8, memberVO.getMb_email());
+			
+	
+			int i = pstmt.executeUpdate();
+			if(i==0) {
+				
+			}else {
+				succeedOrNot=true;
+			}
+			
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return succeedOrNot;
+	}
+	
 
 }

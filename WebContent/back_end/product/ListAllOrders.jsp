@@ -44,6 +44,7 @@ background-color:#FF004C;
 height:100px;
 margin-top:100;
 }
+
 </style>
 <title>管理所有訂單</title>
 </head>
@@ -111,7 +112,7 @@ margin-top:100;
 					<td align="center" bgcolor="#FFB5B5"><FORM method="POST"
 							ACTION="<%=request.getContextPath()%>/OrdersServlet">
 
-							<input type="submit" value="查詢訂單明細"> <input type="hidden"
+							<input class="see_detail" type="submit" value="查詢訂單明細"> <input type="hidden"
 								name="od_no" value="${ordersVO.od_no}"> <input
 								type="hidden" name="action" value="getOne_For_Od_detail">
 							<input type="hidden" name="whichPage" value="<%=whichPage%>">
@@ -163,6 +164,9 @@ margin-top:100;
 			$("#basicModal").modal({
 				show : true
 			});
+			
+			$('.modal-backdrop').css('position', 'relative');
+
 		</script>
 	</c:if>
 

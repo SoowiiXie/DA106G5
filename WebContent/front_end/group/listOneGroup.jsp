@@ -29,6 +29,7 @@
 	background-color: #CCCCFF;
     border: 2px solid black;
     text-align: center;
+    width: 100%;
   }
   table#table-1 h4 {
     color: red;
@@ -39,11 +40,17 @@
     color: blue;
     display: inline;
   }
+  #w10{
+  width: 10%;
+  }
+  #w40{
+  width: 40%;
+  }
 </style>
 
 <style>
   table {
-	width: 600px;
+	width: 100%;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -70,15 +77,15 @@
 
 <table id="oneGroup_table">
 	<tr>
-<!-- 		<th>揪團編號</th> -->
+		<th>揪團編號</th>
 <!-- 		<th>發起人會員編號</th> -->
-<!-- 		<th>地標編號</th> -->
+		<th>地標編號</th>
 		<th>報名開始時間</th>
 		<th>報名結束時間</th>
 		<th>活動開始時間</th>
 		<th>活動結束時間</th>
 <!-- 		<th>揪團標題</th> -->
-<!-- 		<th>揪團內容</th> -->
+		
 <!-- 		<th>人數上限</th> -->
 <!-- 		<th>人數下限</th> -->
 <!-- 		<th>目前人數</th> -->
@@ -86,19 +93,27 @@
 <!-- 		<th>關注揪團數量</th> -->
 	</tr>
 	<tr>
-<%-- 		<td><%=grouperVO.getGrp_no()%></td> --%>
+		<td id="w10"><%=grouperVO.getGrp_no()%></td>
 <%-- 		<td><%=grouperVO.getMb_id()%></td> --%>
-<%-- 		<td><%=grouperVO.getLoc_no()%>【<%=locVO.getLoc_address() %>】</td> --%>
+		<td id="w10">
+<!-- 		%=grouperVO.getLoc_no()%> -->
+		<%=locVO.getLoc_address() %></td>
 <%-- 		<td><%=grouperVO.getGrp_applystart()%></td> --%>
-<td><fmt:formatDate value="<%=grouperVO.getGrp_applystart()%>" pattern="yyyy-MM-dd H:mm"/></td>
+<td id="w10"><fmt:formatDate value="<%=grouperVO.getGrp_applystart()%>" pattern="yyyy-MM-dd H:mm"/></td>
 <%-- 		<td><%=grouperVO.getGrp_applyend()%></td> --%>
-<td><fmt:formatDate value="<%=grouperVO.getGrp_applyend()%>" pattern="yyyy-MM-dd H:mm"/></td>
+<td id="w10"><fmt:formatDate value="<%=grouperVO.getGrp_applyend()%>" pattern="yyyy-MM-dd H:mm"/></td>
 <%-- 		<td><%=grouperVO.getGrp_start()%></td> --%>
-<td><fmt:formatDate value="<%=grouperVO.getGrp_start()%>" pattern="yyyy-MM-dd H:mm"/></td>		
+<td id="w10"><fmt:formatDate value="<%=grouperVO.getGrp_start()%>" pattern="yyyy-MM-dd H:mm"/></td>		
 <%-- 		<td><%=grouperVO.getGrp_end()%></td> --%>
-<td><fmt:formatDate value="<%=grouperVO.getGrp_end()%>" pattern="yyyy-MM-dd H:mm"/></td>		
+<td id="w10"><fmt:formatDate value="<%=grouperVO.getGrp_end()%>" pattern="yyyy-MM-dd H:mm"/></td>		
 <%-- 		<td><%=grouperVO.getGrp_name()%></td> --%>
-<%-- 		<td><%=grouperVO.getGrp_content()%></td> --%>
+		<tr>
+			<th colspan="6">揪團內容</th>
+		</tr>
+		
+		<tr>		
+			<td colspan="6" id="w40"><%=grouperVO.getGrp_content()%></td>
+		</tr>
 <%-- 		<td><%=grouperVO.getGrp_personmax()%></td> --%>
 <%-- 		<td><%=grouperVO.getGrp_personmin()%></td> --%>
 <%-- 		<td><%=grouperVO.getGrp_personcount()%></td> --%>

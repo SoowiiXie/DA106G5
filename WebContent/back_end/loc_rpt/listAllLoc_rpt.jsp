@@ -82,6 +82,17 @@ th, td {
 	padding: 5px;
 	text-align: center;
 }
+
+
+	#allStaff_title{
+		font-family: 'italics_hollow';
+		line-height:10vh;
+		font-size: 5.5vh;
+		font-weight:bold;
+		letter-spacing: 0.3vw;
+		color:#0373f0;
+		border-bottom:3px solid #0373f0;
+	}
 </style>
 
 </head>
@@ -111,8 +122,12 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
+	
+	<div class="mx-auto" style="width: 10.5rem;">
+		<span id="allStaff_title" class="d-block mx-auto">地標檢舉</span>
+	</div>
 	<!-- 		//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
-	<table class="table table-hover col-10 mx-5">
+	<table class="table table-hover table-striped col-10 mx-auto my-5">
 		<tr>
 			<th>檢舉編號</th>
 			<th>原因</th>
@@ -125,9 +140,9 @@ th, td {
 		</tr>
 		<jsp:useBean id="loc_rptSvcEL" scope="page" class="com.loc_rpt.model.Loc_rptService" />
 		<jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
-<%-- 		<%@ include file="page1.file"%> --%>
-		<c:forEach var="loc_rptVO" items="${list}">
-<%-- 		<c:forEach var="loc_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+		<%@ include file="pages/page1.file"%>
+<%-- 		<c:forEach var="loc_rptVO" items="${list}"> --%>
+		<c:forEach var="loc_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 			<tr>
 				<td>${loc_rptVO.loc_rpt_no}</td>
 				<td>${loc_rptVO.rpt_reason}</td>
@@ -160,7 +175,9 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-<%-- 	<%@ include file="page2.file"%> --%>
+	<div class="mx-auto" style="width: 30rem;">
+		<%@ include file="pages/page2.file"%>
+	</div>
 
 </body>
 </html>

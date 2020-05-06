@@ -97,7 +97,7 @@ margin-top:100;
 		<%
 
 			Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");
-		Integer totalPrice =  (Integer)session.getAttribute("totalPrice");
+			Integer totalPrice =  (Integer)session.getAttribute("totalPrice");
 			List<Cp_getVO> couponList = (List<Cp_getVO> )request.getAttribute("couponList");
 			request.setAttribute("couponList", couponList);
 		%>

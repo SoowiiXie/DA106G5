@@ -431,6 +431,15 @@
 			<url-pattern>/android/cmt.do</url-pattern>
 		</servlet-mapping>
 		
+		<servlet>
+			<servlet-name>AndroidGrouperServlet</servlet-name>
+			<servlet-class>android.com.grouper.controller</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AndroidGrouperServlet</servlet-name>
+			<url-pattern>/android/grouper.do</url-pattern>
+		</servlet-mapping>
+		
 <!-- 麥克責任區結束 -->
 
 <!-- 昱盛責任區開始 -->
@@ -782,6 +791,10 @@
 		<url-pattern>/front_end/member/listOneMember.jsp</url-pattern>
 		<url-pattern>/front_end/member/update_member.jsp</url-pattern>
 		<url-pattern>/front_end/index2.jsp</url-pattern>
+		
+		<!--商城測試-->
+		<url-pattern>/front_end/product/*</url-pattern>
+
 		<!-- 測試 -->
 		<url-pattern>/front_end/index.jsp</url-pattern>
 		<url-pattern>/front_end/group_index.jsp</url-pattern>

@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.grouper.model.*"%>
 <%@ page import="com.mb.model.*"%>
 <%
@@ -38,6 +39,9 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 </style>
 
 <style>
+	#ByCom{
+	width: 1600px;
+	}
   table {
 	width: 1200px;
 	background-color: white;
@@ -72,8 +76,9 @@ input[disabled]{
 <body bgcolor='white'>
 
 <h4>
-☆萬用複合查詢  - 可由客戶端 select_page.jsp 隨意增減任何想查詢的欄位<br>
-☆此頁作為複合查詢時之結果練習，<font color=red>已增加分頁、送出修改、刪除之功能</font></h4>
+listGrouper_ByCompositeQuery.jsp<br>
+<!-- ☆萬用複合查詢  - 可由客戶端 select_page.jsp 隨意增減任何想查詢的欄位<br> -->
+<!-- ☆此頁作為複合查詢時之結果練習，<font color=red>已增加分頁、送出修改、刪除之功能</font></h4> -->
 <table id="table-1">
 	<tr><td>
 		 <h3>所有員工資料 - listAllgroup.jsp</h3>
@@ -82,7 +87,7 @@ input[disabled]{
 </table>
 
 
-<table>
+<table id="ByCom">
 	<tr>
 		<th>揪團編號</th>
 		<th>會員編號</th>
@@ -93,15 +98,17 @@ input[disabled]{
 		<th>揪團結束時間</th>
 		<th>揪團名稱</th>
 		<th>揪團內容</th>
-		<th>人數上限</th>
+<!-- 		<th>人數上限</th> -->
 		<th>人數下限</th>
-		<th>人數</th>
+<!-- 		<th>人數</th> -->
 		<th>揪團狀態</th>
 		<th>關注揪團數</th>
 		
 		<th>修改</th>
+<!-- 		不給刪除 -->
 <!-- 		<th>刪除</th> -->
 		<th>加入</th>
+		<th>關注</th>
 
 	</tr>
 	<%@ include file="pages/page1_ByCompositeQuery.file" %>
@@ -117,16 +124,17 @@ input[disabled]{
                     </c:if>
                 </c:forEach>
 			</td>									
-			<td>${grouperVO.grp_applystart}</td>
-			<td>${grouperVO.grp_applyend}</td>
-			<td>${grouperVO.grp_start}</td>
-			<td>${grouperVO.grp_end}</td>
+			<td><fmt:formatDate value="${grouperVO.grp_applystart}" pattern="yyyy-MM-dd H:mm"/></td>
+			<td><fmt:formatDate value="${grouperVO.grp_applyend}" pattern="yyyy-MM-dd H:mm"/></td>
+			<td><fmt:formatDate value="${grouperVO.grp_start}" pattern="yyyy-MM-dd H:mm"/></td>
+			<td><fmt:formatDate value="${grouperVO.grp_end}" pattern="yyyy-MM-dd H:mm"/></td>
 			<td>${grouperVO.grp_name}</td>
 			<td>${grouperVO.grp_content}</td>
-			<td>${grouperVO.grp_personmax}</td>
+<!-- 			人數上限 -->
+<%-- 			<td>${grouperVO.grp_personmax}</td> --%>
 			<td>${grouperVO.grp_personmin}</td>
-<%-- 			<td>${grouperVO.grp_personcount}</td> --%>
-			<td>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td>
+<!-- 			總人數 -->
+<%-- 			<td>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td> --%>
 			<%
 			request.setAttribute("grp_status", new String[]{"","未滿","已滿","取消","成功"});
 			%>
@@ -158,16 +166,29 @@ input[disabled]{
 			<td>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do" style="margin-bottom: 0px;">
 				${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}/${grouperVO.grp_personmax}
-				<input type="submit" value="加入揪團" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/>
+				<input type="submit" value="加入揪團" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/><br>
 				
-				<input type="text"   name="grp_no"       value="${grouperVO.grp_no}">
-				<input type="text"   name="mb_id"     	 value="<%= memberVO.getMb_id() %>">
-				<input type="text"   name="grp_register" value="1">
+				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br>
+				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br>
+				<input type="text"   name="grp_register" size=8 value="1"><br>
 				
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 				<input type="hidden" name="action"       value="insert"></FORM>
 			</td>
+			
+			<td>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_follow/group_follow.do" style="margin-bottom: 0px;">
+				<input type="submit" value="關注" /><br> 
+				
+				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br>
+				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br>				
+				
+				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
+				<input type="hidden" name="action"       value="insert"></FORM>
+			</td>
+			
 		</tr>
 	</c:forEach>
 </table>

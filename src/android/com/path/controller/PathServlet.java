@@ -60,7 +60,6 @@ System.out.println("input: " + jsonIn);
 		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
 		PathService pathSvc = new PathService();
 		String action = jsonObject.get("action").getAsString();
-//String userId = jsonObject.get("userId").getAsString();
 		
 		if("add".equals(action) /*&& userId != null*/) {
 			PathVO pathVO = new PathVO();
@@ -70,16 +69,18 @@ System.out.println("input: " + jsonIn);
 				writeText(res,path_no);
 			}
 		}else if("getall".equals(action)) {
+
 			List<PathVO> pathList = new ArrayList<>();;
 			pathList = pathSvc.getAll();
 			
 			List<PathVO> pathListFilter = pathList.stream()
 					.filter(p -> p.getPath_status() == 1)
+					.filter(p -> p.getPath_kml() != null)
 					.collect(Collectors.toList());
 			
 			String jsonStr = gson.toJson(pathListFilter);
 //System.out.println(jsonStr);
-			if(pathList!=null) {
+			if(pathListFilter!=null) {
 				writeText(res, jsonStr);
 			}
 		}else if("getOnePath".equals(action)) {

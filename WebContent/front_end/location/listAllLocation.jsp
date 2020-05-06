@@ -119,10 +119,11 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-	<div></div>
-	<span id="allStaff_title" class="d-block mx-auto">所有管理員資料</span>
+	<div class="mx-auto" style="width: 10.5rem;">
+		<span id="allStaff_title" class="d-block mx-auto">&ensp;&ensp;地標</span>
+	</div>
 	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
-	<table class="table table-hover table-striped col-10 mx-5">
+	<table class="table table-hover table-striped col-10 mx-auto">
 		<tr>
 			<th>地標編號</th>
 			<th>地標類別編號</th>
@@ -135,6 +136,7 @@ th, td {
 		</tr>
 		<%@ include file="pages/page1.file"%>
 		<c:forEach var="locationVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+		
 <%-- 		<c:forEach var="locationVO" items="${list}"> --%>
 	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
 			<tr>

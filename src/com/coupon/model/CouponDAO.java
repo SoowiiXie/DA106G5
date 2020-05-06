@@ -10,10 +10,10 @@ import javax.sql.DataSource;
 import java.sql.*;
 
 public class CouponDAO implements CouponDAO_interface {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:49161:xe";
-	String userid = "DA106G5";
-	String passwd = "DA106G5";
+//	String driver = "oracle.jdbc.driver.OracleDriver";
+//	String url = "jdbc:oracle:thin:@localhost:49161:xe";
+//	String userid = "DA106G5";
+//	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO coupon (cp_no, cp_name, cp_price, cp_detail) VALUES ('CPN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'),?,?,?)";

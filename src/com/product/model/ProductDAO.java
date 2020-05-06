@@ -17,7 +17,7 @@ public class ProductDAO implements ProductDAO_interface {
 	String userid = "DA106G5";
 	String passwd = "DA106G5";
 
-	private static final String INSERT_STMT = "INSERT INTO product (pd_no, pd_name, pd_price, pd_detail, pd_typeno, pd_pic) VALUES ('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO product (pd_no, pd_name, pd_price, pd_detail, pd_typeno, pd_pic, pd_pic2, pd_pic3, pd_pic4) VALUES ('PDN'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status ,pd_pic FROM product order by pd_no";
 	private static final String GET_ONE_STMT = "SELECT pd_no,pd_name,pd_price,pd_detail,pd_typeno, pd_status, pd_pic FROM product where pd_no = ?";
 	private static final String DELETE = "DELETE FROM product where pd_no = ?";
@@ -60,6 +60,9 @@ public class ProductDAO implements ProductDAO_interface {
 			pstmt.setString(3, productVO.getPd_detail());
 			pstmt.setString(4, productVO.getPd_typeNo());
 			pstmt.setBytes(5, productVO.getPd_pic());
+			pstmt.setBytes(6, productVO.getPd_pic2());
+			pstmt.setBytes(7, productVO.getPd_pic3());
+			pstmt.setBytes(8, productVO.getPd_pic4());
 
 			updateCount = pstmt.executeUpdate();
 

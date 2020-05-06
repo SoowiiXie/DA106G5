@@ -1,5 +1,6 @@
 package com.metoo.model;
 
+import com.record.model.*;
 public class MeTooService {
 
 	private MeToo_interface dao;
@@ -43,5 +44,11 @@ public class MeTooService {
     public Integer countOneMeToo(String rcd_no, String mb_id) {
     	return dao.countOneMeToo(rcd_no, mb_id);
     }
-	
+    
+    public boolean canIMeToo(String rcd_no) {
+    	RecordService recordSvc = new RecordService();
+    	long rcdTime = recordSvc.getOneRecord(rcd_no).getRcd_uploadtime().getTime();
+    	long nowTime = new java.util.Date().getTime();
+    	return ((nowTime-rcdTime)<(24*60*60*1000));
+    }
 }

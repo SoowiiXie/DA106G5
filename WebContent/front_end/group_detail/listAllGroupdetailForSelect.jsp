@@ -33,6 +33,36 @@
 <html>
 <head>
 <title>員工資料 - listOneGroup.jsp</title>
+<c:if test="${openModal!=null}">
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+				
+			<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
+            </div>
+			
+			<div class="modal-body">
+<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+               <jsp:include page="listOneGroupdetail2.jsp" />
+<!-- =========================================以上為原listOneEmp.jsp的內容========================================= -->
+			</div>
+			
+			<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+		
+		</div>
+	</div>
+</div>
+
+        <script>
+    		 $("#basicModal").modal({show: true});
+        </script>
+ </c:if>
 
 <style>
   table#table-1 {
@@ -65,7 +95,7 @@
     text-align: center;
   }
   #group_table, #group_table tr,#group_table td,#group_table th{
-/*     width: 1600px;   */
+    width: 1500px;   
   	border: 1px solid #000;
   	margin: 50px auto 5px auto;
   }
@@ -94,10 +124,12 @@
 </head>
 <body>
 
+<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_follow/listAllGroupfollowForSelect.jsp">我關注的揪團</a>
 
 <!-- <table id="table-1"> -->
 <!-- 	<tr><td> -->
 <%-- 		 <h4><%=req.getRequestURI()%></h4><br> --%>
+listAllGroupdetailForSelect.jsp<br>
 		 <h4><%=memberVO.getMb_id()%>，摳泥吉娃娃，以下是你參加的揪團</h4><br>
 <!-- 		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 <!-- 	</td></tr> -->
@@ -127,7 +159,7 @@
 	<tr>		
 		<td>${grp_detailVO.mb_id}</td>
 <%-- 		<td><%=grp_detailVO.getGrp_no()%></td> --%>
-		<td>${grp_detailVO.grp_no}</td>
+		<td><A href="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do?grp_no=${grp_detailVO.grp_no}&action=getOne_From2">${grp_detailVO.grp_no}</A></td>
 				
 <%-- 		<td>${grpSvc.getOneGroup(grp_detailVOList.grp_no).mb_id}</td> --%>
 		<td> ${grpSvc.getOneGroup(grp_detailVO.grp_no).mb_id}</td>
@@ -208,6 +240,37 @@
    </c:forEach>
 <%-- </c:forEach> - --%>
 </table>
+
+<c:if test="${openModal!=null}">
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+				
+			<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
+            </div>
+			
+			<div class="modal-body">
+<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+               <jsp:include page="listOneGroupdetail2.jsp" />
+<!-- =========================================以上為原listOneEmp.jsp的內容========================================= -->
+			</div>
+			
+			<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+		
+		</div>
+	</div>
+</div>
+
+        <script>
+    		 $("#basicModal").modal({show: true});
+        </script>
+ </c:if>
 
 </body>
 </html>

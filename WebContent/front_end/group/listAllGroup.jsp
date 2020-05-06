@@ -5,7 +5,6 @@
 <%@ page import="com.grouper.model.*"%>
 <%@ page import="com.location.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
-所以揪團資料
 <%
     GrouperService grpSvc = new GrouperService();
     List<GrouperVO> list = grpSvc.getAll();
@@ -26,10 +25,12 @@
 <title>所有揪團資料 - listAllGroup.jsp</title>
 
 <style>
-  table#table-1 {
-	background-color: #008080;
-    border: 2px solid black;
+  #title{
+	background-color:#F9F900;
+    border: 5px solid #000080;
+    border-radius: 10px;
     text-align: center;
+    width: 98%;
   }
   table#table-1 h4 {
     color: red;
@@ -43,24 +44,28 @@
 </style>
 
 <style>
+  table, th, td {
+    border: 1px solid #000080;
+    background-color: rgba(256,256,256,0);
+    
+  }
   table {
-	width: 800px;
+	width: 90%;
  	background-color: white; 
 	margin-top: 5px;
 	margin-bottom: 5px;
 	background-color: rgba(256,256,256,0);
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
+  }  
   th, td {
     padding: 5px;
     text-align: center;
   }
   #oneGroup_table, #oneGroup_table tr,#oneGroup_table td,#oneGroup_table th{
-  	width: 600px;
   	border: 1px solid #000;
   	margin: 50px auto 5px auto;
+  }
+  #oneGroup_table{
+  width: 100%
   }
   body{
   	font-family:Microsoft JhengHei;"
@@ -68,25 +73,34 @@
   #oneGroup_table th{
   background: #D5E0CC;
   }
-  #allGroup, #allGroup tr,#allGroup td,#allGroup th{
-  	width: 1800px;
+  #allGroup{
+  	width: 95%
+   }
+  #allGroup, #allGroup tr,#allGroup td,#allGroup th{ 	
   	border: 1px solid #000;
   	margin: 50px auto 5px auto;
+  }
+  #w10, #w10 tr, #w10 td{
+  width: 10%;
+  }
+  #w15 #w10 tr,#w10 td{
+  width: 15%;
   }
 </style>
 
 </head>
 <body bgcolor='white'>
 
-<h4>此頁練習採用 EL 的寫法取值:</h4>
-<table id="table-1" >
+
+<table id="title">
 	<tr>
 		<td>
-		 	<h3>所有揪團資料 - listAllGroup.jsp</h3>
+		 	<h3>目前揪團列表</h3>
 		 	<h4>
-			 <a href="<%= request.getContextPath() %>/front_end/group/select_page.jsp">
-		 	<img src="<%= request.getContextPath() %>/front_end/group/images/back1.gif" width="100" height="32" border="0">揪團頁面
-	   		</a>
+			 <a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp">
+		 	<img src="<%= request.getContextPath() %>/front_end/group/images/homeIcon.png" width="75" height="75" border="0">
+		 	回到查詢揪團
+	   		</a><br>
 	   		</h4>
 		</td>
 	</tr>
@@ -104,20 +118,20 @@
 <br>
 <table id=allGroup style="background-color: rgba(33,33,33,0);">
 	<tr>
-		<th>揪團編號</th>
-		<th>發起人會員編號</th>
-		<th>地標編號</th>
+		<th id="w15">揪團編號</th>
+		<th id="w15">發起人會員編號</th>
+<!-- 		<th>地標編號</th> -->
 <!-- 		<th>報名開始時間</th> -->
 <!-- 		<th>報名結束時間</th> -->
 <!-- 		<th>活動開始時間</th> -->
 <!-- 		<th>活動結束時間</th> -->
-		<th>揪團標題</th>
-		<th>揪團內容</th>
-		<th>人數上限</th>
-		<th>人數下限</th>
-		<th>目前人數</th>
-		<th>揪團狀態</th>
-		<th>關注揪團數量</th>
+		<th id="w15">揪團標題</th>
+<!-- 		<th>揪團內容</th> -->
+		<th id="w10">人數上限</th>
+		<th id="w10">人數下限</th>
+		<th id="w10">目前人數</th>
+		<th id="w15">揪團狀態</th>
+		<th id="w10">關注人數</th>
 <!-- 		<th>修改</th> -->
 <!-- 		<th>刪除</th> -->
 <!-- 		<th>矮油</th> -->
@@ -127,11 +141,11 @@
 		
 		<tr>
 			<td><A href="group.do?grp_no=${grouperVO.grp_no}&action=getOne_Time">${grouperVO.grp_no}</td>
-			<td>${grouperVO.mb_id}</td>
+			<td id="w15">${grouperVO.mb_id}</td>
 <%-- 			<td>${grouperVO.loc_no}</td> --%>
 <!-- 			改寫join -->
 
-			<td>${locSvc.getOneLocation(grouperVO.getLoc_no()).loc_address} </td>
+<%-- 			<td>${locSvc.getOneLocation(grouperVO.getLoc_no()).loc_address} </td> --%>
 			
 <%-- 			<td><c:forEach var="LocationVO" items="${locSvc.all}"> --%>
 <%--                     <c:if test="${grouperVO.loc_no==LocationVO.loc_no}"> --%>
@@ -154,14 +168,14 @@
 <%-- 			<td>${grouperVO.grp_applyend}</td> --%>
 <%-- 			<td>${grouperVO.grp_start}</td>  --%>
 <%-- 			<td>${grouperVO.grp_end}</td> --%>
-			<td>${grouperVO.grp_name}</td>
-			<td>${grouperVO.grp_content}</td>
-			<td>${grouperVO.grp_personmax}</td>
-			<td>${grouperVO.grp_personmin}</td>
+			<td id="w15">${grouperVO.grp_name}</td>
+<%-- 			<td>${grouperVO.grp_content}</td> --%>
+			<td id="w10">${grouperVO.grp_personmax}</td>
+			<td id="w10">${grouperVO.grp_personmin}</td>
 <%-- 			<td>${grouperVO.grp_personcount}</td> --%>
 			<!-- 從揪團詳細表格算出揪團人數 -->
-			<td>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td>
-			<td>
+			<td id="w10">${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td>
+			<td id="w15">
 <%-- 				${grouperVO.grp_status} --%>
 				${status[grouperVO.grp_status]}</td> 
 			
@@ -173,7 +187,7 @@
 			<%--<%= (String)(grouperVO.getGrp_status()) %> --%>
 			<%--${status.get(grouperVO.grp_status)} --%>
  			<!-- 從揪團關注表格算出關注揪團人數 --> 
-			<td>${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
+			<td id="w10">${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
 <!-- 			<td> -->
 <!-- 			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;"> -->
 <!-- 			     <input type="submit" value="修改"> -->
@@ -196,6 +210,7 @@
 		</tr>
 	</c:forEach>
 </table>
+
 <%@ include file="page2.file" %>
 
 <c:if test="${openModal!=null}">
@@ -208,7 +223,7 @@
 			<div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
-            <h3 class="modal-title" id="myModalLabel">揪團時間</h3>
+            <h3 class="modal-title" id="myModalLabel">揪團內容</h3>
 			
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
