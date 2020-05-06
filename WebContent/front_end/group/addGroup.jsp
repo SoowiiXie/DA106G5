@@ -40,6 +40,7 @@
 	}
 	#groupJoin{
 	color:#FFB300;
+	text-align:left;
 	margin:0px auto;
 	background-color:rgba(72,72,72,0.4);
 	-webkit-border-radius: 7px;
@@ -55,6 +56,7 @@
   }
   th, td {
     padding: 1px;
+    text-align: left;
   }
   #divAll {
 	background-image: url('/DA106_G5/front_end/group/webFront/c5.jpg');
@@ -99,7 +101,7 @@
 					 value="<%= (grouperVO==null)? "自動產生" : grouperVO.getGrp_no()%>" /></td>
 			</tr>
 			<tr>
-				<td>揪團狀態:</td><td>未滿</td>
+<!-- 				<td>揪團狀態:</td><td>未滿</td> -->
 				<td><input type="hidden" name="grp_status" size="45" 
 					 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" /></td>
 			</tr>

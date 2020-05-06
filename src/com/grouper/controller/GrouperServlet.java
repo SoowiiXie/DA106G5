@@ -378,7 +378,7 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/group/addGroup.jsp");
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/addGroup.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -24,6 +24,11 @@
 	
 // 	List<Grp_detailVO> list = request.getAttribute();
 //     pageContext.setAttribute("list",list);
+
+	// lightBox 參數設定
+// 		boolean openModal = (boolean) request.getAttribute("openModal");
+// 		pageContext.setAttribute("openModal", openModal);
+	
 %>
 
 <jsp:useBean id="locSvc" scope="page" class="com.location.model.LocationService" />
@@ -33,6 +38,10 @@
 <html>
 <head>
 <title>員工資料 - listOneGroup.jsp</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <c:if test="${openModal!=null}">
 
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -118,22 +127,41 @@
   #content{
   }
   #status{
-  }
+  }  
+	#follow{
+		width: 200px;
+		height: 60px;		
+		line-height: 60px;
+		font-size: 22px;		
+		background: rgba(229,115,115,0.4);
+		position: fixed;
+		top:20%;
+		left:80%;
+		border-radius:7%;
+		margin: 0px;/*才看到到線上客服*/
+	}
+
+
 </style>
 
 </head>
 <body>
 
-<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_follow/listAllGroupfollowForSelect.jsp">我關注的揪團</a>
+
 
 <!-- <table id="table-1"> -->
 <!-- 	<tr><td> -->
 <%-- 		 <h4><%=req.getRequestURI()%></h4><br> --%>
 listAllGroupdetailForSelect.jsp<br>
-		 <h4><%=memberVO.getMb_id()%>，摳泥吉娃娃，以下是你參加的揪團</h4><br>
+		 <h4><%=memberVO.getMb_id()%>，摳泥吉娃娃，以下是你參加的揪團</h4><p>
 <!-- 		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 <!-- 	</td></tr> -->
 <!-- </table><p> -->
+<br>
+		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_follow/listAllGroupfollowForSelect.jsp" id="follow">
+		<img src="<%= request.getContextPath() %>/front_end/group/images/followIcon.png" width="50" height="50" border="0">我關注的揪團</a>
+
+
 <table id="group_table" style="background-color: rgba(256,256,256,0);">
 	<tr>
 		<th id=number>會員編號</th>

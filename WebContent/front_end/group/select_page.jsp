@@ -47,16 +47,37 @@
 	font-family: microsoft jhengHei;
 	font-size:18px;	
 }
+
+#listAll{
+ 		color: rgba(236,239,241 ,1);
+		width: 500px;
+		height: 250px;		
+		line-height: 60px;
+		font-size: 32px;		
+		background: rgba(56,142,60 ,0.4);
+		top:75%;
+		left:35%;
+		border-radius:7%;
+		margin: 0px;/*才看到到線上客服*/
+		style="z-index:-100;
+		position: relative;
+		text-decoration: none;
+	}
 </style>
 </head>
 <body>
+			
 	<div id="divAll">
+	
+				<a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/listAllGroup.jsp' id="listAll" >
+				目前揪團列表
+				<img src="<%= request.getContextPath() %>/front_end/group/images/listIcon.png" width="32px" height="32px" >
+				</a><br>	
+	
 		<table id="table-1">
-
 		</table>
 		<div id="form-main">
 			<div id="form-div">
-
 
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
@@ -68,11 +89,6 @@
 					</ul>
 				</c:if>
 
-
-				<a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/listAllGroup.jsp' style="color: #000080" id=list>
-				<img src="<%= request.getContextPath() %>/front_end/group/images/listIcon.png" width="27" height="27" border="0">
-				目前揪團列表</a><br>
-				
 
 <%-- 				<li><a href='<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/addGroup.jsp'>成立揪團</a></li> --%>
 
