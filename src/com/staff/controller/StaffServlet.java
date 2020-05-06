@@ -36,11 +36,9 @@ public class StaffServlet extends HttpServlet{
 
 		// *** listAllStaff中移除自己或Boss
 		// *** listAllStaff 離職用紅字粗體顯示
-		// 選擇管理項目  ***做到一半  ***判斷是否登入
 		
 		//  後台首頁預設畫面  Line 162
 //			下拉式選單篩選在職、離職
-//			驗證信
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");

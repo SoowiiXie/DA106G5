@@ -48,7 +48,6 @@ public class MemberServlet extends HttpServlet {
 		
 		// 通知
 		// 忘記密碼
-		// 修改 / 新增會員畫面
 		// 登入過再進入登入頁面會導到首頁(用濾器)
 		// **** 登入就會IllegalArgumentException ****
 
@@ -249,7 +248,7 @@ public class MemberServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的memberVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=member/update_member.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -269,13 +268,13 @@ public class MemberServlet extends HttpServlet {
 //					url = servletPath; 
 //				}
 				
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 onePage.jsp
+				RequestDispatcher successView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=member/update_member.jsp"); // 成功轉交 onePage.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher(servletPath);
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp?pageRun=member/update_member.jsp");
 				failureView.forward(req, res);
 			}
 		}
