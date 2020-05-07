@@ -165,7 +165,7 @@ listAllGroupdetailForSelect.jsp<br>
 				
 <%-- 		<td>${grpSvc.getOneGroup(grp_detailVOList.grp_no).mb_id}</td> --%>
 		<td> ${grpSvc.getOneGroup(grp_detailVO.grp_no).mb_id}</td>
-<!-- 		<td> -->
+		<td>
 <%-- 				<c:forEach var="locationVO" items="${locSvc.all}"> --%>
 <%-- 		        <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">  --%>
 <%-- 		        	<c:if test="${grouperVO.loc_no==locationVO.loc_no}">   		        				     --%>
@@ -173,43 +173,43 @@ listAllGroupdetailForSelect.jsp<br>
 <%-- 					${grpSvc.getOneGroup(grp_detailVO.grp_no).loc_no} --%>
 <%-- 		       		 </c:if > --%>
 <%-- 		        </c:if >         --%>
-<%-- 					${locSvc.getOneLocation(grpSvc.getOneGroup(grp_detailVO.grp_no).loc_no).loc_address} --%>
+					${locSvc.getOneLocation(grpSvc.getOneGroup(grp_detailVO.grp_no).loc_no).loc_address}
 <%-- 		        </c:forEach> --%>
-<!-- 		</td> -->
-<!-- 		<td> -->
+		</td>
+		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%--                     ${grouperVO.grp_applystart}                                            --%>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart} --%>
-<%-- <fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart}" pattern="yyyy-MM-dd H:mm"/> --%>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart}" pattern="yyyy-MM-dd H:mm"/>
 <%-- 					${grpSvc.getOneGroup(grp_detailVO.getGrp_no()).grp_applystart } --%>
-<!-- 		</td> -->
-<!-- 		<td> -->
+		</td>
+		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend} --%>
-<%-- <fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend}" pattern="yyyy-MM-dd H:mm"/> --%>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend}" pattern="yyyy-MM-dd H:mm"/>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
-<!-- 		</td> -->
-<!-- 		<td> -->
+		</td>
+		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start} --%>
-<%-- <fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}" pattern="yyyy-MM-dd H:mm"/> --%>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}" pattern="yyyy-MM-dd H:mm"/>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 <!-- 		</td> -->
-<!-- 		<td> -->
+		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end} --%>
-<%-- <fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end}" pattern="yyyy-MM-dd H:mm"/> --%>
+<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end}" pattern="yyyy-MM-dd H:mm"/>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
-<!-- 		</td> -->
+		</td>
 		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
@@ -251,7 +251,7 @@ listAllGroupdetailForSelect.jsp<br>
 		<div class="modal-content">
             			
 			<div class="modal-header">
-				<h3 class="modal-title" id="myModalLabel" >揪團詳細</h3>	
+			<h3 class="modal-title" id="myModalLabel" >揪團詳細</h3>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
 
