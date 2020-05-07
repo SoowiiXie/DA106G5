@@ -55,6 +55,8 @@ public class MailService extends Thread{
 	     }catch (MessagingException e){
 		     System.out.println("傳送失敗!");
 		     e.printStackTrace();
+		     MailService mailService = new MailService(to, subject,messageText);
+		     mailService.start();
 	     }
 	}
 	
