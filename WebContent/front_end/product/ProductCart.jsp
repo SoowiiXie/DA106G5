@@ -75,17 +75,17 @@ margin-top:100;
 		<hr>
 		<p></div>
 		<div style=" border-style: solid; border-color:red;" align="center" >
-		<div align="center">
+		<div align="center" >
 			
-				<table style="width: 800px;">
+				<table style="width: 60%;">
 					<tr bgcolor="#999999" align="center">
-						<th width="100px"><font color="black">產品圖片</font></th>
-						<th width="100px"><font color="black">產品分類</font></th>
-						<th width="200px"><font color="black">產品名稱</font></th>
-						<th width="100px"><font color="black">單價</font></th>
-						<th width="100px"><font color="black">尺寸</font></th>
-						<th width="100px"><font color="black">數量</font></th>
-						<th width="100px"></th>
+						<th width="20%"><font color="black">產品圖片</font></th>
+						<th width="10%"><font color="black">產品分類</font></th>
+						<th width="10%"><font color="black">產品名稱</font></th>
+						<th width="10%"><font color="black">單價</font></th>
+						<th width="10%"><font color="black">尺寸</font></th>
+						<th width="10%"><font color="black">數量</font></th>
+						<th width="10%"></th>
 					</tr>
 
 					<%
@@ -145,21 +145,27 @@ margin-top:100;
 				</table>
 			
 			</div>
-			<div style="background-color:#C4E1FF; width:793px;margin-top:-16.5px;" >
-			<div style="margin-left:-54%;"><form name="checkoutForm" action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
+			
+			
+			<form name="checkoutForm" action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
+			<table style="width:60%;">
+			<tr bgcolor=#C4E1FF>
+			<td colspan="5">
 				可使用的優惠券：<select size="1" name="cp_get" >
 								<option value="請選擇">請選擇
 									<c:forEach var="cp_getVO" items="${couponList}">
 										<option value="${cp_getVO.cp_no}">${couponService.searchCoupon(cp_getVO.cp_no).cp_name}
 									</c:forEach>
 						</select>
-						
-					<input type="submit" value="填寫購買資訊">
+						<input type="submit" value="填寫購買資訊">
+							<input type="hidden" name="action" value="GoToWriteShopInformation">
+						</td>
+					</tr>
 				
-				<input type="hidden" name="action" value="GoToWriteShopInformation">
+			
 				
-			</form></div>
-		</div>
+			</table></form>
+		
 			
 		</div>
 		
