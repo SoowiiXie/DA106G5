@@ -64,7 +64,6 @@ border-color:red;
 }
 .logo{
 height:100px;
-width:20%; 
 background-color:#3960D0;
 position: static; 
 line-height:100px; 
@@ -73,8 +72,9 @@ border-style: solid;
 border-color:red;
 }
 .search_pd{
+margin-left:3%;
 height:100px;
-width:25%; 
+width:20%; 
 background-color:#3960D0;
 float:left;
 position: relative;
@@ -86,7 +86,7 @@ position: absolute;
 margin-top:30px;
 }
 .backhome{
-margin-left:10%;
+margin-left:5%;
 height:100px;
 width:7%; 
 background-color:#3960D0;
@@ -132,7 +132,7 @@ border-style: solid;
 border-color:red;
 
 }
-.memberLogin{
+.lookSelfCoupon{
 height:100px;
 width:7%; 
 background-color:#3960D0;
@@ -143,13 +143,25 @@ border-style: solid;
 border-color:red;
 
 }
-.member{
-margin-left:90%;
+.singOut{
 height:100px;
 width:7%; 
 background-color:#3960D0;
 position: static; 
-line-height:100px;
+line-height:100px; 
+float:left;
+border-style: solid;
+border-color:red;
+
+}
+
+.member{
+height:100px;
+width:7%; 
+background-color:#3960D0;
+position: static; 
+line-height:100px; 
+float:left;
 border-style: solid;
 border-color:red;
 }
@@ -257,18 +269,22 @@ margin:10px auto;
            <a href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp"> 
            <img src="<%=request.getContextPath()%>/img/LogoNoBack.png"></a>
         </div>
-        <div>
-        <a
-		href="<%=request.getContextPath()%>/front_end/index.jsp"><font size="5px" color="white">RU<i>NN</i>ABLE</font></a>
-        </div>
+  
       </div>
+       <div class="goToIndex" style="float:left;">
+       <div style="margin-top:25%;">
+        <a 
+		href="<%=request.getContextPath()%>/front_end/index.jsp"><font size="5px" color="white" style="">RU<i>NN</i>ABLE</font></a>
+        </div>
+        </div>
      <div class="search_pd">
       <form class="search_form" action="XXX">
-        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:250px;height:40px;border-radius:5px; margin-top:-30px; font-size:12px" >
+        <input type="text" name="search" placeholder="欲搜尋的商品" style="width:200px;height:40px;border-radius:5px; margin-top:-30px; font-size:12px" >
         <input type="submit" value="搜尋"style="width:50px;height:40px; border-radius:5px; font-size:12px">  
       </form></div>
-      <div class="backhome" align="center"><a
-		href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;"><font color="white" size="3">
+      <div class="backhome" align="center">
+      <a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;">
+		<font color="white" size="3">
 		回到首頁</font></a></div>
       <div class="pd_follow" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfPd_follow.jsp" style="text-decoration:none;"><font color="white" size="3">我的收藏</font></a></div> 
@@ -282,8 +298,10 @@ margin:10px auto;
       	</div> 
       	<div class="transaction_record" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/product/MemberTransaction_record.jsp" style="text-decoration:none;"><font color="white" size="3">交易紀錄</font></a></div>
-       <div class="memberLogin" align="center"><a
+       <div class="lookSelfCoupon" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp" style="text-decoration:none;"><font color="white" size="3">我的優惠券</font></a></div>
+		<div class="singOut" align="center"><a
+		href="<%=request.getContextPath()%>/front_end/member/member.do?action=logout" style="text-decoration:none;"><font color="white" size="3">登出</font></a></div>
       <div class="member" align="center"><font color="white" size="3">${mb_id}</font></div>
     </div>
     <div class="bar_lift"></div>

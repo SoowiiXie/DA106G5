@@ -115,10 +115,15 @@
 				<td>地點:<font color=red><b>*</b></font></td>
 				<td>
 					<select size="1" name="loc_no" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團地點" id="name" /> >
-						<c:forEach var="group4locVO" items="${locationSvc.all}">
-						<option value="${group4locVO.loc_no}" ${(grouperVO.loc_no==group4locVO.loc_no)? 'selected':'' } >${group4locVO.loc_address}
-						</c:forEach>
-					</select>
+							<option value="">
+								<c:forEach var="LocationVO" items="${locationSvc.all}">
+								<c:if test="${LocationVO.loc_typeno==1 && LocationVO.loc_status==1}">
+								<option value="${LocationVO.loc_no}">${LocationVO.loc_address}
+								</c:if>
+								</c:forEach> </select><br>
+<!-- 							<div> -->
+<%-- 								<img alt="" src="<%= request.getContextPath() %>/img/LogoNoBack.png" id="loc_choose_pic" style="display:block; margin:auto; height:5rem;" > --%>
+<!-- 							</div> -->
 				</td>
 			</tr>
 			
@@ -257,7 +262,7 @@ $(function(){
         	theme: '',              //theme: 'dark',
 		       timepicker:true,       //timepicker:true,
 		       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
-		       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+		       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 <%-- 		   value: '<%=grp_applystart%>', // value:   new Date(), --%>	       
         	   onShow:function(){
 			   this.setOptions({
@@ -271,7 +276,7 @@ $(function(){
 	       theme: '',              //theme: 'dark',
 	       timepicker:true,       //timepicker:true,
 	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 <%-- 	   value: '<%=grp_applyend%>', // value:   new Date(), --%>
 		   onShow:function(){
 			   this.setOptions({
@@ -285,7 +290,7 @@ $(function(){
 	       theme: '',              //theme: 'dark',
 	       timepicker:true,       //timepicker:true,
 	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s', 
+	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s', 
 <%-- 	   value: '<%=grp_start%>', // value:   new Date(), --%>
 		   onShow:function(){
 			   this.setOptions({
@@ -300,7 +305,7 @@ $(function(){
 	       theme: '',              //theme: 'dark',
 	       timepicker:true,       //timepicker:true,
 	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 <%-- 	   value: '<%=grp_end%>', // value:   new Date(), --%>          
 		   onShow:function(){
 			   this.setOptions({

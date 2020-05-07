@@ -24,12 +24,22 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 <head><title>複合查詢 - listGrouper_ByCompositeQuery.jsp</title>
 
 <style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
+  #title{
+	background-color:#F9F900;
+    border: 5px solid #000080;
+    border-radius: 10px;
     text-align: center;
-    width: 100%;
-  } 
+    width: 98%;
+  }
+  table#table-1 h4 {
+    color: red;
+    display: block;
+    margin-bottom: 1px;
+  }
+  h4 {
+    color: blue;
+    display: inline;
+  }
 </style>
 
 <style>
@@ -74,12 +84,19 @@ ${pageRun}123
 listGrouper_ByCompositeQuery.jsp<br>
 <!-- ☆萬用複合查詢  - 可由客戶端 select_page.jsp 隨意增減任何想查詢的欄位<br> -->
 <!-- ☆此頁作為複合查詢時之結果練習，<font color=red>已增加分頁、送出修改、刪除之功能</font> -->
-<table id="table-1">
-	<tr><td>
-		 <h3>所有員工資料 - listAllgroup.jsp</h3>
-		 <h4><a href="<%=request.getContextPath()%>/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
+<table id="title">
+	<tr>
+		<td>
+		 	<h3>目前揪團列表</h3>
+		 	<h4>
+			 <a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp">
+		 	<img src="<%= request.getContextPath() %>/front_end/group/images/homeIcon.png" width="75" height="75" border="0">
+		 	回到查詢揪團
+	   		</a><br>
+	   		</h4>
+		</td>
+	</tr>
+</table><br>
 
 
 <table id="ByCom">
@@ -145,7 +162,7 @@ listGrouper_ByCompositeQuery.jsp<br>
 			<td>													   
 <!-- 																   /front_end/index.jsp?pageRun=group/group.do"  -->
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改"> 
+			     <input type="submit" value="修改" ${mb_id ==  grouperVO.mb_id?"":"disabled"}> 
 			     <input type="hidden" name="grp_no"      value="${grouperVO.grp_no}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
