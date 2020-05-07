@@ -250,14 +250,11 @@ public class ShoppingServlet extends HttpServlet {
 		String pd_typeSize = req.getParameter("pd_typeSize");
         
 		ProductVO bdc = new ProductVO();
-
-		
-	
-		
 	
         ProductService productSvc = new ProductService();
         bdc = productSvc.findOneProduct(pd_no);
         bdc.setPd_quantity(new Integer(pd_quantity));
+        bdc.setPd_typeSize(pd_typeSize);
 		return bdc;
 	}
 }
