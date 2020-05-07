@@ -42,36 +42,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<c:if test="${openModal!=null}">
-
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-				
-			<div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
-            </div>
-			
-			<div class="modal-body">
-<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
-               <jsp:include page="listOneGroupdetail2.jsp" />
-<!-- =========================================以上為原listOneEmp.jsp的內容========================================= -->
-			</div>
-			
-			<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-		
-		</div>
-	</div>
-</div>
-
-        <script>
-    		 $("#basicModal").modal({show: true});
-        </script>
- </c:if>
 
 <style>
   table#table-1 {
@@ -140,6 +110,10 @@
 		border-radius:7%;
 		margin: 0px;/*才看到到線上客服*/
 	}
+	
+	#myModalLabel{
+	margin:25px
+}
 
 
 </style>
@@ -174,7 +148,7 @@ listAllGroupdetailForSelect.jsp<br>
 		<th id=time>活動開始時間</th>
 		<th id=time>活動結束時間</th>
 		<th id=title>揪團標題</th>
-		<th id=comten>揪團內容</th>
+<!-- 		<th id=comten>揪團內容</th> -->
 		
 <!-- 		<th id=status>報到狀態</th> -->
 		
@@ -243,13 +217,13 @@ listAllGroupdetailForSelect.jsp<br>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 		</td>
-		<td>
+<!-- 		<td> -->
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
-                    ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_content}
+<%--                     ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_content} --%>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
-		</td>
+<!-- 		</td> -->
 		
 		<%
 			Map<Integer,String>status = new HashMap<>();
@@ -275,11 +249,12 @@ listAllGroupdetailForSelect.jsp<br>
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-				
+            			
 			<div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
+				<h3 class="modal-title" id="myModalLabel" >揪團詳細</h3>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
+
 			
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
@@ -289,7 +264,7 @@ listAllGroupdetailForSelect.jsp<br>
 			
 			<div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+<!--                 <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
 		
 		</div>

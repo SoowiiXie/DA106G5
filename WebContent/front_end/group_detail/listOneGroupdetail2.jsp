@@ -18,52 +18,41 @@
 <html>
 <head>
 <title>員工資料 - listOneGroup.jsp</title>
-
 <style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
+	#myGroupDetail{
+		width: 100%;
+		border:1px solid #000; 
+ 		font-family: 微軟正黑體;  
+ 		font-size:16px;  
 
-<style>
-  table {
-	width: 600px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
+ 		border:1px solid #000;
+ 		text-align:center; 
+		border-collapse:collapse;
+	}
+	#myGroupDetail td, #myGroupDetail th{
+		border:1px solid #000;
+	}
+	#myGroupDetail th{
+		background: #D5E0CC;
+	}
 </style>
 
 </head>
 <body bgcolor='white'>
 
-<h4>此頁暫練習採用 Script 的寫法取值:</h4>
-<table id="table-1">
-	<tr><td>
-		 <h3>揪團資料 - ListOneGroup.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
+<!-- <h4>此頁暫練習採用 Script 的寫法取值:</h4> -->
+<!-- <table id="table-1"> -->
+<!-- 	<tr><td> -->
+<!-- 		 <h3>揪團詳細資料</h3> -->
+<!-- 		 <h4> -->
+<%-- 			<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp"> --%>
+<%-- 			<img src="<%= request.getContextPath() %>/front_end/group/images/homeIcon.png" width="75" height="75" border="0"> --%>
+<!-- 			回到瀏覽揪團</a> -->
+<!-- 		 </h4> -->
+<!-- 	</td></tr> -->
+<!-- </table> -->
 
-<table>
+<table id="myGroupDetail">
 	<tr>
 
 		<th>揪團編號</th>
@@ -72,13 +61,12 @@
 		<th>報名結束時間</th>
 		<th>活動開始時間</th>
 		<th>活動結束時間</th>
-		<th>揪團標題</th>
-		<th>揪團內容</th>
+<!-- 		<th>揪團標題</th> -->
+		
 		
 <!-- 		<th>報到狀態</th> -->
 		
 	</tr>
-	<tr>		
 
 		<td><%=grp_detailVO.getGrp_no()%></td>	
 		<td>
@@ -94,39 +82,46 @@
 		<td>
 		<c:forEach var="grouperVO" items="${grpSvc.all}">
                    <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">
-                    ${grouperVO.grp_applystart}                                           
+<%--                     ${grouperVO.grp_applystart} --%>
+        <fmt:formatDate value="${grouperVO.grp_applystart}" pattern="yyyy-MM-dd H:mm"/>                                                      
                    </c:if>
         </c:forEach>
 		</td>
 		<td>
 		<c:forEach var="grouperVO" items="${grpSvc.all}">
                    <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">
-                    ${grouperVO.grp_applyend}                                           
+<%--                     ${grouperVO.grp_applyend} --%>
+		<fmt:formatDate value="${grouperVO.grp_applyend}" pattern="yyyy-MM-dd H:mm"/>                                           
                    </c:if>
         </c:forEach>
 		</td>
 		<td>
 		<c:forEach var="grouperVO" items="${grpSvc.all}">
                    <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">
-                    ${grouperVO.grp_start}                                           
+<%--                     ${grouperVO.grp_start} --%>
+        <fmt:formatDate value="${grouperVO.grp_start}" pattern="yyyy-MM-dd H:mm"/>                                             
                    </c:if>
         </c:forEach>
 		</td>
 		<td>
 		<c:forEach var="grouperVO" items="${grpSvc.all}">
                    <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">
-                    ${grouperVO.grp_end}                                           
+<%--                     ${grouperVO.grp_end} --%>
+        <fmt:formatDate value="${grouperVO.grp_end}" pattern="yyyy-MM-dd H:mm"/>                                                       
                    </c:if>
         </c:forEach>
 		</td>
-		<td>
-		<c:forEach var="grouperVO" items="${grpSvc.all}">
-                   <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">
-                    ${grouperVO.grp_name}                                           
-                   </c:if>
-        </c:forEach>
-		</td>
-		<td>
+<!-- 		<td> -->
+<%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
+<%--                    <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}"> --%>
+<%--                     ${grouperVO.grp_name}                                            --%>
+<%--                    </c:if> --%>
+<%--         </c:forEach> --%>
+<!-- 		</td> -->
+		<tr>
+				<th colspan="6">揪團內容</th>
+		</tr>		
+		<td colspan="6">
 		<c:forEach var="grouperVO" items="${grpSvc.all}">
                    <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">
                     ${grouperVO.grp_content}                                           
