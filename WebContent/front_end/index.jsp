@@ -500,7 +500,7 @@
 	</div>
 	<div class="overlay"></div>
 	
-	<!-- 記錄新增的燈箱 -->
+	<!-- 記錄新增的燈箱開始 -->
 	<div id="fblightbox" class="recordInsertBox">
 	  <div class="fblightbox-wrap">
 	    <div class="fblightbox-header">
@@ -512,8 +512,9 @@
 	  </div>
 	</div>
 	<div class="overlay"></div>
+	<!-- 記錄新增的燈箱結束 -->
 	
-	<!-- 天氣的燈箱 -->
+	<!-- 天氣的燈箱開始 -->
 	<div id="fblightbox" class="weatherBox mb-5" style="width:40rem; font-size:2rem;">
 	  <div class="fblightbox-wrap">
 <!-- 	    <div class="fblightbox-header"> -->
@@ -525,13 +526,11 @@
 	  </div>
 	</div>
 	<div class="overlay"></div>
+	<!-- 天氣的燈箱結束 -->
 	
 	<!-- 路徑圖片的燈箱開始 -->
 	<div id="fblightbox" class="pathImgBox mb-5" style="font-size:2rem;">
 	  <div class="fblightbox-wrap">
-<!-- 	    <div class="fblightbox-header"> -->
-<!-- 	      	這是天氣資訊 -->
-<!-- 	    </div> -->
 	    <div class="fblightbox-content p-0">
 	    	<img src="" class="mx-auto d-block pathImgInstead col-12 p-0 m-0" alt="Responsive image" style="height:30rem;">
 	    </div>
@@ -553,17 +552,27 @@
 	</div>
 	<div class="overlay"></div>
 	
-	<!-- 訊息的燈箱 -->
+	<!-- 訊息的燈箱開始 -->
 	<div id="fblightbox" class="msgLightBox">
 	  <div class="fblightbox-wrap">
 	    <div class="fblightbox-header">
 	      	我是訊息
 	    </div>
 	    <div class="fblightbox-content">
+		    <table class="col-12 table p-0 table-bordered m-0 table-striped" style="font-size:1rem;">
+				<tr class="bg-primary text-white">
+					<th>寄件者</th>
+					<th>ID</th>
+					<th>內容</th>
+					<th>寄件時間</th>
+				</tr>
+				<tbody id="myTbodyMsg"></tbody>
+			</table>
 	    </div>
 	  </div>
 	</div>
 	<div class="overlay"></div>
+	<!-- 訊息的燈箱結束 -->
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
@@ -816,8 +825,21 @@
 						 data: {"action":"lookOneMsg", "msg_no":$(this).children('.msg_no').val()},
 						 dataType: "json",
 						 success: function (data){
-					 	 },					
-					 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+							 $('#myTbodyMsg').empty();
+							 $('#myTbodyMsg').append(`
+								<tr>
+									<td class="align-middle"><img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id_1+`"  style="height:2rem; width:2rem;"/></td>
+									<td class="align-middle">`+data.mb_id_1+`</td>
+									<td class="align-middle">`+data.msg_content+`</td>
+									<td class="align-middle">`+data.msg_time+`</td>
+								</tr>
+							 `);
+							 
+							 msgLightBox.css({'margin-left':'-' + (msgLightBox.width()/2) + 'px' , 'margin-top' : '-' + (msgLightBox.height()/2)+'px'});
+							 $('.overlay').fadeIn();
+							 msgLightBox.fadeIn();
+						 },					
+					 error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
 			 		});
 			 });
 				 
@@ -831,6 +853,7 @@
 				  whoThumbBox.fadeOut();
 				  whoMeTooBox.fadeOut();
 				  pathImgBox.fadeOut();
+				  msgLightBox.fadeOut();
 			 });
 			 
 			 $(".fbclose").click(function() {
@@ -842,6 +865,7 @@
 				  whoThumbBox.fadeOut();
 				  whoMeTooBox.fadeOut();
 				  pathImgBox.fadeOut();
+				  msgLightBox.fadeOut();
 			 });
 			 
 			 $(".overlay").click(function() {
@@ -853,6 +877,7 @@
 				  whoThumbBox.fadeOut();
 				  whoMeTooBox.fadeOut();
 				  pathImgBox.fadeOut();
+				  msgLightBox.fadeOut();
 			 });
 
 		});
