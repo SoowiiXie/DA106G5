@@ -99,11 +99,8 @@
 				</div>
 			</div>
 			<!-- 路徑圖片 -->
-			<div style="overflow: hidden; height: 15rem;"
-				class="mx-auto my-2 col-12">
-				<img
-					src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}"
-					class="rounded mx-auto d-block pathImg" alt="Responsive image">
+			<div style="overflow: hidden; height: 15rem;" class="mx-auto my-2 col-12">
+				<img src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}" class="rounded mx-auto d-block pathImg" alt="Responsive image">
 			</div>
 			<!-- 紀錄內容 -->
 			<span class="ml-3 d-none d-lg-inline text-gray-900"

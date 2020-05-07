@@ -494,7 +494,6 @@ public class Weather_detailServlet extends HttpServlet {
 				res.setContentType("text/plain");
 				res.setCharacterEncoding("UTF-8");
 				PrintWriter out = res.getWriter();
-				System.out.println(jsArray.toString());
 				out.write(jsArray.toString());
 				out.flush();
 				out.close();
