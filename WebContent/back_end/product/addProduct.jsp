@@ -70,8 +70,10 @@ margin-top:100;
 			</c:forEach>
 		</ul>
 	</c:if>
-<div style="width:100%;border-style: solid; border-color:red;" align="center">
-  <div class="zxc" style=" border-style: solid; border-color:#3960D0; width:100%;">
+<div style="width:100%;" align="center">
+<font size="+3">增加商品：</font>
+		<hr>
+  <div class="zxc" style=" width:100%; margin-top:50px;">
   <form method="POST"
 		action="<%=request.getContextPath()%>/ProductServlet" name="form1"
 		enctype="multipart/form-data">
@@ -88,9 +90,9 @@ margin-top:100;
         <td bgcolor=#FFD2D2>商品價格：</td>
         <td bgcolor=#FFD2D2><input type="TEXT" name="pd_price" value="${productVO.pd_price}"></td>
       </tr>
-      <tr>
-	    <td bgcolor=#FFD2D2>商品詳述：</td>
-	    <td bgcolor=#FFD2D2><textarea name="pd_detail">${productVO.pd_detail}</textarea></td>					
+      <tr >
+	    <td style="height:100px;" bgcolor=#FFD2D2>商品詳述：</td>
+	    <td style="height:100px;" bgcolor=#FFD2D2><textarea style="height:100px; width:300px;" name="pd_detail">${productVO.pd_detail}</textarea></td>					
       </tr>
       <tr>
 		<td bgcolor=#FFD2D2>產品商品分類：</td>
@@ -102,7 +104,7 @@ margin-top:100;
 		    </select>
 		  </td>
 	   <tr>
-	     <td bgcolor=#FFD2D2 rowspan="2">商品圖片</td>
+	     <td bgcolor=#FFD2D2 rowspan="2">商品圖片：</td>
 		 <td bgcolor=#FFD2D2><input type="file" name="pd_pic" onchange="setImg(this)"> 
 		 
 		 </td>
@@ -198,7 +200,7 @@ margin-top:100;
 
 
 
-
+<div class="buttonBar" style="margin-top:100px"></div>
 
 
 </body>

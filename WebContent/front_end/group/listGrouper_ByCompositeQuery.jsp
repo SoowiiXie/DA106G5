@@ -46,6 +46,7 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 	#ByCom{
 	width: 100%;
 	background-color:rgba(256,256,256,0);
+	border:1px solid #CCCCFF;
 	}
   table {
 	width: 1200px;
@@ -57,9 +58,10 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
   table, th, td {
     border: 1px solid #CCCCFF;
   }
-  th, td {
+  #ByCom th, #ByCom td {
     padding: 5px;
     text-align: center;
+    border: 1px solid #CCCCFF;
   }
   
 /* button:hover { */
@@ -104,12 +106,12 @@ listGrouper_ByCompositeQuery.jsp<br>
 		<th>揪團編號</th>
 		<th>會員編號</th>
 		<th>地標編號</th>
-		<th>報名開始時間</th>
-		<th>報名結束時間</th>
-		<th>揪團開始時間</th>
-		<th>揪團結束時間</th>
+<!-- 		<th>報名開始時間</th> -->
+<!-- 		<th>報名結束時間</th> -->
+<!-- 		<th>揪團開始時間</th> -->
+<!-- 		<th>揪團結束時間</th> -->
 		<th>揪團名稱</th>
-		<th>揪團內容</th>
+<!-- 		<th>揪團內容</th> -->
 <!-- 		<th>人數上限</th> -->
 		<th>人數下限</th>
 <!-- 		<th>人數</th> -->
@@ -119,8 +121,7 @@ listGrouper_ByCompositeQuery.jsp<br>
 		<th>修改</th>
 <!-- 		不給刪除 -->
 <!-- 		<th>刪除</th> -->
-		<th>加入</th>
-		<th>關注</th>
+		<th>目前人數/人數上限</th>
 
 	</tr>
 	<%@ include file="pages/page1_ByCompositeQuery.file" %>
@@ -136,12 +137,12 @@ listGrouper_ByCompositeQuery.jsp<br>
                     </c:if>
                 </c:forEach>
 			</td>									
-			<td><fmt:formatDate value="${grouperVO.grp_applystart}" pattern="yyyy-MM-dd H:mm"/></td>
-			<td><fmt:formatDate value="${grouperVO.grp_applyend}" pattern="yyyy-MM-dd H:mm"/></td>
-			<td><fmt:formatDate value="${grouperVO.grp_start}" pattern="yyyy-MM-dd H:mm"/></td>
-			<td><fmt:formatDate value="${grouperVO.grp_end}" pattern="yyyy-MM-dd H:mm"/></td>
+<%-- 			<td><fmt:formatDate value="${grouperVO.grp_applystart}" pattern="yyyy-MM-dd H:mm"/></td> --%>
+<%-- 			<td><fmt:formatDate value="${grouperVO.grp_applyend}" pattern="yyyy-MM-dd H:mm"/></td> --%>
+<%-- 			<td><fmt:formatDate value="${grouperVO.grp_start}" pattern="yyyy-MM-dd H:mm"/></td> --%>
+<%-- 			<td><fmt:formatDate value="${grouperVO.grp_end}" pattern="yyyy-MM-dd H:mm"/></td> --%>
 			<td>${grouperVO.grp_name}</td>
-			<td>${grouperVO.grp_content}</td>
+<%-- 			<td>${grouperVO.grp_content}</td> --%>
 <!-- 			人數上限 -->
 <%-- 			<td>${grouperVO.grp_personmax}</td> --%>
 			<td>${grouperVO.grp_personmin}</td>
@@ -178,24 +179,24 @@ listGrouper_ByCompositeQuery.jsp<br>
 <!-- 			</td> -->
 			<td>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do" style="margin-bottom: 0px;">
-				${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}/${grouperVO.grp_personmax}
-				<input type="submit" value="加入揪團" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/><br>
+				${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}/${grouperVO.grp_personmax}<br>
+				<input type="submit" value="加入" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/><br>
 				
-				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br>
-				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br>
-				<input type="text"   name="grp_register" size=8 value="1"><br>
+<!-- 				觀察用 -->
+<%-- 				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br> --%>
+<%-- 				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br> --%>
+<!-- 				<input type="text"   name="grp_register" size=8 value="1"><br> -->
 				
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 				<input type="hidden" name="action"       value="insert"></FORM>
-			</td>
 			
-			<td>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_follow/group_follow.do" style="margin-bottom: 0px;">
 				<input type="submit" value="關注" /><br> 
 				
-				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br>
-				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br>				
+<!-- 				觀察用 -->
+<%-- 				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br> --%>
+<%-- 				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br>				 --%>
 				
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
@@ -240,9 +241,9 @@ listGrouper_ByCompositeQuery.jsp<br>
         </script>
  </c:if>
 
-<br>本網頁的路徑:<br><b>
-   <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>
-   <font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%> </b>
+<!-- <br>本網頁的路徑:<br><b> -->
+<%--    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br> --%>
+<%--    <font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%> </b> --%>
 
 </body>
 

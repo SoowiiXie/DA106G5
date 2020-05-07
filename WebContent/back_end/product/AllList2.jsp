@@ -83,10 +83,11 @@ margin-top:100;
 	</c:if></div>
 
 
-<div class="1"style="margin-top:50px; border:2px #FFD382 groove;width:80%;margin-left:10%;" >
-
+<div class="1" align="center" style="margin-top:50px;width:80%;margin-left:10%;" >
+<font size="+3">商品列表：</font>
+		<hr>
 <form name="checkoutForm" action="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList" method="POST">
-<div style="border:2px #FFD382 groove; float:left;"> <select size="1" name="pd_typeNo">
+<div style="float:left;"> <select size="1" name="pd_typeNo">
 		 <option value="">全部商品類別
          <c:forEach var="pd_typeVO" items="${pd_typeService.all}" > 
           <option value="${pd_typeVO.pd_typeNo}">${pd_typeVO.pd_typeName}
@@ -97,7 +98,7 @@ margin-top:100;
 				<input type="hidden" name="pd_typeNo" value="${pd_typeVO.pd_typeNo}">
 				<%@ include file="AllList2File1.file"%>
 				</div>
-				<div style="border:2px #FFD382 groove;  float:right;">
+				<div style="float:right;">
 				<%@ include file="AllList2File2.file"%>
 				
 				<%@ include file="AllList2File3.file"%>
@@ -141,7 +142,7 @@ margin-top:100;
 			
 				<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">
 				
-				 <div style="border:2px #FFD382 groove;">
+				 <div >
 				    <input type="submit" value="下架">
 				    <input type="hidden" name="pd_no" value="${productVO.pd_no}">
 				    <input type="hidden" name="action" value="changePd_status1">
@@ -150,7 +151,7 @@ margin-top:100;
 				</FORM>
 				
 		   
-				<div style=" border:2px #FFD382 groove; align:center;">	
+				<div style="margin-top:4px; align:center;">	
 				    <FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">	
 				    		
 				<input type="submit" value="上架">

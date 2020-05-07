@@ -67,7 +67,7 @@ color: #777;
 <title>列出所有商品</title>
 </head>
 <body>
-<div style="width:100%; border-style: solid; border-color:red;" >
+<div style="width:100%; /* border-style: solid; border-color:red; */" >
  <div class="third" align="center" ><img src="<%=request.getContextPath()%>/img/ProductAD.jpg" alt="跑馬燈圖片"></div> 
 
 	<%-- 
@@ -86,9 +86,9 @@ color: #777;
 			</c:forEach>
 		</ul>
 	</c:if>
-<div style="border-style: solid; border-color:red;">
+<div style="margin-top:10px;">
 	<div class="a" style="float:left;" >
-	  <table style="float:left; border-style: solid; border-color:red;">
+	  <table style="float:left; margin-top:10px;">
 	    <tr>
 	      <td><%@ include file="ShopHomePage1.file"%></td>
 	      <td><%@ include file="ShopHomePage2.file"%></td>   
@@ -100,7 +100,7 @@ color: #777;
 	
 		 <form method="POST" action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
-			<table style="float:right; border-style: solid; border-color:red;">
+			<table style="float:right;margin-top:10px;">
 				<tr>
 					<td>商品分類：</td>
 					<td><select size="1" name="pd_typeNo">
@@ -130,7 +130,7 @@ color: #777;
 			
 		</form> 
 		<div class="a" style="float:left;" >
-	  <table  style="float:left; border-style: solid; border-color:red;">
+	  <table  style="float:left;margin-top:10px;">
 	    <tr>
 	      <td><%@ include file="ShopHomePage3.file"%></td>
 	    </tr>

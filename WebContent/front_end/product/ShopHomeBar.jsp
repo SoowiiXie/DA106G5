@@ -58,9 +58,9 @@ margin-top:-8px;
 height:100px;
 width:100%;
 background-color:#3960D0;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
-
+-->
 }
 .logo{
 height:100px;
@@ -68,8 +68,9 @@ background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 }
 .search_pd{
 margin-left:3%;
@@ -78,8 +79,9 @@ width:20%;
 background-color:#3960D0;
 float:left;
 position: relative;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 }
 .search_form{
 position: absolute;  
@@ -93,8 +95,9 @@ background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 
 }
 
@@ -105,8 +108,9 @@ background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 
 }
 
@@ -117,8 +121,9 @@ background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 
 }
 .pd_follow{
@@ -128,8 +133,9 @@ background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 
 }
 .lookSelfCoupon{
@@ -139,9 +145,9 @@ background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
-
+-->
 }
 .singOut{
 height:100px;
@@ -150,8 +156,9 @@ background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 
 }
 
@@ -162,8 +169,9 @@ background-color:#3960D0;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 }
 .second{
 margin-top: 10px;
@@ -172,8 +180,9 @@ width:100%;
 background-color:#D2E9FF;
 position:absolute; 
 text-align:center;
-border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 }
 .Topmenu{
   width:12.5%;
@@ -223,8 +232,9 @@ div img{
     width: 100%;
     height:100%;
     object-fit:cover;
-    border-style: solid;
+<!--border-style: solid;
 border-color:red;
+-->
 }
 .Topmenuin{
   position: relative;

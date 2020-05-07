@@ -64,8 +64,8 @@ margin-top:100;
 		<font size="+3">優惠券列表：</font>
 		<hr>
 		
-<div class="2" style="border:2px #FFD382 groove; width:80%;">		
-	<div align="center" style="margin-top: 50px; border:2px #FFD382 groove;">
+<div class="2" style=" width:80%;">		
+	<div align="center" style="margin-top: 50px;">
 	
 <form method="POST"
 		action="<%=request.getContextPath()%>/CpGetServlet" name="form1"
@@ -117,7 +117,7 @@ margin-top:100;
 	
 	
 	
-	<div align="center" style="margin-top: 50px; border:2px #FFD382 groove;">
+	<div align="center" style="margin-top: 50px;">
 	
 <form method="POST"
 		action="<%=request.getContextPath()%>/CpGetServlet" name="form1"
@@ -150,11 +150,11 @@ margin-top:100;
 
 </form>
 </div>
-<div style="margin-top: 50px; border:2px #FFD382 groove;">
-<div style=" border:2px #FFD382 groove; float:left;">
+<div style="margin-top: 50px;">
+<div style="float:left;">
 <%@ include file="page1ForListAllCoupon1.file"%>
 </div>
-<div style=" border:2px #FFD382 groove;  float:right;">
+<div style="float:right;">
 <%@ include file="page2ForListAllCoupon2.file"%>
 </div>
 		<table style=" width:100%;">

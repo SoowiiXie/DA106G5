@@ -18,8 +18,8 @@ background-color:#FBFBFF;
 height:100px;
 width:100%;
 background-color:#FF004C;
-border-style: solid;
-border-color:#3960D0;
+/* border-style: solid;
+border-color:#3960D0; */
  */
 }
 .logo{
@@ -29,8 +29,8 @@ background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
-border-color:#3960D0; 
+/* border-style: solid;
+border-color:#3960D0;  */
 }
 .goToShopHome{
 height:100px;
@@ -38,14 +38,14 @@ width:15%;
 background-color:#FF004C;
 float:left;
 position: relative;
-border-style: solid;
-border-color:#3960D0; 
+/* border-style: solid;
+border-color:#3960D0;  */
 }
 .search_form{
 position: absolute;  
 margin-top:30px;
-border-style: solid;
-border-color:#3960D0; 
+/* border-style: solid;
+border-color:#3960D0;  */
 }
 .backhome{
 margin-left:10%;
@@ -55,9 +55,9 @@ background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
+/* border-style: solid;
 border-color:#3960D0;
-
+ */
 }
 
 .managerProduct{
@@ -67,8 +67,8 @@ background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
-border-color:#3960D0;
+/* border-style: solid;
+border-color:#3960D0; */
 }
 .addProduct{
 height:100px;
@@ -77,8 +77,8 @@ background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
-border-color:#3960D0;
+/* border-style: solid;
+border-color:#3960D0; */
 }
 .managerOrders{
 height:100px;
@@ -87,8 +87,8 @@ background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
-border-color:#3960D0;
+/* border-style: solid;
+border-color:#3960D0; */
 }
 .managerCoupon{
 height:100px;
@@ -97,8 +97,8 @@ background-color:#FF004C;
 position: static; 
 line-height:100px; 
 float:left;
-border-style: solid;
-border-color:#3960D0;
+/* border-style: solid;
+border-color:#3960D0; */
 }
 .member{
 margin-left:1300px;
@@ -107,8 +107,8 @@ width:7%;
 background-color:#FF004C;
 position: static; 
 line-height:100px;
-border-style: solid;
-border-color:#3960D0;
+/* border-style: solid;
+border-color:#3960D0; */
 }
 .second{
 margin-top: 10px;
@@ -117,8 +117,8 @@ width:100%;
 background-color:#FF004C;
 position:absolute; 
 text-align:center;
-border-style: solid;
-border-color:#3960D0;
+/* border-style: solid;
+border-color:#3960D0; */
 }
 .Topmenu{
   width:12.5%;
