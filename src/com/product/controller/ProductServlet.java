@@ -606,7 +606,7 @@ public class ProductServlet extends HttpServlet {
 
 			} catch (Exception e) {
 				errorMsgs.add("搜尋資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/Pd_typeNoList.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/ShopHome.jsp");
 				failureView.forward(req, res);
 				return;
 			}
