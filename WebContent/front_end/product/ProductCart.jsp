@@ -76,8 +76,7 @@ margin-top:100;
 		<p></div>
 		<div style=" border-style: solid; border-color:red;" align="center" >
 		<div align="center">
-			<form name="deleteForm"
-				action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
+			
 				<table style="width: 800px;">
 					<tr bgcolor="#999999" align="center">
 						<th width="100px"><font color="black">產品圖片</font></th>
@@ -120,11 +119,11 @@ margin-top:100;
 
 
 						<td width="100"><div align="center">
-
-								<input type="hidden" name="action" value="DELETE"> <input
-									type="hidden" name="del" value="<%=index%>"> <input class="btn btn-primary btn-sm" type="submit" name="Submit" 
+<form name="deleteForm" action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
+								<input type="hidden" name="action" value="DELETE"> 
+								<input type="hidden" name="del" value="<%=index%>"> <input class="btn btn-primary btn-sm" type="submit" name="Submit" 
 							value="刪除">
-							</div></td>
+							</form></div></td>
 
 					</tr>
 
@@ -144,7 +143,7 @@ margin-top:100;
 					<td align="center"><font color="red"><b>$${total}</b></font></td>
 					</tr>
 				</table>
-			</form>
+			
 			</div>
 			<div style="background-color:#C4E1FF; width:793px;margin-top:-16.5px;" >
 			<div style="margin-left:-54%;"><form name="checkoutForm" action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">

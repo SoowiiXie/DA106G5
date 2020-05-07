@@ -7,6 +7,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import org.json.JSONArray;
+
 import com.metoo.model.*;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
@@ -86,6 +88,35 @@ public class MeTooServlet extends HttpServlet {
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/cmt/listAllCmt.jsp");
 				failureView.forward(req, res);
 				}
+			}
+		}
+		
+
+		if ("ajaxGetByRcd_no".equals(action)) {
+			try {
+				// Retrieve form parameters.
+				String rcd_no = req.getParameter("rcd_no");
+
+				MeTooService meTooSvc = new MeTooService();
+				List<MeTooVO> whoMeToo_list = meTooSvc.whoMeToo(rcd_no);
+//				HttpSession session = req.getSession();
+//				session.setAttribute("weather_detailVO_list", weather_detailVO_list);
+				JSONArray jsArray = new JSONArray(whoMeToo_list);
+			    
+				// 取出的empVO送給listOneEmp.jsp
+//				RequestDispatcher successView = req.getRequestDispatcher("/front_end/index.jsp");
+//				successView.forward(req, res);
+//				return;
+				res.setContentType("text/plain");
+				res.setCharacterEncoding("UTF-8");
+				PrintWriter out = res.getWriter();
+				out.write(jsArray.toString());
+				out.flush();
+				out.close();
+
+				// Handle any unusual exceptions
+			} catch (Exception e) {
+				throw new ServletException(e);
 			}
 		}
 	}

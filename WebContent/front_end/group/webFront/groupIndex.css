@@ -27,7 +27,7 @@
   width: 450px;
   float: left;
   left: 50%;
-  position: absolute;
+/*   position: absolute; */
   margin-top:20px;
   margin-left: -260px;
   -moz-border-radius: 7px;
@@ -68,14 +68,14 @@
 
 /* Icons ---------------------------------- */
 #name{
-  background-image: url(https://i.imgur.com/4VhRYoE.png);
+  background-image: url(https://i.imgur.com/u2cxgir.png);
   background-size: 30px 30px;
   background-position: 11px 8px;
   background-repeat: no-repeat;
 }
 
 #name:focus{
-  background-image: url(https://i.imgur.com/4VhRYoE.pngg);
+  background-image: url(https://i.imgur.com/u2cxgir.png);
   background-size: 30px 30px;
   background-position: 8px 5px;
   background-position: 11px 8px;
@@ -123,7 +123,7 @@ input:focus, textarea:focus {
   cursor:pointer;
   background-color: #3498db;
   color:white;
-  font-size:12px;
+  font-size:16px;
   padding-top:3px;
   padding-bottom:5px;
   -webkit-transition: all 0.3s;

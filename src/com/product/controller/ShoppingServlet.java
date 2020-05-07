@@ -37,111 +37,104 @@ public class ShoppingServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		Vector<ProductVO> buylist = (Vector<ProductVO>) session.getAttribute("shoppingCart");
 		String action = req.getParameter("action");
+		
+		System.out.println(action);
+		
+		if (action.equals("findOneProduct")) { // ShopHome商城首頁進入該上架之商品
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 ****************************************/
+				String pd_no = req.getParameter("pd_no");
+//				System.out.println(pd_no);
+				/*************************** 2.開始查詢資料 ****************************************/
+				ProductService productService = new ProductService();
+				ProductVO productVO = productService.findOneProduct(pd_no);
+				ArrayList<String> sizeList = new ArrayList<String>();
+				if (productVO.getPd_typeNo().equals("PTN00010") || productVO.getPd_typeNo().equals("PTN00011")
+						|| productVO.getPd_typeNo().equals("PTN00012")) {
+					sizeList.add("無");
+//					System.out.print("配件尺寸:" + sizeList);
+
+				} else if (productVO.getPd_typeNo().equals("PTN00003")
+						|| productVO.getPd_typeNo().equals("PTN00006")
+						|| productVO.getPd_typeNo().equals("PTN00009")) {
+					sizeList.add("US7.5");
+					sizeList.add("US8.0");
+					sizeList.add("US8.5");
+					sizeList.add("US9.0");
+					sizeList.add("US9.5");
+					sizeList.add("US10.0");
+//					System.out.print("鞋類尺寸:" + sizeList);
+
+				} else {
+					sizeList.add("XS");
+					sizeList.add("S");
+					sizeList.add("M");
+					sizeList.add("L");
+					sizeList.add("XL");
+					sizeList.add("XXL");
+//					System.out.print("服飾尺寸:" + sizeList);
+
+				}
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
+				req.setAttribute("productVO", productVO);
+				req.setAttribute("sizeList", sizeList);
+				
+				String url = "/front_end/product/GoOneProduct.jsp";
+
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 OneProductInformation.jsp
+				successView.forward(req, res);
+
+				return;
+
+			} catch (Exception e) {
+				errorMsgs.add("無法取得商品的資料1:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/ShopHome.jsp");
+				failureView.forward(req, res);
+				return;
+			}
+
+		}
+		
+		
+		if (action.equals("DELETE")) {
+			String del = req.getParameter("del");
+			int d = Integer.parseInt(del);
+			buylist.removeElementAt(d);
+			
+			int total = 0;
+			for (int i = 0; i < buylist.size(); i++) {
+				ProductVO order = buylist.get(i);
+				int price = order.getPd_price();
+				int quantity = order.getPd_quantity();
+				total += (price * quantity);
+			}
+			session.setAttribute("total", total);
+			String buylistCount = String.valueOf(buylist.size());
+			session.setAttribute("buylistCount", buylistCount);
+			session.setAttribute("shoppingCart", buylist);
+			String url = "/front_end/product/ProductCart.jsp";
+			RequestDispatcher rd = req.getRequestDispatcher(url);
+			rd.forward(req, res);
+			return;
+		}
+		
+		
 
 		if (!action.equals("GoToWriteShopInformation")) {
-
-			if (action.equals("findOneProduct")) { // ShopHome商城首頁進入該上架之商品
-
-				List<String> errorMsgs = new LinkedList<String>();
-				// Store this set in the request scope, in case we need to
-				// send the ErrorPage view.
-				req.setAttribute("errorMsgs", errorMsgs);
-
-				try {
-					/*************************** 1.接收請求參數 ****************************************/
-					String pd_no = req.getParameter("pd_no");
-//					System.out.println(pd_no);
-					/*************************** 2.開始查詢資料 ****************************************/
-					ProductService productService = new ProductService();
-					ProductVO productVO = productService.findOneProduct(pd_no);
-					ArrayList<String> sizeList = new ArrayList<String>();
-					if (productVO.getPd_typeNo().equals("PTN00010") || productVO.getPd_typeNo().equals("PTN00011")
-							|| productVO.getPd_typeNo().equals("PTN00012")) {
-						sizeList.add("無");
-//						System.out.print("配件尺寸:" + sizeList);
-
-					} else if (productVO.getPd_typeNo().equals("PTN00003")
-							|| productVO.getPd_typeNo().equals("PTN00006")
-							|| productVO.getPd_typeNo().equals("PTN00009")) {
-						sizeList.add("US7.5");
-						sizeList.add("US8.0");
-						sizeList.add("US8.5");
-						sizeList.add("US9.0");
-						sizeList.add("US9.5");
-						sizeList.add("US10.0");
-//						System.out.print("鞋類尺寸:" + sizeList);
-
-					} else {
-						sizeList.add("XS");
-						sizeList.add("S");
-						sizeList.add("M");
-						sizeList.add("L");
-						sizeList.add("XL");
-						sizeList.add("XXL");
-//						System.out.print("服飾尺寸:" + sizeList);
-
-					}
-					
-					
-//					//----------------------------推薦其他商品--------------------------//
-//					ProductVO  getProductInformation =  productService.findOneProduct(pd_no);
-//					List<ProductVO> thisProductTypelist = productService.useTypeSearchProducts(getProductInformation.getPd_typeNo());
-//
-//					List<String> otherProductNo = null;
-//					otherProductNo = new ArrayList<String>();
-//					
-//					for (int i = 0; i < 3; i++) {
-//
-//						int randonProduct = (int) (Math.random() * thisProductTypelist.size());
-//
-//						String oederPd_no = thisProductTypelist.get(randonProduct).getPd_no();
-//
-//						if (oederPd_no.equals("PDN00001")) {
-//
-//							thisProductTypelist.remove(randonProduct);
-//							System.out.println("刪掉重複!!");
-//							
-//							i--;
-//						} else if (!oederPd_no.equals("PDN00001")) {
-//
-//							otherProductNo.add(oederPd_no);
-//
-//							thisProductTypelist.remove(randonProduct);
-//
-//						}
-//						  System.out.println(otherProductNo.get(i));
-//					}
-//					
-//					System.out.println(otherProductNo.size());
-//					//----------------------------推薦其他商品--------------------------//
-					/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-					req.setAttribute("productVO", productVO);
-					req.setAttribute("sizeList", sizeList);
-					
-					String url = "/front_end/product/GoOneProduct.jsp";
-
-					RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 OneProductInformation.jsp
-					successView.forward(req, res);
-
-					return;
-
-				} catch (Exception e) {
-					errorMsgs.add("無法取得商品的資料1:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/product/ShopHome.jsp");
-					failureView.forward(req, res);
-					return;
-				}
-
-			}
-
 			// 刪除購物車中的
-			if (action.equals("DELETE")) {
-				String del = req.getParameter("del");
-				int d = Integer.parseInt(del);
-				buylist.removeElementAt(d);
-			}
+//			if (action.equals("DELETE")) {
+//				String del = req.getParameter("del");
+//				int d = Integer.parseInt(del);
+//				buylist.removeElementAt(d);
+//			}
 			// 新增商品至購物車中
-			else if (action.equals("AddProductToCar")) {
+			 if (action.equals("AddProductToCar")) {
 				boolean match = false;
 
 				// 取得後來新增的商品
@@ -203,7 +196,7 @@ public class ShoppingServlet extends HttpServlet {
 		}
 
 		// 計算總金額後，進入填寫資訊頁面
-		else if (action.equals("GoToWriteShopInformation")) {
+		if (action.equals("GoToWriteShopInformation")) {
 			String cp_get = req.getParameter("cp_get");
 
 			int total = 0;

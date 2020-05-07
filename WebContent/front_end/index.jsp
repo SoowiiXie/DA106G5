@@ -462,6 +462,59 @@
 	</div>
 	<div class="overlay"></div>
 	
+	<!-- 按讚數的燈箱 -->
+	<div id="fblightbox" class="whoThumbBox">
+	  <div class="fblightbox-wrap">
+	    <div class="fblightbox-header">
+	      	誰來按讚
+	    </div>
+	    <div class="fblightbox-content">
+	    	<table class="col-12 table p-0 table-bordered m-0 table-striped" style="font-size:1rem;">
+				<tr class="bg-primary text-white">
+					<th>照片</th>
+					<th>ID</th>
+					<th>追蹤</th>
+				</tr>
+				<tbody id="myTbodyThumb"></tbody>
+			</table>
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
+	
+	<!-- meToo數的燈箱 -->
+	<div id="fblightbox" class="whoMeTooBox">
+	  <div class="fblightbox-wrap">
+	    <div class="fblightbox-header">
+	      	誰來meToo
+	    </div>
+	    <div class="fblightbox-content">
+	    	<table class="col-12 table p-0 table-bordered m-0 table-striped" style="font-size:1rem;">
+				<tr class="bg-primary text-white">
+					<th>照片</th>
+					<th>ID</th>
+					<th>追蹤</th>
+				</tr>
+				<tbody id="myTbodyMeToo"></tbody>
+			</table>
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
+	
+	<!-- 記錄新增的燈箱 -->
+	<div id="fblightbox" class="recordInsertBox">
+	  <div class="fblightbox-wrap">
+	    <div class="fblightbox-header">
+	      	來篇新紀錄吧
+	    </div>
+	    <div class="fblightbox-content">
+	    	<jsp:include page="record/addRecord.jsp" />
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
+	
 	<!-- 天氣的燈箱 -->
 	<div id="fblightbox" class="weatherBox mb-5" style="width:40rem; font-size:2rem;">
 	  <div class="fblightbox-wrap">
@@ -533,6 +586,23 @@
 	<!-- index.js -->
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			 //記錄新增的燈箱開始
+			 var recordInsertBox = $('.recordInsertBox');
+			 recordInsertBox.css({'margin-left':'-' + (recordInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (recordInsertBox.height()/2)+'px'});
+			 
+// 			 $("body").on('click', '.infoFlagBtn',function(){
+// 			 });
+			 
+		 	 $('.btnAddRecord').click(function(e){
+		 		 e.preventDefault();
+			     $("#mb_id4rcd").val("${mb_id}");
+			     recordInsertBox.fadeIn();
+		 		 $('.overlay').fadeIn();
+		 	 });
+		 	 //記錄新增的燈箱結束
+			
+			 //按讚
 			$('.thumbBtn').click(function(){
 				 var thumbImg = $(this);
 				 $.ajax({
@@ -658,6 +728,62 @@
 					 error: function(){alert("AJAX-wth_loc_btn發生錯誤囉!")}
 				 });
 			 });
+			 
+			 //按讚數的燈箱
+			 var whoThumbBox = $('.whoThumbBox');
+			 $('.whoThumb_no').click(function(){
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/thumb/thumb.do",
+					 data: {"action":"ajaxGetByRcd_no", "rcd_no":$(this).next().val()},
+					 dataType: "json",
+					 success: function (data){
+						 $('#myTbodyThumb').empty();
+						 for(var i = 0; i < data.length; i++){
+							 $('#myTbodyThumb').append(`
+								<tr>
+									<td class="align-middle"><img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data[i].mb_id+`"  style="height:2rem; width:2rem;"/></td>
+									<td class="align-middle">`+data[i].mb_id+`</td>
+									<td class="align-middle">`+"追蹤"+`</td>
+								</tr>
+							`);
+						 }
+						 
+						 whoThumbBox.css({'margin-left':'-' + (whoThumbBox.width()/2) + 'px' , 'margin-top' : '-' + (whoThumbBox.height()/2)+'px'});
+						 $('.overlay').fadeIn();
+						 whoThumbBox.fadeIn();
+					 },					
+					 error: function(){alert("AJAX-wth_loc_btn發生錯誤囉!")}
+				 });
+			 });
+			 
+			 //meToo數的燈箱
+			 var whoMeTooBox = $('.whoMeTooBox');
+			 $('.whoMeToo_no').click(function(){
+				 $.ajax({
+					 type: "GET",
+					 url: "<%=request.getContextPath()%>/metoo/metoo.do",
+					 data: {"action":"ajaxGetByRcd_no", "rcd_no":$(this).next().val()},
+					 dataType: "json",
+					 success: function (data){
+						 $('#myTbodyMeToo').empty();
+						 for(var i = 0; i < data.length; i++){
+							 $('#myTbodyMeToo').append(`
+								<tr>
+									<td class="align-middle"><img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data[i].mb_id+`"  style="height:2rem; width:2rem;"/></td>
+									<td class="align-middle">`+data[i].mb_id+`</td>
+									<td class="align-middle">`+"追蹤"+`</td>
+								</tr>
+							`);
+						 }
+						 
+						 whoMeTooBox.css({'margin-left':'-' + (whoThumbBox.width()/2) + 'px' , 'margin-top' : '-' + (whoThumbBox.height()/2)+'px'});
+						 $('.overlay').fadeIn();
+						 whoMeTooBox.fadeIn();
+					 },					
+					 error: function(){alert("AJAX-whoMeTooBox發生錯誤囉!")}
+				 });
+			 });
 				 
 			 //訊息的燈箱
 			 var msgLightBox = $('.msgLightBox');
@@ -687,6 +813,9 @@
 				  fblightbox.fadeOut();
 				  weatherBox.fadeOut();
 				  locInsertBox.fadeOut();
+				  recordInsertBox.fadeOut();
+				  whoThumbBox.fadeOut();
+				  whoMeTooBox.fadeOut();
 			 });
 			 
 			 $(".fbclose").click(function() {
@@ -694,6 +823,9 @@
 				  fblightbox.fadeOut();
 				  weatherBox.fadeOut();
 				  locInsertBox.fadeOut();
+				  recordInsertBox.fadeOut();
+				  whoThumbBox.fadeOut();
+				  whoMeTooBox.fadeOut();
 			 });
 			 
 			 $(".overlay").click(function() {
@@ -701,6 +833,9 @@
 				  fblightbox.fadeOut();
 				  weatherBox.fadeOut();
 				  locInsertBox.fadeOut();
+				  recordInsertBox.fadeOut();
+				  whoThumbBox.fadeOut();
+				  whoMeTooBox.fadeOut();
 			 });
 
 		});

@@ -389,6 +389,56 @@ System.out.println("path_no = "+path_no);
 		
 	}
 
+	@Override
+	public String insertPathFromWeb(PathVO pathVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String InsertPathFromWeb = "INSERT INTO PATH (path_no, path_name, path_pic, path_distance, path_kml, path_lng, path_lat) values ('p'||LPAD(to_char(PATH_NO_SEQ.nextval), 5, '0'),?,?,?,?,?,?)";
+		String path_no = null;
+		try {
+			con = ds.getConnection();
+			
+			String cols[] = {"path_no"};
+			pstmt = con.prepareStatement(InsertPathFromWeb , cols);
+			pstmt.setString(1, pathVO.getPath_name());
+			pstmt.setBytes(2, pathVO.getPath_pic());
+			pstmt.setDouble(3, pathVO.getPath_distance());
+			pstmt.setString(4, pathVO.getPath_kml());
+			pstmt.setDouble(5, pathVO.getPath_lng());
+			pstmt.setDouble(6, pathVO.getPath_lat());
+			pstmt.executeUpdate();
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if(rs.next()) {
+				path_no = rs.getString(1);
+System.out.println("path_no = "+path_no);
+			}else {
+				System.out.println("未取得path_no");
+			}
+			rs.close();
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return path_no;
+	}
+
 	
 
 }

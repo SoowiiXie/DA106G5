@@ -1,6 +1,7 @@
 package com.path.model;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class PathVO {
 	private String path_no;
@@ -115,6 +116,13 @@ public class PathVO {
 	public void setPath_lat(Double path_lat) {
 		this.path_lat = path_lat;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "PathVO [path_no=" + path_no + ", path_name=" + path_name + ", path_difficulty=" + path_difficulty
+				+ ", path_popular=" + path_popular + ", path_start=" + path_start + ", path_end=" + path_end
+				+ ", path_pic=" + Arrays.toString(path_pic) + ", path_distance=" + path_distance + ", path_status="
+				+ path_status + ", path_kml=" + path_kml + ", path_lng=" + path_lng + ", path_lat=" + path_lat + "]";
+	}
 	
 }

@@ -5,11 +5,11 @@
 <%
   RecordVO recordVO = (RecordVO) request.getAttribute("recordVO");
 %>
-<%= recordVO==null	 %>--${record.rcd_no }--
+<%-- <%= recordVO==null	 %>--${record.rcd_no }-- --%>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>員工資料新增 - addEmp.jsp</title>
+<title>紀錄資料新增 - addRecord.jsp</title>
 
 <style>
   table#table-1 {
@@ -46,14 +46,14 @@
 </head>
 <body bgcolor='white'>
 
-<table id="table-1">
-	<tr><td>
-		 <h3>員工資料新增 - addrecord.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
+<!-- <table id="table-1"> -->
+<!-- 	<tr><td> -->
+<!-- 		 <h3>員工資料新增 - addrecord.jsp</h3></td><td> -->
+<!-- 		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4> -->
+<!-- 	</td></tr> -->
+<!-- </table> -->
 
-<h3>資料新增:</h3>
+<!-- <h3>資料新增:</h3> -->
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -65,41 +65,81 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="record.do" name="form1">
+<FORM METHOD="post" ACTION="path.do" name="form1" enctype="multipart/form-data">
 <table>
-	<tr>
-		<td>上傳日期:</td>
-		<td><input name="rcd_uploadtime" id="f_date1" type="text"></td><!-- html5(type="date")不用的原因1.瀏覽器支援度不同(IE不行)2.需要花很多時間做限制日期 -->
-	</tr>
-	<tr>
-		<td>上傳內容:</td>
-		<td><input type="TEXT" name="rcd_content" size="45"
-			 value="<%= (recordVO==null)? "MANAGER" : recordVO.getRcd_content()%>" /></td>
-	</tr>
+<!-- 	<tr> -->
+<!-- 		<td>上傳日期:</td> -->
+<!-- 		<td><input name="rcd_uploadtime" id="f_date1" type="text"></td>html5(type="date")不用的原因1.瀏覽器支援度不同(IE不行)2.需要花很多時間做限制日期 -->
+<!-- 	</tr> -->
+	<div class="form-group m-1">
+				<label style="font-size: 1.2rem;">內容： </label>
+				<input type="TEXT" name="rcd_content" size="45" value="" placeholder="描述這段運動紀錄" style="font-size: 1.2rem; width:17rem;"/>
+	</div>
 	<jsp:useBean id="pathSvc" scope="page" class="com.path.model.PathService" />
-	<tr>
-		<td>路徑編號:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="path_no">
-			<c:forEach var="pathVO" items="${pathSvc.all}">
-				<option value="${pathVO.path_no}" ${(recordVO.path_no==pathVO.path_no)? 'selected':'' } >${pathVO.path_no}
-			</c:forEach>						<!-- 上面為什麼不用EL:因為第一次是空值產生500,不加的話每次都回到財務部 -->
-		</select></td>
-	</tr>
+<!-- 	<tr> -->
+<!-- 		<td>路徑編號:<font color=red><b>*</b></font></td> -->
+<!-- 		<td><select size="1" name="path_no"> -->
+<%-- 			<c:forEach var="pathVO" items="${pathSvc.all}"> --%>
+<%-- 				<option value="${pathVO.path_no}" ${(recordVO.path_no==pathVO.path_no)? 'selected':'' } >${pathVO.path_no} --%>
+<%-- 			</c:forEach>						<!-- 上面為什麼不用EL:因為第一次是空值產生500,不加的話每次都回到財務部 --> --%>
+<!-- 		</select></td> -->
+<!-- 	</tr> -->
 	<jsp:useBean id="mbSvc" scope="page" class="com.mb.model.MemberService" />
-	<tr>
-		<td>上傳會員編號:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="mb_id">
-			<c:forEach var="MemberVO" items="${mbSvc.all}">
-				<option value="${MemberVO.mb_id}" ${(recordVO.mb_id==MemberVO.mb_id)? 'selected':'' } >${MemberVO.mb_id}
-			</c:forEach>						<!-- 上面為什麼不用EL:因為第一次是空值產生500,不加的話每次都回到財務部 -->
-		</select></td>
-	</tr>
+<!-- 	<tr> -->
+<!-- 		<td>上傳會員編號:<font color=red><b>*</b></font></td> -->
+<!-- 		<td><select size="1" name="mb_id"> -->
+<%-- 			<c:forEach var="MemberVO" items="${mbSvc.all}"> --%>
+<%-- 				<option value="${MemberVO.mb_id}" ${(recordVO.mb_id==MemberVO.mb_id)? 'selected':'' } >${MemberVO.mb_id} --%>
+<%-- 			</c:forEach>						<!-- 上面為什麼不用EL:因為第一次是空值產生500,不加的話每次都回到財務部 --> --%>
+<!-- 		</select></td> -->
+<!-- 	</tr> -->
+	<div class="form-group m-1">
+			<label style="font-size: 1.2rem;">運動剪影： </label>
+			<input type="file" name="path_pic" id="upfile1" style="font-size: 1.2rem;"/>
+	</div>
+	<img alt="" src="" id="rcd_insert_pic" style=" height:5rem;">
 </table>
 <br>
-<input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
+	<div class="fblightbox-footer bg-white">
+		<input type="hidden" name="action" value="insert">
+		<input type="hidden" name="mb_id" value="" id="mb_id4rcd">
+		<input type="submit" value="送出新增" class="fbbutton" id="record_submit">
+		<a href="#" id="close" class="fbbutton fbclose">先不送了</a>
+	</div>
+</FORM>
 </body>
-
+	
+<script>
+// 		var x = new FileReader;
+		var z = new FileReader;
+// 		document.forms[0].elements[0].onchange = function() {
+// 			x.readAsDataURL(this.files[0]);
+// 		}
+// 		$("#upfile1").onchange = function() {
+// 			x.readAsDataURL(this.files[0]);
+// 		}
+// 		x.onloadend = function() {
+// 			$("#rcd_insert_pic").src = this.result;
+// 			console.log(x.herf);
+// 		}
+		
+		document.getElementById('upfile1').onchange = function() {
+			z.readAsDataURL(this.files[0]);
+		}
+		z.onloadend = function() {
+			document.getElementById('rcd_insert_pic').src = this.result;
+		}
+		
+		
+		
+// 		document.forms[0].elements[1].onchange = function() {
+// 			y.readAsDataURL(this.files[0]);
+// 		}
+// 		y.onloadend = function() {
+// 			document.images[0].src = this.result;
+// 		}
+		
+</script>
 
 
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->

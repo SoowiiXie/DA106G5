@@ -18,6 +18,7 @@ public class ProductVO implements java.io.Serializable {
 	private String pd_statusName;
 	private Integer pd_quantity; //方便儲存數量用，表格沒有
 	private String pd_typeSize; //方便訂單明細數量儲存用，表格沒有
+	private String pd_typeNoName;
 	private byte[] pd_pic2; 
 	private byte[] pd_pic3; 
 	private byte[] pd_pic4; 
@@ -106,7 +107,7 @@ public class ProductVO implements java.io.Serializable {
 		this.pd_statusName = pd_statusName;
 	}
 
-	private String pd_typeNoName;
+
 
 	public String getPd_typeNoName() {
 		return pd_typeNoName;

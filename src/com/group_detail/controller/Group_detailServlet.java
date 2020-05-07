@@ -356,7 +356,7 @@ public class Group_detailServlet extends HttpServlet {
 				
 				// 取出的empVO送給listOneEmp.jsp
 				RequestDispatcher successView = req
-						.getRequestDispatcher("/front_end/index.jsp?pageRun=group_detail/listAllGroupdetail.jsp");
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group_detail/listAllGroupdetailForSelect.jsp");
 				successView.forward(req, res);
 				return;
 

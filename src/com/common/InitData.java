@@ -117,5 +117,15 @@ public class InitData extends HttpServlet {
 	    	grp_statusInit.put(3, "中架");
 	    	context.setAttribute("grp_statusInit", grp_statusInit);
     	/** 戍乂區域結束 **/
+	    /** 偉誌區域開始 **/
+	    //揪團狀態
+    	Map<Integer,String> grp_status = new LinkedHashMap<Integer,String>();
+    	grp_status.put(1, "未滿");
+    	grp_status.put(2, "已滿");
+    	grp_status.put(3, "取消");
+    	grp_status.put(4, "成功");
+    	
+	    /** 偉誌區域結束 **/	
+	    	
     }
 }

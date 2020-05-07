@@ -40,6 +40,7 @@
 	}
 	#groupJoin{
 	color:#FFB300;
+	text-align:left;
 	margin:0px auto;
 	background-color:rgba(72,72,72,0.4);
 	-webkit-border-radius: 7px;
@@ -55,11 +56,12 @@
   }
   th, td {
     padding: 1px;
+    text-align: left;
   }
   #divAll {
-	background-image: url('/DA106_G5/front_end/group/webFront/c5.jpg');
+	background-image: url('/DA106_G5/front_end/group/webFront/c8.jpg');
 	width: 100%;
-	height: 100%;
+/* 	height: 100%; */
 	background-size: cover;
 }
 </style>
@@ -99,7 +101,7 @@
 					 value="<%= (grouperVO==null)? "自動產生" : grouperVO.getGrp_no()%>" /></td>
 			</tr>
 			<tr>
-				<td>揪團狀態:</td><td>未滿</td>
+<!-- 				<td>揪團狀態:</td><td>未滿</td> -->
 				<td><input type="hidden" name="grp_status" size="45" 
 					 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" /></td>
 			</tr>
@@ -111,11 +113,13 @@
 				<jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" />
 			<tr>
 				<td>地點:<font color=red><b>*</b></font></td>
-				<td><select size="1" name="loc_no" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團地點" id="name" /> >
-					<c:forEach var="group4locVO" items="${locationSvc.all}">
+				<td>
+					<select size="1" name="loc_no" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團地點" id="name" /> >
+						<c:forEach var="group4locVO" items="${locationSvc.all}">
 						<option value="${group4locVO.loc_no}" ${(grouperVO.loc_no==group4locVO.loc_no)? 'selected':'' } >${group4locVO.loc_address}
-					</c:forEach>
-				</select></td>
+						</c:forEach>
+					</select>
+				</td>
 			</tr>
 			
 			<tr>

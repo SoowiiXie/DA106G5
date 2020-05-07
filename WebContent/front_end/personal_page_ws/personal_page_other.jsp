@@ -106,8 +106,7 @@
 				</div>
 			</div>
 			<!-- 路徑圖片 -->
-			<div style="overflow: hidden; height: 15rem;"
-				class="mx-auto my-2 col-12">
+			<div style="overflow: hidden; height: 15rem;" class="mx-auto my-2 col-12">
 				<img
 					src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}"
 					class="rounded mx-auto d-block pathImg" alt="Responsive image">
@@ -119,24 +118,18 @@
 				<div class="col-5 form-inline likeYaCmtDiv">
 					<!-- 按讚按鈕 -->
 					<div style="margin-bottom: 0px;">
-						<c:if
-							test="${thumbSvcEL.countOneThumb(recordVO.rcd_no , mb_id)==1}">
-							<input class="my-2 mr-1 thumbBtn" type="image" name="submit_Btn"
-								src="<%=request.getContextPath()%>/img/thumbColor.png"
-								style="height: 2rem;">
+						<c:if test="${thumbSvcEL.countOneThumb(recordVO.rcd_no , mb_id)==1}">
+							<input class="my-2 mr-1 thumbBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/thumbColor.png"	style="height: 2rem;">
 						</c:if>
-						<c:if
-							test="${thumbSvcEL.countOneThumb(recordVO.rcd_no , mb_id)==0}">
-							<input class="my-2 mr-1 thumbBtn" type="image" name="submit_Btn"
-								src="<%=request.getContextPath()%>/img/thumb.png"
-								style="height: 2rem;">
+						<c:if test="${thumbSvcEL.countOneThumb(recordVO.rcd_no , mb_id)==0}">
+							<input class="my-2 mr-1 thumbBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/thumb.png" style="height: 2rem;">
 						</c:if>
-						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"
-							class="rcd_no"> <input type="hidden" name="mb_id"
-							value="${mb_id}" class="mb_id"> <input type="hidden"
-							name="action" value="insert">
+						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no"> 
+						<input type="hidden" name="mb_id"	value="${mb_id}" class="mb_id"> 
+						<input type="hidden" name="action" value="insert">
 					</div>
-					<span class="text-primary">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
+					<span class="text-primary whoThumb_no">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
+					<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"> 
 					<!-- meToo按鈕 -->
 					<div style="margin-bottom: 0px;">
 						<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==1 && (meTooSvcEL.canIMeToo(recordVO.rcd_no))}">
@@ -151,12 +144,11 @@
 						<c:if test="${meTooSvcEL.countOneMeToo(recordVO.rcd_no , mb_id)==0 && !(meTooSvcEL.canIMeToo(recordVO.rcd_no))}">
 							<input class="my-2 mr-1"  type="image" src="<%=request.getContextPath()%>/img/ya.png"	style="height: 2.2rem;">
 						</c:if>
-						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"
-							class="rcd_no"> <input type="hidden" name="mb_id"
-							value="${mb_id}" class="mb_id"> <input type="hidden"
-							name="action" value="insert">
+						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no"> <input type="hidden" name="mb_id" value="${mb_id}" class="mb_id"> 
+						<input type="hidden" name="action" value="insert">
 					</div>
-					<span class="mr-2 text-success">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
+					<<span class="mr-2 text-success whoMeToo_no">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
+					<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"> 
 					<!-- 留言按鈕-->
 					<div style="margin-bottom: 0px;">
 						<input class="my-2 mr-2 ml-1 cmtBtn" type="image" name="submit_Btn" src="<%=request.getContextPath()%>/img/comment.png"	style="height: 2rem;">
@@ -234,7 +226,7 @@
 
 <!-- 內容右邊-上傳紀錄 -->
 <div id="contentRight" class="col-3">
-	<a href="index.html" class="btn btn-primary col-11"> 
+	<a href="" class="btn btn-primary col-11 btnAddRecord"> 
 		<b>上傳紀錄</b>
 	</a>
 	<br>
@@ -243,8 +235,7 @@
 		<h4 class="nake-title--sidebar medium d-inline-block mt-3 ml-4">Runn Able 官方Line</h4>
 		<div class="statis-chart">
 			<!-- <canvas id="week_chart" width="300" height="200"></canvas> -->
-			<img src="<%=request.getContextPath()%>/img/lineAddFriend.PNG"
-				alt="" class="col-12">
+			<img src="<%=request.getContextPath()%>/img/lineAddFriend.PNG" alt="" class="col-12">
 		</div>
 	</div>
 </div>

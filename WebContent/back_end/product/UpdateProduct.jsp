@@ -38,7 +38,7 @@
 			</c:forEach>
 		</ul>
 	</c:if>
-<jsp:include page="ShopManagerBar.jsp">
+<jsp:include page="ShopManagerBar.jsp"/>
 	<form method="POST"
 		action="<%=request.getContextPath()%>/ProductServlet" name="form1"
 		enctype="multipart/form-data">

@@ -1,5 +1,7 @@
 package com.metoo.model;
 
+import java.util.List;
+
 import com.record.model.*;
 public class MeTooService {
 
@@ -50,5 +52,9 @@ public class MeTooService {
     	long rcdTime = recordSvc.getOneRecord(rcd_no).getRcd_uploadtime().getTime();
     	long nowTime = new java.util.Date().getTime();
     	return ((nowTime-rcdTime)<(24*60*60*1000));
+    }
+    
+    public List<MeTooVO> whoMeToo(String rcd_no) {
+    	return dao.getAllByRcd_no(rcd_no);
     }
 }

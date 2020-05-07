@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -17,7 +16,10 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 <jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" /> 
 <jsp:useBean id="groupdetailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
 <jsp:useBean id="groupfollowSvc" scope="page" class="com.group_follow.model.Group_followService" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <html>
 <head><title>複合查詢 - listGrouper_ByCompositeQuery.jsp</title>
 
@@ -26,21 +28,14 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 	background-color: #CCCCFF;
     border: 2px solid black;
     text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
+    width: 100%;
+  } 
 </style>
 
 <style>
 	#ByCom{
-	width: 1600px;
+	width: 100%;
+	background-color:rgba(256,256,256,0);
 	}
   table {
 	width: 1200px;
@@ -75,10 +70,10 @@ input[disabled]{
 </head>
 <body bgcolor='white'>
 
-<h4>
+${pageRun}123
 listGrouper_ByCompositeQuery.jsp<br>
 <!-- ☆萬用複合查詢  - 可由客戶端 select_page.jsp 隨意增減任何想查詢的欄位<br> -->
-<!-- ☆此頁作為複合查詢時之結果練習，<font color=red>已增加分頁、送出修改、刪除之功能</font></h4> -->
+<!-- ☆此頁作為複合查詢時之結果練習，<font color=red>已增加分頁、送出修改、刪除之功能</font> -->
 <table id="table-1">
 	<tr><td>
 		 <h3>所有員工資料 - listAllgroup.jsp</h3>
@@ -114,7 +109,7 @@ listGrouper_ByCompositeQuery.jsp<br>
 	<%@ include file="pages/page1_ByCompositeQuery.file" %>
 	<c:forEach var="grouperVO" items="${listGrouper_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		<tr align='center' valign='middle' ${(grouperVO.grp_no==param.grp_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
-			<td>${grouperVO.grp_no}</td>
+			<td><A href="group.do?grp_no=${grouperVO.grp_no}&action=getOne_Time2">${grouperVO.grp_no}</A></td>
 			<td>${grouperVO.mb_id}</td>			
 <%-- 			<td>${grouperVO.loc_no}</td> --%>
 			<td><c:forEach var="LocationVO" items="${locationSvc.all}">
@@ -136,13 +131,14 @@ listGrouper_ByCompositeQuery.jsp<br>
 <!-- 			總人數 -->
 <%-- 			<td>${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td> --%>
 			<%
-			request.setAttribute("grp_status", new String[]{"","未滿","已滿","取消","成功"});
+			request.setAttribute("grp_status", new String[]{"","未滿","已滿","取消","成功"} );			
 			%>
 			
 						
 			<td>
 <%-- 			${grouperVO.grp_status} --%>
-			${grp_status[grouperVO.grp_status]}
+<%-- 			${grp_status[grouperVO.grp_status]} --%>
+			${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"未滿":"人數已滿"}
 			</td>
 <%-- 			<td>${grouperVO.grp_follow}</td>	 --%>
 			<td>${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
@@ -192,7 +188,40 @@ listGrouper_ByCompositeQuery.jsp<br>
 		</tr>
 	</c:forEach>
 </table>
+
 <%@ include file="pages/page2_ByCompositeQuery.file" %>
+
+<c:if test="${openModal!=null}">
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+				
+				
+			<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
+            </div>
+            <h3 class="modal-title" id="myModalLabel">揪團內容</h3>
+			
+			<div class="modal-body">
+<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+               <jsp:include page="listOneGroup2.jsp" />
+<!-- =========================================以上為原listOneEmp.jsp的內容========================================= -->
+			</div>
+			
+			<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!--                 <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+		
+		</div>
+	</div>
+</div>
+
+        <script>
+    		 $("#basicModal").modal({show: true});
+        </script>
+ </c:if>
 
 <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>

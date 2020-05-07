@@ -31,17 +31,22 @@
 </style>
 
 <style>
-  table {
-	width: 450px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
+  #groupUpdate {
+	width: 100%;
+	background-color: #FFFFFF;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	text-align:left;
   }
-  table, th, td {
+ #groupUpdate  table, #groupUpdate th, #groupUpdate td {
+ 	width: 100%;
+ 	text-align:left;
     border: 0px solid #CCCCFF;
+    
   }
-  th, td {
-    padding: 1px;
+  #groupUpdate th, #groupUpdate td {
+  	width: 100%;
+    padding: 3px;
   }
 </style>
 
@@ -54,12 +59,12 @@
 </head>
 <body bgcolor='white'>
 
-<table id="table-1">
-	<tr><td>
-		 <h3>揪團資料修改 - update_group_input.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
+<!-- <table id="table-1"> -->
+<!-- 	<tr><td> -->
+<!-- 		 <h3>揪團資料修改 - update_group_input.jsp</h3> -->
+<!-- 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
+<!-- 	</td></tr> -->
+<!-- </table> -->
 
 <h3>資料修改:</h3>
 
@@ -74,7 +79,7 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="group.do" name="form1">
-<table>
+<table id="groupUpdate">
 
 	<tr>
 		<td>揪團名稱:</td><td><%=grouperVO.getGrp_no()%></td>
@@ -118,44 +123,43 @@
 	
 	<tr>
 		<td>揪團標題:</td>
-		<td><input type="TEXT" name="grp_name" size="45"
+		<td><input type="TEXT" name="grp_name" size="20"
 			 value="<%= (grouperVO==null)? "晨跑" : grouperVO.getGrp_name()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團內容:</td>
-		<td><input type="TEXT" name="grp_content" size="45" class="grp_content"
-			 value="<%= (grouperVO==null)? "別睡了，起床" : grouperVO.getGrp_content()%>" /></td>
+		<td><textarea type="textarea" name="grp_content" class="grp_content" rows="5"
+			 value="<%= (grouperVO==null)? "別睡了，起床" : grouperVO.getGrp_content()%>"></textarea></td>
 	</tr>
 	
 	<tr>
 		<td>揪團人數上限:</td>
-		<td><input type="TEXT" name="grp_personmax" size="45"
+		<td><input type="TEXT" name="grp_personmax" size="20"
 			 value="<%= (grouperVO==null)? "25" : grouperVO.getGrp_personmax()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>揪團人數下限:</td>
-		<td><input type="TEXT" name="grp_personmin" size="45"
+		<td><input type="TEXT" name="grp_personmin" size="20"
 			 value="<%= (grouperVO==null)? "5" : grouperVO.getGrp_personmin()%>" /></td>
 	</tr>
 	
-	<tr>
-		<td>揪團人數:</td>
-		<td><input type="TEXT" name="grp_personcount" size="45"
-			 value="<%= (grouperVO==null)? "18" : grouperVO.getGrp_personcount()%>" /></td>
-	</tr>
-	
-	<tr>
-		<td>揪團狀態:</td>
-		<td><input type="TEXT" name="grp_status" size="45"
-			 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" /></td>
-	</tr>
-	<tr>
-		<td>揪團追蹤人數:</td>
-		<td><input type="TEXT" name="grp_follow" size="45"
-			 value="<%= (grouperVO==null)? "80" : grouperVO.getGrp_follow()%>" /></td>
-	</tr>
+<!-- 	<tr> -->
+<!-- 		<td>揪團人數:</td> -->
+<!-- 		<td><input type="TEXT" name="grp_personcount" size="20" -->
+<%-- 			 value="<%= (grouperVO==null)? "18" : grouperVO.getGrp_personcount()%>" /></td> --%>
+<!-- 	</tr>	 -->
+<!-- 	<tr> -->
+<!-- 		<td>揪團狀態:</td> -->
+<!-- 		<td><input type="TEXT" name="grp_status" size="20" -->
+<%-- 			 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" /></td> --%>
+<!-- 	</tr> -->
+<!-- 	<tr> -->
+<!-- 		<td>揪團追蹤人數:</td> -->
+<!-- 		<td><input type="TEXT" name="grp_follow" size="20" -->
+<%-- 			 value="<%= (grouperVO==null)? "80" : grouperVO.getGrp_follow()%>" /></td> --%>
+<!-- 	</tr> -->
 	
 
 </table>

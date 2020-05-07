@@ -167,9 +167,9 @@ margin-top:100;
 				<td bgcolor=#FFD2D2><FORM METHOD="POST"
 						ACTION="<%=request.getContextPath()%>/ProductServlet"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="修改"> <input type="hidden"
-							name="pd_no" value="${productVO.pd_no}"> <input
-							type="hidden" name="pd_name" value="${productVO.pd_name}">
+						<input type="submit" value="修改">
+						 <input type="hidden" name="pd_no" value="${productVO.pd_no}"> 
+						<input type="hidden" name="pd_name" value="${productVO.pd_name}">
 						<input type="hidden" name="action" value="getOne_For_update">
 						<input type="hidden" name="whichPage" value="<%=whichPage%>">
 					</FORM></td>

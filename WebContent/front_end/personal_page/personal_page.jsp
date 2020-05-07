@@ -105,7 +105,7 @@
 
 <!-- 內容右邊-上傳紀錄 -->
 <div id="contentRight" class="col-3">
-	<a href="index.html" class="btn btn-primary col-11"> 
+	<a href="" class="btn btn-primary col-11 btnAddRecord"> 
 		<b>上傳紀錄</b>
 	</a>
 	<br>
