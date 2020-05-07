@@ -12,7 +12,7 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 <%-- 萬用複合查詢-可由客戶端select_page.jsp隨意增減任何想查詢的欄位 --%>
 <%-- 此頁只作為複合查詢時之結果練習，可視需要再增加分頁、送出修改、刪除之功能--%>
 
-<jsp:useBean id="listGrouper_ByCompositeQuery" scope="request" type="java.util.List<GrouperVO>" /> <!-- 於EL此行可省略 -->
+<jsp:useBean id="listGrouper_ByCompositeQuery" scope="session" type="java.util.List<GrouperVO>" /> <!-- 於EL此行可省略 -->
 <jsp:useBean id="locationSvc" scope="page" class="com.location.model.LocationService" /> 
 <jsp:useBean id="groupdetailSvc" scope="page" class="com.group_detail.model.Grp_detailService" />
 <jsp:useBean id="groupfollowSvc" scope="page" class="com.group_follow.model.Group_followService" />

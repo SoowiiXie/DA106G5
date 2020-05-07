@@ -467,7 +467,8 @@ public class GrouperServlet extends HttpServlet {
 				GrouperService grpSvc = new GrouperService();
 				List<GrouperVO> list = grpSvc.getAll(map);
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("listGrouper_ByCompositeQuery", list);         // 資料庫取出的grouperVO物件,存入req
+				session.setAttribute("listGrouper_ByCompositeQuery", list);         // 資料庫取出的grouperVO物件,存入req
+				
 				String url = "/front_end/index.jsp?pageRun=group/listGrouper_ByCompositeQuery.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_grouper_input.jsp
 				successView.forward(req, res);
@@ -527,7 +528,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				// 取出的empVO送給listOneEmp.jsp
 				RequestDispatcher successView = req
-						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/listAllGroup.jsp");
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/listGrouper_ByCompositeQuery.jsp");
 				successView.forward(req, res);
 				return;
 
