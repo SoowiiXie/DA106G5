@@ -645,32 +645,48 @@ NOCACHE;
 --揪團
 
 Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
-values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'soowii123','loc00001',TO_TIMESTAMP('2020-05-15 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-15 18:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-10 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-13 20:30','YYYY-MM-DD HH24:MI'),'luck ball go','gogogo',30,5,15,1,30);
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'yiwen123','loc00001',TO_TIMESTAMP('2020-05-07 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-07 18:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-08 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-08 20:30','YYYY-MM-DD HH24:MI'),'大家一起快樂打網球','大家好，我是阿文，有人要一起打快樂網球嗎，最好是能用生命打球的朋友',6,1,1,1,0);
 
 Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
-values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'xuan123','loc00002',TO_TIMESTAMP('2020-05-16 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-16 18:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-11 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-14 20:30','YYYY-MM-DD HH24:MI'),'happy ball go','gogogo',25,10,30,1,35);
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'vain123','loc00002',TO_TIMESTAMP('2020-05-08 10:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-10 22:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-10 13:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-10 17:30','YYYY-MM-DD HH24:MI'),'天氣好熱、玩水開心','天氣這麼熱就是要出來游泳消暑吧 游完再一起去鉅大吃刨冰 限女性',20,1,1,1,0);
 
 Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
-values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'michael123','loc00003',TO_TIMESTAMP('2020-05-17 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-17 18:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-12 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-15 20:30','YYYY-MM-DD HH24:MI'),'sad ball go','gogogo',30,15,30,1,37);
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'xuan123','loc00003',TO_TIMESTAMP('2020-05-09 10:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-11 22:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-13 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-13 11:30','YYYY-MM-DD HH24:MI'),'元大鷹出來打球','吾乃中大東方翔，絕招是三分線後仰拉桿轉身跳投，希望有人來電電我',11,1,1,1,0);
 
 Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
-values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'vain123','loc00004',TO_TIMESTAMP('2020-05-18 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-18 18:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-13 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-16 20:30','YYYY-MM-DD HH24:MI'),'laugh ball go','gogogo',35,30,30,1,38);
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'soowii123','loc00004',TO_TIMESTAMP('2020-05-13 10:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-13 22:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-15 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-15 11:30','YYYY-MM-DD HH24:MI'),'馬來西亞的鄉聚羽球','我是從馬來西亞來讀書的學生，希望有喜歡一起打羽球的人~',50,1,1,1,0);
 
 Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
-values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'yiwen123','loc00005',TO_TIMESTAMP('2020-05-19 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-19 18:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-14 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-17 20:30','YYYY-MM-DD HH24:MI'),'yummy ball go','gogogo',40,25,30,1,39);
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'weijhih123','loc00005',TO_TIMESTAMP('2020-05-13 10:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-19 22:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-20 18:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-21 00:30','YYYY-MM-DD HH24:MI'),'羅主任上課囉','本人是專業健身教練，利用下班時間免費教導大家的運動姿勢，一起多人運動~',6,1,1,1,0);
+
+Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'michael123','loc00007',TO_TIMESTAMP('2020-05-07 10:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-09 22:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-10 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-10 09:30','YYYY-MM-DD HH24:MI'),'約晨跑','有志一同的朋友歡迎加入中大晨跑團ㄛ',6,1,1,1,0);
 
 --揪團明細
 
 Insert into grp_detail (mb_id,grp_no,grp_register)
-values('soowii123','grp00001',1);
+values('yiwen123','grp00001',1);
 Insert into grp_detail (mb_id,grp_no,grp_register)
-values('xuan123','grp00002',1);
+values('vain123','grp00002',1);
 Insert into grp_detail (mb_id,grp_no,grp_register)
-values('michael123','grp00003',1);
+values('xuan123','grp00003',1);
 Insert into grp_detail (mb_id,grp_no,grp_register)
-values('vain123','grp00004',1);
+values('soowii123','grp00004',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('weijhih123','grp00005',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('michael123','grp00006',1);
+
 Insert into grp_detail (mb_id,grp_no,grp_register)
 values('yiwen123','grp00005',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('soowii123','grp00005',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('xuan123','grp00005',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('michael123','grp00005',1);
+Insert into grp_detail (mb_id,grp_no,grp_register)
+values('vain123','grp00005',1);
 
 --關注揪團
 
