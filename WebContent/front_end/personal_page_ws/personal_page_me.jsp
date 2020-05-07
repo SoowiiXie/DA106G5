@@ -78,11 +78,9 @@
 			<div class="d-inline-block mt-3 ml-3">
 				<div>
 					<!--會員照片-->
-					<img class="img-profile rounded-circle" height=60rem; width=60rem;
-						src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${recordVO.mb_id}" />
+					<img class="img-profile rounded-circle" height=60rem; width=60rem; src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${recordVO.mb_id}" />
 					<!--會員姓名-->
-					<span class="ml-2 d-none d-lg-inline text-gray-900"
-						style="font-size: 1.2rem;">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
+					<span class="ml-2 d-none d-lg-inline text-gray-900" style="font-size: 1.2rem;">${memberSvcEL.getOneMember(recordVO.mb_id).mb_name}</span>
 				</div>
 				<!-- 紀錄上傳時間 -->
 				<div>
@@ -90,11 +88,8 @@
 				</div>
 			</div>
 			<!-- 路徑圖片 -->
-			<div style="overflow: hidden; height: 15rem;"
-				class="mx-auto my-2 col-12">
-				<img
-					src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}"
-					class="rounded mx-auto d-block pathImg" alt="Responsive image">
+			<div style="overflow: hidden; height: 15rem;" class="mx-auto my-2 col-12">
+				<img src="<%= request.getContextPath() %>/DBGifReader4Path?path_no=${recordVO.path_no}" class="rounded mx-auto d-block pathImg" alt="Responsive image">
 			</div>
 			<!-- 紀錄內容 -->
 			<span class="ml-3 d-none d-lg-inline text-gray-900"	style="font-size: 1.2rem;">${recordVO.rcd_content}</span>

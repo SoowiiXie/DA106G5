@@ -40,7 +40,7 @@
 		<div class="mx-auto" data-aos="fade-left" data-aos-duration="1000">天龍國</div>
 		<button type="button" class="btn btn-warning wth_loc_btn" value="基隆市" data-aos="fade-left" data-aos-duration="1400">基隆市</button>
 		<button type="button" class="btn btn-warning wth_loc_btn" value="新北市" data-aos="fade-left" data-aos-duration="1800">新北市</button>
-		<button type="button" class="btn btn-warning wth_loc_btn" value="台北市" data-aos="fade-left" data-aos-duration="2200">臺北市</button>
+		<button type="button" class="btn btn-warning wth_loc_btn" value="臺北市" data-aos="fade-left" data-aos-duration="2200">臺北市</button>
 	</div>
 	<div class="btn-group-vertical col-1" data-aos="fade-left" data-aos-duration="1400">
 		<div class="mx-auto">北部</div>

@@ -3,6 +3,10 @@ package com.msg.model;
 import java.sql.Timestamp;
 
 public class MessageVO implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String msg_no, mb_id_1, mb_id_2, msg_content;
 	private Timestamp msg_time;
 	private Integer msg_status;
@@ -58,6 +62,12 @@ public class MessageVO implements java.io.Serializable {
 
 	public void setMsg_status(Integer msg_status) {
 		this.msg_status = msg_status;
+	}
+
+	@Override
+	public String toString() {
+		return "MessageVO [msg_no=" + msg_no + ", mb_id_1=" + mb_id_1 + ", mb_id_2=" + mb_id_2 + ", msg_content="
+				+ msg_content + ", msg_time=" + msg_time + ", msg_status=" + msg_status + "]";
 	}
 	
 }
