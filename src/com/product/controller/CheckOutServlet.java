@@ -158,7 +158,7 @@ public class CheckOutServlet extends HttpServlet {
 			session.setAttribute("buylistCount", 0);
 			
 			//跳轉網址(4,5)
-			String url = "http://localhost:8081/DA106_G5/front_end/product/MemberTransaction_record.jsp";
+			String url = "https://da106g5.tk/DA106_G5/front_end/product/MemberTransaction_record.jsp";
 //			od_detailLineVO.setConfirmUrl(url);
 			od_detailLineVO.setConfirmUrl(url);
 			
