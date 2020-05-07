@@ -14,16 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 //import net.sf.json.JSONObject;
 import org.json.*;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import com.common.JedisPoolUtil;
+//import redis.clients.jedis.Jedis;1
+//import redis.clients.jedis.JedisPool;2
+//import com.common.JedisPoolUtil;3
 
 public class WeatherJsonURL extends HttpServlet {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static JedisPool pool = JedisPoolUtil.getJedisPool();
+//	private static JedisPool pool = JedisPoolUtil.getJedisPool();4
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String url = "https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authorization=CWB-1D147D77-107C-4005-8F8E-94CE678C3779&downloadType=WEB&format=JSON";
@@ -36,9 +36,9 @@ public class WeatherJsonURL extends HttpServlet {
 //    	ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //		InputStream in = conn.getInputStream();
 //		BufferedInputStream bf = new BufferedInputStream(in);
-		Jedis jedis = pool.getResource();
-		jedis.auth("DA106G5");
-		System.out.println(jedis.ping());
+//		Jedis jedis = pool.getResource();5
+//		jedis.auth("DA106G5");6
+//		System.out.println(jedis.ping());7
         
         InputStream is = new URL(url).openStream();
         try {
@@ -138,12 +138,12 @@ public class WeatherJsonURL extends HttpServlet {
                 		 }
                 		 //元素更新
                 		 weather_detailSvc.updateWeather_detail(weather_time, weather_place, wth_status, wth_high, wth_low, wth_comfort, wth_rain_chance);
-                		 jedis.hset(weather_place,elementName,parameterName);
+//                		 jedis.hset(weather_place,elementName,parameterName);8
                 	 }
 				 }
-                 jedis.expire(weather_place, 10*1);//秒
+//                 jedis.expire(weather_place, 10*1);//秒9
              }
-             jedis.close();
+//             jedis.close();10
         }catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -155,7 +155,7 @@ public class WeatherJsonURL extends HttpServlet {
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		JedisPoolUtil.shutdownJedisPool();
+//		JedisPoolUtil.shutdownJedisPool();11
 		super.destroy();
 	}
 }
