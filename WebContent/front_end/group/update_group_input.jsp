@@ -15,7 +15,7 @@
 
 <style>
   table#table-1 {
-	background-color: #CCCCFF;
+	background-color:rgba(256,256,256,0);;
     border: 2px solid black;
     text-align: center;
   }
@@ -31,13 +31,21 @@
 </style>
 
 <style>
-  #groupUpdate {
-	width: 100%;
-	background-color: #FFFFFF;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	text-align:left;
-  }
+      #groupUpdatediv{
+      position:absolute;
+      top: 15%;
+      right: 60%;
+      width: 35%;
+      background-image: url('/DA106_G5/front_end/group/webFront/c7.jpg');
+      
+      }
+	  #groupUpdate {
+		width: 100%;
+		background-color: #FFFFFF;
+		margin-top: 2px;
+		margin-bottom: 2px;
+		text-align:left;
+	  }
  #groupUpdate  table, #groupUpdate th, #groupUpdate td {
  	width: 100%;
  	text-align:left;
@@ -57,6 +65,7 @@
 </style>
 
 </head>
+<div id="groupUpdatediv">
 <body bgcolor='white'>
 
 <!-- <table id="table-1"> -->
@@ -168,7 +177,7 @@
 <input type="hidden" name="grp_no" value="<%=grouperVO.getGrp_no()%>">
 <input type="submit" value="送出修改"></FORM>
 </body>
-
+</div>
 
 
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
