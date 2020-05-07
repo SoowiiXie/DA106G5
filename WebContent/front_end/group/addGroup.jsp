@@ -257,7 +257,7 @@ $(function(){
         	theme: '',              //theme: 'dark',
 		       timepicker:true,       //timepicker:true,
 		       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
-		       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+		       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 <%-- 		   value: '<%=grp_applystart%>', // value:   new Date(), --%>	       
         	   onShow:function(){
 			   this.setOptions({
@@ -271,7 +271,7 @@ $(function(){
 	       theme: '',              //theme: 'dark',
 	       timepicker:true,       //timepicker:true,
 	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 <%-- 	   value: '<%=grp_applyend%>', // value:   new Date(), --%>
 		   onShow:function(){
 			   this.setOptions({
@@ -285,7 +285,7 @@ $(function(){
 	       theme: '',              //theme: 'dark',
 	       timepicker:true,       //timepicker:true,
 	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s', 
+	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s', 
 <%-- 	   value: '<%=grp_start%>', // value:   new Date(), --%>
 		   onShow:function(){
 			   this.setOptions({
@@ -300,7 +300,7 @@ $(function(){
 	       theme: '',              //theme: 'dark',
 	       timepicker:true,       //timepicker:true,
 	       step: 10,				                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 <%-- 	   value: '<%=grp_end%>', // value:   new Date(), --%>          
 		   onShow:function(){
 			   this.setOptions({

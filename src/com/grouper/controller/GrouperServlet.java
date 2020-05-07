@@ -288,7 +288,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				java.sql.Timestamp grp_applystart = null;
 				try {
-					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim());
+					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim()+":00");
 				} catch (IllegalArgumentException e) {
 					grp_applystart=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團開始時間!");
@@ -296,7 +296,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				java.sql.Timestamp grp_applyend = null;
 				try {
-					grp_applyend = java.sql.Timestamp.valueOf(req.getParameter("grp_applyend").trim());
+					grp_applyend = java.sql.Timestamp.valueOf(req.getParameter("grp_applyend").trim()+":00");
 				} catch (IllegalArgumentException e) {
 					grp_applyend=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團結束時間!");
@@ -304,7 +304,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				java.sql.Timestamp grp_start = null;
 				try {
-					grp_start = java.sql.Timestamp.valueOf(req.getParameter("grp_start").trim());
+					grp_start = java.sql.Timestamp.valueOf(req.getParameter("grp_start").trim()+":00");
 				} catch (IllegalArgumentException e) {
 					grp_start=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入報名開始時間!");
@@ -312,7 +312,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				java.sql.Timestamp grp_end = null;
 				try {
-					grp_end = java.sql.Timestamp.valueOf(req.getParameter("grp_end").trim());
+					grp_end = java.sql.Timestamp.valueOf(req.getParameter("grp_end").trim()+":00");
 				} catch (IllegalArgumentException e) {
 					grp_end=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入報名結束時間!");
