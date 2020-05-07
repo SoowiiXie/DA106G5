@@ -325,7 +325,7 @@ public class ProductServlet extends HttpServlet {
 				String pd_name = req.getParameter("pd_name");
 				System.out.println(pd_no);
 				System.out.println(pd_name);
-//				String whichPage = req.getParameter("whichPage");
+				String whichPage = req.getParameter("whichPage");
 			
 //				System.out.println("開頁頁數是" + whichPage);
 
@@ -335,13 +335,13 @@ public class ProductServlet extends HttpServlet {
                  System.out.println(productVO);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("productVO", productVO); // 資料庫取出的empVO物件,存入req
-				String url = "/back_end/product/UpdateProduct.jsp";
-//				req.setAttribute("whichPage", whichPage);
-//				String includePath = "/back_end/product/UpdateProduct.jsp";
+//				String url = "/back_end/product/UpdateProduct.jsp";
+				req.setAttribute("whichPage", whichPage);
+				String includePath = "/back_end/product/UpdateProduct.jsp";
 //				System.out.println(includePath);
-//				req.setAttribute("includePath", includePath);
-				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
-//				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+				req.setAttribute("includePath", includePath);
+//				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 				successView.forward(req, res);
                   return;
 				/*************************** 其他可能的錯誤處理 **********************************/
@@ -365,7 +365,7 @@ public class ProductServlet extends HttpServlet {
 //			System.out.println("修改的該頁頁數是" + whichPage);
 
 			String pd_no = req.getParameter("pd_no").trim();
-
+			String whichPage = req.getParameter("whichPage");
 			String pd_name = req.getParameter("pd_name");
 			String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
 			if (pd_name == null || pd_name.trim().length() == 0) {
@@ -438,8 +438,11 @@ public class ProductServlet extends HttpServlet {
 
 			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
-				req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/AllList2.jsp");
+				String includePath = "/back_end/product/UpdateProduct.jsp";
+                req.setAttribute("whichPage" , whichPage);
+				req.setAttribute("includePath", includePath);
+//				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/UpdateProduct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 				failureView.forward(req, res);
 				return;
 			}
@@ -452,12 +455,12 @@ public class ProductServlet extends HttpServlet {
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) ***********/
 				req.getSession().setAttribute("pd_typeNo", pd_typeNo);
-				String url = "/back_end/product/AllList2.jsp";
-//				String includePath = "/back_end/product/AllList2.jsp";
+//				String url = "/back_end/product/AllList2.jsp";
+				String includePath = "/back_end/product/AllList2.jsp";
 				
-//				req.setAttribute("includePath", includePath);
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-//				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+				req.setAttribute("includePath", includePath);
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
 				successView.forward(req, res);
                 return;
 			} catch (Exception e) {
@@ -480,7 +483,7 @@ public class ProductServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			String whichPage = req.getParameter("whichPage");
-			System.out.println("字串"+whichPage);
+			
 //			System.out.println("刪除的該頁頁數字" + whichPage);
 			try {
 				/*************************** 1.接收請求參數 ***************************************/

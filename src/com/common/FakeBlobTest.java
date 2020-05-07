@@ -84,7 +84,7 @@ public class FakeBlobTest extends HttpServlet {
 //				FileInputStream in;
 				BufferedInputStream bf;
 				// 塞3張假圖
-				for (int i = 1; i <= 3; i++) {
+				for (int i = 1; i <= 60; i++) {
 					// 共五位數字，不足補0
 //					in = new FileInputStream("WebContent/fake_picture/pd" + String.format("%05d", i) + ".jpg");
 					InputStream in = getServletContext().getResourceAsStream("/fake_picture/pd" + String.format("%05d", i) + ".jpg");
@@ -301,5 +301,9 @@ public class FakeBlobTest extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			
+			
+			
 		}
 }

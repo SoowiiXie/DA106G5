@@ -59,16 +59,18 @@ margin-top:100;
 			</c:forEach>
 		</ul>
 	</c:if>
-<div style="border:2px #FFD382 groove; width:80%;margin-left:10%;margin-top:50px;">
-<div style=" border:2px #FFD382 groove; width:100%; float:left;">
+<div style="width:80%;margin-left:10%;margin-top:50px;" align="center">
+<font size="+3">訂單列表：</font>
+		<hr>
+<div style="width:100%; float:left;">
 	<form method="POST" action="<%=request.getContextPath()%>/OrdersServlet" name="form1">
 		
 	
-			<div style="border:2px #FFD382 groove;float:left;">會員名稱：<input type="TEXT" name="mb_id"> <input
+			<div style="float:left;">會員名稱：<input type="TEXT" name="mb_id"> <input
 					type="hidden" name="action" value="searchMemberOrders"> <input
 					type="submit" name="Submit" value="搜尋該會員訂單">
 					<%@ include file="page1ForListAllOrders.file"%></div>
-					<div style=" margin-top:2px; border:2px #FFD382 groove; float:right;"><%@ include file="page2ForListAllOrders.file"%></div>
+					<div style=" margin-top:2px;float:right;"><%@ include file="page2ForListAllOrders.file"%></div>
 		
 	</form>
 		

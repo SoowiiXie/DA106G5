@@ -55,12 +55,12 @@ margin-top:100;
 		</ul>
 	</c:if>
 	<div align="center">
-	<div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
-	<div align="center" style="border-style: solid; border-color:red;width:100%; ">
+	<div style="width:100%; height:100px; border-style: solid; border-color:white; "></div>
+	<div align="center" style="border-style: solid; border-color:white;width:100%; ">
 		<font size="+3">目前您的交易紀錄如下：</font>
 		<hr>
 		<p></div>
-	<div style="float: left; margin-top: 50px;  margin-left:10%; width:80%; border-style: solid; border-color:red;" >
+	<div style="float: left; margin-top: 50px;  margin-left:10%; width:80%; border-style: solid; border-color:white;" >
 		<form method="POST"
 			action="<%=request.getContextPath()%>/OrdersServlet" name="form1">
 			<table style="float:left;">
@@ -88,7 +88,7 @@ margin-top:100;
 	</div>
 
 
-	<div align="center" style="border-style: solid; border-color:red; width:80%;">
+	<div align="center" style="border-style: solid; border-color:white; width:80%;">
 		<table border="1" Style="width:100%; align: center">
 
 			<tr bgcolor="#999999">
