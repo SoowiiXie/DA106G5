@@ -296,13 +296,13 @@
 						<a	class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> 
-							<i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
+							<i class="fas fa-bell fa-fw"></i> 
+							<!-- Counter - Alerts -->
 							<span class="badge badge-danger badge-counter">3+</span>
 						</a> 
 						<!-- Dropdown - Alerts -->
 						<div
-							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-							aria-labelledby="alertsDropdown">
+							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
 							<h6 class="dropdown-header">通知</h6>
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="mr-3">
@@ -342,9 +342,7 @@
 
 					<!-- Nav Item - Messages 訊息-->
 					<li class="nav-item dropdown no-arrow mx-1">
-						<a	class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> 
+						<a	class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
 							<i class="fas fa-envelope fa-fw"></i> 
 							<!-- Counter - Messages 計數器 -->
 							<c:if test="${messageSvcEL.countNotReads(mb_id)>0}">
@@ -354,12 +352,12 @@
 							</c:if>
 						</a> 
 						<!-- Dropdown - Messages -->
-						<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-							 aria-labelledby="messagesDropdown">
+						<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
 							<h6 class="dropdown-header">悄悄跟你說</h6>
 							<!-- 所有訊息 -->
 							<c:forEach var="messageVO" items="${messageList}">
-							<a class="dropdown-item d-flex align-items-center" href="#">
+							<a class="dropdown-item d-flex align-items-center messageDivA" href="#">
+							<input type="hidden" name="msg_no" class="msg_no" value="${messageVO.msg_no}">
 								<div class="dropdown-list-image mr-3">
 									<img class="rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=${messageVO.mb_id_1}" alt="" />
 									<div class="status-indicator bg-success"></div>
@@ -528,6 +526,20 @@
 	</div>
 	<div class="overlay"></div>
 	
+	<!-- 路徑圖片的燈箱開始 -->
+	<div id="fblightbox" class="pathImgBox mb-5" style="font-size:2rem;">
+	  <div class="fblightbox-wrap">
+<!-- 	    <div class="fblightbox-header"> -->
+<!-- 	      	這是天氣資訊 -->
+<!-- 	    </div> -->
+	    <div class="fblightbox-content p-0">
+	    	<img src="" class="mx-auto d-block pathImgInstead col-12 p-0 m-0" alt="Responsive image" style="height:30rem;">
+	    </div>
+	  </div>
+	</div>
+	<div class="overlay"></div>
+	<!-- 路徑圖片的燈箱結束 -->
+	
 	<!-- 地標新增的燈箱 -->
 	<div id="fblightbox" class="locInsertBox">
 	  <div class="fblightbox-wrap">
@@ -548,7 +560,6 @@
 	      	我是訊息
 	    </div>
 	    <div class="fblightbox-content">
-			<jsp:include page="cmt/update_cmt_input.jsp" />
 	    </div>
 	  </div>
 	</div>
@@ -652,6 +663,17 @@
 						height: 'toggle'
 					  });
 			});
+			
+			//路徑圖片燈箱開始
+			var pathImgBox = $('.pathImgBox');
+			var pathImgInstead = $('.pathImgInstead');
+			$('.pathImg').click(function(){
+				pathImgInstead.attr("src",$(this).attr("src"));
+				pathImgBox.css({'margin-left':'-' + (pathImgBox.width()/2) + 'px' , 'margin-top' : '-' + (pathImgBox.height()/2)+'px'});
+				$('.overlay').fadeIn();
+				pathImgBox.fadeIn();
+			});
+			//路徑圖片燈箱結束
 			
 			//每則留言出現檢舉或修改的圖示
 			$('.oneCmtDiv').hover(function(){
@@ -787,21 +809,13 @@
 				 
 			 //訊息的燈箱
 			 var msgLightBox = $('.msgLightBox');
-			 $('.msgRead').click(function(){
+			 $('.messageDivA').click(function(){
 			 	$.ajax({
 					type: "GET",
-					url: "<%=request.getContextPath()%>/msg/msg.do",
-						 data: {"action":"ajaxGetOne4Read", "cmt_no":$(this).siblings('.cmt_no').val()},
+					url: "<%=request.getContextPath()%>/MsgAjaxResponse.do",
+						 data: {"action":"lookOneMsg", "msg_no":$(this).children('.msg_no').val()},
 						 dataType: "json",
 						 success: function (data){
-	//					   		 $("#cmt_contentFB").val(data.cmt_content);
-							 $("#cmt_noFB").val(data.cmt_no);
-							 $("#cmt_statusFB").val(data.cmt_status);
-							 $("#cmt_timeFB").val(data.cmt_time);
-							 $("#mb_idFB").val(data.mb_id);
-							 $("#rcd_noFB").val(data.rcd_no);
-							 $('.overlay').fadeIn();
-							 msgLightBox.fadeIn();
 					 	 },					
 					 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
 			 		});
@@ -816,6 +830,7 @@
 				  recordInsertBox.fadeOut();
 				  whoThumbBox.fadeOut();
 				  whoMeTooBox.fadeOut();
+				  pathImgBox.fadeOut();
 			 });
 			 
 			 $(".fbclose").click(function() {
@@ -826,6 +841,7 @@
 				  recordInsertBox.fadeOut();
 				  whoThumbBox.fadeOut();
 				  whoMeTooBox.fadeOut();
+				  pathImgBox.fadeOut();
 			 });
 			 
 			 $(".overlay").click(function() {
@@ -836,6 +852,7 @@
 				  recordInsertBox.fadeOut();
 				  whoThumbBox.fadeOut();
 				  whoMeTooBox.fadeOut();
+				  pathImgBox.fadeOut();
 			 });
 
 		});

@@ -280,6 +280,19 @@
 		</servlet-mapping>
 	<!-- meToo結束 -->
 
+	<!-- 訊息開始 -->		
+		<servlet>
+		    <description></description>
+		    <display-name>MsgAjaxResponse</display-name>
+		    <servlet-name>MsgAjaxResponse</servlet-name>
+		    <servlet-class>com.msg.controller.MsgAjaxResponse</servlet-class>
+		</servlet>
+		<servlet-mapping>
+		    <servlet-name>MsgAjaxResponse</servlet-name>
+		    <url-pattern>/MsgAjaxResponse.do</url-pattern>
+		</servlet-mapping>
+	<!-- 訊息結束 -->
+
 	<!-- 留言開始 -->
 		<servlet>
 			<servlet-name>CmtTest</servlet-name>
