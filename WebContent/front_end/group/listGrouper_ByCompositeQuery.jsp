@@ -181,10 +181,10 @@ listGrouper_ByCompositeQuery.jsp<br>
 				<input type="submit" value="加入" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/><br>
 				
 <!-- 				觀察用 -->
-<%-- 				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br> --%>
-<%-- 				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br> --%>
-<!-- 				<input type="text"   name="grp_register" size=8 value="1"><br> -->
-				
+				<input type="hidden"   name="grp_no"       size=8 value="${grouperVO.grp_no}">
+				<input type="hidden"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>">
+				<input type="hidden"   name="grp_register" size=8 value="1">	
+				<br>			
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 				<input type="hidden" name="action"       value="insert"></FORM>
@@ -193,9 +193,9 @@ listGrouper_ByCompositeQuery.jsp<br>
 				<input type="submit" value="關注" /><br> 
 				
 <!-- 				觀察用 -->
-<%-- 				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br> --%>
-<%-- 				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br>				 --%>
-				
+				<input type="hidden"   name="grp_no"       size=8 value="${grouperVO.grp_no}">
+				<input type="hidden"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>">			
+				<br>
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 				<input type="hidden" name="action"       value="insert"></FORM>
