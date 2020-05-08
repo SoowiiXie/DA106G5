@@ -1139,9 +1139,9 @@ public class GrouperDAO implements GrouperDAO_interface {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				String str = rs.toString();
+				String str = null;
+				list.add(str = rs.getString(1)); // Store the row in the list
 				System.out.println(str);
-				list.add(str); // Store the row in the list
 			}
 
 			// Handle any driver errors
@@ -1194,9 +1194,9 @@ public class GrouperDAO implements GrouperDAO_interface {
 			
 			
 			while (rs.next()) {
-				String str = rs.toString();
+				String str = null;
+				list.add(str = rs.getString(1)); // Store the row in the list
 				System.out.println(str);
-				list.add(str); // Store the row in the list
 			}
 
 			// Handle any driver errors

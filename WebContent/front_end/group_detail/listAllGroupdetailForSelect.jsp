@@ -57,10 +57,19 @@
   h4 {
     color: blue;
     display: inline;
+    font-size: 28px;
   }
 </style>
 
 <style>
+	#myList{
+	background:rgba(204,255,144 ,0.8);
+	font-size:16px;
+	}
+	#wrapperRight{
+	background-image: url('/DA106_G5/front_end/group/webFront/c7.jpg');
+	bottom:0%;
+	}
   table {
 /*  	width: 600px;  */
 	background-color: white;
@@ -68,6 +77,7 @@
   }
   table, th, td {
     border: 1px solid #000;
+    height: 50px;
   }
   th, td {
     padding: 20px;
@@ -84,13 +94,13 @@
   #group_table th {
   background: #D5E0CC;
   }
-   #number{ 
-   width:500px; 
+   #number th{ 
+   width:5%; 
    } 
    #title th{ 
    } 
    #location{ 
-   width:1000px; 
+   width:30%; 
    } 
   #time{
   }
@@ -105,7 +115,7 @@
 		font-size: 22px;		
 		background: rgba(229,115,115,0.4);
 		position: fixed;
-		top:20%;
+		top:25%;
 		left:80%;
 		border-radius:7%;
 		margin: 0px;/*才看到到線上客服*/
@@ -119,15 +129,15 @@
 </style>
 
 </head>
+<div id="myList">
 <body>
-
 
 
 <!-- <table id="table-1"> -->
 <!-- 	<tr><td> -->
 <%-- 		 <h4><%=req.getRequestURI()%></h4><br> --%>
-listAllGroupdetailForSelect.jsp<br>
-		 <h4><%=memberVO.getMb_id()%>，摳泥吉娃娃，以下是你參加的揪團</h4><p>
+<!-- listAllGroupdetailForSelect.jsp<br> -->
+		 <h4 >尊貴的<%=memberVO.getMb_id()%>您好，摳泥吉娃娃，以下是您參加的揪團</h4><p>
 <!-- 		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 <!-- 	</td></tr> -->
 <!-- </table><p> -->
@@ -277,4 +287,5 @@ listAllGroupdetailForSelect.jsp<br>
  </c:if>
 
 </body>
+</div>
 </html>
