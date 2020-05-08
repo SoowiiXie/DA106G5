@@ -305,10 +305,10 @@ public class LiveDAO implements LiveDAO_interface {
 //		InputStream fin1 = new FileInputStream(new File("C:\\pic\\LLL.mp4"));
 //		byte[] vid = new byte[fin1.available()];
 //		fin1.read(vid);
-//		
+		
 //		System.out.println(pic.length);
 //		System.out.println(vid.length);
-//		
+		
 //		LiveVO liveVO = new LiveVO();
 //		liveVO.setLive_no("LIV00008");
 //		liveVO.setLive_content("TEST_LIVE");
