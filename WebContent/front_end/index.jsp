@@ -346,7 +346,7 @@
 							<i class="fas fa-envelope fa-fw"></i> 
 							<!-- Counter - Messages 計數器 -->
 							<c:if test="${messageSvcEL.countNotReads(mb_id)>0}">
-							<span class="badge badge-danger badge-counter">
+							<span class="badge badge-danger badge-counter messageNotReadSpan">
 								${messageSvcEL.countNotReads(mb_id)>9?"9+":messageSvcEL.countNotReads(mb_id)}
 							</span>
 							</c:if>
@@ -363,10 +363,10 @@
 									<div class="status-indicator bg-success"></div>
 								</div>
 								<c:if test="${messageVO.msg_status==1}">
-								<div class="font-weight-bold ml-2 msgNotRead">
+								<div class="font-weight-bold ml-2 msgNotRead readOrNotRead">
 								</c:if>
 								<c:if test="${messageVO.msg_status==2}">
-								<div class="ml-2 msgRead">
+								<div class="ml-2 msgRead readOrNotRead">
 								</c:if>
 									<div class="text-truncate">${messageVO.msg_content}</div>
 									<div class="small text-gray-500">${memberSvcEL.getOneMember(messageVO.mb_id_1).mb_name} · ${messageVO.msg_time} </div>
@@ -500,7 +500,7 @@
 	</div>
 	<div class="overlay"></div>
 	
-	<!-- 記錄新增的燈箱 -->
+	<!-- 記錄新增的燈箱開始 -->
 	<div id="fblightbox" class="recordInsertBox">
 	  <div class="fblightbox-wrap">
 	    <div class="fblightbox-header">
@@ -512,8 +512,9 @@
 	  </div>
 	</div>
 	<div class="overlay"></div>
+	<!-- 記錄新增的燈箱結束 -->
 	
-	<!-- 天氣的燈箱 -->
+	<!-- 天氣的燈箱開始 -->
 	<div id="fblightbox" class="weatherBox mb-5" style="width:40rem; font-size:2rem;">
 	  <div class="fblightbox-wrap">
 <!-- 	    <div class="fblightbox-header"> -->
@@ -525,13 +526,11 @@
 	  </div>
 	</div>
 	<div class="overlay"></div>
+	<!-- 天氣的燈箱結束 -->
 	
 	<!-- 路徑圖片的燈箱開始 -->
 	<div id="fblightbox" class="pathImgBox mb-5" style="font-size:2rem;">
 	  <div class="fblightbox-wrap">
-<!-- 	    <div class="fblightbox-header"> -->
-<!-- 	      	這是天氣資訊 -->
-<!-- 	    </div> -->
 	    <div class="fblightbox-content p-0">
 	    	<img src="" class="mx-auto d-block pathImgInstead col-12 p-0 m-0" alt="Responsive image" style="height:30rem;">
 	    </div>
@@ -553,17 +552,27 @@
 	</div>
 	<div class="overlay"></div>
 	
-	<!-- 訊息的燈箱 -->
-	<div id="fblightbox" class="msgLightBox">
+	<!-- 訊息的燈箱開始 -->
+	<div id="fblightbox" class="msgLightBox" style="width: 50rem;">
 	  <div class="fblightbox-wrap">
 	    <div class="fblightbox-header">
 	      	我是訊息
 	    </div>
 	    <div class="fblightbox-content">
+		    <table class="col-12 table p-0 table-bordered m-0 table-striped" style="font-size:1rem;">
+				<tr class="bg-primary text-white">
+					<th>寄件者</th>
+					<th>ID</th>
+					<th>內容</th>
+					<th>寄件時間</th>
+				</tr>
+				<tbody id="myTbodyMsg"></tbody>
+			</table>
 	    </div>
 	  </div>
 	</div>
 	<div class="overlay"></div>
+	<!-- 訊息的燈箱結束 -->
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
@@ -809,15 +818,38 @@
 				 
 			 //訊息的燈箱
 			 var msgLightBox = $('.msgLightBox');
+			 var messageNotReadSpan = $('.messageNotReadSpan');
+			 
 			 $('.messageDivA').click(function(){
+				var messageDivA = $(this);
 			 	$.ajax({
 					type: "GET",
 					url: "<%=request.getContextPath()%>/MsgAjaxResponse.do",
 						 data: {"action":"lookOneMsg", "msg_no":$(this).children('.msg_no').val()},
 						 dataType: "json",
 						 success: function (data){
-					 	 },					
-					 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
+							 $('#myTbodyMsg').empty();
+							 $('#myTbodyMsg').append(`
+								<tr>
+									<td class="align-middle"><img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data.mb_id_1+`"  style="height:2rem; width:2rem;"/></td>
+									<td class="align-middle">`+data.mb_id_1+`</td>
+									<td class="align-middle">`+data.msg_content+`</td>
+									<td class="align-middle">`+data.msg_time+`</td>
+								</tr>
+							 `);
+							 
+							 msgLightBox.css({'margin-left':'-' + (msgLightBox.width()/2) + 'px' , 'margin-top' : '-' + (msgLightBox.height()/2)+'px'});
+							 $('.overlay').fadeIn();
+							 msgLightBox.fadeIn();
+							 if(data.msgNotRead==0){
+								 messageNotReadSpan.text("");
+								 messageDivA.children(".readOrNotRead").attr("class","ml-2 msgRead readOrNotRead")
+							 }else{
+								 messageNotReadSpan.text(data.msgNotRead);
+								 messageDivA.children(".readOrNotRead").attr("class","ml-2 msgRead readOrNotRead")
+							 }
+						 },					
+					 error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
 			 		});
 			 });
 				 
@@ -831,6 +863,7 @@
 				  whoThumbBox.fadeOut();
 				  whoMeTooBox.fadeOut();
 				  pathImgBox.fadeOut();
+				  msgLightBox.fadeOut();
 			 });
 			 
 			 $(".fbclose").click(function() {
@@ -842,6 +875,7 @@
 				  whoThumbBox.fadeOut();
 				  whoMeTooBox.fadeOut();
 				  pathImgBox.fadeOut();
+				  msgLightBox.fadeOut();
 			 });
 			 
 			 $(".overlay").click(function() {
@@ -853,6 +887,7 @@
 				  whoThumbBox.fadeOut();
 				  whoMeTooBox.fadeOut();
 				  pathImgBox.fadeOut();
+				  msgLightBox.fadeOut();
 			 });
 
 		});

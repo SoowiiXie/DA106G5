@@ -24,6 +24,10 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 <head><title>複合查詢 - listGrouper_ByCompositeQuery.jsp</title>
 
 <style>
+	#comAll{
+	width:100%;
+/* 	background-image: url('/DA106_G5/front_end/group/webFront/c7.jpg'); */
+	}
   #title{
 	background-color:#F9F900;
     border: 5px solid #000080;
@@ -44,9 +48,11 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 
 <style>
 	#ByCom{
-	width: 100%;
-	background-color:rgba(256,256,256,0);
-	border:1px solid #CCCCFF;
+	width: 98%;
+	background-color:rgba(220,231,117 ,0.5);
+	border:2px solid #CCCCFF;
+	font-size:18px;
+    color: black;
 	}
   table {
 	width: 1200px;
@@ -63,14 +69,6 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
     text-align: center;
     border: 1px solid #CCCCFF;
   }
-  
-/* button:hover { */
-/*   border: 1px solid #0099cc; */
-/*   background-color: #00aacc; */
-/*   color: #ffffff; */
-/*   padding: 5px 10px; */
-/* } */
-
 input:disabled,
 input[disabled]{
   border: 1px solid #999999;
@@ -81,7 +79,7 @@ input[disabled]{
 
 </head>
 <body bgcolor='white'>
-
+<div id="comAll">
 ${pageRun}123
 listGrouper_ByCompositeQuery.jsp<br>
 <!-- ☆萬用複合查詢  - 可由客戶端 select_page.jsp 隨意增減任何想查詢的欄位<br> -->
@@ -183,10 +181,10 @@ listGrouper_ByCompositeQuery.jsp<br>
 				<input type="submit" value="加入" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/><br>
 				
 <!-- 				觀察用 -->
-<%-- 				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br> --%>
-<%-- 				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br> --%>
-<!-- 				<input type="text"   name="grp_register" size=8 value="1"><br> -->
-				
+				<input type="hidden"   name="grp_no"       size=8 value="${grouperVO.grp_no}">
+				<input type="hidden"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>">
+				<input type="hidden"   name="grp_register" size=8 value="1">	
+				<br>			
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 				<input type="hidden" name="action"       value="insert"></FORM>
@@ -195,9 +193,9 @@ listGrouper_ByCompositeQuery.jsp<br>
 				<input type="submit" value="關注" /><br> 
 				
 <!-- 				觀察用 -->
-<%-- 				<input type="text"   name="grp_no"       size=8 value="${grouperVO.grp_no}"><br> --%>
-<%-- 				<input type="text"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>"><br>				 --%>
-				
+				<input type="hidden"   name="grp_no"       size=8 value="${grouperVO.grp_no}">
+				<input type="hidden"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>">			
+				<br>
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 				<input type="hidden" name="action"       value="insert"></FORM>
@@ -206,9 +204,8 @@ listGrouper_ByCompositeQuery.jsp<br>
 		</tr>
 	</c:forEach>
 </table>
-
 <%@ include file="pages/page2_ByCompositeQuery.file" %>
-
+</div>
 <c:if test="${openModal!=null}">
 
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
