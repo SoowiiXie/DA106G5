@@ -781,7 +781,12 @@ public class GrouperDAO implements GrouperDAO_interface {
 			
 			//目前沒揪團的話就直接加入
 			if(joinedList.isEmpty()) {
-				joinStatus = "canJoin";
+				if (grouperVO.getGrp_personcount() == grouperVO.getGrp_personmax()) {
+					joinStatus = "groupFullAlready";
+				}
+				else {
+					joinStatus = "canJoin";
+				}
 			}
 			
 			
