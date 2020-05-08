@@ -159,7 +159,7 @@ public class GrouperServlet extends HttpServlet {
 				System.out.println("loc_no");
 				java.sql.Timestamp grp_applystart = null;
 				try {
-					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim());
+					grp_applystart = java.sql.Timestamp.valueOf(req.getParameter("grp_applystart").trim()+":00");
 				} catch (IllegalArgumentException e) {
 					grp_applystart=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團開始時間!");
@@ -167,7 +167,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				java.sql.Timestamp grp_applyend = null;
 				try {
-					grp_applyend = java.sql.Timestamp.valueOf(req.getParameter("grp_applyend").trim());
+					grp_applyend = java.sql.Timestamp.valueOf(req.getParameter("grp_applyend").trim()+":00");
 				} catch (IllegalArgumentException e) {
 					grp_applyend=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入揪團結束時間!");
@@ -175,7 +175,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				java.sql.Timestamp grp_start = null;
 				try {					
-					grp_start = java.sql.Timestamp.valueOf(req.getParameter("grp_start").trim());
+					grp_start = java.sql.Timestamp.valueOf(req.getParameter("grp_start").trim()+":00");
 				} catch (IllegalArgumentException e) {
 					grp_start=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入報名開始時間!");
@@ -183,7 +183,7 @@ public class GrouperServlet extends HttpServlet {
 				
 				java.sql.Timestamp grp_end = null;
 				try {
-					grp_end = java.sql.Timestamp.valueOf(req.getParameter("grp_end").trim());
+					grp_end = java.sql.Timestamp.valueOf(req.getParameter("grp_end").trim()+":00");
 				} catch (IllegalArgumentException e) {
 					grp_end=new java.sql.Timestamp(System.currentTimeMillis());
 					errorMsgs.add("請輸入報名結束時間!");
@@ -325,12 +325,18 @@ public class GrouperServlet extends HttpServlet {
 
 				String grp_content = req.getParameter("grp_content").trim();
 				if (grp_content== null || grp_content.trim().length() == 0) {
-					errorMsgs.add("請輸入揪團狀態");
+					errorMsgs.add("請輸入揪團內容");
 				}
 
 				Integer grp_personmax = new Integer(req.getParameter("grp_personmax").trim());
+				if (grp_personmax== null || grp_personmax == 0) {
+					errorMsgs.add("請輸入揪團人數上限且人數上限不為零");
+				}
 				
 				Integer grp_personmin = new Integer(req.getParameter("grp_personmin").trim());
+				if (grp_personmin== null || grp_personmin == 0) {
+					errorMsgs.add("請輸入揪團人數下限且人數下限不為零");
+				}
 				
 				Integer grp_personcount = new Integer(req.getParameter("grp_personcount").trim());
 				
