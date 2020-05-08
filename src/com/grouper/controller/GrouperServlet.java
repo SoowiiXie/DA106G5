@@ -125,7 +125,7 @@ public class GrouperServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 		
-			try {
+//			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 //				String grp_no = new String(req.getParameter("grp_no").trim());
 				
@@ -247,14 +247,14 @@ public class GrouperServlet extends HttpServlet {
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-				errorMsgs.add("修改資料失敗:"+e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/update_group_input.jsp");
-				failureView.forward(req, res);
-			}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				System.out.println(e.getMessage());
+//				errorMsgs.add("修改資料失敗:"+e.getMessage());
+//				RequestDispatcher failureView = req
+//						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/update_group_input.jsp");
+//				failureView.forward(req, res);
+//			}
 		}
 
         if ("insert".equals(action)) { // 來自addGroup.jsp的請求  
