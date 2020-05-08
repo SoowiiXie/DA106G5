@@ -36,8 +36,13 @@ public class Group_followService {
 		return group_followVO;
 	}
 
-	public void deleteGroupfollow(String grp_no) {
-		dao.delete(grp_no);
+	public void deleteGroupfollow(String grp_no, String mb_id) {
+		Group_followVO group_followVO = new Group_followVO();
+
+		group_followVO.setGrp_no(grp_no);
+		group_followVO.setMb_id(mb_id);
+
+		dao.delete(group_followVO);
 	}
 
 	public List<Group_followVO> getOneGroupfollow(String mb_id) {
@@ -57,5 +62,19 @@ public class Group_followService {
 	public List<Group_followVO> getAllGroup_followByMb_id(String mb_id) {
 		// TODO Auto-generated method stub
 		return dao.findByPrimaryKey(mb_id);
+	}
+	
+	public void addGroupfollowToAjax(String grp_no, String mb_id) {
+
+		dao.insertByTwo(grp_no, mb_id);		
+	}
+	
+	public void deleteGroupfollowToAjax(String grp_no, String mb_id) {
+
+		dao.deleteByTwo(grp_no, mb_id);		
+	}
+	//是否有追蹤
+	public boolean isFollow(String grp_no, String mb_id) {
+		return dao.isFollow(grp_no, mb_id);
 	}
 }

@@ -17,7 +17,7 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 	private static final String GET_ONE_STMT = 
 		"SELECT GRP_NO,MB_ID FROM grp_follow where GRP_NO = ?";
 	private static final String DELETE = 
-		"DELETE FROM grp_follow where GRP_NO = ?";
+		"DELETE FROM grp_follow (GRP_NO,MB_ID) VALUES (?, ?)";
 	private static final String UPDATE = 
 		"UPDATE grp_follow set MB_ID=? where GRP_NO = ?";
 	private static final String GET_FOLLOWPEOPLE_COUNT = 
@@ -117,7 +117,7 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 	}
 
 	@Override
-	public void delete(String grp_no) {
+	public void delete(Group_followVO group_followVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -128,7 +128,8 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setString(1, grp_no);
+			pstmt.setString(1, group_followVO.getMb_id());
+			pstmt.setString(2, group_followVO.getGrp_no());
 
 			pstmt.executeUpdate();
 
@@ -421,5 +422,23 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 	public Group_followVO findByPrimaryKeyByMb_id(String mb_id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void insertByTwo(String grp_no, String mb_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteByTwo(String grp_no, String mb_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isFollow(String grp_no, String mb_id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

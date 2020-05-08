@@ -190,7 +190,13 @@ listGrouper_ByCompositeQuery.jsp<br>
 				<input type="hidden" name="action"       value="insert"></FORM>
 			
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_follow/group_follow.do" style="margin-bottom: 0px;">
-				<input type="submit" value="關注" /><br> 
+				<input type="submit" value="關注" />
+				<img src="<%= request.getContextPath() %>/front_end/group/images/followIcon2un.png" width="75" height="75" border="0" id="follow_img">
+				<br> 
+<span id="follow">
+	<img id="follow_img" src="${isFollow?'images/followIcon2un.png':'images/followIcon2.png'}">
+	<label id="label">${isFollow?"已關注":"關注"}</label>
+</span>				
 				
 <!-- 				觀察用 -->
 				<input type="hidden"   name="grp_no"       size=8 value="${grouperVO.grp_no}">
@@ -241,8 +247,70 @@ listGrouper_ByCompositeQuery.jsp<br>
 <!-- <br>本網頁的路徑:<br><b> -->
 <%--    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br> --%>
 <%--    <font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%> </b> --%>
-	<script>  
+<script> 
+	// AJAX 加入
 
+	$(document).ready(function(){
+		$("#follow").on("click",function(){
+			$.ajax({
+				type:"GET",
+				url: "mb_follow.do",
+				data:{
+					"action":"follow",
+					"mb_id":"${memberVO.mb_id}",
+					"mb_id_followed":"${searchMbVO.mb_id}"
+				},
+				dataType: "text",
+				success: function(data){
+					
+					if(data == "addFollow"){
+						$("#follow_img").attr("src","images/followIcon2un.png");
+						$("#label").text("已關注");
+					}else if(data == "deleteFollow"){
+						$("#follow_img").attr("src","images/followIcon2.png");
+						$("#label").text("關注");
+					}
+				},
+				error: function(){alert("AJAX-class發生錯誤囉!")}
+			});
+		});
+	});
+	
+	
+	// AJAX 關注
+
+	$(document).ready(function(){
+		$("#follow").on("click",function(){
+			$.ajax({
+				type:"GET",
+				url: "group_follow.do",
+				data:{
+					"action":"update",
+					"grp_no":"${grouperVO.grp_no}",
+					"mb_id":"mb_id"
+				},
+				dataType: "text",
+				success: function(data){
+					
+					if(data == "addGroupfollowToAjax"){
+						$("#follow_img").attr("src","images/followIcon2.png");
+						$("#label").text("已關注");
+					}else if(data == "deleteGroupfollowToAjax"){
+						$("#follow_img").attr("src","images/followIcon2.png");
+						$("#label").text("關注");
+					}
+				},
+				error: function(){alert("AJAX-class發生錯誤囉!")}
+			});
+		});
+	});
+	</script>	 
+
+	<script>
+		  src="https://code.jquery.com/jquery-3.5.0.js"
+		  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+		  crossorigin="anonymous"
+	</script>
 
 </body>
 

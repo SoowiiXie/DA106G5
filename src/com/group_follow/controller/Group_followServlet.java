@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 import com.group_detail.model.Grp_detailService;
 import com.group_detail.model.Grp_detailVO;
 import com.group_follow.model.*;
+import com.mb_follow.model.Mb_followService;
 
 public class Group_followServlet extends HttpServlet {
 
@@ -225,6 +226,8 @@ public class Group_followServlet extends HttpServlet {
 			}
 		}
 		
+        
+        
 		
 		if ("delete".equals(action)) { // 來自listAllGroup.jsp
 
@@ -235,11 +238,21 @@ public class Group_followServlet extends HttpServlet {
 	
 			try {
 				/***************************1.接收請求參數***************************************/
-				String grp_no = new String(req.getParameter("grp_no"));
+				String grp_no = req.getParameter("grp_no").trim()                                                        ;
+				
+				
+				String mb_id = req.getParameter("mb_id").trim();
+				if (mb_id == null || mb_id.trim().length() == 0) {
+					errorMsgs.add("請輸入會員名稱");
+				}
+				
+				Group_followVO group_followVO = new Group_followVO();
+				group_followVO.setGrp_no(grp_no);
+				group_followVO.setMb_id(mb_id);
 				
 				/***************************2.開始刪除資料***************************************/
 				Group_followService group_followSvc = new Group_followService();
-				group_followSvc.deleteGroupfollow(grp_no);
+				group_followSvc.deleteGroupfollow(grp_no,mb_id);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/front_end/group_follow/listAllGroupfollow.jsp";
@@ -374,5 +387,29 @@ public class Group_followServlet extends HttpServlet {
 			}
 		}
 		
+		if ("follow".equals(action)) { // 關注
+				PrintWriter out = res.getWriter();
+				try {
+					
+					/***************************查詢資料****************************************/
+					String grp_no = req.getParameter("grp_no");
+					String mb_id = req.getParameter("mb_id");
+					
+					Group_followService group_followSvc = new Group_followService();
+					if(group_followSvc.isFollow(grp_no, mb_id)) {
+						group_followSvc.deleteGroupfollowToAjax(grp_no, mb_id);
+						out.write("deleteFollow");
+					}else {
+						group_followSvc.addGroupfollowToAjax(grp_no, mb_id);
+						out.write("addFollow");
+					}
+					out.flush();
+					out.close();
+					return;
+									
+					/***************************其他可能的錯誤處理**********************************/
+				} catch (Exception e) {
+				}
+			}
 	}
 }
