@@ -760,22 +760,31 @@
 				 });
 			 });
 			 
-			 //按讚數的燈箱
+			 //按讚數的燈箱開始
 			 var whoThumbBox = $('.whoThumbBox');
 			 $('.whoThumb_no').click(function(){
 				 $.ajax({
 					 type: "GET",
 					 url: "<%=request.getContextPath()%>/thumb/thumb.do",
-					 data: {"action":"ajaxGetByRcd_no", "rcd_no":$(this).next().val()},
+					 data: {"action":"ajaxGetByRcd_no", "rcd_no":$(this).next().val(), "mb_id":"${mb_id}"},
 					 dataType: "json",
 					 success: function (data){
 						 $('#myTbodyThumb').empty();
 						 for(var i = 0; i < data.length; i++){
+							 if(data[i].hasFollow){
+									var followHtml = "<img class='follow_img' src='<%= request.getContextPath() %>/img/red_heart.png' height='50rem' value='"+data[i].mb_id+"'><input type='hidden' value='"+data[i].mb_id+"'><label class='labelFollow'>已關注</label>"
+								 }else{
+									var followHtml = "<img class='follow_img' src='<%= request.getContextPath() %>/img/black_heart.png' height='50rem'  value='"+data[i].mb_id+"'><input type='hidden' value='"+data[i].mb_id+"'><label class='labelFollow'>關注</label>"
+								 }
 							 $('#myTbodyThumb').append(`
 								<tr>
 									<td class="align-middle"><img class="img-profile rounded-circle" src="<%= request.getContextPath() %>/MemberPicReader?mb_id=`+data[i].mb_id+`"  style="height:2rem; width:2rem;"/></td>
 									<td class="align-middle">`+data[i].mb_id+`</td>
-									<td class="align-middle">`+"追蹤"+`</td>
+									<td class="align-middle">
+										<span class="follow">`+followHtml+`
+
+										</span>
+									</td>
 								</tr>
 							`);
 						 }
@@ -783,10 +792,37 @@
 						 whoThumbBox.css({'margin-left':'-' + (whoThumbBox.width()/2) + 'px' , 'margin-top' : '-' + (whoThumbBox.height()/2)+'px'});
 						 $('.overlay').fadeIn();
 						 whoThumbBox.fadeIn();
+						 $(".follow_img").on("click",function(){
+								var follow_img = $(this);
+								$.ajax({
+									type:"GET",
+									url: "<%=request.getContextPath()%>/front_end/member/mb_follow.do",
+									data:{
+										"action":"follow",
+										"mb_id":"${mb_id}",
+										"mb_id_followed":follow_img.next().val()
+									},
+									dataType: "text",
+									success: function(data){
+										if(data == "addFollow"){
+											follow_img.attr("src","<%= request.getContextPath() %>/img/red_heart.png");
+											follow_img.siblings('.labelFollow').text("已關注");
+//				 							follow_img.prevAll('.labelFollow').text("已關注");
+										}else if(data == "deleteFollow"){
+											follow_img.attr("src","<%= request.getContextPath() %>/img/black_heart.png");
+											follow_img.siblings('.labelFollow').text("關注");
+										}
+									},
+									error: function(){alert("AJAX-class發生錯誤囉!")}
+								});
+							});
 					 },					
 					 error: function(){alert("AJAX-wth_loc_btn發生錯誤囉!")}
 				 });
 			 });
+			 
+			 
+	 		 //按讚數的燈箱結束
 			 
 			 //meToo數的燈箱
 			 var whoMeTooBox = $('.whoMeTooBox');
@@ -835,6 +871,8 @@
 									<td class="align-middle">`+data.mb_id_1+`</td>
 									<td class="align-middle">`+data.msg_content+`</td>
 									<td class="align-middle">`+data.msg_time+`</td>
+									<td style="text-align:left">
+								</td>
 								</tr>
 							 `);
 							 

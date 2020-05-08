@@ -1,7 +1,6 @@
 package com.mb_follow.model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -98,7 +97,6 @@ public class Mb_followDAO implements Mb_followDAO_interface{
 
 			pstmt.setString(1, mb_id);
 			pstmt.setString(2, mb_id_followed);
-
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -328,7 +326,7 @@ public class Mb_followDAO implements Mb_followDAO_interface{
 	
 	
 	public static void main (String[] args) throws Exception {
-		Mb_followDAO dao = new Mb_followDAO();
+//		Mb_followDAO dao = new Mb_followDAO();
 		
 		// 增BYString
 //		
