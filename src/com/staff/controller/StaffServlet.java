@@ -173,6 +173,11 @@ public class StaffServlet extends HttpServlet{
 			// 取得管理員
 			StaffVO staffVO = (StaffVO) session.getAttribute("staffVO");
 			
+			if(staffVO == null) {
+				res.sendRedirect(req.getContextPath() + loginPath);
+				return;
+			}
+			
 			// 取得被點選的管理按鈕
 			String management = req.getParameter("management");
 			
