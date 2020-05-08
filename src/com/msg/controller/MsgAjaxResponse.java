@@ -44,6 +44,7 @@ public class MsgAjaxResponse extends HttpServlet {
 				messageSvc.updateMessage(msg_no, messageVO.getMb_id_1(), messageVO.getMb_id_2(), messageVO.getMsg_content(), 2);
 				messageVO = messageSvc.getOneMessage(msg_no);
 				JSONObject jsobj = new JSONObject(messageVO);
+				jsobj.put("msgNotRead", messageSvc.countNotReads(messageVO.getMb_id_2()));
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				res.setContentType("text/plain");
 				res.setCharacterEncoding("UTF-8");
