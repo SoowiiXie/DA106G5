@@ -28,4 +28,9 @@ public class CouponService {
 		return dao.addCoupon(couponVo);		
 	}
 	
+	public int deleteCoupon(String cp_no) {
+		
+		return dao.deleteCoupon(cp_no);
+	}
+	
 }

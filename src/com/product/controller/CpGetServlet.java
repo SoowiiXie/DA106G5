@@ -17,6 +17,7 @@ import com.coupon.model.CouponService;
 import com.coupon.model.CouponVO;
 import com.mb.model.MemberService;
 import com.mb.model.MemberVO;
+import com.product.model.ProductService;
 import com.cp_get.model.Cp_getService;
 import com.cp_get.model.Cp_getVO;
 
@@ -173,6 +174,50 @@ public class CpGetServlet extends HttpServlet {
 			return;
 
 		}
+		
+		if ("delete".equals(action)) { // 來自listAllEmp.jsp
+               System.out.println("進入刪除");
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+		
+			
+//			System.out.println("刪除的該頁頁數字" + whichPage);
+			try {
+				/*************************** 1.接收請求參數 ***************************************/
+				String cp_no = req.getParameter("cp_no");
+             System.out.println(cp_no);
+				/*************************** 2.開始刪除資料 ***************************************/
+				CouponService couponService = new CouponService();
+				couponService.deleteCoupon(cp_no);
+
+				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
+//				String url = "/back_end/product/AllList2.jsp";
+				String includePath = "/back_end/product/CouponManage.jsp";
+//				System.out.println(includePath);
+				req.setAttribute("includePath", includePath);
+//				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+				successView.forward(req, res);
+				return;
+				/*************************** 其他可能的錯誤處理 **********************************/
+			} catch (Exception e) {
+//				errorMsgs.add("刪除資料失敗:" + e.getMessage());
+				errorMsgs.add("已有會員持有該優惠券");
+				String includePath = "/back_end/product/CouponManage.jsp";
+//				System.out.println(includePath);
+				req.setAttribute("includePath", includePath);
+				req.setAttribute("errorMsgs", errorMsgs);
+//				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+				successView.forward(req, res);
+				return;
+			}
+		}
+		
+		
+		
 	}
 
 }

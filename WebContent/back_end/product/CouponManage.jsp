@@ -180,7 +180,15 @@ margin-top:100;
 					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_detail}</td>
 					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_javaTime}</td>
 					<td style="width:10%;" bgcolor="#FFB5B5"><input type="submit" name="Submit" value="修改"></td>
-                <td style="width:10%;" bgcolor="#FFB5B5"><input type="submit" name="Submit" value="刪除"></td>
+                <td style="width:10%;" bgcolor="#FFB5B5">
+                <FORM METHOD="post"
+						ACTION="<%=request.getContextPath()%>/CpGetServlet"
+						style="margin-bottom: 0px;">
+						<input type="submit" value="刪除"> <input type="hidden"
+							name="cp_no" value="${couponVO.cp_no}"> <input
+							type="hidden" name="whichPage" value="<%=whichPage%>"> <input
+							type="hidden" name="action" value="delete">
+					</FORM></td>
 				</tr>
 			</c:forEach>
 
