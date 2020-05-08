@@ -305,8 +305,12 @@ public class ProductServlet extends HttpServlet {
 				return;
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/addProduct.jsp");
-				failureView.forward(req, res);
+				String includePath = "/back_end/product/addProduct.jsp";
+//				System.out.println(includePath);
+				req.setAttribute("includePath", includePath);
+//				String url = "/back_end/product/addProduct.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
+				successView.forward(req, res);
 				return;
 			}
 
@@ -454,7 +458,7 @@ public class ProductServlet extends HttpServlet {
 				productService.updateProduct(pd_no, pd_name, pd_price, pd_detail, pd_typeNo, pd_status, pd_pic);
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) ***********/
-//				req.getSession().setAttribute("pd_typeNo", pd_typeNo); //因應被明軒include影響顧註解
+//				req.getSession().setAttribute("pd_typeNo", pd_typeNo); //因應被明軒include影響故註解
 //				String url = "/back_end/product/AllList2.jsp";
 				String includePath = "/back_end/product/AllList2.jsp";
 				
