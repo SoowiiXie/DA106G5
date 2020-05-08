@@ -85,7 +85,7 @@ margin-top:100;
 			    <td style="width:12%;" bgcolor="#FFB5B5">會員等級</td>
 			    <td style="width:8%;" bgcolor="#FFB5B5">
 			      <select size="1" name="pd_typeNo">
-					    <option value="">請選擇
+					    <option value="">不限等級
 						<option value="">等級1
 						<option value="">等級2
 						<option value="">等級3
