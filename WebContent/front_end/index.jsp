@@ -843,6 +843,7 @@
 							 msgLightBox.fadeIn();
 							 if(data.msgNotRead==0){
 								 messageNotReadSpan.text("");
+								 messageDivA.children(".readOrNotRead").attr("class","ml-2 msgRead readOrNotRead")
 							 }else{
 								 messageNotReadSpan.text(data.msgNotRead);
 								 messageDivA.children(".readOrNotRead").attr("class","ml-2 msgRead readOrNotRead")
