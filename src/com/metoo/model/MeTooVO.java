@@ -1,6 +1,10 @@
 package com.metoo.model;
 
 public class MeTooVO implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String rcd_no;
 	private String mb_id;
 	
