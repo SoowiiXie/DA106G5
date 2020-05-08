@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 
 import org.json.JSONArray;
 
+import com.mb_follow.model.Mb_followService;
 import com.thumb.model.*;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
@@ -95,13 +96,22 @@ public class ThumbServlet extends HttpServlet {
 			try {
 				// Retrieve form parameters.
 				String rcd_no = req.getParameter("rcd_no");
-
+				String mb_id = req.getParameter("mb_id");
+				
+				Mb_followService mb_followSvc = new Mb_followService();
 				ThumbService thumbSvc = new ThumbService();
 				List<ThumbVO> whoThumb_list = thumbSvc.whoThumb(rcd_no);
+				List<ThumbFollowVO> whoThumbWithFollow_list = new ArrayList<ThumbFollowVO>();
 //				HttpSession session = req.getSession();
 //				session.setAttribute("weather_detailVO_list", weather_detailVO_list);
-				JSONArray jsArray = new JSONArray(whoThumb_list);
-			    
+				for (ThumbVO thumbVO4Follow : whoThumb_list) {
+					ThumbFollowVO thumbFollowVO = new ThumbFollowVO();
+					thumbFollowVO.setMb_id(thumbVO4Follow.getMb_id());
+					thumbFollowVO.setRcd_no(thumbVO4Follow.getRcd_no());
+					thumbFollowVO.setHasFollow(mb_followSvc.hasFollow(mb_id, thumbVO4Follow.getMb_id()));
+					whoThumbWithFollow_list.add(thumbFollowVO);
+				}
+				JSONArray jsArray = new JSONArray(whoThumbWithFollow_list);
 				// 取出的empVO送給listOneEmp.jsp
 //				RequestDispatcher successView = req.getRequestDispatcher("/front_end/index.jsp");
 //				successView.forward(req, res);
