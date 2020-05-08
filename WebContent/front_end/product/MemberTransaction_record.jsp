@@ -173,6 +173,6 @@ margin-top:100;
 		</script>
 	</c:if>
 </div>
-<div id="Footer" class="buttonBar" style="margin-top:100px;" ></div>
+<div id="Footer" class="buttonBar" style="margin-top:500px;" ></div>
 </body>
 </html>

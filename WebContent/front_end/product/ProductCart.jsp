@@ -58,7 +58,17 @@ margin-top:100;
 	<%
 		if (buylist == null || buylist.size() == 0) {
 	%>
-	購物車沒東西喔
+	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
+	<div style="width:100%; height:100px; border-style: solid; border-color:white; "></div>
+	<div align="center" style="border-style: solid; border-color:white;">
+		<font size="+3">購物車尚無內容：</font>
+		<hr>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		</div>
 	<%
 		}
 	%>
@@ -69,12 +79,12 @@ margin-top:100;
 	%>
 
 	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
-	<div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
-	<div align="center" style="border-style: solid; border-color:red;">
+	<div style="width:100%; height:100px; border-style: solid; border-color:white; "></div>
+	<div align="center" style="border-style: solid; border-color:white;">
 		<font size="+3">目前您購物車的內容如下：</font>
 		<hr>
 		<p></div>
-		<div style=" border-style: solid; border-color:red;" align="center" >
+		<div style=" border-style: solid; border-color:white;" align="center" >
 		<div align="center" >
 			
 				<table style="width: 60%;">
@@ -165,7 +175,7 @@ margin-top:100;
 			
 				
 			</table></form>
-		
+		<div id="Footer" class="buttonBar" style="margin-top:100px;" ></div>
 			
 		</div>
 		
@@ -173,6 +183,6 @@ margin-top:100;
 			}
 		%>
 
-<div id="Footer" class="buttonBar" style="margin-top:100px;" ></div>
+
 </body>
 </html>

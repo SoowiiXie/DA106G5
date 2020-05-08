@@ -95,9 +95,12 @@
 			<tr>
 				<td bgcolor=#FFD2D2> 商品圖片</td>
 				<td bgcolor=#FFD2D2><input type="file" name="pd_pic" onchange="setImg(this)">
-				<img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}">
+				
 			</td>
 			<tr>
+			<td bgcolor=#FFD2D2></td>
+			<td bgcolor=#FFD2D2><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"></td>
+			</tr>
 		</table>
 		<input type="hidden" name="action" value="updateProduct"> <input
 			type="hidden" name="pd_no" value="${productVO.pd_no}"> 
