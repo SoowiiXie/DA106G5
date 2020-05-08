@@ -38,36 +38,45 @@
 			</c:forEach>
 		</ul>
 	</c:if>
+	<div style="width:100%;" align="center">
+
+	  <div class="zxc" style=" width:100%; ">
 <jsp:include page="ShopManagerBar.jsp"/>
+	<div style="margin-top:50px;">
+	<font size="+3">修改商品：</font>
+		<hr>
+	
 	<form method="POST"
 		action="<%=request.getContextPath()%>/ProductServlet" name="form1"
 		enctype="multipart/form-data">
-		<table>
-			<tr>
-				<td>商品編號:<font color=red><b>*</b></font></td>
-				<td>${productVO.pd_no}</td>
+		
+	<div style="margin-top:50px;">
+		<table style="width:60%;">
+			<tr bgcolor="#999999"> 
+				<td width="20%">商品編號:<font color=red><b>*</b></font></td>
+				<td width="80%">${productVO.pd_no}</td>
 			</tr>
 
 			<tr>
-				<td>商品名稱：</td>
-				<td><input type="TEXT" name="pd_name"
+				<td bgcolor=#FFD2D2>商品名稱：</td>
+				<td bgcolor=#FFD2D2><input type="TEXT" name="pd_name"
 					value="${productVO.pd_name}"></td>
 			</tr>
 			<tr>
-				<td>商品價格：</td>
-				<td><input type="TEXT" name="pd_price"
+				<td bgcolor=#FFD2D2>商品價格：</td>
+				<td bgcolor=#FFD2D2><input type="TEXT" name="pd_price"
 					value="${productVO.pd_price}"></td>
 			</tr>
 			<tr>
-				<td>商品詳述：</td>
-				<td><input type="TEXT" name="pd_detail"
-					value="${productVO.pd_detail}"></td>
+				<td style="height:100px;" bgcolor=#FFD2D2>商品詳述：</td>
+				<td style="height:100px;" bgcolor=#FFD2D2><textarea  style="height:100px; width:300px;" name="pd_detail"
+					>${productVO.pd_detail}</textarea></td>
 			</tr>
 
 			<tr>
-				<td>產品商品分類：</td>
+				<td style="height:100px;" bgcolor=#FFD2D2>產品商品分類：</td>
 				
-				<td><select size="1" name="pd_typeNo">
+				<td style="height:100px;" bgcolor=#FFD2D2><select size="1" name="pd_typeNo">
 						<c:forEach var="pd_typeVO" items="${list}">
 							<option value="${pd_typeVO.pd_typeNo}" ${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
 						</c:forEach>
@@ -75,8 +84,8 @@
 			</tr>
 
 			<tr>
-				<td>商品分類狀態：</td>
-				<td><select size="1" name="pd_status">
+				<td bgcolor=#FFD2D2>商品分類狀態：</td>
+				<td bgcolor=#FFD2D2><select size="1" name="pd_status">
 						<option value="1" ${productVO.pd_status==1?'selected':''}>下架</option>
 						<option value="2" ${productVO.pd_status==2?'selected':''}>上架</option>
 
@@ -84,9 +93,9 @@
 			</tr>
 
 			<tr>
-				<td>商品圖片</td>
-				<td><input type="file" name="pd_pic" onchange="setImg(this)">
-				<img width="200px" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}">
+				<td bgcolor=#FFD2D2> 商品圖片</td>
+				<td bgcolor=#FFD2D2><input type="file" name="pd_pic" onchange="setImg(this)">
+				<img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}">
 			</td>
 			<tr>
 		</table>
@@ -95,8 +104,11 @@
 			<input type = "hidden" name="whichPage" value = "<%=whichPage%>">
 			<input
 			type="submit" name=送出修改>
+			</div>
 	</form>
-
+</div>
+</div>
+</div>
 	<br>
 	<br>
 	<a
