@@ -97,7 +97,7 @@ margin-top:100;
 				<td style="width:8%;" bgcolor="#FFB5B5">優惠券種類：</td>
 				<td style="width:8%;" bgcolor="#FFB5B5">
 				    <select size="1" name="cp_no">
-					    <option value="">請選擇
+					    <option value="">不限等級
 							<c:forEach var="couponVO" items="${list}">
 								<option value="${couponVO.cp_no}"
 									>${couponVO.cp_name}
