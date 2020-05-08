@@ -60,8 +60,8 @@ margin-top:100;
 
 	} else {
 		list = productService.useTypeSearchProducts(pd_typeNo);
-
-		session.setAttribute("list", list);
+		 session.setAttribute("list", list);
+		
 		Collections.reverse(list);
 	}
 %>

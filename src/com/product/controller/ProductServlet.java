@@ -280,7 +280,7 @@ public class ProductServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-
+                    
 					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					String includePath = "/back_end/product/addProduct.jsp";
 //					System.out.println(includePath);
@@ -454,7 +454,7 @@ public class ProductServlet extends HttpServlet {
 				productService.updateProduct(pd_no, pd_name, pd_price, pd_detail, pd_typeNo, pd_status, pd_pic);
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) ***********/
-				req.getSession().setAttribute("pd_typeNo", pd_typeNo);
+//				req.getSession().setAttribute("pd_typeNo", pd_typeNo); //因應被明軒include影響顧註解
 //				String url = "/back_end/product/AllList2.jsp";
 				String includePath = "/back_end/product/AllList2.jsp";
 				
@@ -465,6 +465,7 @@ public class ProductServlet extends HttpServlet {
                 return;
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
+				req.setAttribute("whichPage", whichPage);
 				String includePath = "/back_end/product/AllList2.jsp";
 //				System.out.println(includePath);
 				req.setAttribute("includePath", includePath);
