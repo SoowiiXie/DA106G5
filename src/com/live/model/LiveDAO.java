@@ -301,7 +301,7 @@ public class LiveDAO implements LiveDAO_interface {
 //		InputStream fin = new FileInputStream(new File("C:\\pic\\LIV00001.jpg"));
 //		byte[] pic = new byte[fin.available()];
 //		fin.read(pic);
-		
+//		
 //		InputStream fin1 = new FileInputStream(new File("C:\\pic\\LLL.mp4"));
 //		byte[] vid = new byte[fin1.available()];
 //		fin1.read(vid);
