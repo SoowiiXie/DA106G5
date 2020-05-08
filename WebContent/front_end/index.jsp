@@ -346,7 +346,7 @@
 							<i class="fas fa-envelope fa-fw"></i> 
 							<!-- Counter - Messages 計數器 -->
 							<c:if test="${messageSvcEL.countNotReads(mb_id)>0}">
-							<span class="badge badge-danger badge-counter">
+							<span class="badge badge-danger badge-counter messageNotReadSpan">
 								${messageSvcEL.countNotReads(mb_id)>9?"9+":messageSvcEL.countNotReads(mb_id)}
 							</span>
 							</c:if>
@@ -363,10 +363,10 @@
 									<div class="status-indicator bg-success"></div>
 								</div>
 								<c:if test="${messageVO.msg_status==1}">
-								<div class="font-weight-bold ml-2 msgNotRead">
+								<div class="font-weight-bold ml-2 msgNotRead readOrNotRead">
 								</c:if>
 								<c:if test="${messageVO.msg_status==2}">
-								<div class="ml-2 msgRead">
+								<div class="ml-2 msgRead readOrNotRead">
 								</c:if>
 									<div class="text-truncate">${messageVO.msg_content}</div>
 									<div class="small text-gray-500">${memberSvcEL.getOneMember(messageVO.mb_id_1).mb_name} · ${messageVO.msg_time} </div>
@@ -553,7 +553,7 @@
 	<div class="overlay"></div>
 	
 	<!-- 訊息的燈箱開始 -->
-	<div id="fblightbox" class="msgLightBox">
+	<div id="fblightbox" class="msgLightBox" style="width: 50rem;">
 	  <div class="fblightbox-wrap">
 	    <div class="fblightbox-header">
 	      	我是訊息
@@ -818,7 +818,10 @@
 				 
 			 //訊息的燈箱
 			 var msgLightBox = $('.msgLightBox');
+			 var messageNotReadSpan = $('.messageNotReadSpan');
+			 
 			 $('.messageDivA').click(function(){
+				var messageDivA = $(this);
 			 	$.ajax({
 					type: "GET",
 					url: "<%=request.getContextPath()%>/MsgAjaxResponse.do",
@@ -838,6 +841,13 @@
 							 msgLightBox.css({'margin-left':'-' + (msgLightBox.width()/2) + 'px' , 'margin-top' : '-' + (msgLightBox.height()/2)+'px'});
 							 $('.overlay').fadeIn();
 							 msgLightBox.fadeIn();
+							 if(data.msgNotRead==0){
+								 messageNotReadSpan.text("");
+								 messageDivA.children(".readOrNotRead").attr("class","ml-2 msgRead readOrNotRead")
+							 }else{
+								 messageNotReadSpan.text(data.msgNotRead);
+								 messageDivA.children(".readOrNotRead").attr("class","ml-2 msgRead readOrNotRead")
+							 }
 						 },					
 					 error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
 			 		});

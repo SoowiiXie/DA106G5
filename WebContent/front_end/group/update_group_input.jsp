@@ -139,7 +139,7 @@
 	<tr>
 		<td>揪團內容:</td>
 		<td><textarea type="textarea" name="grp_content" class="grp_content" rows="5"
-			 value="<%= (grouperVO==null)? "別睡了，起床" : grouperVO.getGrp_content()%>"></textarea></td>
+			 value="<%= (grouperVO==null)? "別睡了，起床" : grouperVO.getGrp_content()%>"><%=grouperVO.getGrp_content()%></textarea></td>
 	</tr>
 	
 	<tr>
@@ -173,6 +173,9 @@
 
 </table>
 <br>
+<input type="hidden" name="grp_personcount" value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_personcount()%>" />
+<input type="hidden" name="grp_status"  value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" />
+<input type="hidden" name="grp_follow" value="<%= (grouperVO==null)? "0" : grouperVO.getGrp_follow()%>" />
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="grp_no" value="<%=grouperVO.getGrp_no()%>">
 <input type="submit" value="送出修改"></FORM>
@@ -204,7 +207,7 @@ $(function(){
         	theme: '',             		   //theme: 'dark',
 		       timepicker:true,     	   //timepicker:true,
 		       step: 10,				   //step: 60 (這是timepicker的預設間隔60分鐘)
-		       format:'Y-m-d H:i:s',       //format:'Y-m-d H:i:s',
+		       format:'Y-m-d H:i',       //format:'Y-m-d H:i:s',
 			   value: '<%=grouperVO.getGrp_applystart()%>', // value:   new Date(),	       
         	   onShow:function(){
 			   this.setOptions({
@@ -218,7 +221,7 @@ $(function(){
 	       theme: '',            	  	 //theme: 'dark',
 	       timepicker:true,      		 //timepicker:true,
 	       step: 10,				     //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
  		   value: '<%=grouperVO.getGrp_applyend()%>', // value:   new Date(),
 		   onShow:function(){
 			   this.setOptions({
@@ -232,7 +235,7 @@ $(function(){
 	       theme: '',           	     //theme: 'dark',
 	       timepicker:true,      		 //timepicker:true,
 	       step: 10,				  	 //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 	 	   value: '<%=grouperVO.getGrp_start()%>', // value:   new Date(),
 		   onShow:function(){
 			   this.setOptions({
@@ -247,7 +250,7 @@ $(function(){
 	       theme: '',             		 //theme: 'dark',
 	       timepicker:true,      		 //timepicker:true,
 	       step: 10,					 //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d H:i:s',         //format:'Y-m-d H:i:s',
+	       format:'Y-m-d H:i',         //format:'Y-m-d H:i:s',
 		   value: '<%=grouperVO.getGrp_end()%>', // value:   new Date(),          
 		   onShow:function(){
 			   this.setOptions({
