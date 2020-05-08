@@ -47,9 +47,13 @@ public class GrouperDAO implements GrouperDAO_interface {
 	private static final String DELETE_FROM_GRP_FOLLOW_STMT = "DELETE FROM GRP_FOLLOW WHERE GRP_NO = ? AND MB_ID = ?";
 	
 	private static final String UPDATE_GRP_FOLLOW_IN_GROUPER_ONE = "UPDATE GROUPER SET GRP_FOLLOW = ? WHERE GRP_NO = ?";
+	
+	private static final String GET_GRP_REGISTER_FROM_GRP_DETAIL = "SELECT MB_ID FROM GRP_DETAIL WHERE GRP_REGISTER = 2 AND GRP_NO = ?";
+	private static final String GET_ALL_GRP_REGISTER_FROM_GRP_DETAIL = "SELECT MB_ID FROM GRP_DETAIL WHERE GRP_NO = ?";
 
 	@Override
-	public void insert(GrouperVO grouperVO) {
+	public boolean insert(GrouperVO grouperVO) {
+		boolean insertSucceedOrNot = false;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -70,11 +74,15 @@ public class GrouperDAO implements GrouperDAO_interface {
 			pstmt.setString(8, grouperVO.getGrp_content());
 			pstmt.setInt(9, grouperVO.getGrp_personmax());
 			pstmt.setInt(10, grouperVO.getGrp_personmin());
-			pstmt.setInt(11, grouperVO.getGrp_personcount());
-			pstmt.setInt(12, grouperVO.getGrp_status());
-			pstmt.setInt(13, grouperVO.getGrp_follow());
+			pstmt.setInt(11, 0);//Grp_personcount
+			pstmt.setInt(12, 1);//Grp_status
+			pstmt.setInt(13, 0);//Grp_follow
 
-			pstmt.executeUpdate();
+			int i = 0;
+			i = pstmt.executeUpdate();
+			if (i == 1) {
+				insertSucceedOrNot = true;
+			}
 
 			// Handle any SQL errors
 		} catch (SQLException se) {
@@ -96,7 +104,7 @@ public class GrouperDAO implements GrouperDAO_interface {
 				}
 			}
 		}
-
+		return insertSucceedOrNot;
 	}
 
 	@Override
@@ -1108,4 +1116,115 @@ public class GrouperDAO implements GrouperDAO_interface {
 		return updateGrp_FollowInGrouperMinusOneSuccessOrNot;
 	}
 
+	@Override
+	public List<String> getGrp_registerFromGrp_detail(String grp_no) {
+		
+		List<String> list = new ArrayList<String>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_GRP_REGISTER_FROM_GRP_DETAIL);
+
+			pstmt.setString(1, grp_no);
+
+			rs = pstmt.executeQuery();
+			
+			int i = 1;
+			while (rs.next()) {
+				String str = rs.getString(i);
+				i++;
+				list.add(str); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	
+	}
+
+	@Override
+	public List<String> getAllGrp_registerFromGrp_detail(String grp_no) {
+		List<String> list = new ArrayList<String>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_GRP_REGISTER_FROM_GRP_DETAIL);
+
+			pstmt.setString(1, grp_no);
+
+			rs = pstmt.executeQuery();
+			
+			
+			int i = 1;
+			while (rs.next()) {
+				String str = rs.getString(i);
+				System.out.println(str);
+				i++;
+				list.add(str); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 }
