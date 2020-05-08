@@ -65,9 +65,7 @@ public class ProductServlet extends HttpServlet {
 				String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
 				
 				if (pd_name == null || pd_name.trim().length() == 0 ||("").equals(pd_name)) {
-					errorMsgs.add("商品名稱: 請勿空白");
-					
-					
+					errorMsgs.add("商品名稱: 請勿空白");			
 					//針對明軒include產生的bug增加====================
 					ProductVO productVO = new ProductVO();
 					
@@ -506,22 +504,10 @@ public class ProductServlet extends HttpServlet {
 				return;
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-//針對明軒include產生的bug增加
-				ProductVO productVO = new ProductVO();
-				String pd_name = req.getParameter("pd_name");
-				Integer pd_price = new Integer(req.getParameter("pd_price").trim());
-				String pd_detail = req.getParameter("pd_detail");
-				String pd_typeNo = req.getParameter("pd_typeNo");
-				
-				
-				productVO.setPd_price(pd_price);
-				productVO.setPd_detail(pd_detail);
-				productVO.setPd_typeNo(pd_typeNo);
-//針對明軒include產生的bug增加============
+
                 
 				String includePath = "/back_end/product/addProduct.jsp";
 //				System.out.println(includePath);
-				req.setAttribute("productVO", productVO); //針對明軒include產生的bug增加
 				req.setAttribute("includePath", includePath);
 //				String url = "/back_end/product/addProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
@@ -533,7 +519,8 @@ public class ProductServlet extends HttpServlet {
 
 		if (action.equals("getOne_For_update")) { // 來自listAllEmp.jsp的請求
          System.out.println("有進來喔");
-			List<String> errorMsgs = new LinkedList<String>();
+//			List<String> errorMsgs = new LinkedList<String>();
+         List<String> errorMsgs = (List<String>) req.getAttribute("errorMsgs");
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -657,11 +644,14 @@ public class ProductServlet extends HttpServlet {
 
 			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
-				String includePath = "/back_end/product/UpdateProduct.jsp";
-                req.setAttribute("whichPage" , whichPage);
-				req.setAttribute("includePath", includePath);
+//				String includePath = "/back_end/product/UpdateProduct.jsp";
+//              
+//				req.setAttribute("includePath", includePath);
 //				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/UpdateProduct.jsp");
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+				req.setAttribute("errorMsgs", errorMsgs);	
+				RequestDispatcher failureView = req.getRequestDispatcher("/ProductServlet?action=getOne_For_update&&pd_no="
+				+pd_no);
+				
 				failureView.forward(req, res);
 				return;
 			}
