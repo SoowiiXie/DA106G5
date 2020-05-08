@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 
 import org.json.JSONArray;
 
+import com.mb_follow.model.Mb_followService;
 import com.metoo.model.*;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
@@ -96,11 +97,21 @@ public class MeTooServlet extends HttpServlet {
 			try {
 				// Retrieve form parameters.
 				String rcd_no = req.getParameter("rcd_no");
+				String mb_id = req.getParameter("mb_id");
 
+				Mb_followService mb_followSvc = new Mb_followService();
 				MeTooService meTooSvc = new MeTooService();
 				List<MeTooVO> whoMeToo_list = meTooSvc.whoMeToo(rcd_no);
+				List<MeTooFollowVO> whoMeTooWithFollow_list = new ArrayList<MeTooFollowVO>();
 //				HttpSession session = req.getSession();
 //				session.setAttribute("weather_detailVO_list", weather_detailVO_list);
+				for (MeTooVO meTooVO4Follow : whoMeToo_list) {
+					MeTooFollowVO meTooFollowVO = new MeTooFollowVO();
+					meTooFollowVO.setMb_id(meTooVO4Follow.getMb_id());
+					meTooFollowVO.setRcd_no(meTooVO4Follow.getRcd_no());
+					meTooFollowVO.setHasFollow(mb_followSvc.hasFollow(mb_id, meTooVO4Follow.getMb_id()));
+					whoMeTooWithFollow_list.add(meTooFollowVO);
+				}
 				JSONArray jsArray = new JSONArray(whoMeToo_list);
 			    
 				// 取出的empVO送給listOneEmp.jsp

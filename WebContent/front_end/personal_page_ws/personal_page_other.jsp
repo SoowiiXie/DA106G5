@@ -126,7 +126,7 @@
 						<input type="hidden" name="mb_id"	value="${mb_id}" class="mb_id"> 
 						<input type="hidden" name="action" value="insert">
 					</div>
-					<span class="text-primary whoThumb_no">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
+					<span class="text-primary whoThumb_no" style="cursor:help">${thumbSvcEL.countAllThumbs(recordVO.rcd_no)}</span>
 					<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"> 
 					<!-- meToo按鈕 -->
 					<div style="margin-bottom: 0px;">
@@ -145,7 +145,7 @@
 						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no"> <input type="hidden" name="mb_id" value="${mb_id}" class="mb_id"> 
 						<input type="hidden" name="action" value="insert">
 					</div>
-					<<span class="mr-2 text-success whoMeToo_no">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
+					<<span class="mr-2 text-success whoMeToo_no" style="cursor:help">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
 					<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"> 
 					<!-- 留言按鈕-->
 					<div style="margin-bottom: 0px;">
