@@ -121,7 +121,7 @@ margin-top:100;
 					
 					
     </table>
-    	<input type="hidden" name="action" value="addProduct"> 
+    	<input type="hidden" name="action" value="addProduct3"> 
 		<input type="hidden" name="includePath" value="${incluePath}">
 		<input type="submit" name="Submit" value="增加商品">
 	</form>
