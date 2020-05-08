@@ -305,8 +305,21 @@ public class ProductServlet extends HttpServlet {
 				return;
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
+				ProductVO productVO = new ProductVO();
+				String pd_name = req.getParameter("pd_name");
+				Integer pd_price = new Integer(req.getParameter("pd_price").trim());
+				String pd_detail = req.getParameter("pd_detail");
+				String pd_typeNo = req.getParameter("pd_typeNo");
+				
+				productVO.setPd_name(pd_name);
+				productVO.setPd_price(pd_price);
+				productVO.setPd_detail(pd_detail);
+				productVO.setPd_typeNo(pd_typeNo);
+
+                
 				String includePath = "/back_end/product/addProduct.jsp";
 //				System.out.println(includePath);
+				req.setAttribute("productVO", productVO);
 				req.setAttribute("includePath", includePath);
 //				String url = "/back_end/product/addProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
