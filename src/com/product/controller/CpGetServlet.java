@@ -1,6 +1,7 @@
 package com.product.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -93,11 +94,17 @@ public class CpGetServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 
-					req.setAttribute("couponVO", couponVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/CouponManage.jsp");
-					failureView.forward(req, res);
-					System.out.println("3");
-					return;
+					String includePath = "/back_end/product/CouponManage.jsp"; //讓include增加商品頁面的bar得到網址
+//					System.out.println(includePath);
+					req.setAttribute("includePath", includePath);
+//					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交couponManage.jsp
+					CouponService couponService = new CouponService();
+
+					List<CouponVO> list = couponService.getAll();
+					Collections.reverse(list);
+					req.setAttribute("list", list);
+					RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); //include商品的bar
+					successView.forward(req, res);
 				}
 				/*************************** 2.開始新增資料 ***************************************/
 				CouponService couponService = new CouponService();
@@ -112,10 +119,12 @@ public class CpGetServlet extends HttpServlet {
 				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); //include商品的bar
 				successView.forward(req, res);
 			} catch (Exception e) {
-				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/CouponManage.jsp");
-				failureView.forward(req, res);
-				return;
+				String includePath = "/back_end/product/CouponManage.jsp"; //讓include增加商品頁面的bar得到網址
+//				System.out.println(includePath);
+				req.setAttribute("includePath", includePath);
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交couponManage.jsp
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); //include商品的bar
+				successView.forward(req, res);
 			}
 
 		}
@@ -143,7 +152,7 @@ public class CpGetServlet extends HttpServlet {
 			req.setAttribute("includePath", includePath);
 
 //			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); //include商品的bar
+			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp?"+"&give=true"); //include商品的bar
 			successView.forward(req, res);
 			return;
 

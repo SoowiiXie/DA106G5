@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>優惠券管理</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -20,6 +21,7 @@
 	CouponService couponService = new CouponService();
 
 	List<CouponVO> list = couponService.getAll();
+	Collections.reverse(list);
 
 	pageContext.setAttribute("list", list);
 %>
@@ -190,7 +192,16 @@ margin-top:100;
 </div>
 
  <div class="buttonBar" style="margin-top:100px"></div>
-
+<script>
+var give= ${param.give};
+if (give == true){
+ Swal.fire(
+   '',  
+   '優惠券發送成功!',
+   'success'
+   )
+}
+</script>
 
 
 </body>
