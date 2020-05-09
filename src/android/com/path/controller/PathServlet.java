@@ -81,7 +81,7 @@ System.out.println("input: " + jsonIn);
 			String jsonStr = gson.toJson(pathListFilter);
 //System.out.println(jsonStr);
 			if(pathListFilter!=null) {
-				
+				res.setBufferSize(12);
 				writeText(res, jsonStr);
 			}
 		}else if("getOnePath".equals(action)) {
