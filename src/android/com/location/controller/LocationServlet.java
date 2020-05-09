@@ -2,6 +2,7 @@ package android.com.location.controller;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
@@ -11,7 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.path.model.PathService;
-
+import com.path.model.PathVO;
 import com.location.model.*;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
@@ -45,10 +46,15 @@ System.out.println("input: "+jsonIn);
 		String action = jsonObject.get("action").getAsString();
 		
 		if("getAll".equals(action)) {
-			LocationVO locationVO = new LocationVO();
 			List<LocationVO> locationList = locationSvc.getAll();
-			String jsonStr = gson.toJson(locationList);
+			
+			List<LocationVO> locationListFilter = locationList.stream()
+					.filter(p -> p.getLoc_status() == 1)
+					.collect(Collectors.toList());
+			
+			String jsonStr = gson.toJson(locationListFilter);
 			if(locationList != null) {
+				res.setBufferSize(12);
 				writeText(res, jsonStr);
 			}
 		}

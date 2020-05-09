@@ -572,4 +572,60 @@ public class LocationDAO implements Location_interface {
 		return list_map;
 	}
 
+	@Override
+	public List<LocationVO> getAll(String string) {
+		List<LocationVO> list = new ArrayList<LocationVO>();
+		LocationVO locationVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				locationVO = new LocationVO();
+				locationVO.setLoc_no(rs.getString("loc_no"));
+				locationVO.setLoc_typeno(rs.getString("loc_typeno"));
+				locationVO.setLongitude(rs.getString("longitude"));
+				locationVO.setLatitude(rs.getString("latitude"));
+				locationVO.setLoc_status(rs.getInt("loc_status"));
+				locationVO.setLoc_address(rs.getString("loc_address"));
+
+				list.add(locationVO); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
 }

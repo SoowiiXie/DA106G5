@@ -22,4 +22,7 @@ public interface Location_interface {
 	
 	// 萬用型
 	public List<LocationVO> getAllUWish(Map<String, String[]> map, String orderBy);
+	
+	//android
+	public List<LocationVO> getAll(String string);
 }
