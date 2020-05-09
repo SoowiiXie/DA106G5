@@ -108,4 +108,8 @@ public class LocationService {
 		map.put("loc_typeno", new String[] { loc_typeno });
 		return dao.getAllUWish(map,orderBy);
 	}
+	
+	public List<LocationVO> getAll(String string) {
+		return dao.getAll(string);
+	}
 }

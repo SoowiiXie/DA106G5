@@ -46,7 +46,7 @@ System.out.println("input: "+jsonIn);
 		String action = jsonObject.get("action").getAsString();
 		
 		if("getAll".equals(action)) {
-			List<LocationVO> locationList = locationSvc.getAll();
+			List<LocationVO> locationList = locationSvc.getAll("getAll");
 			
 			List<LocationVO> locationListFilter = locationList.stream()
 					.filter(p -> p.getLoc_status() == 1)
