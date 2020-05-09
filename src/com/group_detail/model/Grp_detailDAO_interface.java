@@ -18,8 +18,14 @@ public interface Grp_detailDAO_interface {
           public boolean isGroupOver(String grp_no);
           //確認揪團是否額滿
           public boolean isFull(Integer grp_personmax,String grp_no);
-
           public Grp_detailVO findByPrimaryKeyByGrp_no(String grp_no);
+          //新增加入
+          public void insertByThree(String mb_id,String grp_no, Integer grp_register);
+          //刪除加入
+          public void deleteByTwo(String mb_id,String grp_no);
+          // 是否有加入
+          public boolean isGoin(String mb_id,String grp_no);
+          
           //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //        public List<EmpVO> getAll(Map<String, String[]> map);  
           

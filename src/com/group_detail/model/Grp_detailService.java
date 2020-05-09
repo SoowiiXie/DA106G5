@@ -54,5 +54,18 @@ public class Grp_detailService {
 	public boolean isFull(Integer grp_personmax, String grp_no){
 		return dao.isFull(grp_personmax, grp_no);
 	}
-	
+	//加入雙主鍵
+		public void insertByThree( String mb_id, String grp_no, Integer grp_register) {
+			System.out.println("insert");
+			dao.insertByThree(grp_no, mb_id, grp_register);		
+	}
+	//刪除雙主鍵
+	public void deleteByTwo(String mb_id , String grp_no) {
+		System.out.println("delete");
+		dao.deleteByTwo(mb_id, grp_no);		
+	}
+	//是否有加入
+	public boolean isGoin(String mb_id , String grp_no) {
+		return dao.isGoin(grp_no, mb_id);
+	}
 }

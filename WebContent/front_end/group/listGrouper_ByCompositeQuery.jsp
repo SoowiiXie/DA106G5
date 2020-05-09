@@ -158,6 +158,8 @@ listGrouper_ByCompositeQuery.jsp<br>
 			</td>
 <%-- 			<td>${grouperVO.grp_follow}</td>	 --%>
 			<td>${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
+			<%
+			%>
 			<td>													   
 <!-- 																   /front_end/index.jsp?pageRun=group/group.do"  -->
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" style="margin-bottom: 0px;">
@@ -179,10 +181,16 @@ listGrouper_ByCompositeQuery.jsp<br>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do" style="margin-bottom: 0px;">
 				${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}/${grouperVO.grp_personmax}<br>
 				<input type="submit" value="加入" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/><br>
+
+<span class="goin">
+	<img class="goin_img" width="75" height="75" border="0" id="goin_img" src="${isGoin?'images/joinIconun.png':'images/joinIcon.png'}">
+	<input type="hidden" name="grp_no" value="${grouperVO.grp_no}">
+	<label class="labelGoin">${isGoin?"已加入":"加入"}</label>
+</span>	
 				
 <!-- 				觀察用 -->
 				<input type="hidden"   name="grp_no"       size=8 value="${grouperVO.grp_no}">
-				<input type="hidden"   name="mb_id"     	 size=8 value="<%= memberVO.getMb_id() %>">
+				<input type="hidden"   name="mb_id"        size=8 value="<%= memberVO.getMb_id() %>">
 				<input type="hidden"   name="grp_register" size=8 value="1">	
 				<br>			
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
@@ -281,6 +289,38 @@ listGrouper_ByCompositeQuery.jsp<br>
 		});
 	});
 	</script>	 
+	<script> 
+	// AJAX 加入
+
+	$(document).ready(function(){
+		$(".goin").on("click",function(){
+			var goin_span = $(this);
+			$.ajax({
+				type:"GET", 
+				url: "<%=request.getContextPath()%>/front_end/group_detail/group_detail.do",
+				data:{
+					"action":"goin",
+					"grp_no":goin_span.next().val(),
+					"mb_id":"${mb_id}",
+					"grp_register":1
+				},
+				dataType: "text",
+				success: function(data){
+					if(data == "addGoin"){
+						
+						follow_span.children(".goin_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/followIcon2un.png");
+						follow_span.children('.labelGoin').text("已加入");
+					}else if(data == "deleteGoin"){
+						
+						follow_span.children(".goin_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/followIcon2.png");
+						follow_span.children('.labelGoin').text("加入");
+					}
+				},
+				error: function(){alert("AJAX-class發生錯誤囉!")}
+			});
+		});
+	});
+	</script>	
 
 	<script>
 		  src="https://code.jquery.com/jquery-3.5.0.js"

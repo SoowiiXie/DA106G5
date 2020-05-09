@@ -65,12 +65,12 @@ public class Group_followService {
 	}
 	//加入雙主鍵
 	public void insertByTwo(String grp_no, String mb_id) {
-		System.out.println("insert");
+		System.out.println("加入雙主鍵");
 		dao.insertByTwo(grp_no, mb_id);		
 	}
 	//刪除雙主鍵
 	public void deleteByTwo(String grp_no, String mb_id) {
-		System.out.println("delete");
+		System.out.println("刪除雙主鍵");
 		dao.deleteByTwo(grp_no, mb_id);		
 	}
 	//是否有追蹤

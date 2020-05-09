@@ -527,5 +527,22 @@ public class Grp_detailJDBCDAO implements Grp_detailDAO_interface {
 		return false;
 	}
 
+	@Override
+	public void insertByThree(String grp_no, String mb_id, Integer grp_register) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteByTwo(String mb_id, String grp_no) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isGoin(String grp_no, String mb_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

@@ -5,6 +5,7 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import com.group_detail.model.*;
+import com.group_follow.model.Group_followService;
 
 public class Group_detailServlet extends HttpServlet {
 
@@ -426,7 +427,42 @@ public class Group_detailServlet extends HttpServlet {
 			}
 		}
 		
-		
+		if ("goin".equals(action)) { // 加入
+			PrintWriter out = res.getWriter();
+	
+			try {
+				System.out.println("這裡是控制器頭");
+				/***************************查詢資料****************************************/
+				String mb_id = req.getParameter("mb_id").trim();
+				//測試
+				System.out.println("加入的mb_id"+mb_id);				
+				String grp_no = req.getParameter("grp_no").trim();
+				//測試
+				System.out.println("加入的grp_no"+grp_no);
+				Integer grp_register = 1 ;
+				
+				Grp_detailService grp_detailSvc = new Grp_detailService();
+				boolean check = grp_detailSvc.isGoin(mb_id , grp_no);
+//				System.out.println(group_followSvc.isFollow(grp_no, mb_id));
+				if(check) {
+					grp_detailSvc.deleteByTwo(mb_id , grp_no);
+					out.write("deleteGoin");
+					System.out.println("退出揪團");
+				}else {
+					grp_detailSvc.insertByThree(mb_id , grp_no , grp_register);
+					out.write("addGoin");
+					System.out.println("加入揪團");
+
+				}
+				out.flush();
+				out.close();
+				return;
+								
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				System.out.println( e.getMessage());
+			}
+		}
 				
 	}
 }

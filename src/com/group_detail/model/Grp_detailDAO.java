@@ -39,6 +39,13 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			"select count(1) as count from grp_detail where mb_id = ?";
 	private static final String GET_SELECT_STMT = 
 			"SELECT mb_id,grp_no,grp_register FROM grp_detail where mb_id";
+	
+	private static final String INSERT_THREE = 
+			"INSERT INTO grp_detail (mb_id,grp_no,grp_register) VALUES (? , ? , '1')";	
+	private static final String DELETE_TWO = 
+			"DELETE FROM grp_detail where  MB_ID = ? and GRP_NO = ?";
+	private static final String IS_GOIN = 
+			"SELECT * FROM grp_detail WHERE MB_ID = ? AND GRP_NO = ?";
 	@Override
 	public void insert(Grp_detailVO grp_detailVO) {
 
@@ -516,6 +523,150 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 		} else {
 			return true;
 		}
+	}
+
+	@Override
+	public void insertByThree( String mb_id, String grp_no, Integer grp_register) {
+		// TODO Auto-generated method stub
+		System.out.println("進到加入揪團DAO");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(INSERT_THREE);
+
+			
+			pstmt.setString(1, mb_id);
+			pstmt.setString(2, grp_no);
+			
+			
+			System.out.println("是塞三個進不來嗎?");
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+	
+		
+	}
+
+	@Override
+	public void deleteByTwo( String mb_id, String grp_no) {
+		// TODO Auto-generated method stub
+		System.out.println("IND");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE_TWO);
+			
+			pstmt.setString(1, mb_id);
+			pstmt.setString(2, grp_no);
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+	
+	}
+
+	@Override
+	public boolean isGoin(String mb_id,String grp_no) {
+		// TODO Auto-generated method stub
+
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean result = false;
+
+		try {
+
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(IS_GOIN);
+			
+			pstmt.setString(1, mb_id);
+			pstmt.setString(2, grp_no);
+						
+			rs = pstmt.executeQuery();
+			System.out.println("有加入嗎?");
+			if(rs.next()) {
+				System.out.println("有喔");
+				result = true;
+			}
+			System.out.println("沒有");
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		System.out.println("出DAO");
+		return result;
+	
 	}
 
 }
