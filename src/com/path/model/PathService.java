@@ -21,7 +21,7 @@ public class PathService {
 		return pathVO.getPath_no();
 	}
 
-	public PathVO updatePath(String path_name, Integer path_difficulty, java.sql.Timestamp path_end, Double path_distance, String path_kml, Double path_lng, Double path_lat, String path_no, String path_pic) {
+	public PathVO updatePath(String path_name, Integer path_difficulty, java.sql.Timestamp path_end, Double path_distance, String path_kml, Double path_lat, Double path_lng, String path_no, String path_pic) {
 
 		PathVO pathVO = new PathVO();
 
