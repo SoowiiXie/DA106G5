@@ -51,7 +51,7 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 	width: 98%;
 	background-color:rgba(220,231,117 ,0.5);
 	border:2px solid #CCCCFF;
-	font-size:18px;
+	font-size:16px;
     color: black;
 	}
   table {
@@ -190,11 +190,12 @@ listGrouper_ByCompositeQuery.jsp<br>
 				<input type="hidden" name="action"       value="insert"></FORM>
 			
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_follow/group_follow.do" style="margin-bottom: 0px;">
-				<input type="submit" value="關注" />
-				<img src="<%= request.getContextPath() %>/front_end/group/images/followIcon2un.png" width="75" height="75" border="0" id="follow_img">
-				<br> 
-<span id="follow">
-	<img class="follow_img" src="${isFollow?'images/followIcon2un.png':'images/followIcon2.png'}">
+<!-- 			原關注 -->
+<!-- 				<input type="submit" value="關注" /> -->
+<%-- 					<img src="<%= request.getContextPath() %>/front_end/group/images/followIcon2un.png" width="75" height="75" border="0" class="follow_img"> --%>
+
+<span class="follow">
+	<img class="follow_img" width="75" height="75" border="0" id="follow_img" src="${isFollow?'images/followIcon2un.png':'images/followIcon2.png'}">
 	<input type="hidden" name="grp_no" value="${grouperVO.grp_no}">
 	<label class="labelFollow">${isFollow?"已關注":"關注"}</label>
 </span>				
@@ -253,25 +254,26 @@ listGrouper_ByCompositeQuery.jsp<br>
 	// AJAX 關注
 
 	$(document).ready(function(){
-		$("#follow").on("click",function(){
-			var follow_img = $(this);
+		$(".follow").on("click",function(){
+			var follow_span = $(this);
 			$.ajax({
 				type:"GET",
 				url: "<%=request.getContextPath()%>/front_end/group_follow/group_follow.do",
 				data:{
 					"action":"follow",
-					"grp_no":follow_img.next().val(),
+					"grp_no":follow_span.next().val(),
 					"mb_id":"${mb_id}"
 				},
 				dataType: "text",
 				success: function(data){
-					alert(data);
-					if(data == "insertByTwo"){
-						follow_img.attr("src","images/followIcon2.png");
-						follow_img.siblings('.labelFollow').text("已關注");
-					}else if(data == "deleteByTwo"){
-						follow_img.attr("src","images/followIcon2.png");
-						follow_img.siblings('.labelFollow').text("關注");
+					if(data == "addFollow"){
+						
+						follow_span.children(".follow_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/followIcon2un.png");
+						follow_span.children('.labelFollow').text("已關注");
+					}else if(data == "deleteFollow"){
+						
+						follow_span.children(".follow_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/followIcon2.png");
+						follow_span.children('.labelFollow').text("關注");
 					}
 				},
 				error: function(){alert("AJAX-class發生錯誤囉!")}

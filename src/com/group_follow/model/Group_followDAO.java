@@ -507,7 +507,6 @@ public class Group_followDAO implements Group_followDAO_interface {
 			System.out.println("OKA");
 			if(rs.next()) {
 				System.out.println("OKB");
-				rs.getInt(1);
 				result = true;
 			}
 
