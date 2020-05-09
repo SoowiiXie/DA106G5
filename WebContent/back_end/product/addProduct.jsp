@@ -105,12 +105,14 @@ margin-top:100;
 		  </td>
 	   <tr>
 	     <td bgcolor=#9CC7F6 rowspan="2">商品圖片：</td>
-		 <td bgcolor=#9CC7F6><input type="file" name="pd_pic" onchange="setImg(this)"> 
-		
+		 <td style=""bgcolor=#9CC7F6><input type="file" name="pd_pic" onchange="setImg(this)"> 
+		 <input type="file" name="pd_pic2" onchange="setImg(this)">
+		 <input type="file" name="pd_pic3" onchange="setImg(this)">
+		 <input type="file" name="pd_pic4" onchange="setImg(this)"> 
 		 </td>
 	</tr>
 		 <tr>
-						<td style="width:450px; height:450;"><img style="max-width:100%;" id="pd_pic" src="<%=imgStr%>">
+						<td style="width:450px; height:450px;"><img style="max-width:100%;" id="pd_pic" src="<%=imgStr%>">
 						<!-- 第一次有送出照片，錯誤回來後沒有再選擇照片時，用picBase64送出 -->
 						<%if(productVO != null && productVO.getPd_pic() != null){ %>
 			<input type="hidden" name="picBase64" value="<%=Base64.getEncoder().encodeToString(productVO.getPd_pic())%>">
@@ -121,7 +123,7 @@ margin-top:100;
 					
 					
     </table>
-    	<input type="hidden" name="action" value="addProduct"> 
+    	<input type="hidden" name="action" value="addProduct3"> 
 		<input type="hidden" name="includePath" value="${incluePath}">
 		<input type="submit" name="Submit" value="增加商品">
 	</form>

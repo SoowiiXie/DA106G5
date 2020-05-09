@@ -24,6 +24,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css" media="screen">
+
+
+table {
+
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+table, th, td {
+    border: 3px solid 	#FFFFFF;
+  }
+th, td {
+    padding: 1px;
+  
+  }
+  
+  .buttonBar{
+width:100%;
+background-color:#FF004C;
+height:100px;
+margin-top:100;
+}
+
+</style>
 <meta charset="UTF-8">
 <title>${productVO.pd_name}</title>
 </head>
@@ -74,9 +102,9 @@
 			</tr>
 
 			<tr>
-				<td style="height:100px;" bgcolor=#9CC7F6>產品商品分類：</td>
+				<td bgcolor=#9CC7F6>產品商品分類：</td>
 				
-				<td style="height:100px;" bgcolor=#9CC7F6><select size="1" name="pd_typeNo">
+				<td  bgcolor=#9CC7F6><select size="1" name="pd_typeNo">
 						<c:forEach var="pd_typeVO" items="${list}">
 							<option value="${pd_typeVO.pd_typeNo}" ${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
 						</c:forEach>
@@ -93,26 +121,40 @@
 			</tr>
 
 			<tr>
-				<td bgcolor=#9CC7F6> 商品圖片</td>
+				<td bgcolor=#9CC7F6> 商品圖片1:</td>
 				<td bgcolor=#9CC7F6><input type="file" name="pd_pic" onchange="setImg(this)">
 				
 			</td>
 			<tr>
 			<td bgcolor=#9CC7F6></td>
-			<td bgcolor=#9CC7F6><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"></td>
+			<td bgcolor=#9CC7F6><img  style="height:100px; width:100px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"></td>
 			</tr>
 			<tr>
+				<td bgcolor=#9CC7F6> 商品圖片2:</td>
+				<td bgcolor=#9CC7F6><input type="file" name="pd_pic2" onchange="setImg(this)">
+				
+			</td>
+			<tr>
 			<td bgcolor=#9CC7F6></td>
-			<td bgcolor=#9CC7F6><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic2"></td>
+			<td bgcolor=#9CC7F6><img  style="height:100px; width:100px;" id="pd_pic2" src="<%=request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic2"></td>
 			</tr>
-			
+			<tr>
+				<td bgcolor=#9CC7F6> 商品圖片3:</td>
+				<td bgcolor=#9CC7F6><input type="file" name="pd_pic3" onchange="setImg(this)">
+				
+			</td>
 				<tr>
 			<td bgcolor=#9CC7F6></td>
-			<td bgcolor=#9CC7F6><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic3"></td>
+			<td bgcolor=#9CC7F6><img  style="height:100px; width:100px;" id="pd_pic3" src="<%=request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic3"></td>
 			</tr>
 			<tr>
+				<td bgcolor=#9CC7F6> 商品圖片4:</td>
+				<td bgcolor=#9CC7F6><input type="file" name="pd_pic4" onchange="setImg(this)">
+				
+			</td>
+			<tr>
 			<td bgcolor=#9CC7F6></td>
-			<td bgcolor=#9CC7F6><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic4"></td>
+			<td bgcolor=#9CC7F6><img  style="height:100px; width:100px;" id="pd_pic4" src="<%=request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic4"></td>
 			</tr>
 
 
@@ -129,8 +171,6 @@
 </div>
 	<br>
 	<br>
-	<a
-		href="<%=request.getContextPath()%>/back_end/product/ShopManager.jsp">回管理商城首頁</a>
 
 
 	<script>

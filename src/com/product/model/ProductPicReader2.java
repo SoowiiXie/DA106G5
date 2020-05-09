@@ -34,11 +34,11 @@ public class ProductPicReader2 extends HttpServlet {
 					// "SELECT IMAGE FROM PICTURES WHERE PID = " + req.getParameter("PID"));
 					"SELECT pd_pic2 FROM product WHERE pd_no = '" + pd_no + "' ");
 			if (rs.next()) {
-				byte[] pic =null;
+				byte[] pic2 =null;
 				
-				pic=rs.getBytes(1);
+				pic2=rs.getBytes(1);
 				
-				out.write(pic);
+				out.write(pic2);
 				
 //				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("loc_pic"));
 //				byte[] buf = new byte[4 * 1024]; // 4K buffer
@@ -60,7 +60,7 @@ public class ProductPicReader2 extends HttpServlet {
 			stmt.close();
 		} catch (Exception e) {
 //			System.out.println(e);
-			InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
+			InputStream in = getServletContext().getResourceAsStream("/NoData/unnamed.jpg");
 			byte[] b = new byte[in.available()];
 			in.read(b);
 			out.write(b);
@@ -103,7 +103,7 @@ public class ProductPicReader2 extends HttpServlet {
 				stmt.close();
 			} catch (Exception e) {
 //				System.out.println(e);
-				InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
+				InputStream in = getServletContext().getResourceAsStream("/NoData/unnamed.jpg");
 				byte[] b = new byte[in.available()];
 				in.read(b);
 				out.write(b);
@@ -146,7 +146,7 @@ public class ProductPicReader2 extends HttpServlet {
 				stmt.close();
 			} catch (Exception e) {
 //				System.out.println(e);
-				InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
+				InputStream in = getServletContext().getResourceAsStream("/NoData/unnamed.jpg");
 				byte[] b = new byte[in.available()];
 				in.read(b);
 				out.write(b);

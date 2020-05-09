@@ -822,9 +822,13 @@ public class ProductServlet extends HttpServlet {
 			try {
 
 				Part part = req.getPart("pd_pic");
+				System.out.println("pd_pic"+part.getSize());
 				Part part2 = req.getPart("pd_pic2");
+				System.out.println("pd_pic2"+part2.getSize());
 				Part part3 = req.getPart("pd_pic3");
+				System.out.println("pd_pic3"+part3.getSize());
 				Part part4 = req.getPart("pd_pic4");
+				System.out.println("pd_pic4"+part4.getSize());
                 List<Part> parts = new ArrayList<Part>();
                 parts.add(part);
                 parts.add(part2);
@@ -835,14 +839,11 @@ public class ProductServlet extends HttpServlet {
                 List<byte[]> pd_pics = new ArrayList();
                 
 			   for(Part aPart : parts) {
-					in = aPart.getInputStream();
+				in = aPart.getInputStream();
 				bf = new BufferedInputStream(in);
-				int piclen = 0;
-				if (aPart.getSize() != 0) {
-					pd_pic = new byte[bf.available()]; // 暫存記憶體
-					piclen++;
-					
-				}
+				pd_pic = new byte[bf.available()]; // 暫存記憶體
+				
+			
 				bf.read(pd_pic);
 				bf.close();
 				in.close();
@@ -876,6 +877,10 @@ public class ProductServlet extends HttpServlet {
 				productVO.setPd_price(pd_price);
 				productVO.setPd_detail(pd_detail);
 				productVO.setPd_typeNo(pd_typeNo);
+				System.out.println("第一張："+pd_pics.get(0));
+				System.out.println("第二張："+pd_pics.get(1));
+				System.out.println("第三張："+pd_pics.get(2));
+				System.out.println("第四張："+pd_pics.get(3));
 				productVO.setPd_pic(pd_pics.get(0));
 				productVO.setPd_pic2(pd_pics.get(1));
 				productVO.setPd_pic3(pd_pics.get(2));
@@ -1088,6 +1093,8 @@ public class ProductServlet extends HttpServlet {
 //			}
 //
 //		}
+		
+	
 
 	}
 
