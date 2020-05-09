@@ -17,5 +17,6 @@ public class Group_followVO implements java.io.Serializable{
 	public void setMb_id(String mb_id) {
 		this.mb_id = mb_id;
 	}
+	
 
 }

@@ -65,6 +65,7 @@
 	#myList{
 	background:rgba(204,255,144 ,0.8);
 	font-size:16px;
+
 	}
 	#wrapperRight{
 	background-image: url('/DA106_G5/front_end/group/webFront/c7.jpg');
@@ -84,7 +85,6 @@
     text-align: center;
   }
   #group_table, #group_table tr,#group_table td,#group_table th{
-    width: 1500px;   
   	border: 1px solid #000;
   	margin: 50px auto 5px auto;
   }

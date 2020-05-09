@@ -22,7 +22,7 @@ public class Group_followDAO implements Group_followDAO_interface {
 			e.printStackTrace();
 		}
 	}
-	private static final String INSERT_STMT = 
+		private static final String INSERT_STMT = 
 			"INSERT INTO grp_follow (GRP_NO,MB_ID) VALUES (?, ?)";
 		private static final String GET_ALL_STMT = 
 			"SELECT GRP_NO,MB_ID FROM grp_follow order by GRP_NO";
@@ -30,8 +30,10 @@ public class Group_followDAO implements Group_followDAO_interface {
 			"SELECT GRP_NO,MB_ID FROM grp_follow where GRP_NO = ?";
 		private static final String GET_ONE_STMTGRPNO = 
 				"SELECT mb_id,grp_no FROM grp_follow where grp_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM grp_follow (GRP_NO,MB_ID) VALUES (?, ?)";
+		private static final String INSERT_TWO = 
+			"INSERT INTO grp_follow (GRP_NO,MB_ID) VALUES (?, ?)";	
+		private static final String DELETE_TWO = 
+			"DELETE FROM grp_follow where GRP_NO=? and  MB_ID = ?";
 		private static final String UPDATE = 
 			"UPDATE grp_follow set MB_ID=? where GRP_NO = ?";
 		private static final String GET_FOLLOWPEOPLE_COUNT = 
@@ -40,7 +42,8 @@ public class Group_followDAO implements Group_followDAO_interface {
 				"select count(1) as count from grp_follow where mb_id = ?";
 		private static final String GET_ONE_STMT_MB_ID = 
 				"SELECT GRP_NO,MB_ID FROM grp_follow where MB_ID = ?";
-		private static final String IS_FOLLOW = "SELECT * FROM grp_follow WHERE grp_no = ? AND MB_ID = ?";
+		private static final String IS_FOLLOW = 
+			"SELECT * FROM grp_follow WHERE GRP_NO = ? AND MB_ID = ?";
 
 	@Override
 	public void insert(Group_followVO group_followVO) {
@@ -130,7 +133,7 @@ public class Group_followDAO implements Group_followDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE);
+			pstmt = con.prepareStatement(DELETE_TWO);
 
 			pstmt.setString(1, group_followVO.getMb_id());
 			pstmt.setString(2, group_followVO.getGrp_no());
@@ -402,7 +405,7 @@ public class Group_followDAO implements Group_followDAO_interface {
 	@Override
 	public void insertByTwo(String grp_no, String mb_id) {
 		// TODO Auto-generated method stub
-				
+		System.out.println("INI");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -410,13 +413,13 @@ public class Group_followDAO implements Group_followDAO_interface {
 //			Class.forName(driver);
 //			con = DriverManager.getConnection(url, userid, passwd);
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
+			pstmt = con.prepareStatement(INSERT_TWO);
 
 			pstmt.setString(1, grp_no);
 			pstmt.setString(2, mb_id);
 
 			pstmt.executeUpdate();
-
+			System.out.println("endI");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -443,7 +446,7 @@ public class Group_followDAO implements Group_followDAO_interface {
 	@Override
 	public void deleteByTwo(String grp_no, String mb_id) {
 		// TODO Auto-generated method stub
-
+		System.out.println("IND");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -451,13 +454,13 @@ public class Group_followDAO implements Group_followDAO_interface {
 //			Class.forName(driver);
 //			con = DriverManager.getConnection(url, userid, passwd);
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE);
+			pstmt = con.prepareStatement(DELETE_TWO);
 
 			pstmt.setString(1, grp_no);
 			pstmt.setString(2, mb_id);
 
 			pstmt.executeUpdate();
-
+			System.out.println("endD");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -501,8 +504,10 @@ public class Group_followDAO implements Group_followDAO_interface {
 			pstmt.setString(2, mb_id);
 			
 			rs = pstmt.executeQuery();
-
+			System.out.println("OKA");
 			if(rs.next()) {
+				System.out.println("OKB");
+				rs.getInt(1);
 				result = true;
 			}
 
@@ -534,6 +539,7 @@ public class Group_followDAO implements Group_followDAO_interface {
 				}
 			}
 		}
+		System.out.println("finished");
 		return result;
 	
 	}

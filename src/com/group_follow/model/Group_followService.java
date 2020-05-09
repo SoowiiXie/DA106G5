@@ -63,14 +63,14 @@ public class Group_followService {
 		// TODO Auto-generated method stub
 		return dao.findByPrimaryKey(mb_id);
 	}
-	
-	public void addGroupfollowToAjax(String grp_no, String mb_id) {
-
+	//加入雙主鍵
+	public void insertByTwo(String grp_no, String mb_id) {
+		System.out.println("insert");
 		dao.insertByTwo(grp_no, mb_id);		
 	}
-	
-	public void deleteGroupfollowToAjax(String grp_no, String mb_id) {
-
+	//刪除雙主鍵
+	public void deleteByTwo(String grp_no, String mb_id) {
+		System.out.println("delete");
 		dao.deleteByTwo(grp_no, mb_id);		
 	}
 	//是否有追蹤

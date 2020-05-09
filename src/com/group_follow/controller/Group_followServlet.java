@@ -130,8 +130,7 @@ public class Group_followServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String grp_no = req.getParameter("grp_no").trim()                                                        ;
-				
-				
+								
 				String mb_id = req.getParameter("mb_id").trim();
 				if (mb_id == null || mb_id.trim().length() == 0) {
 					errorMsgs.add("請輸入會員名稱");
@@ -389,19 +388,31 @@ public class Group_followServlet extends HttpServlet {
 		
 		if ("follow".equals(action)) { // 關注
 				PrintWriter out = res.getWriter();
+		
 				try {
-					
+					System.out.println("123U");
 					/***************************查詢資料****************************************/
-					String grp_no = req.getParameter("grp_no");
-					String mb_id = req.getParameter("mb_id");
-					
+					String grp_no = req.getParameter("grp_no").trim();
+					//測試
+					System.out.println(grp_no);
+					String mb_id = req.getParameter("mb_id").trim();
+					//測試
+					System.out.println(mb_id);
 					Group_followService group_followSvc = new Group_followService();
-					if(group_followSvc.isFollow(grp_no, mb_id)) {
-						group_followSvc.deleteGroupfollowToAjax(grp_no, mb_id);
+					boolean check = group_followSvc.isFollow(grp_no, mb_id);
+//					System.out.println(group_followSvc.isFollow(grp_no, mb_id));
+					if(check) {
+						System.out.println(1);
+						group_followSvc.deleteByTwo(grp_no, mb_id);
 						out.write("deleteFollow");
+						System.out.println(grp_no+"abc");
+						System.out.println(mb_id+"abc");
 					}else {
-						group_followSvc.addGroupfollowToAjax(grp_no, mb_id);
+						System.out.println(2);
+						group_followSvc.insertByTwo(grp_no, mb_id);
 						out.write("addFollow");
+						System.out.println(grp_no+"efg");
+						System.out.println(mb_id+"efg");
 					}
 					out.flush();
 					out.close();
@@ -409,6 +420,7 @@ public class Group_followServlet extends HttpServlet {
 									
 					/***************************其他可能的錯誤處理**********************************/
 				} catch (Exception e) {
+					System.out.println( e.getMessage());
 				}
 			}
 	}

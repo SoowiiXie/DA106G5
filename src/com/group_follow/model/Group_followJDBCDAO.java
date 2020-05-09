@@ -17,13 +17,14 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 	private static final String GET_ONE_STMT = 
 		"SELECT GRP_NO,MB_ID FROM grp_follow where GRP_NO = ?";
 	private static final String DELETE = 
-		"DELETE FROM grp_follow (GRP_NO,MB_ID) VALUES (?, ?)";
+		"DELETE FROM grp_follow where GRP_NO=? and  MB_ID = ?";
 	private static final String UPDATE = 
 		"UPDATE grp_follow set MB_ID=? where GRP_NO = ?";
 	private static final String GET_FOLLOWPEOPLE_COUNT = 
 			"select count(1) as count from grp_follow where grp_no = ?";
 	private static final String GET_FOLLOWGROUP_COUNT = 
 			"select count(1) as count from grp_follow where mb_id = ?";
+	private static final String IS_FOLLOW = "SELECT * FROM grp_follow WHERE grp_no = ? AND MB_ID = ?";
 
 	@Override
 	public void insert(Group_followVO group_followVO) {
@@ -410,6 +411,10 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 		// 查詢追蹤該揪團之人數
 		int peopleHowManyGroupFollow = dao.totalFollowGroup("soowii123");
 		System.out.println("peopleHowManyGroupFollow " + peopleHowManyGroupFollow);
+		
+		//測試有無
+		boolean result = dao.isFollow("grp00005", "yiwen123");
+		System.out.println(result);
 	}
 
 //	@Override
@@ -439,6 +444,64 @@ public class Group_followJDBCDAO implements Group_followDAO_interface {
 	@Override
 	public boolean isFollow(String grp_no, String mb_id) {
 		// TODO Auto-generated method stub
-		return false;
+
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean result = false;
+
+		try {
+
+			try {
+				Class.forName(driver);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(IS_FOLLOW);
+			
+			pstmt.setString(1, grp_no);
+			pstmt.setString(2, mb_id);
+			
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				result = true;
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return result;
+	
 	}
+	
+	
 }

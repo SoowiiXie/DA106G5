@@ -803,6 +803,7 @@
 									},
 									dataType: "text",
 									success: function(data){
+										alert(data)
 										if(data == "addFollow"){
 											follow_img.attr("src","<%= request.getContextPath() %>/img/red_heart.png");
 											follow_img.siblings('.labelFollow').text("已關注");
