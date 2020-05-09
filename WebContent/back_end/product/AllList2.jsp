@@ -133,12 +133,12 @@ margin-top:100;
 				<td align="center" style="height: 100px; width: 150px;"><img
 					src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"
 					style="width:auto;"></td>
-				<td bgcolor=#FFD2D2>${productVO.pd_no}</td>
-				<td bgcolor=#FFD2D2>${productVO.pd_name}</td>
-				<td bgcolor=#FFD2D2>${productVO.pd_price}元</td>
-				<td bgcolor=#FFD2D2>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
-				<td bgcolor=#FFD2D2>${productVO.pd_status==1?'下架':'上架'}</td>
-				<td bgcolor=#FFD2D2 align="center" >
+				<td bgcolor=#9CC7F6>${productVO.pd_no}</td>
+				<td bgcolor=#9CC7F6>${productVO.pd_name}</td>
+				<td bgcolor=#9CC7F6>${productVO.pd_price}元</td>
+				<td bgcolor=#9CC7F6>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
+				<td bgcolor=#9CC7F6>${productVO.pd_status==1?'下架':'上架'}</td>
+				<td bgcolor=#9CC7F6 align="center" >
 			
 				<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">
 				
@@ -165,7 +165,7 @@ margin-top:100;
 				
 
 
-				<td bgcolor=#FFD2D2><FORM METHOD="POST"
+				<td bgcolor=#9CC7F6><FORM METHOD="POST"
 						ACTION="<%=request.getContextPath()%>/ProductServlet"
 						style="margin-bottom: 0px;">
 						<input type="submit" value="修改">
@@ -174,7 +174,7 @@ margin-top:100;
 						<input type="hidden" name="action" value="getOne_For_update">
 						<input type="hidden" name="whichPage" value="<%=whichPage%>">
 					</FORM></td>
-				<td bgcolor=#FFD2D2>
+				<td bgcolor=#9CC7F6>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/ProductServlet"
 						style="margin-bottom: 0px;">

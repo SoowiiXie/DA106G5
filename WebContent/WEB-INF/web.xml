@@ -532,7 +532,16 @@
 		<servlet-name>ProductPicReader</servlet-name>
 		<url-pattern>/ProductPicReader</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet>
+		<servlet-name>ProductPicReader2</servlet-name>
+		<servlet-class>com.product.model.ProductPicReader2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductPicReader2</servlet-name>
+		<url-pattern>/ProductPicReader2</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>OrdersServlet</servlet-name>
 		<servlet-class>com.product.controller.OrdersServlet</servlet-class>

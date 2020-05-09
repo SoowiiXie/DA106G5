@@ -215,14 +215,14 @@ margin-top:100;
 <div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
 
  <div>  
-<div style=" margin-left:18%; float:left; border-style: solid; border-color:red;">
-  <table border="1">
+<div style=" margin-left:18%; float:left; border-style: solid; border-color:red; width:30%; height:30%;">
+  <table border="1" style="border:3px #cccccc solid;" cellpadding="10" border='1'>
     <tr>
-      <td width="500" height="500">
-        <div align="center">
-          <img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}">
+      <th bgcolor="#999999" width="100%" height="20%" align="center">
+        <div align="center" >
+          <img style="height:80%;width:80%;" src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}">
         </div>
-      </td>
+      </th>
     </tr>
   </table>
 </div>
@@ -309,6 +309,33 @@ margin-top:100;
 
 
 </div>
+
+
+<div style="width:400px;height:500px; background-color:blue; margin-top:200px;" >
+
+
+    <div id="mainPic" style="width:100%;height:60%; background-color:green;">
+       <img style="width:200px; height:200px;margin:auto;"src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}">
+    </div>
+    
+       <div style="width:100%;height:30%;">   
+           <div id="Pic2" style="width:30%;height:100%; background-color:red; float:left; margin:10px 1.25% 10px 2.5%" >
+           <img onclick="showBig()" src="<%= request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic2" >
+           </div>
+           <div   id="Pic3" style="width:30%;height:100%;  background-color:black;float:left; margin:10px 1% 10px 1.25%">
+           <img onclick="showBig()" src="<%= request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic3">
+           </div>
+           <div id="Pic4" style="width:30%;height:100%; border-color:green; background-color:#3960D0;float:left;margin:10px 2.5% 10px 1%" onclick="showBig()">
+           <img onclick="showBig()" src="<%= request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic4"></div>
+       </div>    
+</div>
+
+<script>
+		function showBig(){
+			var picinfo=event.target.id;
+			var bigPic=document.getElementById('mainPic').innerHTML="<img src="+picinfo+">"
+		}
+	</script>
 
   
   <div class="buttonBar" style="margin-top:100px"></div>

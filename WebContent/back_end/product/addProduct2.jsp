@@ -70,8 +70,10 @@ margin-top:100;
 			</c:forEach>
 		</ul>
 	</c:if>
-<div style="width:100%;border-style: solid; border-color:red;" align="center">
-  <div class="zxc" style=" border-style: solid; border-color:#3960D0; width:100%;">
+<div style="width:100%; margin-top:50px;" align="center" >
+<font size="+3">增加商品：</font>
+		<hr>
+  <div class="zxc" style=" width:100%; margin-top:50px;">
   <form method="POST"
 		action="<%=request.getContextPath()%>/ProductServlet" name="form1"
 		enctype="multipart/form-data">
@@ -81,20 +83,20 @@ margin-top:100;
           <th width="80%">輸入欄位</th>
       </tr>
       <tr>
-        <td bgcolor=#FFD2D2>商品名稱：</td>
-        <td bgcolor=#FFD2D2><input type="TEXT" name="pd_name" value="${productVO.pd_name}"></td>
+        <td bgcolor=#9CC7F6>商品名稱：</td>
+        <td bgcolor=#9CC7F6><input type="TEXT" name="pd_name" value="${productVO.pd_name}"></td>
       </tr>
       <tr>
-        <td bgcolor=#FFD2D2>商品價格：</td>
-        <td bgcolor=#FFD2D2><input type="TEXT" name="pd_price" value="${productVO.pd_price}"></td>
+        <td bgcolor=#9CC7F6>商品價格：</td>
+        <td bgcolor=#9CC7F6><input type="TEXT" name="pd_price" value="${productVO.pd_price}"></td>
+      </tr>
+      <tr >
+	    <td style="height:100px;" bgcolor=#9CC7F6>商品詳述：</td>
+	    <td style="height:100px;" bgcolor=#9CC7F6><textarea style="height:100px; width:300px;" name="pd_detail">${productVO.pd_detail}</textarea></td>					
       </tr>
       <tr>
-	    <td bgcolor=#FFD2D2>商品詳述：</td>
-	    <td bgcolor=#FFD2D2><textarea name="pd_detail">${productVO.pd_detail}</textarea></td>					
-      </tr>
-      <tr>
-		<td bgcolor=#FFD2D2>產品商品分類：</td>
-		  <td bgcolor=#FFD2D2>
+		<td bgcolor=#9CC7F6>產品商品分類：</td>
+		  <td bgcolor=#9CC7F6>
 		    <select size="1" name="pd_typeNo">
 			  <c:forEach var="pd_typeVO" items="${list}">
 			    <option value="${pd_typeVO.pd_typeNo}" ${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
@@ -102,9 +104,11 @@ margin-top:100;
 		    </select>
 		  </td>
 	   <tr>
-	     <td bgcolor=#FFD2D2 rowspan="2">商品圖片</td>
-		 <td bgcolor=#FFD2D2><input type="file" name="pd_pic" onchange="setImg(this)" multiple> 
-		 
+	     <td bgcolor=#9CC7F6 rowspan="2">商品圖片：</td>
+		 <td bgcolor=#9CC7F6><input type="file" name="pd_pic" onchange="setImg(this)"> 
+		 <input type="file" name="pd_pic2" onchange="setImg(this)">
+		 <input type="file" name="pd_pic3" onchange="setImg(this)">
+		 <input type="file" name="pd_pic4" onchange="setImg(this)"> 
 		 </td>
 	</tr>
 		 <tr>
@@ -119,7 +123,7 @@ margin-top:100;
 					
 					
     </table>
-    	<input type="hidden" name="action" value="addProduct2"> 
+    	<input type="hidden" name="action" value="addProduct3"> 
 		<input type="hidden" name="includePath" value="${incluePath}">
 		<input type="submit" name="Submit" value="增加商品">
 	</form>
@@ -133,25 +137,25 @@ margin-top:100;
 		<table style="width:50%; flaot:left;">
 
 			<tr>
-				<td bgcolor=#FFD2D2>商品名稱：</td>
-				<td bgcolor=#FFD2D2><input type="TEXT" name="pd_name"
+				<td bgcolor=#9CC7F6>商品名稱：</td>
+				<td bgcolor=#9CC7F6><input type="TEXT" name="pd_name"
 					value="${productVO.pd_name}"></td>
 			</tr>
 			<tr>
-				<td bgcolor=#FFD2D2>商品價格：</td>
-				<td bgcolor=#FFD2D2><input type="TEXT" name="pd_price"
+				<td bgcolor=#9CC7F6>商品價格：</td>
+				<td bgcolor=#9CC7F6><input type="TEXT" name="pd_price"
 					value="${productVO.pd_price}"></td>
 			</tr>
 			<tr>
-				<td bgcolor=#FFD2D2>商品詳述：</td>
-				<td bgcolor=#FFD2D2><textarea name="pd_detail">${productVO.pd_detail}</textarea></td>					
+				<td bgcolor=#9CC7F6>商品詳述：</td>
+				<td bgcolor=#9CC7F6><textarea name="pd_detail">${productVO.pd_detail}</textarea></td>					
 					
 			</tr>
 
 		
 			<tr>
-					<td bgcolor=#FFD2D2>產品商品分類：</td>
-					<td bgcolor=#FFD2D2><select size="1" name="pd_typeNo">
+					<td bgcolor=#9CC7F6>產品商品分類：</td>
+					<td bgcolor=#9CC7F6><select size="1" name="pd_typeNo">
 							<c:forEach var="pd_typeVO" items="${list}">
 								<option value="${pd_typeVO.pd_typeNo}" ${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
 							</c:forEach>
@@ -160,7 +164,7 @@ margin-top:100;
 
 			</tr>
 			<tr>
-				<td bgcolor=#FFD2D2>商品圖片</td>
+				<td bgcolor=#9CC7F6>商品圖片</td>
 				<td><input type="file" name="pd_pic" onchange="setImg(this)">
 						<img width = "200px" id="pd_pic" src="<%=imgStr%>">
 						<!-- 第一次有送出照片，錯誤回來後沒有再選擇照片時，用picBase64送出 -->
@@ -198,7 +202,7 @@ margin-top:100;
 
 
 
-
+<div class="buttonBar" style="margin-top:100px"></div>
 
 
 </body>

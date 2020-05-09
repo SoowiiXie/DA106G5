@@ -31,6 +31,25 @@ public class ProductService {
 
 	}
 	
+	public ProductVO addProduct3(ProductVO productVO) {
+
+		ProductVO productVO2 = new ProductVO();
+
+		productVO2.setPd_name(productVO.getPd_name());
+		productVO2.setPd_price(productVO.getPd_price());
+		productVO2.setPd_detail(productVO.getPd_detail());
+		productVO2.setPd_typeNo(productVO.getPd_typeNo());
+		productVO2.setPd_pic(productVO.getPd_pic());
+		productVO2.setPd_pic2(productVO.getPd_pic2());
+		productVO2.setPd_pic3(productVO.getPd_pic3());
+		productVO2.setPd_pic4(productVO.getPd_pic4());
+		dao.addProduct(productVO);
+		
+		return productVO;
+		
+
+	}
+	
 	public List<ProductVO> getAll(){
 		return dao.getAll();
 		

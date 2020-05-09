@@ -82,8 +82,8 @@ margin-top:100;
           
           
 			<tr bgcolor=#C4E1FF>
-			    <td style="width:12%;" bgcolor="#FFB5B5">會員等級</td>
-			    <td style="width:8%;" bgcolor="#FFB5B5">
+			    <td style="width:12%;" bgcolor="#9CC7F6">會員等級</td>
+			    <td style="width:8%;" bgcolor="#9CC7F6">
 			      <select size="1" name="pd_typeNo">
 					    <option value="">不限等級
 						<option value="">等級1
@@ -94,8 +94,8 @@ margin-top:100;
 				  </select>
 			    </td>
 			    
-				<td style="width:8%;" bgcolor="#FFB5B5">優惠券種類：</td>
-				<td style="width:8%;" bgcolor="#FFB5B5">
+				<td style="width:8%;" bgcolor="#9CC7F6">優惠券種類：</td>
+				<td style="width:8%;" bgcolor="#9CC7F6">
 				    <select size="1" name="cp_no">
 					    <option value="">不限等級
 							<c:forEach var="couponVO" items="${list}">
@@ -104,7 +104,7 @@ margin-top:100;
 							</c:forEach>
 					</select></td>
 				
-			    <td style="width:12%;" bgcolor="#FFB5B5">
+			    <td style="width:12%;" bgcolor="#9CC7F6">
 			    <input type="hidden" name="action" value="giveCoupon"> 
 			    
 			    
@@ -134,16 +134,16 @@ margin-top:100;
           
           
 			<tr bgcolor=#C4E1FF>
-				<td style="width:8%;" bgcolor="#FFB5B5">優惠券種類：</td>
-				<td style="width:12%;" bgcolor="#FFB5B5"><input type="TEXT" name="cp_name"
+				<td style="width:8%;" bgcolor="#9CC7F6">優惠券種類：</td>
+				<td style="width:12%;" bgcolor="#9CC7F6"><input type="TEXT" name="cp_name"
 					value="${couponVO.cp_name}" style="width: 100%; height: 100%"></td>
-				<td style="width:8%;" bgcolor="#FFB5B5">優惠券金額：</td>
-				<td style="width:12%;" bgcolor="#FFB5B5"><input type="TEXT" name="cp_price"
+				<td style="width:8%;" bgcolor="#9CC7F6">優惠券金額：</td>
+				<td style="width:12%;" bgcolor="#9CC7F6"><input type="TEXT" name="cp_price"
 					value="${couponVO.cp_price}"style="width: 100%; height: 100%"></td>
-				<td style="width:8%;" bgcolor="#FFB5B5">優惠券備註：</td>
-				<td style="width:12%;" bgcolor="#FFB5B5"><input type="TEXT" name="cp_detail"
+				<td style="width:8%;" bgcolor="#9CC7F6">優惠券備註：</td>
+				<td style="width:12%;" bgcolor="#9CC7F6"><input type="TEXT" name="cp_detail"
 					value="${couponVO.cp_detail}"style="width: 100%; height: 100%"></td>
-					<td style="width:12%;" bgcolor="#FFB5B5"><input type="hidden" name="action" value="addCouponTypeNo"> <input
+					<td style="width:12%;" bgcolor="#9CC7F6"><input type="hidden" name="action" value="addCouponTypeNo"> <input
 			type="submit" name="Submit" value="增加優惠券"></td>
                 
 			</tr>
@@ -174,13 +174,13 @@ margin-top:100;
 			<c:forEach var="couponVO" items="${list}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
 				<tr bgcolor=#C4E1FF>
-					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_no}</td>
-					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_name}</td>
-					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_price}元</td>
-					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_detail}</td>
-					<td align="center" bgcolor="#FFB5B5">${couponVO.cp_javaTime}</td>
-					<td style="width:10%;" bgcolor="#FFB5B5"><input type="submit" name="Submit" value="修改"></td>
-                <td style="width:10%;" bgcolor="#FFB5B5">
+					<td align="center" bgcolor="#9CC7F6">${couponVO.cp_no}</td>
+					<td align="center" bgcolor="#9CC7F6">${couponVO.cp_name}</td>
+					<td align="center" bgcolor="#9CC7F6">${couponVO.cp_price}元</td>
+					<td align="center" bgcolor="#9CC7F6">${couponVO.cp_detail}</td>
+					<td align="center" bgcolor="#9CC7F6">${couponVO.cp_javaTime}</td>
+					<td style="width:10%;" bgcolor="#9CC7F6"><input type="submit" name="Submit" value="修改"></td>
+                <td style="width:10%;" bgcolor="#9CC7F6">
                 <FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/CpGetServlet"
 						style="margin-bottom: 0px;">

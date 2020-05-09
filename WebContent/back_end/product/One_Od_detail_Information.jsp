@@ -73,13 +73,13 @@ th, td {
 					src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${od_detailVO.pd_no}"
 					width="100px"></td>
 			
-				<td width="100" bgcolor="#FFB5B5">${od_detailVO.pd_no}</td>
+				<td width="100" bgcolor="#9CC7F6">${od_detailVO.pd_no}</td>
 				
-				<td width="100" bgcolor="#FFB5B5">${productService.findOneProduct(od_detailVO.pd_no).pd_name}</td>
+				<td width="100" bgcolor="#9CC7F6">${productService.findOneProduct(od_detailVO.pd_no).pd_name}</td>
 			
-				<td width="100" bgcolor="#FFB5B5">${od_detailVO.od_amount}</td>
+				<td width="100" bgcolor="#9CC7F6">${od_detailVO.od_amount}</td>
 			
-				<td width="100" bgcolor="#FFB5B5">${od_detailVO.od_price}</td>
+				<td width="100" bgcolor="#9CC7F6">${od_detailVO.od_price}</td>
 			</tr>
 		</c:forEach>
 

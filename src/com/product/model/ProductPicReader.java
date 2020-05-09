@@ -21,7 +21,9 @@ public class ProductPicReader extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("image/gif");
 		ServletOutputStream out = res.getOutputStream();
-			
+		
+       	
+	
 		try {
 			Statement stmt = con.createStatement();
 			String pd_no = req.getParameter("pd_no").trim();
@@ -30,8 +32,11 @@ public class ProductPicReader extends HttpServlet {
 					"SELECT pd_pic FROM product WHERE pd_no = '" + pd_no + "' ");
 			if (rs.next()) {
 				byte[] pic =null;
+				
 				pic=rs.getBytes(1);
+				
 				out.write(pic);
+				
 //				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("loc_pic"));
 //				byte[] buf = new byte[4 * 1024]; // 4K buffer
 //				int len;
@@ -58,8 +63,13 @@ public class ProductPicReader extends HttpServlet {
 			out.write(b);
 			in.close();
 		}
-	}
 
+		
+	}
+	
+	
+
+	
 	public void init() throws ServletException {
 		try {
 			Context ctx = new javax.naming.InitialContext();

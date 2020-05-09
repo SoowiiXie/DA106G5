@@ -58,25 +58,25 @@
 			</tr>
 
 			<tr>
-				<td bgcolor=#FFD2D2>商品名稱：</td>
-				<td bgcolor=#FFD2D2><input type="TEXT" name="pd_name"
+				<td bgcolor=#9CC7F6>商品名稱：</td>
+				<td bgcolor=#9CC7F6><input type="TEXT" name="pd_name"
 					value="${productVO.pd_name}"></td>
 			</tr>
 			<tr>
-				<td bgcolor=#FFD2D2>商品價格：</td>
-				<td bgcolor=#FFD2D2><input type="TEXT" name="pd_price"
+				<td bgcolor=#9CC7F6>商品價格：</td>
+				<td bgcolor=#9CC7F6><input type="TEXT" name="pd_price"
 					value="${productVO.pd_price}"></td>
 			</tr>
 			<tr>
-				<td style="height:100px;" bgcolor=#FFD2D2>商品詳述：</td>
-				<td style="height:100px;" bgcolor=#FFD2D2><textarea  style="height:100px; width:300px;" name="pd_detail"
+				<td style="height:100px;" bgcolor=#9CC7F6>商品詳述：</td>
+				<td style="height:100px;" bgcolor=#9CC7F6><textarea  style="height:100px; width:300px;" name="pd_detail"
 					>${productVO.pd_detail}</textarea></td>
 			</tr>
 
 			<tr>
-				<td style="height:100px;" bgcolor=#FFD2D2>產品商品分類：</td>
+				<td style="height:100px;" bgcolor=#9CC7F6>產品商品分類：</td>
 				
-				<td style="height:100px;" bgcolor=#FFD2D2><select size="1" name="pd_typeNo">
+				<td style="height:100px;" bgcolor=#9CC7F6><select size="1" name="pd_typeNo">
 						<c:forEach var="pd_typeVO" items="${list}">
 							<option value="${pd_typeVO.pd_typeNo}" ${(productVO.pd_typeNo==pd_typeVO.pd_typeNo)? 'selected':''}>${pd_typeVO.pd_typeName}
 						</c:forEach>
@@ -84,8 +84,8 @@
 			</tr>
 
 			<tr>
-				<td bgcolor=#FFD2D2>商品分類狀態：</td>
-				<td bgcolor=#FFD2D2><select size="1" name="pd_status">
+				<td bgcolor=#9CC7F6>商品分類狀態：</td>
+				<td bgcolor=#9CC7F6><select size="1" name="pd_status">
 						<option value="1" ${productVO.pd_status==1?'selected':''}>下架</option>
 						<option value="2" ${productVO.pd_status==2?'selected':''}>上架</option>
 
@@ -93,14 +93,29 @@
 			</tr>
 
 			<tr>
-				<td bgcolor=#FFD2D2> 商品圖片</td>
-				<td bgcolor=#FFD2D2><input type="file" name="pd_pic" onchange="setImg(this)">
+				<td bgcolor=#9CC7F6> 商品圖片</td>
+				<td bgcolor=#9CC7F6><input type="file" name="pd_pic" onchange="setImg(this)">
 				
 			</td>
 			<tr>
-			<td bgcolor=#FFD2D2></td>
-			<td bgcolor=#FFD2D2><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"></td>
+			<td bgcolor=#9CC7F6></td>
+			<td bgcolor=#9CC7F6><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"></td>
 			</tr>
+			<tr>
+			<td bgcolor=#9CC7F6></td>
+			<td bgcolor=#9CC7F6><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic2"></td>
+			</tr>
+			
+				<tr>
+			<td bgcolor=#9CC7F6></td>
+			<td bgcolor=#9CC7F6><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic3"></td>
+			</tr>
+			<tr>
+			<td bgcolor=#9CC7F6></td>
+			<td bgcolor=#9CC7F6><img  style="height:300px; width:300px;" id="pd_pic" src="<%=request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic4"></td>
+			</tr>
+
+
 		</table>
 		<input type="hidden" name="action" value="updateProduct"> <input
 			type="hidden" name="pd_no" value="${productVO.pd_no}"> 

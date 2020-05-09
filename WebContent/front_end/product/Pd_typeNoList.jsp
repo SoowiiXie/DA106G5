@@ -66,7 +66,7 @@ margin-top:100;
 		</ul>
 	</c:if>
 	
-	<div class="a" style="margin-left:5%; float:left;" >
+	<div class="a" style="margin-left:5%; float:left; margin-top:10px;" >
 	  <table style="float:left;">
 	    <tr>
 	      <td><%@ include file="Pd_typeNoList1.file"%></td>
@@ -80,7 +80,7 @@ margin-top:100;
 		<form method="POST"
 			action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
-			<table style="margin-left:38%;">
+			<table style="margin-left:38%; margin-top:10px;">
 				<tr>
 					<td>商品分類：</td>
 					

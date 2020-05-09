@@ -52,355 +52,311 @@ public class ProductServlet extends HttpServlet {
 			return;
 		}
 		
-		if ("addProduct3".equals(action)) {
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
+//		if ("addProduct3".equals(action)) {
+//		List<String> errorMsgs = new LinkedList<String>();
+//		// Store this set in the request scope, in case we need to
+//		// send the ErrorPage view.
+//		req.setAttribute("errorMsgs", errorMsgs);
+//
+//		try {
+//		
+//			String pd_name = req.getParameter("pd_name");
+//			String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
+//			if (pd_name == null || pd_name.trim().length() == 0) {
+//				errorMsgs.add("商品名稱: 請勿空白");
+//			} else if (!pd_name.trim().matches(pd_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
+//				errorMsgs.add("商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
+//			}
+//
+//			Integer pd_price = null;
+//			try {
+//				pd_price = new Integer(req.getParameter("pd_price").trim());
+//			} catch (NumberFormatException e) {
+//				pd_price = 0;
+//				errorMsgs.add("金額請填數字.");
+//			}
+//
+//			String pd_detail = req.getParameter("pd_detail");
+//			if (pd_detail == null || pd_detail.trim().length() == 0) {
+//				errorMsgs.add("商品詳述: 請勿空白");
+//			}
+//
+//			String pd_typeNo = req.getParameter("pd_typeNo").trim();
+//
+//			ProductVO productVO = new ProductVO();
+//
+//			byte[] pd_pic = null;
+//			InputStream in;
+//			BufferedInputStream bf;
+//
+//			try {
+//
+//				Part part = req.getPart("pd_pic");
+//				Part part2 = req.getPart("pd_pic2");
+//                List<Part> parts = new ArrayList<Part>();
+//                parts.add(part);
+//                parts.add(part2);
+//                System.out.println(parts);
+//                
+//                List<byte[]> pd_pics = new ArrayList();
+//                
+//			   for(Part aPart : parts) {
+//					in = aPart.getInputStream();
+//				bf = new BufferedInputStream(in);
+//				int piclen = 0;
+//				if (aPart.getSize() != 0) {
+//					pd_pic = new byte[bf.available()]; // 暫存記憶體
+//					piclen++;
+//					
+//				}
+//				bf.read(pd_pic);
+//				bf.close();
+//				in.close();
+//				
+//				pd_pics.add(pd_pic);
+//				if(piclen == 0) {
+//					errorMsgs.add("請上傳產品圖片");
+//				}
+//
+//		
+//			}
+//			     System.out.println(pd_pics);
+//				
+//				String picBase64 = req.getParameter("picBase64");
+//				in = part.getInputStream();
+//				bf = new BufferedInputStream(in);
+//				if (part.getSize() != 0) {
+//					pd_pic = new byte[bf.available()]; // 暫存記憶體
+//
+//				} else if (picBase64 != null && picBase64.trim().length() != 0) { // 第一次有上傳圖片，第二次無，使用參數傳進來的picBase64
+//					pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+//				} else if (pd_pic == null || pd_pic.length == 0) {
+//					errorMsgs.add("產品圖片請勿空白");
+//
+//				}
+//				bf.read(pd_pic);
+//				bf.close();
+//				in.close();
+//				
+//				
+//
+//				if (picBase64 != null && picBase64.trim().length() != 0) {
+//					pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+//				} // 若都沒有，mb_pic 以 null 送出
+//				productVO.setPd_name(pd_name);
+//				productVO.setPd_price(pd_price);
+//				productVO.setPd_detail(pd_detail);
+//				productVO.setPd_typeNo(pd_typeNo);
+//				productVO.setPd_pic(pd_pics.get(0));
+//				productVO.setPd_pic2(pd_pics.get(1));
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+//				System.out.println("請上傳圖片");
+//				
+//				
+//
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//
+//			}
+//			/*--------------------------------------------------------------*/
+//
+//			// Send the use back to the form, if there were errors
+//			if (!errorMsgs.isEmpty()) {
+//                
+//				req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
+//				String includePath = "/back_end/product/addProduct.jsp";
+////				System.out.println(includePath);
+//				req.setAttribute("includePath", includePath);
+//				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+//				failureView.forward(req, res);
+//				System.out.println("3");
+//				return;
+//			}
+//
+//			/*************************** 2.開始新增資料 ***************************************/
+//			ProductService productService = new ProductService();
+//			
+//			productVO = productService.addProduct3(productVO);
+//	     
+//			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+//			String includePath = "/back_end/product/AllList2.jsp";
+////			System.out.println(includePath);
+//			req.setAttribute("includePath", includePath);
+////			String url = "/back_end/product/addProduct.jsp";
+//			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
+//			successView.forward(req, res);
+//			return;
+//		} catch (Exception e) {
+//			errorMsgs.add(e.getMessage());
+//			
+//            
+//			String includePath = "/back_end/product/addProduct.jsp";
+////			System.out.println(includePath);
+//			req.setAttribute("includePath", includePath);
+////			String url = "/back_end/product/addProduct.jsp";
+//			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
+//			successView.forward(req, res);
+//			return;
+//		}
+//
+//	}
+//		
 
-			try {
-			try { //針對include 增加
-				String pd_name = (req.getParameter("pd_name").trim());
-			
-				String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
-				
-				if (pd_name == null || pd_name.trim().length() == 0 ||("").equals(pd_name)) {
-					errorMsgs.add("商品名稱: 請勿空白");			
-					//針對明軒include產生的bug增加====================
-					ProductVO productVO = new ProductVO();
-					
-					Integer pd_price = new Integer(req.getParameter("pd_price").trim());
-					String pd_detail = req.getParameter("pd_detail");
-					String pd_typeNo = req.getParameter("pd_typeNo");
-					
-					productVO.setPd_name(pd_name);
-					productVO.setPd_price(pd_price);
-					productVO.setPd_detail(pd_detail);
-					productVO.setPd_typeNo(pd_typeNo);
-					String includePath = "/back_end/product/addProduct.jsp";
-//					System.out.println(includePath);
-					req.setAttribute("productVO", productVO); //針對明軒include產生的bug增加
-					req.setAttribute("includePath", includePath);
-//					String url = "/back_end/product/addProduct.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
-					successView.forward(req, res);
-					return;
-	//針對明軒include產生的bug增加===================
-				} else if (!pd_name.trim().matches(pd_nameReg)||("").equals(pd_name)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
-					//針對明軒include產生的bug增加====================
-					ProductVO productVO = new ProductVO();
-					Integer pd_price = new Integer(req.getParameter("pd_price").trim());
-					String pd_detail = req.getParameter("pd_detail");
-					String pd_typeNo = req.getParameter("pd_typeNo");
-					
-					productVO.setPd_name(pd_name);
-					productVO.setPd_price(pd_price);
-					productVO.setPd_detail(pd_detail);
-					productVO.setPd_typeNo(pd_typeNo);
-					String includePath = "/back_end/product/addProduct.jsp";
-//					System.out.println(includePath);
-					req.setAttribute("productVO", productVO); //針對明軒include產生的bug增加
-					req.setAttribute("includePath", includePath);
-//					String url = "/back_end/product/addProduct.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
-					successView.forward(req, res);
-					return;
-	//針對明軒include產生的bug增加===================
-				}
-				
-
-				Integer pd_price = null;
-				try {
-					pd_price = new Integer(req.getParameter("pd_price").trim());
-				} catch (NumberFormatException e) {
-					pd_price = 0;
-					errorMsgs.add("金額請填數字.");
-					//針對明軒include產生的bug增加====================
-					ProductVO productVO = new ProductVO();
-					String pd_detail = req.getParameter("pd_detail");
-					String pd_typeNo = req.getParameter("pd_typeNo");
-					
-					productVO.setPd_name(pd_name);
-					productVO.setPd_price(pd_price);
-					productVO.setPd_detail(pd_detail);
-					productVO.setPd_typeNo(pd_typeNo);
-					String includePath = "/back_end/product/addProduct.jsp";
-//					System.out.println(includePath);
-					req.setAttribute("productVO", productVO); //針對明軒include產生的bug增加
-					req.setAttribute("includePath", includePath);
-//					String url = "/back_end/product/addProduct.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
-					successView.forward(req, res);
-					return;
-	//針對明軒include產生的bug增加===================
-				}
-
-				String pd_detail = req.getParameter("pd_detail");
-				if (pd_detail == null || pd_detail.trim().length() == 0) {
-					errorMsgs.add("商品詳述: 請勿空白");
-				}
-
-				String pd_typeNo = req.getParameter("pd_typeNo").trim();
-
-				ProductVO productVO = new ProductVO();
-
-				byte[] pd_pic = null;
-				InputStream in;
-				BufferedInputStream bf;
-
-				try {
-
-					Part part = req.getPart("pd_pic");
-					String picBase64 = req.getParameter("picBase64");
-					in = part.getInputStream();
-					bf = new BufferedInputStream(in);
-					if (part.getSize() != 0) {
-						pd_pic = new byte[bf.available()]; // 暫存記憶體
-
-					} else if (picBase64 != null && picBase64.trim().length() != 0) { // 第一次有上傳圖片，第二次無，使用參數傳進來的picBase64
-						pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
-					} else if (pd_pic == null || pd_pic.length == 0) {
-						errorMsgs.add("產品圖片請勿空白");
-
-					}
-					bf.read(pd_pic);
-					bf.close();
-					in.close();
-
-					if (picBase64 != null && picBase64.trim().length() != 0) {
-						pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
-					} // 若都沒有，mb_pic 以 null 送出
-					productVO.setPd_name(pd_name);
-					productVO.setPd_price(pd_price);
-					productVO.setPd_detail(pd_detail);
-					productVO.setPd_typeNo(pd_typeNo);
-					productVO.setPd_pic(pd_pic);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-					System.out.println("a");
-
-				} catch (IOException e) {
-					e.printStackTrace();
-
-				}
-				/*--------------------------------------------------------------*/
-
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-                    
-					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					String includePath = "/back_end/product/addProduct.jsp";
-//					System.out.println(includePath);
-					req.setAttribute("includePath", includePath);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
-					failureView.forward(req, res);
-					System.out.println("3");
-					return;
-				}
-
-				/*************************** 2.開始新增資料 ***************************************/
-				ProductService productService = new ProductService();
-				productVO = productService.addProduct(pd_name, pd_price, pd_detail, pd_typeNo, pd_pic);
-		     
-				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String includePath = "/back_end/product/AllList2.jsp";
-//				System.out.println(includePath);
-				req.setAttribute("includePath", includePath);
-//				String url = "/back_end/product/addProduct.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
-				successView.forward(req, res);
-				return;
-			} catch (Exception e) { 
-				errorMsgs.add(e.getMessage());
-//針對明軒include產生的bug增加，應急用以後不能用====================
-				ProductVO productVO = new ProductVO();
-				String pd_name = req.getParameter("pd_name").trim();
-				Integer pd_price = new Integer(req.getParameter("pd_price").trim());
-				String pd_detail = req.getParameter("pd_detail");
-				String pd_typeNo = req.getParameter("pd_typeNo");
-				
-				productVO.setPd_name(pd_name);
-				productVO.setPd_price(pd_price);
-				productVO.setPd_detail(pd_detail);
-				productVO.setPd_typeNo(pd_typeNo);
-//針對明軒include產生的bug增加應急用以後不能用===================
-                
-				String includePath = "/back_end/product/addProduct.jsp";
-//				System.out.println(includePath);
-				req.setAttribute("productVO", productVO); //針對明軒include產生的bug增加
-				req.setAttribute("includePath", includePath);
-//				String url = "/back_end/product/addProduct.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
-				successView.forward(req, res);
-				return;
-			}
-			}catch(Exception e) {//針對include 增加
-				errorMsgs.add("產品價格請勿空白");
-				errorMsgs.add("產品詳述請勿空白");
-				errorMsgs.add("產品圖片請勿空白");
-				req.setAttribute("errorMsgs", errorMsgs);
-				String includePath = "/back_end/product/addProduct.jsp";
-//				System.out.println(includePath);
-				req.setAttribute("includePath", includePath);
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
-				failureView.forward(req, res);
-				System.out.println("3");
-				return;
-				
-			}
-		}
 		
-		if ("addProduct2".equals(action)) {
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
-
-			try {
-			
-				String pd_name = req.getParameter("pd_name");
-				String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
-				if (pd_name == null || pd_name.trim().length() == 0) {
-					errorMsgs.add("商品名稱: 請勿空白");
-				} else if (!pd_name.trim().matches(pd_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
-				}
-
-				Integer pd_price = null;
-				try {
-					pd_price = new Integer(req.getParameter("pd_price").trim());
-				} catch (NumberFormatException e) {
-					pd_price = 0;
-					errorMsgs.add("金額請填數字.");
-				}
-
-				String pd_detail = req.getParameter("pd_detail");
-				if (pd_detail == null || pd_detail.trim().length() == 0) {
-					errorMsgs.add("商品詳述: 請勿空白");
-				}
-
-				String pd_typeNo = req.getParameter("pd_typeNo").trim();
-
-				ProductVO productVO = new ProductVO();
-
-				/*--------------------------------------------------------------*/
-				//＝＝＝＝＝＝＝＝＝＝＝＝＝＝多張圖片尚未完成=======================//
-//				List<byte[]> pd_pics = new ArrayList<byte[]>();
+//		if ("addProduct2".equals(action)) {
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+//
+//			try {
+//			
+//				String pd_name = req.getParameter("pd_name");
+//				String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
+//				if (pd_name == null || pd_name.trim().length() == 0) {
+//					errorMsgs.add("商品名稱: 請勿空白");
+//				} else if (!pd_name.trim().matches(pd_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
+//					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
+//				}
+//
+//				Integer pd_price = null;
+//				try {
+//					pd_price = new Integer(req.getParameter("pd_price").trim());
+//				} catch (NumberFormatException e) {
+//					pd_price = 0;
+//					errorMsgs.add("金額請填數字.");
+//				}
+//
+//				String pd_detail = req.getParameter("pd_detail");
+//				if (pd_detail == null || pd_detail.trim().length() == 0) {
+//					errorMsgs.add("商品詳述: 請勿空白");
+//				}
+//
+//				String pd_typeNo = req.getParameter("pd_typeNo").trim();
+//
+//				ProductVO productVO = new ProductVO();
+//
+//				/*--------------------------------------------------------------*/
+//				//＝＝＝＝＝＝＝＝＝＝＝＝＝＝多張圖片尚未完成=======================//
+////				List<byte[]> pd_pics = new ArrayList<byte[]>();
+////				byte[] pd_pic = null;
+////				InputStream in;
+////				BufferedInputStream bf;
+////
+////				try {
+////
+////					Collection<Part> parts = req.getParts();
+////					int piclen = 0;
+////					for(Part part: parts) {
+////						in = part.getInputStream();
+////						bf = new BufferedInputStream(in);
+////						if (part.getSize() != 0) {
+////							pd_pic = new byte[bf.available()]; // 暫存記憶體
+////							piclen++;
+////						}
+////						bf.read(pd_pic);
+////						bf.close();
+////						in.close();
+////						
+////						pd_pics.add(pd_pic);
+////						if(piclen == 0) {
+////							errorMsgs.add("請上傳產品圖片");
+////						}
+////
+//////						if (picBase64 != null && picBase64.trim().length() != 0) {
+//////							pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+//////						}
+////					}
+//				//＝＝＝＝＝＝＝＝＝＝＝＝＝＝多張圖片尚未完成=======================//
+//				           System.out.println(req.getParameter("pd_pic"));
+//				           System.out.println(req.getParameter("pd_pic2"));
+//				List<byte[]> pd_pics = new ArrayList<byte[]>();				
 //				byte[] pd_pic = null;
+//				byte[] pd_pic2 = null;
 //				InputStream in;
 //				BufferedInputStream bf;
 //
 //				try {
 //
 //					Collection<Part> parts = req.getParts();
+//					String picBase64 = req.getParameter("picBase64");
 //					int piclen = 0;
 //					for(Part part: parts) {
 //						in = part.getInputStream();
 //						bf = new BufferedInputStream(in);
 //						if (part.getSize() != 0) {
 //							pd_pic = new byte[bf.available()]; // 暫存記憶體
+//							System.out.println("有東西");
 //							piclen++;
 //						}
+//						
 //						bf.read(pd_pic);
 //						bf.close();
 //						in.close();
-//						
+//
 //						pd_pics.add(pd_pic);
 //						if(piclen == 0) {
 //							errorMsgs.add("請上傳產品圖片");
 //						}
 //
-////						if (picBase64 != null && picBase64.trim().length() != 0) {
-////							pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
-////						}
+//						if (picBase64 != null && picBase64.trim().length() != 0) {
+//							pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+//						}
 //					}
-				//＝＝＝＝＝＝＝＝＝＝＝＝＝＝多張圖片尚未完成=======================//
-				List<byte[]> pd_pics = new ArrayList<byte[]>();				
-				byte[] pd_pic = null;
-				InputStream in;
-				BufferedInputStream bf;
-
-				try {
-
-					Collection<Part> parts = req.getParts();
-					String picBase64 = req.getParameter("picBase64");
-					int piclen = 0;
-					for(Part part: parts) {
-						in = part.getInputStream();
-						bf = new BufferedInputStream(in);
-						if (part.getSize() != 0) {
-							pd_pic = new byte[bf.available()]; // 暫存記憶體
-							System.out.println("有東西");
-							piclen++;
-						}
-						
-						bf.read(pd_pic);
-						bf.close();
-						in.close();
-
-						pd_pics.add(pd_pic);
-						if(piclen == 0) {
-							errorMsgs.add("請上傳產品圖片");
-						}
-
-						if (picBase64 != null && picBase64.trim().length() != 0) {
-							pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
-						}
-					}
-						
-						
-					if (picBase64 != null && picBase64.trim().length() != 0) {
-						pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
-					} // 若都沒有，mb_pic 以 null 送出
-					productVO.setPd_name(pd_name);
-					productVO.setPd_price(pd_price);
-					productVO.setPd_detail(pd_detail);
-					productVO.setPd_typeNo(pd_typeNo);
-					productVO.setPd_pic(pd_pic);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-					System.out.println("a");
-
-				} catch (IOException e) {
-					e.printStackTrace();
-
-				}
-				/*--------------------------------------------------------------*/
-
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-
-					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					String includePath = "/back_end/product/AllList2.jsp";
-//					System.out.println(includePath);
-					req.setAttribute("includePath", includePath);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
-					failureView.forward(req, res);
-					System.out.println("3");
-					return;
-				}
-
-				/*************************** 2.開始新增資料 ***************************************/
-				ProductService productService = new ProductService();
-				productVO = productService.addProduct(pd_name, pd_price, pd_detail, pd_typeNo, pd_pic);
-		     
-				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String includePath = "/back_end/product/AllList2.jsp";
-//				System.out.println(includePath);
-				req.setAttribute("includePath", includePath);
-//				String url = "/back_end/product/addProduct.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
-				successView.forward(req, res);
-				return;
-			} catch (Exception e) {
-				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/addProduct.jsp");
-				failureView.forward(req, res);
-				return;
-			}
-
-		}
+//						
+//						
+//					if (picBase64 != null && picBase64.trim().length() != 0) {
+//						pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+//					} // 若都沒有，mb_pic 以 null 送出
+//					productVO.setPd_name(pd_name);
+//					productVO.setPd_price(pd_price);
+//					productVO.setPd_detail(pd_detail);
+//					productVO.setPd_typeNo(pd_typeNo);
+//					productVO.setPd_pic(pd_pic);
+//				} catch (FileNotFoundException e) {
+//					e.printStackTrace();
+//					System.out.println("a");
+//
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//
+//				}
+//				/*--------------------------------------------------------------*/
+//
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//
+//					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
+//					String includePath = "/back_end/product/AllList2.jsp";
+////					System.out.println(includePath);
+//					req.setAttribute("includePath", includePath);
+//					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+//					failureView.forward(req, res);
+//					System.out.println("3");
+//					return;
+//				}
+//
+//				/*************************** 2.開始新增資料 ***************************************/
+//				ProductService productService = new ProductService();
+//				productVO = productService.addProduct(pd_name, pd_price, pd_detail, pd_typeNo, pd_pic);
+//		     
+//				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+//				String includePath = "/back_end/product/AllList2.jsp";
+////				System.out.println(includePath);
+//				req.setAttribute("includePath", includePath);
+////				String url = "/back_end/product/addProduct.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
+//				successView.forward(req, res);
+//				return;
+//			} catch (Exception e) {
+//				errorMsgs.add(e.getMessage());
+//				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/addProduct.jsp");
+//				failureView.forward(req, res);
+//				return;
+//			}
+//
+//		}
 		
 
 		if ("addProduct".equals(action)) {
@@ -538,7 +494,7 @@ public class ProductServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 ****************************************/
 				ProductService productService = new ProductService();
 				ProductVO productVO = productService.findOneProduct(pd_no);
-                 System.out.println(productVO);
+                 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("productVO", productVO); // 資料庫取出的empVO物件,存入req
 //				String url = "/back_end/product/UpdateProduct.jsp";
@@ -825,6 +781,313 @@ public class ProductServlet extends HttpServlet {
 			}
 
 		}
+		
+		if ("addProduct3".equals(action)) {
+		List<String> errorMsgs = new LinkedList<String>();
+		// Store this set in the request scope, in case we need to
+		// send the ErrorPage view.
+		req.setAttribute("errorMsgs", errorMsgs);
+
+		try {
+		
+			String pd_name = req.getParameter("pd_name");
+			String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
+			if (pd_name == null || pd_name.trim().length() == 0) {
+				errorMsgs.add("商品名稱: 請勿空白");
+			} else if (!pd_name.trim().matches(pd_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
+				errorMsgs.add("商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
+			}
+
+			Integer pd_price = null;
+			try {
+				pd_price = new Integer(req.getParameter("pd_price").trim());
+			} catch (NumberFormatException e) {
+				pd_price = 0;
+				errorMsgs.add("金額請填數字.");
+			}
+
+			String pd_detail = req.getParameter("pd_detail");
+			if (pd_detail == null || pd_detail.trim().length() == 0) {
+				errorMsgs.add("商品詳述: 請勿空白");
+			}
+
+			String pd_typeNo = req.getParameter("pd_typeNo").trim();
+
+			ProductVO productVO = new ProductVO();
+
+			byte[] pd_pic = null;
+			InputStream in;
+			BufferedInputStream bf;
+
+			try {
+
+				Part part = req.getPart("pd_pic");
+				Part part2 = req.getPart("pd_pic2");
+				Part part3 = req.getPart("pd_pic3");
+				Part part4 = req.getPart("pd_pic4");
+                List<Part> parts = new ArrayList<Part>();
+                parts.add(part);
+                parts.add(part2);
+                parts.add(part3);
+                parts.add(part4);
+                System.out.println(parts);
+                
+                List<byte[]> pd_pics = new ArrayList();
+                
+			   for(Part aPart : parts) {
+					in = aPart.getInputStream();
+				bf = new BufferedInputStream(in);
+				int piclen = 0;
+				if (aPart.getSize() != 0) {
+					pd_pic = new byte[bf.available()]; // 暫存記憶體
+					piclen++;
+					
+				}
+				bf.read(pd_pic);
+				bf.close();
+				in.close();
+				
+				pd_pics.add(pd_pic);
+				if(parts == null) {
+					errorMsgs.add("請上傳產品圖片");
+				}
+
+		
+			}
+			     System.out.println(pd_pics);
+				
+				String picBase64 = req.getParameter("picBase64");
+				in = part.getInputStream();
+				bf = new BufferedInputStream(in);
+				if (part.getSize() != 0) {
+					pd_pic = new byte[bf.available()]; // 暫存記憶體
+
+				} else if (picBase64 != null && picBase64.trim().length() != 0) { // 第一次有上傳圖片，第二次無，使用參數傳進來的picBase64
+					pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+				} else if (pd_pics == null || pd_pics.size() == 0) {
+					errorMsgs.add("產品圖片請勿空白");
+
+				}
+				bf.read(pd_pic);
+				bf.close();
+				in.close();
+				// 若都沒有，mb_pic 以 null 送出
+				productVO.setPd_name(pd_name);
+				productVO.setPd_price(pd_price);
+				productVO.setPd_detail(pd_detail);
+				productVO.setPd_typeNo(pd_typeNo);
+				productVO.setPd_pic(pd_pics.get(0));
+				productVO.setPd_pic2(pd_pics.get(1));
+				productVO.setPd_pic3(pd_pics.get(2));
+				productVO.setPd_pic4(pd_pics.get(3));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+				System.out.println("請上傳圖片");
+				
+				
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+			/*--------------------------------------------------------------*/
+
+			// Send the use back to the form, if there were errors
+			if (!errorMsgs.isEmpty()) {
+                
+				req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
+				String includePath = "/back_end/product/addProduct.jsp";
+//				System.out.println(includePath);
+				req.setAttribute("includePath", includePath);
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+				failureView.forward(req, res);
+				System.out.println("3");
+				return;
+			}
+
+			/*************************** 2.開始新增資料 ***************************************/
+			ProductService productService = new ProductService();
+			
+			productVO = productService.addProduct3(productVO);
+	     
+			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+			String includePath = "/back_end/product/AllList2.jsp";
+//			System.out.println(includePath);
+			req.setAttribute("includePath", includePath);
+//			String url = "/back_end/product/addProduct.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			return;
+		} catch (Exception e) {
+			errorMsgs.add(e.getMessage());
+			System.out.println("hi");
+            
+			String includePath = "/back_end/product/addProduct.jsp";
+//			System.out.println(includePath);
+			req.setAttribute("includePath", includePath);
+//			String url = "/back_end/product/addProduct.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+			return;
+		}
+
+	}
+		
+
+		
+//		if ("addProduct2".equals(action)) {
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+//
+//			try {
+//			
+//				String pd_name = req.getParameter("pd_name");
+//				String pd_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,50}$";
+//				if (pd_name == null || pd_name.trim().length() == 0) {
+//					errorMsgs.add("商品名稱: 請勿空白");
+//				} else if (!pd_name.trim().matches(pd_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
+//					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到50之間");
+//				}
+//
+//				Integer pd_price = null;
+//				try {
+//					pd_price = new Integer(req.getParameter("pd_price").trim());
+//				} catch (NumberFormatException e) {
+//					pd_price = 0;
+//					errorMsgs.add("金額請填數字.");
+//				}
+//
+//				String pd_detail = req.getParameter("pd_detail");
+//				if (pd_detail == null || pd_detail.trim().length() == 0) {
+//					errorMsgs.add("商品詳述: 請勿空白");
+//				}
+//
+//				String pd_typeNo = req.getParameter("pd_typeNo").trim();
+//
+//				ProductVO productVO = new ProductVO();
+//
+//				/*--------------------------------------------------------------*/
+//				//＝＝＝＝＝＝＝＝＝＝＝＝＝＝多張圖片尚未完成=======================//
+////				List<byte[]> pd_pics = new ArrayList<byte[]>();
+////				byte[] pd_pic = null;
+////				InputStream in;
+////				BufferedInputStream bf;
+////
+////				try {
+////
+////					Collection<Part> parts = req.getParts();
+////					int piclen = 0;
+////					for(Part part: parts) {
+////						in = part.getInputStream();
+////						bf = new BufferedInputStream(in);
+////						if (part.getSize() != 0) {
+////							pd_pic = new byte[bf.available()]; // 暫存記憶體
+////							piclen++;
+////						}
+////						bf.read(pd_pic);
+////						bf.close();
+////						in.close();
+////						
+////						pd_pics.add(pd_pic);
+////						if(piclen == 0) {
+////							errorMsgs.add("請上傳產品圖片");
+////						}
+////
+//////						if (picBase64 != null && picBase64.trim().length() != 0) {
+//////							pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+//////						}
+////					}
+//				//＝＝＝＝＝＝＝＝＝＝＝＝＝＝多張圖片尚未完成=======================//
+//				           System.out.println(req.getParameter("pd_pic"));
+//				           System.out.println(req.getParameter("pd_pic2"));
+//				List<byte[]> pd_pics = new ArrayList<byte[]>();				
+//				byte[] pd_pic = null;
+//				byte[] pd_pic2 = null;
+//				InputStream in;
+//				BufferedInputStream bf;
+//
+//				try {
+//
+//					Collection<Part> parts = req.getParts();
+//					String picBase64 = req.getParameter("picBase64");
+//					int piclen = 0;
+//					for(Part part: parts) {
+//						in = part.getInputStream();
+//						bf = new BufferedInputStream(in);
+//						if (part.getSize() != 0) {
+//							pd_pic = new byte[bf.available()]; // 暫存記憶體
+//							System.out.println("有東西");
+//							piclen++;
+//						}
+//						
+//						bf.read(pd_pic);
+//						bf.close();
+//						in.close();
+//
+//						pd_pics.add(pd_pic);
+//						if(piclen == 0) {
+//							errorMsgs.add("請上傳產品圖片");
+//						}
+//
+//						if (picBase64 != null && picBase64.trim().length() != 0) {
+//							pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+//						}
+//					}
+//						
+//						
+//					if (picBase64 != null && picBase64.trim().length() != 0) {
+//						pd_pic = Base64.getDecoder().decode(picBase64.getBytes("UTF-8"));
+//					} // 若都沒有，mb_pic 以 null 送出
+//					productVO.setPd_name(pd_name);
+//					productVO.setPd_price(pd_price);
+//					productVO.setPd_detail(pd_detail);
+//					productVO.setPd_typeNo(pd_typeNo);
+//					productVO.setPd_pic(pd_pic);
+//				} catch (FileNotFoundException e) {
+//					e.printStackTrace();
+//					System.out.println("a");
+//
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//
+//				}
+//				/*--------------------------------------------------------------*/
+//
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//
+//					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
+//					String includePath = "/back_end/product/AllList2.jsp";
+////					System.out.println(includePath);
+//					req.setAttribute("includePath", includePath);
+//					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/staff/index.jsp");
+//					failureView.forward(req, res);
+//					System.out.println("3");
+//					return;
+//				}
+//
+//				/*************************** 2.開始新增資料 ***************************************/
+//				ProductService productService = new ProductService();
+//				productVO = productService.addProduct(pd_name, pd_price, pd_detail, pd_typeNo, pd_pic);
+//		     
+//				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+//				String includePath = "/back_end/product/AllList2.jsp";
+////				System.out.println(includePath);
+//				req.setAttribute("includePath", includePath);
+////				String url = "/back_end/product/addProduct.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher("/back_end/staff/index.jsp"); // 新增成功後轉交listAllEmp.jsp
+//				successView.forward(req, res);
+//				return;
+//			} catch (Exception e) {
+//				errorMsgs.add(e.getMessage());
+//				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product/addProduct.jsp");
+//				failureView.forward(req, res);
+//				return;
+//			}
+//
+//		}
 
 	}
 
