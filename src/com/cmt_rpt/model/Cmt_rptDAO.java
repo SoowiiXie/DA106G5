@@ -24,7 +24,7 @@ public class Cmt_rptDAO implements Cmt_rpt_interface {
 //	String passwd = "DA106G5";
 
 	private static final String INSERT_STMT = "INSERT INTO cmt_rpt (cmt_rpt_no,rpt_reason,cmt_no,mb_id) values ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'),?,?,?)";
-	private static final String GET_ALL_STMT = "SELECT cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id FROM cmt_rpt ORDER BY cmt_rpt_no";
+	private static final String GET_ALL_STMT = "SELECT cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id FROM cmt_rpt ORDER BY cmt_rpt_no DESC";
 	private static final String GET_ONE_STMT = "SELECT cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id FROM cmt_rpt WHERE cmt_rpt_no = ?";
 	private static final String DELETE = "DELETE FROM cmt_rpt where cmt_rpt_no = ?";
 	private static final String UPDATE = "UPDATE cmt_rpt SET rpt_reason = ?, rpt_status = ? where cmt_rpt_no = ?";

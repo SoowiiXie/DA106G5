@@ -364,7 +364,7 @@ public class MessageDAO implements MessageDAO_interface{
 		MessageVO messageVO = null;
 		StringBuilder sb = new StringBuilder("SELECT * FROM MESSAGE WHERE ");
 		
-		Set set = map.keySet();
+		Set<String> set = map.keySet();
 		int i = set.size();
 		
 		for (Object obj : set) {
