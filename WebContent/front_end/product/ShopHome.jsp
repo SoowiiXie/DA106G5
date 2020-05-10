@@ -86,7 +86,7 @@ color: #777;
 			</c:forEach>
 		</ul>
 	</c:if>
-<div style="margin-top:10px;">
+<div style="margin-top:10px; margin-left:5%;">
 	<div class="a" style="float:left;" >
 	  <table style="float:left; margin-top:10px;">
 	    <tr>
@@ -100,7 +100,7 @@ color: #777;
 	
 		 <form method="POST" action="<%=request.getContextPath()%>/ProductServlet" name="form1">
 
-			<table style="float:right;margin-top:10px;">
+			<table style="float:right;margin-top:10px; margin-right:5%;">
 				<tr>
 					<td>商品分類：</td>
 					<td><select size="1" name="pd_typeNo">
