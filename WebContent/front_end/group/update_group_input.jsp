@@ -11,48 +11,45 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>揪團資料修改 - update_group_input.jsp</title>
+<title>揪團資料修改</title>
 
-<style>
-  table#table-1 {
-	background-color:rgba(256,256,256,0);;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }  
-</style>
+
 
 <style>
       #groupUpdatediv{
       position:absolute;
-      top: 15%;
-      right: 60%;
-      width: 35%;
+      width: 100%;
+      heightt: 60%;
       background-image: url('/DA106_G5/front_end/group/webFront/c7.jpg');
+  
       
       }
 	  #groupUpdate {
 		width: 100%;
+		height: 60%;
 		background-color: #FFFFFF;
 		margin-top: 2px;
 		margin-bottom: 2px;
 		text-align:left;
 	  }
- #groupUpdate  table, #groupUpdate th, #groupUpdate td {
+	  #udTitle{
+		width: 200px;
+		height: 60px;		
+		line-height: 60px;
+		font-size: 22px;		
+		background: rgba(229,115,115,0.4);
+		position: fixed;
+		top:25%;
+		left:80%;
+		border-radius:7%;
+		margin: 0px;/*才看到到線上客服*/
+	  }
+	#groupUpdate  table, #groupUpdate th, #groupUpdate td {
  	width: 100%;
  	text-align:left;
-    border: 0px solid #CCCCFF;
-    
-  }
-  #groupUpdate th, #groupUpdate td {
+    border: 0px solid #CCCCFF;    
+ 	 }
+	#groupUpdate th, #groupUpdate td {
   	width: 100%;
     padding: 3px;
   }
@@ -68,6 +65,8 @@
 <div id="groupUpdatediv">
 <body bgcolor='white'>
 
+
+
 <!-- <table id="table-1"> -->
 <!-- 	<tr><td> -->
 <!-- 		 <h3>揪團資料修改 - update_group_input.jsp</h3> -->
@@ -75,7 +74,7 @@
 <!-- 	</td></tr> -->
 <!-- </table> -->
 
-<h3>資料修改:</h3>
+<h3 id = "udTitle">資料修改:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -87,8 +86,8 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="group.do" name="form1">
-<table id="groupUpdate">
+<FORM METHOD="post" ACTION="group.do" name="form1" id="groupUpdate">
+<table>
 
 	<tr>
 		<td>揪團名稱:</td><td><%=grouperVO.getGrp_no()%></td>
@@ -173,6 +172,7 @@
 
 </table>
 <br>
+
 <input type="hidden" name="grp_personcount" value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_personcount()%>" />
 <input type="hidden" name="grp_status"  value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_status()%>" />
 <input type="hidden" name="grp_follow" value="<%= (grouperVO==null)? "0" : grouperVO.getGrp_follow()%>" />

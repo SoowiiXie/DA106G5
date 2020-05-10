@@ -124,7 +124,7 @@ listGrouper_ByCompositeQuery.jsp<br>
 	</tr>
 	<%@ include file="pages/page1_ByCompositeQuery.file" %>
 	<c:forEach var="grouperVO" items="${listGrouper_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		<tr align='center' valign='middle' ${(grouperVO.grp_no==param.grp_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
+		<tr align='center' valign='middle' ${(grouperVO.grp_no==param.grp_no) ? 'bgcolor=#F48FB1':''}><!--將修改的那一筆加入對比色而已-->
 			<td><A href="group.do?grp_no=${grouperVO.grp_no}&action=getOne_Time2">${grouperVO.grp_no}</A></td>
 			<td>${grouperVO.mb_id}</td>			
 <%-- 			<td>${grouperVO.loc_no}</td> --%>
@@ -157,7 +157,7 @@ listGrouper_ByCompositeQuery.jsp<br>
 			${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"未滿":"人數已滿"}
 			</td>
 <%-- 			<td>${grouperVO.grp_follow}</td>	 --%>
-			<td>${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
+			<td class= "followcountTd">${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
 			<%
 			%>
 			<td>													   
@@ -178,15 +178,16 @@ listGrouper_ByCompositeQuery.jsp<br>
 <%-- 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller--> --%>
 <!-- 			     <input type="hidden" name="action"     value="delete"></FORM> -->
 <!-- 			</td> -->
-			<td>
+			<td class="imgTd">
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_detail/group_detail.do" style="margin-bottom: 0px;">
 				${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}/${grouperVO.grp_personmax}<br>
-				<input type="submit" value="加入" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/><br>
+<!-- 				原加入 -->
+<%-- 				<input type="submit" value="加入" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/><br> --%>
 
 <span class="goin">
-	<img class="goin_img" width="75" height="75" border="0" id="goin_img" src="${isGoin?'images/joinIconun.png':'images/joinIcon.png'}">
+	<img class="goin_img" width="50" height="50" border="0" id="goin_img" src="${isGoin?'images/joinIconun.png':'images/joinIcon.png'}">
 	<input type="hidden" name="grp_no" value="${grouperVO.grp_no}">
-	<label class="labelGoin">${isGoin?"已加入":"加入"}</label>
+	<label class="labelGoin" >${isGoin?"已加入":"加入"}</label>
 </span>	
 				
 <!-- 				觀察用 -->
@@ -205,9 +206,9 @@ listGrouper_ByCompositeQuery.jsp<br>
 <%-- 					<img src="<%= request.getContextPath() %>/front_end/group/images/followIcon2un.png" width="75" height="75" border="0" class="follow_img"> --%>
 
 <span class="follow">
-	<img class="follow_img" width="75" height="75" border="0" id="follow_img" src="${isFollow?'images/followIcon2un.png':'images/followIcon2.png'}">
+	<img class="follow_img" width="50" height="50" border="0" id="follow_img" src="${isFollow?'images/followIcon2un.png':'images/followIcon2.png'}">
 	<input type="hidden" name="grp_no" value="${grouperVO.grp_no}">
-	<label class="labelFollow">${isFollow?"已關注":"關注"}</label>
+	<label class="labelFollow" >${isFollow?"已關注":"關注"}</label>
 </span>				
 				
 <!-- 				觀察用 -->
@@ -281,10 +282,14 @@ listGrouper_ByCompositeQuery.jsp<br>
 						
 						follow_span.children(".follow_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/followIcon2un.png");
 						follow_span.children('.labelFollow').text("已關注");
+						var count = follow_span.parents(".imgTd").prevAll(".followcountTd").text();
+						follow_span.parents(".imgTd").prevAll(".followcountTd").text(parseInt(count)+1);
 					}else if(data == "deleteFollow"){
 						
 						follow_span.children(".follow_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/followIcon2.png");
 						follow_span.children('.labelFollow').text("關注");
+						var count = follow_span.parents(".imgTd").prevAll(".followcountTd").text();
+						follow_span.parents(".imgTd").prevAll(".followcountTd").text(parseInt(count)-1);
 					}
 				},
 				error: function(){alert("AJAX-class發生錯誤囉!")}
@@ -311,12 +316,12 @@ listGrouper_ByCompositeQuery.jsp<br>
 				success: function(data){
 					if(data == "addGoin"){
 						
-						follow_span.children(".goin_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/followIcon2un.png");
-						follow_span.children('.labelGoin').text("已加入");
+						goin_span.children(".goin_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/joinIconun.png");
+						goin_span.children('.labelGoin').text("已加入");
 					}else if(data == "deleteGoin"){
 						
-						follow_span.children(".goin_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/followIcon2.png");
-						follow_span.children('.labelGoin').text("加入");
+						goin_span.children(".goin_img").attr("src","<%= request.getContextPath() %>/front_end/group/images/joinIcon.png");
+						goin_span.children('.labelGoin').text("加入");
 					}
 				},
 				error: function(){alert("AJAX-class發生錯誤囉!")}
