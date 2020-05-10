@@ -50,7 +50,10 @@
   #w40{
   width: 40%;
   }
-</style>
+  #oneGroup_table{
+  	font-family:Microsoft JhengHei;
+  	font-size: 26px;
+  }
 
 <style>
   table {
@@ -69,15 +72,15 @@
 </style>
 
 </head>
-<body bgcolor='white'>
+<body id = "listOnebody">
 
 <!-- <h4>此頁暫練習採用 Script 的寫法取值:</h4> -->
-<table id="table-1">
+<!-- <table id="table-1"> -->
 	<tr><td>
 <!-- 		 <h3>揪團資料 - ListOneGroup.jsp</h3> -->
 <!-- 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 	</td></tr>
-</table>
+<!-- </table> -->
 
 <table id="oneGroup_table">
 	<tr>

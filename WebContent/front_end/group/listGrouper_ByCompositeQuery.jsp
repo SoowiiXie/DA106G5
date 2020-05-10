@@ -43,6 +43,14 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
   h4 {
     color: blue;
     display: inline;
+    font-size:32px
+  }
+  h3{
+  font-size:42px;
+  }
+  b{
+  font-size:22px;
+  font-family : Microsoft JhengHei;
   }
 </style>
 
@@ -51,7 +59,7 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 	width: 98%;
 	background-color:rgba(220,231,117 ,0.5);
 	border:2px solid #CCCCFF;
-	font-size:16px;
+	font-size:24px;
     color: black;
 	}
   table {

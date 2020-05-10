@@ -41,6 +41,14 @@
   h4 {
     color: blue;
     display: inline;
+    font-size:32px
+  }
+  h3{
+  font-size:42px
+  }
+  #myModalLabel{
+  font-family : Microsoft JhengHei;
+  font-size:32px;
   }
 </style>
 
@@ -91,6 +99,10 @@
   width: 15%;
   text-align: left;
   }
+  b{
+  font-size:22px;
+  font-family : Microsoft JhengHei;
+  }
   
 </style>
 
@@ -101,7 +113,7 @@
 <table id="title">
 	<tr>
 		<td>
-		 	<h3 style=font-size:30px;>目前揪團列表</h3>
+		 	<h3>目前揪團列表</h3>
 		 	<h4>
 			 <a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp">
 		 	<img src="<%= request.getContextPath() %>/front_end/group/images/homeIcon.png" width="75" height="75" border="0">
@@ -227,9 +239,9 @@
 				
 				
 			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">揪團內容</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
-            <h3 class="modal-title" id="myModalLabel">揪團內容</h3>
 			
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
@@ -250,6 +262,5 @@
     		 $("#basicModal").modal({show: true});
         </script>
  </c:if>
- 
 </body>
 </html>

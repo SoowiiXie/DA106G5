@@ -288,6 +288,7 @@
         <script>
     		 $("#basicModal").modal({show: true});
         </script>
+
  </c:if>
 
 </body>
