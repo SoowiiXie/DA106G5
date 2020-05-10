@@ -65,7 +65,7 @@ public class Grp_detailService {
 	//加入雙主鍵
 		public void insertByThree( String mb_id, String grp_no, Integer grp_register) {
 			System.out.println("insert");
-			dao.insertByThree(grp_no, mb_id, grp_register);		
+			dao.insertByThree(mb_id,grp_no, grp_register);		
 	}
 	//刪除雙主鍵
 	public void deleteByTwo(String mb_id , String grp_no) {
@@ -74,6 +74,6 @@ public class Grp_detailService {
 	}
 	//是否有加入
 	public boolean isGoin(String mb_id , String grp_no) {
-		return dao.isGoin(grp_no, mb_id);
+		return dao.isGoin(mb_id,grp_no);
 	}
 }

@@ -429,6 +429,7 @@ public class Group_detailServlet extends HttpServlet {
 		
 		if ("goin".equals(action)) { // 加入
 			PrintWriter out = res.getWriter();
+			res.setCharacterEncoding("UTF-8");
 	
 			try {
 				System.out.println("這裡是控制器頭");
