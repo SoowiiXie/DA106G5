@@ -130,17 +130,17 @@ margin-top:100;
 		<c:forEach var="productVO" items="${list}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
 			<tr >
-				<td align="center" style="height: 100px; width: 150px;"><img
+				<td align="center" style="height: 100px; width: 150px;"><div style="width:100%;overflow:hidden;"><img
 					src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}"
-					style="width:auto;"></td>
+					style="width:auto;"></div></td>
 				<td bgcolor=#9CC7F6>${productVO.pd_no}</td>
 				<td bgcolor=#9CC7F6>${productVO.pd_name}</td>
 				<td bgcolor=#9CC7F6>${productVO.pd_price}元</td>
 				<td bgcolor=#9CC7F6>${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
-				<td bgcolor=#9CC7F6>${productVO.pd_status==1?'下架':'上架'}</td>
+				<td bgcolor=#9CC7F6 class="UpOrDown">${productVO.pd_status==1?'下架':'上架'}</td>
 				<td bgcolor=#9CC7F6 align="center" >
 			
-				<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">
+			<%-- 	<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">
 				
 				 <div >
 				    <input type="submit" value="下架">
@@ -148,17 +148,20 @@ margin-top:100;
 				    <input type="hidden" name="action" value="changePd_status1">
 				    <input type="hidden" name="whichPage" value="<%=whichPage%>">
 				  </div>
-				</FORM>
-				
-		   
-				<div style="margin-top:4px; align:center;">	
+				</FORM> --%>
+				<div>
+					<button class="upProduct">上架</button></div>
+				 <input type="hidden" name="pd_no" value="${productVO.pd_no}">
+				<div><button class="downProduct">下架</button></div>
+		   <input type="hidden" name="pd_no" value="${productVO.pd_no}">
+				<%-- <div style="margin-top:4px; align:center;">	
 				    <FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">	
 				    		
 				<input type="submit" value="上架">
 				<input type="hidden" name="pd_no" value="${productVO.pd_no}">
 				<input type="hidden" name="action" value="changePd_status2">
 				<input type="hidden" name="whichPage" value="<%=whichPage%>"></FORM>
-				</div>
+				</div> --%>
 		   
 				
 					</td>
@@ -191,6 +194,50 @@ margin-top:100;
 	</div>
 </div>	
   <div class="buttonBar" style="margin-top:100px"></div>
+  <script
+		  src="https://code.jquery.com/jquery-3.5.0.js"
+		  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+		  crossorigin="anonymous">
+	</script>
+  
+	
+	<script>  
 
+	// AJAX 關注
+
+	$(document).ready(function(){
+		
+	
+		$(".upProduct").on("click",function(){
+			var upProduct = $(this);
+			
+		
+			$.ajax({
+				type:"POST",
+				url: "ProductServlet",
+				data:{
+					"action":"upProduct",
+					"pd_no":upProduct.parent().next().val()
+				},	
+			});
+			upProduct.parent().parent().prevAll(".UpOrDown").text("上架");
+		});
+		
+		$(".downProduct").on("click",function(){
+			var downProduct = $(this);
+			
+		
+			$.ajax({
+				type:"POST",
+				url: "ProductServlet",
+				data:{
+					"action":"downProduct",
+					"pd_no":downProduct.parent().next().val()
+				},				
+			});
+			downProduct.parent().parent().prevAll(".UpOrDown").text("下架");
+		});
+	});
+	</script>
 </body>
 </html>

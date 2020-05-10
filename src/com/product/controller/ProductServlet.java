@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.mb_follow.model.Mb_followService;
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
 
@@ -513,7 +515,7 @@ public class ProductServlet extends HttpServlet {
 		if (action.equals("searchTypeList")) {
 			String pd_typeNo = req.getParameter("pd_typeNo");
 
-			req.getSession().setAttribute("pd_typeNo", pd_typeNo);
+			req.getSession().setAttribute("pd_typeNo", pd_typeNo); //送出商品類別到管理商品頁面
 			String includePath = "/back_end/product/AllList2.jsp"; // 讓include增加商品頁面的bar得到網址
 //			System.out.println(includePath);
 			req.setAttribute("includePath", includePath);
@@ -770,6 +772,56 @@ public class ProductServlet extends HttpServlet {
 		}
 
 	}
+		
+		if ("upProduct".equals(action)) { // 關注
+			PrintWriter out = res.getWriter();
+			try {
+				
+				/***************************查詢資料****************************************/
+				String pd_no = req.getParameter("pd_no");
+				
+				System.out.println("AJAX");
+				ProductService productService = new ProductService();
+				ProductVO productVO = new ProductVO();
+			
+				productVO.setPd_no(pd_no);
+				productVO.setPd_status(2);
+				productService.changeStatus(productVO);
+				req.getSession().setAttribute("list", productService.getAll());
+				System.out.println();
+				
+				out.flush();
+				out.close();
+				return;
+								
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+			}
+		}
+		
+		if ("downProduct".equals(action)) { // 關注
+			PrintWriter out = res.getWriter();
+			try {
+				
+				/***************************查詢資料****************************************/
+				String pd_no = req.getParameter("pd_no");
+				
+				System.out.println("AJAX+down");
+				ProductService productService = new ProductService();
+				ProductVO productVO = new ProductVO();
+				productVO.setPd_no(pd_no);
+				productVO.setPd_status(1);
+				productService.changeStatus(productVO);
+				System.out.println(productVO);
+				
+				out.flush();
+				out.close();
+				return;
+								
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+			}
+		}
 
 	}
 
