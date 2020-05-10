@@ -42,7 +42,9 @@ margin-top:100;
 <div id="picimformation" style="float:left; margin-left:20%;width:30%; height:100%;">
 <div style="width:80%;height:60%;margin-left:10%;overflow:hidden;">
   <div id="mainPic" style=" height:100%;overflow:hidden;">
+  <div style="overflow:hidden;">
        <img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}" alt="">
+  </div>
   </div>
     </div>
        <div style="width:100%;height:30%;float:left;overflow:hidden" >
@@ -66,13 +68,13 @@ margin-top:100;
 </div>
 <div id="picimformation" style="float:right; margin-right:20%;width:30%; height:100%;">
    <form method="POST" action="<%=request.getContextPath()%>/ShoppingServlet" name="form1">
-  <table style="width:100%;height:500px; ">
+  <table style="width:100%;height:500px;"border="1">
     <tr>
-      <td width="10%" height="10%" align="right"><font color="black"size="5">商品名稱：</font></td>
+      <td width="25%" height="10%" align="right"><font color="black"size="5">商品名稱：</font></td>
       <td align="left"><font color="black"size="5">${productVO.pd_name}</font></td>
     </tr>
     <tr>
-      <td width="20%" height="20%" align="right"><font color="black" size="5">商品價格：</font></td>
+      <td height="20%" align="right"><font color="black" size="5">商品價格：</font></td>
       <td height="20%" align="left"><font size="7" color="red">${productVO.pd_price}元</font></td>
    </tr>
    <tr>
