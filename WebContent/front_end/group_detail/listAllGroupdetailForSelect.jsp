@@ -53,9 +53,10 @@
     color: red;
     display: block;
     margin-bottom: 1px;
+    color:black;
   }
   h4 {
-    color: blue;
+    
     display: inline;
     font-size: 28px;
   }
@@ -63,22 +64,23 @@
 
 <style>
 	#myList{
-	background:rgba(204,255,144 ,0.8);
+	background:rgba(84,110,122 ,0.7);
 	font-size:16px;
-
+	width:95%;
 	}
 	#wrapperRight{
-	background-image: url('/DA106_G5/front_end/group/webFront/c7.jpg');
-	bottom:0%;
+	margin:0px;
+	padding:0px;
+	background-image: url('/DA106_G5/front_end/group/webFront/c4.jpg');
+	background-size: cover;
 	}
   table {
-/*  	width: 600px;  */
+
 	background-color: white;
 	margin: 50px auto 5px auto;
   }
   table, th, td {
     border: 1px solid #000;
-    height: 50px;
   }
   th, td {
     padding: 20px;
@@ -87,39 +89,40 @@
   #group_table, #group_table tr,#group_table td,#group_table th{
   	border: 1px solid #000;
   	margin: 50px auto 5px auto;
+  	font-size: 26px;
+  	text-align:left;
   }
   body{
-  	font-family:Microsoft JhengHei;"
+  	font-family:Microsoft JhengHei;
   }
   #group_table th {
-  background: #D5E0CC;
+  background: #91B493;
+  }
+  #group_table td {
+  background: rgba(255, 255, 255, 0.5);
+  }
+  #group_table{
+ 	width:96%;
   }
    #number th{ 
-   width:5%; 
+   width:6%; 
    } 
-   #title th{ 
-   } 
-   #location{ 
-   width:30%; 
-   } 
-  #time{
-  }
-  #content{
-  }
-  #status{
-  }  
-	#follow{
-		width: 200px;
-		height: 60px;		
-		line-height: 60px;
-		font-size: 22px;		
-		background: rgba(229,115,115,0.4);
-		position: fixed;
-		top:25%;
-		left:80%;
-		border-radius:7%;
-		margin: 0px;/*才看到到線上客服*/
-	}
+  #follow{
+	  width: 200px;
+	  height: 60px;		
+	  line-height: 60px;
+	  font-size: 22px;		
+	  background: #F17C67;
+	  position: fixed;
+	  top:25%;
+	  left:80%;
+	  border-radius:15%;
+  	  margin: 0px;/*才看到到線上客服*/
+  	  color:black;
+ }
+ #name{
+ color:black;
+ }
 	
 	#myModalLabel{
 	margin:25px
@@ -137,12 +140,12 @@
 <!-- 	<tr><td> -->
 <%-- 		 <h4><%=req.getRequestURI()%></h4><br> --%>
 <!-- listAllGroupdetailForSelect.jsp<br> -->
-		 <h4 >尊貴的<%=memberVO.getMb_id()%>您好，摳泥吉娃娃，以下是您參加的揪團</h4><p>
+		 <h4 id="name">尊貴的<%=memberVO.getMb_id()%>您好，摳泥吉娃娃，以下是您參加的揪團</h4>
 <!-- 		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 <!-- 	</td></tr> -->
 <!-- </table><p> -->
 <br>
-		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_follow/listAllGroupfollowForSelect.jsp" id="follow">
+		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group_follow/listAllGroupfollowForSelect.jsp" id="follow" >
 		<img src="<%= request.getContextPath() %>/front_end/group/images/followIcon.png" width="50" height="50" border="0">我關注的揪團</a>
 
 
@@ -152,11 +155,11 @@
 		<th id=number>揪團編號</th>
 		
 		<th id=number>發起人會員編號</th>
-		<th id=location>地點</th>
-		<th id=time>報名開始時間</th>
-		<th id=time>報名結束時間</th>
-		<th id=time>活動開始時間</th>
-		<th id=time>活動結束時間</th>
+<!-- 		<th id=location>地點</th> -->
+<!-- 		<th id=time>報名開始時間</th> -->
+<!-- 		<th id=time>報名結束時間</th> -->
+<!-- 		<th id=time>活動開始時間</th> -->
+<!-- 		<th id=time>活動結束時間</th> -->
 		<th id=title>揪團標題</th>
 <!-- 		<th id=comten>揪團內容</th> -->
 		
@@ -175,7 +178,7 @@
 				
 <%-- 		<td>${grpSvc.getOneGroup(grp_detailVOList.grp_no).mb_id}</td> --%>
 		<td> ${grpSvc.getOneGroup(grp_detailVO.grp_no).mb_id}</td>
-		<td>
+<!-- 		<td> -->
 <%-- 				<c:forEach var="locationVO" items="${locSvc.all}"> --%>
 <%-- 		        <c:if test="${grp_detailVO.grp_no==grouperVO.grp_no}">  --%>
 <%-- 		        	<c:if test="${grouperVO.loc_no==locationVO.loc_no}">   		        				     --%>
@@ -183,43 +186,43 @@
 <%-- 					${grpSvc.getOneGroup(grp_detailVO.grp_no).loc_no} --%>
 <%-- 		       		 </c:if > --%>
 <%-- 		        </c:if >         --%>
-					${locSvc.getOneLocation(grpSvc.getOneGroup(grp_detailVO.grp_no).loc_no).loc_address}
+<%-- 					${locSvc.getOneLocation(grpSvc.getOneGroup(grp_detailVO.grp_no).loc_no).loc_address} --%>
 <%-- 		        </c:forEach> --%>
-		</td>
-		<td>
+<!-- 		</td> -->
+<!-- 		<td> -->
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%--                     ${grouperVO.grp_applystart}                                            --%>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart} --%>
-<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart}" pattern="yyyy-MM-dd H:mm"/>
+<%-- <fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applystart}" pattern="yyyy-MM-dd H:mm"/> --%>
 <%-- 					${grpSvc.getOneGroup(grp_detailVO.getGrp_no()).grp_applystart } --%>
-		</td>
-		<td>
+<!-- 		</td> -->
+<!-- 		<td> -->
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend} --%>
-<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend}" pattern="yyyy-MM-dd H:mm"/>
-<%--                    </c:if> --%>
-<%--         </c:forEach> --%>
-		</td>
-		<td>
-<%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
-<%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
-<%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start} --%>
-<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}" pattern="yyyy-MM-dd H:mm"/>
+<%-- <fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_applyend}" pattern="yyyy-MM-dd H:mm"/> --%>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
 <!-- 		</td> -->
-		<td>
+<!-- 		<td> -->
+<%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
+<%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
+<%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start} --%>
+<%-- <fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_start}" pattern="yyyy-MM-dd H:mm"/> --%>
+<%--                    </c:if> --%>
+<%--         </c:forEach> --%>
+<!-- <!-- 		</td> --> 
+<!-- 		<td> -->
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
 <%-- ${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end} --%>
-<fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end}" pattern="yyyy-MM-dd H:mm"/>
+<%-- <fmt:formatDate value="${grpSvc.getOneGroup(grp_detailVO.grp_no).grp_end}" pattern="yyyy-MM-dd H:mm"/> --%>
 <%--                    </c:if> --%>
 <%--         </c:forEach> --%>
-		</td>
+<!-- 		</td> -->
 		<td>
 <%-- 		<c:forEach var="grouperVO" items="${grpSvc.all}"> --%>
 <%--                    <c:if test="${grp_detailVO.mb_id==grouperVO.mb_id}"> --%>
