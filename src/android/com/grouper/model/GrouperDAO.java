@@ -9,6 +9,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class GrouperDAO implements GrouperDAO_interface {
+
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
 	static {
@@ -1191,6 +1192,8 @@ public class GrouperDAO implements GrouperDAO_interface {
 			pstmt.setString(1, grp_no);
 
 			rs = pstmt.executeQuery();
+			
+			
 			
 			
 			while (rs.next()) {

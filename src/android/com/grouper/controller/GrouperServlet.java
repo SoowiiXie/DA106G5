@@ -45,6 +45,7 @@ public class GrouperServlet extends HttpServlet {
 		}
 		System.out.println("input: " + jsonIn);
 		GrouperDAO grouperDAO = new GrouperDAO();
+		LocationDAO locationDAO = new LocationDAO();
 		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
 		String action = jsonObject.get("action").getAsString();
 		
@@ -93,8 +94,8 @@ public class GrouperServlet extends HttpServlet {
 			String mb_id = jsonObject.get("mb_id").getAsString();
 			String grp_no = jsonObject.get("grp_no").getAsString();
 			writeText(res, String.valueOf(grouperDAO.updateGrp_DetailStatus(mb_id,grp_no)));
-		}else if("getLocation".equals(action)) {
-			LocationDAO locationDAO = new LocationDAO();
+		}
+		else if("getLocation".equals(action)) {
 			List<LocationVO> locationList = locationDAO.getAll();
 			writeText(res, gson.toJson(locationList));
 		}
@@ -154,8 +155,7 @@ public class GrouperServlet extends HttpServlet {
 
 	}
 	
-	
-private java.sql.Timestamp dateFormatChange(String string_Date) {
+	private java.sql.Timestamp dateFormatChange(String string_Date) {
 		
 		SimpleDateFormat myFmt=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
@@ -176,7 +176,4 @@ private java.sql.Timestamp dateFormatChange(String string_Date) {
 		return timestamp;
 		
 	}
-	
-	
-	
 }
