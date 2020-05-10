@@ -209,8 +209,10 @@ height:100px;
 margin-top:100;
 }
 </style>
+
 <title>${productVO.pd_name}</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <body>
 <jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 <div style="width:100%; height:100px; border-style: solid; border-color:red; "></div>
@@ -240,7 +242,7 @@ margin-top:100;
            </div>
            <div  style="width:30%;height:100%; border-color:green; background-color:#3960D0;float:left;margin:10px 2.5% 10px 1%;" >
            <img onclick="showBig()" id="<%= request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic3" 
-           src="<%= request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic4" alt=""></div>
+           src="<%= request.getContextPath()%>/ProductPicReader2?pd_no=${productVO.pd_no}&&action=pd_pic3" alt=""></div>
        </div>    
 </div>
 <div style="border-style: solid; border-color:red;">
@@ -385,66 +387,6 @@ if (addToShopCar == true){
    )
 }
 </script> 
-<script>
-window.onload = init;
-
-function init() {
-    document.getElementById('demo').addEventListener('click', showBig, false);
-    document.getElementById('qrCode-box').innerHTML =
-        "<img src=https://chart.googleapis.com/chart?chs=180x180&cht=qr&chl=" + location.href +
-        "&choe=UTF-8/><br>";
-
-    
-    
-    var smallBbox = document.getElementById('small-box');
-    var floatBox = document.getElementById('float-box');
-    var bigBox = document.getElementById('big-box');
-    var bigBoxImg = bigBox.getElementsByTagName('img')[0];
-
-    floatBox.onmouseover = function () {
-        smallBbox.style.display = "block";
-        bigBox.style.display = "block";
-    }
-    floatBox.onmouseout = function () {
-        smallBbox.style.display = "none";
-        bigBox.style.display = "none";
-    }
-    floatBox.onmousemove = function (e) {
-        var _event = e || event;
-        console.log(_event.clientY);
-        var l = _event.clientX - demo.offsetLeft - floatBox.offsetLeft - smallBbox.offsetWidth /
-            2; //除2是因為讓滑鼠點出現在放大遮罩的中心位置
-        var t = _event.clientY - demo.offsetTop - floatBox.offsetTop - smallBbox.offsetHeight / 2;
-
-        var demoWidth = demo.offsetWidth;
-        var demoHeight = demo.offsetHeight;
-
-
-        var smallBboxWidth = smallBbox.offsetWidth;
-        var smallBboxHeight = smallBbox.offsetHeight;
-        //滑鼠可以移動的最大XY的距離
-        var maxX = demoWidth - smallBboxWidth - 2 /* 2 = border*2 */ ;
-        var maxY = demoHeight - smallBboxHeight;
-
-
-        l = Math.min(maxX, Math.max(0, l));
-        t = Math.min(maxY, Math.max(0, t));
-        smallBbox.style.left = l + "px";
-        smallBbox.style.top = t + "px";
-
-
-        var percentX = l / (floatBox.offsetWidth - smallBboxWidth); //求出小圖遮罩的座標佔可移動區域的比例
-        var percentY = t / (floatBox.offsetHeight - smallBboxHeight);
-
-
-        bigBoxImg.style.left = -percentX * (bigBoxImg.offsetWidth - bigBox.offsetWidth) +
-            "px"; //大圖對的移動方向和小圖遮罩的移動方向相反
-        bigBoxImg.style.top = -percentY * (bigBoxImg.offsetHeight - bigBox.offsetHeight) + "px";
-
-    }
-
-
-</script>
 
 <%-- <div style="width:400px;height:500px; background-color:blue; margin-top:200px;" >
 
