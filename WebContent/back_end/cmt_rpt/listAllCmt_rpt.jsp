@@ -115,6 +115,8 @@ th, td {
 						<input type="submit" value="修改"> 
 						<input type="hidden" name="cmt_rpt_no" value="${cmt_rptVO.cmt_rpt_no}"> 
 						<input type="hidden" name="action" value="getOne_For_Update">
+						<input type="hidden" name="includePath" value="${includePath}">
+						<input type="hidden" name="rpt_includePath" value="${rpt_includePath}">
 					</FORM>
 				</td>
 				<td>
@@ -127,6 +129,8 @@ th, td {
 						<input type="hidden" name="cmt_no" value="${cmt_rptVO.cmt_no}">
 						<input type="hidden" name="mb_id" value="${cmt_rptVO.mb_id}">
 						<input type="hidden" name="action" value="fakeDelete">
+						<input type="hidden" name="includePath" value="${includePath}">
+						<input type="hidden" name="rpt_includePath" value="${rpt_includePath}">
 					</FORM>
 				</td>
 			</tr>

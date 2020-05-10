@@ -108,6 +108,8 @@ th, td {
 		<input type="hidden" name="cmt_no" value="<%=cmt_rptVO.getCmt_no()%>">
 		<input type="hidden" name="mb_id" value="<%=cmt_rptVO.getMb_id()%>">
 		<input type="submit" value="送出修改">
+		<input type="hidden" name="includePath" value="${includePath}">
+		<input type="hidden" name="rpt_includePath" value="${rpt_includePath}">
 	</FORM>
 </body>
 </html>
