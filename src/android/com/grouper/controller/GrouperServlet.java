@@ -96,7 +96,7 @@ public class GrouperServlet extends HttpServlet {
 			writeText(res, String.valueOf(grouperDAO.updateGrp_DetailStatus(mb_id,grp_no)));
 		}
 		else if("getLocation".equals(action)) {
-			List<LocationVO> locationList = locationDAO.getAll();
+			List<LocationVO> locationList = locationDAO.getAll("getAll");
 			writeText(res, gson.toJson(locationList));
 		}
 		else if("insert".equals(action)) {
