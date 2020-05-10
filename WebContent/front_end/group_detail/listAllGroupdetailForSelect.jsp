@@ -121,7 +121,8 @@
   	  color:black;
  }
  #name{
- color:black;
+ color:#FFF;
+/*  background-color:#FFF; */
  }
 	
 	#myModalLabel{
@@ -140,7 +141,7 @@
 <!-- 	<tr><td> -->
 <%-- 		 <h4><%=req.getRequestURI()%></h4><br> --%>
 <!-- listAllGroupdetailForSelect.jsp<br> -->
-		 <h4 id="name">尊貴的<%=memberVO.getMb_id()%>您好，摳泥吉娃娃，以下是您參加的揪團</h4>
+		 <h4 id="name">親愛的<%=memberVO.getMb_id()%>您好，下列是您所參加的揪團</h4>
 <!-- 		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 <!-- 	</td></tr> -->
 <!-- </table><p> -->
