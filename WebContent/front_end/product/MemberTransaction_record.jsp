@@ -3,8 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.orders.model.*"%>
+<%@ page import="com.mb.model.*"%>
 
 <%
+	MemberService memberSvc = new MemberService();
+	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
+	//用memberVO先取得會常使用到的mb_id
+	session.setAttribute("mb_id", memberVO.getMb_id());
 	String mb_id = (String) session.getAttribute("mb_id");
 
 	OrdersService ordersService = new OrdersService();
