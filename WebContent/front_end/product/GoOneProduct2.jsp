@@ -39,13 +39,13 @@ margin-top:100;
 
 
 <div style="height:700px;">
-<div id="picimformation" style="float:left; margin-left:20%;width:30%; height:100%;border-style: solid;border-color:red;">
-<div style="width:80%;height:60%;margin-left:10%;overflow:hidden;border-style: solid;border-color:red;">
-  <div id="mainPic" style=" height:100%;overflow:hidden; border-style: solid;border-color:red;">
+<div id="picimformation" style="float:left; margin-left:20%;width:30%; height:100%;">
+<div style="width:80%;height:60%;margin-left:10%;overflow:hidden;">
+  <div id="mainPic" style=" height:100%;overflow:hidden;">
        <img src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}" alt="">
   </div>
     </div>
-       <div style="width:100%;height:30%;float:left;overflow:hidden;border-style: solid;border-color:red;" >
+       <div style="width:100%;height:30%;float:left;overflow:hidden" >
            <div style="float:loft;">
            <div style="width:30%;height:100%; overflow:hidden;float:left; margin:10px 1% 10px 1.25%;" >
            <img onclick="showBig()" id="<%= request.getContextPath()%>/ProductPicReader?pd_no=${productVO.pd_no}&&action=pd_pic"  
@@ -66,9 +66,9 @@ margin-top:100;
 </div>
 <div id="picimformation" style="float:right; margin-right:20%;width:30%; height:100%;">
    <form method="POST" action="<%=request.getContextPath()%>/ShoppingServlet" name="form1">
-  <table style="width:100%;height:500px; " border="1">
+  <table style="width:100%;height:500px; ">
     <tr>
-      <td width="10%" height="15%" align="right"><font color="black"size="5">商品名稱：</font></td>
+      <td width="10%" height="10%" align="right"><font color="black"size="5">商品名稱：</font></td>
       <td align="left"><font color="black"size="5">${productVO.pd_name}</font></td>
     </tr>
     <tr>
@@ -77,9 +77,9 @@ margin-top:100;
    </tr>
    <tr>
    
-      <td height="15%" align="right"><font color="black" size="5">商品數量：</font></td>
+      <td height="10%" align="right"><font color="black" size="5">商品數量：</font></td>
       
-      <td  height="15%" align="left"><select name="pd_quantity">
+      <td  height="10%" align="left"><select name="pd_quantity">
 						<option value="1">1
 						<option value="2">2
 						<option value="3">3
@@ -94,8 +94,8 @@ margin-top:100;
    </tr>
 
    <tr>
-     <td align="right" height="15%"><font color="black"size="5">商品尺寸：</font></td>
-     <td align="left" height="15%"><select size="1" name="pd_typeSize">
+     <td align="right" height="10%"><font color="black"size="5">商品尺寸：</font></td>
+     <td align="left" height="10%"><select size="1" name="pd_typeSize">
          <c:forEach var="pd_typeSize" items="${sizeList}" > 
           <option value="${pd_typeSize}">${pd_typeSize} Size
          </c:forEach>   
