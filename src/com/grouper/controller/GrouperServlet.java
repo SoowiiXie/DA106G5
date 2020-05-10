@@ -364,7 +364,7 @@ public class GrouperServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("grouperVO", grouperVO); // 含有輸入格式錯誤的grouperVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/group/addGroup.jsp");
+							.getRequestDispatcher("/front_end/group/listGrouper_ByCompositeQuery.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -384,7 +384,8 @@ public class GrouperServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/addGroup.jsp");
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group/listGrouper_ByCompositeQuery.jsp");
+//				.getRequestDispatcher("/front_end/index.jsp?pageRun=group/addGroup.jsp");
 				failureView.forward(req, res);
 			}
 		}

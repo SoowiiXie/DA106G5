@@ -202,7 +202,7 @@ public class Group_detailServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("grp_detailVO", grp_detailVO); // 含有輸入格式錯誤的grp_detailVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front_end/index.jsp?pageRun=group_detail/addGroupdetail.jsp");
+							.getRequestDispatcher("/front_end/index.jsp?pageRun=group_detail/listAllGroupdetail.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -219,7 +219,7 @@ public class Group_detailServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front_end/index.jsp?pageRun=group_detail/addGroupdetail.jsp");
+						.getRequestDispatcher("/front_end/index.jsp?pageRun=group_detail/listAllGroupdetail.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -435,10 +435,10 @@ public class Group_detailServlet extends HttpServlet {
 				/***************************查詢資料****************************************/
 				String mb_id = req.getParameter("mb_id").trim();
 				//測試
-				System.out.println("加入的mb_id"+mb_id);				
+				System.out.println("加入的mb_id:"+mb_id);				
 				String grp_no = req.getParameter("grp_no").trim();
 				//測試
-				System.out.println("加入的grp_no"+grp_no);
+				System.out.println("加入的grp_no:"+grp_no);
 				Integer grp_register = 1 ;
 				
 				Grp_detailService grp_detailSvc = new Grp_detailService();

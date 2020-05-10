@@ -15,6 +15,7 @@
   
   
   Grp_detailVO group_detailVO = grp_detailSvc.addGrp_detail(mb_id, grp_no, 1);
+//   Grp_detailVO group_detailVO = grp_detailSvc.get
 //   GrouperVO grouperVO = (GrouperVO) request.getAttribute("grouperVO");
   pageContext.setAttribute("group_detailVO", group_detailVO);
 

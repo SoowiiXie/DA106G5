@@ -21,6 +21,14 @@ public class Grp_detailService {
 		dao.insert(grp_detailVO);
 		return grp_detailVO;
 	}
+	
+//	public Grp_detailVO findByPrimaryKeyByGrp_no(String grp_no) {
+//		
+//		Grp_detailVO grp_detailVO = new Grp_detailVO();
+//		System.out.println("svcfind");
+//		dao.findByPrimaryKeyByGrp_no(grp_no);
+//		return grp_detailVO;
+//	}
 
 	public Grp_detailVO updateGrp_detail(String mb_id, String grp_no, Integer grp_register) {
 

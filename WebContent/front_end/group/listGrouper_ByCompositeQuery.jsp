@@ -167,7 +167,8 @@ listGrouper_ByCompositeQuery.jsp<br>
 			     <input type="hidden" name="grp_no"      value="${grouperVO.grp_no}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
-			     <input type="hidden" name="action"	    value="getOne_For_Update"></FORM>
+			     <input type="hidden" name="action"	    value="getOne_For_Update">
+			   </FORM>
 			</td>
 <!-- 			<td> -->
 <%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group/group.do" style="margin-bottom: 0px;"> --%>
@@ -195,7 +196,8 @@ listGrouper_ByCompositeQuery.jsp<br>
 				<br>			
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
-				<input type="hidden" name="action"       value="insert"></FORM>
+				<input type="hidden" name="action"       value="insert">
+			</FORM>
 			
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/group_follow/group_follow.do" style="margin-bottom: 0px;">
 <!-- 			原關注 -->
@@ -214,7 +216,8 @@ listGrouper_ByCompositeQuery.jsp<br>
 				<br>
 				<input type="hidden" name="requestURL"	 value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 				<input type="hidden" name="whichPage"  	 value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
-				<input type="hidden" name="action"       value="insert"></FORM>
+				<input type="hidden" name="action"       value="insert">
+			</FORM>
 			</td>
 			
 		</tr>

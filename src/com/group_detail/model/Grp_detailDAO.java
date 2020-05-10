@@ -41,7 +41,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			"SELECT mb_id,grp_no,grp_register FROM grp_detail where mb_id";
 	
 	private static final String INSERT_THREE = 
-			"INSERT INTO grp_detail (mb_id,grp_no,grp_register) VALUES (? , ? , '1')";	
+			"INSERT INTO grp_detail (mb_id,grp_no,grp_register) VALUES (? , ? , ?)";	
 	private static final String DELETE_TWO = 
 			"DELETE FROM grp_detail where  MB_ID = ? and GRP_NO = ?";
 	private static final String IS_GOIN = 
@@ -541,6 +541,7 @@ public class Grp_detailDAO implements Grp_detailDAO_interface {
 			
 			pstmt.setString(1, mb_id);
 			pstmt.setString(2, grp_no);
+			pstmt.setInt(3, 1);
 			
 			
 			System.out.println("是塞三個進不來嗎?");
