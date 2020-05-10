@@ -15,55 +15,72 @@
 
 
 
-<style>
+<style type="text/css">
+  	  #grp_content{
+	  height:30px;
+	  z-index : 99;
+	  }
+	  input[type="text"]{
+	  padding:5px 20px; border:2px black solid;
+	  cursor:pointer;
+      -webkit-border-radius: 5px;
+	  border-radius: 5px; 
+	  }
+	  textarea[type="textarea"]{
+	  padding:5px 20px; border:2px black solid;
+	  cursor:pointer;
+      -webkit-border-radius: 5px;
+	  border-radius: 5px;
+	  } 
       #groupUpdatediv{
       position:absolute;
-      width: 100%;
-      heightt: 60%;
-      background-image: url('/DA106_G5/front_end/group/webFront/c7.jpg');
-  
-      
+      top:10%;
+      left:20%;
+      width: 60%;
+      height: 100%;
+      background-color: rgba(236,239,241 ,0.4);
+      font-family:Microsoft JhengHei;
+	  font-size:16px;
+	  color:black;
+	  font-weight:bolder;     
       }
 	  #groupUpdate {
 		width: 100%;
-		height: 60%;
-		background-color: #FFFFFF;
+		height:89%;
 		margin-top: 2px;
 		margin-bottom: 2px;
 		text-align:left;
+		background-image: url('/DA106_G5/front_end/group/webFront/c7.jpg'); 
 	  }
 	  #udTitle{
 		width: 200px;
 		height: 60px;		
 		line-height: 60px;
-		font-size: 22px;		
+		font-size: 48px;		
 		background: rgba(229,115,115,0.4);
 		position: fixed;
-		top:25%;
-		left:80%;
+		top:15%;
+		left:15%;
 		border-radius:7%;
-		margin: 0px;/*才看到到線上客服*/
+		text-align:center;
+		margin: 0px;/*才看到到線上客服*/			
 	  }
 	#groupUpdate  table, #groupUpdate th, #groupUpdate td {
- 	width: 100%;
  	text-align:left;
-    border: 0px solid #CCCCFF;    
+ 	background:rgba(255, 256, 256, 0);
+    border: 0px solid;
+ 
  	 }
 	#groupUpdate th, #groupUpdate td {
   	width: 100%;
-    padding: 3px;
+    padding: 5px;
   }
 </style>
 
-<style type="text/css">
-   grp_content{
-	height:30px;
-  }
-</style>
 
 </head>
 <div id="groupUpdatediv">
-<body bgcolor='white'>
+<body>
 
 
 
@@ -74,7 +91,7 @@
 <!-- 	</td></tr> -->
 <!-- </table> -->
 
-<h3 id = "udTitle">資料修改:</h3>
+<h3 id = "udTitle">資料修改</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -87,7 +104,7 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="group.do" name="form1" id="groupUpdate">
-<table>
+<table id:"udTable">
 
 	<tr>
 		<td>揪團名稱:</td><td><%=grouperVO.getGrp_no()%></td>
