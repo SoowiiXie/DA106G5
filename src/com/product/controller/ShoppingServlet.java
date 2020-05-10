@@ -85,7 +85,7 @@ public class ShoppingServlet extends HttpServlet {
 				req.setAttribute("productVO", productVO);
 				req.setAttribute("sizeList", sizeList);
 				
-				String url = "/front_end/product/GoOneProduct.jsp";
+				String url = "/front_end/product/GoOneProduct2.jsp";
 
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 OneProductInformation.jsp
 				successView.forward(req, res);
