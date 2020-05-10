@@ -1,6 +1,10 @@
 package com.ntf.model;
 
 public class NotifyVO implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String ntf_no, mb_id, ntf_content;
 	private Integer ntf_status;
 	
@@ -39,6 +43,12 @@ public class NotifyVO implements java.io.Serializable {
 
 	public void setNtf_status(Integer ntf_status) {
 		this.ntf_status = ntf_status;
+	}
+
+	@Override
+	public String toString() {
+		return "NotifyVO [ntf_no=" + ntf_no + ", mb_id=" + mb_id + ", ntf_content=" + ntf_content + ", ntf_status="
+				+ ntf_status + "]";
 	}
 	
 }
