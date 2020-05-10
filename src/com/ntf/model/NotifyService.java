@@ -35,7 +35,7 @@ public class NotifyService {
 		NotifyVO notifyVO = new NotifyVO();
 		notifyVO.setNtf_status(ntf_status);
 		notifyVO.setNtf_no(ntf_no);
-		dao.update(notifyVO);
+		dao.updateStatus(notifyVO);
 	}
 
 	public NotifyVO getOneNotify(String ntf_no) {
