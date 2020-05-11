@@ -76,7 +76,7 @@ margin-top:100;
 </div>
 <div id="picimformation" style="float:right; margin-right:20%;width:30%; height:100%;">
    <form method="POST" action="<%=request.getContextPath()%>/ShoppingServlet" name="form1">
-  <table style="width:100%;height:500px;">
+  <table style="width:100%;height:500px;"border="1">
     <tr>
       <td bgcolor="3A60D0" width="30%" height="10%" align="right"><font color="white"size="3">商品名稱：</font></td>
       <td bgcolor=#C4E1FF align="left"><font color="black"size="3">${productVO.pd_name}</font></td>
@@ -119,7 +119,7 @@ margin-top:100;
    
    <tr>
      <td  bgcolor="3A60D0" align="right"><font color="white"size="3">商品詳述：</font></td>
-     <td  bgcolor=#C4E1FF style="vertical-align:text-top;align:" align="left"><font color="black"size="3">${productVO.pd_detail}</font></td>
+     <td  bgcolor=#C4E1FF  align="left"><font color="black"size="3">${productVO.pd_detail}</font></td>
    </tr>
 
    </table>
