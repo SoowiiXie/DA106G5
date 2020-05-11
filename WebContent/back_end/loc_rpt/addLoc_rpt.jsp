@@ -64,8 +64,8 @@ th, td {
 		<table>
 <!-- 		//cmt_rpt_no, rpt_reason, rpt_status, cmt_no, mb_id -->
 			<div class="form-group ml-1 mb-1 mr-1">
-				<label style="font-size: 1.4rem">檢舉原因: </label>
-				<input type="TEXT" name="rpt_reason" size="45" value="" placeholder="詳細原因(eg:不存在、需要收費、停止營業...)"/>
+				<label style="font-size: 1rem">我覺得這一定有問題: </label>
+				<input type="TEXT" name="rpt_reason" size="70" value="" placeholder="詳細原因(eg:不存在、需要收費、停止營業...)"/>
 			</div>
 		</table>
 		<br> 
@@ -74,7 +74,7 @@ th, td {
 			<input type="hidden" name="mb_id" id="mb_id4rpt" value=""> 
 			<input type="hidden" name="action" value="insert"> 
 		    <input type="submit" value="檢舉這地標" class="fbbutton" id="loc_rpt_submit">
-			<a href="#" id="close" class="fbbutton fbclose">先不送了</a>
+			<a href="#" id="close" class="fbbutton fbclose">這座標應該沒問題</a>
 		 </div>
 	</FORM>
 </body>
