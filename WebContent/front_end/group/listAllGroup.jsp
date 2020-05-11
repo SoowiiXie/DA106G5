@@ -44,11 +44,11 @@
     font-size:32px
   }
   h3{
-  font-size:42px
+  	font-size:42px;
   }
   #myModalLabel{
-  font-family : Microsoft JhengHei;
-  font-size:32px;
+  	font-family : Microsoft JhengHei;
+  	font-size:32px;
   }
 </style>
 
