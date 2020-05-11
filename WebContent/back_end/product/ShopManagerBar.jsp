@@ -19,21 +19,11 @@ height:100px;
 width:100%;
 background-color:#9CC7F6;
 margin:5px 5px 5px 3px;
-
-
 }
-.logo{
-height:100px;
-width:25%; 
-background-color:#9CC7F6;
-position: static; 
-line-height:100px; 
-float:left;
 
-}
 .goToShopHome{
 height:100px;
-width:15%; 
+width:12%; 
 background-color:#9CC7F6;
 float:left;
 position: relative;
@@ -45,9 +35,9 @@ margin-top:30px;
 
 }
 .backhome{
-margin-left:10%;
+margin-left:8%;
 height:100px;
-width:8%; 
+width:12%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
@@ -57,7 +47,7 @@ float:left;
 
 .managerProduct{
 height:100px;
-width:8%; 
+width:12%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
@@ -66,7 +56,7 @@ float:left;
 }
 .addProduct{
 height:100px;
-width:8%; 
+width:12%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
@@ -75,7 +65,7 @@ float:left;
 }
 .managerOrders{
 height:100px;
-width:8%; 
+width:12%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
@@ -84,7 +74,7 @@ float:left;
 }
 .managerCoupon{
 height:100px;
-width:8%; 
+width:12%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
@@ -207,6 +197,8 @@ font-family:Mamelon;
 <body>
 
 <div id="first">
+<div style="border-style: solid;
+border-color:red; align:center;">
       <div class="logo">
         <div style="width:150px; float:left;">
          
@@ -237,7 +229,7 @@ font-family:Mamelon;
       	<a href="<%=request.getContextPath()%>/CpGetServlet?action=getCouponManagerIncludePath" style="text-decoration:none;">
       	  <font color="#FDFF99" size="3">管理優惠券</font></a>
     </div> 
-      	
+ </div>     	
 </div>
   
   
