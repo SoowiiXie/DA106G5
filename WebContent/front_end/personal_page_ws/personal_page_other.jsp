@@ -145,7 +145,7 @@
 						<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}" class="rcd_no"> <input type="hidden" name="mb_id" value="${mb_id}" class="mb_id"> 
 						<input type="hidden" name="action" value="insert">
 					</div>
-					<<span class="mr-2 text-success whoMeToo_no" style="cursor:help">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
+					<span class="mr-2 text-success whoMeToo_no" style="cursor:help">${meTooSvcEL.countAllMeToos(recordVO.rcd_no)}</span>
 					<input type="hidden" name="rcd_no" value="${recordVO.rcd_no}"> 
 					<!-- 留言按鈕-->
 					<div style="margin-bottom: 0px;">
@@ -230,10 +230,14 @@
 	<br>
 	<br>
 	<div class="sidebar-statis card--5 shadow-z1 bg-white col-11 rounded p-1">
-		<h4 class="nake-title--sidebar medium d-inline-block mt-3 ml-4">Runn Able 官方Line</h4>
+		<a href="https://line.me/R/ti/p/%40073anhos">
+			<h4 class="nake-title--sidebar medium d-inline-block mt-3 ml-4">Runn Able 官方Line</h4>
+		</a>
 		<div class="statis-chart">
 			<!-- <canvas id="week_chart" width="300" height="200"></canvas> -->
-			<img src="<%=request.getContextPath()%>/img/lineAddFriend.PNG" alt="" class="col-12">
+			<a href="https://line.me/R/ti/p/%40073anhos">
+				<img src="<%=request.getContextPath()%>/img/lineAddFriend.PNG" alt="" class="col-12">
+			</a>
 		</div>
 	</div>
 </div>
