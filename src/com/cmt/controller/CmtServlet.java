@@ -312,6 +312,12 @@ public class CmtServlet extends HttpServlet {
 			    	mb_base64 = Base64.getEncoder().encodeToString(mbSvc.getOneMember(mb_id).getMb_pic());
 			    }else if(mb_line_pic!=null){
 			    	mb_base64 = Base64.getEncoder().encodeToString(mbSvc.getOneMember(mb_id).getMb_line_pic());
+			    }else {
+			    	InputStream in = getServletContext().getResourceAsStream("/NoData/null2.jpg");
+					byte[] b = new byte[in.available()];
+					in.read(b);
+					in.close();
+					mb_base64 = Base64.getEncoder().encodeToString(b);
 			    }
 			    obj.put("mb_base64", mb_base64);
 			    
