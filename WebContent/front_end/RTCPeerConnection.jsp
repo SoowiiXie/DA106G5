@@ -320,7 +320,7 @@ html {
 //                        var SIGNALING_SERVER = 'https://192.168.196.195:9001/';
 
                         config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
-                        var sender = Math.round(Math.random() * 999999999) + 999999999;
+                        var sender = "LIV00007";
 
                         io.connect(SIGNALING_SERVER).emit('new-channel', {
                             channel: config.channel,
