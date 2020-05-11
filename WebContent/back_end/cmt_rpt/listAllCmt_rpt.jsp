@@ -6,6 +6,7 @@
 <%@ page import="com.cmt_rpt.model.Cmt_rptService"%>
 <%@ page import="com.cmt_rpt.model.*"%>
 <%@ page import="com.mb.model.*"%>
+<%@ page import="com.cmt.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
@@ -13,8 +14,13 @@
 	List<Cmt_rptVO> list = cmt_rptSvc.getAll();
 	pageContext.setAttribute("list", list);
 	MemberService memberSvc = new MemberService();
+	
+// 	CmtService cmtSvc = new CmtService();
+// 	cmtSvc.getOneCmt("cmt00001").getCmt_content()
+	
 %>
-
+<!--留言Service -->
+<jsp:useBean id="cmtSvcEL" scope="page"	class="com.cmt.model.CmtService" />
 
 <html>
 <head>
@@ -130,6 +136,7 @@ th, td {
 			<th>原因</th>
 			<th>檢舉狀態</th>
 			<th>留言編號</th>
+			<th>留言內容</th>
 			<th>檢舉會員</th>
 			<th>被檢舉會員</th>
 			<th>已被檢舉次數</th>
@@ -147,6 +154,7 @@ th, td {
 				<td>${cmt_rptVO.rpt_reason}</td>
 				<td>${(cmt_rptVO.rpt_status!=1?(cmt_rptVO.rpt_status==2?'成功':'失敗'):'未審')}</td>
 				<td>${cmt_rptVO.cmt_no}</td>
+				<td>${cmtSvcEL.getOneCmt(cmt_rptVO.cmt_no).getCmt_content()}</td>
 				<td>${cmt_rptVO.mb_id}</td>
 				<td>${memberSvcEL.getOneMember(cmt_rptSvcEL.getRptedMb_id(cmt_rptVO.cmt_no)).mb_id}</td>
 <%-- 				<td><%= memberSvc.getOneMember(cmt_rptSvc.getRptedMb_id(cmt_rptVO.getCmt_no())).getMb_name() %></td> --%>
