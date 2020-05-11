@@ -197,8 +197,7 @@ font-family:Mamelon;
 <body>
 
 <div id="first">
-<div style="border-style: solid;
-border-color:red; align:center;">
+<div>
       <div class="logo">
         <div style="width:150px; float:left;">
          
