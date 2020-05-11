@@ -482,6 +482,23 @@
 			<url-pattern>/android/grouper.do</url-pattern>
 		</servlet-mapping>
 		
+		<servlet>
+			<servlet-name>AndroidMeTooServlet</servlet-name>
+			<servlet-class>android.com.metoo.controller.MeTooServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AndroidMeTooServlet</servlet-name>
+			<url-pattern>/android/metoo.do</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>AndroidThumbServlet</servlet-name>
+			<servlet-class>android.com.thumb.controller.ThumbServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AndroidThumbServlet</servlet-name>
+			<url-pattern>/android/thumb.do</url-pattern>
+		</servlet-mapping>
 
 <!-- 麥克責任區結束 -->
 

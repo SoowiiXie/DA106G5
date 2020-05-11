@@ -16,6 +16,8 @@ import javax.sql.DataSource;
 
 import com.cmt.model.CmtService;
 import com.cmt.model.CmtVO;
+import com.metoo.model.MeTooService;
+import com.thumb.model.ThumbService;
 
 public class RecordJNDIDAO implements RecordDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO Record (rcd_no, rcd_uploadtime, rcd_content, path_no, mb_id) VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'),?,?,?,?)";
@@ -376,11 +378,16 @@ public class RecordJNDIDAO implements RecordDAO_interface {
 				recordVO_map.setRcd_no(rcd_no);
 				recordVO_map.setRcd_uploadtime(rs_map.getDate("rcd_uploadtime"));
 				recordVO_map.setRcd_content(rs_map.getString("rcd_content"));
-				recordVO_map.setRcd_thumb_amount(rs_map.getInt("rcd_thumb_amount"));
-				recordVO_map.setRcd_metoo_amount(rs_map.getInt("rcd_metoo_amount"));
 				recordVO_map.setRcd_status(rs_map.getInt("rcd_status"));
 				recordVO_map.setMb_id(rs_map.getString("mb_id"));
 				recordVO_map.setPath_no(rs_map.getString("path_no"));
+				
+				MeTooService metooSvc = new MeTooService();
+				int rcd_metoo_amount = metooSvc.countAllMeToos(rcd_no);
+				recordVO_map.setRcd_metoo_amount(rcd_metoo_amount);
+				ThumbService thumbSvc = new ThumbService();
+				int rcd_thumb_amount = thumbSvc.countAllThumbs(rcd_no);
+				recordVO_map.setRcd_thumb_amount(rcd_thumb_amount);
 				
 				CmtService cmtSvc = new CmtService();
 				List<CmtVO> cmtList = cmtSvc.getByRcd_no(rcd_no, con);
