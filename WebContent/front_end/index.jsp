@@ -48,9 +48,9 @@
 		pageContext.setAttribute("messageList", messageList);
 
 		//拿出三則通知
-// 		NotifyService notifySvc = new NotifyService();
-// 		List<NotifyVO> notifyList = notifySvc.getAllByMb_id((String)pageContext.getAttribute("mb_id"));
-// 		pageContext.setAttribute("notifyList", notifyList);
+		NotifyService notifySvc = new NotifyService();
+		List<NotifyVO> notifyList = notifySvc.getAllByMb_id((String)pageContext.getAttribute("mb_id"));
+		pageContext.setAttribute("notifyList", notifyList);
 		
 		//取出所有地標
 // 		LocationService locationSvc = new LocationService();
