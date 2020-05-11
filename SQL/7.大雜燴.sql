@@ -1355,9 +1355,9 @@ VALUES ('rcd'||LPAD(to_char(RCD_NO_SEQ.nextval), 5, '0'), TO_DATE('2020-03-04 20
 --留言
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'commemt1', TO_DATE('2020-03-05', 'YYYY-MM-DD'), '1', 'rcd00001', 'soowii123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment2', TO_DATE('2020-03-05', 'YYYY-MM-DD'), '1', 'rcd00002', 'xuan123');
-INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment3', TO_DATE('2020-03-10', 'YYYY-MM-DD'), '1', 'rcd00003', 'michael123');
-INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment4', TO_DATE('2020-03-15', 'YYYY-MM-DD'), '1', 'rcd00001', 'vain123');
-INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), 'comment5', TO_DATE('2020-03-30', 'YYYY-MM-DD'), '1', 'rcd00001', 'yiwen123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '長得404', TO_DATE('2020-03-10', 'YYYY-MM-DD'), '1', 'rcd00003', 'michael123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '爪哇', TO_DATE('2020-03-15', 'YYYY-MM-DD'), '1', 'rcd00001', 'vain123');
+INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '我覺得', TO_DATE('2020-03-30', 'YYYY-MM-DD'), '1', 'rcd00001', 'yiwen123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '爪哇', TO_DATE('2020-04-05', 'YYYY-MM-DD'), '1', 'rcd00008', 'soowii123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '我愛妳', TO_DATE('2020-04-05', 'YYYY-MM-DD'), '1', 'rcd00008', 'xuan123');
 INSERT INTO "COMMENTT" (CMT_NO, CMT_CONTENT, CMT_TIME, CMT_STATUS, RCD_NO, MB_ID) VALUES ('cmt'||LPAD(to_char(CMT_NO_SEQ.nextval), 5, '0'), '安卓拉基醜八怪', TO_DATE('2020-04-10', 'YYYY-MM-DD'), '1', 'rcd00008', 'michael123');
