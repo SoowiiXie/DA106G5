@@ -66,7 +66,7 @@
 		訂單編號${ordersVO.od_no}
 
 		<table style="width: 70%;">
-			<tr bgcolor="#999999" align="center">
+			<tr align="center" bgcolor="#999999" align="center">
 				<th style="width: 150px;"><font color="black">商品圖片</font></th>
 				<th style="width: 200px;"><font color="black">商品名稱</font></th>
 				<th style="width: 150px;"><font color="black">商品編號</font></th>
