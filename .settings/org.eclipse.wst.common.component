@@ -2,7 +2,6 @@
     <wb-module deploy-name="DA106_G5">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent/front_end/livestream"/>
         <property name="context-root" value="DA106_G5"/>
         <property name="java-output-path" value="/DA106_G5/build/classes"/>
     </wb-module>
