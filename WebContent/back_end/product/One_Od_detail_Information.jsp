@@ -79,7 +79,7 @@ th, td {
 			
 				<td width="100" bgcolor="#9CC7F6">${od_detailVO.od_amount}</td>
 			
-				<td width="100" bgcolor="#9CC7F6">${od_detailVO.od_price}</td>
+				<td width="100" bgcolor="#9CC7F6">${od_detailVO.od_price}元</td>
 			</tr>
 		</c:forEach>
 

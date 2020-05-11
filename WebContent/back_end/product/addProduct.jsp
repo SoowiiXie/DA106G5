@@ -202,7 +202,7 @@ margin-top:100;
 
 
 
-<div class="buttonBar" style="margin-top:100px"></div>
+<div class="buttonBar" style="margin-top:100px; background-color:#9CC7F6; margin:5px 5px 5px 3px;"></div>
 
 
 </body>
