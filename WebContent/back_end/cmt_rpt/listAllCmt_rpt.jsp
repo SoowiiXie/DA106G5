@@ -145,8 +145,8 @@ th, td {
 		</tr>
 		<jsp:useBean id="cmt_rptSvcEL" scope="page" class="com.cmt_rpt.model.Cmt_rptService" />
 		<jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
-<%-- 		<%@ include file="page1.file"%> --%>
-		<%@ include file="pages/page1.file"%>
+		<%@ include file="page1.file"%>
+<%-- 		<%@ include file="pages/page1.file"%> --%>
 		<c:forEach var="cmt_rptVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 			<tr>
@@ -186,8 +186,8 @@ th, td {
 		</c:forEach>
 	</table>
 	<div class="mx-auto" style="width: 30rem;">
-<%-- 		<%@ include file="page2.file"%> --%>
-		<%@ include file="pages/page2.file"%>
+		<%@ include file="page2.file"%>
+<%-- 		<%@ include file="pages/page2.file"%> --%>
 	</div>
 
 </body>
