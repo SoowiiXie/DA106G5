@@ -151,7 +151,6 @@ margin-top:100;
 					<div class="modal-header" align="center">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true" style="float:left;">&times;</button>
-						
 					</div>
 
 					<div class="modal-body">
