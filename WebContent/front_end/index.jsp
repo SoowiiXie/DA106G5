@@ -17,7 +17,7 @@
 <% 
 		MemberService memberSvc = new MemberService();
 		MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
-		//用memberVO先取得會常使用到的mb_id
+		//用memberVO先取得會常使用到的mb_id 
 		pageContext.setAttribute("mb_id", memberVO.getMb_id());
 		
 	//登入畫面壞掉時用，其餘時候註解起來
