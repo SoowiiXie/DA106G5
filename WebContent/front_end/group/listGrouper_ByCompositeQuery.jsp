@@ -77,12 +77,19 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
     text-align: center;
     border: 1px solid #CCCCFF;
   }
-input:disabled,
-input[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}
+  #oneGroup_table th{
+  background: #D5E0CC;
+  }
+ input:disabled,
+ input[disabled]{
+   border: 1px solid #999999;
+   background-color: #cccccc;
+   color: #666666;
+  }
+  #myModalLabel{
+  	font-family : Microsoft JhengHei;
+  	font-size:32px;
+  }
 </style>
 
 </head>
@@ -242,10 +249,10 @@ listGrouper_ByCompositeQuery.jsp<br>
 				
 				
 			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">揪團內容</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
-            <h3 class="modal-title" id="myModalLabel">揪團內容</h3>
-			
+            		
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
                <jsp:include page="listOneGroup2.jsp" />
