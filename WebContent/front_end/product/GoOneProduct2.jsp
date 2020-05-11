@@ -70,16 +70,16 @@ margin-top:100;
    <form method="POST" action="<%=request.getContextPath()%>/ShoppingServlet" name="form1">
   <table style="width:100%;height:500px;"border="1">
     <tr>
-      <td width="25%" height="10%" align="right"><font color="black"size="5">商品名稱：</font></td>
-      <td align="left"><font color="black"size="5">${productVO.pd_name}</font></td>
+      <td width="30%" height="10%" align="right"><font color="black"size="3">商品名稱：</font></td>
+      <td align="left"><font color="black"size="3">${productVO.pd_name}</font></td>
     </tr>
     <tr>
-      <td height="20%" align="right"><font color="black" size="5">商品價格：</font></td>
-      <td height="20%" align="left"><font size="7" color="red">${productVO.pd_price}元</font></td>
+      <td height="10%" align="right"><font color="black" size="3">商品價格：</font></td>
+      <td height="10%" align="left"><font size="5" color="red">${productVO.pd_price}元</font></td>
    </tr>
    <tr>
    
-      <td height="10%" align="right"><font color="black" size="5">商品數量：</font></td>
+      <td height="10%" align="right"><font color="black" size="3">商品數量：</font></td>
       
       <td  height="10%" align="left"><select name="pd_quantity">
 						<option value="1">1
@@ -96,8 +96,8 @@ margin-top:100;
    </tr>
 
    <tr>
-     <td align="right" height="10%"><font color="black"size="5">商品尺寸：</font></td>
-     <td align="left" height="10%"><select size="1" name="pd_typeSize">
+     <td align="right" height="10%"><font color="black"size="3">商品尺寸：</font></td>
+     <td align="left" height="10%"><select name="pd_typeSize">
          <c:forEach var="pd_typeSize" items="${sizeList}" > 
           <option value="${pd_typeSize}">${pd_typeSize} Size
          </c:forEach>   
@@ -105,13 +105,13 @@ margin-top:100;
    </tr>
    
       <tr>
-     <td width="20%" height="10%" align="right"><font color="black"size="5">商品類別：</font></td>
-     <td width="300" height="40" align="left"><font color="black"size="5">${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</font></td>
+     <td width="20%" height="10%" align="right"><font color="black"size="3">商品類別：</font></td>
+     <td width="300" height="40" align="left"><font color="black"size="3">${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</font></td>
    </tr>
    
    <tr>
-     <td  style="vertical-align:text-top;" align="right"><font color="black"size="5">商品詳述：</font></td>
-     <td  style="vertical-align:text-top;align:" align="left"><font color="black"size="5">${productVO.pd_detail}</font></td>
+     <td  style="vertical-align:text-top;" align="right"><font color="black"size="3">商品詳述：</font></td>
+     <td  style="vertical-align:text-top;align:" align="left"><font color="black"size="3">${productVO.pd_detail}</font></td>
    </tr>
 
    </table>
