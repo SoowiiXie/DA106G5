@@ -196,8 +196,8 @@ public class FakeBlobTest extends HttpServlet {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "DA106G5", "DA106G5");
 				pstmt = con.prepareStatement("UPDATE MEMBER SET MB_PIC=? WHERE MB_ID = ?");
-				// 6張照片
-				for(int i = 0; i < 8; i++) {
+				// 7張照片
+				for(int i = 0; i < 7; i++) {
 					
 					fin = getServletContext().getResourceAsStream("/fake_picture/mb" + (i+1) + ".jpg"); 
 					pstmt.setBinaryStream(1, fin, fin.available());
