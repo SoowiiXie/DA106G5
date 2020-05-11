@@ -5,6 +5,7 @@
 <%@ page import="com.loc_rpt.model.Loc_rptVO"%>
 <%@ page import="com.loc_rpt.model.Loc_rptService"%>
 <%@ page import="com.loc_rpt.model.*"%>
+<%@ page import="com.location.model.*"%>
 <%@ page import="com.mb.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
@@ -13,8 +14,13 @@
 	List<Loc_rptVO> list = loc_rptSvc.getAll();
 	pageContext.setAttribute("list", list);
 	MemberService memberSvc = new MemberService();
+	
+// 	LocationService locationSvc = new LocationService();
+// 	locationSvc.getOneLocation("loc00001").getLoc_address()
 %>
 
+<!--地標Service -->
+<jsp:useBean id="locationSvcEL" scope="page" class="com.location.model.LocationService" />
 
 <html>
 <head>
@@ -133,8 +139,9 @@ th, td {
 			<th>原因</th>
 			<th>檢舉狀態</th>
 			<th>地標編號</th>
+			<th>地標名稱</th>
 			<th>檢舉會員</th>
-			<th>檢舉會員等級</th>
+			<th>會員等級</th>
 <!-- 			<th>修改</th> -->
 			<th>審核</th>
 		</tr>
@@ -149,6 +156,7 @@ th, td {
 				<td>${loc_rptVO.rpt_reason}</td>
 				<td>${(loc_rptVO.rpt_status!=1?(loc_rptVO.rpt_status==2?'成功':'失敗'):'未審')}</td>
 				<td>${loc_rptVO.loc_no}</td>
+				<td>${locationSvcEL.getOneLocation(loc_rptVO.loc_no).getLoc_address()}</td>
 				<td>${loc_rptVO.mb_id}</td>
 				<td>${memberSvcEL.getOneMember(loc_rptVO.mb_id).mb_lv}</td>
 <!-- 				<td> -->
