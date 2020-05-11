@@ -896,18 +896,18 @@ START WITH 6
 NOMAXVALUE
 NOCYCLE;
 
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
-values('20200324-000001','soowii123','300000','中央大學A');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
-values('20200324-000002','xuan123','300000','中央大學C');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
-values('20200324-000003','michael123','300000','中央大學B');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
-values('20200324-000004','vain123','300000','中央大學D');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
-values('20200324-000005', 'yiwen123','300000','中央大學E');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
-values('20200324-000006', 'weijhih123','300000','中央大學F');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
+values('20200324-000001','soowii123','300000','中央大學A','300000');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
+values('20200324-000002','xuan123','300000','中央大學C','300000');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
+values('20200324-000003','michael123','300000','中央大學B','300000');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
+values('20200324-000004','vain123','300000','中央大學D','300000');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
+values('20200324-000005', 'yiwen123','300000','中央大學E','300000');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
+values('20200324-000006', 'weijhih123','300000','中央大學F','300000');
 
 ---------------------PD_TYPE商品類別---------------------
 
