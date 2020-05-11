@@ -130,53 +130,53 @@
 			<tr>
 				<td>報名開始時間:</td>
 				<td><input name="grp_applystart" id="a_date1" type="text" 
-				class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇報名開始時間" id="name" /> </td>
+				class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇報名開始時間" /> </td>
 			</tr>
 			
 			<tr>
 				<td>報名結束時間:</td>
 				<td><input name="grp_applyend" id="a_date2" type="text" 
-				class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇報名結束時間" id="name" /> </td>
+				class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇報名結束時間" /> </td>
 			</tr>
 			
 			<tr>
 				<td>活動開始時間:</td>
 				<td><input name="grp_start" id="s_date1" type="text" 
-				class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇揪團開始時間" id="name" /> </td>
+				class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇揪團開始時間" /> </td>
 			</tr>
 			
 			<tr>
 				<td>活動結束時間:</td>
 				<td><input name="grp_end" id="s_date2" type="text" 
-				class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇揪團報名結束時間" id="name" /> </td>
+				class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請選擇揪團報名結束時間" /> </td>
 			</tr>
 			
 			<tr>
 				<td>揪團標題:</td>
 				<td><input type="TEXT" name="grp_name" size="45"
 					 value="<%= (grouperVO==null)? "測試活動" : grouperVO.getGrp_name()%>" 
-					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團標題" id="name" /> </td>
+					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團標題" id="grp_name" /> </td>
 			</tr>
 			
 			<tr>
 				<td>揪團內容:</td>
 				<td><textarea type="textarea" name="grp_content" size="45" rows="2"
 					 value="<%= (grouperVO==null)? "好好玩喔喔喔" : grouperVO.getGrp_content()%>"  
-					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團內容" id="name" /></textarea></td>
+					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團內容" id="grp_content" /></textarea></td>
 			</tr>
 			
 			<tr>
 				<td>揪團人數上限:</td>
 				<td><input type="TEXT" name="grp_personmax" size="45"
 					 value="<%= (grouperVO==null)? " " : grouperVO.getGrp_personmax()%>" 
-					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團人數上限" id="name" /> </td>
+					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團人數上限" id="grp_personmax" /> </td>
 			</tr>
 			
 			<tr>
 				<td>揪團人數下限:</td>
 				<td><input type="TEXT" name="grp_personmin" size="45"
 					 value="<%= (grouperVO==null)? " " : grouperVO.getGrp_personmin()%>" 
-					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團人數下限" id="name" /> </td>
+					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入揪團人數下限" id="grp_personmin" /> </td>
 			</tr>
 			
 			<tr>
@@ -192,7 +192,9 @@
 				<td><input type="hidden" name="grp_follow" size="45"
 					 value="<%= (grouperVO==null)? "1" : grouperVO.getGrp_follow()%>"
 					 class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="請輸入查詢的關注人數" id="name" /> </td>
-		
+			
+			
+			
 			
 			<jsp:useBean id="deptSvc" scope="page" class="com.grouper.model.GrouperService" />
 			<tr>
@@ -200,12 +202,13 @@
 				<td colspan="2">
 				<input type="hidden" name="action" value="insert">
 				<input type="submit" value="送出新增" id="button-blue"/>
-				<div class="ease"></div>
+				<div class="ease"></div>			
 				</td>
 			</tr>
 			</table>
 		</tbody>	
 		</FORM>
+		<button onClick="magic()">神奇小按鈕</button>
 	</div>
 </body>
 
@@ -313,6 +316,18 @@ $(function(){
 			   })
 			  },
         });
-});          
+});
+
+	function magic(){
+	
+	$("#a_date1").val("2020-05-14 08:30");
+	$("#a_date2").val("2020-05-15 15:30");
+	$("#s_date1").val("2020-05-15 19:30");
+	$("#s_date2").val("2020-05-15 20:30");
+	$("#grp_name").val("宣揚古羅馬文化");
+	$("#grp_content").val("週末下班後來場爭鬥，爭鬥的不是輸贏，而是歷史的洪流中的一絲喘息空間");
+	$("#grp_personmax").val("15");
+	$("#grp_personmin").val("7");
+	}
 </script>
 </html>
