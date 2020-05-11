@@ -137,7 +137,7 @@ margin-top:100;
 						<b><font color="black"><%=pd_no%></font></b>
 					</div></td>
 				<td><div align="center">
-						<b><font color="black"><%=pd_price%></font></b>
+						<b><font color="black"><%=pd_price%>元</font></b>
 					</div></td>
 					<td><div align="center">
 						<b><font color="black"><%=pd_typeSize%></font></b>
@@ -162,7 +162,7 @@ margin-top:100;
 						<font color="red"><b>總金額：</b></font>
 					</div></td>
 				
-				<td align="center"><font color="red"><b>$<%=totalPrice%></b></font></td>
+				<td align="center"><font color="red"><b><%=totalPrice%>元</b></font></td>
 				<td></td>
 				<td></td>
 			</tr>
@@ -177,7 +177,7 @@ margin-top:100;
 				<td><div align="center">
 						<font color="red"><b>優惠後金額：</b></font>
 					</div></td>
-				<td align="center"><font color="red"><b>$${discount}</b></font></td>
+				<td align="center"><font color="red"><b>${discount}元</b></font></td>
 				<td></td>
 				
 				<td></td>
