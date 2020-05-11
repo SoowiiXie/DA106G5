@@ -13,6 +13,7 @@ import com.mb.model.MemberVO;
 import com.loc_rpt.model.*;
 import com.cp_get.model.*;
 import com.msg.model.*;
+import com.ntf.model.NotifyService;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
 		* 1024 * 1024)
@@ -266,7 +267,9 @@ public class Loc_rptServlet extends HttpServlet {
 					cp_getSvc.aMemberGetCoupon(cp_getVO);
 					/*************************** 會員拿到優惠卷後寄訊息給對方 ****************************************/
 					MessageService messageSvc = new MessageService();
-					messageSvc.addMessage("androidlababy520" , mb_id, memberVO.getMb_name()+"恭喜你升上"+(memberVO.getMb_lv()+1)+"等/n請至商城收取您的優惠券");
+					messageSvc.addMessage("androidlababy520" , mb_id, memberVO.getMb_name()+"恭喜你升上"+(memberVO.getMb_lv()+1)+"等，請至商城收取您的優惠券");
+					NotifyService notifySvc = new NotifyService();
+					notifySvc.addNotify(mb_id, memberVO.getMb_name()+"恭喜你升上"+(memberVO.getMb_lv()+1)+"等，請至商城收取您的優惠券");
 				}
 				Loc_rptVO loc_rptVO = new Loc_rptVO();
 				loc_rptVO.setLoc_rpt_no(loc_rpt_no);

@@ -62,6 +62,17 @@ margin-top:100;
 .breadcrumb > .active {
 color: #777;
 }
+
+  table {
+	background-color: white;
+  }
+  table, th, td {
+    border: 1px solid 	#FFFFFF;
+  }
+  th, td {
+    padding: 1px;
+    text-align: center;
+  }
 </style>
 <meta charset="UTF-8">
 <title>列出所有商品</title>
@@ -154,14 +165,14 @@ color: #777;
 							></a></td>
 				</tr>
 				<tr>
-					<td class="PdName"><a
-						href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}&&whichPage=<%=whichPage%>'>${productVO.pd_name}</a></td>
+					<td class="PdName" bgcolor="3A60D0"><a
+						href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${productVO.pd_no}&&whichPage=<%=whichPage%>'><font color="white">${productVO.pd_name}</font></a></td>
 				<tr>
-					<td class="PdPrice"><font color="red"><b>${productVO.pd_price} 元</b></font></td>
+					<td class="PdPrice" bgcolor=#9CC7F6 ><font color="red"><b>${productVO.pd_price} 元</b></font></td>
 
 				</tr>
 				<tr>
-					<td class="PdPrice">${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</td>
+					<td class="PdPrice" bgcolor=#9CC7F6><font color="black">${pd_typeService.searchType(productVO.pd_typeNo).pd_typeName}</font></td>
 				</tr>
 
 			</table>

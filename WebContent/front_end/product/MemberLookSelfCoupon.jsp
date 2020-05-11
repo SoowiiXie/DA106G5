@@ -57,7 +57,7 @@ margin-top:100;
 		<font size="+3">目前您可使用的優惠券如下：</font>
 		<hr>
 		</div>
-		<div align="center" style="border-style: solid; border-color:red; height:400px;">
+		<div align="center" style="height:400px;">
 <table style="margin-top: 50px;">
 <tr bgcolor="#999999">  
 

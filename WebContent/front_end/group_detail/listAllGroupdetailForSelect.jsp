@@ -55,10 +55,12 @@
     margin-bottom: 1px;
     color:black;
   }
-  h4 {
-    
+  h4 {    
     display: inline;
     font-size: 28px;
+  }
+  h3{
+  font-size:42px;
   }
 </style>
 
@@ -265,7 +267,7 @@
 		<div class="modal-content">
             			
 			<div class="modal-header">
-			<h3 class="modal-title" id="myModalLabel" >揪團詳細</h3>	
+				<h3 class="modal-title" id="myModalLabel" >揪團詳細</h3>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
 

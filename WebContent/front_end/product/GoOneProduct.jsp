@@ -62,7 +62,7 @@ margin-top:100;
 </div>
 <div style="border-style: solid; border-color:;">
 <form method="POST" action="<%=request.getContextPath()%>/ShoppingServlet" name="form1">
-  <table border="1">
+  <table border="1" >
     <tr>
       <td width="100" height="40" align="right">商品名稱：</td>
       <td width="300" height="40" align="left">${productVO.pd_name}</td>

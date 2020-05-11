@@ -175,7 +175,7 @@ margin-top:100;
 			
 				
 			</table></form>
-		<div id="Footer" class="buttonBar" style="margin-top:100px;" ></div>
+	<!-- 	<div id="Footer" class="buttonBar" style="margin-top:100px;" ></div> -->
 			
 		</div>
 		
@@ -183,6 +183,6 @@ margin-top:100;
 			}
 		%>
 
-
+<div class="buttonBar" style="margin-top:400px;"></div>
 </body>
 </html>
