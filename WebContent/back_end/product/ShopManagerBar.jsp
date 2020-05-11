@@ -18,13 +18,13 @@ background-color:#FBFBFF;
 height:100px;
 width:100%;
 background-color:#9CC7F6;
-margin:2px 2px 2px 2px;
+margin:5px 5px 5px 3px;
 
 
 }
 .logo{
 height:100px;
-width:30%; 
+width:25%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
