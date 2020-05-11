@@ -1409,9 +1409,9 @@ INSERT INTO "RCD_RPT" (RCD_RPT_NO, RPT_REASON, RPT_STATUS, RCD_NO, MB_ID) VALUES
 --留言檢舉
 INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport1', '1', 'cmt00001', 'soowii123');
 INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport2', '1', 'cmt00002', 'soowii123');
-INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport3', '1', 'cmt00003', 'vain123');
-INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport4', '1', 'cmt00004', 'anjavababy520');
-INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport5', '1', 'cmt00005', 'anjavababy520');
+INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), '爪哇寶貝好像五五身', '1', 'cmt00003', 'vain123');
+INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), '汙辱我的美', '1', 'cmt00004', 'anjavababy520');
+INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), '不要來', '1', 'cmt00005', 'anjavababy520');
 
 
 --commit;--oracle 預設沒有autocommit,會找不到資料
