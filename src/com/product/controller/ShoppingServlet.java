@@ -213,6 +213,7 @@ public class ShoppingServlet extends HttpServlet {
 				Integer discount = totalPrice;
 				session.setAttribute("totalPrice", totalPrice);
 				session.setAttribute("discount", discount);
+				session.setAttribute("cp_get", null);
 				String url = "/front_end/product/Checkout2.jsp";
 				RequestDispatcher rd = req.getRequestDispatcher(url);
 				rd.forward(req, res);
@@ -230,6 +231,7 @@ public class ShoppingServlet extends HttpServlet {
 
 			Integer discount = (totalPrice - couponPrice);
 			session.setAttribute("cp_get", cp_get);
+			
 			session.setAttribute("discount", discount);
 			session.setAttribute("totalPrice", totalPrice);
 
