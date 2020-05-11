@@ -293,6 +293,19 @@
 		</servlet-mapping>
 	<!-- 訊息結束 -->
 
+	<!-- 通知開始 -->		
+		<servlet>
+		    <description></description>
+		    <display-name>NtfAjaxResponse</display-name>
+		    <servlet-name>NtfAjaxResponse</servlet-name>
+		    <servlet-class>com.ntf.controller.NtfAjaxResponse</servlet-class>
+		</servlet>
+		<servlet-mapping>
+		    <servlet-name>NtfAjaxResponse</servlet-name>
+		    <url-pattern>/NtfAjaxResponse.do</url-pattern>
+		</servlet-mapping>
+	<!-- 通知結束 -->
+
 	<!-- 留言開始 -->
 		<servlet>
 			<servlet-name>CmtTest</servlet-name>
@@ -482,6 +495,23 @@
 			<url-pattern>/android/grouper.do</url-pattern>
 		</servlet-mapping>
 		
+		<servlet>
+			<servlet-name>AndroidMeTooServlet</servlet-name>
+			<servlet-class>android.com.metoo.controller.MeTooServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AndroidMeTooServlet</servlet-name>
+			<url-pattern>/android/metoo.do</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>AndroidThumbServlet</servlet-name>
+			<servlet-class>android.com.thumb.controller.ThumbServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AndroidThumbServlet</servlet-name>
+			<url-pattern>/android/thumb.do</url-pattern>
+		</servlet-mapping>
 
 <!-- 麥克責任區結束 -->
 

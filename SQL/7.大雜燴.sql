@@ -220,6 +220,12 @@ Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT)
 values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'michael123','這是給michael123的通知');
 Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
 values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'vain123','這是給vain123的通知');
+Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
+values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'anjavababy520','您的商品正在準備中');
+Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
+values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'anjavababy520','您的商品已發貨');
+Insert into NOTIFY( NTF_NO, MB_ID, NTF_CONTENT) 
+values('NTF'||LPAD(to_char(ntf_no_seq.NEXTVAL), 5, '0'),'anjavababy520','您的商品已抵達');
 
 --會員檢舉
 Insert into MB_RPT( MB_RPT_NO, MB_ID_1, MB_ID_2, RPT_REASON) 
@@ -651,7 +657,7 @@ Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GR
 values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'vain123','loc00002',TO_TIMESTAMP('2020-05-08 10:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-10 22:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-10 13:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-10 17:30','YYYY-MM-DD HH24:MI'),'天氣好熱、玩水開心','天氣這麼熱就是要出來游泳消暑吧 游完再一起去鉅大吃刨冰 限女性',20,1,1,1,0);
 
 Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
-values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'xuan123','loc00003',TO_TIMESTAMP('2020-05-09 10:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-11 22:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-13 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-13 11:30','YYYY-MM-DD HH24:MI'),'元大鷹出來打球','吾乃中大東方翔，絕招是三分線後仰拉桿轉身跳投，希望有人來電電我',11,1,1,1,0);
+values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'xuan123','loc00003',TO_TIMESTAMP('2020-05-14 10:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-14 22:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-17 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-17 11:30','YYYY-MM-DD HH24:MI'),'元大鷹出來打球','吾乃中大東方翔，絕招是三分線後仰拉桿轉身跳投，希望有人來電電我',11,1,1,1,0);
 
 Insert into GROUPER(GRP_NO,MB_ID,LOC_NO,GRP_APPLYSTART,GRP_APPLYEND,GRP_START,GRP_END,GRP_NAME,GRP_CONTENT,GRP_PERSONMAX,GRP_PERSONMIN,GRP_PERSONCOUNT,GRP_STATUS,GRP_FOLLOW)
 values('grp'||LPAD(to_char(grp_no_seq.NEXTVAL), 5, '0'),'soowii123','loc00004',TO_TIMESTAMP('2020-05-13 10:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-13 22:00','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-15 08:30','YYYY-MM-DD HH24:MI'),TO_TIMESTAMP('2020-05-15 11:30','YYYY-MM-DD HH24:MI'),'馬來西亞的鄉聚羽球','我是從馬來西亞來讀書的學生，希望有喜歡一起打羽球的人~',50,1,1,1,0);
@@ -1402,10 +1408,10 @@ INSERT INTO "RCD_RPT" (RCD_RPT_NO, RPT_REASON, RPT_STATUS, RCD_NO, MB_ID) VALUES
 
 --留言檢舉
 INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport1', '1', 'cmt00001', 'soowii123');
-INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport2', '1', 'cmt00002', 'xuan123');
-INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport3', '1', 'cmt00003', 'michael123');
-INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport4', '1', 'cmt00004', 'vain123');
-INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport5', '1', 'cmt00005', 'yiwen123');
+INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport2', '1', 'cmt00002', 'soowii123');
+INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), '爪哇寶貝好像五五身', '1', 'cmt00003', 'vain123');
+INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), '汙辱我的美', '1', 'cmt00004', 'anjavababy520');
+INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), '不要來', '1', 'cmt00005', 'anjavababy520');
 
 
 --commit;--oracle 預設沒有autocommit,會找不到資料

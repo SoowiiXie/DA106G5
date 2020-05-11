@@ -9,6 +9,7 @@
 <%@ page import="com.cmt.model.*"%>
 <%@ page import="com.record.model.*"%>
 <%@ page import="com.msg.model.*"%>
+<%@ page import="com.ntf.model.*"%>
 <%@ page import="com.live.model.*"%>
 <%@ page import="com.mb.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
@@ -45,6 +46,11 @@
 		MessageService messageSvc = new MessageService();
 		List<MessageVO> messageList = messageSvc.getAllByMb_id_2((String)pageContext.getAttribute("mb_id"));
 		pageContext.setAttribute("messageList", messageList);
+
+		//拿出三則通知
+		NotifyService notifySvc = new NotifyService();
+		List<NotifyVO> notifyList = notifySvc.getAllByMb_id((String)pageContext.getAttribute("mb_id"));
+		pageContext.setAttribute("notifyList", notifyList);
 		
 		//取出所有地標
 // 		LocationService locationSvc = new LocationService();
@@ -63,8 +69,10 @@
 %>
 <!--會員Service -->
 <jsp:useBean id="memberSvcEL" scope="page" class="com.mb.model.MemberService" />
-<!--紀錄Service -->
+<!--訊息Service -->
 <jsp:useBean id="messageSvcEL" scope="page" class="com.msg.model.MessageService" />
+<!--通知Service -->
+<jsp:useBean id="notifySvcEL" scope="page" class="com.ntf.model.NotifyService" />
 <!--紀錄Service -->
 <jsp:useBean id="recordSvcEL" scope="page" class="com.record.model.RecordService" />
 <!--路徑Service -->
@@ -291,19 +299,57 @@
 						</div>
 					</li>
 
-					<!-- Nav Item - Alerts -->
+					<!-- Nav Item - Alerts notify 通知 notifyList 鈴鐺-->
 					<li class="nav-item dropdown no-arrow mx-1">
-						<a	class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> 
+						<a	class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"	aria-expanded="false">
+							<input type="hidden" name="ntf_mb_id" class="ntf_mb_id" value="${mb_id}">
 							<i class="fas fa-bell fa-fw"></i> 
 							<!-- Counter - Alerts -->
-							<span class="badge badge-danger badge-counter">3+</span>
+							<c:if test="${notifySvcEL.countNotReads(mb_id)>0}">
+							<span class="badge badge-danger badge-counter notifyNotReadSpan">
+								${notifySvcEL.countNotReads(mb_id)>2?"2+":notifySvcEL.countNotReads(mb_id)}
+							</span>
+							</c:if>
 						</a> 
 						<!-- Dropdown - Alerts -->
-						<div
-							class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+						<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
 							<h6 class="dropdown-header">通知</h6>
+							<!-- 所有通知 -->
+							<c:if test="${notifySvcEL.countNotReads(mb_id)>0}">
+							<div class="small text-gray-500 ml-2" style="background-color: rgb(245,246,247);">新通知</div>
+							</c:if>
+							<c:forEach var="notifyVO" items="${notifyList}">
+							<c:if test="${notifyVO.ntf_status==1}">
+							<a class="dropdown-item d-flex align-items-center messageDivA" href="#" style="background-color: rgb(237,242,250);">
+							<input type="hidden" name="ntf_no" class="ntf_no" value="${notifyVO.ntf_no}">
+								<div class="mr-3">
+									<div class="icon-circle bg-success">
+										<i class="fas fa-donate text-white"></i>
+									</div>
+								</div>
+								<div class="ml-2">
+									<span class="font-weight-bold">${notifyVO.ntf_content}</span>
+								</div>
+							</a> 
+							</c:if>
+							</c:forEach>
+							
+							<div class="small text-gray-500 ml-2" style="background-color: rgb(245,246,247);">先前的通知</div>
+							<c:forEach var="notifyVO" items="${notifyList}">
+							<c:if test="${notifyVO.ntf_status==2}">
+							<a class="dropdown-item d-flex align-items-center messageDivA" href="#">
+							<input type="hidden" name="ntf_no" class="ntf_no" value="${notifyVO.ntf_no}">
+								<div class="mr-3">
+									<div class="icon-circle bg-success">
+										<i class="fas fa-donate text-white"></i>
+									</div>
+								</div>
+								<div class="ml-2">
+									${notifyVO.ntf_content}
+								</div>
+							</a> 
+							</c:if>
+							</c:forEach>
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="mr-3">
 									<div class="icon-circle bg-primary">
@@ -311,20 +357,21 @@
 									</div>
 								</div>
 								<div class="ml-2">
-									<div class="small text-gray-500">December 12, 2019</div>
-									<span class="font-weight-bold">這是一般通知</span>
-								</div>
-							</a> <a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3">
-									<div class="icon-circle bg-success">
-										<i class="fas fa-donate text-white"></i>
-									</div>
-								</div>
-								<div class="ml-2">
-									<div class="small text-gray-500">December 7, 2019</div>
-									這是商城通知
+<!-- 									<div class="small text-gray-500">December 12, 2019</div> -->
+									這是一般通知
 								</div>
 							</a> 
+<!-- 							<a class="dropdown-item d-flex align-items-center" href="#"> -->
+<!-- 								<div class="mr-3"> -->
+<!-- 									<div class="icon-circle bg-success"> -->
+<!-- 										<i class="fas fa-donate text-white"></i> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="ml-2"> -->
+<!-- <									<div class="small text-gray-500">December 7, 2019</div> -->
+<!-- 									這是商城通知 -->
+<!-- 								</div> -->
+<!-- 							</a>  -->
 							<a class="dropdown-item d-flex align-items-center" href="#">
 								<div class="mr-3">
 									<div class="icon-circle bg-warning">
@@ -332,7 +379,7 @@
 									</div>
 								</div>
 								<div class="ml-2">
-									<div class="small text-gray-500">December 2, 2019</div>
+<!-- 									<div class="small text-gray-500">December 2, 2019</div> -->
 									這是重要通知
 								</div>
 							</a> 
@@ -622,7 +669,7 @@
 		 	 });
 		 	 //記錄新增的燈箱結束
 			
-			 //按讚
+			 //按讚開始
 			$('.thumbBtn').click(function(){
 				 var thumbImg = $(this);
 				 $.ajax({
@@ -642,6 +689,7 @@
 		             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 		         });
 			});
+		 	 //按讚結束
 			 
 			$('.meTooBtn').click(function(){
 				 var meTooImg = $(this);
@@ -803,7 +851,6 @@
 									},
 									dataType: "text",
 									success: function(data){
-										alert(data)
 										if(data == "addFollow"){
 											follow_img.attr("src","<%= request.getContextPath() %>/img/red_heart.png");
 											follow_img.siblings('.labelFollow').text("已關注");
@@ -820,8 +867,6 @@
 					 error: function(){alert("AJAX-wth_loc_btn發生錯誤囉!")}
 				 });
 			 });
-			 
-			 
 	 		 //按讚數的燈箱結束
 			 
 			 //meToo數的燈箱
@@ -884,7 +929,7 @@
 				 });
 			 });
 				 
-			 //訊息的燈箱
+			 //訊息的燈箱開始
 			 var msgLightBox = $('.msgLightBox');
 			 var messageNotReadSpan = $('.messageNotReadSpan');
 			 
@@ -922,6 +967,29 @@
 					 error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
 			 		});
 			 });
+			 //訊息的燈箱結束
+				 
+			 //通知鈴鐺開始
+			 var notifyNotReadSpan = $('.notifyNotReadSpan');
+			 
+			 $('#alertsDropdown').click(function(){
+				var alertsDropdown = $(this);
+			 	$.ajax({
+					type: "GET",
+					url: "<%=request.getContextPath()%>/NtfAjaxResponse.do",
+						 data: {"action":"lookOneMsg", "mb_id":$(this).children('.ntf_mb_id').val()},
+						 dataType: "json",
+						 success: function (data){
+							 if(data.ntfNotRead==0){
+								 notifyNotReadSpan.text("");
+							 }else{
+								 messageNotReadSpan.text(data.msgNotRead);
+							 }
+						 },					
+					 error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
+			 		});
+			 });
+			//通知鈴鐺結束
 				 
 			 //讓燈箱共用關閉按鈕
 			 $("#close").click(function() {

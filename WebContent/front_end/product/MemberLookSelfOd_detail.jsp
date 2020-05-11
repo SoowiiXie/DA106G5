@@ -67,12 +67,12 @@ th, td {
 		class="com.product.model.ProductService" />
 		
 	<table border="1" class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; ">
-		<tr bgcolor="#999999"  align="center">
-			<th Style="width: 100px; align: center">商品圖片</th>
-			<th Style="width: 100px; align: center">商品編號</th>
-			<th Style="width: 150px; align: center">商品名稱</th>
-			<th Style="width: 100px; align: center">商品數量</th>
-			<th Style="width: 100px; align: center">商品單價</th>
+		<tr align="center" bgcolor="#999999"  align="center">
+			<th Style="width: 100px; align: center;">商品圖片</th>
+			<th Style="width: 100px; align: center;">商品編號</th>
+			<th Style="width: 150px; align: center;">商品名稱</th>
+			<th Style="width: 100px; align: center;">商品數量</th>
+			<th Style="width: 100px; align: center;">商品單價</th>
 
 		</tr>
 		<c:forEach var="od_detailVO" items="${list}">
@@ -87,7 +87,7 @@ th, td {
 			
 				<td width="100">${od_detailVO.od_amount}</td>
 			
-				<td width="100">${od_detailVO.od_price}</td>
+				<td width="100">${od_detailVO.od_price}元</td>
 			</tr>
 		</c:forEach>
 

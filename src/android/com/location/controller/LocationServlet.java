@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import com.common.AndroidImageUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -56,6 +57,18 @@ System.out.println("input: "+jsonIn);
 			if(locationList != null) {
 				res.setBufferSize(12);
 				writeText(res, jsonStr);
+			}
+		}else if("getImage".equals(action)) {
+			OutputStream os = res.getOutputStream();
+			String loc_no = jsonObject.get("loc_no").getAsString();
+			int imageSize = jsonObject.get("imageSize").getAsInt();
+			com.location.model.LocationVO locationVO = locationSvc.getOneLocation(loc_no);
+			
+			if(locationVO.getLoc_pic() != null) {
+				byte[] image = AndroidImageUtil.shrink(locationVO.getLoc_pic(), imageSize);
+				res.setContentType("image/jpeg");
+				res.setContentLength(image.length);
+				os.write(image);
 			}
 		}
 		

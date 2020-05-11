@@ -94,17 +94,17 @@ margin-top:100;
 
 
 	<div align="center" style="border-style: solid; border-color:white; width:80%;">
-		<table border="1" Style="width:100%; align: center">
+		<table border="1" Style="width:100%;">
 
-			<tr bgcolor="#999999">
-				<th Style="width: 100px; align: center">訂單編號</th>
-				<th Style="width: 150px; align: center">訂單時間</th>
-				<th Style="width: 100px; align: center">訂單狀態</th>
-				<th Style="width: 100px; align: center">訂單總金額</th>
-				<th Style="width: 100px; align: center">優惠券號碼</th>
-				<th Style="width: 100px; align: center">優惠後金額</th>
-				<th Style="width: 200px; align: center">收貨地址</th>
-				<th Style="width: 150px; align: center"></th>
+			<tr bgcolor="#999999" >
+				<th Style="width: 100px; "><b><font color="black">訂單編號</font></b></th>
+				<th Style="width: 150px; "><b><font color="black">訂單時間</font></b></th>
+				<th Style="width: 100px; "><b><font color="black">訂單狀態</font></b></th>
+				<th Style="width: 100px; "><b><font color="black">訂單總金額</font></b></th>
+				<th Style="width: 100px; "><b><font color="black">優惠券號碼</font></b></th>
+				<th Style="width: 100px; "><b><font color="black">優惠後金額</font></b></th>
+				<th Style="width: 200px; "><b><font color="black">收貨地址</font></b></th>
+				<th Style="width: 150px; "></th>
 				
 
 			</tr>
@@ -151,7 +151,6 @@ margin-top:100;
 					<div class="modal-header" align="center">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true" style="float:left;">&times;</button>
-						
 					</div>
 
 					<div class="modal-body">
@@ -163,8 +162,7 @@ margin-top:100;
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save
-							changes</button>
+						
 					</div>
 
 				</div>

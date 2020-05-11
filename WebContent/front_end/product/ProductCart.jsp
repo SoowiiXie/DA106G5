@@ -81,7 +81,7 @@ margin-top:100;
 	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 	<div style="width:100%; height:100px; border-style: solid; border-color:white; "></div>
 	<div align="center" style="border-style: solid; border-color:white;">
-		<font size="+3">目前您購物車的內容如下：</font>
+		<font size="+3" color="black">目前您購物車的內容如下：</font>
 		<hr>
 		<p></div>
 		<div style=" border-style: solid; border-color:white;" align="center" >
@@ -112,19 +112,19 @@ margin-top:100;
 							href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${order.pd_no}'><img 
 								src="<%=request.getContextPath()%>/ProductPicReader?pd_no=<%=order.getPd_no()%>" style="width:auto;"></a></td>
 						<td height="100px"><div align="center">
-								<b>${pd_typeService.searchType(order.pd_typeNo).pd_typeName}</b>
+								<b><font color="black">${pd_typeService.searchType(order.pd_typeNo).pd_typeName}</font></b>
 							</div></td>
 						<td width="100px"><div align="center">
-								<b><%=order.getPd_name()%></b>
+								<b><font color="black"><%=order.getPd_name()%></font></b>
 							</div></td>
 						<td width="100px"><div align="center">
-								<b>$<%=order.getPd_price()%></b>
+								<b><font color="black">$<%=order.getPd_price()%></font></b>
 							</div></td>
 						<td width="100px"><div align="center">
-								<b><%=order.getPd_typeSize()%></b>
+								<b><font color="black"><%=order.getPd_typeSize()%></font></b>
 							</div></td>
 						<td width="100px"><div align="center">
-								<b><%=order.getPd_quantity()%></b>
+								<b><font color="black"><%=order.getPd_quantity()%></font></b>
 							</div></td>
 
 
@@ -160,8 +160,8 @@ margin-top:100;
 			<form name="checkoutForm" action="<%=request.getContextPath()%>/ShoppingServlet" method="POST">
 			<table style="width:60%;">
 			<tr bgcolor=#C4E1FF>
-			<td colspan="5">
-				可使用的優惠券：<select size="1" name="cp_get" >
+			<td colspan="5"><font color="black">
+				可使用的優惠券：</font><select size="1" name="cp_get" >
 								<option value="請選擇">請選擇
 									<c:forEach var="cp_getVO" items="${couponList}">
 										<option value="${cp_getVO.cp_no}">${couponService.searchCoupon(cp_getVO.cp_no).cp_name}

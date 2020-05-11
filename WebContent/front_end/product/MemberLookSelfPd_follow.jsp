@@ -72,7 +72,7 @@ margin-top:100;
 	  
 		<div style="width:100%; height:100px;"></div>
 		  <div align="center">
-		    <font size="+3">您的商品收藏內容如下：</font>
+		    <font size="+3" color="black">您的商品收藏內容如下：</font>
 		  </div>
 		<Hr>
 	<div  style="vertical-align:bottom;" >
@@ -112,7 +112,7 @@ margin-top:100;
 								src="<%= request.getContextPath()%>/ProductPicReader?pd_no=${pd_followVO.pd_no}"
 								></a></td>
 						<td><a
-							href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${pd_followVO.pd_no}'>${productService.findOneProduct(pd_followVO.pd_no).pd_name}</a></td>
+							href='<%=request.getContextPath()%>/ShoppingServlet?action=findOneProduct&pd_no=${pd_followVO.pd_no}'><font color="black">${productService.findOneProduct(pd_followVO.pd_no).pd_name}</font></a></td>
 						<td align="center"><font color="black">${productService.findOneProduct(pd_followVO.pd_no).pd_price}元</font></td>
 						<td align="center"><input class="btn btn-primary btn-sm" type="submit" name="Submit" 
 							value="刪除" style="background: #3960D0"> <input type="hidden" name="pd_no"

@@ -73,14 +73,14 @@ margin-top:100;
 	<jsp:include page="ShopManagerBar.jsp" />
 </head>
 <body>
-	<div style="border:2px #FFD382 groove; float:left;"><c:if test="${not empty errorMsgs}">
+	<%-- <div style="border:2px #FFD382 groove; float:left;"><c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
 			</c:forEach>
 		</ul>
-	</c:if></div>
+	</c:if></div> --%>
 
 
 <div class="1" align="center" style="margin-top:50px;width:80%;margin-left:10%;" >
@@ -149,10 +149,10 @@ margin-top:100;
 				    <input type="hidden" name="whichPage" value="<%=whichPage%>">
 				  </div>
 				</FORM> --%>
-				<div>
+				<div style="margin-button:3px;">
 					<button class="upProduct">上架</button></div>
 				 <input type="hidden" name="pd_no" value="${productVO.pd_no}">
-				<div><button class="downProduct">下架</button></div>
+				<div style="margin-top:3px;"><button class="downProduct">下架</button></div>
 		   <input type="hidden" name="pd_no" value="${productVO.pd_no}">
 				<%-- <div style="margin-top:4px; align:center;">	
 				    <FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">	
@@ -193,7 +193,7 @@ margin-top:100;
 	</table>
 	</div>
 </div>	
-  <div class="buttonBar" style="margin-top:100px"></div>
+  <div class="buttonBar" style="margin-top:100px; background-color:#F3F8FE; margin:5px 5px 5px 3px;"></div>
   <script
 		  src="https://code.jquery.com/jquery-3.5.0.js"
 		  integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="

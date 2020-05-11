@@ -25,9 +25,9 @@ public class NotifyDAO implements NotifyDAO_interface{
 	private static final String GET_ALL_STMT = 
 		"SELECT * FROM NOTIFY order by NTF_NO";
 	private static final String GET_ALL_BY_MB_ID_STMT = 
-		"SELECT * FROM (SELECT * FROM NOTIFY WHERE MB_ID = ? order by MSG_NO DESC) where rownum between 1 and 3";
+		"SELECT * FROM (SELECT * FROM NOTIFY WHERE MB_ID = ? order by NTF_NO DESC) where rownum between 1 and 3";
 	private static final String GET_ALL_BY_MB_ID_REALLY_ALL = 
-			"SELECT * FROM NOTIFY WHERE MB_ID = ? order by MSG_NO";
+			"SELECT * FROM NOTIFY WHERE MB_ID = ? order by NTF_NO";
 	private static final String GET_ONE_STMT = 
 		"SELECT * FROM NOTIFY where NTF_NO = ?";
 	private static final String UPDATE = 

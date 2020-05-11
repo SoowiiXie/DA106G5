@@ -53,20 +53,22 @@
   th, td {
     padding: 1px;
     text-align: center;
+    color:black;
   }
+  
 </style>
 </head>
 <body bgcolor="#FFFFFF">
 	<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 	<div align="center" style="margin-top: 100px;">
-	<font size="+3">訂單明細 </font>
+	<font size="+3" color="black">訂單明細 </font>
 	<hr>
 	<p>
 	<div align="center">
-		訂單編號${ordersVO.od_no}
+		<font color="black">訂單編號${ordersVO.od_no}</font>
 
 		<table style="width: 70%;">
-			<tr bgcolor="#999999" align="center">
+			<tr align="center" bgcolor="#999999" align="center">
 				<th style="width: 150px;"><font color="black">商品圖片</font></th>
 				<th style="width: 200px;"><font color="black">商品名稱</font></th>
 				<th style="width: 150px;"><font color="black">商品編號</font></th>
@@ -167,7 +169,7 @@
 	</div>
 </div>
 	<p>
-		<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">是否繼續購物</a>
+	
 </body>
 
 </html>

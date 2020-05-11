@@ -17,118 +17,97 @@ background-color:#FBFBFF;
 #first { 
 height:100px;
 width:100%;
-background-color:#FF004C;
-/* border-style: solid;
-border-color:#3960D0; */
- */
+background-color:#9CC7F6;
+margin:5px 5px 5px 3px;
 }
-.logo{
-height:100px;
-width:30%; 
-background-color:#FF004C;
-position: static; 
-line-height:100px; 
-float:left;
-/* border-style: solid;
-border-color:#3960D0;  */
-}
+
 .goToShopHome{
 height:100px;
-width:15%; 
-background-color:#FF004C;
+width:12%; 
+background-color:#9CC7F6;
 float:left;
 position: relative;
-/* border-style: solid;
-border-color:#3960D0;  */
+
 }
 .search_form{
 position: absolute;  
 margin-top:30px;
-/* border-style: solid;
-border-color:#3960D0;  */
+
 }
 .backhome{
-margin-left:10%;
+margin-left:8%;
 height:100px;
-width:8%; 
-background-color:#FF004C;
+width:12%; 
+background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
 float:left;
-/* border-style: solid;
-border-color:#3960D0;
- */
+
 }
 
 .managerProduct{
 height:100px;
-width:8%; 
-background-color:#FF004C;
+width:12%; 
+background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
 float:left;
-/* border-style: solid;
-border-color:#3960D0; */
+
 }
 .addProduct{
 height:100px;
-width:8%; 
-background-color:#FF004C;
+width:12%; 
+background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
 float:left;
-/* border-style: solid;
-border-color:#3960D0; */
+
 }
 .managerOrders{
 height:100px;
-width:8%; 
-background-color:#FF004C;
+width:12%; 
+background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
 float:left;
-/* border-style: solid;
-border-color:#3960D0; */
+
 }
 .managerCoupon{
 height:100px;
-width:8%; 
-background-color:#FF004C;
+width:12%; 
+background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
 float:left;
-/* border-style: solid;
-border-color:#3960D0; */
+
 }
 .member{
 margin-left:1300px;
 height:100px;
 width:7%; 
-background-color:#FF004C;
+background-color:#9CC7F6;
 position: static; 
 line-height:100px;
-/* border-style: solid;
-border-color:#3960D0; */
+
 }
 .second{
 margin-top: 10px;
 height:50px;
 width:100%;  
-background-color:#FF004C;
+background-color:#9CC7F6;
 position:absolute; 
 text-align:center;
-/* border-style: solid;
-border-color:#3960D0; */
+
 }
 .Topmenu{
   width:12.5%;
   height:42px;
-  background-color:#FF004C;
+  background-color:#9CC7F6;
   color:#FFF6F6;
   font-size:22px;
   padding-top:7px;
   text-align:center;
-  /*border-radius:5px;*/
+
   overflow:hidden;
   line-height: 43px;
   transition:all 0.8s; /*all代表多個*/
@@ -206,7 +185,9 @@ width:930px;
 text-align:center;
 margin:10px auto;
 }
-
+font{
+font-family:Mamelon;
+}
 
 </style>
 
@@ -216,37 +197,38 @@ margin:10px auto;
 <body>
 
 <div id="first">
+<div>
       <div class="logo">
         <div style="width:150px; float:left;">
          
        
         </div>
         <div>
-          <font size="5px" color="white" style="font-style:italic;"></font>
+          <font size="5px" color="#FDFF99" style="font-style:italic;"></font>
         </div>
       </div>
     
     <div class="goToShopHome"></div>
       <div class="backhome" align="center"><a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;">
-        <font color="white" size="3">商城頁面</font></a>
+        <font color="#FDFF99" size="3">商城頁面</font></a>
       </div>
     <div class="addProduct" align="center"><a href="<%=request.getContextPath()%>/ProductServlet?action=getIncludePath" style="text-decoration:none;">
-      <font color="white" size="3">增加商品</font></a></div> 
+      <font color="#FDFF99" size="3">增加商品</font></a></div> 
     <div class="managerProduct" align="center">
       	<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=" style="text-decoration:none;" style="text-decoration:none;">
-      	  <font color="white" size="3">管理商品</font></a>
+      	  <font color="#FDFF99" size="3">管理商品</font></a>
     </div> 
     
     <div class="managerOrders" align="center">
       	<a href="<%=request.getContextPath()%>/OrdersServlet?action=getAllList" style="text-decoration:none;">
-      	  <font color="white" size="3">管理訂單</font></a>
+      	  <font color="#FDFF99" size="3">管理訂單</font></a>
     </div> 
     
     <div class="managerCoupon" align="center">
       	<a href="<%=request.getContextPath()%>/CpGetServlet?action=getCouponManagerIncludePath" style="text-decoration:none;">
-      	  <font color="white" size="3">管理優惠券</font></a>
+      	  <font color="#FDFF99" size="3">管理優惠券</font></a>
     </div> 
-      	
+ </div>     	
 </div>
   
   
@@ -262,20 +244,20 @@ margin:10px auto;
      
      <div class="search_pd" >
       <div class="search_form">
-   <font style="font-size:1.0cm;" color="white">商城管理</font>
+   <font style="font-size:1.0cm;" color="#FDFF99">商城管理</font>
       </div></div>
       <div class="backhome" align="center"><a
-		href="<%=request.getContextPath()%>/back_end/product/addProduct.jsp" style="text-decoration:none;"><font color="white" >
+		href="<%=request.getContextPath()%>/back_end/product/addProduct.jsp" style="text-decoration:none;"><font color="#FDFF99" >
 		增加商品</font></a></div>
       <div class="pd_follow" align="center"><a
-		href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=" style="text-decoration:none;"><font color="white">管理商品</font></a></div> 
+		href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=" style="text-decoration:none;"><font color="#FDFF99">管理商品</font></a></div> 
       <div class="shopping_trolley" align="center">
-      	<a href="<%=request.getContextPath()%>/OrdersServlet?action=getAllList" style="text-decoration:none;"><font color="white">管理訂單
+      	<a href="<%=request.getContextPath()%>/OrdersServlet?action=getAllList" style="text-decoration:none;"><font color="#FDFF99">管理訂單
 </font></a>
       	</div> 
        <div class="memberLogin" align="center"><a
-		href="<%=request.getContextPath()%>/back_end/product/CouponManage.jsp" style="text-decoration:none;"><font color="white" >管理優惠券</font></a></div>
-      <div class="member" align="center"><font color="white">分類管理</font></div>
+		href="<%=request.getContextPath()%>/back_end/product/CouponManage.jsp" style="text-decoration:none;"><font color="#FDFF99" >管理優惠券</font></a></div>
+      <div class="member" align="center"><font color="#FDFF99">分類管理</font></div>
     </div> --%>
 
 

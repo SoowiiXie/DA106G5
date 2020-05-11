@@ -198,11 +198,11 @@ listGrouper_ByCompositeQuery.jsp<br>
 				${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}/${grouperVO.grp_personmax}<br>
 <!-- 				原加入 -->
 <%-- 				<input type="submit" value="加入" ${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"":"disabled"}/><br> --%>
-
+<jsp:useBean id="grp_detailService" class="com.group_detail.model.Grp_detailService" scope="page"/>
 <span class="goin">
-	<img class="goin_img" width="50" height="50" border="0" id="goin_img" src="${isGoin?'images/joinIconun.png':'images/joinIcon.png'}">
+	<img class="goin_img" width="50" height="50" border="0" id="goin_img" src="${grp_detailService.isGoin(memberVO.mb_id, grouperVO.grp_no)?'images/joinIconun.png':'images/joinIcon.png'}">
 	<input type="hidden" name="grp_no" value="${grouperVO.grp_no}">
-	<label class="labelGoin" >${isGoin?"已加入":"加入"}</label>
+	<label class="labelGoin" >${grp_detailService.isGoin(memberVO.mb_id, grouperVO.grp_no)?"已加入":"加入"}</label>
 </span>	
 				
 <!-- 				觀察用 -->
@@ -219,11 +219,11 @@ listGrouper_ByCompositeQuery.jsp<br>
 <!-- 			原關注 -->
 <!-- 				<input type="submit" value="關注" /> -->
 <%-- 					<img src="<%= request.getContextPath() %>/front_end/group/images/followIcon2un.png" width="75" height="75" border="0" class="follow_img"> --%>
-
+<jsp:useBean id="group_followService" class="com.group_follow.model.Group_followService" scope="page"/>
 <span class="follow">
-	<img class="follow_img" width="50" height="50" border="0" id="follow_img" src="${isFollow?'images/followIcon2un.png':'images/followIcon2.png'}">
+	<img class="follow_img" width="50" height="50" border="0" id="follow_img" src="${group_followService.isFollow(grouperVO.grp_no, memberVO.mb_id)?'images/followIcon2un.png':'images/followIcon2.png'}">
 	<input type="hidden" name="grp_no" value="${grouperVO.grp_no}">
-	<label class="labelFollow" >${isFollow?"已關注":"關注"}</label>
+	<label class="labelFollow" >${group_followService.isFollow(grouperVO.grp_no, memberVO.mb_id)?"已關注":"關注"}</label>
 </span>				
 				
 <!-- 				觀察用 -->

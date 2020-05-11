@@ -40,7 +40,7 @@ List<OrdersVO>	list = (List<OrdersVO>)session.getAttribute("list");
   
   .buttonBar{
 width:100%;
-background-color:#FF004C;
+background-color:#9CC7F6;
 height:100px;
 margin-top:100;
 }
@@ -98,20 +98,20 @@ margin-top:100;
 				end="<%=pageIndex+rowsPerPage-1%>">
 				<tr>
 
-					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_no}</td>
-					<td align="center" bgcolor="#FFB5B5">${ordersVO.mb_id}</td>
-					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_javaTime}</td>
-					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_status==1?'已發貨':'未發貨'}</td>
-					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_totalPrice}元</td>
-					<td align="center" bgcolor="#FFB5B5">${couponService.searchCoupon(ordersVO.cp_no).cp_name}
+					<td align="center" bgcolor="#9CC7F6">${ordersVO.od_no}</td>
+					<td align="center" bgcolor="#9CC7F6">${ordersVO.mb_id}</td>
+					<td align="center" bgcolor="#9CC7F6">${ordersVO.od_javaTime}</td>
+					<td align="center" bgcolor="#9CC7F6">${ordersVO.od_status==1?'已發貨':'未發貨'}</td>
+					<td align="center" bgcolor="#9CC7F6">${ordersVO.od_totalPrice}元</td>
+					<td align="center" bgcolor="#9CC7F6">${couponService.searchCoupon(ordersVO.cp_no).cp_name}
 						<c:if test="${ordersVO.cp_no==null}">
 	                   無使用優惠券
   </c:if>
 					</td>
-					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_discount}元</td>
-					<td align="center" bgcolor="#FFB5B5">${ordersVO.od_add}</td>
+					<td align="center" bgcolor="#9CC7F6">${ordersVO.od_discount}元</td>
+					<td align="center" bgcolor="#9CC7F6">${ordersVO.od_add}</td>
 
-					<td align="center" bgcolor="#FFB5B5"><FORM method="POST"
+					<td align="center" bgcolor="#9CC7F6"><FORM method="POST"
 							ACTION="<%=request.getContextPath()%>/OrdersServlet">
 
 							<input class="see_detail" type="submit" value="查詢訂單明細"> <input type="hidden"
@@ -119,7 +119,7 @@ margin-top:100;
 								type="hidden" name="action" value="getOne_For_Od_detail">
 							<input type="hidden" name="whichPage" value="<%=whichPage%>">
 						</FORM></td>
-					<td align="center" bgcolor="#FFB5B5"><FORM METHOD="post"
+					<td align="center" bgcolor="#9CC7F6"><FORM METHOD="post"
 							ACTION="OrdersServlet" style="margin-bottom: 0px;">
 							<input type="submit" value="刪除"> <input type="hidden"
 								name="pd_no" value="${productVO.pd_no}"> <input
@@ -154,8 +154,6 @@ margin-top:100;
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save
-							changes</button>
 					</div>
 
 				</div>
@@ -173,6 +171,6 @@ margin-top:100;
 	</c:if>
 
 </div>
- <div class="buttonBar" style="margin-top:100px"></div>
+  <div class="buttonBar" style="margin-top:100px; background-color:#F3F8FE; margin:5px 5px 5px 3px;"></div>
 </body>
 </html>
