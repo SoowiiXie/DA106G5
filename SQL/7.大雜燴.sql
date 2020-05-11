@@ -174,8 +174,8 @@ Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB
 values('weijhih123','106da','weijhih123','1',TO_DATE('1989-10-19','YYYY-MM-DD'),'weijhih123@yahoo.com',2);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
 values('androidlababy520','106da','安卓拉寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'androidlababy520@yahoo.com',2);
-Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
-values('anjavababy520','106da','一個爪哇寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'anjavababy520@yahoo.com',2);
+Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS, MB_LV) 
+values('anjavababy520','106da','一個爪哇寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'anjavababy520@yahoo.com',2,3);
 
 --訊息
 Insert into MESSAGE( MSG_NO, MB_ID_1, MB_ID_2, MSG_CONTENT) 
