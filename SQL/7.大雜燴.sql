@@ -896,18 +896,18 @@ START WITH 6
 NOMAXVALUE
 NOCYCLE;
 
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
-values('20200324-000001','soowii123','300000','中央大學A','300000');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
-values('20200324-000002','xuan123','300000','中央大學C','300000');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
-values('20200324-000003','michael123','300000','中央大學B','300000');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
-values('20200324-000004','vain123','300000','中央大學D','300000');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
-values('20200324-000005', 'yiwen123','300000','中央大學E','300000');
-Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD, OD_DISCOUNT) 
-values('20200324-000006', 'weijhih123','300000','中央大學F','300000');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000001','soowii123','300000','中央大學A');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000002','xuan123','300000','中央大學C');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000003','michael123','300000','中央大學B');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000004','vain123','300000','中央大學D');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000005', 'yiwen123','300000','中央大學E');
+Insert into ORDERS(OD_NO, MB_ID, OD_TOTALPRICE, OD_ADD) 
+values('20200324-000006', 'weijhih123','300000','中央大學F');
 
 ---------------------PD_TYPE商品類別---------------------
 
@@ -1409,7 +1409,7 @@ INSERT INTO "RCD_RPT" (RCD_RPT_NO, RPT_REASON, RPT_STATUS, RCD_NO, MB_ID) VALUES
 --留言檢舉
 INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport1', '1', 'cmt00001', 'soowii123');
 INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport2', '1', 'cmt00002', 'soowii123');
-INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport3', '1', 'cmt00003', 'anjavababy520');
+INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport3', '1', 'cmt00003', 'vain123');
 INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport4', '1', 'cmt00004', 'anjavababy520');
 INSERT INTO "CMT_RPT" (CMT_RPT_NO, RPT_REASON, RPT_STATUS, CMT_NO, MB_ID) VALUES ('cmtr'||LPAD(to_char(CMT_RPT_SEQ.nextval), 5, '0'), 'commentreport5', '1', 'cmt00005', 'anjavababy520');
 
