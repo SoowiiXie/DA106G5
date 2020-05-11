@@ -364,7 +364,7 @@ public class MemberServlet extends HttpServlet {
 //						+ Base64.getEncoder().encodeToString(mb_id.getBytes("utf-8"));
 				
 				String content = mb_name + "您好，請點選以下網址，進行信箱驗證\r\n"
-				   		+ "https://35.229.147.85/DA106_G5/front_end/member/member.do?action=verification&"
+				   		+ "https://da106g5.tk/DA106_G5/front_end/member/member.do?action=verification&"
 						+ "captcha="
 						+ Base64.getEncoder().encodeToString(mb_id.getBytes("utf-8"));
 				
