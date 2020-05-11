@@ -43,6 +43,14 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
   h4 {
     color: blue;
     display: inline;
+    font-size:32px
+  }
+  h3{
+  font-size:42px;
+  }
+  b{
+  font-size:22px;
+  font-family : Microsoft JhengHei;
   }
 </style>
 
@@ -51,7 +59,7 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
 	width: 98%;
 	background-color:rgba(220,231,117 ,0.5);
 	border:2px solid #CCCCFF;
-	font-size:16px;
+	font-size:24px;
     color: black;
 	}
   table {
@@ -69,12 +77,19 @@ pageContext.setAttribute("mb_id", memberVO.getMb_id());
     text-align: center;
     border: 1px solid #CCCCFF;
   }
-input:disabled,
-input[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}
+  #oneGroup_table th{
+  background: #D5E0CC;
+  }
+ input:disabled,
+ input[disabled]{
+   border: 1px solid #999999;
+   background-color: #cccccc;
+   color: #666666;
+  }
+  #myModalLabel{
+  	font-family : Microsoft JhengHei;
+  	font-size:32px;
+  }
 </style>
 
 </head>
@@ -234,10 +249,10 @@ listGrouper_ByCompositeQuery.jsp<br>
 				
 				
 			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">揪團內容</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
-            <h3 class="modal-title" id="myModalLabel">揪團內容</h3>
-			
+            		
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
                <jsp:include page="listOneGroup2.jsp" />

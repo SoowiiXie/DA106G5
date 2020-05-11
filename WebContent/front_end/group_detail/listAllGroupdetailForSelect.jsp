@@ -55,10 +55,12 @@
     margin-bottom: 1px;
     color:black;
   }
-  h4 {
-    
+  h4 {    
     display: inline;
     font-size: 28px;
+  }
+  h3{
+  font-size:42px;
   }
 </style>
 
@@ -121,7 +123,8 @@
   	  color:black;
  }
  #name{
- color:black;
+ color:#FFF;
+/*  background-color:#FFF; */
  }
 	
 	#myModalLabel{
@@ -140,7 +143,7 @@
 <!-- 	<tr><td> -->
 <%-- 		 <h4><%=req.getRequestURI()%></h4><br> --%>
 <!-- listAllGroupdetailForSelect.jsp<br> -->
-		 <h4 id="name">尊貴的<%=memberVO.getMb_id()%>您好，摳泥吉娃娃，以下是您參加的揪團</h4>
+		 <h4 id="name">親愛的<%=memberVO.getMb_id()%>您好，下列是您所參加的揪團</h4>
 <!-- 		 <h4><a href="group/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 <!-- 	</td></tr> -->
 <!-- </table><p> -->
@@ -264,7 +267,7 @@
 		<div class="modal-content">
             			
 			<div class="modal-header">
-			<h3 class="modal-title" id="myModalLabel" >揪團詳細</h3>	
+				<h3 class="modal-title" id="myModalLabel" >揪團詳細</h3>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
 
@@ -287,6 +290,7 @@
         <script>
     		 $("#basicModal").modal({show: true});
         </script>
+
  </c:if>
 
 </body>

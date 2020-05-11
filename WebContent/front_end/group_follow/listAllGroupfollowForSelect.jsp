@@ -31,13 +31,15 @@
 <title>員工資料 - listOneGroup.jsp</title>
 
 <style>
-  table#table-1 {
-	background-color: rgba(33,150,243,1);
-    border: 2px solid black;
+#title{
+	background-color:#F9F900;
+    border: 5px solid #000080;
+    font-family : Microsoft JhengHei;
+    border-radius: 10px;
     text-align: center;
-    width: 90%;
-  }
-  table#table-1 h4 {
+    width: 98%;
+    }
+  table#title h4 {
     color: red;
     display: block;
     margin-bottom: 1px;
@@ -53,12 +55,13 @@
 
 <style>
   #listDetail{
-	width: 90%;
+	width: 98%;
 	background: #FFFFFF;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	font-size:20px;
   }
-  table, th, td {
+  #listDetail table,#listDetail th,#listDetail td {
     border: 1px solid #CCCCFF;
   }
   #listDetail th{
@@ -73,7 +76,7 @@
 </head>
 <body>
 
-<table id="table-1">
+<table id="title">
 	<tr><td>
      	 <a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=group/select_page.jsp">
 		 <img src="<%= request.getContextPath() %>/front_end/group/images/homeIcon.png" width="75" height="75" border="0">
@@ -82,13 +85,13 @@
 </table>
 <table id="listDetail" style="background-color: rgba(256,256,256,0);">
 	<tr>
-		<th>會員編號</th>
+<!-- 		<th>會員編號</th> -->
 		<th>揪團編號</th>
 		
-		<th>發起人會員編號</th>
+		<th>發起人編號</th>
 		<th>地點</th>
-		<th>報名開始時間</th>
-		<th>報名結束時間</th>
+<!-- 		<th>報名開始時間</th> -->
+<!-- 		<th>報名結束時間</th> -->
 		<th>活動開始時間</th>
 		<th>活動結束時間</th>
 		<th>揪團標題</th>
@@ -98,7 +101,7 @@
 <%-- ${group_followSvc.all} --%>
 <c:forEach var="group_followVO" items="${group_followSvc.getAllGroup_followByMb_id(mb_id)}">
 	<tr>		
-		<td>${group_followVO.mb_id}</td>
+<%-- 		<td>${group_followVO.mb_id}</td> --%>
 
 		<td>${group_followVO.grp_no}</td>
 				
@@ -106,13 +109,13 @@
 		
 		<td>${locSvc.getOneLocation(grpSvc.getOneGroup(group_followVO.grp_no).loc_no).loc_address}</td>
 		
-		<td>		
-		<fmt:formatDate value="${grpSvc.getOneGroup(group_followVO.grp_no).grp_applystart}" pattern="yyyy-MM-dd H:mm"/>
-		</td>
+<!-- 		<td>		 -->
+<%-- 		<fmt:formatDate value="${grpSvc.getOneGroup(group_followVO.grp_no).grp_applystart}" pattern="yyyy-MM-dd H:mm"/> --%>
+<!-- 		</td> -->
 		
-		<td>		
-		<fmt:formatDate value="${grpSvc.getOneGroup(group_followVO.grp_no).grp_applyend}" pattern="yyyy-MM-dd H:mm"/>
-		</td>
+<!-- 		<td>		 -->
+<%-- 		<fmt:formatDate value="${grpSvc.getOneGroup(group_followVO.grp_no).grp_applyend}" pattern="yyyy-MM-dd H:mm"/> --%>
+<!-- 		</td> -->
 		
 		<td>		
 		<fmt:formatDate value="${grpSvc.getOneGroup(group_followVO.grp_no).grp_start}" pattern="yyyy-MM-dd H:mm"/>

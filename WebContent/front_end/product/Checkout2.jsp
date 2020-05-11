@@ -66,6 +66,8 @@ margin-top:100;
 </head>
 <jsp:useBean id="pd_typeService" scope="page" class="com.pd_type.model.Pd_typeService" />
 <body bgcolor="#FFFFFF">
+<jsp:useBean id="couponService" scope="page"
+	class="com.coupon.model.CouponService" />
 <jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 
 
@@ -84,7 +86,7 @@ margin-top:100;
 	<font size="+3">商城 - 填寫收費與取貨資訊 </font></div>
 	<hr>
 	<p>
-	<div align="center" style="border-style: solid; border-color:red; width:70%; margin-left:15%;">
+	<div align="center" style="width:70%; margin-left:15%;">
 	<table  class="followlist" border="1" cellpadding="3" cellspacing="3" style="border: 3px solid #FFFFFF; width:100%;">
 		<tr bgcolor="#999999"  align="center">
 		    <th style ="width:10%;"><font color="black">產品圖片</font></th>
@@ -167,8 +169,11 @@ margin-top:100;
 			
 			<tr bgcolor=#C4E1FF>
 				<td></td>
-				<td></td>
-				<td></td>
+				<td>使用的優惠券：</td>
+				<td><c:if test="${cp_get==null}">
+	                 無使用優惠券 
+	                </c:if>
+	            ${couponService.searchCoupon(cp_get).cp_name}</td>
 				<td><div align="center">
 						<font color="red"><b>優惠後金額：</b></font>
 					</div></td>
@@ -181,7 +186,7 @@ margin-top:100;
 	</table>
 	
 </div>
-<div style="margin-left:15%; border-style:solid; width:70%;" >
+<div style="margin-left:15%;width:70%;" >
 	<form method="POST" action="<%=request.getContextPath()%>/CheckOutServlet">
 		<div style="float:left;">
 			填寫收費地址
@@ -205,7 +210,7 @@ margin-top:100;
 	</form>
 </div>
 
- <div class="buttonBar"></div>
+ <div class="buttonBar" style="margin-top:400px;"></div>
 <script type="text/javascript">
 	$("#twzipcode").twzipcode({
 	 /* zipcodeName: "number", */ // 自訂郵遞區號input標籤的name值,方便送後端

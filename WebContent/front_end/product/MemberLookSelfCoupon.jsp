@@ -57,20 +57,20 @@ margin-top:100;
 		<font size="+3">目前您可使用的優惠券如下：</font>
 		<hr>
 		</div>
-		<div align="center" style="border-style: solid; border-color:white; height:400px;">
+		<div align="center" style="height:400px;">
 <table style="margin-top: 50px;">
 <tr bgcolor="#999999">  
 
-<th style="width:150px;" ><font color="black">可使用的優惠券</font></th>
-<th style="width:150px;"><font color="black">獲取時間</font></th>
-<th style="width:150px;"><font color="black">備註</font></th>
+<th style="width:20%; height:20%;" ><font color="black">可使用的優惠券</font></th>
+<th style="width:20%;height:20%;"><font color="black">獲取時間</font></th>
+<th style="width:20%;height:20%;"><font color="black">備註</font></th>
 </tr>
 
 <c:forEach var="cp_getVO" items="${list}">
 <tr bgcolor=#C4E1FF>
-<td align="center" ><font color="black">${couponService.searchCoupon(cp_getVO.cp_no).cp_name}</font></td>
-<td align="center" ><font color="black">${cp_getVO.cp_javaGetTime}</font></td>
-<td align="center" ><font color="black">${couponService.searchCoupon(cp_getVO.cp_no).cp_detail}</font></td>
+<td align="center" style="width:20%; height:20%;"><font color="black">${couponService.searchCoupon(cp_getVO.cp_no).cp_name}</font></td>
+<td align="center" style="width:20%; height:20%;"><font color="black">${cp_getVO.cp_javaGetTime}</font></td>
+<td align="center"style="width:20%; height:20%;" ><font color="black">${couponService.searchCoupon(cp_getVO.cp_no).cp_detail}</font></td>
 </tr>
 </c:forEach>
 

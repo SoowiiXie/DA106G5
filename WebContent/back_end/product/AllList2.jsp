@@ -149,10 +149,10 @@ margin-top:100;
 				    <input type="hidden" name="whichPage" value="<%=whichPage%>">
 				  </div>
 				</FORM> --%>
-				<div>
+				<div style="margin-button:3px;">
 					<button class="upProduct">上架</button></div>
 				 <input type="hidden" name="pd_no" value="${productVO.pd_no}">
-				<div><button class="downProduct">下架</button></div>
+				<div style="margin-top:3px;"><button class="downProduct">下架</button></div>
 		   <input type="hidden" name="pd_no" value="${productVO.pd_no}">
 				<%-- <div style="margin-top:4px; align:center;">	
 				    <FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/ProductServlet">	

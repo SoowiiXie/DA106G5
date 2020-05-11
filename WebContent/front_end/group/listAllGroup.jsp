@@ -28,6 +28,7 @@
   #title{
 	background-color:#F9F900;
     border: 5px solid #000080;
+    font-family : Microsoft JhengHei;
     border-radius: 10px;
     text-align: center;
     width: 98%;
@@ -40,6 +41,14 @@
   h4 {
     color: blue;
     display: inline;
+    font-size:32px
+  }
+  h3{
+  	font-size:42px;
+  }
+  #myModalLabel{
+  	font-family : Microsoft JhengHei;
+  	font-size:32px;
   }
 </style>
 
@@ -55,26 +64,29 @@
 	margin-top: 5px;
 	margin-bottom: 5px;
 	background-color: rgba(256,256,256,0);
+	text-align: left;
   }  
   th, td {
-    padding: 5px;
-    text-align: center;
+    padding: 5px;   
   }
   #oneGroup_table, #oneGroup_table tr,#oneGroup_table td,#oneGroup_table th{
   	border: 1px solid #000;
   	margin: 50px auto 5px auto;
   }
   #oneGroup_table{
-  width: 100%
+  width: 100%;
   }
-  body{
-  	font-family:Microsoft JhengHei;"
+  #listAllbody{
+  font-family : Microsoft JhengHei;
+ 	
   }
   #oneGroup_table th{
   background: #D5E0CC;
   }
   #allGroup{
-  	width: 95%
+  	width: 95%;
+  	font-size:30px;
+  	font-family : Microsoft JhengHei;
    }
   #allGroup, #allGroup tr,#allGroup td,#allGroup th{ 	
   	border: 1px solid #000;
@@ -83,13 +95,19 @@
   #w10, #w10 tr, #w10 td{
   width: 10%;
   }
-  #w15 #w10 tr,#w10 td{
+  #w15 td{
   width: 15%;
+  text-align: left;
   }
+  b{
+  font-size:22px;
+  font-family : Microsoft JhengHei;
+  }
+  
 </style>
 
 </head>
-<body bgcolor='white'>
+<body id = "listAllbody">
 
 
 <table id="title">
@@ -127,11 +145,11 @@
 <!-- 		<th>活動結束時間</th> -->
 		<th id="w15">揪團標題</th>
 <!-- 		<th>揪團內容</th> -->
-		<th id="w10">人數上限</th>
-		<th id="w10">人數下限</th>
-		<th id="w10">目前人數</th>
+<!-- 		<th id="w10">人數上限</th> -->
+<!-- 		<th id="w10">人數下限</th> -->
+<!-- 		<th id="w10">目前人數</th> -->
 		<th id="w15">揪團狀態</th>
-		<th id="w10">關注人數</th>
+<!-- 		<th id="w10">關注人數</th> -->
 <!-- 		<th>修改</th> -->
 <!-- 		<th>刪除</th> -->
 <!-- 		<th>矮油</th> -->
@@ -170,11 +188,11 @@
 <%-- 			<td>${grouperVO.grp_end}</td> --%>
 			<td id="w15">${grouperVO.grp_name}</td>
 <%-- 			<td>${grouperVO.grp_content}</td> --%>
-			<td id="w10">${grouperVO.grp_personmax}</td>
-			<td id="w10">${grouperVO.grp_personmin}</td>
+<%-- 			<td id="w10">${grouperVO.grp_personmax}</td> --%>
+<%-- 			<td id="w10">${grouperVO.grp_personmin}</td> --%>
 <%-- 			<td>${grouperVO.grp_personcount}</td> --%>
 			<!-- 從揪團詳細表格算出揪團人數 -->
-			<td id="w10">${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td>
+<%-- 			<td id="w10">${groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())}</td> --%>
 			<td id="w15">
 <%-- 				${grouperVO.grp_status} --%>
 				${grouperVO.grp_personmax > groupdetailSvc.getTotalPeople(grouperVO.getGrp_no())?"未滿":"人數已滿"}</td> 
@@ -187,7 +205,7 @@
 			<%--<%= (String)(grouperVO.getGrp_status()) %> --%>
 			<%--${status.get(grouperVO.grp_status)} --%>
  			<!-- 從揪團關注表格算出關注揪團人數 --> 
-			<td id="w10">${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td>
+<%-- 			<td id="w10">${groupfollowSvc.totalFollowPeople(grouperVO.getGrp_no())}</td> --%>
 <!-- 			<td> -->
 <!-- 			  <FORM METHOD="post" ACTION="group.do" style="margin-bottom: 0px;"> -->
 <!-- 			     <input type="submit" value="修改"> -->
@@ -221,9 +239,9 @@
 				
 				
 			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">揪團內容</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                
             </div>
-            <h3 class="modal-title" id="myModalLabel">揪團內容</h3>
 			
 			<div class="modal-body">
 <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
@@ -244,6 +262,5 @@
     		 $("#basicModal").modal({show: true});
         </script>
  </c:if>
- 
 </body>
 </html>

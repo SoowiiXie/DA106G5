@@ -217,7 +217,7 @@ public class StaffServlet extends HttpServlet{
 			
 			// 用Map裝檢舉種類與相對應的路徑
 			Map<String,String> rpt_typeMap = new HashMap<String,String>();
-			rpt_typeMap.put("cmt_rpt", "");    // 留言檢舉
+			rpt_typeMap.put("cmt_rpt", "/back_end/cmt_rpt/listAllCmt_rpt.jsp");    // 留言檢舉
 			rpt_typeMap.put("rcd_rpt", "");   // 紀錄檢舉
 			rpt_typeMap.put("live_rpt", "");  // 直播檢舉
 			rpt_typeMap.put("group_rpt", "");  // 揪團檢舉
@@ -378,6 +378,7 @@ public class StaffServlet extends HttpServlet{
 		
 		if ("select_page".equals(action)) { // 分頁
 			req.setAttribute("includePath", includePath);
+			req.setAttribute("rpt_includePath", req.getParameter("rpt_includePath"));
 			RequestDispatcher failureView = req.getRequestDispatcher(indexPath);
 			failureView.forward(req, res);
 		}
