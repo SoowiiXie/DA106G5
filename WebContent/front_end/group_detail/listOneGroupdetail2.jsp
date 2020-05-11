@@ -21,13 +21,8 @@
 <style>
 	#myGroupDetail{
 		width: 100%;
-		border:1px solid #000; 
- 		font-family: 微軟正黑體;  
- 		font-size:16px;  
-
- 		border:1px solid #000;
- 		text-align:center; 
-		border-collapse:collapse;
+		font-family:Microsoft JhengHei;
+		font-size: 22px; 
 	}
 	#myGroupDetail td, #myGroupDetail th{
 		border:1px solid #000;
