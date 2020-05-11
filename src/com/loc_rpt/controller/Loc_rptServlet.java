@@ -266,8 +266,8 @@ public class Loc_rptServlet extends HttpServlet {
 					cp_getVO.setCp_no("CPN"+String.format("%05d", memberVO.getMb_lv()));
 					cp_getSvc.aMemberGetCoupon(cp_getVO);
 					/*************************** 會員拿到優惠卷後寄訊息給對方 ****************************************/
-					MessageService messageSvc = new MessageService();
-					messageSvc.addMessage("androidlababy520" , mb_id, memberVO.getMb_name()+"恭喜你升上"+(memberVO.getMb_lv()+1)+"等，請至商城收取您的優惠券");
+//					MessageService messageSvc = new MessageService();
+//					messageSvc.addMessage("androidlababy520" , mb_id, memberVO.getMb_name()+"恭喜你升上"+(memberVO.getMb_lv()+1)+"等，請至商城收取您的優惠券");
 					NotifyService notifySvc = new NotifyService();
 					notifySvc.addNotify(mb_id, memberVO.getMb_name()+"恭喜你升上"+(memberVO.getMb_lv()+1)+"等，請至商城收取您的優惠券");
 				}
