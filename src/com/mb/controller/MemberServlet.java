@@ -357,7 +357,7 @@ public class MemberServlet extends HttpServlet {
 				MemberService memberSvc = new MemberService();
 				memberVO = memberSvc.addMember(mb_id, mb_pwd, mb_name, mb_gender, mb_birthday, mb_email, mb_pic);
 				
-				String subject = "Runnable 可以跑 - 會員註冊驗證信";
+				String subject = "Runnable 可以跑 - 會員註冊驗證信"; 
 //				String content = mb_name + "您好，請點選以下網址，進行信箱驗證\r\n"
 //				   		+ "http://localhost:8081/DA106_G5/front_end/member/member.do?action=verification&"
 //						+ "captcha="
