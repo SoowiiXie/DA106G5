@@ -46,6 +46,11 @@
 	-webkit-border-radius: 7px;
 	width: 50%;
 	}
+	button{
+	background-color:#000080;
+  	color:#fff;
+  	border-radius:10px;
+	}
 </style>
 
 <style>
@@ -208,7 +213,7 @@
 			</table>
 		</tbody>	
 		</FORM>
-		<button onClick="magic()">神奇小按鈕</button>
+		<button onClick="magic()">一鍵生成</button>
 	</div>
 </body>
 
