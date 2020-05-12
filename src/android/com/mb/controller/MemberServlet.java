@@ -79,6 +79,7 @@ public class MemberServlet extends HttpServlet {
 			MemberVO member = memberDao.findByPrimaryKey(userId);
 			writeText(res, member == null ? "" : gson.toJson(member));
 		} else if ("registerSucceedOrNot".equals(action)) {
+						
 			MemberVO memberVO = new MemberVO();
 //			String mb_name = jsonObject.get("mb_name").getAsString();
 //			String mb_id = jsonObject.get("mb_id").getAsString();
@@ -88,12 +89,16 @@ public class MemberServlet extends HttpServlet {
 //			Boolean boy_then_true = jsonObject.get("boy_then_true").getAsBoolean();
 			
 			
+			
+			
 			memberVO.setMb_name(jsonObject.get("mb_name").getAsString());
 			memberVO.setMb_id(jsonObject.get("mb_id").getAsString());
 			memberVO.setMb_pwd(jsonObject.get("mb_pwd").getAsString());
 			memberVO.setMb_email(jsonObject.get("mb_email").getAsString());
-			memberVO.setMb_line_id(jsonObject.get("mb_line").getAsString());
+			memberVO.setMb_line_id(jsonObject.get("mb_line_id").getAsString());
 			memberVO.setMb_gender(jsonObject.get("boy_then_true").getAsBoolean()? 1:2);
+			
+			
 
 			
 			String mb_birthday = jsonObject.get("mb_birthday").getAsString();
