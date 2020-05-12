@@ -716,7 +716,7 @@ values('grp00005','yiwen123');
 
 --揪團檢舉
 
-CREATE SEQUENCE group_rpt_no_seq
+CREATE SEQUENCE group_rpt_no_seq 
 INCREMENT BY 1
 START WITH 1
 NOMAXVALUE
