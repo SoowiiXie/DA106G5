@@ -14,6 +14,10 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.mb.model.MemberVO;
+
+import com.mb.model.MemberDAO;
+
 public class CmtDAO implements Cmt_interface {
 //	String driver = "oracle.jdbc.driver.OracleDriver";
 //	String url = "jdbc:oracle:thin:@localhost:1521:XE";
@@ -438,7 +442,10 @@ public class CmtDAO implements Cmt_interface {
 				cmtVO_map.setCmt_time(rs_map.getDate("cmt_time"));
 				cmtVO_map.setCmt_status(rs_map.getInt("cmt_status"));
 				cmtVO_map.setRcd_no(rs_map.getString("rcd_no"));
-				cmtVO_map.setMb_id(rs_map.getString("mb_id"));
+				String mb_id = rs_map.getString("mb_id");
+				MemberDAO memberDao = new MemberDAO();
+				MemberVO memberVO = memberDao.findByPrimaryKey(mb_id);
+				cmtVO_map.setMb_id(memberVO.getMb_name());
 				list_map.add(cmtVO_map); // Store the row in the list
 			}
 
