@@ -19,6 +19,7 @@
 	MemberVO memberVO =(MemberVO)session.getAttribute("memberVO");
 	//用memberVO先取得會常使用到的mb_id
 	session.setAttribute("mb_id", memberVO.getMb_id()); 
+	session.setAttribute("mb_name", memberVO.getMb_name()); 
 %>
 <!DOCTYPE html>
 <html>
@@ -312,7 +313,7 @@ margin:10px auto;
 		href="<%=request.getContextPath()%>/front_end/product/MemberLookSelfCoupon.jsp" style="text-decoration:none;"><font color="white" size="3">我的優惠券</font></a></div>
 		<div class="singOut" align="center"><a
 		href="<%=request.getContextPath()%>/front_end/member/member.do?action=logout" style="text-decoration:none;"><font color="white" size="3">登出</font></a></div>
-      <div class="member" align="center"><font color="white" size="3">${mb_id}</font></div>
+      <div class="member" align="center"><font color="#43E1D1" size="3">${mb_name}</font></div>
     </div>
     <div class="bar_lift"></div>
     <div class="second">

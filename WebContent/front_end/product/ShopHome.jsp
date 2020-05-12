@@ -123,15 +123,15 @@ color: #777;
 					</select></td>
 
 					<td>商品名稱：</td>
-					<td><input type="TEXT" name="pd_name" value="${productVO.pd_name}" style="width:100px;"></td>
+					<td><input type="TEXT" name="pd_name" value="${productVO.pd_name}" style="width:75px;"></td>
 
 
 					<td>最低價格：</td>
-					<td><input type="TEXT" name="lowPrice" style="width:50px;" value="${productVO.pd_price}"></td>
+					<td><input type="TEXT" name="lowPrice" style="width:75px;" value="${productVO.pd_price}"></td>
 
 
 					<td>最高價格：</td>
-					<td><input type="TEXT" name="highPrice" style="width:50px;" value="${productVO.pd_price}"></td>
+					<td><input type="TEXT" name="highPrice" style="width:75px;" value="${productVO.pd_price}"></td>
 					<td><input type="submit" name="Submit" value="搜尋商品"></td>
 				</tr>
 			</table>
