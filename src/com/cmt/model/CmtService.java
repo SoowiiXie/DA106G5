@@ -71,7 +71,7 @@ public class CmtService {
     	return dao.countAllCmts(rcd_no);
     }
 
-	public List<CmtVO> getByRcd_no(String rcd_no, Connection con) {
+	public List<android.com.cmt.model.CmtVO> getByRcd_no(String rcd_no, Connection con) {
 		Map<String, String[]> map = new HashMap<>();
 		String str = "'" + rcd_no + "'";
 		map.put("rcd_no", new String[] { str });

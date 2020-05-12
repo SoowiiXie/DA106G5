@@ -20,5 +20,5 @@ public interface Cmt_interface {
 	// 萬用型
 	public List<CmtVO> getAllUWish(Map<String, String[]> map);
 	
-	public List<CmtVO> getAllUWish(Map<String, String[]> map, Connection con);
+	public List<android.com.cmt.model.CmtVO> getAllUWish(Map<String, String[]> map, Connection con);
 }

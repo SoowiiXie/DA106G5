@@ -390,7 +390,7 @@ public class RecordJNDIDAO implements RecordDAO_interface {
 				recordVO_map.setRcd_thumb_amount(rcd_thumb_amount);
 				
 				CmtService cmtSvc = new CmtService();
-				List<CmtVO> cmtList = cmtSvc.getByRcd_no(rcd_no, con);
+				List<android.com.cmt.model.CmtVO> cmtList = cmtSvc.getByRcd_no(rcd_no, con);
 				recordVO_map.setComment(cmtList);
 				
 				list_map.add(recordVO_map); // Store the row in the list

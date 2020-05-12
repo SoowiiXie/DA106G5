@@ -460,7 +460,7 @@ public class RecordJDBCDAO implements RecordDAO_interface {
 				recordVO_map.setPath_no(rs_map.getString("path_no"));
 				
 				CmtService cmtSvc = new CmtService();
-				List<CmtVO> cmtList = cmtSvc.getByRcd_no(rcd_no, con);
+				List<android.com.cmt.model.CmtVO> cmtList = cmtSvc.getByRcd_no(rcd_no, con);
 				recordVO_map.setComment(cmtList);
 				
 				list_map.add(recordVO_map); // Store the row in the list

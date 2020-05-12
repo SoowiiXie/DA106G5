@@ -18,7 +18,7 @@ public class RecordVO implements java.io.Serializable{
 	private Integer rcd_status;
 	private String path_no;
 	private String mb_id;
-	private List<CmtVO> commenttList;
+	private List<android.com.cmt.model.CmtVO> commenttList;
 	
 	public RecordVO(){
 		super();
@@ -88,11 +88,11 @@ public class RecordVO implements java.io.Serializable{
 		this.mb_id = mb_id;
 	}
 
-	public List<CmtVO> getComment() {
+	public List<android.com.cmt.model.CmtVO> getComment() {
 		return commenttList;
 	}
 
-	public void setComment(List<CmtVO> comment) {
+	public void setComment(List<android.com.cmt.model.CmtVO> comment) {
 		this.commenttList = comment;
 	}
 

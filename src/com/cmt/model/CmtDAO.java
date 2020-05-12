@@ -404,11 +404,11 @@ public class CmtDAO implements Cmt_interface {
 	}
 
 	@Override
-	public List<CmtVO> getAllUWish(Map<String, String[]> map, Connection con) {
+	public List<android.com.cmt.model.CmtVO> getAllUWish(Map<String, String[]> map, Connection con) {
 		StringBuilder sb = new StringBuilder();
 
-		List<CmtVO> list_map = new ArrayList<CmtVO>();
-		CmtVO cmtVO_map = null;
+		List<android.com.cmt.model.CmtVO> list_map = new ArrayList<android.com.cmt.model.CmtVO>();
+		android.com.cmt.model.CmtVO cmtVO_map = null;
 
 		PreparedStatement pstmt_map = null;
 		ResultSet rs_map = null;
@@ -436,16 +436,17 @@ public class CmtDAO implements Cmt_interface {
 			rs_map = pstmt_map.executeQuery();
 			while (rs_map.next()) {
 				// empVO 也稱為 Domain objects
-				cmtVO_map = new CmtVO();
+				cmtVO_map = new android.com.cmt.model.CmtVO();
 				cmtVO_map.setCmt_no(rs_map.getString("cmt_no"));
 				cmtVO_map.setCmt_content(rs_map.getString("cmt_content"));
 				cmtVO_map.setCmt_time(rs_map.getDate("cmt_time"));
 				cmtVO_map.setCmt_status(rs_map.getInt("cmt_status"));
 				cmtVO_map.setRcd_no(rs_map.getString("rcd_no"));
 				String mb_id = rs_map.getString("mb_id");
+				cmtVO_map.setMb_id(mb_id);
 				MemberDAO memberDao = new MemberDAO();
 				MemberVO memberVO = memberDao.findByPrimaryKey(mb_id);
-				cmtVO_map.setMb_id(memberVO.getMb_name());
+				cmtVO_map.setMb_name(memberVO.getMb_name());
 				list_map.add(cmtVO_map); // Store the row in the list
 			}
 
