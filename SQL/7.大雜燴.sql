@@ -881,12 +881,12 @@ START WITH 1
 NOMAXVALUE
 NOCYCLE;
 
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷50元','50','會員等級1獎勵','2020-04-26 21:25');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷100元','100','會員等級2獎勵','2020-04-26 21:25');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷150元','150','會員等級3獎勵','2020-04-26 21:25');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷200元','200','會員等級4獎勵','2020-04-26 21:25');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷250元','250','會員等級5獎勵','2020-04-26 21:25');
-Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷300元','300','會員等級6獎勵','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷50元','50','會員等級2獎勵','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷100元','100','會員等級3獎勵','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷150元','150','會員等級4獎勵','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷200元','200','會員等級5獎勵','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷250元','250','會員等級6獎勵','2020-04-26 21:25');
+Insert into COUPON (CP_NO,CP_NAME,CP_PRICE,CP_DETAIL,CP_TIME) values ('CPN'||LPAD(to_char(COUPON_SEQ.NEXTVAL), 5, '0'),'優惠卷300元','300','會員等級7獎勵','2020-04-26 21:25');
 
 
 ---------------------ORDERS訂單---------------------
