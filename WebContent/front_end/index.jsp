@@ -128,14 +128,14 @@
 
 <body id="page-top">
 	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+<%-- 	<c:if test="${not empty errorMsgs}"> --%>
+<!-- 		<font style="color: red">請修正以下錯誤:</font> -->
+<!-- 		<ul> -->
+<%-- 			<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 				<li style="color: red">${message}</li> --%>
+<%-- 			</c:forEach> --%>
+<!-- 		</ul> -->
+<%-- 	</c:if> --%>
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -579,7 +579,7 @@
 	<div id="fblightbox" class="pathImgBox mb-5" style="font-size:2rem;">
 	  <div class="fblightbox-wrap">
 	    <div class="fblightbox-content p-0">
-	    	<img src="" class="mx-auto d-block pathImgInstead col-12 p-0 m-0" alt="Responsive image" style="height:30rem;">
+	    	<img src="" class="mx-auto d-block pathImgInstead col-12 p-0 m-0" alt="Responsive image" style="max-height:35rem;">
 	    </div>
 	  </div>
 	</div>
@@ -658,9 +658,6 @@
 			 var recordInsertBox = $('.recordInsertBox');
 			 recordInsertBox.css({'margin-left':'-' + (recordInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (recordInsertBox.height()/2)+'px'});
 			 
-// 			 $("body").on('click', '.infoFlagBtn',function(){
-// 			 });
-			 
 		 	 $('.btnAddRecord').click(function(e){
 		 		 e.preventDefault();
 			     $("#mb_id4rcd").val("${mb_id}");
@@ -689,8 +686,9 @@
 		             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 		         });
 			});
-		 	 //按讚結束
+		 	//按讚結束
 			 
+		 	//按meToo開始
 			$('.meTooBtn').click(function(){
 				 var meTooImg = $(this);
 				 $.ajax({
@@ -710,6 +708,7 @@
 			             error: function(){alert("AJAX-thumbBtn發生錯誤囉!")}
 			         });
 			});
+			//按meToo結束
 			
 			//留言區開關
 			$('.cmtBtn').click(function(){
@@ -747,7 +746,7 @@
 			var locInsertBox = $('.locInsertBox');
 			locInsertBox.css({'margin-left':'-' + (locInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (locInsertBox.height()/2)+'px'});
 			 
-			//檢舉和修改留言的燈箱
+			//檢舉和修改留言的燈箱開始
 			var cmtNrpt = $('.cmtNrpt');
 			$('.flagBtn').click(function(){
 			 $.ajax({
@@ -770,8 +769,9 @@
 			 error: function(){alert("AJAX-flagBtn發生錯誤囉!")}
 				 });
 			});
+			//檢舉和修改留言的燈箱結束
 			 
-			 //天氣的燈箱
+			 //天氣的燈箱開始
 			 var weatherBox = $('.weatherBox');
 			 $('.wth_loc_btn').click(function(){
 				 $.ajax({
@@ -807,6 +807,7 @@
 					 error: function(){alert("AJAX-wth_loc_btn發生錯誤囉!")}
 				 });
 			 });
+	 		 //天氣的燈箱結束
 			 
 			 //按讚數的燈箱開始
 			 var whoThumbBox = $('.whoThumbBox');
@@ -869,7 +870,7 @@
 			 });
 	 		 //按讚數的燈箱結束
 			 
-			 //meToo數的燈箱
+			 //meToo數的燈箱開始
 			 var whoMeTooBox = $('.whoMeTooBox');
 			 $('.whoMeToo_no').click(function(){
 				 $.ajax({
@@ -928,6 +929,7 @@
 					 error: function(){alert("AJAX-whoMeTooBox發生錯誤囉!")}
 				 });
 			 });
+			//meToo數的燈箱結束
 				 
 			 //訊息的燈箱開始
 			 var msgLightBox = $('.msgLightBox');

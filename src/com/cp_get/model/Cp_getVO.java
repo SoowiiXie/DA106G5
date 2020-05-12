@@ -31,8 +31,6 @@ public class Cp_getVO implements java.io.Serializable {
 		this.cp_javaGetTime = cp_javaGetTime;
 	}
 
-	
-
 	public Timestamp getCp_getTime() {
 		return cp_getTime;
 	}
@@ -65,4 +63,10 @@ public class Cp_getVO implements java.io.Serializable {
 		this.cp_status = cp_status;
 	}
 
+	@Override
+	public String toString() {
+		return "Cp_getVO [mb_id=" + mb_id + ", cp_no=" + cp_no + ", cp_status=" + cp_status + ", cp_getTime="
+				+ cp_getTime + ", cp_javaGetTime=" + cp_javaGetTime + "]";
+	}
+	
 }

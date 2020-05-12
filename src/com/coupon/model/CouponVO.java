@@ -1,6 +1,7 @@
 package com.coupon.model;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class CouponVO implements java.io.Serializable {
 	/**
@@ -83,4 +84,11 @@ public class CouponVO implements java.io.Serializable {
 		this.cp_price = cp_price;
 	}
 
+	@Override
+	public String toString() {
+		return "CouponVO [cp_no=" + cp_no + ", cp_name=" + cp_name + ", cp_price=" + cp_price + ", cp_pic="
+				+ Arrays.toString(cp_pic) + ", cp_detail=" + cp_detail + ", cp_time=" + cp_time + ", cp_javaTime="
+				+ cp_javaTime + "]";
+	}
+	
 }

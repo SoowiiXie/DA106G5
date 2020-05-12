@@ -183,7 +183,7 @@ public class FakeBlobTest extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			// 8個會員
+			// 7個會員
 			String[] mb_id = {"soowii123","xuan123","michael123","vain123","yiwen123","weijhih123","androidlababy520","anjavababy520"};
 			
 			Connection con = null;

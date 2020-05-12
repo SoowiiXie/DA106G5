@@ -93,17 +93,29 @@ html, body {
     </div>
     	
 	<!-- 地標檢舉新增的燈箱 -->
-	<div id="fblightbox" class="loc_rptInsertBox">
+<!-- 	<div id="fblightbox" class="loc_rptInsertBox fblightboxClass"> -->
+<!-- 	  <div class="fblightbox-wrap"> -->
+<!-- 	    <div class="fblightbox-header"> -->
+<!-- 	      	這個地標有問題 -->
+<!-- 	    </div> -->
+<!-- 	    <div class="fblightbox-content p-0"> -->
+<%-- 	    	<jsp:include page="../../back_end/loc_rpt/addLoc_rpt.jsp" /> --%>
+<!-- 	    </div> -->
+<!-- 	  </div> -->
+<!-- 	</div> -->
+<!-- 	<div class="overlay"></div> -->
+	<!-- 地標檢舉新增的燈箱結束 -->
+	
+	<!-- 路徑圖片的燈箱開始 -->
+	<div id="fblightbox" class="locationImgBox mb-5" style="font-size:2rem;">
 	  <div class="fblightbox-wrap">
-	    <div class="fblightbox-header">
-	      	這個地標有問題
-	    </div>
 	    <div class="fblightbox-content p-0">
+	    	<img src="" class="mx-auto d-block locationImgInstead col-12 p-0 m-0" alt="Responsive image" style="max-height: 30rem;">
 	    	<jsp:include page="../../back_end/loc_rpt/addLoc_rpt.jsp" />
 	    </div>
 	  </div>
 	</div>
-	<div class="overlay"></div>
+	<!-- 路徑圖片的燈箱結束 -->
 	
     <script>
     var map;
@@ -227,18 +239,17 @@ html, body {
       markers.push(marker);
       var infowindow = new google.maps.InfoWindow({
           content: "<h2>"+result.adr+"</h2>"+
-          "<img src='data:image/jpg;base64,"+result.pic+"' style='height:10rem;' class='rounded'>"+
-          "<input style='height: 1rem; opacity: 0.5;' class='infoFlagBtn' type='image' name='submit_Btn' src='<%=request.getContextPath()%>/img/flag.png'>"+
+          "<img src='data:image/jpg;base64,"+result.pic+"' style='height:10rem;' class='rounded locationImg'>"+
+          
           "<input type='hidden' name='loc_no4rpt' class='loc_no4rpt' value='"+result.loc_no4json+"'>"+
           "<p><h2><b>經度: </b>"+result.lng+
           "</br>緯度:&nbsp;&nbsp;&nbsp;&nbsp;"+result.lat+"</h2></p></div>"
       });
       marker.addListener('click', function() {
-    	  console.log(777);
           infowindow.open(map, marker);
       });
     }
-    
+    //"<input style='height: 1rem; opacity: 0.5;' class='infoFlagBtn' type='image' name='submit_Btn' src='<%=request.getContextPath()%>/img/flag.png'>"+
     // Deletes all markers in the array by removing references to them.
     function deleteMarkers() {
   		setMapOnAll(null);
@@ -316,15 +327,26 @@ html, body {
 
 	});	
 	
-	 var loc_rptInsertBox = $('.loc_rptInsertBox');
-	 console.log(loc_rptInsertBox);
-	 loc_rptInsertBox.css({'margin-left':'-' + (loc_rptInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (loc_rptInsertBox.height()/2)+'px'});
+	 var fblightbox = $('#fblightbox');
+// 	 var loc_rptInsertBox = $('.loc_rptInsertBox');
+// 	 loc_rptInsertBox.css({'margin-left':'-' + (loc_rptInsertBox.width()/2) + 'px' , 'margin-top' : '-' + (loc_rptInsertBox.height()/2)+'px'});
 	 
-	 $("body").on('click', '.infoFlagBtn',function(){
-		 $("#loc_no4rptInsert").val($(this).next().val());
-	     $("#mb_id4rpt").val("${mb_id}");
-		 loc_rptInsertBox.fadeIn();
-		 $('.overlay').fadeIn();
+// 	 $("body").on('click', '.infoFlagBtn',function(){
+// 		 $("#loc_no4rptInsert").val($(this).next().val());
+// 	     $("#mb_id4rpt").val("${mb_id}");
+// 		 loc_rptInsertBox.fadeIn();
+// 		 $('.overlay').fadeIn();
+// 	 });
+	 
+	 var locationImgBox = $('.locationImgBox');
+	 var locationImgInstead = $('.locationImgInstead');
+	 $("body").on('click', '.locationImg',function(){
+			 $("#loc_no4rptInsert").val($(this).next().val());
+		     $("#mb_id4rpt").val("${mb_id}");
+			locationImgInstead.attr("src",$(this).attr("src"));
+			locationImgBox.css({'margin-left':'-' + (locationImgBox.width()/2) + 'px' , 'margin-top' : '-' + (locationImgBox.height()/2)+'px'});
+			$('.overlay').fadeIn();
+			locationImgBox.fadeIn();
 	 });
 	 
 	 //檢舉地標的燈箱
@@ -340,18 +362,21 @@ html, body {
 		  $('.overlay').fadeOut();
 		  fblightbox.fadeOut();
 		  loc_rptInsertBox.fadeOut();
+		  locationImgBox.fadeOut();
 	 });
 	 
 	 $(".fbclose").click(function() {
 		  $('.overlay').fadeOut();
 		  fblightbox.fadeOut();
 		  loc_rptInsertBox.fadeOut();
+		  locationImgBox.fadeOut();
 	 });
 	 
 	 $(".overlay").click(function() {
 		  $('.overlay').fadeOut();
 		  fblightbox.fadeOut();
 		  loc_rptInsertBox.fadeOut();
+		  locationImgBox.fadeOut();
 	 });
 	 
     window.onload = initMap;  //測試用

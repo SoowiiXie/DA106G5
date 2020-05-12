@@ -385,7 +385,7 @@ public class LocationServlet extends HttpServlet {
 				locationSvc.updateLocation(loc_no, locationVO.getLoc_typeno(), locationVO.getLongitude(), locationVO.getLatitude(), loc_status, locationVO.getLoc_address(), locationVO.getLoc_pic());
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				
-				String url ="/front_end/location/listAllLocation.jsp";  // 阿水原本路徑
+//				String url ="/front_end/location/listAllLocation.jsp";  // 阿水原本路徑
 				RequestDispatcher successView = req.getRequestDispatcher(indexPath); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
