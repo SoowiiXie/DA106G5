@@ -21,23 +21,15 @@ background-color:#9CC7F6;
 margin:5px 5px 5px 3px;
 }
 
-.goToShopHome{
-height:100px;
-width:12%; 
-background-color:#9CC7F6;
-float:left;
-position: relative;
 
-}
 .search_form{
 position: absolute;  
 margin-top:30px;
 
 }
 .backhome{
-margin-left:8%;
 height:100px;
-width:12%; 
+width:20%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
@@ -47,7 +39,7 @@ float:left;
 
 .managerProduct{
 height:100px;
-width:12%; 
+width:20%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
@@ -56,7 +48,7 @@ float:left;
 }
 .addProduct{
 height:100px;
-width:12%; 
+width:20%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
@@ -65,7 +57,7 @@ float:left;
 }
 .managerOrders{
 height:100px;
-width:12%; 
+width:20%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
@@ -74,82 +66,15 @@ float:left;
 }
 .managerCoupon{
 height:100px;
-width:12%; 
+width:20%; 
 background-color:#9CC7F6;
 position: static; 
 line-height:100px; 
 float:left;
 
 }
-.member{
-margin-left:1300px;
-height:100px;
-width:7%; 
-background-color:#9CC7F6;
-position: static; 
-line-height:100px;
-
-}
-.second{
-margin-top: 10px;
-height:50px;
-width:100%;  
-background-color:#9CC7F6;
-position:absolute; 
-text-align:center;
-
-}
-.Topmenu{
-  width:12.5%;
-  height:42px;
-  background-color:#9CC7F6;
-  color:#FFF6F6;
-  font-size:22px;
-  padding-top:7px;
-  text-align:center;
-
-  overflow:hidden;
-  line-height: 43px;
-  transition:all 0.8s; /*all代表多個*/
-  display:inline-block;
-  vertical-align:top;
-  
- 
-}
-.Topmenu:hover{
-  height:178px;
-  cursor:pointer;
- /*   background-color: green;*/
-/*    color:cyan;*/
-}
-.Topmenu span{
-  display: block;
-  font-size: 14px;
-  letter-spacing: 1px;
-  transition: all 0.8s;  /*transition 需要 hover觸發*/
-     color:#fff;
-     border:1px #FFF7FB solid;
-}
-.Topmenu span:hover{
-  /*color:cyan;
-  text-shadow: 2px 2px 2px #000;*/
-}
-
-.bar_lift{
-margin-top: 10px;
-height:50px;
-width:25%;  
-background-color:#D3FF93;
-float:left;
 
 
-}
-.third{
-margin-top:70px; 
-height:400px;
-width:100%;  
-background-color:#FBFBFF;
-}
 
 div img{
     width: 100%;
@@ -187,6 +112,7 @@ margin:10px auto;
 }
 font{
 font-family:Mamelon;
+
 }
 
 </style>
@@ -210,23 +136,23 @@ font-family:Mamelon;
     
     <div class="goToShopHome"></div>
       <div class="backhome" align="center"><a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp" style="text-decoration:none;">
-        <font color="#FDFF99" size="3">商城頁面</font></a>
+        <font color="#FDFF99" size="5">商城頁面</font></a>
       </div>
     <div class="addProduct" align="center"><a href="<%=request.getContextPath()%>/ProductServlet?action=getIncludePath" style="text-decoration:none;">
-      <font color="#FDFF99" size="3">增加商品</font></a></div> 
+      <font color="#FDFF99" size="5">增加商品</font></a></div> 
     <div class="managerProduct" align="center">
       	<a href="<%=request.getContextPath()%>/ProductServlet?action=searchTypeList&&pd_typeNo=" style="text-decoration:none;" style="text-decoration:none;">
-      	  <font color="#FDFF99" size="3">管理商品</font></a>
+      	  <font color="#FDFF99" size="5">管理商品</font></a>
     </div> 
     
     <div class="managerOrders" align="center">
       	<a href="<%=request.getContextPath()%>/OrdersServlet?action=getAllList" style="text-decoration:none;">
-      	  <font color="#FDFF99" size="3">管理訂單</font></a>
+      	  <font color="#FDFF99" size="5">管理訂單</font></a>
     </div> 
     
     <div class="managerCoupon" align="center">
       	<a href="<%=request.getContextPath()%>/CpGetServlet?action=getCouponManagerIncludePath" style="text-decoration:none;">
-      	  <font color="#FDFF99" size="3">管理優惠券</font></a>
+      	  <font color="#FDFF99" size="5">管理優惠券</font></a>
     </div> 
  </div>     	
 </div>
