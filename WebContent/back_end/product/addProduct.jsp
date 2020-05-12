@@ -84,15 +84,15 @@ margin-top:100;
       </tr>
       <tr>
         <td bgcolor=#9CC7F6>商品名稱：</td>
-        <td bgcolor=#9CC7F6><input type="TEXT" name="pd_name" value="${productVO.pd_name}"></td>
+        <td bgcolor=#9CC7F6><input type="TEXT" name="pd_name" value="${productVO.pd_name}" id="mpd_name"></td>
       </tr>
       <tr>
         <td bgcolor=#9CC7F6>商品價格：</td>
-        <td bgcolor=#9CC7F6><input type="TEXT" name="pd_price" value="${productVO.pd_price}"></td>
+        <td bgcolor=#9CC7F6><input type="TEXT" name="pd_price" value="${productVO.pd_price}" id="mpd_price"></td>
       </tr>
       <tr >
 	    <td style="height:100px;" bgcolor=#9CC7F6>商品詳述：</td>
-	    <td style="height:100px;" bgcolor=#9CC7F6><textarea style="height:100px; width:300px;" name="pd_detail">${productVO.pd_detail}</textarea></td>					
+	    <td style="height:100px;" bgcolor=#9CC7F6><textarea style="height:100px; width:300px;" name="pd_detail" id="mpd_detail">${productVO.pd_detail}</textarea></td>					
       </tr>
       <tr>
 		<td bgcolor=#9CC7F6>產品商品分類：</td>
@@ -128,6 +128,7 @@ margin-top:100;
 		<input type="submit" name="Submit" value="增加商品">
 	</form>
   </div>
+  <div style="margin-top:20px;"><button onClick="magic()">神奇小按鈕</button></div>
 </div>
 
 <%-- 
@@ -196,13 +197,20 @@ margin-top:100;
     	reader.readAsDataURL(input.files[0]);
   		}
 	}
+	
+	function magic(){
+		
+		$("#mpd_name").val("AirForce布雷克");
+		$("#mpd_price").val("5000");
+		$("#mpd_detail").val("穿上 Nike Air Force 1 React 進入全新 AF1 世界，打造嶄新自我。融合現代設計與經典籃球風格，展現大型的搶眼造型，以及新版鞋底圖案讓你展現摩登精神，鞋床採用 Nike React 技術，柔軟舒適有彈性！就是潮，就是帥，穿上去將讓你成為全世界、全宇宙萬眾矚目的焦點，不趁這時候買更待何時");
+	}
 	</script>
 
 
 
 
 
-<div class="buttonBar" style="margin-top:100px; background-color:#9CC7F6; margin:5px 5px 5px 3px;"></div>
+<div class="buttonBar" style="margin-top:100px; background-color:white; margin:5px 5px 5px 3px;"></div>
 
 
 </body>

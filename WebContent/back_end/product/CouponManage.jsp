@@ -136,13 +136,13 @@ margin-top:100;
 			<tr bgcolor=#C4E1FF>
 				<td style="width:8%;" bgcolor="#9CC7F6">優惠券種類：</td>
 				<td style="width:12%;" bgcolor="#9CC7F6"><input type="TEXT" name="cp_name"
-					value="${couponVO.cp_name}" style="width: 100%; height: 100%"></td>
+					value="${couponVO.cp_name}" style="width: 100%; height: 100%" id="mcp_name"></td>
 				<td style="width:8%;" bgcolor="#9CC7F6">優惠券金額：</td>
 				<td style="width:12%;" bgcolor="#9CC7F6"><input type="TEXT" name="cp_price"
-					value="${couponVO.cp_price}"style="width: 100%; height: 100%"></td>
+					value="${couponVO.cp_price}"style="width: 100%; height: 100%" id="mcp_price"></td>
 				<td style="width:8%;" bgcolor="#9CC7F6">優惠券備註：</td>
 				<td style="width:12%;" bgcolor="#9CC7F6"><input type="TEXT" name="cp_detail"
-					value="${couponVO.cp_detail}"style="width: 100%; height: 100%"></td>
+					value="${couponVO.cp_detail}"style="width: 100%; height: 100%" id="mcp_detail"></td>
 					<td style="width:12%;" bgcolor="#9CC7F6"><input type="hidden" name="action" value="addCouponTypeNo"> <input
 			type="submit" name="Submit" value="增加優惠券"></td>
                 
@@ -151,6 +151,7 @@ margin-top:100;
 		</table>
 
 </form>
+<button onClick="magic()">神奇小按鈕</button>
 </div>
 <div style="margin-top: 50px;">
 <div style="float:left;">
@@ -201,14 +202,24 @@ margin-top:100;
 
   <div class="buttonBar" style="margin-top:100px; background-color:#F3F8FE; margin:5px 5px 5px 3px;"></div>
 <script>
-var give= ${param.give};
-if (give == true){
+
+function magic(){
+	
+	$("#mcp_name").val("活動優惠券500元");
+	$("#mcp_price").val("500");
+	$("#mcp_detail").val("算你賺到");
+}
+
+
+if (${'true'.equals(param.give)}){
  Swal.fire(
    '',  
    '優惠券發送成功!',
    'success'
    )
 }
+
+
 </script>
 
 
