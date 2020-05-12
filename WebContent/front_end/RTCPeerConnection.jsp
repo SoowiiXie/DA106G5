@@ -320,7 +320,7 @@ html {
 //                        var SIGNALING_SERVER = 'https://192.168.196.195:9001/';
 
                         config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
-                        var sender = "LIV00007";
+                        var sender = Math.round(Math.random() * 999999999) + 999999999;
 
                         io.connect(SIGNALING_SERVER).emit('new-channel', {
                             channel: config.channel,
@@ -524,7 +524,8 @@ buttons: ['record-video']
                     var uniqueToken = document.getElementById('unique-token');
                     if (uniqueToken)
                         if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<div class="share"><h2>&nbsp;<i class="fa fa-hand-o-right fa-2x"></i><a href="' + location.href + '" target="_blank"><b>由此分享此直播間的鏈接 </b></a></h2></div>';
-                        else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
+//                         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');//URL網址生產
+                        else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + ('LIV00007');//URL網址生產
                 })();
                 
                 
