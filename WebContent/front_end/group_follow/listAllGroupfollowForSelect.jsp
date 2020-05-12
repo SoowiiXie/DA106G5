@@ -59,7 +59,7 @@
 	background: #FFFFFF;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	font-size:20px;
+	font-size:24px;
   }
   #listDetail table,#listDetail th,#listDetail td {
     border: 1px solid #CCCCFF;
