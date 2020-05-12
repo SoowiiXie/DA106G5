@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import com.cmt.model.*;
 import com.cmt_rpt.model.*;
 import com.mb.model.*;
+import com.ntf.model.NotifyService;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
 		* 1024 * 1024)
@@ -270,6 +271,11 @@ public class Cmt_rptServlet extends HttpServlet {
 					CmtService cmtSvc = new CmtService();
 					CmtVO cmtVO = cmtSvc.getOneCmt(cmt_no);
 					cmtSvc.updateCmt(cmtVO.getCmt_content(), 2, cmtVO.getCmt_no(), cmtVO.getCmt_time(), cmtVO.getRcd_no(), cmtVO.getMb_id());
+					/*************************** 會員拿到優惠卷後寄訊息給對方 ****************************************/
+//					MessageService messageSvc = new MessageService();
+//					messageSvc.addMessage("androidlababy520" , mb_id, memberVO.getMb_name()+"恭喜你升上"+(memberVO.getMb_lv()+1)+"等，請至商城收取您的優惠券");
+					NotifyService notifySvc = new NotifyService();
+					notifySvc.addNotify(mb_id, memberVO.getMb_name()+"，您檢舉的留言已被下架，謝謝您一起維護RuannAble的環境");
 				}
 				Cmt_rptVO cmt_rptVO = new Cmt_rptVO();
 				cmt_rptVO.setCmt_rpt_no(cmt_rpt_no);
