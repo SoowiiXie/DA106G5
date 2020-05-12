@@ -82,10 +82,10 @@
 <div id="contentLeft" class="col-3 navbar-nav">
 	<c:forEach var="liveVO" items="${liveList}">
 	<div class="live btn btn-secondary">
-		${liveVO.live_no} <img
-			src="<%= request.getContextPath() %>/DBGifReader4Live?live_no=${liveVO.live_no}"
-			class="liveImg" alt="live image">
-	</div>
+		<a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#${liveVO.live_no}">
+			${liveVO.live_no} 
+			<img src="<%= request.getContextPath() %>/DBGifReader4Live?live_no=${liveVO.live_no}" class="liveImg" alt="live image">
+		</a>
 	</c:forEach>
 	<div class="live btn btn-secondary">
 		<div class="liveImg">查看全部</div>
