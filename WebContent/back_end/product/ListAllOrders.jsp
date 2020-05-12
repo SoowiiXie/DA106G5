@@ -121,7 +121,7 @@ margin-top:100;
 						</FORM></td>
 					<td align="center" bgcolor="#9CC7F6"><FORM METHOD="post"
 							ACTION="OrdersServlet" style="margin-bottom: 0px;">
-							<input type="submit" value="刪除"> <input type="hidden"
+							<input type="submit" value="修改"> <input type="hidden"
 								name="pd_no" value="${productVO.pd_no}"> <input
 								type="hidden" name="action" value="delete">
 

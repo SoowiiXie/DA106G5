@@ -18,6 +18,8 @@
 %>
 <jsp:useBean id="pd_typeService" scope="page"
 	class="com.pd_type.model.Pd_typeService" />
+	<jsp:useBean id="couponService" scope="page"
+	class="com.coupon.model.CouponService" />
 <style type="text/css" media="screen">
 .a {
 	position: relative;
@@ -143,8 +145,11 @@
 			</tr>
 			<tr bgcolor=#C4E1FF>
 				<td></td>
-				<td></td>
-				<td></td>
+				<td><font color="black">使用的優惠券：</font></td>
+				<td><c:if test="${cp_get==null}">
+	                 無使用優惠券 
+	                </c:if>
+	            <font color="black">${couponService.searchCoupon(cp_get).cp_name}</font></td>
 				<td><div align="center">
 						<font color="red"><b>優惠後的金額：</b></font>
 					</div></td>
