@@ -46,6 +46,11 @@
 	-webkit-border-radius: 7px;
 	width: 50%;
 	}
+	button{
+	background-color:#000080;
+  	color:#fff;
+  	border-radius:10px;
+	}
 </style>
 
 <style>
@@ -208,7 +213,7 @@
 			</table>
 		</tbody>	
 		</FORM>
-		<button onClick="magic()">神奇小按鈕</button>
+		<button onClick="magic()">一鍵生成</button>
 	</div>
 </body>
 
@@ -327,7 +332,7 @@ $(function(){
 	$("#grp_name").val("宣揚古羅馬文化");
 	$("#grp_content").val("週末下班後來場爭鬥，爭鬥的不是輸贏，而是歷史的洪流中的一絲喘息空間");
 	$("#grp_personmax").val("15");
-	$("#grp_personmin").val("7");
+	$("#grp_personmin").val("8");
 	}
 </script>
 </html>
