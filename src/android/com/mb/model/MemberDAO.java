@@ -22,7 +22,7 @@ public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.Me
 	private static final String FIND_BY_ID_PASWD = "SELECT * FROM member WHERE MB_ID = ? AND MB_PWD = ?";
 	private static final String CHECK_ID_EXIST = "SELECT MB_ID FROM member WHERE MB_ID = ?";
 	private static final String FIND_BY_ID = "SELECT * FROM member WHERE MB_ID = ?";
-	private static final String GET_IMAGE = "SELECT mb_pic FROM member WHERE mb_id = ?";
+	private static final String GET_IMAGE = "SELECT mb_pic, mb_line_pic FROM member WHERE mb_id = ?";
 	
 	private static DataSource ds = null;
 	static {
@@ -246,6 +246,9 @@ public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.Me
 			
 			if(rs.next()) {
 				picture = rs.getBytes(1);
+				if(picture == null) {
+					picture = rs.getBytes(2);
+				}
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException("A database error occured."+ e.getMessage());
