@@ -81,14 +81,20 @@
 <!-- 內容左邊-直播 -->
 <div id="contentLeft" class="col-3 navbar-nav">
 	<c:forEach var="liveVO" items="${liveList}">
-	<div class="live btn btn-secondary">
-		<a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#${liveVO.live_no}">
-			${liveVO.live_no} 
-			<img src="<%= request.getContextPath() %>/DBGifReader4Live?live_no=${liveVO.live_no}" class="liveImg" alt="live image">
-		</a>
+	<div class="live btn btn-secondary" id="${liveVO.live_no}">
+		
+		${liveVO.live_no}
+<!-- 		<a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#LIV00007">查看全部</a> -->
+		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=RTCPeerConnection.jsp#LIV00007">查看全部</a>
+		
+		<img src="<%= request.getContextPath() %>/DBGifReader4Live?live_no=${liveVO.live_no}" class="liveImg" alt="live image">
+		
+	</div>
 	</c:forEach>
 	<div class="live btn btn-secondary">
-		<div class="liveImg">查看全部</div>
+		
+			<div class="liveImg"><a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#LIV00007">查看全部</a></div>
+		
 	</div>
 </div>
 
