@@ -18,7 +18,7 @@ public class MemberDAO extends com.mb.model.MemberDAO implements com.mb.model.Me
 	private static final String INSERT_STMT = "INSERT INTO MEMBER ( MB_ID, MB_PWD, MB_LINE_ID, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_PIC, MB_EMAIL) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM MEMBER order by MB_ID";
 	private static final String GET_ONE_STMT = "SELECT * FROM MEMBER where MB_ID = ?";
-	private static final String UPDATE = "UPDATE MEMBER set MB_PWD=?, MB_LINE=?, MB_NAME=?, MB_GENDER=?, MB_BIRTHDAY=?, MB_LV=?, MB_PIC=?, MB_RPT_TIMES=?, MB_EMAIL=?, MB_STATUS=? where MB_ID = ?";
+	private static final String UPDATE = "UPDATE MEMBER set MB_PWD=?, MB_LINE_ID=?, MB_NAME=?, MB_GENDER=?, MB_BIRTHDAY=?, MB_LV=?, MB_PIC=?, MB_RPT_TIMES=?, MB_EMAIL=?, MB_STATUS=? where MB_ID = ?";
 	private static final String FIND_BY_ID_PASWD = "SELECT * FROM member WHERE MB_ID = ? AND MB_PWD = ?";
 	private static final String CHECK_ID_EXIST = "SELECT MB_ID FROM member WHERE MB_ID = ?";
 	private static final String FIND_BY_ID = "SELECT * FROM member WHERE MB_ID = ?";
