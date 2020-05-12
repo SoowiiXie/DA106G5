@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cp_get.model.Cp_getVO;
+import com.coupon.model.*;
+import com.cp_get.model.*;
 import com.od_detail.model.Od_detailLineVO;
 import com.od_detail.model.Od_detailVO;
 import com.orders.model.OrdersService;
@@ -78,6 +79,9 @@ public class CheckOutServlet extends HttpServlet {
 			Cp_getVO cp_getVO = new Cp_getVO();
 			cp_getVO.setMb_id(mb_id);
 			cp_getVO.setCp_status(1);
+			//因為line沒進orderDetail所以直接先在這邊改優惠券狀態
+			Cp_getService cp_getSvc = new Cp_getService();
+			cp_getSvc.aMemberUseCoupon(cp_getVO);
 			
 			//原本的orders_deyailVO
 			List<Od_detailVO> testList = new ArrayList<Od_detailVO>(); // 將購物車每一欄資料匯入訂單明細每一筆資料，再倒入訂單明細陣列(多筆訂單明細)
@@ -102,8 +106,14 @@ public class CheckOutServlet extends HttpServlet {
 			String productName = order.getPd_name();
 			
 			//價格 (2,2)
-			int pd_price = order.getPd_price();
-			int amount = order.getPd_price();
+			CouponService couponSvc = new CouponService();
+			int pd_price = 0;
+			if(cp_get==null ||"".equals(cp_get)) {
+				pd_price = order.getPd_price();
+			}else {
+				pd_price = order.getPd_price()-couponSvc.searchCoupon(cp_get).getCp_price();
+			}
+			int amount = pd_price;
 			
 			//數量(在這邊只會是1) (4,2)
 			int pd_quantity = 1;
