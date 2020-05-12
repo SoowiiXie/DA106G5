@@ -98,7 +98,7 @@ public class MemberServlet extends HttpServlet {
 			memberVO.setMb_line_id(jsonObject.get("mb_line_id").getAsString());
 			memberVO.setMb_gender(jsonObject.get("boy_then_true").getAsBoolean()? 1:2);
 			
-			
+			 
 
 			
 			String mb_birthday = jsonObject.get("mb_birthday").getAsString();
