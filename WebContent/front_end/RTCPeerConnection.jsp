@@ -41,8 +41,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="stylesheet" href="livestream/css/styles1.css">
-<link rel="stylesheet" href="livestream/css/bootstrap-4.3.1.min.css">
-<link rel="stylesheet" href="livestream/css/styles2.css">
+<!-- <link rel="stylesheet" href="livestream/css/bootstrap-4.3.1.min.css"> -->
+<!-- <link rel="stylesheet" href="livestream/css/styles2.css"> -->
 <link rel="stylesheet" href="livestream/css/font-awesome-4.5.0/css/font-awesome.css">
 <link rel="stylesheet" href="livestream/css/getHTMLMediaElement.css">
 <script src="livestream/js/jquery-1.11.1.min.js"></script>
@@ -233,7 +233,7 @@ html {
 
 	<div class="container">
 		<div class="row">
-			<div class="col col-sm-12">
+			<div class="col col-sm-12" style="display: none;">
 				<div class="CustomCard hoverCustomCard">
 					<div id="CustomCardheader" class="CustomCardheader text-white btn-warning">
 						<input type="hidden" id="hostID" value="${hostID}" />
@@ -261,7 +261,7 @@ html {
 				</div>
 			</div>
 
-			<div class="col col-sm-9">
+			<div class="col col-sm-12">
 				<article>
 					<header style="text-align: center;">
 						<h2>WebRTC 視 頻 廣 播</h2>
@@ -296,7 +296,7 @@ html {
              }
 			</script>
 	
-			<div class="col col-sm-3" style="height: 600px">
+			<div class="col col-sm-3" style="height: 600px; display: none;">
 				<br><br><br><br>
 				<h4>WebSocket chatroom</h4>
 				<textarea id="messagesArea" class="panel message-area" readonly></textarea>

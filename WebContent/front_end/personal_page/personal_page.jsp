@@ -73,7 +73,7 @@
 	<ol class="breadcrumb m-0">
 		<li class="breadcrumb-item"><a
 			href="<%=request.getContextPath()%>/front_end/member/login.jsp">登入畫面</a></li>
-		<li class="breadcrumb-item active" aria-current="page">個人頁面</li>
+		<li class="breadcrumb-item active" aria-current="page">個人頁面123</li>
 	</ol>
 </nav>
 
@@ -84,16 +84,17 @@
 	<div class="live btn btn-secondary" id="${liveVO.live_no}">
 		
 		${liveVO.live_no}
-<!-- 		<a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#LIV00007">查看全部</a> -->
-		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=RTCPeerConnection.jsp#LIV00007">查看全部</a>
+<!-- 		<a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#LIV00007"></a> -->
+		<a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=RTCPeerConnection.jsp#LIV00007"></a>
 		
 		<img src="<%= request.getContextPath() %>/DBGifReader4Live?live_no=${liveVO.live_no}" class="liveImg" alt="live image">
 		
 	</div>
 	</c:forEach>
 	<div class="live btn btn-secondary">
-		
-			<div class="liveImg"><a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#LIV00007">查看全部</a></div>
+			
+<!-- 			<div class="liveImg"><a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#LIV00007">查看全部</a></div> -->
+			<div class="liveImg"><a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=RTCPeerConnection.jsp#LIV00007">查看全部</a></div>
 		
 	</div>
 </div>
