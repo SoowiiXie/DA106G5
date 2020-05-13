@@ -25,8 +25,9 @@
      System.out.println(clientID);
      System.out.println("--------------------------------------------");
 %>
-
+<jsp:include page="/front_end/product/ShopHomeBar.jsp" flush="ture" />
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>WebRTC Video One to many Broadcasting</title>
