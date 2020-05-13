@@ -167,7 +167,7 @@ values('xuan123','106da','名軒','1',TO_DATE('1992-05-01','YYYY-MM-DD'),'xuan12
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
 values('michael123','106da','麥可','1',TO_DATE('1989-06-25','YYYY-MM-DD'),'Michael123@yahoo.com',2);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
-values('vain123','106da','昱盛','1',TO_DATE('1987-07-01','YYYY-MM-DD'),'vain123@hotmail.com',2);
+values('vain123','106da','阿盛','1',TO_DATE('1987-07-01','YYYY-MM-DD'),'vain123@hotmail.com',2);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
 values('yiwen123','106da','以文','1',TO_DATE('1985-09-14','YYYY-MM-DD'),'yiwen123@yahoo.com',3);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
@@ -257,7 +257,7 @@ values('staff_xuan','106da','名軒');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
 values('staff_michael','106da','麥可');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
-values('staff_vain','106da','昱盛');
+values('staff_vain','106da','阿盛');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
 values('staff_soowii','106da','阿水');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
