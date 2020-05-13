@@ -262,7 +262,7 @@ html {
 				</div>
 			</div>
 
-			<div class="col col-sm-12">
+			<div class="col col-sm-4">
 				<article>
 <!-- 					<header style="text-align: center;"> -->
 <!-- 						<h2>WebRTC 視 頻 廣 播</h2> -->
@@ -280,7 +280,7 @@ html {
 						<!-- list of all available broadcasting rooms --><br>
 						<table style="width: 100%;" id="rooms-list"></table>
 						<!-- local/remote videos container -->
-						<div id="videos-container"></div>
+						<div id="videos-container" style="width: 23rem;" class="mx-auto"></div>
 						<div class="visible">
 							<div style="text-align: center;">
 									<h2><code><strong id="unique-token">#123456789</strong></code></h2>
@@ -355,8 +355,8 @@ html {
                         if (typeof roomsList === 'undefined') roomsList = document.body;
 
                         var tr = document.createElement('tr');
-                        tr.innerHTML = '<td><strong>' + room.roomName + '</strong>和他的小夥伴們正在運動!</td>' +
-                            '<td><button class="join">&nbsp;Join&nbsp;</button></td>';
+                        tr.innerHTML = '<td><strong>' + room.roomName + '</strong>和他的小夥伴正在運動!</td>' +
+                            '<td><button class="join">聽話讓我看看</button></td>';
                         roomsList.appendChild(tr);
  
                         var joinRoomButton = tr.querySelector('.join');
