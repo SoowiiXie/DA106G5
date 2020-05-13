@@ -93,8 +93,8 @@
 	</c:forEach>
 	<div class="live btn btn-secondary">
 			
-<!-- 			<div class="liveImg"><a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#LIV00007">查看全部</a></div> -->
-			<div class="liveImg"><a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=RTCPeerConnection.jsp#LIV00007">查看全部</a></div>
+			<div class="liveImg"><a href="https://da106g5.tk/DA106_G5/front_end/RTCPeerConnection.jsp#LIV00007">查看全部</a></div>
+<%-- 			<div class="liveImg"><a href="<%= request.getContextPath() %>/front_end/index.jsp?pageRun=RTCPeerConnection.jsp#LIV00007">查看全部</a></div> --%>
 		
 	</div>
 </div>
