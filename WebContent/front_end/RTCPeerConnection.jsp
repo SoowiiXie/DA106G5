@@ -40,9 +40,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="stylesheet" href="livestream/css/styles1.css">
-<!-- <link rel="stylesheet" href="livestream/css/bootstrap-4.3.1.min.css"> -->
-<!-- <link rel="stylesheet" href="livestream/css/styles2.css"> -->
+<!-- <link rel="stylesheet" href="livestream/css/styles1.css"> -->
+<link rel="stylesheet" href="livestream/css/bootstrap-4.3.1.min.css">
+<link rel="stylesheet" href="livestream/css/styles2.css">
 <link rel="stylesheet" href="livestream/css/font-awesome-4.5.0/css/font-awesome.css">
 <link rel="stylesheet" href="livestream/css/getHTMLMediaElement.css">
 <script src="livestream/js/jquery-1.11.1.min.js"></script>
@@ -263,9 +263,9 @@ html {
 
 			<div class="col col-sm-12">
 				<article>
-					<header style="text-align: center;">
-						<h2>WebRTC 視 頻 廣 播</h2>
-					</header><br>
+<!-- 					<header style="text-align: center;"> -->
+<!-- 						<h2>WebRTC 視 頻 廣 播</h2> -->
+<!-- 					</header><br> -->
 
 					<section id="session1" class="experiment">
 						<section <%= (hostID==null)? "style='visibility: hidden;'":"" %>>

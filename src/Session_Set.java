@@ -16,7 +16,7 @@ public class Session_Set extends HttpServlet {
 		PrintWriter out = res.getWriter();
 
 		HttpSession session = req.getSession();
-        session.setAttribute("hostID","吳永志1");
+        session.setAttribute("hostID","一個爪哇寶貝");
         
         String ID = session.getId();
         out.println("ID="+ID);
