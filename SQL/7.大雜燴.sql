@@ -253,7 +253,7 @@ values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'soowii123','soowii
 
 --管理員
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
-values('staff_xuan','106da','名軒');
+values('staff_xuan','106da','明軒');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
 values('staff_michael','106da','麥可');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
