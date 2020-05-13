@@ -166,6 +166,7 @@
 
 	</div>
 </div>
+<div id="Footer" class="buttonBar" style="margin-top:200px;" ></div>
 	<p>
 		<a href="<%=request.getContextPath()%>/front_end/product/ShopHome.jsp">是否繼續購物</a>
 </body>
