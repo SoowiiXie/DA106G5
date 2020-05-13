@@ -354,7 +354,7 @@ html {
                         if (typeof roomsList === 'undefined') roomsList = document.body;
 
                         var tr = document.createElement('tr');
-                        tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is broadcasting his media!</td>' +
+                        tr.innerHTML = '<td><strong>' + room.roomName + '</strong>和他的小夥伴們正在運動!</td>' +
                             '<td><button class="join">&nbsp;Join&nbsp;</button></td>';
                         roomsList.appendChild(tr);
  
