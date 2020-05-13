@@ -186,11 +186,12 @@ public class CmtServlet extends HttpServlet {
 					cmtVO = cmtSvc.updateCmt(cmt_content, cmt_status, cmt_no, cmt_time, rcd_no, mb_id);
 				}else {
 					Cmt_rptService cmt_rptSvc = new Cmt_rptService();
-					cmt_rptVO = cmt_rptSvc.addCmt_rpt(rpt_reason, cmt_no, mb_id);
+					cmt_rptVO = cmt_rptSvc.addCmt_rpt(rpt_reason, cmt_no, mbDoThisID);
 					/*************************** 寄通知給成功檢舉的會員 ****************************************/
 					MemberService memberSvc = new MemberService();
 					MemberVO memberVO = memberSvc.getOneMember(mbDoThisID);
 					NotifyService notifySvc = new NotifyService();
+					System.out.println(2);
 					notifySvc.addNotify(mbDoThisID, memberVO.getMb_name()+"，您檢舉的留言已被下架，謝謝您一起維護RuannAble的環境");
 				}
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
