@@ -73,7 +73,7 @@
 	<ol class="breadcrumb m-0">
 		<li class="breadcrumb-item"><a
 			href="<%=request.getContextPath()%>/front_end/member/login.jsp">登入畫面</a></li>
-		<li class="breadcrumb-item active" aria-current="page">個人頁面123</li>
+		<li class="breadcrumb-item active" aria-current="page">個人頁面</li>
 	</ol>
 </nav>
 
