@@ -13,7 +13,8 @@ import com.cmt.model.*;
 import com.record.model.*;
 import com.cmt_rpt.model.Cmt_rptService;
 import com.cmt_rpt.model.Cmt_rptVO;
-import com.mb.model.*;;
+import com.mb.model.*;
+import com.ntf.model.NotifyService;;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 100 * 1024 * 1024, maxRequestSize = 5 * 5 * 100
 		* 1024 * 1024)
@@ -32,7 +33,7 @@ public class CmtServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-
+		System.out.println(action);
 		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -119,6 +120,7 @@ public class CmtServlet extends HttpServlet {
 		}
 
 		if ("update".equals(action)) { // 來自update__input.jsp的請求
+			System.out.println("update");
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -135,6 +137,7 @@ public class CmtServlet extends HttpServlet {
 				// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
 //				String loc_no = new String(req.getParameter("loc_no").trim());
 				String mbDoThisID =req.getParameter("mbDoThisID");
+				System.out.println("mbDoThisID:"+mbDoThisID);
 				String cmt_no =req.getParameter("cmt_no");
 				String cmt_content = req.getParameter("cmt_content");
 				String rpt_reason = req.getParameter("cmt_content");
@@ -154,6 +157,7 @@ public class CmtServlet extends HttpServlet {
 				Integer cmt_status = new Integer(req.getParameter("cmt_status").trim());
 				String rcd_no = req.getParameter("rcd_no").trim();
 				String mb_id = req.getParameter("mb_id").trim();
+				System.out.println("mb_id:"+mb_id);
 
 				CmtVO cmtVO = new CmtVO();
 				// cmt_no, cmt_content, cmt_time, cmt_status, rcd_no, mb_id
@@ -183,6 +187,11 @@ public class CmtServlet extends HttpServlet {
 				}else {
 					Cmt_rptService cmt_rptSvc = new Cmt_rptService();
 					cmt_rptVO = cmt_rptSvc.addCmt_rpt(rpt_reason, cmt_no, mb_id);
+					/*************************** 寄通知給成功檢舉的會員 ****************************************/
+					MemberService memberSvc = new MemberService();
+					MemberVO memberVO = memberSvc.getOneMember(mbDoThisID);
+					NotifyService notifySvc = new NotifyService();
+					notifySvc.addNotify(mbDoThisID, memberVO.getMb_name()+"，您檢舉的留言已被下架，謝謝您一起維護RuannAble的環境");
 				}
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("cmtVO", cmtVO); // 資料庫update成功後,正確的的VO物件,存入req
@@ -296,11 +305,13 @@ public class CmtServlet extends HttpServlet {
 			    obj.put("cmt_content", cmtVO.getCmt_content());
 			    obj.put("cmt_time", cmtVO.getCmt_time());
 			    obj.put("mb_id", cmtVO.getMb_id());
+			    System.out.println("mb_idInsert:"+cmtVO.getMb_id());
 			    
 			    obj.put("rcd_no", cmtVO.getRcd_no());
 			    RecordService recordSvc = new RecordService();
 			    String mb_id_watched = recordSvc.getOneRecord(rcd_no).getMb_id();
 			    obj.put("mb_id_watched", mb_id_watched);
+			    System.out.println("mb_id_watchedInsert:"+mb_id_watched);
 			    
 			    MemberService mbSvc = new MemberService();
 			    String mb_name = mbSvc.getOneMember(mb_id).getMb_name();
