@@ -911,5 +911,17 @@
 		 <param-name>org.apache.tomcat.websocket.textBufferSize</param-name>
 		 <param-value>1024000</param-value>
 	</context-param>
+	
+	
+<!-- 	錯誤頁面 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/front_end/index.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/front_end/index.jsp</location>
+	</error-page>
 
 </web-app>
