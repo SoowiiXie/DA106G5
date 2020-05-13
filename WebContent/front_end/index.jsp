@@ -21,7 +21,7 @@
 		pageContext.setAttribute("mb_id", memberVO.getMb_id());
 		
 	//登入畫面壞掉時用，其餘時候註解起來
-// 	String mb_id=(String)session.getAttribute("mb_id");
+// 	String mb_id=(String)session.getAttribute("mb_id"); 
 // 	if(mb_id==null || "".equals(mb_id) || memberVO==null){
 // 		session.setAttribute("mb_id","anjavababy520");
 // 		session.setAttribute("memberVO",memberSvc.getOneMember(mb_id));
