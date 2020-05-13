@@ -5,6 +5,7 @@
 <%@ page import="com.location.model.LocationVO"%>
 <%@ page import="com.location.model.LocationService"%>
 <%@ page import="com.location.model.*"%>
+<%@ page import="com.location.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
@@ -13,6 +14,8 @@
 	pageContext.setAttribute("list", list);
 %>
 
+<!--訂單Service -->
+<jsp:useBean id="loc_typeSvcEL" scope="page"	class="com.loc_type.model.Loc_typeService" />
 
 <html>
 <head>
@@ -126,7 +129,7 @@ th, td {
 	<table class="table table-hover table-striped col-10 mx-auto">
 		<tr>
 			<th>地標編號</th>
-			<th>地標類別編號</th>
+			<th>地標類別</th>
 			<th>經度</th>
 			<th>緯度</th>
 			<th>地標狀態</th>
@@ -141,7 +144,7 @@ th, td {
 	<!--loc_no, loc_typeno, longitude, latitude, loc_status, loc_address, loc_pic -->
 			<tr>
 				<td>${locationVO.loc_no}</td>
-				<td>${locationVO.loc_typeno}</td>
+				<td>${loc_typeSvcEL.getOneLocation(locationVO.loc_typeno).getLoc_info()}</td>
 				<td>${locationVO.longitude}</td>
 				<td>${locationVO.latitude}</td>
 				<td>${(locationVO.loc_status==1?'上架':'下架')}</td>
