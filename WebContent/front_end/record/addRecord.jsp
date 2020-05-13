@@ -65,7 +65,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="path.do" name="form1" enctype="multipart/form-data">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/path.do" name="form1" enctype="multipart/form-data">
 <table>
 <!-- 	<tr> -->
 <!-- 		<td>上傳日期:</td> -->
