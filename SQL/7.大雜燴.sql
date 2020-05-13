@@ -161,17 +161,17 @@ NOCACHE;
 
 --會員
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
-values('soowii123','106da','soowii','1',TO_DATE('1990-02-15','YYYY-MM-DD'),'soowii123@yahoo.com',2);
+values('soowii123','106da','阿水','1',TO_DATE('1990-02-15','YYYY-MM-DD'),'soowii123@yahoo.com',2);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
-values('xuan123','106da','xuan','1',TO_DATE('1992-05-01','YYYY-MM-DD'),'xuan123@hotmail.com',2);
+values('xuan123','106da','名軒','1',TO_DATE('1992-05-01','YYYY-MM-DD'),'xuan123@hotmail.com',2);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
-values('michael123','106da','Michael','1',TO_DATE('1989-06-25','YYYY-MM-DD'),'Michael123@yahoo.com',2);
+values('michael123','106da','麥可','1',TO_DATE('1989-06-25','YYYY-MM-DD'),'Michael123@yahoo.com',2);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
-values('vain123','106da','vain','1',TO_DATE('1987-07-01','YYYY-MM-DD'),'vain123@hotmail.com',2);
+values('vain123','106da','昱盛','1',TO_DATE('1987-07-01','YYYY-MM-DD'),'vain123@hotmail.com',2);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
-values('yiwen123','106da','yiwen123','1',TO_DATE('1985-09-14','YYYY-MM-DD'),'yiwen123@yahoo.com',2);
+values('yiwen123','106da','以文','1',TO_DATE('1985-09-14','YYYY-MM-DD'),'yiwen123@yahoo.com',3);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
-values('weijhih123','106da','weijhih123','1',TO_DATE('1989-10-19','YYYY-MM-DD'),'weijhih123@yahoo.com',2);
+values('weijhih123','106da','偉誌','1',TO_DATE('1989-10-19','YYYY-MM-DD'),'weijhih123@yahoo.com',2);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS) 
 values('androidlababy520','106da','安卓拉寶貝','2',TO_DATE('1989-10-19','YYYY-MM-DD'),'androidlababy520@yahoo.com',2);
 Insert into MEMBER( MB_ID, MB_PWD, MB_NAME ,MB_GENDER, MB_BIRTHDAY, MB_EMAIL, MB_STATUS, MB_LV) 
@@ -253,15 +253,15 @@ values('QUR'||LPAD(to_char(QUESTION_NO_SEQ.NEXTVAL), 5, '0'),'soowii123','soowii
 
 --管理員
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
-values('staff_xuan','106da','xuan');
+values('staff_xuan','106da','名軒');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
-values('staff_michael','106da','michael');
+values('staff_michael','106da','麥可');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
-values('staff_vain','106da','vain');
+values('staff_vain','106da','昱盛');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
-values('staff_soowii','106da','soowii');
+values('staff_soowii','106da','阿水');
 Insert into STAFF( STAFF_ID, STAFF_PWD, STAFF_NAME) 
-values('staff_weijhih','106da','weijhih');
+values('staff_weijhih','106da','偉誌');
 
 --功能
 Insert into ABILITY( ABILITY_NO, ABILITY_NAME) 
