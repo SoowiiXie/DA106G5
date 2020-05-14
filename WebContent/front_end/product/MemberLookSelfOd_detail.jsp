@@ -94,7 +94,7 @@ th, td {
 
 	</table>
 </div>
-<div id="Footer" class="buttonBar" style="margin-top:200px;" ></div>
+<!-- <div id="Footer" class="buttonBar" style="margin-top:200px;" ></div> -->
 </body>
 
 </html>
