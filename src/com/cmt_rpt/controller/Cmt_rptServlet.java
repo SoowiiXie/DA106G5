@@ -275,7 +275,8 @@ public class Cmt_rptServlet extends HttpServlet {
 //					MessageService messageSvc = new MessageService();
 //					messageSvc.addMessage("androidlababy520" , mb_id, memberVO.getMb_name()+"恭喜你升上"+(memberVO.getMb_lv()+1)+"等，請至商城收取您的優惠券");
 					NotifyService notifySvc = new NotifyService();
-					notifySvc.addNotify(mb_id, memberVO.getMb_name()+"，您檢舉的留言已被下架，謝謝您一起維護RuannAble的環境");
+//					notifySvc.addNotify(mb_id, memberVO.getMb_name()+"，您檢舉的留言已被下架，謝謝您一起維護RuannAble的環境");
+					notifySvc.addNotify(mb_id, "您檢舉的留言已被下架，謝謝您一起維護RuannAble的環境");
 				}
 				Cmt_rptVO cmt_rptVO = new Cmt_rptVO();
 				cmt_rptVO.setCmt_rpt_no(cmt_rpt_no);
