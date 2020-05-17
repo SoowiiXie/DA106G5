@@ -142,6 +142,11 @@ public class FakeBlobTest extends HttpServlet {
 				ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
 				ps.setString(2, "陰時多雲短暫陣雨");
 				rowCount += ps.executeUpdate();
+				in = getServletContext().getResourceAsStream("/fake_picture/weather00002.jpg");
+				bf = new BufferedInputStream(in);
+				ps.setBinaryStream(1, bf, bf.available());// 如果不用顯示在使用者裝置直接寫入DB
+				ps.setString(2, "多雲時陰陣雨或雷雨");
+				rowCount += ps.executeUpdate();
 				// 第三張
 				in = getServletContext().getResourceAsStream("/fake_picture/weather00003.jpg");
 				bf = new BufferedInputStream(in);
