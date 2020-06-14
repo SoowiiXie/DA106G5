@@ -28,7 +28,7 @@ pageContext.setAttribute("waterJSON", waterJSON);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>Google Map Demo</title>
+<title>Google Map</title>
 <style>
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
