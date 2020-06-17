@@ -53,6 +53,6 @@
 		<div class="mx-auto" data-aos="fade-left" data-aos-duration="1800">東部</div>
 		<button type="button" class="btn btn-primary wth_loc_btn" value="宜蘭縣" data-aos="fade-left" data-aos-duration="2200">宜蘭縣</button>
 		<button type="button" class="btn btn-primary wth_loc_btn" value="花蓮縣" data-aos="fade-left" data-aos-duration="2600">花蓮縣</button>
-		<button type="button" class="btn btn-primary wth_loc_btn" value="台東縣" data-aos="fade-left" data-aos-duration="3000">台東縣</button>
+		<button type="button" class="btn btn-primary wth_loc_btn" value="臺東縣" data-aos="fade-left" data-aos-duration="3000">臺東縣</button>
 	</div>
 </div>
