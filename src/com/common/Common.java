@@ -10,11 +10,11 @@ public class Common {
 	public final static String PASSWORD = "DA106G5";
 	
 	// 連線至heroku PostgreSQL		   //postgres://<username>    :<password>                                                      @<host>                                 :<port>/<dbname>
-	public final static String URI_PG = "postgres://tlnlkxrtnbepdl:2a372ee7bedb7e93309cb56336a42fe8824885adb6a6509d27d86cdba914c5d3@ec2-52-86-73-86.compute-1.amazonaws.com:5432/daqfqhdshludoq";
+	public final static String URI_PG = "postgres://rcccchvvxjnxbw:42bc0d8ef563d2f91b1b2bfb222fdcc3900f9368f2ed287c30b06fbbcf7e6469@ec2-3-231-16-122.compute-1.amazonaws.com:5432/d5o37ss0mrmndl";
 									   //jdbc:postgresql://<host>                                 :<port>/<dbname>?user=<username>&password=<password>
-	public final static String URL_PG = "jdbc:postgresql://ec2-52-86-73-86.compute-1.amazonaws.com:5432/daqfqhdshludoq";
+	public final static String URL_PG = "jdbc:postgresql://ec2-3-231-16-122.compute-1.amazonaws.com";
 	public final static String DRIVER_CLASS_PG = "org.postgresql.Driver";
-	public final static String USER_PG = "tlnlkxrtnbepdl";
-	public final static String PASSWORD_PG = "2a372ee7bedb7e93309cb56336a42fe8824885adb6a6509d27d86cdba914c5d3";
+	public final static String USER_PG = "rcccchvvxjnxbw";
+	public final static String PASSWORD_PG = "42bc0d8ef563d2f91b1b2bfb222fdcc3900f9368f2ed287c30b06fbbcf7e6469";
 }
 
